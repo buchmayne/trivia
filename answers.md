@@ -1,0 +1,109 @@
+Topic: Military Strategy
+1. What is the SECOND stage of a penetration test?
+    C: https://play.howstuffworks.com/quiz/offensive-military-tactics-quiz
+2. Which tactic involves attacking an enemy from the rear?
+    A: https://play.howstuffworks.com/quiz/offensive-military-tactics-quiz
+3. A scorpion attack is a pincer attack that is assited by what kind of force?
+    B: https://play.howstuffworks.com/quiz/offensive-military-tactics-quiz
+
+Topic: Universities
+Given the pair of universities, which university has a larger student body?
+1. University of Central Flordia or Ohio State University
+    University of Central Florida: https://www.stateuniversity.com/rank/tot_enroll_rank/2
+2. Michigan State University or University of Southern California
+    Michigan State University: https://www.stateuniversity.com/rank/tot_enroll_rank/2
+3. UCLA or University of Wisconsin
+    UCLA: https://www.stateuniversity.com/rank/tot_enroll_rank/2
+4. Harvard or Oregon State University
+    Harvard: https://www.stateuniversity.com/rank/tot_enroll_rank/2
+5. Portland State University or Kansas State University
+    Portland State University: https://www.stateuniversity.com/rank/tot_enroll_rank/2
+
+Topic: Housing Affordability by U.S. Metro
+
+Topic: Who is Older?
+1. Which historical figure was born first?
+    A. Martin Luther King Jr: 1929, Wikipedia
+    B. Anne Frank: 1929, Wikipedia
+    **C. George H.W. Bush**: 1924, Wikipedia
+    D. Joe Biden: 1942, Wikipedia
+    E. James Dean: 1931, Wikipedia
+
+Topic: Corporate Headquarter Locations
+1. Match the corporate headquarter location to the corporation:
+    A. FedEx = 3. Memphis, TN: Wikipedia
+    B. Comcast =  1. Philadelphia, PA: Wikipedia
+    C. Home Depot = 4. Atlanta, GA: Wikipedia
+    D. Dominos = 2. Ann Arbor, MI: Wikipedia
+
+Topic: Career Sports Leaders
+1. Relative to their sport, what athlete scored more over the course of thier career?
+    A. Alex Rodriguez is in X place all time in career home runs
+    B. Wilt Chamberlin is in Y place all time in career points scored
+    C. Philip Rivers is in Z place all time in career touchdowns scored
+
+    Order X, Y, and Z from highest to lowest
+    Alex Rodriguez > Philip Rivers > Wilt Chamberlin
+    Source: Wikipedia
+
+Topic: Identify the International City by the Skyline
+    1. Moscow
+    2. Hong Kong
+    3. Toronto
+    
+Topic: Identify the US City by the Skyline
+    1. Los Angeles
+
+Topic: Solve the Puzzle
+    1. Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?
+    **Switch**
+    Source: Wikipedia
+
+
+Topic: Music Chronology
+
+    1. May 26, 1967: E. Beatles: Sgt Pepper Lonely Heart's Club Band
+    
+    2. January 12, 1969: D. Led Zeppelin: Led Zeppelin
+    
+    3. November 4, 1970: A. David Bowie: The Man Who Sold The World
+    
+    4. March 1, 1973: B. Pink Floyd: Darkside Of The Moon
+    
+    5. January 20, 1975: C. Bob Dylan: Blood On The Tracks
+    
+    Source: Wikipedia
+    
+    
+Topic: Mathematics
+    1. Mean/Average // Source: Wikipedia
+
+    
+    
+Topic: Longitude
+1. Order the European cities from West to East
+
+    B. Paris, C. Rome, E. Amsterdam, D. Berlin, A. Vienna
+    Source: Google Maps
+
+2. Order the Chinese cities from West to East
+    B. Shenzen, C. Wuhan, A. Beijing, D. Shanghai
+    Source: Google Maps
+    
+3. Order the Texas cities from West to East
+    A. El Paso, E. San Antonio, C. Austin, B. Dallas, D. Houston
+    Source: Google Maps
+    
+Topic: Latitude
+
+1. Order the European cities from North to South
+    D. Copenhagen, E. London, A. Paris, F. Munich, C. Milan, B. Barcelona
+    Source: Google Maps
+
+2. Order the English cities from North to South
+    Manchester, Liverpool, Cambridge, London, Southampton
+    Source: Google Maps
+
+3. Order the Ohio cities from North to South
+    E. Toledo, B. Cleveland, D. Columbus, A. Dayton, C. Cincinnati
+    Source: Google Maps
