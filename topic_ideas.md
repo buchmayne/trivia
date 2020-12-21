@@ -11,5 +11,6 @@ Topic: Match the actor with their hometown
 Topic: Match the philospher to the philosophical ideology they're known for
 Topic: Identify the country from a picture of the country's flag
 Topic: Guess the decade when these female firsts occured
-Topic: Match the architecural style to its description
+Topic: Match the architectural style to its description
 Topic: What are residents of this city/state/country called? i.e. Oregon/Oregonians
+Topic: Match the technique to the sport (crossover -> basketball, step over -> soccer)

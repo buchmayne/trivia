@@ -107,3 +107,33 @@ Topic: Latitude
 3. Order the Ohio cities from North to South
     E. Toledo, B. Cleveland, D. Columbus, A. Dayton, C. Cincinnati
     Source: Google Maps
+
+Topic: Capitals
+
+1. Name the country based on the capital
+   A. Nur-Sultan: Kazahkstan, B. Abuja: Nigeria, C. Montevideo: Uruguay
+
+2. Name the country based on the capital
+   A. Lima: Peru, B. Helsinki: Finland, C. Caracas: Venezuela, D. Canberra: Australia, E. Jakarta: Indonesia
+
+Topic: Population Density
+
+1. Rank the capital cities by population density from most to least dense
+   A. Manilla, B. Delhi, C. Athens, D. Seoul Source: Wikipedia
+
+Topic: Visual Puns
+
+1. Tech Companies, Facebook, Netflix, Amazon, Tiktok
+
+Topic: Genres
+
+1. Metal Genres
+   A. Sludge Metal: Description 3
+   B. Thrashcore: Description 2
+   C. Crustpunk: Description 4
+   D. Extreme Metal: Description 1
+
+Topic: Identify the Data Portrayed on the Map
+
+1. Percent of Population Mormon
+2. Most Popular Sport
