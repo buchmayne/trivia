@@ -124,6 +124,7 @@ Topic: Population Density
 Topic: Visual Puns
 
 1. Tech Companies, Facebook, Netflix, Amazon, Tiktok
+2. Oregon, Washington, Florida, New Jersey
 
 Topic: Genres
 
@@ -137,3 +138,38 @@ Topic: Identify the Data Portrayed on the Map
 
 1. Percent of Population Mormon
 2. Most Popular Sport
+
+Topic: Identify the Cocktail by the Recipe
+
+1. Made with white rum, sugar (traditionally sugar cane juice), lime juice, soda water, and mint -- Mojito
+2. Made with vodka, spicy ginger beer, and lime juice, garnished with a slice or wedge of lime. -- Moscow Mule
+3. Made with vodka, triple sec, cranberry juice, and freshly squeezed or sweetened lime juice. -- Cosmopolitan
+4. Made by muddling sugar with bitters, adding whiskey or, less commonly, brandy, and garnishing with a twist of citrus rind and a cocktail cherry. -- Old Fashion
+5. Made with whiskey, sweet vermouth, and bitters. -- Manhattan
+
+Topic: Heads of State
+
+1. Match the Head of State to the Country they lead
+   1. Jair Bolsonaro - Brazil
+   2. Muhammadu Buhari - Nigeria
+   3. Andres Manuel Lopez Obrador - Mexico
+   4. Marcelo Rebelo de Sousa - Portugal
+   
+Topic: Architecture
+
+1. Match the description to the architectural style
+    The "Usonian Homes" are typically small, single-story dwellings without a garage or much storage. They are often L-shaped to fit around a garden terrace on unusual and inexpensive sites. They are characterized by native materials; flat roofs and large cantilevered overhangs for passive solar heating and natural cooling; natural lighting with clerestory windows; and radiant-floor heating. - Usonia
+
+    "there should be no features about a building which are not necessary for convenience, construction, or propriety" and "all ornament should consist of enrichment of the essential construction of the building" - Functionalism
+
+    The style is characterized by an emphasis on volume over mass, the use of lightweight, mass-produced, industrial materials, rejection of all ornament and colour, repetitive modular forms, and the use of flat surfaces, typically alternating with areas of glass - International Style
+
+    It combined modern styles with fine craftsmanship and rich materials. During its heyday, Art Deco represented luxury, glamour, exuberance, and faith in social and technological progress.  - Art Deco
+
+Topic: Actors
+
+1. Match the actor to their hometown
+   1. Brad Pitt - Springfield, Missouri
+   2. Steve Carell - Acton, Massachusetts
+   3. Amy Adams - Castle Rock, Colorado
+   4. Merryl Streep - Bernardsville, New Jersey
