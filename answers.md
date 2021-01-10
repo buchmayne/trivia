@@ -116,7 +116,7 @@ Topic: Capitals
 2. Name the country based on the capital
    A. Lima: Peru, B. Helsinki: Finland, C. Caracas: Venezuela, D. Canberra: Australia, E. Jakarta: Indonesia
 
-Topic: Population Density
+Topic: Population
 
 1. Rank the capital cities by population density from most to least dense
    A. Manilla, B. Delhi, C. Athens, D. Seoul Source: Wikipedia
@@ -124,7 +124,8 @@ Topic: Population Density
 Topic: Visual Puns
 
 1. Tech Companies, Facebook, Netflix, Amazon, Tiktok
-2. Oregon, Washington, Florida, New Jersey
+2. Rhode Island, Montana, Florida, New Jersey
+3. Rolling Stones, Radiohead, Pink Floyd, Nirvana
 
 Topic: Genres
 
@@ -138,6 +139,7 @@ Topic: Identify the Data Portrayed on the Map
 
 1. Percent of Population Mormon
 2. Most Popular Sport
+3. Alcohol Consumption per capita
 
 Topic: Identify the Cocktail by the Recipe
 
@@ -173,3 +175,47 @@ Topic: Actors
    2. Steve Carell - Acton, Massachusetts
    3. Amy Adams - Castle Rock, Colorado
    4. Merryl Streep - Bernardsville, New Jersey
+   
+2. Order the following films starring Leo Dicaprio from highest to lowest based on rottentomatoes tomato meter
+   1. Titanic - 89
+   2. Catch Me If You Can - 96
+   3. Wolf of Wall Street - 80
+   4. Gangs of New York - 74
+
+
+Topic: Timezones
+
+1. How many timezones are in each country
+    A. China - 1
+    B. Australia - 9
+    C. Russia - 11
+    D. Brazil - 4
+
+Topic: Demonyms
+
+1. Name the demonym of each state
+   1. Idaho - Idahoans
+   2. Kentucky - Kentuckians
+   3. Wisconsin - Wisconsinites
+   4. Michigan - Michiganders
+
+2. Name the demonym for the following internaitonal cities (e.g. a resident of Chicago is a Chicagoan)
+   1. Mosco - Muscovites
+   2. Dublin - Dubliner
+   3. Florence - Florentine
+   4. Athens - Athenians
+
+3. Name the demonym for the following US cities
+   1. Lousiville - Louisvillians
+   2. Tampa - Tampanians
+   3. Phoenix - Phoenicians
+   4. Denver - Denverites
+
+
+Topic: History of Inventions
+
+1. Name the decade in which the following was invented
+   1. Escalator (first design actually built) - 1890s
+   2. Domestic Vacuum Cleaner - 1900s
+   3. Espresso Machine - 1880s
+   4. Transatlantic Cable - 1850s
