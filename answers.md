@@ -29,12 +29,25 @@ Topic: Who is Older?
     D. Joe Biden: 1942, Wikipedia
     E. James Dean: 1931, Wikipedia
 
+1. Which historical figure was born first?
+    A. Johnny Cash: 1932, Wikipedia
+    B. Bill Russell: 1934, Wikipedia
+    **C. Gene Hackman**: 1930, Wikipedia
+    D. Joe Biden: 1942, Wikipedia
+    E. Jimmy Hendrix: 1942, Wikipedia
+
 Topic: Corporate Headquarter Locations
 1. Match the corporate headquarter location to the corporation:
     A. FedEx = 3. Memphis, TN: Wikipedia
     B. Comcast =  1. Philadelphia, PA: Wikipedia
     C. Home Depot = 4. Atlanta, GA: Wikipedia
     D. Dominos = 2. Ann Arbor, MI: Wikipedia
+
+2. Match the corporate headquarter location to the corporation:
+   A. GE = 4. Boston, MA
+   B. Bank of America = 2. Charlotte, NC
+   C. McDonalds = 1. Chicago, IL
+   D. Harley Davidson = 3. Milwaukee, WI
 
 Topic: Career Sports Leaders
 1. Relative to their sport, what athlete scored more over the course of thier career?
@@ -46,6 +59,18 @@ Topic: Career Sports Leaders
     Alex Rodriguez > Philip Rivers > Wilt Chamberlin
     Source: Wikipedia
 
+2. Relative to their sport, what athlete scored more over the course of thier career?
+    
+    A. Derek Jeter is in X place all time in career hits
+    
+    B. LeBron James is in Y place all time in career assists
+    
+    C. LaDainian Tomlinson is in Z place all time in career rushing touchdowns scored
+
+    Order X, Y, and Z from highest to lowest
+
+    LD 2nd, Jeter 6th, Lebron 8th
+
 Topic: Identify the International City by the Skyline
     1. Moscow
     2. Hong Kong
@@ -53,11 +78,56 @@ Topic: Identify the International City by the Skyline
     
 Topic: Identify the US City by the Skyline
     1. Los Angeles
+    2. Denver
+    3. Philadelphia
 
 Topic: Solve the Puzzle
     1. Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?
     **Switch**
     Source: Wikipedia
+
+
+
+
+Question 2. 
+Exactly three films—Greed, Harvest, and Limelight—are shown during a film club’s festival held on Thursday, Friday, and Saturday. Each film is shown at least once during the festival but never more than once on a given day. On each day at least one film is shown. Films are shown one at a time. The following conditions apply:
+
+    On Thursday Harvest is shown, and no film is shown after it on that day.
+    On Friday either Greed or Limelight, but not both, is shown, and no film is shown after it on that day.
+    On Saturday either Greed or Harvest, but not both, is shown, and no film is shown after it on that day.
+
+2A.
+Which one of the following could be a complete and accurate description of the order in which the films are shown at the festival?
+
+(A) Thursday: Limelight, then Harvest; Friday: Limelight; Saturday: Harvest
+(B) Thursday: Harvest; Friday: Greed, then Limelight; Saturday: Limelight, then Greed
+(C) Thursday: Harvest; Friday: Limelight; Saturday: Limelight, then Greed
+(D) Thursday: Greed, then Harvest, then Limelight; Friday: Limelight; Saturday: Greed
+(E) Thursday: Greed, then Harvest; Friday: Limelight, then Harvest; Saturday: Harvest
+
+Answer: C
+
+2B.
+Which one of the following CANNOT be true?
+
+(A) Harvest is the last film shown on each day of the festival.
+(B) Limelight is shown on each day of the festival.
+(C) Greed is shown second on each day of the festival.
+(D) A different film is shown first on each day of the festival.
+(E) A different film is shown last on each day of the festival.
+
+Answer: A
+
+2C.
+If Greed is shown exactly three times, Harvest is shown exactly twice, and Limelight is shown exactly once, then which one of the following must be true?
+
+(A) All three films are shown on Thursday.
+(B) Exactly two films are shown on Saturday.
+(C) Limelight and Harvest are both shown on Thursday.
+(D) Greed is the only film shown on Saturday.
+(E) Harvest and Greed are both shown on Friday.
+
+Answer: E
 
 
 Topic: Music Chronology
@@ -77,6 +147,7 @@ Topic: Music Chronology
     
 Topic: Mathematics
     1. Mean/Average // Source: Wikipedia
+    2. Median
 
     
     
@@ -116,10 +187,16 @@ Topic: Capitals
 2. Name the country based on the capital
    A. Lima: Peru, B. Helsinki: Finland, C. Caracas: Venezuela, D. Canberra: Australia, E. Jakarta: Indonesia
 
+3. Name the capital of each state
+   Alaska: Juneau, Kentucky: Frankfort, Missouri: Jefferson City, West Virginia: Charleston
+
 Topic: Population
 
 1. Rank the capital cities by population density from most to least dense
    A. Manilla, B. Delhi, C. Athens, D. Seoul Source: Wikipedia
+
+2. Rank the following U.S. cities (not metro) from highest to lowest population
+   San Antonio > San Francisco > Boston > Miami 
 
 Topic: Visual Puns
 
@@ -135,11 +212,26 @@ Topic: Genres
    C. Crustpunk: Description 4
    D. Extreme Metal: Description 1
 
+
+2. Internet Music Genres
+   1. Seapunk: B
+   2. Synthwave: C
+   3. Chillwave: A
+   4. Vaporwave: D
+
+
+3. House Genres
+   1. Dirty Dutch House: D
+   2. Future Bass: C 
+   3. Trip Hop: B 
+   4. Acid House: A
+
 Topic: Identify the Data Portrayed on the Map
 
 1. Percent of Population Mormon
 2. Most Popular Sport
 3. Alcohol Consumption per capita
+4. Number of Billionaires per capita by country of origin
 
 Topic: Identify the Cocktail by the Recipe
 
@@ -219,3 +311,28 @@ Topic: History of Inventions
    2. Domestic Vacuum Cleaner - 1900s
    3. Espresso Machine - 1880s
    4. Transatlantic Cable - 1850s
+
+
+
+Topic: Birdseye View
+
+1. Tesla Gigwatt Factory, Reno Nevada
+
+Topic: Venn Diagrams
+
+1. Cities that have never won a Super Bowl, Cities that hosted Olympics, State Capitals
+
+Topic: U.S. Presidents
+
+1. How many presidents born west of the mississippi river: 8
+
+Topic: Andre the Giant
+
+Andre the Giant weighed 520lbs
+
+Damian Lillard 195
+Tom Brady 225
+Joel Embiid 280
+Tiger Woods 185
+Leo Messi 160
+Shaq 325
