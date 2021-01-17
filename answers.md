@@ -32,7 +32,7 @@ Topic: Who is Older?
 1. Which historical figure was born first?
     A. Johnny Cash: 1932, Wikipedia
     B. Bill Russell: 1934, Wikipedia
-    **C. Gene Hackman**: 1930, Wikipedia
+    **C. Marilyn Monrow**: 1926, Wikipedia
     D. Joe Biden: 1942, Wikipedia
     E. Jimmy Hendrix: 1942, Wikipedia
 
@@ -75,11 +75,15 @@ Topic: Identify the International City by the Skyline
     1. Moscow
     2. Hong Kong
     3. Toronto
+    4. London
+    5. Shanghai
     
 Topic: Identify the US City by the Skyline
     1. Los Angeles
     2. Denver
     3. Philadelphia
+    4. Detroit
+    5. Boston
 
 Topic: Solve the Puzzle
     1. Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?
@@ -309,7 +313,7 @@ Topic: History of Inventions
 1. Name the decade in which the following was invented
    1. Escalator (first design actually built) - 1890s
    2. Domestic Vacuum Cleaner - 1900s
-   3. Espresso Machine - 1880s
+   3. Ballpoint Pen - 1880s
    4. Transatlantic Cable - 1850s
 
 
@@ -324,7 +328,9 @@ Topic: Venn Diagrams
 
 Topic: U.S. Presidents
 
-1. How many presidents born west of the mississippi river: 8
+1. How many presidents born west of the mississippi river: 8 (Nixon, Obama, Hoover, Truman, Eisenhower, Johnson, Ford, Clinton) Source: https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States_by_home_state
+2. Of the U.S. Presidents born West of the Mississippi River, how many of them were born before 1900: 3 (Eisenhower 1890, Truman 1884, Hoover 1874)
+3. How many presidents were born West of the Rocky Mountains: 2 (Nixon, Obama)
 
 Topic: Andre the Giant
 
