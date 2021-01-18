@@ -134,6 +134,37 @@ If Greed is shown exactly three times, Harvest is shown exactly twice, and Limel
 Answer: E
 
 
+3. 
+
+In a school function ceremony, seven students, Amy, Bob, Chad, Dom, Elisa, Fischer, and Grant have to deliver their performances in seven consecutive slots, not necessarily in the order of their given names. The following information is known about the order in which the students perform:
+
+    Chad performs immediately before Dom
+    Grant performs sometime after Chad
+    There are exactly two performances made between the performances of Amy and Elisa
+
+3A. If Amy was the second to perform, who was the third performer in the ceremony?
+    A. Bob
+    B. **Chad**
+    C. Dom
+    D. Grant
+    E. Fischer
+
+3B. In which of the following slots can Grant not perform?
+    A. **Second**
+    B. Third
+    C. Fourth
+    D. Fifth
+    E. Sixth
+
+3C. What is the latest slot in which Chad could perform?
+    A. Second
+    B. Third
+    C. Fourth
+    D. **Fifth**
+    E. Sixth
+
+
+
 Topic: Music Chronology
 
     1. May 26, 1967: E. Beatles: Sgt Pepper Lonely Heart's Club Band
@@ -321,6 +352,7 @@ Topic: History of Inventions
 Topic: Birdseye View
 
 1. Tesla Gigwatt Factory, Reno Nevada
+2. Mt. Rushmore
 
 Topic: Venn Diagrams
 
