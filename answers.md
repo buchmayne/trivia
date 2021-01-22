@@ -374,3 +374,59 @@ Joel Embiid 280
 Tiger Woods 185
 Leo Messi 160
 Shaq 325
+
+
+
+Topic: Cold
+
+1. Order the following cities, from coldest to warmest, based on average January low temperature (1 Point Each)
+
+    A. Boston - 22
+    B. Milwaukee - 16
+    C. Minneapolis - 7.5
+    D. Denver - 18
+    Source: https://www.currentresults.com/Weather/Colorado/Places/denver-temperatures-by-month-average.php & Wikipedia for the rest
+    
+Topic: Police Procedurals
+
+1. Name the show based on the description
+
+A. Bones is an American crime procedural comedy-drama television series created by Hart Hanson for Fox. It premiered on September 13, 2005, and concluded on March 28, 2017, airing for 246 episodes over twelve seasons. The show is based on forensic anthropology and forensic archaeology, with each episode focusing on an FBI case file concerning the mystery behind human remains brought by FBI Special Agent Seeley Booth (David Boreanaz) to forensic anthropologist Dr. Temperance "Bones" Brennan
+B. Numbers (stylized as NUMB3RS) is an American crime drama television series that was broadcast on CBS from January 23, 2005, to March 12, 2010. The series was created by Nicolas Falacci and Cheryl Heuton, and follows FBI Special Agent Don Eppes (Rob Morrow) and his brother Charlie Eppes (David Krumholtz), a college mathematics professor and prodigy, who helps Don solve crimes for the FBI. Brothers Ridley and Tony Scott produced Numbers; its production companies are the Scott brothers' Scott Free Productions and CBS Television Studios (originally Paramount Network Television, and later CBS Paramount Network Television).
+C. Mixing deduction and character-driven drama, CSI: Crime Scene Investigation follows a team of crime-scene investigators, employed by the Las Vegas Police Department, as they use physical evidence to solve murders. 
+D. Criminal Minds is an American police procedural crime drama television series created and produced by Jeff Davis. The series premiered on CBS on September 22, 2005, and concluded on February 19, 2020. It follows a group of criminal profilers who work for the FBI as members of its Behavioral Analysis Unit (BAU), using behavioral analysis and profiling to investigate crimes and find perpetrators. The show tells the story of the team as they work various cases, and tackle their personal struggles. 
+
+Topic: Flags
+
+1. Egypt
+2. Netherlands
+3. Russia
+4. Turkey
+
+Topic: Womans' Firsts
+
+1. List the decade of the femal first
+A. First woman in space: 1962
+B. First woman publisher of a major United States newspaper: 1946
+C. First woman to win a nobel prize: 1903
+D. D. The First woman prime minister of a G7/P5 country (): 1979
+
+Topic: Film Franchises
+
+Rank the franchises from most to fewest entries (no spinoffs)
+A. Fast and Furious: 8
+B. Jurassic Park: 5 
+C. Rocky: 6
+D. Karate Kid: 4
+
+
+Topic: Architecture
+
+A. Modern
+B. Art Deco
+C. Neoclassical
+D. Victorian
+
+Topic: Actors - Degrees of Separation
+
+1 Degree answer: The Rock is in The Other Guys with Samuel L. Jackson, Samuel L. Jackson is in Django Unchained with Leo DiCaprio
