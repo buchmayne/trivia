@@ -430,3 +430,35 @@ D. Victorian
 Topic: Actors - Degrees of Separation
 
 1 Degree answer: The Rock is in The Other Guys with Samuel L. Jackson, Samuel L. Jackson is in Django Unchained with Leo DiCaprio
+
+**8. Match the Actor to their hometown (4 Points)**
+
+    1. Jennifer Lawrence: B
+    
+    2. Brie Larson: D
+    
+    3. Amy Adams: C
+    
+    4. Merryl Streep: A
+    
+    -------------------------
+    
+    A. Bernardsville, New Jersey
+    
+    B. Louisville, Kentucky
+    
+    C. Castle Rock, Colorado
+    
+    D. Sacramento, California
+
+
+    **9. Rank the following Tom Hanks films by the rottentomatoes score (Critics Score) (4 Points)**
+
+    A. Saving Private Ryan: 93
+    
+    B. Cast Away: 89
+    
+    C. Forrest Gump: 71
+    
+    D. The Da Vinci Code: 26
+    
