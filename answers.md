@@ -375,6 +375,29 @@ Tiger Woods 185
 Leo Messi 160
 Shaq 325
 
+Giant Panda: 258
+Tiger: 263
+Mountain Gorilla: 307
+Pygmy Hippopatumus: 473
+Lion: 385
+
+
+
+
+https://thewebsiteofeverything.com/animals/mammals/Carnivora/Ursidae/Ailuropoda/Ailuropoda-melanoleuca.html
+
+https://thewebsiteofeverything.com/animals/mammals/Carnivora/Felidae/Panthera/Panthera-tigris.html
+
+https://thewebsiteofeverything.com/animals/mammals/Primates/Hominidae/Gorilla/Gorilla-gorilla.html
+
+https://thewebsiteofeverything.com/animals/mammals/Artiodactyla/Hippopotamidae/Hexaprotodon/Hexaprotodon-liberiensis.html
+
+https://thewebsiteofeverything.com/animals/mammals/Carnivora/Felidae/Panthera/Panthera-leo.html
+
+
+
+
+
 
 
 Topic: Cold
@@ -462,3 +485,39 @@ Topic: Actors - Degrees of Separation
     
     D. The Da Vinci Code: 26
     
+
+Topic: Ologies
+
+ 1. Eschatology: C
+ 2. Ethology: A
+ 3. Speleology: B
+ 4. Dendrology: D
+ ---------------------
+ A. The scientific and objective study of animal behaviour, usually with a focus on behaviour under natural conditions, and viewing behaviour as an evolutionarily adaptive trait.
+ 
+ B. The scientific study of caves and other karst features, as well as their make-up, structure, physical properties, history, life forms, and the processes by which they form and change over time
+ 
+ C. A part of theology concerned with the final events of history, or the ultimate destiny of humanity. This concept is commonly referred to as "the end of the world" or "end times"
+ 
+ D. The science and study of wooded plants (trees, shrubs, and lianas), specifically, their taxonomic classifications
+    
+
+Topic: Musical Artists
+
+1. Rank the following musical artists by career records sold, from highest to lowest (5 Points)
+
+    A. Madonna: 300 Million
+    
+    B. Taylor Swift: 200 Million
+    
+    C. Bruce Springsteen: 135 Million
+    
+    D. Linkin Park: 100 Million
+    
+    E. Johnny Cash: 90 Million
+
+
+Feb Logic Games:
+18A: D 
+18B: E
+18C: A
