@@ -521,3 +521,28 @@ Feb Logic Games:
 18A: D 
 18B: E
 18C: A
+
+
+Topic: Stage Names
+https://www.newidea.com.au/celebrities-real-names-25-famous-people-who-use-stage-names
+
+Topic: Philosophers
+https://thebestschools.org/magazine/major-philosopher-ideas/
+
+Topic: Literature
+http://americanbookreview.org/100BestLines.asp
+
+Topic: Mountains
+Whitney 14,505, Rainier 14,417, Shasta 14,179, Castle Mountain: 12,618
+
+Topic: Art History
+Girl with a Pearl Earring, Vermeer
+Birth of Venus, Botticelli
+Composition with Red, Blue and Yellow, Mondrian
+Nighthawks, Hopper
+
+Topic: Distances
+LA -> SF: 382 miles,
+Milwaukee -> Cleveland: 436
+Baltimore -> Boston: 404
+Atlanta -> Miami: 662
