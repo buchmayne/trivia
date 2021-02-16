@@ -546,3 +546,14 @@ LA -> SF: 382 miles,
 Milwaukee -> Cleveland: 436
 Baltimore -> Boston: 404
 Atlanta -> Miami: 662
+
+
+Topic Sports:
+Universities with multiple Men's Basketball and Football Championships since 1950:
+Michigan State, Florida
+
+Universities with both a Men's Basketball and Football Championship since 1950:
+UCLA, Syracuse, Maryland, Michigan, Ohio State
+
+Topic: First Name Last Name
+Chris Martin Lawrence Taylor Swift
