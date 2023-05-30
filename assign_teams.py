@@ -1,100 +1,75 @@
-import sys
-import ast
 import random
-
-def determine_team_sizes(teams, n_players, team_size):
-    for team in teams.keys():
-        if n_players > 0:
-            if 'team_size' not in teams[team].keys():
-                teams[team]['team_size'] = team_size
-                n_players -= team_size
-            elif teams[team]['team_size'] == team_size:
-                teams[team]['team_size'] += 1
-                n_players -= 1
-    # allocate remainder if remainder exists
-    for team in teams.keys():
-        if n_players > 0:
-            if 'team_size' not in teams[team].keys():
-                teams[team]['team_size'] = team_size
-                n_players -= team_size
-            elif teams[team]['team_size'] == team_size:
-                teams[team]['team_size'] += 1
-                n_players -= 1
-    return teams
+from typing import Optional
 
 
-def get_players_partner(partners, player):
-    partner_pair = [pair for pair in partners if player in pair][0]
-    partner = [person for person in partner_pair if person is not player][0]
-    return partner
+class Player:
+    def __init__(self, name: str, partner: Optional[str] = None):
+        self.name = name
+        self.partner = partner
+
+    def __str__(self):
+        return self.name
 
 
-def allocate_players_to_teams(players, teams, partners):
-    for player in players:
-        on_a_team = False
-        is_a_partner = any([player in pair for pair in partners])
-        for team in teams:
-            if not on_a_team:
-                # check whether team has space
-                if len(teams[team]['team_members']) < teams[team]['team_size']:    
-                    if not is_a_partner:
-                        teams[team]['team_members'].append(player)
-                        on_a_team = True
-                    else:
-                        their_partner = get_players_partner(partners, player)
-                        if their_partner in teams[team]['team_members']:
-                            pass
-                        else:
-                            teams[team]['team_members'].append(player)
-                            on_a_team = True
-    return teams
-                    
+class Team:
+    def __init__(self, name: str, max_team_size: int, players=None):
+        self.name = name
+        self.max_team_size = max_team_size
+        if players is not None:
+            self.players = list(players)
+        else:
+            self.players = []
 
-def print_teams(teams):
-    for team in teams:
-        print("\n")
-        print(f"Team {team}:")
-        for player in teams[team]['team_members']:
-            print(player)
+    def add_player(self, player):
+        self.players.append(player)
+
+    def __iter__(self):
+        return iter(self.players)
+
+    def __str__(self):
+        return str([str(player) for player in self.players])
 
 
-def assign_teams(n_teams, partners, singles):
-    # create list of players
-    players = [p1 for p2 in partners for p1 in p2] + singles
-    # randomize allocation
+def assign_teams(players: list, teams: list) -> None:
     random.shuffle(players)
-    # determine minimum team size
-    team_size = round(len(players) / n_teams).__floor__()
-    # create team data structure
-    teams = {i + 1: {'team_members': []} for i in range(n_teams)}
-    # get number of total players
-    n_players = len(players)
-    # determine team sizes
-    teams = determine_team_sizes(teams, n_players, team_size)
-    # aassign teams
-    teams = allocate_players_to_teams(players, teams, partners)
-    
-    print_teams(teams)
+    for player in players:
+        for team in teams:
+            if len(team.players) < team.max_team_size:
+                assigned_players = [p for t in teams for p in t.players]
+                if player.name not in assigned_players:
+                    if player.partner is None or player.partner not in team.players:
+                        team.add_player(player.name)
+
+    for team in teams:
+        print(f"{team.name}: {', '.join(team.players)}\n")
+
 
 if __name__ == "__main__":
-    # partners = [
-    #     ('Mike Turnell', 'Tayler Thomas'),
-    #     ('Mike Park', 'Kelsey Park'),
-    #     ('Gerik Illo', 'Claire Illo'),
-    #     ('Howie Rabin', 'Brittany Rabin'),
-    #     ('Alex Melcher', 'Hillary Melcher'),
-    #     ('Dylan Scandi', 'Erica Bochi'),
-    # ]
+    # Add participants and determine whether they have a partner
+    players = [
+        Player("Mike Turnell", "Tayler Turnell"),
+        Player("Mike Park", "Kelsey Park"),
+        Player("Gerik Illo", "Claire Illo"),
+        Player("Howie Rabin", "Brittany Rabin"),
+        Player("Alex Melcher", "Hillary Melcher"),
+        Player("Dylan Scandi", "Erica Bochi"),
+        Player("Andy Lipski"),
+        Player("Tayler Turnell", "Mike Turnell"),
+        Player("Kelsey Park", "Mike Park"),
+        Player("Claire Illo", "Gerik Illo"),
+        Player("Brittany Rabin", "Howie Rabin"),
+        Player("Hillary Melcher", "Alex Melcher"),
+        Player("Erica Bochi", "Dylan Scandi"),
+        Player("Jenna Carlson"),
+        Player("Kaylin Youn"),
+    ]
 
-    # singles = [
-    #     'Andy Lipski', 
-    #     'Kaylin Youn', 
-    #     'Jenna Carlson', 
-    # ]
+    # Create teams and set max team size
+    teams = [
+        Team("Team 1", max_team_size=4),
+        Team("Team 2", max_team_size=4),
+        Team("Team 3", max_team_size=4),
+        Team("Team 4", max_team_size=3),
+    ]
 
-    # Access the command-line arguments
-    n_teams = sys.argv[1]
-    partners = ast.literal_eval(sys.argv[2])
-    singles = ast.literal_eval(sys.argv[3])
-
-    assign_teams(n_teams=4, partners=partners, singles=singles)
+    assign_teams(players, teams)
