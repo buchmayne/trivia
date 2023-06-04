@@ -23,7 +23,7 @@ Before drawing, the deck has a total of 40 cards. After you draw an Ace, the dec
 <img src="img/license_plate_answers_2.png" width="100%">
 
 
-# NYPD
+# Crime
 
 ## 3. Order the New York City Murder Rate per capita from highest, to lowest by year. (1 Point Each)
 
@@ -53,7 +53,7 @@ D. Carnegie Mellon University -- Pittsburgh, Pennsylvania
 
 E. Tulane University -- New Orleans, Louisiana
 
-# Nicolas Cage
+# Actors
 
 ## 5A. Identify the film, where each of the following Nicolas Cage GIFs is from. (2 Points Each)
 
@@ -79,3 +79,6 @@ Face Off
 
 <img src="https://media.giphy.com/media/Vg0JstydL8HCg/giphy.gif" width="100%">
 
+## 6. For each of the following clips, identify the film in which Tom Cruise is running. (2 Points Each)
+
+Collateral, Risky Business, The Firm, Mission Impossible: Ghost Protocol (Mission Impossible 4 also accepted)
