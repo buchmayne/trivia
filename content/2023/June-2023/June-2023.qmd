@@ -101,3 +101,15 @@ Which is Ireland and which is Côte d’Ivoire/Ivory Coast?
 Which is Australia and which is New Zealand?
 
 <img src="img/australia_new_zealand.png" width="100%">
+
+# Natural Resources
+
+## 8. Order the following nations, from highest to lowest 2023 Crude Oil Production. (1 Point Each)
+
+A. Russia
+
+B. Saudi Arabia
+
+C. Canada
+
+D. United States

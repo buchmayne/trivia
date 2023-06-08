@@ -82,3 +82,41 @@ Face Off
 ## 6. For each of the following clips, identify the film in which Tom Cruise is running. (2 Points Each)
 
 Collateral, Risky Business, The Firm, Mission Impossible: Ghost Protocol (Mission Impossible 4 also accepted)
+
+## 7A. Correctly distinguish which flag is for which country, between the similar looking flags. (1 Point Each)
+
+Left: Netherlands Right: Russia
+
+<img src="img/netherlands_russia.png" width="100%">
+
+## 7B. 
+
+Left: Mali Right: Senegal
+
+<img src="img/mali_senegal.png" width="100%">
+
+## 7C.
+
+Left: Ireland Right: Côte d’Ivoire
+
+<img src="img/ireland_ivory.png" width="100%">
+
+## 7D. 
+
+Left: Australia Right: New Zealand
+
+<img src="img/australia_new_zealand.png" width="100%">
+
+# Natural Resources
+
+## 8. Order the following nations, from highest to lowest 2023 Crude Oil Production. (1 Point Each)
+
+Source: https://worldpopulationreview.com/country-rankings/oil-production-by-country
+
+A. Russia (10.5 Million/Barrels/Day)
+
+B. Saudi Arabia (10.2 Million/Barrels/Day)
+
+C. Canada (4.7 Million/Barrels/Day)
+
+D. United States (11.6 Million/Barrels/Day)
