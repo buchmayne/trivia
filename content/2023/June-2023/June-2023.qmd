@@ -75,3 +75,29 @@ E. Tulane University
        src="video/tom_cruise_running.mp4"  
        controls>
 </video>
+
+# Flags
+
+## 7A. Correctly distinguish which flag is for which country, between the similar looking flags. (1 Point Each)
+
+Which is the Netherlands and which is Russia?
+
+<img src="img/netherlands_russia.png" width="100%">
+
+## 7B. 
+
+Which is Mali and which is Senegal?
+
+<img src="img/mali_senegal.png" width="100%">
+
+## 7C.
+
+Which is Ireland and which is Côte d’Ivoire/Ivory Coast?
+
+<img src="img/ireland_ivory.png" width="100%">
+
+## 7D. 
+
+Which is Australia and which is New Zealand?
+
+<img src="img/australia_new_zealand.png" width="100%">
