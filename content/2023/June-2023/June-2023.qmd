@@ -113,3 +113,11 @@ B. Saudi Arabia
 C. Canada
 
 D. United States
+
+# Visual Punn
+
+## 19. 
+
+The following four image collage is a visual pun. Guess what each image represents for 2 Points, and then what the category is that connects them for an additional 3 Points. (11 Points Total)
+
+<img src="img/coffee.png" width="100%">
