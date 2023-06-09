@@ -71,7 +71,7 @@ E. Tulane University
 
 ## 6. For each of the following clips, identify the film in which Tom Cruise is running. (2 Points Each)
 
-<video width="100%" height="90%" 
+<video width="100%" height="80%" 
        src="video/tom_cruise_running.mp4"  
        controls>
 </video>
@@ -114,10 +114,24 @@ C. Canada
 
 D. United States
 
+# Geography
+
+## 9. Match the city to its location on the map of the Mid-Atlantic. (1 Point Each)
+
+Richmond VA, Washington D.C., Baltimore, Philadelphia, Pittsburgh
+
+<img src="img/midatlantic.png" height="200%">
+
+# Bird's Eye View
+
+## 18. Identify the famous international place from the satelitte photo (5 Points)
+
+<img src="img/birds_eye_view.png" width="100%">
+
 # Visual Punn
 
-## 19. 
+## 19. The following four image collage is a visual pun. Guess what each image represents for 2 Points, and then what the category is that connects them for an additional 3 Points. (11 Points Total)
 
-The following four image collage is a visual pun. Guess what each image represents for 2 Points, and then what the category is that connects them for an additional 3 Points. (11 Points Total)
+## 
 
 <img src="img/coffee.png" width="100%">
