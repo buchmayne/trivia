@@ -122,6 +122,20 @@ Richmond VA, Washington D.C., Baltimore, Philadelphia, Pittsburgh
 
 <img src="img/midatlantic.png" height="200%">
 
+# People Experiencing Houselessness
+
+## 10. Answer the following questions about the homelessness crisis. (2 Points Each)
+
+All data is for 20222 (most recently available)
+
+A. California makes up 11.7% of the US population, what percentage of homeless people live in California?
+
+B. Homeless people in Texas make up 4.1% of the total US homeless population, what percentage of the total US population is in Texas?
+
+C. Oregon makes up 1.2% of the US population, what percentage of homeless people live in Oregon?
+
+D. Homeless people in Colorado make up 1.7% of the total US homeless population, what percentage of the total US population is in Colorado?
+
 # Bird's Eye View
 
 ## 18. Identify the famous international place from the satelitte photo (5 Points)
