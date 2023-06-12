@@ -144,16 +144,37 @@ D. Homeless people in Colorado are 1.7% of the total US homeless population, wha
 
 # Niche Philosophies of Religion
 
-## 11. Match (1 Point Each)
+## 11. Match each philosophy to the definition/description (1 Point Each)
+
+##
 Juche, Christian Anarchism, Christian Libertarianism, Statolatry
 
 A. It is grounded in the belief that there is only one source of authority to which Christians are ultimately answerable—the authority of God as embodied in the teachings of Jesus. -- Christian Anarchism
 
-B. ________ asserts that the glorification and aggrandizement of 'State' or 'Nation' is the object of all legitimate human aspiration at the expense of all else, including personal welfare and independent thought. -- Statolatry
+B. BLANK asserts that the glorification and aggrandizement of 'State' or 'Nation' is the object of all legitimate human aspiration at the expense of all else, including personal welfare and independent thought. -- Statolatry
 
-C. Beliefs such as "love your neighbor as yourself" are not imposed on others so long as the non-aggression principle, which ______ believe to be foundational, has not been violated. -- Christian Libertarianism
+C. Beliefs such as "love your neighbor as yourself" are not imposed on others so long as the non-aggression principle, which BLANK believe to be foundational, has not been violated. -- Christian Libertarianism
 
-D. _____ incorporates the historical materialist ideas of Marxism–Leninism but also strongly emphasizes the individual, the nation state, and national sovereignty. ____ posits that a country will prosper once it has become self-reliant by achieving political, economic, and military independence. -- Juche
+D. BLANK incorporates the historical materialist ideas of Marxism–Leninism but also strongly emphasizes the individual, the nation state, and national sovereignty. -- Juche
+
+# The Universal Language of Mathematics
+
+## 12. Solve for X in the math problem, by translating the French, Spanish, and German words. (5 Points)
+Vier is German for 4, Neuf is French for 9, Seite is Spanish for 7
+
+4x - 9 = 7; 
+
+4x = 16; 
+
+x = 4
+
+<img src="img/math.png" width="100%">
+
+# Guess the Data from the Map
+
+## 17. Guess the data. (5 Points)
+
+<img src="img/guess_data_answer.png" width="100%">
 
 # Bird's Eye View
 
@@ -173,7 +194,7 @@ Ways to make coffee: Cold Brew, French Press, Pour Over, Drip
 
 # Music
 
-## 20. For each of the following Weird Al songs, Identify the original song that is being parodied for 2 Points and the artist of that song for an additional 2 Points. (4 Points Each)
+## 20. For each of the following Weird Al songs, Identify the original song that is being parodied for 1 Point and the artist of that song for an additional 2 Points. (3 Points Each)
 
 A. You Belong With Me by Tayler Swift
 
