@@ -53,7 +53,9 @@ E. Tulane University
 
 # Actors
 
-## 5A. Identify the film, where each of the following Nicolas Cage GIFs is from. (2 Points Each)
+## 5. Identify the film, where each of the following Nicolas Cage GIFs is from. (2 Points Each)
+
+## 5A.
 
 <img src="https://media.giphy.com/media/CiTLZWskt7Fu/giphy.gif" width="100%">
 
@@ -70,6 +72,8 @@ E. Tulane University
 <img src="https://media.giphy.com/media/Vg0JstydL8HCg/giphy.gif" width="100%">
 
 ## 6. For each of the following clips, identify the film in which Tom Cruise is running. (2 Points Each)
+
+## 
 
 <video width="100%" height="80%" 
        src="video/tom_cruise_running.mp4"  
@@ -118,9 +122,11 @@ D. United States
 
 ## 9. Match the city to its location on the map of the Mid-Atlantic. (1 Point Each)
 
-Richmond VA, Washington D.C., Baltimore, Philadelphia, Pittsburgh
+Answer Bank: Richmond VA, Washington D.C., Baltimore, Philadelphia, Pittsburgh
 
-<img src="img/midatlantic.png" height="200%">
+## 
+
+<img src="img/midatlantic.png" width="100%">
 
 # People Experiencing Houselessness
 
@@ -134,6 +140,27 @@ B. Homeless people in Texas are 4.1% of the total US homeless population, what %
 C. Oregon has 1.2% of the US population, what % of homeless people live in Oregon?
 
 D. Homeless people in Colorado are 1.7% of the total US homeless population, what % of the total US population is in Colorado?
+
+# Niche Philosophies of Religion
+
+## 11. Match (1 Point Each)
+Juche, Christian Anarchism, Christian Libertarianism, Statolatry
+
+A. It is grounded in the belief that there is only one source of authority to which Christians are ultimately answerable—the authority of God as embodied in the teachings of Jesus.
+
+B. ________ asserts that the glorification and aggrandizement of 'State' or 'Nation' is the object of all legitimate human aspiration at the expense of all else, including personal welfare and independent thought.
+
+C. Beliefs such as "love your neighbor as yourself" are not imposed on others so long as the non-aggression principle, which ______ believe to be foundational, has not been violated.
+
+D. _____ incorporates the historical materialist ideas of Marxism–Leninism but also strongly emphasizes the individual, the nation state, and national sovereignty. ____ posits that a country will prosper once it has become self-reliant by achieving political, economic, and military independence.
+
+
+# The Universal Language of Mathematics
+
+## 12. Solve for X in the math problem, by translating the French, Spanish, and German words. (5 Points)
+
+<img src="img/math.png" width="100%">
+
 
 # Bird's Eye View
 
@@ -153,9 +180,16 @@ D. Homeless people in Colorado are 1.7% of the total US homeless population, wha
 
 ## 20. For each of the following Weird Al songs, Identify the original song that is being parodied for 2 Points and the artist of that song for an additional 2 Points. (4 Points Each)
 
+##
+
 A. 0:20-1:00
+
 B. 0:10-0:50
+
 C. 0:40-1:20
+
 D. 0:00-0:45
+
 E. 0:30-1:15
+
 F. 1:10-1:50
