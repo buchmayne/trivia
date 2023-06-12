@@ -141,3 +141,35 @@ B. Homeless people in Texas are 4.1% of the total US homeless population, what %
 C. Oregon has 1.2% of the US population, what % of homeless people live in Oregon? 3.0% (2.5-3.5% accepted)
 
 D. Homeless people in Colorado are 1.7% of the total US homeless population, what % of the total US population is in Colorado? 1.7% (1.0-2.5% accepted)
+
+# Bird's Eye View
+
+## 18. Identify the famous international place from the satelitte photo (5 Points)
+
+The Suez Canal
+
+<img src="img/birds_eye_view.png" width="100%">
+
+# Visual Punn
+
+## 19. The following four image collage is a visual pun. Guess what each image represents for 2 Points, and then what the category is that connects them for an additional 3 Points. (11 Points Total)
+
+## 
+Ways to make coffee: Cold Brew, French Press, Pour Over, Drip
+<img src="img/coffee.png" width="100%">
+
+# Music
+
+## 20. For each of the following Weird Al songs, Identify the original song that is being parodied for 2 Points and the artist of that song for an additional 2 Points. (4 Points Each)
+
+A. You Belong With Me by Tayler Swift
+
+B. Waterfalls by TLC
+
+C. Give It Away by Red Hot Chili Peppers
+
+D. Lola by The Kinks
+
+E. Trapped In The Closet by R. Kelly
+
+F. Life During Wartime by The Talking Heads
