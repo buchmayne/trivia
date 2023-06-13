@@ -196,6 +196,25 @@ A. Easy Pose (Sukhasana) B. Mountain Pose (Tadasana) C. Downward Facing Dog (Adh
 
 <img src="img/yoga.png" width="100%">
 
+# Existence
+
+## 15. For each of the following famous people, are they alive? (1 Point Each)
+They all dead
+A. Silvio Berlusconi
+
+B. Ted Kaczynski
+
+C. Tina Turner
+
+D. Jerry Springer
+
+# Venn Diagram
+
+## 16. Identify the Categories of the Venn Diagram (6 Points Each)
+
+Blue: Predominatly Catholic Countries Red: U.N. Security Council Permanent Members (Veto Power) Green: Has Hosted Winter Olympics
+<img src="img/venn.png" width="100%">
+
 # Guess the Data from the Map
 
 ## 17. Guess the data. (5 Points)
