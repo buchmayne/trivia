@@ -6,26 +6,9 @@ format: revealjs
 
 ## 20 Question 100 Points
 
-# Probability
-
-## 1. In a hypothetical deck of playing cards that has no 2s, 4s, or 7s, you draw an Ace. What is the probability of the next card you draw also  being an Ace (2 Points)
-
-Before drawing, the deck has a total of 40 cards. After you draw an Ace, the deck has 39 cards remaining. 3 of those 39 cards are Aces, so you have a 3 in 39 chance, or a 1 in 13 chance of drawing an Ace. 1/13 ~ 7.6%
-
-# Department of Motor Vehicles
-
-## 2A. Identify the state from the license plate. (2 Points Each) 
-
-<img src="img/license_plate_answers_1.png" width="100%">
-
-## 2B. Identify the state from the license plate. (2 Points Each) 
-
-<img src="img/license_plate_answers_2.png" width="100%">
-
-
 # Crime
 
-## 3. Order the New York City Murder Rate per capita from highest, to lowest by year. (1 Point Each)
+## 1. Order the New York City Murder Rate per capita from highest, to lowest by year. (1 Point Each)
 
 Murders per 100,000 People (https://www.disastercenter.com/crime/nycrime.html)
 
@@ -39,69 +22,27 @@ D. 2000 -- 5.0
 
 E. 2019 -- 2.9
 
-# Higher Education
+# Flags
 
-## 4. For each of the following universities, name the state the university is located in for 1 Point, and the city the university is located in for 2 Points. (3 Points Each)
-
-A. Rutgers University -- New Brunswick, New Jersey
-
-B. Johns Hopkins University -- Baltimore, Maryland
-
-C. Brown University -- Providence, Rhode Island
-
-D. Carnegie Mellon University -- Pittsburgh, Pennsylvania
-
-E. Tulane University -- New Orleans, Louisiana
-
-# Actors
-
-## 5A. Identify the film, where each of the following Nicolas Cage GIFs is from. (2 Points Each)
-
-Con Air
-
-<img src="https://media.giphy.com/media/CiTLZWskt7Fu/giphy.gif" width="100%">
-
-## 5B.
-
-Vampire's Kiss
-
-<img src="https://media.giphy.com/media/10uct1aSFT7QiY/giphy.gif" width="100%">
-
-## 5C. 
-
-The Wicker Man
-
-<img src="https://media.giphy.com/media/2jukgZs1AECkGNxAL2/giphy.gif" width="100%">
-
-## 5D. 
-
-Face Off
-
-<img src="https://media.giphy.com/media/Vg0JstydL8HCg/giphy.gif" width="100%">
-
-## 6. For each of the following clips, identify the film in which Tom Cruise is running. (2 Points Each)
-
-Collateral, Risky Business, The Firm, Mission Impossible: Ghost Protocol (Mission Impossible 4 also accepted)
-
-## 7A. Correctly distinguish which flag is for which country, between the similar looking flags. (1 Point Each)
+## 2A. Correctly distinguish which flag is for which country, between the similar looking flags. (1 Point Each)
 
 Left: Netherlands Right: Russia
 
 <img src="img/netherlands_russia.png" width="100%">
 
-## 7B. 
+## 2B. 
 
 Left: Mali Right: Senegal
 
 <img src="img/mali_senegal.png" width="100%">
 
-## 7C.
+## 2C.
 
 Left: Ireland Right: Côte d’Ivoire
 
 <img src="img/ireland_ivory.png" width="100%">
 
-## 7D. 
+## 2D. 
 
 Left: Australia Right: New Zealand
 
@@ -109,7 +50,7 @@ Left: Australia Right: New Zealand
 
 # Natural Resources
 
-## 8. Order the following nations, from highest to lowest 2023 Crude Oil Production. (1 Point Each)
+## 3. Order the following nations, from highest to lowest 2023 Crude Oil Production. (1 Point Each)
 
 Source: https://worldpopulationreview.com/country-rankings/oil-production-by-country
 
@@ -121,30 +62,9 @@ C. Canada (4.7 Million/Barrels/Day)
 
 D. United States (11.6 Million/Barrels/Day)
 
-# Geography
-
-## 9. Match the city to its location on the map of the Mid-Atlantic. (1 Point Each)
-
-D: Richmond VA, E: Washington D.C., C: Baltimore, A: Philadelphia, B: Pittsburgh
-
-<img src="img/midatlantic.png" height="200%">
-
-# People Experiencing Houselessness
-
-## 10. (2 Points Each)
-All data is for 20222 (most recently available)
-
-A. California has 11.7% of the US population, what % of homeless people live in California? 29.4% (27-32% accepted)
-
-B. Homeless people in Texas are 4.1% of the total US homeless population, what % of the total US population is in Texas? 9.0% (8-10% accepted)
-
-C. Oregon has 1.2% of the US population, what % of homeless people live in Oregon? 3.0% (2.5-3.5% accepted)
-
-D. Homeless people in Colorado are 1.7% of the total US homeless population, what % of the total US population is in Colorado? 1.7% (1.0-2.5% accepted)
-
 # Niche Philosophies of Religion
 
-## 11. Match each philosophy to the definition/description (1 Point Each)
+## 4. Match each philosophy to the definition/description (1 Point Each)
 
 ##
 Juche, Christian Anarchism, Christian Libertarianism, Statolatry
@@ -157,22 +77,39 @@ C. Beliefs such as "love your neighbor as yourself" are not imposed on others so
 
 D. BLANK incorporates the historical materialist ideas of Marxism–Leninism but also strongly emphasizes the individual, the nation state, and national sovereignty. -- Juche
 
-# The Universal Language of Mathematics
+# Existence
 
-## 12. Solve for X in the math problem, by translating the French, Spanish, and German words. (5 Points)
-Vier is German for 4, Neuf is French for 9, Seite is Spanish for 7
+## 5. For each of the following famous people, are they alive? (1 Point Each)
 
-4x - 9 = 7; 
+They all dead
 
-4x = 16; 
+A. Silvio Berlusconi
 
-x = 4
+B. Ted Kaczynski
 
-<img src="img/math.png" width="100%">
+C. Tina Turner
+
+D. Jerry Springer
+
+# Geography
+
+## 6. Match the city to its location on the map of the Mid-Atlantic. (1 Point Each)
+
+D: Richmond VA, E: Washington D.C., C: Baltimore, A: Philadelphia, B: Pittsburgh
+
+<img src="img/midatlantic.png" width="100%">
+
+# Yoga
+
+## 7. Match the Yoga Pose to the image. (1 Point Each)
+
+A. Easy Pose (Sukhasana) B. Mountain Pose (Tadasana) C. Downward Facing Dog (Adho Mukha Svanasana) D. Warrior I (Virabhadrasana I)
+
+<img src="img/yoga.png" width="100%">
 
 # Netflix
 
-## 13. For each of the following Netflix films, match the title to the synopsis. Then order the films from most wacthed to least watched. (1 Point Each for Correct Match, 1 Point Each for Correct Order)
+## 8. For each of the following Netflix films, match the title to the synopsis. Then order the films from most wacthed to least watched. (1 Point Each for Correct Match, 1 Point Each for Correct Order)
 
 source: https://screenrant.com/netflix-most-watched-movies/#the-tinder-swindler-2022---172-130-000-hours-viewed
 
@@ -188,31 +125,101 @@ C. The world's deadliest assassin and New York's biggest screw-up are mistaken f
 
 D. An Interpol agent successfully tracks down the world's most wanted art thief with help from a rival thief. But nothing is as it seems as a series of double-crosses ensues. -- Red Notice
 
-# Yoga
+# Higher Education
 
-## 14. Match the Yoga Pose to the image. (1 Point Each)
+## 9. For each of the following universities, name the state the university is located in for 1 Point, and the city the university is located in for 2 Points. (3 Points Each)
 
-A. Easy Pose (Sukhasana) B. Mountain Pose (Tadasana) C. Downward Facing Dog (Adho Mukha Svanasana) D. Warrior I (Virabhadrasana I)
+A. Rutgers University -- New Brunswick, New Jersey
 
-<img src="img/yoga.png" width="100%">
+B. Johns Hopkins University -- Baltimore, Maryland
 
-# Existence
+C. Brown University -- Providence, Rhode Island
 
-## 15. For each of the following famous people, are they alive? (1 Point Each)
-They all dead
-A. Silvio Berlusconi
+D. Carnegie Mellon University -- Pittsburgh, Pennsylvania
 
-B. Ted Kaczynski
+E. Tulane University -- New Orleans, Louisiana
 
-C. Tina Turner
+# Probability
 
-D. Jerry Springer
+## 10. In a hypothetical deck of playing cards that has no 2s, 4s, or 7s, you draw an Ace. What is the probability of the next card you draw also  being an Ace (2 Points)
+
+Before drawing, the deck has a total of 40 cards. After you draw an Ace, the deck has 39 cards remaining. 3 of those 39 cards are Aces, so you have a 3 in 39 chance, or a 1 in 13 chance of drawing an Ace. 1/13 ~ 7.6%
+
+# People Experiencing Houselessness
+
+## 11. (2 Points Each)
+All data is for 20222 (most recently available)
+
+A. California has 11.7% of the US population, what % of homeless people live in California? 29.4% (27-32% accepted)
+
+B. Homeless people in Texas are 4.1% of the total US homeless population, what % of the total US population is in Texas? 9.0% (8-10% accepted)
+
+C. Oregon has 1.2% of the US population, what % of homeless people live in Oregon? 3.0% (2.5-3.5% accepted)
+
+D. Homeless people in Colorado are 1.7% of the total US homeless population, what % of the total US population is in Colorado? 1.7% (1.0-2.5% accepted)
+
+# BREAK (SCORING)
+
+# Actors
+
+## 12. Identify the film, where each of the following Nicolas Cage GIFs is from. (2 Points Each)
+
+## 12A.
+
+Con Air
+
+<img src="https://media.giphy.com/media/CiTLZWskt7Fu/giphy.gif" width="100%">
+
+## 12B.
+
+Vampire's Kiss
+
+<img src="https://media.giphy.com/media/10uct1aSFT7QiY/giphy.gif" width="100%">
+
+## 12C. 
+
+The Wicker Man
+
+<img src="https://media.giphy.com/media/2jukgZs1AECkGNxAL2/giphy.gif" width="100%">
+
+## 12D. 
+
+Face Off
+
+<img src="https://media.giphy.com/media/Vg0JstydL8HCg/giphy.gif" width="100%">
+
+## 13. For each of the following clips, identify the film in which Tom Cruise is running. (2 Points Each)
+
+Collateral, Risky Business, The Firm, Mission Impossible: Ghost Protocol (Mission Impossible 4 also accepted)
+
+# The Universal Language of Mathematics
+
+## 14. Solve for X in the math problem, by translating the French, Spanish, and German words. (5 Points)
+Vier is German for 4, Neuf is French for 9, Seite is Spanish for 7
+
+4x - 9 = 7; 
+
+4x = 16; 
+
+x = 4
+
+<img src="img/math.png" width="100%">
+
+# Department of Motor Vehicles
+
+## 15A. Identify the state from the license plate. (2 Points Each) 
+
+<img src="img/license_plate_answers_1.png" width="100%">
+
+## 15B. Identify the state from the license plate. (2 Points Each) 
+
+<img src="img/license_plate_answers_2.png" width="100%">
 
 # Venn Diagram
 
 ## 16. Identify the Categories of the Venn Diagram (6 Points Each)
 
-Blue: Predominatly Catholic Countries Red: U.N. Security Council Permanent Members (Veto Power) Green: Has Hosted Winter Olympics
+Blue: Majority Catholic Countries Red: U.N. Security Council Permanent Members (Veto Power) Green: Has Hosted Winter Olympics
 <img src="img/venn.png" width="100%">
 
 # Guess the Data from the Map
