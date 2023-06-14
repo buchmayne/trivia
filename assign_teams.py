@@ -47,21 +47,26 @@ def assign_teams(players: list, teams: list) -> None:
 if __name__ == "__main__":
     # Add participants and determine whether they have a partner
     players = [
-        Player("Mike Turnell", "Tayler Turnell"),
-        Player("Mike Park", "Kelsey Park"),
-        Player("Gerik Illo", "Claire Illo"),
-        Player("Howie Rabin", "Brittany Rabin"),
-        Player("Alex Melcher", "Hillary Melcher"),
-        Player("Dylan Scandi", "Erica Bochi"),
-        Player("Andy Lipski"),
-        Player("Tayler Turnell", "Mike Turnell"),
-        Player("Kelsey Park", "Mike Park"),
-        Player("Claire Illo", "Gerik Illo"),
-        Player("Brittany Rabin", "Howie Rabin"),
-        Player("Hillary Melcher", "Alex Melcher"),
-        Player("Erica Bochi", "Dylan Scandi"),
-        Player("Jenna Carlson"),
-        Player("Kaylin Youn"),
+        # 1-5
+        Player("Mike T", "Tayler T"),
+        Player("Gerik I", "Claire I"),
+        Player("Alex M", "Hillary M"),
+        Player("Dylan S", "Erica B"),
+        Player("Andy L"),
+        # 5-10
+        Player("Tayler T", "Mike T"),
+        Player("Claire I", "Gerik I"),
+        Player("Brittany R", "Howie R"),
+        Player("Hillary M", "Alex M"),
+        Player("Erica B", "Dylan S"),
+        # 10-15
+        Player("Jenna C"),
+        Player("Andrew D"),
+        Player("James H", "Claire T"),
+        Player("Charlie C"),
+        Player("Pilar", "Chris H"),
+        # 16-20
+        Player("Chris H", "Pilar"),
     ]
 
     # Create teams and set max team size
@@ -69,7 +74,7 @@ if __name__ == "__main__":
         Team("Team 1", max_team_size=4),
         Team("Team 2", max_team_size=4),
         Team("Team 3", max_team_size=4),
-        Team("Team 4", max_team_size=3),
+        Team("Team 4", max_team_size=4),
     ]
 
     assign_teams(players, teams)
