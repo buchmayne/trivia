@@ -52,36 +52,40 @@ def assign_teams(players: list, teams: list) -> None:
     random.shuffle(men)
     random.shuffle(women)
 
-    # create balanced but random player pool
-    final_player_pool = []
+    # assign teams balanced by sex, and avoiding partners on the same team
+    selected_players = []
     select_male = True
     
-    while len(final_player_pool) < len(players):
+    while len(selected_players) < len(players):
         if select_male:
             if len(men) > 0:
                 chosen_player = random.choice(men)
-                men = [male_player for male_player in men if male_player.name != chosen_player.name]
-                final_player_pool.append(chosen_player)
-                select_male = False
+                for team in teams:
+                    if len(team.players) < team.max_team_size:
+                        assigned_players = [p for t in teams for p in t.players]
+                        if chosen_player.name not in assigned_players:
+                            if chosen_player.partner is None or chosen_player.partner not in team.players:
+                                team.add_player(chosen_player.name)
+                                men = [male_player for male_player in men if male_player.name != chosen_player.name]
+                                selected_players.append(chosen_player)
+                                select_male = False
             else:
                 select_male = False
         else:
             if len(women) > 0:
                 chosen_player = random.choice(women)
-                women = [female_player for female_player in women if female_player.name != chosen_player.name]
-                final_player_pool.append(chosen_player)
-                select_male = True
+                for team in teams:
+                    if len(team.players) < team.max_team_size:
+                        assigned_players = [p for t in teams for p in t.players]
+                        if chosen_player.name not in assigned_players:
+                            if chosen_player.partner is None or chosen_player.partner not in team.players:
+                                team.add_player(chosen_player.name)
+                                women = [female_player for female_player in women if female_player.name != chosen_player.name]
+                                selected_players.append(chosen_player)
+                                select_male = True
             else:
                 select_male = True
     
-    # assign players to teams
-    for player in final_player_pool:
-        for team in teams:
-            if len(team.players) < team.max_team_size:
-                assigned_players = [p for t in teams for p in t.players]
-                if player.name not in assigned_players:
-                    if player.partner is None or player.partner not in team.players:
-                        team.add_player(player.name)
 
     # print teams
     for team in teams:
