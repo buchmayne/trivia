@@ -1,0 +1,63 @@
+---
+title: "Trivia August 2023"
+author: "Marley Buchman"
+format: revealjs
+---
+
+# 20 Questions ? Points
+
+## First Half: ? Points | Second Half: ? Points
+
+# Paradoxes
+
+## 1. Match each paradox to the example/definition (1 Point Each)
+
+## Berkson's Paradox A, Simpson's Paradox B, Prosecutor's Fallacy C, Braess's Paradox D
+
+<span style="font-size: smaller;">
+A. A person may observe from their experience that fast food restaurants in their area which serve good hamburgers tend to serve bad fries and vice versa; but because they would likely not eat anywhere where both were bad, they fail to allow for the large number of restaurants in this category which would weaken or even flip the correlation. 
+</span>
+
+<span style="font-size: smaller;">
+B. A common example involves the batting averages of players in professional baseball. It is possible for one player to have a higher batting average than another player each year for a number of years, but to have a lower batting average across all of those years. This phenomenon can occur when there are large differences in the number of at bats between the years.
+</span>
+
+## Berkson's Paradox A, Simpson's Paradox B, Prosecutor's Fallacy C, Braess's Paradox D
+
+<span style="font-size: smaller;">
+C. Over half of the car accidents reported in 2002 happened within 8kms from the driver’s home. Therefore, we tend to overinflate the sense of danger when close to home. In fact, the reason most crashes occur close to home is because we spend most of our time driving near our house. At any one time, we’re no more likely to crash just because we’re near home.
+</span>
+
+<span style="font-size: smaller;">
+D. In Stuttgart, Germany, after investments into the road network in 1969, the traffic situation did not improve until a section of newly built road was closed for traffic again.
+</span>
+
+
+# America
+
+## 2A. Are they American? (1 Point Each)
+
+Kiefer Sutherland -- No (British/Canadian)
+
+<img src="img/kiefer.jpeg" width="100%">
+
+## 2B. Are they American? (1 Point Each)
+
+Andrew Lincoln -- No (British)
+
+<img src="img/andrew_lincoln.jpeg" width="100%">
+
+
+## 2C. Are they American? (1 Point Each)
+
+Orson Welles -- Yes
+
+<img src="img/orson_welles.jpeg" width="100%">
+
+
+## 2D. Are they American? (1 Point Each)
+
+James Cameron -- No (Canadian)
+
+<img src="img/james_cameron.jpeg" width="100%">
+
