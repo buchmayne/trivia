@@ -61,3 +61,12 @@ James Cameron -- No (Canadian)
 
 <img src="img/james_cameron.jpeg" width="100%">
 
+# Visual Pun
+
+## 19. The following five image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (18 Points Total)
+
+## 
+
+"Gates" (Scandals) PizzaGate, WaterGate, RussiaGate, DeflateGate, GamerGate
+
+<img src="img/visual_punn.png" width="100%">
