@@ -61,6 +61,36 @@ James Cameron -- No (Canadian)
 
 <img src="img/james_cameron.jpeg" width="100%">
 
+# Geography
+
+## 3. Identify the unlabeled city on the map from answer bank (1 Point Each)
+
+##
+
+Beijing 
+
+<img src="img/china.png" width="100%">
+
+## 
+
+Manchester
+
+<img src="img/uk.png" width="100%">
+
+
+## 
+
+Munich
+
+<img src="img/germany.png" width="100%">
+
+
+## 
+
+Rio de Janeiro
+
+<img src="img/brazil.png" width="100%">
+
 # Visual Pun
 
 ## 19. The following five image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (18 Points Total)
