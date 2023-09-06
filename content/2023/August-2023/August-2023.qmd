@@ -91,6 +91,31 @@ Rio de Janeiro, Sau Paulo, Brasilia
 
 <img src="img/brazil.png" width="100%">
 
+# Geography (Again)
+
+## 4. The coordinates for the 5 largest U.S. CITIES (not metros!) are listed below. Identify the city from the coordinates (2 Points Each)
+
+A. 33.57°N 112.09°W
+
+B. 34.02°N 118.41°W
+
+C. 29.79°N 95.39°W
+
+D. 40.66°N 73.94°W
+
+E. 41.84°N 87.68°W
+
+# Acronyms
+
+## 5. Translate the acronym into words (exactly) (2 Points Each)
+
+A. NASA
+
+B. SPF
+
+C. YMCA
+
+D. NATO
 
 # Guess The Data
 

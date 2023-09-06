@@ -91,6 +91,32 @@ Rio de Janeiro
 
 <img src="img/brazil.png" width="100%">
 
+# Geography (Again)
+
+## 4. The coordinates for the 5 largest U.S. CITIES (not metros!) are listed below. Identify the city from the coordinates (2 Points Each)
+
+A. Phoenix 33.57°N 112.09°W
+
+B. Los Angeles 34.02°N 118.41°W
+
+C. Houston 29.79°N 95.39°W
+
+D. New York 40.66°N 73.94°W
+
+E. Chicago 41.84°N 87.68°W
+
+# Acronyms
+
+## 5. Translate the acronym into words (2 Points Each)
+
+A. NASA National Aeronautics and Space Administration
+
+B. SPF Sun Protection Factor
+
+C. YMCA Young Men's Christian Association
+
+D. NATO North Atlantic Treaty Organization
+
 # Guess The Data
 
 ## 18. Identify the data being shown on the map (5 Points)
