@@ -117,6 +117,14 @@ C. YMCA Young Men's Christian Association
 
 D. NATO North Atlantic Treaty Organization
 
+# Bird's Eye View
+
+## 17. Identify the famous location from the aerial image (5 Points)
+
+Area 51
+
+<img src="img/birdseye.png" width="100%">
+
 # Guess The Data
 
 ## 18. Identify the data being shown on the map (5 Points)

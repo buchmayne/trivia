@@ -117,6 +117,12 @@ C. YMCA
 
 D. NATO
 
+# Bird's Eye View
+
+## 17. Identify the famous location from the aerial image (5 Points)
+
+<img src="img/birdseye.png" width="100%">
+
 # Guess The Data
 
 ## 18. Identify the data being shown on the map (5 Points)
