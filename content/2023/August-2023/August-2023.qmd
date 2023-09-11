@@ -211,9 +211,25 @@ C. New York
 
 D. Wisconsin
 
-# TBD 14
+# Andy Loves Candy
 
-## 14. TBD
+## 14. There will be four rounds of a blind taste test of Albanese Gummy Bears. In each round, each team will produce a volunteer, and all of the volunteers will eat the same flavor of gummy bear blindfolded. That person then has to identify the flavor from the list of flavors. 
+
+## 14A. 
+
+<img src="img/bears.png" width="100%">
+
+## 14B. 
+
+<img src="img/bears.png" width="100%">
+
+## 14C. 
+
+<img src="img/bears.png" width="100%">
+
+## 14D. 
+
+<img src="img/bears.png" width="100%">
 
 # TBD 15
 
