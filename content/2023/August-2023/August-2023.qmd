@@ -93,7 +93,7 @@ Rio de Janeiro, Sau Paulo, Brasilia
 
 <img src="img/brazil.png" width="100%">
 
-# Geography (Again)
+# U.S. Cities
 
 ## 4. The coordinates for the 5 largest U.S. CITIES (not metros!) are listed below. Identify the city from the coordinates (2 Points Each)
 
@@ -141,6 +141,36 @@ C. Star Trek
 
 D. Twilight
 
+# Sexual Orientations
+
+## 8. Match the sexual orientation to the definition
+
+## Fictosexuality, Pansexuality, Demisexuality, Aromanticism
+
+A. in which an individual does not experience primary sexual attraction – the type of attraction that is based on immediately observable characteristics such as appearance or smell and is experienced immediately after a first encounter
+
+B. is sexual, romantic, or emotional attraction towards people of all genders, or regardless of their sex or gender identity
+
+C. having little or no romantic feeling towards others: experiencing little or no romantic desire or attraction
+
+D. is characterized by sexual attraction towards fictional characters
+
+# Adaptations
+
+## 9. For each of the following movies, are they adaptations of a novel or original screenplays? (1 Point Each)
+
+A. Die Hard
+
+B. Mrs. Doubtfire
+
+C. Rain Man
+
+D. Dead Poets Society
+
+# TBD 10
+
+## 10. TBD
+
 # Part 2 (Andy Section)
 
 # Daft Punk
@@ -181,6 +211,14 @@ C. New York
 
 D. Wisconsin
 
+# TBD 14
+
+## 14. TBD
+
+# TBD 15
+
+## 15. TBD
+
 # Part 3
 
 # First Name Last Name
@@ -214,3 +252,7 @@ D. -> A place for fancy fellas to hang out, the name is paradoxical to what occu
 ## 
 
 <img src="img/visual_punn.png" width="100%">
+
+# Music/Listening
+
+## 20. TBD
