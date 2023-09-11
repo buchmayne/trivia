@@ -6,7 +6,9 @@ format: revealjs
 
 # 20 Questions ? Points
 
-## First Half: ? Points | Second Half: ? Points
+## Part 1: ? Points | Part 2 (Andy Section): ? Points | Part 3: ? Points
+
+# Part 1
 
 # Paradoxes
 
@@ -139,8 +141,47 @@ C. Star Trek
 
 D. Twilight
 
+# Part 2 (Andy Section)
 
+# Daft Punk
 
+## 11. For each of the following portraits, determine whether the individual is in Daft Punk (+-1 Point Each)
+
+<img src="img/daftpunk.png" width="100%">
+
+# Letterboxd
+
+## 12. Andy is an *avid* Letterboxd user, a popular website where users can rate and review movies they've seen. For each of the following pairs of movies Andy has rated, choose which of the films Andy gave a higher rating (1 Point Each).
+
+## 12A.
+
+<img src="img/letterboxdA.png" width="100%">
+
+## 12B.
+
+<img src="img/letterboxdB.png" width="100%">
+
+## 12C.
+
+<img src="img/letterboxdC.png" width="100%">
+
+## 12D.
+
+<img src="img/letterboxdD.png" width="100%">
+
+# Boy Scouts
+
+## 13. Eagle Scout is the highest ranking in the Boy Scouts of America. Andy is an Eagle Scout and in elite company. Some other Eagle Scouts include Neil Armstrong (and 39 other astronauts), as well as L. Ron Hubbard. Order the following states by the number of Eagle Scouts per capita (1 Point Each)
+
+A. Utah
+
+B. Oregon
+
+C. New York
+
+D. Wisconsin
+
+# Part 3
 
 # First Name Last Name
 
