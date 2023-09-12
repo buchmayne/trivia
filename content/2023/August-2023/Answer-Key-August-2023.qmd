@@ -184,7 +184,7 @@ D. Judo: The objective of competitive BLANK is to throw an opponent, immobilize 
 
 # Part 2 (Andy Section)
 
-# Daft Punk
+# Andy Loves Daft Punk
 
 ## 11. For each of the following portraits, determine whether the individual is in Daft Punk (+-1 Point Each)
 
@@ -192,7 +192,7 @@ A. Yes B. No (Phoenix) C. No (Justice) D. No (Justice) E. Yes
 
 <img src="img/daftpunk.png" width="100%">
 
-# Letterboxd
+# Andy Loves Letterboxd
 
 ## 12. Andy is an *avid* Letterboxd user, a popular website where users can rate and review movies they've seen. For each of the following pairs of movies Andy has rated, choose which of the films Andy gave a higher rating (1 Point Each).
 
@@ -216,7 +216,7 @@ A. Yes B. No (Phoenix) C. No (Justice) D. No (Justice) E. Yes
 4 > 3
 <img src="img/letterboxdD.png" width="100%">
 
-# Boy Scouts
+# Andy Loves Boy Scouts
 
 ## 13. Eagle Scout is the highest ranking in the Boy Scouts of America. Andy is an Eagle Scout and in elite company. Some other Eagle Scouts include Neil Armstrong (and 39 other astronauts), as well as L. Ron Hubbard. Order the following states by the number of Eagle Scouts per capita (1 Point Each)
 
@@ -293,3 +293,41 @@ Area 51
 "Gates" (Scandals) PizzaGate, WaterGate, RussiaGate, DeflateGate, GamerGate
 
 <img src="img/visual_punn.png" width="100%">
+
+# Music
+
+## 20. This is a music based puzzle. You will listen to 4 pairs of songs (8 songs total). Each pair of songs has *something* in common. You need to identify what the pair of songs have in common. Then the combination of answers/commonalities is the answer to the puzzle. (2 Points for Each Commonality, 4 Points for Answering the Puzzle) 
+
+## 20A.
+
+Miss You
+
+1. 2:58 - 3:50
+
+2. 0:38 - 1:15
+
+## 20B. 
+
+Going To
+
+1. 0:00 - 0:38
+
+2. 0:00 - 0:30
+
+## 20C. 
+
+We Are
+
+1. 0:30 - 1:00
+
+2. 0:30 - 1:03
+
+## 20D.
+
+Andy
+
+1. 1:50 - 2:35
+
+2. 0:00 - 0:35
+
+Andy we are going to miss you
