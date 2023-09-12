@@ -169,6 +169,19 @@ C. Rain Man -- Original Screenplay
 
 D. Dead Poets Society -- Original Screenplay
 
+# Martial Arts
+
+## 10. Match the martial art to its description (1 Point Each)
+
+A. Muay Thai: This discipline is known as the "Art of eight limbs", as it is characterised by the combined use of fists, elbows, knees and shins.
+
+B. Jujutsu: System of close combat that can be used in a defensive or offensive manner to kill or subdue one or more weaponless or armed and armored opponents
+
+C. Taekwondo: Characterized by its emphasis on head-height kicks, jumping and spinning kicks, and fast kicking techniques.
+
+D. Judo: The objective of competitive BLANK is to throw an opponent, immobilize them with a pin, or force an opponent to submit with a joint lock or a choke.
+
+
 # Part 2 (Andy Section)
 
 # Daft Punk
@@ -217,6 +230,30 @@ C. New York 2170 / 19.46 million ~ 111 per Million
 
 D. Wisconsin 888 / 5.825 million ~ 152 per Million
 
+# Andy Loves Candy
+
+## 14. There will be four rounds of a blind taste test of Albanese Gummy Bears. In each round, each team will produce a volunteer, and all of the volunteers will eat the same flavor of gummy bear blindfolded. That person then has to identify the flavor from the list of flavors. 
+
+## 14A. 
+
+<img src="img/bears.png" width="100%">
+
+## 14B. 
+
+<img src="img/bears.png" width="100%">
+
+## 14C. 
+
+<img src="img/bears.png" width="100%">
+
+## 14D. 
+
+<img src="img/bears.png" width="100%">
+
+# TBD 15
+
+## 15. TBD
+
 # Part 3
 
 # First Name Last Name
@@ -227,7 +264,7 @@ Poison Ivy League of Extraordinary Gentleman Club
 
 A. Uma Thurman played this comic book character in 1997 
 
-B. -> A group of prestigious organizations 
+B. -> A group of elite institutions 
 
 C. -> 2003 Steampunk film starring Sean Connery 
 

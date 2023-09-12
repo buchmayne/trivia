@@ -167,9 +167,19 @@ C. Rain Man
 
 D. Dead Poets Society
 
-# TBD 10
+# Martial Arts
 
-## 10. TBD
+## 10. Match the martial art to its description (1 Point Each)
+
+Judo, Taekwondo, Jujutsu, Muay Thai
+
+A. This discipline is known as the "Art of eight limbs", as it is characterised by the combined use of fists, elbows, knees and shins.
+
+B. System of close combat that can be used in a defensive or offensive manner to kill or subdue one or more weaponless or armed and armored opponents
+
+C. Characterized by its emphasis on head-height kicks, jumping and spinning kicks, and fast kicking techniques.
+
+D. The objective of competitive BLANK is to throw an opponent, immobilize them with a pin, or force an opponent to submit with a joint lock or a choke.
 
 # Part 2 (Andy Section)
 
@@ -243,7 +253,7 @@ D. Wisconsin
 
 A. Uma Thurman played this comic book character in 1997 
 
-B. -> A group of prestigious organizations 
+B. -> A group of elite institutions 
 
 C. -> 2003 Steampunk film starring Sean Connery 
 
