@@ -1,12 +1,18 @@
 ---
-title: "Trivia August 2023"
+title: "Trivia September 2023"
 author: "Marley Buchman"
 format: revealjs
 ---
 
-# 20 Questions ? Points
+# 20 Questions 130 Points
 
-## Part 1: ? Points | Part 2 (Andy Section): ? Points | Part 3: ? Points
+## 
+
+Part 1: 56 Points
+
+Part 2 (Andy Section): 26 Points
+
+Part 3: 48 Points
 
 # Part 1
 
@@ -28,7 +34,9 @@ E. 41.84°N 87.68°W
 
 ## 2. Match each paradox to the example/definition (1 Point Each)
 
-## Berkson's Paradox, Simpson's Paradox, Prosecutor's Fallacy, Braess's Paradox
+## 
+
+**Berkson's Paradox, Simpson's Paradox, Prosecutor's Fallacy, Braess's Paradox**
 
 <span style="font-size: smaller;">
 A. A person may observe from their experience that fast food restaurants in their area which serve good hamburgers tend to serve bad fries and vice versa; but because they would likely not eat anywhere where both were bad, they fail to allow for the large number of restaurants in this category which would weaken or even flip the correlation. 
@@ -38,7 +46,9 @@ A. A person may observe from their experience that fast food restaurants in thei
 B. A common example involves the batting averages of players in professional baseball. It is possible for one player to have a higher batting average than another player each year for a number of years, but to have a lower batting average across all of those years. This phenomenon can occur when there are large differences in the number of at bats between the years.
 </span>
 
-## Berkson's Paradox, Simpson's Paradox, Prosecutor's Fallacy, Braess's Paradox
+## 
+
+**Berkson's Paradox, Simpson's Paradox, Prosecutor's Fallacy, Braess's Paradox**
 
 <span style="font-size: smaller;">
 C. Over half of the car accidents reported in 2002 happened within 8kms from the driver’s home. Therefore, we tend to overinflate the sense of danger when close to home. In fact, the reason most crashes occur close to home is because we spend most of our time driving near our house. At any one time, we’re no more likely to crash just because we’re near home.
@@ -143,9 +153,11 @@ D. Twilight
 
 # Sexual Orientations
 
-## 8. Match the sexual orientation to the definition
+## 8. Match the sexual orientation to the definition (1 Point Each)
 
-## Fictosexuality, Pansexuality, Demisexuality, Aromanticism
+##
+
+**Fictosexuality, Pansexuality, Demisexuality, Aromanticism**
 
 A. in which an individual does not experience primary sexual attraction – the type of attraction that is based on immediately observable characteristics such as appearance or smell and is experienced immediately after a first encounter
 
@@ -171,7 +183,9 @@ D. Dead Poets Society
 
 ## 10. Match the martial art to its description (1 Point Each)
 
-Judo, Taekwondo, Jujutsu, Muay Thai
+##
+
+**Judo, Taekwondo, Jujutsu, Muay Thai**
 
 A. This discipline is known as the "Art of eight limbs", as it is characterised by the combined use of fists, elbows, knees and shins.
 
@@ -191,7 +205,9 @@ D. The objective of competitive BLANK is to throw an opponent, immobilize them w
 
 # Andy Loves Letterboxd
 
-## 12. Andy is an *avid* Letterboxd user, a popular website where users can rate and review movies they've seen. For each of the following pairs of movies Andy has rated, choose which of the films Andy gave a higher rating (1 Point Each).
+## 12. 
+
+Andy is an *avid* Letterboxd user, a popular website where users can rate and review movies they've seen. For each of the following pairs of movies Andy has rated, choose which of the films Andy gave a higher rating (1 Point Each).
 
 ## 12A.
 
@@ -211,7 +227,9 @@ D. The objective of competitive BLANK is to throw an opponent, immobilize them w
 
 # Andy Loves Boy Scouts
 
-## 13. Eagle Scout is the highest ranking in the Boy Scouts of America. Andy is an Eagle Scout and in elite company. Some other Eagle Scouts include Neil Armstrong (and 39 other astronauts), as well as L. Ron Hubbard. Order the following states by the number of Eagle Scouts per capita (1 Point Each)
+## 13. Order the following states by the number of Eagle Scouts per capita (1 Point Each)
+
+Eagle Scout is the highest ranking in the Boy Scouts of America. Andy is an Eagle Scout and in elite company. Some other Eagle Scouts include Neil Armstrong (and 39 other astronauts), as well as L. Ron Hubbard.
 
 A. Utah
 
@@ -223,7 +241,7 @@ D. Wisconsin
 
 # Andy Loves Candy
 
-## 14. There will be four rounds of a blind taste test of Albanese Gummy Bears. In each round, each team will produce a volunteer, and all of the volunteers will eat the same flavor of gummy bear blindfolded. That person then has to identify the flavor from the list of flavors. 
+## 14. There will be four rounds of a blind taste test of Albanese Gummy Bears. In each round, each team will produce a volunteer, and all of the volunteers will eat the same flavor of gummy bear blindfolded. That person then has to identify the flavor from the list of flavors. (2 Points Each)
 
 ## 14A. 
 
@@ -245,15 +263,25 @@ D. Wisconsin
 
 ## 15. Match the whiskey to its description (1 Point Each)
 
-Jack Daniels $28, Blantons $260, Maker's Mark $31, Wild Turkey $26
+## 
 
-A. Aroma: Sweet oak, vanilla, bright fruit and wheat prevail in the nose. Taste: Sweet with balance of oak, vanilla and fruity essences. Finish: Smooth and creamy with a pleasant soft spice and clean finish
+**Jack Daniels $28, Blantons $260, Maker's Mark $31, Wild Turkey $26**
 
-B. With only the finest grains, pristine water from the Cave Spring Hollow,and mellowed drop-by-drop through sugar maple charcoal. We proudly age in new, handcrafted white oak barrels
+<span style="font-size: smaller;">
+A. Aroma: Sweet oak, vanilla, bright fruit and wheat prevail in the nose. Taste: Sweet with balance of oak, vanilla & fruity essences
+</span>
 
-C. The taste profile is sweet, with notes of citrus and oak. The creamy vanilla nose is teased with caramel and butterscotch, all underscored by familiar baking spices such as clove, nutmeg, or cinnamon.
+<span style="font-size: smaller;">
+B. Only the finest grains, pristine water from the Cave Spring Hollow, & mellowed drop-by-drop through sugar maple charcoal. Proudly aged in new, handcrafted white oak barrels
+</span>
 
-D. Taste: A hint of sweet upfront with vanilla and caramel notes. Oak and baking spices in the middle. Aroma: Vanilla with cinnamon and oak. Finish: Bold, signature spice and orange peel
+<span style="font-size: smaller;">
+C. The taste profile is sweet, with notes of citrus & butterscotch, all underscored by familiar baking spices such as clove, nutmeg, or cinnamon
+</span>
+
+<span style="font-size: smaller;">
+D. Taste: A hint of sweet upfront with vanilla and caramel notes. Oak and baking spices in the middle. Aroma: Vanilla with cinnamon and oak
+</span>
 
 # Part 3
 
@@ -263,11 +291,11 @@ D. Taste: A hint of sweet upfront with vanilla and caramel notes. Oak and baking
 
 A. Uma Thurman played this comic book character in 1997 
 
-B. -> A group of elite institutions 
+B. A group of elite institutions 
 
-C. -> 2003 Steampunk film starring Sean Connery 
+C. 2003 Steampunk film starring Sean Connery 
 
-D. -> A place for fancy fellas to hang out, the name is paradoxical to what occurs there
+D. A place for fancy fellas to hang out, the name is paradoxical to what occurs there
 
 # Bird's Eye View
 
@@ -291,7 +319,9 @@ D. -> A place for fancy fellas to hang out, the name is paradoxical to what occu
 
 # Music
 
-## 20. This is a music based puzzle. You will listen to 4 pairs of songs (8 songs total). Each pair of songs has *something* in common. You need to identify what the pair of songs have in common. Then the combination of answers/commonalities is the answer to the puzzle. (2 Points for Each Commonality, 4 Points for Answering the Puzzle) 
+## 20. 
+
+This is a music based puzzle. You will listen to 4 pairs of songs (8 songs total). Each pair of songs has *something* in common. You need to identify what the pair of songs have in common. Then the combination of answers/commonalities is the answer to the puzzle. (2 Points for Each Commonality, 4 Points for Answering the Puzzle) 
 
 ## 20A.
 
