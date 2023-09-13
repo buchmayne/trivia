@@ -10,9 +10,23 @@ format: revealjs
 
 # Part 1
 
+# U.S. Cities
+
+## 1. The coordinates for the 5 largest U.S. CITIES (not metros!) are listed below. Identify the city from the coordinates (2 Points Each)
+
+A. Phoenix 33.57°N 112.09°W
+
+B. Los Angeles 34.02°N 118.41°W
+
+C. Houston 29.79°N 95.39°W
+
+D. New York 40.66°N 73.94°W
+
+E. Chicago 41.84°N 87.68°W
+
 # Paradoxes
 
-## 1. Match each paradox to the example/definition (1 Point Each)
+## 2. Match each paradox to the example/definition (1 Point Each)
 
 ## Berkson's Paradox A, Simpson's Paradox B, Prosecutor's Fallacy C, Braess's Paradox D
 
@@ -37,27 +51,25 @@ D. In Stuttgart, Germany, after investments into the road network in 1969, the t
 
 # America
 
-## 2A. Are they American? (1 Point Each)
+## 3A. Are they American? (1 Point Each)
 
 Kiefer Sutherland -- No (British/Canadian)
 
 <img src="img/kiefer.jpeg" width="100%">
 
-## 2B. Are they American? (1 Point Each)
+## 3B. Are they American? (1 Point Each)
 
 Andrew Lincoln -- No (British)
 
 <img src="img/andrew_lincoln.jpeg" width="100%">
 
-
-## 2C. Are they American? (1 Point Each)
+## 3C. Are they American? (1 Point Each)
 
 Orson Welles -- Yes
 
 <img src="img/orson_welles.jpeg" width="100%">
 
-
-## 2D. Are they American? (1 Point Each)
+## 3D. Are they American? (1 Point Each)
 
 James Cameron -- No (Canadian)
 
@@ -65,7 +77,7 @@ James Cameron -- No (Canadian)
 
 # Geography
 
-## 3. Identify the unlabeled city on the map from answer bank (1 Point Each)
+## 4. Identify the unlabeled city on the map from answer bank (1 Point Each)
 
 ##
 
@@ -92,20 +104,6 @@ Munich
 Rio de Janeiro
 
 <img src="img/brazil.png" width="100%">
-
-# U.S. Cities
-
-## 4. The coordinates for the 5 largest U.S. CITIES (not metros!) are listed below. Identify the city from the coordinates (2 Points Each)
-
-A. Phoenix 33.57°N 112.09°W
-
-B. Los Angeles 34.02°N 118.41°W
-
-C. Houston 29.79°N 95.39°W
-
-D. New York 40.66°N 73.94°W
-
-E. Chicago 41.84°N 87.68°W
 
 # Acronyms
 
@@ -250,9 +248,19 @@ D. Wisconsin 888 / 5.825 million ~ 152 per Million
 
 <img src="img/bears.png" width="100%">
 
-# TBD 15
+# Andy Loves Whiskey
 
-## 15. TBD
+## 15. Match the whiskey to its description (1 Point Each)
+
+Jack Daniels $28, Blantons $260, Maker's Mark $31, Wild Turkey $26
+
+A. Aroma: Sweet oak, vanilla, bright fruit and wheat prevail in the nose. Taste: Sweet with balance of oak, vanilla and fruity essences. Finish: Smooth and creamy with a pleasant soft spice and clean finish -- Maker's Mark
+
+B. With only the finest grains, pristine water from the Cave Spring Hollow,and mellowed drop-by-drop through sugar maple charcoal. We proudly age in new, handcrafted white oak barrels -- Jack Daniels
+
+C. The taste profile is sweet, with notes of citrus and oak. The creamy vanilla nose is teased with caramel and butterscotch, all underscored by familiar baking spices such as clove, nutmeg, or cinnamon. -- Blantons
+
+D. Taste: A hint of sweet upfront with vanilla and caramel notes. Oak and baking spices in the middle. Aroma: Vanilla with cinnamon and oak. Finish: Bold, signature spice and orange peel -- Wild Turkey
 
 # Part 3
 
