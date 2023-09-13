@@ -1,15 +1,12 @@
 import random
 from typing import Optional
+from dataclasses import dataclass
 
-
+@dataclass
 class Player:
-    def __init__(self, name: str, male: bool, partner: Optional[str] = None):
-        self.name = name
-        self.partner = partner
-        self.male = male
-
-    def __str__(self):
-        return self.name
+    name: str
+    male: bool
+    partner: Optional[str]
 
 
 class Team:
@@ -22,7 +19,7 @@ class Team:
             self.players = []
 
     def add_player(self, player):
-        self.players.append(player)
+        return self.players.append(player)
 
     def __iter__(self):
         return iter(self.players)
@@ -41,6 +38,11 @@ def sort_players_by_sex(players: list) -> dict:
             women.append(player)
 
     return {'men': men, 'women': women}
+
+def display_teams(teams: list) -> None:
+    for team in teams:
+        print(f"{team.name}: {', '.join(team.players)}\n")
+
 
 def assign_teams(players: list, teams: list) -> None:
     # try to balance teams by sex
@@ -69,6 +71,8 @@ def assign_teams(players: list, teams: list) -> None:
                                 men = [male_player for male_player in men if male_player.name != chosen_player.name]
                                 selected_players.append(chosen_player)
                                 select_male = False
+                            else:
+                                pass
             else:
                 select_male = False
         else:
@@ -83,42 +87,58 @@ def assign_teams(players: list, teams: list) -> None:
                                 women = [female_player for female_player in women if female_player.name != chosen_player.name]
                                 selected_players.append(chosen_player)
                                 select_male = True
+                            else:
+                                pass
             else:
                 select_male = True
     
 
-    # print teams
-    for team in teams:
-        print(f"{team.name}: {', '.join(team.players)}\n")
+    return teams
 
 
 if __name__ == "__main__":
     # Add participants and determine whether they have a partner
     players = [
-        # 1-5
-        Player("Mike T", True, "Tayler T"),
-        Player("Gerik I", True, "Claire I"),
-        Player("Dylan S", True, "Erica B"),
-        Player("Andy L", True),
-        Player("Claire I", False, "Gerik I"),
+    # 1-5
+    Player("Mike T", True, "Tayler"),
+    Player("Gerik", True, "Claire I"),
+    Player("Dylan", True, "Erica"),
+    Player("Andy", True, None),
+    Player("Claire I", False, "Gerik"),
 
 
 	# 5-10
-        Player("Erica B", False, "Dylan S"),
-        Player("Jenna C", False),
-        Player("Andrew D", True),
-        Player("Charlie C", True),
-        Player("Mitch", True, "Katherine"),
+    Player("Erica", False, "Dylan"),
+    Player("Jenna", False, None),
+    Player("Andrew", True, None),
+    Player("Tayler", False, "Mike T"),
+    Player("Cole", True, "Sabrah"),
 
 	# 10-15
-        Player("Katherine", False, "Mitch"),
-	Player("Joshua", True, "Annie"),
-	Player("Annie", False, "Joshua"),
-	Player("Steven", True),
-	Player("Anna", False),
+    Player("Connor", True, "Amanda"),
+    Player("Hillary", False, "Father Doctor"),
+    Player("Howie", True, "Brittney"),
+    Player("James", True, "Claire T"),
+    Player("Kelsey", False, "Mike P"),
+
 	
-	# 15-16
-	Player("Jasper", True),
+	# 15-20
+    Player("Father Doctor", True, "Hillary"),
+    Player("Pilar", False, "Chris"),
+    Player("Brittney", False, "Howie"),
+    Player("Chris", True, "Pilar"),
+    Player("Claire T", False, "James"),
+
+    # 20-25
+    Player("Emma", False, "Karson"),
+    Player("Karson", True, "Emma"),
+    Player("Kaylin", False, None),
+    Player("Amanda", False, "Connor"),
+    Player("Mike P", True, "Kelsey"),
+
+    # 26-20
+    Player("Sabrah", False, "Cole"),
+	
     ]
 
     # Create teams and set max team size
@@ -127,6 +147,11 @@ if __name__ == "__main__":
         Team("Team 2", max_team_size=4),
         Team("Team 3", max_team_size=4),
         Team("Team 4", max_team_size=4),
+        Team("Team 5", max_team_size=4),
+        Team("Team 6", max_team_size=4),
+        Team("Team 7", max_team_size=4)
     ]
 
-    assign_teams(players, teams)
+    assigned_teams = assign_teams(players, teams)
+    
+    display_teams(assigned_teams)
