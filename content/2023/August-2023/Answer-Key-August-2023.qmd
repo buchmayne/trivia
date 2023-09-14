@@ -240,17 +240,25 @@ D. Wisconsin 888 / 5.825 million ~ 152 per Million
 
 ## 14A. 
 
+PINK GRAPEFRUIT
+
 <img src="img/bears.png" width="100%">
 
 ## 14B. 
+
+WATERMELON 
 
 <img src="img/bears.png" width="100%">
 
 ## 14C. 
 
+BLUE RASPBERRY
+
 <img src="img/bears.png" width="100%">
 
 ## 14D. 
+
+CHERRY
 
 <img src="img/bears.png" width="100%">
 
