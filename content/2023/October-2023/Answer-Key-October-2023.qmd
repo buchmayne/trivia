@@ -1,0 +1,57 @@
+---
+title: "Trivia October 2023"
+author: "Marley Buchman"
+format: revealjs
+---
+
+# 20 Questions ? Points
+
+## 
+
+Part 1: ? Points
+
+Part 2: ? Points
+
+# Part 1
+
+# U.S. Counties
+
+## 1. Name the biggest city in each of the following U.S. Counties. Be as specific as possible. (2 Points Each)
+
+A. Cook County -- Chicago, IL
+
+B. King County -- Seattle, WA
+
+C. Nassau County -- Long Island, NY
+
+D. Maricopa County -- Phoenix, AZ
+
+E. Alameda County -- Oakland, CA
+
+# Humans
+
+## 2. Order the following nations, from highest to lowest, average Male Height (1 Point Each)
+
+A. Germany (5 ft 11 in)
+
+B. Netherlands (6 ft 0.5 in)
+
+C. U.S.A (5 ft 9.5 in)
+
+D. South Africa (5 ft 7 in)
+
+E. Democratic Replublic of Congo (5 ft 6.5 in)
+
+# McDonalds
+
+## 3. Order the following nations, from highest to lowest price for a BigMac (1 Point Each)
+
+A. USA ($5.36)
+
+B. Switzerland ($7.25)
+
+C. Australia ($5.11)
+
+D. Norway ($6.58)
+
+E. Singapore ($4.46)

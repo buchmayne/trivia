@@ -1,0 +1,86 @@
+---
+title: "Trivia October 2023"
+author: "Marley Buchman"
+format: revealjs
+---
+
+# 20 Questions ? Points
+
+## 
+
+Part 1: ? Points
+
+Part 2: ? Points
+
+# Part 1
+
+# U.S. Counties
+
+## 1. Name the biggest city in each of the following U.S. Counties. Be as specific as possible. (2 Points Each)
+
+A. Cook County
+
+B. King County
+
+C. Nassau County
+
+D. Maricopa County
+
+E. Alameda County
+
+# Humans
+
+## 2. Order the following nations, from highest to lowest, average Male Height (1 Point Each)
+
+A. Germany
+
+B. Netherlands
+
+C. U.S.A
+
+D. South Africa
+
+E. Democratic Replublic of Congo
+
+# McDonalds
+
+## 3. Order the following nations, from highest to lowest price for a BigMac (1 Point Each)
+
+A. USA
+
+B. Switzerland
+
+C. Australia
+
+D. Norway
+
+E. Singapore
+
+# America
+
+## 3A. Are they American? (1 Point Each)
+
+Kiefer Sutherland
+
+<img src="img/kiefer.jpeg" width="100%">
+
+## 3B. Are they American? (1 Point Each)
+
+Andrew Lincoln
+
+<img src="img/andrew_lincoln.jpeg" width="100%">
+
+
+## 3C. Are they American? (1 Point Each)
+
+Orson Welles
+
+<img src="img/orson_welles.jpeg" width="100%">
+
+
+## 3D. Are they American? (1 Point Each)
+
+James Cameron
+
+<img src="img/james_cameron.jpeg" width="100%">
+
