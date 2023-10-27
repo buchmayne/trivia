@@ -104,41 +104,38 @@ if __name__ == "__main__":
     Player("Gerik", True, "Claire I"),
     Player("Dylan", True, "Erica"),
     Player("Andy", True, None),
-    Player("Claire I", False, "Gerik"),
-
+    Player("Erica", False, "Dylan"),
 
 	# 5-10
-    Player("Erica", False, "Dylan"),
     Player("Jenna", False, None),
-    Player("Andrew", True, None),
     Player("Tayler", False, "Mike T"),
     Player("Cole", True, "Sabrah"),
-
-	# 10-15
     Player("Connor", True, "Amanda"),
     Player("Hillary", False, "Father Doctor"),
+
+	# 10-15
     Player("Howie", True, "Brittney"),
     Player("James", True, "Claire T"),
     Player("Kelsey", False, "Mike P"),
-
-	
-	# 15-20
     Player("Father Doctor", True, "Hillary"),
     Player("Pilar", False, "Chris"),
+	
+	# 15-20
     Player("Brittney", False, "Howie"),
     Player("Chris", True, "Pilar"),
-    Player("Claire T", False, "James"),
-
-    # 20-25
     Player("Emma", False, "Karson"),
     Player("Karson", True, "Emma"),
     Player("Kaylin", False, None),
-    Player("Amanda", False, "Connor"),
+ 
+    # 20-25
     Player("Mike P", True, "Kelsey"),
 
-    # 26-20
-    Player("Sabrah", False, "Cole"),
-	
+    # 26-30
+#    Player("Sabrah", False, "Cole"),
+#    Player("Amanda", False, "Connor"),
+#    Player("Claire T", False, "James"),	
+#    Player("Claire I", False, "Gerik"),
+#    Player("Andrew", True, None),
     ]
 
     # Create teams and set max team size
@@ -147,9 +144,7 @@ if __name__ == "__main__":
         Team("Team 2", max_team_size=4),
         Team("Team 3", max_team_size=4),
         Team("Team 4", max_team_size=4),
-        Team("Team 5", max_team_size=4),
-        Team("Team 6", max_team_size=4),
-        Team("Team 7", max_team_size=4)
+        Team("Team 5", max_team_size=5),
     ]
 
     assigned_teams = assign_teams(players, teams)
