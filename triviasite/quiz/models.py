@@ -1,17 +1,22 @@
 from django.db import models
 
 class Question(models.Model):
-    question_text = models.CharField(max_length=500)
-    question_category = models.CharField(max_length=100, default="")
-    question_points = models.IntegerField(default=0)
-    pub_date = models.DateField("date published")
+    question_text = models.CharField(max_length=1000)
+    question_type = models.CharField(max_length=1000)
+    category = models.CharField(max_length=1000)
+    game_id = models.CharField(max_length=1000)
+    has_been_used = models.BooleanField(default=True)
+    question_number = models.IntegerField()
+    points = models.IntegerField()
+    points_application = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.question_text
 
-class Choice(models.Model):
+class ChoicesSingleSlideMultipleChoiceNoAnswerBankQuestion(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=500)
+    choice_text = models.CharField(max_length=1000)
+    choice_answer = models.CharField(max_length=1000)
 
     def __str__(self):
-        return self.choice_text
+        return self.question.question_text
