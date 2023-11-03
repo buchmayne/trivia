@@ -4,3 +4,4 @@ databases
 sqlalchemy
 python-dotenv
 asyncpg
+jinja2
