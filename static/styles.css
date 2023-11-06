@@ -1,0 +1,29 @@
+body {
+    background-color:#01364C;
+    padding: 2em;
+  }
+  
+  h2 {
+    color: #F7F8F9;
+    text-align: left;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: calc(2em + 2vw); /* Adjust the values accordingly */
+    max-width: 90%; /* Prevent text from stretching to the screen edge */
+    margin: 0 auto;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+  li {
+    font-family: 'Manrope', sans-serif;
+    /* font-size: 30px; */
+    color: #F7F8F9;
+    font-size: calc(1em + 1.5vw); /* Adjust the values accordingly */
+    margin-bottom: 1em;
+  }
+
+
+ 
