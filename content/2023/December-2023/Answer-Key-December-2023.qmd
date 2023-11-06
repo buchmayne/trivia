@@ -103,3 +103,31 @@ C. Spain -- Chinese
 D. Turkey -- French
 
 <img src="img/phrases.jpg" width="100%">
+
+# Greek Mythology
+
+## 7. Match the story from greek mythology, and the movie that is a loose adaptation that story (1 Point Each)
+
+## 7A.
+
+Prometheus
+
+<img src="img/lighthouse.jpg" width="100%">
+
+## 7B.
+
+Pygmalion
+
+<img src="img/weird_science.jpg" width="100%">
+
+## 7C.
+
+Odysseus
+
+<img src="img/o_brother.jpg" width="100%">
+
+## 7D.
+
+Oedipus
+
+<img src="img/oldboy.png" width="100%">
