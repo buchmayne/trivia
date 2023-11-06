@@ -1,0 +1,103 @@
+---
+title: "Trivia December 2023"
+author: "Marley Buchman"
+format: revealjs
+---
+
+# 20 Questions ? Points
+
+## 
+
+Part 1: ? Points
+
+Part 2: ? Points
+
+# Part 1
+
+# U.S. Counties
+
+## 1. Name the biggest city in each of the following U.S. Counties. Be as specific as possible. (2 Points Each)
+
+A. Cook County
+
+B. King County
+
+C. Nassau County
+
+D. Maricopa County
+
+E. Alameda County
+
+# Humans
+
+## 2. Order the following nations, from highest to lowest, average Male Height (1 Point Each)
+
+A. Germany
+
+B. Netherlands
+
+C. U.S.A
+
+D. South Africa
+
+E. Democratic Replublic of Congo
+
+# McDonalds
+
+## 3. Order the following nations, from highest to lowest price for a BigMac (1 Point Each)
+
+A. USA
+
+B. Switzerland
+
+C. Australia
+
+D. Norway
+
+E. Singapore
+
+# Borders
+
+## 4. For each of the following cities, name the country/nation/empire that the city resided in, in the listed year (2 Points Each)
+
+A. Oslo, Norway 1943 
+
+B. Manilla, Philippines 1890
+
+C. Manilla, Philippines 1933
+
+D. Singapore, Singapore 1963
+
+# Snacks
+
+## 5A. Order the following snack products from oldest to newest (1 Point Each)
+
+A. Oreos
+
+B. Cheez-Its
+
+C. Ritz Crackers
+
+D. Twizzlers
+
+## 5B. Order the following snack products from oldest to newest (1 Point Each)
+
+A. Pop Tarts
+
+B. Wheat Thins
+
+C. Skittles
+
+D. Nutter Butters
+
+# Expressions
+
+## 6. The phrase "It's all greek to me", is used to express one's lack of understanding of some content. Other countries have similiar phrases, but with a different language used. For each country, what language is used instead of Greek (2 Points Each)
+
+A. Italy -- Arabic
+
+B. France -- Chinese
+
+C. Spain -- Chinese
+
+D. Turkey -- French
