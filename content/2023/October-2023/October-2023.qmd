@@ -1,5 +1,5 @@
 ---
-title: "Trivia October 2023"
+title: "Trivia December 2023"
 author: "Marley Buchman"
 format: revealjs
 ---
@@ -56,31 +56,14 @@ D. Norway
 
 E. Singapore
 
-# America
+# Borders
 
-## 3A. Are they American? (1 Point Each)
+## 4. For each of the following cities, name the country/nation/empire that the city resided in, in the listed year (2 Points Each)
 
-Kiefer Sutherland
+A. Oslo, Norway 1943 
 
-<img src="img/kiefer.jpeg" width="100%">
+B. Manilla, Philippines 1890
 
-## 3B. Are they American? (1 Point Each)
+C. Manilla, Philippines 1933
 
-Andrew Lincoln
-
-<img src="img/andrew_lincoln.jpeg" width="100%">
-
-
-## 3C. Are they American? (1 Point Each)
-
-Orson Welles
-
-<img src="img/orson_welles.jpeg" width="100%">
-
-
-## 3D. Are they American? (1 Point Each)
-
-James Cameron
-
-<img src="img/james_cameron.jpeg" width="100%">
-
+D. Singapore, Singapore 1963

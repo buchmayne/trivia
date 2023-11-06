@@ -1,5 +1,5 @@
 ---
-title: "Trivia October 2023"
+title: "Trivia December 2023"
 author: "Marley Buchman"
 format: revealjs
 ---
@@ -55,3 +55,15 @@ C. Australia ($5.11)
 D. Norway ($6.58)
 
 E. Singapore ($4.46)
+
+# Borders
+
+## 4. For each of the following cities, name the country/nation/empire that the city resided in, in the listed year (2 Points Each)
+
+A. Oslo, Norway 1943 -- Germany
+
+B. Manilla, Philippines 1890 -- Spain
+
+C. Manilla, Philippines 1933 -- U.S.A.
+
+D. Singapore, Singapore 1963 -- Malaysia
