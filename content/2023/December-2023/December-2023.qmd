@@ -42,7 +42,7 @@ D. South Africa
 
 E. Democratic Replublic of Congo
 
-# McDonalds
+# Economics
 
 ## 3. Order the following nations, from highest to lowest price for a BigMac (1 Point Each)
 
@@ -92,7 +92,9 @@ D. Nutter Butters
 
 # Expressions
 
-## 6. The phrase "It's all greek to me", is used to express one's lack of understanding of some content. Other countries have similiar phrases, but with a different language used. For each country, what language is used instead of Greek (2 Points Each)
+## 6. 
+
+The phrase "It's all greek to me", is used to express one's lack of understanding of some content. Other countries have similiar phrases, but with a different language used. For each country, what language is used instead of "Greek" (2 Points Each)
 
 A. Italy
 
@@ -104,28 +106,34 @@ D. Turkey
 
 # Greek Mythology
 
-## 7. Match the story from greek mythology, and the movie that is a loose adaptation that story (1 Point Each)
-
-## 7A.
+## 7A. Match the story from greek mythology, and the movie that is a loose adaptation that story (1 Point Each).
 
 Odysseus, Oedipus, Prometheus, Pygmalion
 
 <img src="img/lighthouse.jpg" width="100%">
 
-## 7B.
+## 7B. Match the story from greek mythology, and the movie that is a loose adaptation that story (1 Point Each).
 
 Odysseus, Oedipus, Prometheus, Pygmalion
 
 <img src="img/weird_science.jpg" width="100%">
 
-## 7C.
+## 7C. Match the story from greek mythology, and the movie that is a loose adaptation that story (1 Point Each).
 
 Odysseus, Oedipus, Prometheus, Pygmalion
 
 <img src="img/o_brother.jpg" width="100%">
 
-## 7D.
+## 7D. Match the story from greek mythology, and the movie that is a loose adaptation that story (1 Point Each).
 
 Odysseus, Oedipus, Prometheus, Pygmalion
 
 <img src="img/oldboy.png" width="100%">
+
+# Typography
+
+## 8. Match the font to the text displaying the font (1 Point Each)
+
+Times New Roman, Helvetica, Futura, Arial
+
+<img src="img/fonts.png" width="100%">
