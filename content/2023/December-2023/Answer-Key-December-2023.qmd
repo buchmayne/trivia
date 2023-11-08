@@ -175,3 +175,15 @@ E. a trend characterized by unpretentious, average-looking clothing
 **C. Gorpcore, E. Normcore, D. Vacation Dad Core, A. Blokecore, B. Fieldcore**
 
 <img src="img/fashion.png" width="100%">
+
+# Buildings
+
+## 10. The tallest building in Portland, OR is the Wells Fargo Center at 546 ft. For each of the following countries, do they have a building that would be the tallest building in Portland? (1 Point Each)
+
+A. Norway -- No (384ft)
+
+B. Portugal -- No (476ft)
+
+C. Italy -- Yes (758ft)
+
+D. Netherlands -- Yes (705ft)
