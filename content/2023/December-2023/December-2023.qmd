@@ -137,3 +137,39 @@ Odysseus, Oedipus, Prometheus, Pygmalion
 Times New Roman, Helvetica, Futura, Arial
 
 <img src="img/fonts.png" width="100%">
+
+# Fashion
+
+## 9A. Match the description of the fashion trend to the style (1 Point Each)
+
+## 
+
+**Gorpcore, Normcore, Vacation Dad Core, Blokecore, Fieldcore**
+
+<span style="font-size: smaller;">
+A. an aesthetic based on the discovery of ancient items, such as artifacts and fossils
+</span>
+
+<span style="font-size: smaller;">
+B. an aesthetic that is characterized by a prioritization of functionality in clothing
+</span>
+
+<span style="font-size: smaller;">
+C. aesthetic that is based on the timelessness of Hawaiian prints, well-worn sandals, comfortable hats and chill vacations
+</span>
+
+<span style="font-size: smaller;">
+D. aesthetic that focus on the British football culture
+</span>
+
+<span style="font-size: smaller;">
+E. a trend characterized by unpretentious, average-looking clothing
+</span>
+
+## 9B. Match the image of the fashion trend to the style (1 Point Each)
+
+## 
+
+**Gorpcore, Normcore, Vacation Dad Core, Blokecore, Fieldcore**
+
+<img src="img/fashion.png" width="100%">
