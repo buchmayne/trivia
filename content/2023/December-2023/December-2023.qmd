@@ -185,3 +185,11 @@ B. Portugal
 C. Italy
 
 D. Netherlands
+
+# Crime
+
+## 11. Match the mugshot of the serial killer to their name/nickname (1 Point Each)
+
+**Son of Sam, Ted Bundy, Jeffrey Dahmer, BTK**
+
+<img src="img/killers.png" width="100%">

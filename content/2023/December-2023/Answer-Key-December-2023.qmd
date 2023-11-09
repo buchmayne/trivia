@@ -187,3 +187,11 @@ B. Portugal -- No (476ft)
 C. Italy -- Yes (758ft)
 
 D. Netherlands -- Yes (705ft)
+
+# Crime
+
+## 11. Match the mugshot of the serial killer to their name/nickname (1 Point Each)
+
+**B. Son of Sam, D. Ted Bundy, C. Jeffrey Dahmer, A. BTK**
+
+<img src="img/killers.png" width="100%">
