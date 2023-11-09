@@ -16,7 +16,9 @@ Part 2: ? Points
 
 # U.S. Counties
 
-## 1. Name the biggest city in each of the following U.S. Counties. Be as specific as possible. (2 Points Each)
+## 1. 
+
+Name the biggest city in each of the following U.S. Counties. Be as specific as possible. (2 Points Each)
 
 A. Cook County
 
@@ -58,7 +60,9 @@ E. Singapore
 
 # Borders
 
-## 4. For each of the following cities, name the country/nation/empire that the city resided in, in the listed year (2 Points Each)
+## 4. 
+
+For each of the following cities, name the country/nation/empire that the city resided in, in the listed year (2 Points Each)
 
 A. Oslo, Norway 1943 
 
@@ -106,27 +110,29 @@ D. Turkey
 
 # Greek Mythology
 
-## 7A. Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
+## Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
 
-Odysseus, Oedipus, Prometheus, Pygmalion
+## 7A. 
+
+**Odysseus, Oedipus, Prometheus, Pygmalion**
 
 <img src="img/lighthouse.jpg" width="100%">
 
-## 7B. Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
+## 7B.
 
-Odysseus, Oedipus, Prometheus, Pygmalion
+**Odysseus, Oedipus, Prometheus, Pygmalion**
 
 <img src="img/weird_science.jpg" width="100%">
 
-## 7C. Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
+## 7C.
 
-Odysseus, Oedipus, Prometheus, Pygmalion
+**Odysseus, Oedipus, Prometheus, Pygmalion**
 
 <img src="img/o_brother.jpg" width="100%">
 
-## 7D. Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
+## 7D.
 
-Odysseus, Oedipus, Prometheus, Pygmalion
+**Odysseus, Oedipus, Prometheus, Pygmalion**
 
 <img src="img/oldboy.png" width="100%">
 
@@ -134,7 +140,7 @@ Odysseus, Oedipus, Prometheus, Pygmalion
 
 ## 8. Match the font to the text displaying the font (1 Point Each)
 
-Times New Roman, Helvetica, Futura, Arial
+**Times New Roman, Helvetica, Futura, Arial**
 
 <img src="img/fonts.png" width="100%">
 
@@ -176,7 +182,9 @@ E. a trend characterized by unpretentious, average-looking clothing
 
 # Buildings
 
-## 10. The tallest building in Portland, OR is the Wells Fargo Center at 546 ft. For each of the following countries, do they have a building that would be the tallest building in Portland? (1 Point Each)
+## 10. 
+
+The tallest building in Portland, OR is the Wells Fargo Center at 546 ft. For each of the following countries, do they have a building that would be the tallest building in Portland? (1 Point Each)
 
 A. Norway
 
@@ -190,32 +198,44 @@ D. Netherlands
 
 ## 11. Match the mugshot of the serial killer to their name/nickname (1 Point Each)
 
+##
+
 **Son of Sam, Ted Bundy, Jeffrey Dahmer, BTK**
 
 <img src="img/killers.png" width="100%">
 
 # Design
 
-## 12A. Match the design aesthetic with the image (1 Point Each).
+## Match the design aesthetic with the image (1 Point Each).
 
-Corporate Memphis, Y2K, Frutiger Aero, Memphis Design
+## 12A. 
+
+**Corporate Memphis, Y2K, Frutiger Aero, Memphis Design**
 
 <img src="img/y2k.png" width="100%">
 
-## 12B. Match the design aesthetic with the image (1 Point Each).
+## 12B.
 
-Corporate Memphis, Y2K, Frutiger Aero, Memphis Design
+**Corporate Memphis, Y2K, Frutiger Aero, Memphis Design**
 
 <img src="img/memphis.png" width="100%">
 
-## 12C. Match the design aesthetic with the image (1 Point Each).
+## 12C.
 
-Corporate Memphis, Y2K, Frutiger Aero, Memphis Design
+**Corporate Memphis, Y2K, Frutiger Aero, Memphis Design**
 
 <img src="img/frutiger.png" width="100%">
 
-## 12D. Match the design aesthetic with the image (1 Point Each).
+## 12D.
 
-Corporate Memphis, Y2K, Frutiger Aero, Memphis Design
+**Corporate Memphis, Y2K, Frutiger Aero, Memphis Design**
 
 <img src="img/corporate_memphis.png" width="100%">
+
+# Observation
+
+## 13. There are eight differences between these two photos. Identify them all (1 Point Each)
+
+##
+
+<img src="img/find_diff.png" width="100%">
