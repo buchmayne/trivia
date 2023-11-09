@@ -106,25 +106,25 @@ D. Turkey
 
 # Greek Mythology
 
-## 7A. Match the story from greek mythology, and the movie that is a loose adaptation that story (1 Point Each).
+## 7A. Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
 
 Odysseus, Oedipus, Prometheus, Pygmalion
 
 <img src="img/lighthouse.jpg" width="100%">
 
-## 7B. Match the story from greek mythology, and the movie that is a loose adaptation that story (1 Point Each).
+## 7B. Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
 
 Odysseus, Oedipus, Prometheus, Pygmalion
 
 <img src="img/weird_science.jpg" width="100%">
 
-## 7C. Match the story from greek mythology, and the movie that is a loose adaptation that story (1 Point Each).
+## 7C. Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
 
 Odysseus, Oedipus, Prometheus, Pygmalion
 
 <img src="img/o_brother.jpg" width="100%">
 
-## 7D. Match the story from greek mythology, and the movie that is a loose adaptation that story (1 Point Each).
+## 7D. Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
 
 Odysseus, Oedipus, Prometheus, Pygmalion
 
@@ -193,3 +193,29 @@ D. Netherlands
 **Son of Sam, Ted Bundy, Jeffrey Dahmer, BTK**
 
 <img src="img/killers.png" width="100%">
+
+# Design
+
+## 12A. Match the design aesthetic with the image (1 Point Each).
+
+Corporate Memphis, Y2K, Frutiger Aero, Memphis Design
+
+<img src="img/y2k.png" width="100%">
+
+## 12B. Match the design aesthetic with the image (1 Point Each).
+
+Corporate Memphis, Y2K, Frutiger Aero, Memphis Design
+
+<img src="img/memphis.png" width="100%">
+
+## 12C. Match the design aesthetic with the image (1 Point Each).
+
+Corporate Memphis, Y2K, Frutiger Aero, Memphis Design
+
+<img src="img/frutiger.png" width="100%">
+
+## 12D. Match the design aesthetic with the image (1 Point Each).
+
+Corporate Memphis, Y2K, Frutiger Aero, Memphis Design
+
+<img src="img/corporate_memphis.png" width="100%">
