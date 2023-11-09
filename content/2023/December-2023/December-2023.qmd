@@ -238,4 +238,4 @@ D. Netherlands
 
 ##
 
-<img src="img/find_diff.png" width="100%">
+<img src="img/can_you_spot_the_difference.jpg" width="100%">
