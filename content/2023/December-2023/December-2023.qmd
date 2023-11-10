@@ -245,3 +245,9 @@ D. Netherlands
 ## 14. The following is an anagram of the New York Times headline on August 9th, 1974. Solve the anagram (5 Points)
 
  G O X N E S I S I N N R
+
+ # Colors
+
+ ## 15. Match the color scheme to the team (1 Point Each)
+
+ <img src="img/colors.jpg" width="100%">

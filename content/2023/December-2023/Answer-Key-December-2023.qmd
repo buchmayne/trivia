@@ -247,3 +247,11 @@ Corporate Memphis
 ## 14. The following is an anagram of the New York Times headline on August 9th, 1974. Solve the anagram (5 Points)
 
  <img src="img/nixon.png" width="100%">
+
+ # Colors
+
+ ## 15. Match the color scheme to the team (1 Point Each)
+
+1, 2, 3 (in order)
+
+ <img src="img/colors.jpg" width="100%">
