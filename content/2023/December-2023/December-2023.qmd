@@ -239,3 +239,9 @@ D. Netherlands
 ##
 
 <img src="img/can_you_spot_the_difference.jpg" width="100%">
+
+# Headlines
+
+## 14. The following is an anagram of the New York Times headline on August 9th, 1974. Solve the anagram (5 Points)
+
+ G O X N E S I S I N N R
