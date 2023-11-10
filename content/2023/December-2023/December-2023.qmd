@@ -251,3 +251,9 @@ G O X N E S I S I N N R
 ## 15. Match the color scheme to the team (1 Point Each)
 
 <img src="img/colors.jpg" width="100%">
+
+# Guess The Data
+
+## 16. Identify the data being shown on the map (5 Points)
+
+<img src="img/snowfall.png" width="100%">
