@@ -257,3 +257,211 @@ G O X N E S I S I N N R
 ## 16. Identify the data being shown on the map (5 Points)
 
 <img src="img/snowfall.png" width="100%">
+
+# Real Estate
+
+## 17. Match the price and the city to the following redfin listings (1 Point Each)
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+## 17A1.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+5 Beds 3 Baths 2,588 sqft
+
+<img src="img/mn1.png" width="100%">
+
+## 17A2.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+5 Beds 3 Baths 2,588 sqft
+
+<img src="img/mn2.png" width="100%">
+
+## 17A3.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+5 Beds 3 Baths 2,588 sqft
+
+<img src="img/mn3.png" width="100%">
+
+## 17A4.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+5 Beds 3 Baths 2,588 sqft
+
+<img src="img/mn4.png" width="100%">
+
+## 17A5. 
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+5 Beds 3 Baths 2,588 sqft
+
+<img src="img/mn5.png" width="100%">
+
+## 17B1.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+4 Beds 3.5 Baths 3,671 sqft
+
+<img src="img/ok1.png" width="100%">
+
+## 17B2.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+4 Beds 3.5 Baths 3,671 sqft
+
+<img src="img/ok2.png" width="100%">
+
+## 17B3.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+4 Beds 3.5 Baths 3,671 sqft
+
+<img src="img/ok3.png" width="100%">
+
+## 17B4.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+4 Beds 3.5 Baths 3,671 sqft
+
+<img src="img/ok4.png" width="100%">
+
+## 17B5. 
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+4 Beds 3.5 Baths 3,671 sqft
+
+<img src="img/ok5.png" width="100%">
+
+## 17C1.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+3 Beds 3.5 Baths 2,229 sqft
+
+<img src="img/no1.png" width="100%">
+
+## 17C2.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+3 Beds 3.5 Baths 2,229 sqft
+
+<img src="img/no2.png" width="100%">
+
+## 17C3.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+3 Beds 3.5 Baths 2,229 sqft
+
+<img src="img/no3.png" width="100%">
+
+## 17C4.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+3 Beds 3.5 Baths 2,229 sqft
+
+<img src="img/no4.png" width="100%">
+
+## 17C5. 
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+3 Beds 3.5 Baths 2,229 sqft
+
+<img src="img/no5.png" width="100%">
+
+## 17D1.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+4 Beds 5 Bath 3,373 sqft
+
+<img src="img/ep1.png" width="100%">
+
+## 17D2.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+4 Beds 5 Bath 3,373 sqft
+
+<img src="img/ep2.png" width="100%">
+
+## 17D3.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+4 Beds 5 Bath 3,373 sqft
+
+<img src="img/ep3.png" width="100%">
+
+## 17D4.
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+4 Beds 5 Bath 3,373 sqft
+
+<img src="img/ep4.png" width="100%">
+
+## 17D5. 
+
+**Oklahoma City, New Orleans, El Paso, Minneapolis**
+
+**610k, 550k, 645k, 495k**
+
+4 Beds 5 Bath 3,373 sqft
+
+<img src="img/ep5.png" width="100%">
