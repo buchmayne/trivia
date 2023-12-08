@@ -465,3 +465,43 @@ G O X N E S I S I N N R
 4 Beds 5 Bath 3,373 sqft
 
 <img src="img/ep5.png" width="100%">
+
+# Six Degrees of Separation
+
+## 18. Connect the actors by films they share a collaborator with
+
+Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a degree:
+
+Meryl Streep (Don't Look Up) Leo DiCaprio
+
+Leo DiCaprio (The Departed) Mark Wahlberg
+
+Mark Wahlberg (The Other Guys) The Rock
+
+## (Character Actor Edition) Connect Joe Pantoliano to Alfred Molina in as few degrees as possible
+
+If you would like me to show your team a photo/photos of these actor, I will, at the cost of 2 Points per Actor
+
+Scoring:
+
+1 Degrees -- 18 Points,
+
+2 Degrees -- 15 Points...
+
+6 Degrees -- 3 Points
+
+# Visual Pun
+
+## 19. Visual Pun Question
+
+# Music
+
+## 20. Identify the lyrics during the selected segment of the song (33 Points)
+
+1. (1:23 - 1:30)
+
+2. (0:24 - 0:27)
+
+3. (0:46 - 0:51)
+
+4. (0:32 - 0:38)

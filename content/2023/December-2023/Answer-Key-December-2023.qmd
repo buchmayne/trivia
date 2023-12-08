@@ -310,3 +310,48 @@ Corporate Memphis
 4 Beds 5 Bath 3,373 sqft
 
 <img src="img/ep1.png" width="100%">
+
+# Six Degrees of Separation
+
+## 18. Connect the actors by films they share a collaborator with
+
+Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a degree:
+
+Meryl Streep (Don't Look Up) Leo DiCaprio
+
+Leo DiCaprio (The Departed) Mark Wahlberg
+
+Mark Wahlberg (The Other Guys) The Rock
+
+## (Character Actor Edition) Connect Joe Pantoliano to Alfred Molina in as few degrees as possible
+<span style="font-size: smaller;">
+If you would like me to show your team a photo/photos of these actors, I will, at the cost of 2 Points per Actor
+
+Example 2 Degree Solution: 
+
+Alfred Molina (Raiders of the Lost Ark) Harrison Ford
+
+Harrison Ford (The Fugitive) Joe Pantoliano
+
+Scoring:
+1 Degrees -- 18 Points,
+2 Degrees -- 15 Points
+...
+6 Degrees -- 3 Points
+</span>
+
+# Visual Pun
+
+## 19. Visual Pun Question
+
+# Music
+
+## 20. Identify the lyrics during the selected segment of the song
+
+1. Nirvana - Smells Like Teen Spirit (1:23 - 1:30) "A mulatto, an albino, a mosquito, my libido" -- 2 Points Each for (Mulatto, Albino, Mosquito, Libido)
+
+2. Bryan Adams - Summer of' 69 (0:24 - 0:27) "Jimmy quit, Jody got married" -- 2 Points Each (Jimmy, Quit, Jody, Married)
+
+3. System of a Down - Toxicity (0:46 - 0:51) "Grab a brush and put a little make-up. Hide the scars to fade away the shake-up" -- 1 Point Each (Grab, Brush, Little, Make Up, Hide, Scars, Fade, Away, Shake Up)
+
+4. Alt-J - Breezeblocks (0:32 - 0:38) "My heart sinks as I jump up. Your hand grips hand as my eyes shut" -- 1 Point Each (Heart, Sinks, Jump, Hand, Grips, Hand, Eyes, Shut)
