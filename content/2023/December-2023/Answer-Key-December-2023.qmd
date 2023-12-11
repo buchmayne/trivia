@@ -10,6 +10,8 @@ format: revealjs
 
 Part 1: ? Points
 
+Break (Bonus Question)
+
 Part 2: ? Points
 
 # Part 1
@@ -44,23 +46,10 @@ D. South Africa (5 ft 7 in)
 
 E. Democratic Replublic of Congo (5 ft 6.5 in)
 
-# Economics
-
-## 3. Order the following nations, from highest to lowest price for a BigMac (1 Point Each)
-
-A. USA ($5.36)
-
-B. Switzerland ($7.25)
-
-C. Australia ($5.11)
-
-D. Norway ($6.58)
-
-E. Singapore ($4.46)
 
 # Borders
 
-## 4. 
+## 3. 
 
 For each of the following cities, name the country/nation/empire that the city resided in, in the listed year (2 Points Each)
 
@@ -74,7 +63,7 @@ D. Singapore, Singapore 1963 -- Malaysia
 
 # Snacks
 
-## 5A. Order the following snack products from oldest to newest (1 Point Each)
+## 4A. Order the following snack products from oldest to newest (1 Point Each)
 
 A. Oreos 1912
 
@@ -84,7 +73,7 @@ C. Ritz Crackers 1934
 
 D. Twizzlers 1929
 
-## 5B. Order the following snack products from oldest to newest (1 Point Each)
+## 4B. Order the following snack products from oldest to newest (1 Point Each)
 
 A. Pop Tarts 1964
 
@@ -96,7 +85,7 @@ D. Nutter Butters 1969
 
 # Expressions
 
-## 6. 
+## 5. 
 
 The phrase "It's all greek to me", is used to express one's lack of understanding of some content. Other countries have similiar phrases, but with a different language used. For each country, what language is used instead of "Greek" (2 Points Each)
 
@@ -112,31 +101,45 @@ D. Turkey -- French
 
 # Greek Mythology
 
-## 7. Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
+## 6. Match the story from greek mythology, and the movie that is a loose adaptation of that story (1 Point Each).
 
-## 7A.
+## 6A.
 
 Prometheus
 
 <img src="img/lighthouse.jpg" width="100%">
 
-## 7B.
+## 6B.
 
 Pygmalion
 
 <img src="img/weird_science.jpg" width="100%">
 
-## 7C.
+## 6C.
 
 Odysseus
 
 <img src="img/o_brother.jpg" width="100%">
 
-## 7D.
+## 6D.
 
 Oedipus
 
 <img src="img/oldboy.png" width="100%">
+
+# Economics
+
+## 7. Order the following nations, from highest to lowest price for a BigMac (1 Point Each)
+
+A. USA ($5.36)
+
+B. Switzerland ($7.25)
+
+C. Australia ($5.11)
+
+D. Norway ($6.58)
+
+E. Singapore ($4.46)
 
 # Typography
 
@@ -146,9 +149,32 @@ A. Helvetica, B. Arial, C. Futura, D. Times New Roman,
 
 <img src="img/fonts.png" width="100%">
 
+
 # Fashion
 
-## 9A. Match the description of the fashion trend to the style (1 Point Each)
+## 9A. Match the image of the fashion trend to the style (1 Point Each)
+
+## 
+
+**C. Gorpcore, E. Normcore, D. Vacation Dad Core, A. Blokecore, B. Fieldcore**
+
+<img src="img/fashion.png" width="100%">
+
+# Break (Scoring)
+
+# Bonus Question
+
+## Mariah Carey
+
+## BONUS -- TBD
+
+TBD
+
+# Part 2
+
+# Fashion
+
+## 9B. Match the description of the fashion trend to the style (1 Point Each)
 
 ## 
 
@@ -173,14 +199,6 @@ D. aesthetic that focus on the British football culture
 <span style="font-size: smaller;">
 E. a trend characterized by unpretentious, average-looking clothing
 </span>
-
-## 9B. Match the image of the fashion trend to the style (1 Point Each)
-
-## 
-
-**C. Gorpcore, E. Normcore, D. Vacation Dad Core, A. Blokecore, B. Fieldcore**
-
-<img src="img/fashion.png" width="100%">
 
 # Buildings
 
