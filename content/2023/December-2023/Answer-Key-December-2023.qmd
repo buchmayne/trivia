@@ -280,6 +280,12 @@ Corporate Memphis
 
 <img src="img/snowfall_answer.png" width="100%">
 
+# Guess The Data
+
+## 16. Identify the data being shown on the map (5 Points)
+
+<img src="img/born_in_state_answer.png" width="100%">
+
 # Real Estate
 
 ## 17. Match the price and the city to the following redfin listings (1 Point Each)
@@ -361,6 +367,8 @@ Scoring:
 # Visual Pun
 
 ## 19. Visual Pun Question
+
+TBD
 
 # Music
 

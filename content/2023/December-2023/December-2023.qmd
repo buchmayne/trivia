@@ -274,6 +274,12 @@ G O X N E S I S I N N R
 
 <img src="img/snowfall.png" width="100%">
 
+# Guess The Data
+
+## 16. Identify the data being shown on the map (5 Points)
+
+<img src="img/born_in_state.png" width="100%">
+
 # Real Estate
 
 ## 17. Match the price and the city to the following redfin listings (1 Point Each)
@@ -506,11 +512,23 @@ Scoring:
 
 6 Degrees -- 3 Points
 
+## (Character Actor Edition) Connect J.K. Simmons to Richard Jenkins in as few degrees as possible
+
+If you would like me to show your team a photo/photos of these actor, I will, at the cost of 2 Points per Actor
+
+Scoring:
+
+1 Degrees -- 18 Points,
+
+2 Degrees -- 15 Points...
+
+6 Degrees -- 3 Points
+
 # Visual Pun
 
 ## 19. Visual Pun Question
 
-<img src="img/two_lane.png">{.absolute top=200 left=0 width="350" height="300"}
+TBD
 
 # Music
 
