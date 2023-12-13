@@ -510,6 +510,8 @@ Scoring:
 
 ## 19. Visual Pun Question
 
+<img src="img/two_lane.png">{.absolute top=200 left=0 width="350" height="300"}
+
 # Music
 
 ## 20. Identify the lyrics during the selected segment of the song (33 Points)
