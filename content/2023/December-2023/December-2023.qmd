@@ -4,7 +4,7 @@ author: "Marley Buchman"
 format: revealjs
 ---
 
-# 20 Questions ? Points
+# 20 Questions 161 Points
 
 ## 
 
