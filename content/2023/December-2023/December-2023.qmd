@@ -8,11 +8,9 @@ format: revealjs
 
 ## 
 
-Part 1: ? Points
+Part 1: 56 Points
 
-Break (Bonus Question)
-
-Part 2: ? Points
+Part 2: 105 Points
 
 # Part 1
 
@@ -157,14 +155,6 @@ E. Singapore
 <img src="img/fashion.png" width="100%">
 
 # Break (Scoring)
-
-# Bonus Question
-
-## Mariah Carey
-
-## BONUS -- TBD
-
-TBD
 
 # Part 2
 
@@ -506,11 +496,11 @@ If you would like me to show your team a photo/photos of these actor, I will, at
 
 Scoring:
 
-1 Degrees -- 18 Points,
+1 Degrees -- 12 Points,
 
-2 Degrees -- 15 Points...
+2 Degrees -- 10 Points...
 
-6 Degrees -- 3 Points
+6 Degrees -- 2 Points
 
 ## (Character Actor Edition) Connect J.K. Simmons to Richard Jenkins in as few degrees as possible
 
@@ -518,17 +508,28 @@ If you would like me to show your team a photo/photos of these actor, I will, at
 
 Scoring:
 
-1 Degrees -- 18 Points,
+1 Degrees -- 12 Points,
 
-2 Degrees -- 15 Points...
+2 Degrees -- 10 Points...
 
-6 Degrees -- 3 Points
+6 Degrees -- 2 Points
 
 # Visual Pun
 
-## 19. Visual Pun Question
+## 19. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
 
-TBD
+##
+
+<img src="img/vp_1.png" width="100%">
+
+# Visual Pun
+
+## 19. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
+
+##
+
+<img src="img/vp_2.png" width="100%">
+
 
 # Music
 

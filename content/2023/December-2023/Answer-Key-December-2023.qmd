@@ -8,11 +8,9 @@ format: revealjs
 
 ## 
 
-Part 1: ? Points
+Part 1: 56 Points
 
-Break (Bonus Question)
-
-Part 2: ? Points
+Part 2: 105 Points
 
 # Part 1
 
@@ -161,14 +159,6 @@ A. Helvetica, B. Arial, C. Futura, D. Times New Roman,
 <img src="img/fashion.png" width="100%">
 
 # Break (Scoring)
-
-# Bonus Question
-
-## Mariah Carey
-
-## BONUS -- TBD
-
-TBD
 
 # Part 2
 
@@ -358,17 +348,27 @@ Alfred Molina (Raiders of the Lost Ark) Harrison Ford
 Harrison Ford (The Fugitive) Joe Pantoliano
 
 Scoring:
-1 Degrees -- 18 Points,
-2 Degrees -- 15 Points
+1 Degrees -- 12 Points,
+2 Degrees -- 10 Points
 ...
-6 Degrees -- 3 Points
+6 Degrees -- 2 Points
 </span>
 
 # Visual Pun
 
 ## 19. Visual Pun Question
 
-TBD
+Airlines - Delta, United, Spirit, American
+
+<img src="img/vp_1.png" width="100%">
+
+# Visual Pun
+
+## 19. Visual Pun Question
+
+Business Phrases - Touch Base, Circle Back, Run The Numbers, Moving the Goal Posts
+
+<img src="img/vp_2.png" width="100%">
 
 # Music
 
