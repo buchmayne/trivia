@@ -1,6 +1,7 @@
 import random
 from typing import Optional
 from dataclasses import dataclass
+from time import sleep
 
 @dataclass
 class Player:
@@ -38,10 +39,6 @@ def sort_players_by_sex(players: list) -> dict:
             women.append(player)
 
     return {'men': men, 'women': women}
-
-def display_teams(teams: list) -> None:
-    for team in teams:
-        print(f"{team.name}: {', '.join(team.players)}\n")
 
 
 def assign_teams(players: list, teams: list) -> None:
@@ -95,63 +92,80 @@ def assign_teams(players: list, teams: list) -> None:
 
     return teams
 
+def display_teams(teams: list) -> None:
+    for team in teams:
+        team_visual = f"{team.name}: "
+        for player in team.players:
+            team_visual = team_visual + f" {player},"
+            sleep(1)
+            print(team_visual)
+
 
 if __name__ == "__main__":
+    print("Assigning Teams\n")
+    sleep(1)
+    
     # Add participants and determine whether they have a partner
     players = [
     # 1-5
-    Player("Mike T", True, "Tayler"),
-    Player("Gerik", True, "Claire I"),
-    Player("Dylan", True, "Erica"),
-    Player("Andy", True, None),
-    Player("Claire I", False, "Gerik"),
+    Player("Brittney Malhoit", False, "Howie Rabin"),
+    Player("Dylan Scandalios", True, "Erica Scandalios"),
+    Player("Hillary Melcher", False, "Alex Melcher"),
+    Player("Howie Rabin", True, "Brittney Malhoit"),
+    Player("Jenna Carlson", False, None),
 
 
 	# 5-10
-    Player("Erica", False, "Dylan"),
-    Player("Jenna", False, None),
-    Player("Andrew", True, None),
-    Player("Tayler", False, "Mike T"),
-    Player("Cole", True, "Sabrah"),
+    Player("Kaylin Youn", False, None),
+    Player("Erica Scandalios", False, "Dylan Scandalios"),
+    Player("Alex Melcher", True, "Hillary Melcher"),
+    Player("Colby", True, None),
+    Player("Steven", True, None),
 
 	# 10-15
-    Player("Connor", True, "Amanda"),
-    Player("Hillary", False, "Father Doctor"),
-    Player("Howie", True, "Brittney"),
-    Player("James", True, "Claire T"),
-    Player("Kelsey", False, "Mike P"),
+    Player("Pilar Hoch", False, "Chris Hoch"),
+    Player("Chris Hoch", True, "Pilar Hoch"),
+    Player("Andrew Dang", True, None),
+    Player("Zo", True, None),
+    Player("Gabs", False, None),
 
 	
 	# 15-20
-    Player("Father Doctor", True, "Hillary"),
-    Player("Pilar", False, "Chris"),
-    Player("Brittney", False, "Howie"),
-    Player("Chris", True, "Pilar"),
-    Player("Claire T", False, "James"),
+    Player("Hope", False, None),
+    Player("Michael Park", True, "Kelsey Park"),
+    Player("Josefa", False, "Sam"),
+    Player("Sam", True, "Josefa"),
+    Player("Lauren", False, None),
+    
 
     # 20-25
-    Player("Emma", False, "Karson"),
-    Player("Karson", True, "Emma"),
-    Player("Kaylin", False, None),
-    Player("Amanda", False, "Connor"),
-    Player("Mike P", True, "Kelsey"),
+    Player("James Higgins", True, "Claire Higgins"),
+    # Maybe...
+    
+    # Player("Olivia Gonzales", False, "John"),
+    # Player("John", True, "Olivia Gonzales"),
+    # Player("Elliott Damman", False, "Cody Damman"),
+    # Player("Jamie", False, None),
+    # # 25-30
+    # Player("Claire Illo", False, "Gerik Illo"),
+    # Player("Gerik Illo", True, "Claire Illo"),
+    # Player("Cody Damman", True, "Elliot Damman"),
+    # Player("Shelby Hawkinson", False, None),
 
-    # 26-20
-    Player("Sabrah", False, "Cole"),
-	
     ]
 
     # Create teams and set max team size
     teams = [
-        Team("Team 1", max_team_size=4),
+        Team("Team 1", max_team_size=5),
         Team("Team 2", max_team_size=4),
         Team("Team 3", max_team_size=4),
         Team("Team 4", max_team_size=4),
         Team("Team 5", max_team_size=4),
-        Team("Team 6", max_team_size=4),
-        Team("Team 7", max_team_size=4)
     ]
 
     assigned_teams = assign_teams(players, teams)
+
+    print("Teams Assigned\n")
+    sleep(1)
     
     display_teams(assigned_teams)
