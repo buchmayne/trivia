@@ -1,0 +1,31 @@
+---
+title: "Bonus Round"
+format: revealjs
+---
+
+# Mariah Carey
+
+## 
+
+There will be 3 Mariah Carey questions. Andrew Dang will be tasked with answering them all. Each team, including Andrew's team, will guess how many correct answers Andrew will get. If your team guesses correctly, you will get 2 Points. How much does Andrew know about Mariah Carey?
+
+## 1. How many Grammy Awards has Mariah Carey won?
+
+## 2. In what year did the film Glitter come out?
+
+## 3. Where did Mariah Carey grow up? (Town/City)
+
+# Answers
+
+## 1. How many Grammy Awards has Mariah Carey won?
+
+5
+
+## 2. In what year did the film Glitter come out?
+
+<img src="img/glitter.png" width="100%">
+
+## 3. Where did Mariah Carey grow up? (Town/City)
+
+Greenlawn, NY (Also accepting Long Island, NY)
+
