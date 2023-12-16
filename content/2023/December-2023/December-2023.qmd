@@ -264,12 +264,6 @@ G O X N E S I S I N N R
 
 <img src="img/snowfall.png" width="100%">
 
-# Guess The Data
-
-## 16. Identify the data being shown on the map (5 Points)
-
-<img src="img/born_in_state.png" width="100%">
-
 # Real Estate
 
 ## 17. Match the price and the city to the following redfin listings (1 Point Each)
@@ -490,18 +484,6 @@ Leo DiCaprio (The Departed) Mark Wahlberg
 
 Mark Wahlberg (The Other Guys) The Rock
 
-## (Character Actor Edition) Connect Joe Pantoliano to Alfred Molina in as few degrees as possible
-
-If you would like me to show your team a photo/photos of these actor, I will, at the cost of 2 Points per Actor
-
-Scoring:
-
-1 Degrees -- 12 Points,
-
-2 Degrees -- 10 Points...
-
-6 Degrees -- 2 Points
-
 ## (Character Actor Edition) Connect J.K. Simmons to Richard Jenkins in as few degrees as possible
 
 If you would like me to show your team a photo/photos of these actor, I will, at the cost of 2 Points per Actor
@@ -521,14 +503,6 @@ Scoring:
 ##
 
 <img src="img/vp_1.png" width="100%">
-
-# Visual Pun
-
-## 19. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
-
-##
-
-<img src="img/vp_2.png" width="100%">
 
 
 # Music
