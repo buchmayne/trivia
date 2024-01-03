@@ -359,9 +359,10 @@ Airlines - Delta, United, Spirit, American
 
 ## 20. Identify the lyrics during the selected segment of the song
 <span style="font-size: smaller;">
-1. Nirvana - Smells Like Teen Spirit (1:23 - 1:30) "A mulatto, an albino, a mosquito, my libido" -- 2 Points Each for (Mulatto, Albino, Mosquito, Libido)
 
-2. Bryan Adams - Summer of' 69 (0:24 - 0:27) "Jimmy quit, Jody got married" -- 2 Points Each (Jimmy, Quit, Jody, Married)
+1. Bryan Adams - Summer of' 69 (0:24 - 0:27) "Jimmy quit, Jody got married" -- 2 Points Each (Jimmy, Quit, Jody, Married)
+
+2. Nirvana - Smells Like Teen Spirit (1:23 - 1:30) "A mulatto, an albino, a mosquito, my libido" -- 2 Points Each for (Mulatto, Albino, Mosquito, Libido)
 
 3. System of a Down - Toxicity (0:46 - 0:51) "Grab a brush and put a little make-up. Hide the scars to fade away the shake-up" -- 1 Point Each (Grab, Brush, Little, Make Up, Hide, Scars, Fade, Away, Shake Up)
 

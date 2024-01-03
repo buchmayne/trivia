@@ -114,7 +114,6 @@ if __name__ == "__main__":
     Player("Howie Rabin", True, "Brittney Malhoit"),
     Player("Jenna Carlson", False, None),
 
-
 	# 5-10
     Player("Kaylin Youn", False, None),
     Player("Erica Scandalios", False, "Dylan Scandalios"),
@@ -122,41 +121,40 @@ if __name__ == "__main__":
     Player("Colby", True, None),
     Player("Steven", True, None),
 
-	# 10-15
+	# # 10-15
     Player("Pilar Hoch", False, "Chris Hoch"),
     Player("Chris Hoch", True, "Pilar Hoch"),
     Player("Andrew Dang", True, None),
-    Player("Zo", True, None),
-    Player("Gabs", False, None),
-
-	
-	# 15-20
-    Player("Hope", False, None),
     Player("Michael Park", True, "Kelsey Park"),
     Player("Josefa", False, "Sam"),
+
+	
+	# # 15-20
+    Player("James Higgins", True, "Claire Higgins"),
+    Player("Cody Damman", True, "Elliot Damman"),
     Player("Sam", True, "Josefa"),
-    Player("Lauren", False, None),
+    Player("Claire Illo", False, "Gerik Illo"),
+    Player("Elliott Damman", False, "Cody Damman"),
     
 
-    # 20-25
-    Player("James Higgins", True, "Claire Higgins"),
-    # Maybe...
-    
+    # # 20-25
+    # Player("Hope", False, None),
     # Player("Olivia Gonzales", False, "John"),
     # Player("John", True, "Olivia Gonzales"),
-    # Player("Elliott Damman", False, "Cody Damman"),
     # Player("Jamie", False, None),
+    # Player("Lauren", False, None),
+    
     # # 25-30
-    # Player("Claire Illo", False, "Gerik Illo"),
     # Player("Gerik Illo", True, "Claire Illo"),
-    # Player("Cody Damman", True, "Elliot Damman"),
     # Player("Shelby Hawkinson", False, None),
+    # Player("Zo", True, None),
+    # Player("Gabs", False, None),
 
     ]
 
     # Create teams and set max team size
     teams = [
-        Team("Team 1", max_team_size=5),
+        Team("Team 1", max_team_size=4),
         Team("Team 2", max_team_size=4),
         Team("Team 3", max_team_size=4),
         Team("Team 4", max_team_size=4),
