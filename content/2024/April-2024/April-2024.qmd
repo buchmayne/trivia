@@ -20,15 +20,15 @@ Part 2: TBD Points
 
 Rank the following nations from most coffee consumption per capita to least. (1 Point Each)
 
-A. New Zealand 13.34 kg/person
+A. New Zealand
 
-B. Estonia 16.8 kg/person
+B. Estonia
 
-C. United States 4.71 kg/person
+C. United States
 
-D. Finland 11.2 kg/person
+D. Finland
 
-E. Ethiopia 1.17 kg/person
+E. Ethiopia
 
 --OLD--
 
