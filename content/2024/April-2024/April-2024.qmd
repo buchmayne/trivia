@@ -76,6 +76,24 @@ C. P&G (Procter and Gamble), Arby's, Wendy's, Goodyear Tire, Office Max, Kroger
 
 D. Gamestop, Whole Foods, Dr Pepper, Frito-Lay, 7-Eleven, Six Flags, Dell
 
+# Names
+
+## 4. Match the placeholder name (John Doe) to the country that uses it (1 Point Each)
+
+**Petar Petrović, Max Mustermann, Jean Dupont, Jan Jansen, Jan Novák**
+
+A. Netherlands
+
+B. France
+
+C. Germany
+
+D. Serbia
+
+E. Czech Republic
+
+# Part 2
+
 # Guess The Data
 
 ## 15. Identify the data being shown on the map (5 Points)
