@@ -65,3 +65,15 @@ E. Ethiopia 1.17 kg/person **B > A > D > C > E**
 **Germany**
 
 <img src="img/antarctica/germany.png" width="100%">
+
+# Companies
+
+## 3. For each of the following lists of companies, name the state where all of the companies were founded (2 Points Each)
+
+A. Abercrombie & Fitch, IBM, Verizon, Barnes & Noble, MTV -- New York
+
+B. Panera, AMC Theaters, H&R Block, Budweiser, Enterprise Rent-A-Car -- Missouri
+
+C. P&G (Procter and Gamble), Arby's, Wendy's, Goodyear Tire, Office Max, Kroger -- Ohio
+
+D. Gamestop, Whole Foods, Dr Pepper, Frito-Lay, 7-Eleven, Six Flags, Dell -- Texas
