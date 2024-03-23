@@ -92,6 +92,40 @@ D. Serbia
 
 E. Czech Republic
 
+# Agriculture
+
+## 5. Match the map of county crop production (average number of acres grown) to the crop (1 Point Each).
+
+## 5A. 
+
+**Sunflowers, Apples, Tomatoes, Grapes, Wheat**
+
+<img src="img/crops/tomatoes.png" width="100%">
+
+## 5B.
+
+**Sunflowers, Apples, Tomatoes, Grapes, Wheat**
+
+<img src="img/crops/wheat.png" width="100%">
+
+## 5C.
+
+**Sunflowers, Apples, Tomatoes, Grapes, Wheat**
+
+<img src="img/crops/sunflowers.png" width="100%">
+
+## 5D.
+
+**Sunflowers, Apples, Tomatoes, Grapes, Wheat**
+
+<img src="img/crops/apples.png" width="100%">
+
+## 5E.
+
+**Sunflowers, Apples, Tomatoes, Grapes, Wheat**
+
+<img src="img/crops/grapes.png" width="100%">
+
 # Part 2
 
 # Guess The Data
