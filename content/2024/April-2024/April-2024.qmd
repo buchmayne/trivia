@@ -68,13 +68,21 @@ E. Ethiopia
 
 ## 3. For each of the following lists of companies, name the state where all of the companies were founded (2 Points Each)
 
+<span style="font-size: smaller;">
 A. Abercrombie & Fitch, IBM, Verizon, Barnes & Noble, MTV
+</span>
 
+<span style="font-size: smaller;">
 B. Panera, AMC Theaters, H&R Block, Budweiser, Enterprise Rent-A-Car
+</span>
 
+<span style="font-size: smaller;">
 C. P&G (Procter and Gamble), Arby's, Wendy's, Goodyear Tire, Office Max, Kroger
+</span>
 
+<span style="font-size: smaller;">
 D. Gamestop, Whole Foods, Dr Pepper, Frito-Lay, 7-Eleven, Six Flags, Dell
+</span>
 
 # Names
 
@@ -125,6 +133,34 @@ E. Czech Republic
 **Sunflowers, Apples, Tomatoes, Grapes, Wheat**
 
 <img src="img/crops/grapes.png" width="100%">
+
+# Traffic
+
+## 6. Order the following rush hour (Weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).
+
+## 6A. 
+
+Los Angeles: LAX -> Staples Center/Crypto.com Arena (17.1 miles)
+
+<img src="img/traffic/la_traffic.png" width="100%">
+
+## 6B. 
+
+Boston: Paul Revere House -> Harvard Square (5.2 miles)
+
+<img src="img/traffic/boston_traffic.png" width="100%">
+
+## 6C. 
+
+D.C.: Nationals Park -> CIA Headquarters (12.1 miles)
+
+<img src="img/traffic/dc_traffic.png" width="100%">
+
+## 6D. 
+
+NYC: Empire State Building -> Yankee Stadium (8.6 miles)
+
+<img src="img/traffic/nyc_traffic.png" width="100%">
 
 # Part 2
 

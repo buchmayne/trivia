@@ -70,13 +70,21 @@ E. Ethiopia 1.17 kg/person **B > A > D > C > E**
 
 ## 3. For each of the following lists of companies, name the state where all of the companies were founded (2 Points Each)
 
+<span style="font-size: smaller;">
 A. Abercrombie & Fitch, IBM, Verizon, Barnes & Noble, MTV -- New York
+</span>
 
+<span style="font-size: smaller;">
 B. Panera, AMC Theaters, H&R Block, Budweiser, Enterprise Rent-A-Car -- Missouri
+</span>
 
+<span style="font-size: smaller;">
 C. P&G (Procter and Gamble), Arby's, Wendy's, Goodyear Tire, Office Max, Kroger -- Ohio
+</span>
 
+<span style="font-size: smaller;">
 D. Gamestop, Whole Foods, Dr Pepper, Frito-Lay, 7-Eleven, Six Flags, Dell -- Texas
+</span>
 
 # Names
 
@@ -127,6 +135,36 @@ source: https://erdavis.com/2022/06/07/whats-the-most-common-crop-in-the-us/
 **Grapes**
 
 <img src="img/crops/grapes.png" width="100%">
+
+# Traffic
+
+## 6. Order the following rush hour (Weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).
+
+## 6A. 
+
+Los Angeles: LAX -> Staples Center/Crypto.com Arena (17.1 miles) **50 min**
+
+<img src="img/traffic/answer_la_traffic.png" width="100%">
+
+## 6B. 
+
+Boston: Paul Revere House -> Harvard Square (5.2 miles) **30 min**
+
+<img src="img/traffic/answer_boston_traffic.png" width="100%">
+
+## 6C. 
+
+D.C.: Nationals Park -> CIA Headquarters (12.1 miles) **40 min**
+
+<img src="img/traffic/answer_dc_traffic.png" width="100%">
+
+## 6D. 
+
+NYC: Empire State Building -> Yankee Stadium (8.6 miles) **38 min**
+
+<img src="img/traffic/answer_nyc_traffic.png" width="100%">
+
+## LA > D.C. >= NYC > Boston
 
 # Guess The Data
 
