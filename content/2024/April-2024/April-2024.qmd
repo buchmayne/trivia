@@ -200,6 +200,12 @@ D. The world's **second** tallest building
 
 E. The world's largest dam
 
+# Alchemy
+
+## 9. Identify the industry for each company in the table (2 Points Each)
+
+<img src="img/black.png" width="100%">
+
 # Part 2
 
 # Guess The Data

@@ -226,6 +226,12 @@ Pakistan
 
 <img src="img/where/pakistan.png" width="100%">
 
+# Alchemy
+
+## 9. Identify the industry for each company in the table (2 Points Each)
+
+<img src="img/black_answer.png" width="100%">
+
 # Guess The Data
 
 ## 15. Identify the data being shown on the map (5 Points)
