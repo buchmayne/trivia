@@ -2,6 +2,11 @@ import random
 from typing import Optional
 from dataclasses import dataclass
 from time import sleep
+from datetime import date
+
+import pandas as pd
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 @dataclass
 class Player:
@@ -92,18 +97,38 @@ def assign_teams(players: list, teams: list) -> None:
 
     return teams
 
+def dramatic_print(string: str) -> None:
+    for char in string:
+        print(char, end='', flush=True)
+        sleep(0.05)
+
+
+def str_list_to_pretty_str(x) -> str:
+    return str(x).replace("'", "").replace("[", "").replace("]", "")
+
+
 def display_teams(teams: list) -> None:
     for team in teams:
-        team_visual = f"{team.name}: "
-        for player in team.players:
-            team_visual = team_visual + f" {player},"
-            sleep(1)
-            print(team_visual)
+            team_name = team.name
+            players = str_list_to_pretty_str(team)
+            to_display = f"{team_name}: {players}"
+
+            dramatic_print(to_display)
+            print("\n")
+
+def create_game_df(teams: list) -> pd.DataFrame:
+    team_dict = {
+        team.name: {"players": str_list_to_pretty_str([player for player in team]), "Round_1": 0, "Round_2": 0, "Total": 0} for team in teams
+    }
+    # convert to dataframe
+    df = pd.DataFrame.from_dict(team_dict, orient="index").reset_index().rename(columns={"index": "Team_Name"})
+
+    return df
 
 
 if __name__ == "__main__":
     print("Assigning Teams\n")
-    sleep(1)
+    sleep(0.5)
     
     # Add participants and determine whether they have a partner
     players = [
@@ -164,6 +189,25 @@ if __name__ == "__main__":
     assigned_teams = assign_teams(players, teams)
 
     print("Teams Assigned\n")
-    sleep(1)
+    sleep(0.5)
     
+    # Print team assignments for players
     display_teams(assigned_teams)
+
+    # Set up game data
+    game_df = create_game_df(assigned_teams)
+
+    # Open the Google Sheet
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name('gsheets_key.json', scope)
+    client = gspread.authorize(creds)
+
+    spreadsheet_url = f"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit#gid=0"
+    spreadsheet = client.open_by_url(spreadsheet_url)
+    
+    # Create new sheet
+    sheet_name = f"trivia-{date.today()}"
+    sheet = spreadsheet.add_worksheet(title=sheet_name, rows=100, cols=20)
+
+    # Upload game data
+    sheet.update([game_df.columns.values.tolist()] + game_df.values.tolist())
