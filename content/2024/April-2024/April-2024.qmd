@@ -228,21 +228,33 @@ D. Biden won what % of "No religious affiliation" voters
 
 ##
 
-A. "We've suffered losses, but we've not lost the war." -- Optimus
+A. "We've suffered losses, but we've not lost the war."
 
-B. "I have a wish. It as a fear as well - that in my end will be my beginning." -- Che Guevara
+B. "I have a wish. It as a fear as well - that in my end will be my beginning."
 
-C. "I will never stop fighting for our freedom." -- Optimus
+C. "I will never stop fighting for our freedom."
 
-D. "Even if you defeat me...others will rise to defeat your tyranny." -- Optimus
+D. "Even if you defeat me...others will rise to defeat your tyranny."
 
-E. "Do not forget what you have learned from our past...From it's lessons, the future is forged." -- Optimus
+E. "Do not forget what you have learned from our past...From it's lessons, the future is forged."
 
-F. "There's a thin line between being a hero, and being a memory." -- Optimus
+F. "There's a thin line between being a hero, and being a memory."
 
-G. "Fate rarely calls upon as at a moment of our choosing." -- Optimus
+G. "Fate rarely calls upon as at a moment of our choosing."
 
-H. "We cannot be sure of having something to live for unless we are willing to die for it." -- Che Guevara
+H. "We cannot be sure of having something to live for unless we are willing to die for it."
+
+# Inflation
+
+## 12. Adjust each of the following dollar values to reflect their value in current dollars (2 Points Each)
+
+A. $1,000 in 2000 -- $1,838
+
+B. $1,000 in 1990 -- $2,435
+
+C. $1 in 1933 -- $24
+
+D. $100,000 in 1968 -- $910,046
 
 # Guess The Data
 
@@ -258,17 +270,18 @@ H. "We cannot be sure of having something to live for unless we are willing to d
 
 <img src="img/visual_pun.png" width="100%">
 
+# Music
+
+## 20. TBD
+
 * TO DO:
-    * Visual Pun (19)
     * Bird's Eye View (18)
     * Venn Diagram (17)
-    * Music -- Movie Soundtrack (20)
     * First Name Last Name
     * Six Degrees of Separation
     * Anagram
     * Math/Alphabetize (16)
     * Geography (what country are you in after directions...)
-    * Inflation question, guess dollar value (12)
     * Identify the national park/region by a photo
     * What is the name of this... 90s S doodle, plastic chair
     * Types of theater
