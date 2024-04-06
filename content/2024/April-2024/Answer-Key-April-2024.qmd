@@ -104,7 +104,7 @@ E. Czech Republic -- Jan Novák
 
 ## 5. Match the map of county crop production (average number of acres grown) to the crop (1 Point Each).
 
-source: https://erdavis.com/2022/06/07/whats-the-most-common-crop-in-the-us/
+[source](https://erdavis.com/2022/06/07/whats-the-most-common-crop-in-the-us/)
 
 ## 5A. 
 
@@ -231,6 +231,20 @@ Pakistan
 ## 9. Identify the industry for each company in the table (2 Points Each)
 
 <img src="img/black_answer.png" width="100%">
+
+# Democracy
+
+## 10. Guess the following vote shares for the 2020 Presidential Election (CNN exit polling) (2 Points Each)
+
+A. Trump won what % of voters who identify as "Moderate" (poll options were, Liberal, Moderate, Conservative) -- 34% (31-37)
+
+B. Trump won what % of "White" voters -- 58% (55-61)
+
+C. Biden won what % of "White, college degree" voters --  51% (48-54)
+
+D. Biden won what % of "No religious affiliation" voters -- 65% (62-68)
+
+[source](https://www.cnn.com/election/2020/exit-polls/president/national-results)
 
 # Guess The Data
 

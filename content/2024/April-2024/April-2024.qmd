@@ -206,6 +206,20 @@ E. The world's largest dam
 
 <img src="img/black.png" width="100%">
 
+# Democracy
+
+## 10. Guess the following vote shares for the 2020 Presidential Election (CNN exit polling) (2 Points Each)
+
+A. Trump won what % of voters who identify as "Moderate" (poll options were, Liberal, Moderate, Conservative)
+
+B. Trump won what % of "White" voters
+
+C. Biden won what % of "White, college degree" voters
+
+D. Biden won what % of "No religious affiliation" voters
+
+[source](https://www.cnn.com/election/2020/exit-polls/president/national-results)
+
 # Part 2
 
 # Guess The Data
