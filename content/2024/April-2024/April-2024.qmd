@@ -248,19 +248,19 @@ H. "We cannot be sure of having something to live for unless we are willing to d
 
 ## 12. Adjust each of the following dollar values to reflect their value in current dollars (2 Points Each)
 
-A. $1,000 in 2000 -- $1,838
+A. $1,000 in 2000
 
-B. $1,000 in 1990 -- $2,435
+B. $1,000 in 1990
 
-C. $1 in 1933 -- $24
+C. $1 in 1933
 
-D. $100,000 in 1968 -- $910,046
+D. $100,000 in 1968
 
 # Guess The Data
 
 ## 15. Identify the data being shown on the map (5 Points)
 
-<img src="img/forest_coverage.png" width="100%">
+<img src="img/violent_crime_rate.png" width="100%">
 
 # Visual Pun
 
@@ -275,13 +275,11 @@ D. $100,000 in 1968 -- $910,046
 ## 20. TBD
 
 * TO DO:
-    * Bird's Eye View (18)
-    * Venn Diagram (17)
-    * First Name Last Name
-    * Six Degrees of Separation
-    * Anagram
+    * Anagram / First Name Last Name / Geography (what country are you in after directions...) /Geoguesser National Parks (13)
+    * Six Degrees of Separation (14)
+    ----
     * Math/Alphabetize (16)
-    * Geography (what country are you in after directions...)
-    * Identify the national park/region by a photo
-    * What is the name of this... 90s S doodle, plastic chair
-    * Types of theater
+    * Venn Diagram (17)
+    * Bird's Eye View (18)
+    ----
+    * Music/Listening (20)
