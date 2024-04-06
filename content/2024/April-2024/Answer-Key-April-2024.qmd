@@ -277,3 +277,13 @@ H. "We cannot be sure of having something to live for unless we are willing to d
 **Forest Coverage**
 
 <img src="img/forest_coverage.png" width="100%">
+
+# Visual Pun
+
+## 19. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
+
+##
+
+**Whiskey, Foxtrot, Tango, Echo -- NATO Phonetic Alphabet**
+
+<img src="img/visual_pun.png" width="100%">

@@ -250,6 +250,14 @@ H. "We cannot be sure of having something to live for unless we are willing to d
 
 <img src="img/forest_coverage.png" width="100%">
 
+# Visual Pun
+
+## 19. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
+
+##
+
+<img src="img/visual_pun.png" width="100%">
+
 * TO DO:
     * Visual Pun (19)
     * Bird's Eye View (18)
@@ -258,4 +266,9 @@ H. "We cannot be sure of having something to live for unless we are willing to d
     * First Name Last Name
     * Six Degrees of Separation
     * Anagram
-    * Math
+    * Math/Alphabetize (16)
+    * Geography (what country are you in after directions...)
+    * Inflation question, guess dollar value (12)
+    * Identify the national park/region by a photo
+    * What is the name of this... 90s S doodle, plastic chair
+    * Types of theater
