@@ -8,7 +8,7 @@ format: revealjs
 
 ## 
 
-Part 1: TBD Points
+Part 1: 71 Points
 
 Part 2: TBD Points
 
@@ -222,8 +222,40 @@ D. Biden won what % of "No religious affiliation" voters
 
 # Part 2
 
+# Quotes
+
+## 11. For each of the following quotes, is it from Optimus Prime from the Transformers franchise or Che Guevara (1 Point Each)?
+
+##
+
+A. "We've suffered losses, but we've not lost the war." -- Optimus
+
+B. "I have a wish. It as a fear as well - that in my end will be my beginning." -- Che Guevara
+
+C. "I will never stop fighting for our freedom." -- Optimus
+
+D. "Even if you defeat me...others will rise to defeat your tyranny." -- Optimus
+
+E. "Do not forget what you have learned from our past...From it's lessons, the future is forged." -- Optimus
+
+F. "There's a thin line between being a hero, and being a memory." -- Optimus
+
+G. "Fate rarely calls upon as at a moment of our choosing." -- Optimus
+
+H. "We cannot be sure of having something to live for unless we are willing to die for it." -- Che Guevara
+
 # Guess The Data
 
 ## 15. Identify the data being shown on the map (5 Points)
 
 <img src="img/forest_coverage.png" width="100%">
+
+* TO DO:
+    * Visual Pun (19)
+    * Bird's Eye View (18)
+    * Venn Diagram (17)
+    * Music -- Movie Soundtrack (20)
+    * First Name Last Name
+    * Six Degrees of Separation
+    * Anagram
+    * Math
