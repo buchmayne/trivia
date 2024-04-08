@@ -282,6 +282,24 @@ C. $1 in 1933 -- $24 (22 - 26)
 
 D. $100,000 in 1968 -- $910,046 (864,543 - 955,548)
 
+# Six Degrees of Separation
+
+## 13. Connect the actors by films they share a collaborator with
+
+Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a degree:
+
+Meryl Streep (Don't Look Up) Leo DiCaprio
+
+Leo DiCaprio (The Departed) Mark Wahlberg
+
+Mark Wahlberg (The Other Guys) The Rock
+
+## Connect X to Y in as few degrees as possible
+
+Scoring: 6 Degrees: 3 Points, +2 Points for each fewer degree
+
+<img src="img/actors.png" width="100%">
+
 # Guess The Data
 
 ## 15. Identify the data being shown on the map (5 Points)
