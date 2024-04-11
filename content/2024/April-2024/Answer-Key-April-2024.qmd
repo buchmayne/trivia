@@ -300,11 +300,45 @@ Scoring: 6 Degrees: 3 Points, +2 Points for each fewer degree
 
 <img src="img/actors.png" width="100%">
 
+## 14. Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (2 Points Each)
+
+Christopher Nolan, Nolan Ryan, Ryan Howard, Howard Dean, Dean Martin, Martin Short, Short Round
+
+##
+
+A. TBD
+
+B. TBD
+
+C. TBD
+
+D. TBD
+
+E. TBD
+
+F. TBD
+
+G. TBD
+
 # Guess The Data
 
 ## 15. Identify the data being shown on the map (5 Points)
 
 <img src="img/answer_violent_crime_rate.png" width="100%">
+
+# Time
+
+## 16. Order the following world records for competitive eating from longest time to shortest time (1 Point Each)
+
+A. 4 32-ounce bowls of mayonnaise -- 8 minutes
+
+B. 121 Twinkies -- 6 minutes (Joey Chestnut)
+
+C. 29 Waffles (8 oz) -- 10 minutes
+
+D. 48 Oreos and Half a Gallon of Whole Milk -- 2 minutes 28 seconds
+
+
 
 # Bird's Eye View
 
