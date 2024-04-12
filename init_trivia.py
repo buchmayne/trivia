@@ -130,7 +130,7 @@ def create_game_df(teams: list) -> pd.DataFrame:
 
 def read_player_list_from_csv(path_to_csv: str) -> list:
     player_dict = (
-        pd.read_csv(path_to_players)
+        pd.read_csv(path_to_csv)
         .assign(
             gender=lambda df_: df_['gender'].map({"F": False, "M": True}),
         )
@@ -144,52 +144,9 @@ if __name__ == "__main__":
     print("Assigning Teams\n")
     sleep(0.5)
     
-    # Add participants and determine whether they have a partner
-    players = [
-    # 1-5
-    Player("Brittney Malhoit", False, "Howie Rabin"),
-    Player("Dylan Scandalios", True, "Erica Scandalios"),
-    Player("Hillary Melcher", False, "Alex Melcher"),
-    Player("Howie Rabin", True, "Brittney Malhoit"),
-    Player("Jenna Carlson", False, None),
-
-	# 5-10
-    Player("Kaylin Youn", False, None),
-    Player("Erica Scandalios", False, "Dylan Scandalios"),
-    Player("Alex Melcher", True, "Hillary Melcher"),
-    Player("Colby", True, None),
-    Player("Steven", True, None),
-
-	# # 10-15
-    Player("Pilar Hoch", False, "Chris Hoch"),
-    Player("Chris Hoch", True, "Pilar Hoch"),
-    Player("Andrew Dang", True, None),
-    Player("Michael Park", True, "Kelsey Park"),
-    Player("Josefa", False, "Sam"),
-
-	
-	# # 15-20
-    Player("James Higgins", True, "Claire Higgins"),
-    Player("Cody Damman", True, "Elliot Damman"),
-    Player("Sam", True, "Josefa"),
-    Player("Claire Illo", False, "Gerik Illo"),
-    Player("Elliott Damman", False, "Cody Damman"),
+    path_to_player_sheet = os.path.expanduser("~/Downloads/Trivia-Scoring - Players-04-12-24.csv")
     
-
-    # # 20-25
-    # Player("Hope", False, None),
-    # Player("Olivia Gonzales", False, "John"),
-    # Player("John", True, "Olivia Gonzales"),
-    # Player("Jamie", False, None),
-    # Player("Lauren", False, None),
-    
-    # # 25-30
-    # Player("Gerik Illo", True, "Claire Illo"),
-    # Player("Shelby Hawkinson", False, None),
-    # Player("Zo", True, None),
-    # Player("Gabs", False, None),
-
-    ]
+    players = read_player_list_from_csv(path_to_csv=path_to_player_sheet)
 
     # Create teams and set max team size
     teams = [
