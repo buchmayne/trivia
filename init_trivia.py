@@ -1,3 +1,4 @@
+import os
 import random
 from typing import Optional
 from dataclasses import dataclass
@@ -5,6 +6,7 @@ from time import sleep
 from datetime import date
 
 import pandas as pd
+import numpy as np
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -124,6 +126,18 @@ def create_game_df(teams: list) -> pd.DataFrame:
     df = pd.DataFrame.from_dict(team_dict, orient="index").reset_index().rename(columns={"index": "Team_Name"})
 
     return df
+
+
+def read_player_list_from_csv(path_to_csv: str) -> list:
+    player_dict = (
+        pd.read_csv(path_to_players)
+        .assign(
+            gender=lambda df_: df_['gender'].map({"F": False, "M": True}),
+        )
+        .replace({np.nan: None})
+        .to_dict(orient='records')
+    )
+    return [Player(d['name'], d['gender'], d['partner']) for d in player_dict]
 
 
 if __name__ == "__main__":
