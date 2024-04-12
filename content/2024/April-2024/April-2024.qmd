@@ -4,13 +4,13 @@ author: "Marley Buchman"
 format: revealjs
 ---
 
-# 20 Questions TBD Points
+# 20 Questions 178 Points
 
 ## 
 
-Part 1: 71 Points
+Part 1: 65 Points
 
-Part 2: TBD Points
+Part 2: 113 Points
 
 # Part 1
 
@@ -68,6 +68,8 @@ E. Ethiopia
 
 ## 3. For each of the following lists of companies, name the state where all of the companies were founded (2 Points Each)
 
+##
+
 <span style="font-size: smaller;">
 A. Abercrombie & Fitch, IBM, Verizon, Barnes & Noble, MTV
 </span>
@@ -102,7 +104,7 @@ E. Czech Republic
 
 # Agriculture
 
-## 5. Match the map of county crop production (average number of acres grown) to the crop (1 Point Each).
+## 5. Match the map of county crop production to the crop (1 Point Each).
 
 ## 5A. 
 
@@ -136,7 +138,7 @@ E. Czech Republic
 
 # Traffic
 
-## 6. Order the following rush hour (Weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).
+## 6. Order the following rush hour (weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).
 
 ## 6A. 
 
@@ -171,19 +173,19 @@ NYC: Empire State Building -> Yankee Stadium (8.6 miles)
 **Robert Downey Jr., Mark Wahlberg, Kiefer Sutherland, Tim Allen**
 
 <span style="font-size: smaller;">
-A. BLANK, assaulted a Vietnamese-American man on the street, calling him a "Vietnam fucking shit" & knocking him unconscious with a large stick. Later that same day he attacked another Vietnamese-American, punching him in the eye
+A. assaulted a Vietnamese-American man on the street, calling him a "Vietnam fucking shit" & knocking him unconscious with a large stick. Later that same day he attacked another Vietnamese-American, punching him in the eye
 </span>
 
 <span style="font-size: smaller;">
-B. BLANK was arrested for possession of heroin, cocaine, crack and an unloaded .357 Magnum handgun while he was speeding
+B. was arrested for possession of heroin, cocaine, crack and an unloaded .357 Magnum handgun while he was speeding
 </span>
 
 <span style="font-size: smaller;">
-C. BLANK was arrested at the Airport for possession of over 1.43 lb of cocaine
+C. was arrested at the Airport for possession of over 1.43 lb of cocaine
 </span>
 
 <span style="font-size: smaller;">
-D. BLANK was charged in Los Angeles on drunk driving charges, after failing a field sobriety test. It was BLANK's fourth DUI charge
+D. was charged in Los Angeles on drunk driving charges, after failing a field sobriety test. It was their fourth DUI charge
 </span>
 
 # Where in the World
@@ -202,29 +204,15 @@ E. The world's largest dam
 
 # Alchemy
 
-## 9. Identify the industry for each company in the table (2 Points Each)
+## 9. Identify the industry for each company in the table (1 Point Each)
 
 <img src="img/black.png" width="100%">
 
-# Democracy
-
-## 10. Guess the following vote shares for the 2020 Presidential Election (CNN exit polling) (2 Points Each)
-
-A. Trump won what % of voters who identify as "Moderate" (poll options were, Liberal, Moderate, Conservative)
-
-B. Trump won what % of "White" voters
-
-C. Biden won what % of "White, college degree" voters
-
-D. Biden won what % of "No religious affiliation" voters
-
-[source](https://www.cnn.com/election/2020/exit-polls/president/national-results)
-
-# Part 2
-
 # Quotes
 
-## 11. For each of the following quotes, is it from Optimus Prime from the Transformers franchise or Che Guevara (1 Point Each)?
+## 10. For each of the following quotes, is it from Optimus Prime or Che Guevara (1 Point Each)?
+
+<img src="img/quotes.png" width="100%">
 
 ##
 
@@ -236,6 +224,8 @@ C. "I will never stop fighting for our freedom."
 
 D. "Even if you defeat me...others will rise to defeat your tyranny."
 
+##
+
 E. "Do not forget what you have learned from our past...From it's lessons, the future is forged."
 
 F. "There's a thin line between being a hero, and being a memory."
@@ -244,9 +234,23 @@ G. "Fate rarely calls upon as at a moment of our choosing."
 
 H. "We cannot be sure of having something to live for unless we are willing to die for it."
 
+# Part 2
+
+# Democracy
+
+## 11. Guess the following vote shares for the 2020 Presidential Election (CNN exit polling) (2 Points Each)
+
+A. Trump won what % of voters who identify as "Moderate" (poll options were, Liberal, Moderate, Conservative)
+
+B. Trump won what % of "White" voters
+
+C. Biden won what % of "White, college degree" voters
+
+D. Biden won what % of "No religious affiliation" voters
+
 # Inflation
 
-## 12. Adjust each of the following dollar values to reflect their value in current dollars (2 Points Each)
+## 12. Convert each amount to nominal dollars (current value - April 2024) (2 Points Each)
 
 A. $1,000 in 2000
 
@@ -268,53 +272,91 @@ Leo DiCaprio (The Departed) Mark Wahlberg
 
 Mark Wahlberg (The Other Guys) The Rock
 
-## Connect X to Y in as few degrees as possible
+## Connect Alan Rickman to Jacob Elordi in as few degrees as possible
 
-Scoring: 6 Degrees: 3 Points, +2 Points for each fewer degree
+Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree
 
 <img src="img/actors.png" width="100%">
 
 # First Name Last Name
 
-## 14. Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (2 Points Each)
+## 14. Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (1 Point Each)
 
 ##
 
-A. Academy Award winning British director, famous for big blockbuster movies, and nonlinear stories
+<span style="font-size: smaller;">
+A. Academy Award winning British director famous for imax movies and nonlinear stories
+</span>
 
+<span style="font-size: smaller;">
 B. Famed baseball pitcher, known for his fastball and career longevity
+</span>
 
+<span style="font-size: smaller;">
 C. Phillies home run slugger from 2004-2016, also a character from The Office
+</span>
 
+<span style="font-size: smaller;">
 D. 2004 Democratic presidential nominee who had his political career derailed by a single scream
+</span>
 
-E. Singer, actor, Vegas personality from the 1950s. Known for his friendship with fellow artists Frank Sinatra and Sammy Davis Jr., who together with several others formed the Rat Pack.
+<span style="font-size: smaller;">
+E. Singer & actor from the 1950s. Known for friendship with Frank Sinatra and Sammy Davis Jr., who together with others formed the Rat Pack.
+</span>
 
-F. 74 year old comedic actor, who stars in a Hulu series with another older comedic actor and Selena Gomez
+<span style="font-size: smaller;">
+F. 74 year old comedic actor starring in a Hulu series with another older comedic actor and Selena Gomez
+</span>
 
+<span style="font-size: smaller;">
 G. Indiana Jones' sidekick
+</span>
 
 # Guess The Data
 
 ## 15. Identify the data being shown on the map (5 Points)
 
+##
+
 <img src="img/violent_crime_rate.png" width="100%">
 
 # Time
 
-## 16. Order the following world records for competitive eating from longest time to shortest time (1 Point Each)
+## 16. Order the following competitive eating world records from longest time to shortest time (1 Point Each)
 
 A. 4 32-ounce bowls of mayonnaise
 
-B. 121 Twinkies -- 6 minutes
+B. 121 Twinkies
 
 C. 29 Waffles (8 oz)
 
 D. 48 Oreos and Half a Gallon of Whole Milk
 
+# Popularity
+
+## 17. For each of the following charts of google search trends, identify the search term from the chart (3 Points Each)
+
+## 17A.
+
+<img src="img/google/bitcoin.png" width="100%">
+
+## 17B.
+
+<img src="img/google/trump.png" width="100%">
+
+## 17C.
+
+<img src="img/google/ukraine.png" width="100%">
+
+## 17D.
+
+<img src="img/google/covid.png" width="100%">
+
 # Bird's Eye View
 
 ## 18. Identify the famous international place from the satelitte photo (5 Points)
+
+##
 
 <img src="img/birds_eye_view/birds_eye_view.png" width="100%">
 
@@ -322,23 +364,56 @@ D. 48 Oreos and Half a Gallon of Whole Milk
 
 ## 19. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
 
+## Example
+
+<img src="img/example_vp.png" width="100%">
+
 ##
 
 <img src="img/visual_pun.png" width="100%">
 
-# Music
+# Soundtracks
 
-## 20. TBD
+## 20. 
 
-* TO DO:
-    
-    * Google trends (17)
-    ----
-    ----
-    * Music/Listening (20) -- Playlist done, just need to format questions
+You will listen to brief snippets of three different songs, each of which features prominently in a famous movie. 
 
-    * Make it so I upload a list of players, and generate teams that way rather than manually writing it in code
-    * Remove text from antartica base photos
-    * Change Chadwick Boseman to Jacob Elordi
-    * Verify bird's eye view question is a good screen cap
-    * Add example for visual pun question to help newbs
+* For 1 Point name the artist for each song
+
+* For 1 Point name the title of each song 
+
+* For 4 Points name the movie 
+
+**(10 Points Each)**
+
+## 20A.
+
+1. 0:00-0:35
+
+2. 0:50-1:20
+
+3. 0:00-0:30
+
+## 20B.
+
+1. 1:10-1:45
+
+2. 0:00-0:30
+
+3. 1:00-1:25
+
+## 20C.
+
+1. 0:25-0:55
+
+2. 0:00-0:40
+
+3. 0:20-0:50
+
+## 20D.
+
+1. 0:50-1:20
+
+2. 0:00-0:30
+
+3. 0:40-1:10

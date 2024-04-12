@@ -1,16 +1,16 @@
 ---
-title: "Trivia April 2024"
+title: "Answers to Trivia April 2024"
 author: "Marley Buchman"
 format: revealjs
 ---
 
-# 20 Questions TBD Points
+# 20 Questions 178 Points
 
 ## 
 
-Part 1: 71 Points
+Part 1: 65 Points
 
-Part 2: TBD Points
+Part 2: 113 Points
 
 # Part 1
 
@@ -28,7 +28,9 @@ C. United States 4.71 kg/person
 
 D. Finland 11.2 kg/person
 
-E. Ethiopia 1.17 kg/person **B > A > D > C > E**
+E. Ethiopia 1.17 kg/person 
+
+**B > A > D > C > E**
 
 [source](https://worldpopulationreview.com/country-rankings/coffee-consumption-by-country)
 
@@ -70,6 +72,8 @@ E. Ethiopia 1.17 kg/person **B > A > D > C > E**
 
 ## 3. For each of the following lists of companies, name the state where all of the companies were founded (2 Points Each)
 
+##
+
 <span style="font-size: smaller;">
 A. Abercrombie & Fitch, IBM, Verizon, Barnes & Noble, MTV -- New York
 </span>
@@ -102,7 +106,7 @@ E. Czech Republic -- Jan Novák
 
 # Agriculture
 
-## 5. Match the map of county crop production (average number of acres grown) to the crop (1 Point Each).
+## 5. Match the map of county crop production to the crop (1 Point Each).
 
 [source](https://erdavis.com/2022/06/07/whats-the-most-common-crop-in-the-us/)
 
@@ -138,7 +142,7 @@ E. Czech Republic -- Jan Novák
 
 # Traffic
 
-## 6. Order the following rush hour (Weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).
+## 6. Order the following rush hour (weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).
 
 ## 6A. 
 
@@ -172,25 +176,30 @@ LA > D.C. >= NYC > Boston
 
 ## 7. Match the famous actor to their criminal history (1 Point Each)
 
-## 
+## 7A.
 
-**Robert Downey Jr., Mark Wahlberg, Kiefer Sutherland, Tim Allen**
+<img src="img/mark.png" width="100%">
 
-<span style="font-size: smaller;">
-A. BLANK, assaulted a Vietnamese-American man on the street, calling him a "Vietnam fucking shit" & knocking him unconscious with a large stick. Later that same day he attacked another Vietnamese-American, punching him in the eye -- Mark Wahlberg
-</span>
+assaulted a Vietnamese-American man on the street, calling him a "Vietnam fucking shit" & knocking him unconscious with a large stick. Later that same day he attacked another Vietnamese-American, punching him in the eye
 
-<span style="font-size: smaller;">
-B. BLANK was arrested for possession of heroin, cocaine, crack and an unloaded .357 Magnum handgun while he was speeding -- Robert Downey Jr.
-</span>
+## 7B. 
 
-<span style="font-size: smaller;">
-C. BLANK was arrested at the Airport for possession of over 1.43 lb of cocaine -- Tim Allen
-</span>
+<img src="img/rdj.png" width="100%">
 
-<span style="font-size: smaller;">
-D. BLANK was charged in Los Angeles on drunk driving charges, after failing a field sobriety test. It was BLANK's fourth DUI charge -- Kiefer Sutherland
-</span>
+was arrested for possession of heroin, cocaine, crack and an unloaded .357 Magnum handgun while he was speeding
+
+
+## 7C. 
+
+<img src="img/tim.png" width="100%">
+
+was arrested at the Airport for possession of over 1.43 lb of cocaine
+
+## 7D.
+
+<img src="img/kiefer.png" width="100%">
+
+was charged in Los Angeles on drunk driving charges, after failing a field sobriety test. It was their fourth DUI charge
 
 # Where in the World
 
@@ -228,7 +237,7 @@ Pakistan
 
 # Alchemy
 
-## 9. Identify the industry for each company in the table (2 Points Each)
+## 9. Identify the industry for each company in the table (1 Point Each)
 
 <img src="img/black_answer.png" width="100%">
 
@@ -250,7 +259,9 @@ D. Biden won what % of "No religious affiliation" voters -- 65% (62-68)
 
 # Quotes
 
-## 11. For each of the following quotes, is it from Optimus Prime from the Transformers franchise or Che Guevara (1 Point Each)?
+## 11. For each of the following quotes, is it from Optimus Prime or Che Guevara (1 Point Each)?
+
+<img src="img/quotes.png" width="100%">
 
 ##
 
@@ -262,6 +273,8 @@ C. "I will never stop fighting for our freedom." -- Optimus
 
 D. "Even if you defeat me...others will rise to defeat your tyranny." -- Optimus
 
+##
+
 E. "Do not forget what you have learned from our past...From it's lessons, the future is forged." -- Optimus
 
 F. "There's a thin line between being a hero, and being a memory." -- Optimus
@@ -272,7 +285,7 @@ H. "We cannot be sure of having something to live for unless we are willing to d
 
 # Inflation
 
-## 12. Adjust each of the following dollar values to reflect their value in current dollars (2 Points Each)
+## 12. Convert each amount to nominal dollars (current value - April 2024) (2 Points Each)
 
 A. $1,000 in 2000 -- $1,838 (1,746 - 1,929)
 
@@ -294,37 +307,63 @@ Leo DiCaprio (The Departed) Mark Wahlberg
 
 Mark Wahlberg (The Other Guys) The Rock
 
-## Connect X to Y in as few degrees as possible
+## Connect Alan Rickman to Jacob Elordi in as few degrees as possible
 
-Scoring: 6 Degrees: 3 Points, +2 Points for each fewer degree
+Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree
 
 <img src="img/actors.png" width="100%">
 
+## 
+
+Example Answer: 2 Degrees (9 Points)
+
+Alan Rickman (Dogma) Ben Affleck
+
+Ben Affleck (Deep Water) Jacob Elordi
+
 # First Name Last Name
 
-## 14. Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (2 Points Each)
-
-Christopher Nolan Ryan Howard Dean Martin Short Round
+## 14. Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (1 Point Each)
 
 ##
 
-A. Academy Award winning British director, famous for big blockbuster movies, and nonlinear stories
+<span style="font-size: smaller;">
+A. Academy Award winning British director famous for imax movies and nonlinear stories
+</span>
 
+<span style="font-size: smaller;">
 B. Famed baseball pitcher, known for his fastball and career longevity
+</span>
 
+<span style="font-size: smaller;">
 C. Phillies home run slugger from 2004-2016, also a character from The Office
+</span>
 
+<span style="font-size: smaller;">
 D. 2004 Democratic presidential nominee who had his political career derailed by a single scream
+</span>
 
-E. Singer, actor, Vegas personality from the 1950s. Known for his friendship with fellow artists Frank Sinatra and Sammy Davis Jr., who together with several others formed the Rat Pack.
+<span style="font-size: smaller;">
+E. Singer & actor from the 1950s. Known for friendship with Frank Sinatra and Sammy Davis Jr., who together with others formed the Rat Pack.
+</span>
 
-F. 74 year old comedic actor, who stars in a Hulu series with another older comedic actor and Selena Gomez
+<span style="font-size: smaller;">
+F. 74 year old comedic actor starring in a Hulu series with another older comedic actor and Selena Gomez
+</span>
 
+<span style="font-size: smaller;">
 G. Indiana Jones' sidekick
+</span>
+
+##
+
+Christopher Nolan Ryan Howard Dean Martin Short Round
 
 # Guess The Data
 
 ## 15. Identify the data being shown on the map (5 Points)
+
+##
 
 <img src="img/answer_violent_crime_rate.png" width="100%">
 
@@ -340,11 +379,35 @@ C. 29 Waffles (8 oz) -- 10 minutes
 
 D. 48 Oreos and Half a Gallon of Whole Milk -- 2 minutes 28 seconds
 
+# Popularity
 
+## 17. For each of the following charts of google search trends, identify the search term from the chart (3 Points Each)
+
+## 17A.
+
+<img src="img/google/answer_bitcoin.png" width="100%">
+
+## 17B.
+
+<img src="img/google/answer_trump.png" width="100%">
+
+## 17C.
+
+<img src="img/google/answer_ukraine.png" width="100%">
+
+## 17D.
+
+<img src="img/google/answer_covid.png" width="100%">
 
 # Bird's Eye View
 
 ## 18. Identify the famous international place from the satelitte photo (5 Points)
+
+##
+
+<img src="img/birds_eye_view/birds_eye_view.png" width="100%">
+
+##
 
 **Machu Picchu**
 
@@ -359,3 +422,61 @@ D. 48 Oreos and Half a Gallon of Whole Milk -- 2 minutes 28 seconds
 **Whiskey, Foxtrot, Tango, Echo -- NATO Phonetic Alphabet**
 
 <img src="img/visual_pun.png" width="100%">
+
+# Soundtracks
+
+## 20. 
+
+You will listen to brief snippets of three different songs, each of which features prominently in a famous movie. 
+
+* For 1 Point name the artist for each song
+
+* For 1 Point name the title of each song 
+
+* For 4 Points name the movie 
+
+**(10 Points Each)**
+
+## 20A.
+
+<img src="img/big_lebowski.png" width="100%">
+
+1. Bob Dylan - The Man in Me
+
+2. Gipsy Kings - Hotel California (Spanish Mix)
+
+3. Kenny Rogers & The First Edition - Just Dropped In (To See What Condition My Condition Is In)
+
+## 20B.
+
+<img src="img/happy_gilmore.png" width="100%">
+
+
+
+1. Exile - Kiss You All Over
+
+2. House of Pain - Jump Around
+
+3. Lionel Richie, Diana Ross - Endless Love
+
+## 20C.
+
+<img src="img/dazed_and_confused.png" width="100%">
+
+
+1. Alice Cooper - School's Out
+
+2. War - Why Can't We Be Friends?
+
+3. Dr. John - Right Place Wrong Time
+
+## 20D.
+
+<img src="img/waynes_world.png" width="100%">
+
+
+1. Gary Wright - Dream Weaver
+
+2. Jimi Hendrix - Foxey Lady
+
+3. Sweet - Ballroom Blitz
