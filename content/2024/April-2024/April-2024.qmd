@@ -278,23 +278,21 @@ Scoring: 6 Degrees: 3 Points, +2 Points for each fewer degree
 
 ## 14. Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (2 Points Each)
 
-Christopher Nolan, Nolan Ryan, Ryan Howard, Howard Dean, Dean Martin, Martin Short, Short Round
-
 ##
 
-A. TBD
+A. Academy Award winning British director, famous for big blockbuster movies, and nonlinear stories
 
-B. TBD
+B. Famed baseball pitcher, known for his fastball and career longevity
 
-C. TBD
+C. Phillies home run slugger from 2004-2016, also a character from The Office
 
-D. TBD
+D. 2004 Democratic presidential nominee who had his political career derailed by a single scream
 
-E. TBD
+E. Singer, actor, Vegas personality from the 1950s. Known for his friendship with fellow artists Frank Sinatra and Sammy Davis Jr., who together with several others formed the Rat Pack.
 
-F. TBD
+F. 74 year old comedic actor, who stars in a Hulu series with another older comedic actor and Selena Gomez
 
-G. TBD
+G. Indiana Jones' sidekick
 
 # Guess The Data
 
@@ -334,10 +332,7 @@ D. 48 Oreos and Half a Gallon of Whole Milk
 
 * TO DO:
     
-    * First Name Last Name (14) -- Add clues 
-    ----
-    ----
-    * Venn Diagram (17) Sports?
+    * Google trends (17)
     ----
     ----
     * Music/Listening (20) -- Playlist done, just need to format questions
