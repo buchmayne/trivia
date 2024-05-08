@@ -155,7 +155,7 @@ if __name__ == "__main__":
         Team("Team 3", max_team_size=4),
         Team("Team 4", max_team_size=4),
         Team("Team 5", max_team_size=4),
-	Team("Team 6", max_team_size=5),
+	    Team("Team 6", max_team_size=5),
     ]
 
     assigned_teams = assign_teams(players, teams)
