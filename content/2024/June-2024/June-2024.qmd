@@ -1,0 +1,118 @@
+---
+title: "Trivia June 2024"
+author: "Marley Buchman"
+format: revealjs
+---
+
+# 20 Questions ? Points
+
+## 
+
+Part 1: ? Points
+
+Part 2: ? Points
+
+# Part 1
+
+# Days
+
+## 1. 
+
+Match each of the following nations to their national holiday (1 Point Each)
+
+**France, Mexico, Ireland, China, Canada**
+
+A. Canada -- July 1st
+
+B. France -- July 14th
+
+C. Mexico -- September 16th
+
+D. China -- October 1st
+
+E. Ireland -- March 17th
+
+# Prologue
+
+## 2. Identify the movie from the opening text (2 Points Each)
+
+## 2A.
+
+<img src="img/movie_text/us.png" width="100%">
+
+## 2B.
+
+<img src="img/movie_text/fargo.png" width="100%">
+
+## 2C.
+
+<img src="img/movie_text/master_and_commander.png" width="100%">
+
+## 2D.
+
+<img src="img/movie_text/scarface.png" width="100%">
+
+# Sounds
+
+## 3. Match the written sound a dog makes to the language (1 Point Each)
+
+**Arabic, French, Chinese, Italian**
+
+A. Hau, hau -- Arabic
+
+B. Waouh, waouh -- French
+
+C. Wang, wang -- Chinese
+
+D. Bau, bau -- Italian
+
+
+# Quotes
+
+## 11. For each of the following quotes, is the speaker Optimus Prime from the Transformers franchise or the listed famous historical revolutionary (1 Point Each)?
+
+"We've suffered losses, but we've not lost the war." -- Optimus
+
+"I will never stop fighting for our freedom." -- Optimus
+
+"Do not forget what you have learned from our past...From it's lessons, the future is forged." -- Optimus
+
+"Even if you defeat me...others will rise to defeat your tyranny." -- Optimus
+
+"Fate rarely calls upon as at a moment of our choosing." -- Optimus
+
+"There's a thin line between being a hero, and being a memory." -- Optimus
+
+"Nothing is more precious than independence and liberty." -- Ho Chi Minh
+
+"The end may justify the means as long as there is something that justifies the end." -- Leon Trotsky
+
+"Service to others is the rent you pay for your room here on earth." -- Muhammad Ali
+
+"Alone we can do so little; together we can do so much." -- Helen Keller
+
+"We cannot be sure of having something to live for unless we are willing to die for it." -- Che Guevara
+
+"Whenever death may surprise us, let it be welcome if our battle cry has reached even one receptive ear and another hand reaches out to take up our arms." -- Che Guevara
+
+"I have a wish. It as a fear as well - that in my end will be my beginning." -- Che Guevara
+
+"Silence is argument carried out by other means." -- Che Guevara
+
+"Yesterday is not ours to recover, but tomorrow is ours to win or lose." -- Lyndon B. Johnson
+
+"He who has a why to live can bear almost any how." -- Friedrich Nietzsche
+
+"Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment." -- Buddha
+
+# Names
+
+## For each of the following, what is the offical name for it?
+
+A. Monobloc Chair 
+
+B. Cool S
+
+C. Emoticon
+
+D. Punt of a wine bottle
