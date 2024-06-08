@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ranking Question</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <style>
+        .option-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .option-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ question.question_text }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <ul class="option-list">
+            {% for option in options %}
+                <li class="option-item" data-option-id="{{ option.id }}">{{ option.option_text }}</li>
+            {% endfor %}
+        </ul>
+        <input type="hidden" name="ranking_order" id="ranking_order">
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            $(".option-list").sortable({
+                placeholder: "ui-state-highlight",
+                update: function(event, ui) {
+                    var rankingOrder = $(this).sortable("toArray", {attribute: "data-option-id"});
+                    $("#ranking_order").val(rankingOrder.join(","));
+                }
+            });
+            $(".option-list").disableSelection();
+        });
+    </script>
+</body>
+</html>
