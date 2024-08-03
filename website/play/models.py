@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class TriviaGame(models.Model):
     game_id = models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=100)
@@ -10,8 +11,9 @@ class TriviaGame(models.Model):
     def __str__(self):
         return self.name
 
+
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True, primary_key=True)
 
     def __str__(self):
         return self.name
@@ -22,17 +24,23 @@ class Question(models.Model):
         ('RK', 'Ranking'),
     ]
 
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    trivia_game = models.ForeignKey(TriviaGame, on_delete=models.CASCADE, related_name='questions')
     question_id = models.AutoField(primary_key=True, unique=True)
-    question_type = models.CharField(max_length=2, choices=QUESTION_TYPES)
+    
+    trivia_game = models.ForeignKey(TriviaGame, on_delete=models.CASCADE, related_name='questions')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    question_type = models.CharField(max_length=30, choices=QUESTION_TYPES)
     question_text = models.CharField(max_length=200)
+
+    # how to add images or other media files to the question?
 
     def __str__(self):
         return f"{self.question_id}-{self.question_text}"
 
+
 class RankingQuestion(Question):
     pass
+
 
 class RankingOption(models.Model):
     question = models.ForeignKey(RankingQuestion, on_delete=models.CASCADE, related_name='options')
