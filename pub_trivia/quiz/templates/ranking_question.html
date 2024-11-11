@@ -1,0 +1,10 @@
+<h1>{{ question.text }}</h1>
+<p>Rank the following from 1 to {{ question.answers.count }}:</p>
+<form method="POST" action="{% url 'submit_answer' question.id %}">
+    {% csrf_token %}
+    {% for answer in question.answers.all %}
+        <label>{{ answer.text }}</label>
+        <input type="number" name="rank_{{ answer.id }}" min="1" max="{{ question.answers.count }}"><br>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
