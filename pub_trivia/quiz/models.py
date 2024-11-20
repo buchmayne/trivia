@@ -30,7 +30,6 @@ class Question(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='questions')
     text = models.TextField()
     question_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE, related_name='questions')
-    points = models.IntegerField(default=1)
     image_url = models.URLField(blank=True, null=True)
     question_number = models.IntegerField()  # Sequential question number for the entire game
     created_at = models.DateTimeField(auto_now_add=True)
