@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from .models import Game, Category, Question, Answer, QuestionType
 
 # Inline to add multiple answers directly in the question form
@@ -9,7 +10,15 @@ class AnswerInline(admin.TabularInline):
     max_num = 10  # Maximum number of answer options
     verbose_name = "Answer"
     verbose_name_plural = "Answers"
-    fields = ['text', 'display_order', 'correct_rank', 'points', 'answer_text', 'explanation']  # Add ranking fields
+    fields = ['text', 'image_url', 'display_order', 'correct_rank', 'points', 'answer_text', 'explanation']  # Add ranking fields
+    readonly_fields = ['image_preview']
+
+    # Optional: Method to display a preview of the uploaded image
+    def image_preview(self, obj):
+        if obj.image_url:
+            return format_html(f'<img src="{obj.image_url}" style="max-height: 100px;" />')
+        return "No Image"
+    image_preview.short_description = "Image Preview"
 
 # Admin customization for Question
 class QuestionAdmin(admin.ModelAdmin):

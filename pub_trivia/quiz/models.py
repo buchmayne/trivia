@@ -15,7 +15,7 @@ class Category(models.Model):
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.name} ({self.game.name})"
+        return f"{self.name}"
 
 class QuestionType(models.Model):
     name = models.CharField(max_length=255)  # e.g., "Multiple Choice", "Ranking", "Matching"
@@ -31,7 +31,7 @@ class Question(models.Model):
     text = models.TextField()
     question_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE, related_name='questions')
     points = models.IntegerField(default=1)
-    image = models.ImageField(upload_to='images/', blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True)
     question_number = models.IntegerField()  # Sequential question number for the entire game
     created_at = models.DateTimeField(auto_now_add=True)
     total_points = models.PositiveIntegerField(default=1)  # Total points for the question
@@ -46,7 +46,7 @@ class Question(models.Model):
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
     text = models.TextField(blank=True, null=True)  # For textual answers
-    image = models.ImageField(upload_to='images/', blank=True, null=True)  # For image-based answers
+    image_url = models.URLField(blank=True, null=True)
     is_correct = models.BooleanField(default=False)  # Used for simple questions, can be expanded for others
 
     # These fields are mainly relevant for ranking questions

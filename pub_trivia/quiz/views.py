@@ -9,31 +9,16 @@ def game_list_view(request):
 
 def game_view(request, game_id):
     """
-    View to display the current question in a game.
-    This view retrieves all questions ordered by 'question_number' and progresses sequentially.
+    View to display all questions in a game, allowing the user to select any question.
     """
     game = get_object_or_404(Game, id=game_id)
     
     # Get all questions in the game, ordered by question_number
     questions = game.questions.order_by('question_number')
 
-    # Get the current question number from request or default to the first question
-    current_question_number = request.GET.get('question_number', 1)
-    
-    try:
-        current_question_number = int(current_question_number)
-        current_question = questions.get(question_number=current_question_number)
-    except (ValueError, Question.DoesNotExist):
-        # If the number is invalid or the question doesn't exist, start at the first question
-        current_question = questions.first()
-
-    # Determine the next question number (if any)
-    next_question = questions.filter(question_number__gt=current_question.question_number).first()
-
     context = {
         'game': game,
-        'current_question': current_question,
-        'next_question': next_question,
+        'questions': questions,  # Pass all questions to the template
     }
 
     return render(request, 'quiz/game.html', context)
@@ -81,3 +66,8 @@ def category_view(request, category_id):
     question = category.questions.order_by('question_number').first()
 
     return render(request, 'quiz/category.html', {'category': category, 'question': question})
+
+
+def question_view(request, game_id, category_id, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'quiz/question_view.html', {'question': question})
