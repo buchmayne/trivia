@@ -37,11 +37,16 @@ class GameAdmin(admin.ModelAdmin):
     search_fields = ['name']
     ordering = ['name']
 
-# Admin customization for Category
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'game')
-    list_filter = ('game',)
+    list_display = ('name', 'get_games')
+    list_filter = ('games',)
     search_fields = ['name']
+
+    # Custom method to display related games
+    def get_games(self, obj):
+        return ", ".join([game.name for game in obj.games.all()])
+
+    get_games.short_description = 'Games'
 
 # Registering the models with custom admin interfaces
 admin.site.register(Game, GameAdmin)

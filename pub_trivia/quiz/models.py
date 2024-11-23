@@ -4,13 +4,13 @@ from django.utils import timezone
 class Game(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(default=timezone.now)  # Add this field
+    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.name
 
 class Category(models.Model):
-    game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='categories')
+    games = models.ManyToManyField(Game, related_name='categories')
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
 
