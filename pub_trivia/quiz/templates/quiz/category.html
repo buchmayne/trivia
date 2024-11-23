@@ -1,0 +1,16 @@
+<!-- templates/quiz/category.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category.name }}</title>
+</head>
+<body>
+    <h1>{{ category.name }} - Questions</h1>
+
+    <h2>First Question:</h2>
+    <p>{{ question.text }}</p>
+
+    <!-- Link to the question page -->
+    <a href="{% url 'quiz:question_view' game.id category.id question.id %}">View Question</a>
+</body>
+</html>

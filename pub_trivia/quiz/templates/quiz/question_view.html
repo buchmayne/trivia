@@ -1,0 +1,59 @@
+<!-- templates/quiz/question_view.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ question.text }}</title>
+</head>
+<body>
+    <h1>{{ question.question_number }}. {{ question.text|safe }}</h1>
+
+    {% if question.image_url %}
+        <br>
+        <img src="{{ question.image_url }}" alt="" style="max-width: 600px; max-height: 400px;">
+    {% endif %}
+    {% if question.question_type.name == 'Ranking' %}
+        <ul>
+            {% for answer in question.answers.all %}
+                <li>
+                    {{ answer.text }}
+                    {% if answer.image_url %}
+                        <br>
+                        <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif question.question_type.name == 'Matching' %}
+        <ul>
+            {% for answer in question.answers.all %}
+                <li>
+                    {{ answer.text }}
+                    {% if answer.image_url %}
+                        <br>
+                        <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif question.question_type.name == 'Multiple Open Ended' %}
+        <ul>
+            {% for answer in question.answers.all %}
+                <li>
+                    {{ answer.text }}
+                    {% if answer.image_url %}
+                        <br>
+                        <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Question type not defined.</p>
+    {% endif %}
+
+    <a href="{% url 'quiz:game_view' question.game.id %}" class="button">Back to Game</a>
+
+    
+
+</body>
+</html>

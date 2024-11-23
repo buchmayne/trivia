@@ -1,0 +1,15 @@
+<!-- templates/quiz/game_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trivia Games</title>
+</head>
+<body>
+    <h1>Available Trivia Games</h1>
+    <ul>
+        {% for game in games %}
+            <li><a href="{% url 'quiz:game_view' game.id %}">{{ game.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
