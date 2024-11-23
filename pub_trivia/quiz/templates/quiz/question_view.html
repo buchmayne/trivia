@@ -38,7 +38,13 @@
     {% elif question.question_type.name == 'Multiple Open Ended' %}
         <ul>
             {% for answer in question.answers.all %}
-                <li>{{ answer.text }}</li>
+                <li>
+                    {{ answer.text }}
+                    {% if answer.image_url %}
+                        <br>
+                        <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
+                    {% endif %}
+                </li>
             {% endfor %}
         </ul>
     {% else %}
