@@ -1,0 +1,27 @@
+<!-- templates/quiz/game.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ game.name }}</title>
+</head>
+<body>
+    <h1>{{ game.name }}</h1>
+
+    <h2>Select a Question:</h2>
+    
+    <ul>
+        {% for question in questions %}
+            <li>
+                <a href="{% url 'quiz:answer_view' game.id question.category.id question.id %}">
+                    {{ question.category }}  --   Question {{ question.question_number }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No questions available for this game.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'quiz:game_options' game.id %}" class="button">Back to Game Options Selection</a>
+    
+</body>
+</html>

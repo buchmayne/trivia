@@ -8,7 +8,7 @@
     <h1>Available Trivia Games</h1>
     <ul>
         {% for game in games %}
-            <li><a href="{% url 'quiz:game_view' game.id %}">{{ game.name }}</a></li>
+            <li><a href="{% url 'quiz:game_options' game.id %}">{{ game.name }}</a></li>
         {% endfor %}
     </ul>
 </body>

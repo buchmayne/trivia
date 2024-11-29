@@ -20,6 +20,11 @@
                         <br>
                         <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
                     {% endif %}
+                    {% if answer.explanation %}
+                        <p>Correct Rank: {{ answer.correct_rank }} ({{ answer.explanation }})</p>
+                    {% else %}
+                        <p>Correct Rank: {{ answer.correct_rank }}</p>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
@@ -27,11 +32,12 @@
         <ul>
             {% for answer in question.answers.all %}
                 <li>
-                    {{ answer.text }}
+                    {{ answer.text }} - {{ answer.answer_text }}
                     {% if answer.image_url %}
                         <br>
                         <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
                     {% endif %}
+                    
                 </li>
             {% endfor %}
         </ul>
@@ -39,11 +45,12 @@
         <ul>
             {% for answer in question.answers.all %}
                 <li>
-                    {{ answer.text }}
+                    {{ answer.text }} - {{ answer.answer_text }}
                     {% if answer.image_url %}
                         <br>
                         <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
                     {% endif %}
+                    
                 </li>
             {% endfor %}
         </ul>
@@ -51,7 +58,7 @@
         <p>Question type not defined.</p>
     {% endif %}
 
-    <a href="{% url 'quiz:game_questions' question.game.id %}" class="button">Back to Questions</a>
+    <a href="{% url 'quiz:game_answers' question.game.id %}" class="button">Back to Answers</a>
 
     
 
