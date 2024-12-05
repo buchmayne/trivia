@@ -70,9 +70,31 @@ D. Bau, bau -- Italian
 
 # Pride
 
-## 4. Identify each component of the Progress Pride Flag shown below (1 Point Each)
+## 4. Identify each component of the Progress Pride Flag shown below (2 Points Each)
 
-TBD
+## 4A. 
+
+Represents marginalized communities and people living with or who have died from HIV/AIDS
+
+<img src="img/pride/black_and_brown.png" width="100%">
+
+## 4B.
+
+Represents spirit
+
+<img src="img/pride/purple.png" width="100%">
+
+## 4C.
+
+Represents trans pride, with light blue and pink representing traditional baby colors for girls and boys, and white representing transitioning, intersex, or gender-neutral identities
+
+<img src="img/pride/white_pink_blue.png" width="100%">
+
+## 4D.
+
+Represents sunlight and stimulating new ideas
+
+<img src="img/pride/yellow.png" width="100%">
 
 # Numbers
 
