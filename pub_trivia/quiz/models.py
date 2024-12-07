@@ -24,6 +24,13 @@ class QuestionType(models.Model):
     def __str__(self):
         return self.name
 
+class QuestionRound(models.Model):
+    name = models.CharField(max_length=255)  # e.g., "Round 1", "Round 2", "Final Round"
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
 
 class Question(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='questions')
@@ -34,6 +41,7 @@ class Question(models.Model):
     question_number = models.IntegerField()  # Sequential question number for the entire game
     created_at = models.DateTimeField(auto_now_add=True)
     total_points = models.PositiveIntegerField(default=1)  # Total points for the question
+    game_round = models.ForeignKey(QuestionRound, on_delete=models.CASCADE, related_name='questions', null=True, blank=True)
 
     class Meta:
         unique_together = ['game', 'question_number']  # Ensure question numbers are unique within a game

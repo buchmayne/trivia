@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Game, Category, Question, Answer, QuestionType
+from .models import Game, Category, Question, Answer, QuestionType, QuestionRound
 
 # Inline to add multiple answers directly in the question form
 class AnswerInline(admin.TabularInline):
@@ -22,7 +22,7 @@ class AnswerInline(admin.TabularInline):
 
 # Admin customization for Question
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('text', 'game', 'category', 'question_type', 'question_number', 'total_points')
+    list_display = ('text', 'game', 'category', 'question_type', 'question_number', 'game_round', 'total_points')
     list_filter = ('game', 'category', 'question_type')
     search_fields = ['text']
     
@@ -53,3 +53,4 @@ admin.site.register(Game, GameAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(QuestionType)
+admin.site.register(QuestionRound)
