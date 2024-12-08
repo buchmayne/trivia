@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Game, Category, Question, QuestionRound
 from django.http import HttpResponseRedirect
+from django.db.models import Sum
 
 def game_list_view(request):
     """View to list available trivia games."""
@@ -40,26 +41,81 @@ def game_rounds_view(request, game_id):
 
 def game_rounds_questions_view(request, game_id):
     """View to display all rounds in a game."""
+    
     game = get_object_or_404(Game, id=game_id)
-    rounds = QuestionRound.objects.filter(questions__game=game).distinct()  # Get all rounds with questions in the game
-    return render(request, 'quiz/game_rounds_questions.html', {'game': game, 'rounds': rounds})
+
+    # Total points for the game
+    total_game_points = game.questions.aggregate(total_points=Sum('total_points'))['total_points'] or 0
+
+    # Get all rounds with questions in the game and calculate total points for each round
+    rounds = (
+        QuestionRound.objects.filter(questions__game=game)
+        .annotate(total_points=Sum('questions__total_points'))
+        .distinct()
+    )
+
+    context = {
+        'game': game,
+        'rounds': rounds,
+        'total_game_points': total_game_points,
+    }
+    
+    return render(request, 'quiz/game_rounds_questions.html', context)
 
 def game_rounds_answers_view(request, game_id):
     """View to display all rounds in a game."""
     game = get_object_or_404(Game, id=game_id)
-    rounds = QuestionRound.objects.filter(questions__game=game).distinct()  # Get all rounds with questions in the game
-    return render(request, 'quiz/game_rounds_answers.html', {'game': game, 'rounds': rounds})
+
+    # Total points for the game
+    total_game_points = game.questions.aggregate(total_points=Sum('total_points'))['total_points'] or 0
+
+    # Get all rounds with questions in the game and calculate total points for each round
+    rounds = (
+        QuestionRound.objects.filter(questions__game=game)
+        .annotate(total_points=Sum('questions__total_points'))
+        .distinct()
+    )
+
+    context = {
+        'game': game,
+        'rounds': rounds,
+        'total_game_points': total_game_points,
+    }
+    
+    return render(request, 'quiz/game_rounds_answers.html', context)
 
 def round_questions_view(request, game_id, round_id):
     """View to display all questions in a specific round."""
     game = get_object_or_404(Game, id=game_id)
     round_ = get_object_or_404(QuestionRound, id=round_id)
     questions = round_.questions.filter(game=game).order_by('question_number')  # Get questions in the round for the specific game
-    return render(request, 'quiz/round_questions.html', {'game': game, 'round': round_, 'questions': questions})
+
+    # Total points for the round
+    total_round_points = questions.aggregate(total_points=Sum('total_points'))['total_points'] or 0
+
+    context = {
+        'game': game,
+        'round': round_,
+        'questions': questions,
+        'total_round_points': total_round_points,
+    }
+
+    return render(request, 'quiz/round_questions.html', context)
 
 def round_answers_view(request, game_id, round_id):
     """View to display all questions in a specific round."""
     game = get_object_or_404(Game, id=game_id)
     round_ = get_object_or_404(QuestionRound, id=round_id)
     questions = round_.questions.filter(game=game).order_by('question_number')  # Get questions in the round for the specific game
-    return render(request, 'quiz/round_answers.html', {'game': game, 'round': round_, 'questions': questions})
+    
+    # Total points for the round
+    total_round_points = questions.aggregate(total_points=Sum('total_points'))['total_points'] or 0
+
+    context = {
+        'game': game,
+        'round': round_,
+        'questions': questions,
+        'total_round_points': total_round_points,
+    }
+
+    return render(request, 'quiz/round_answers.html', context)
