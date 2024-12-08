@@ -13,7 +13,7 @@
     <ul>
         {% for question in questions %}
             <li>
-                <a href="{% url 'quiz:question_view' game.id question.category.id question.id %}">
+                <a href="{% url 'quiz:question_view' game.id round.id question.category.id question.id %}">
                     {{ question.category }}  --   Question {{ question.question_number }}
                 </a>
             </li>

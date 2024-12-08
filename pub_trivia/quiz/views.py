@@ -24,11 +24,11 @@ def game_answers_view(request, game_id):
     questions = game.questions.prefetch_related('answers')  # Prefetch answers for efficiency
     return render(request, 'quiz/game_answers.html', {'game': game, 'questions': questions})
 
-def question_view(request, game_id, category_id, question_id):
+def question_view(request, game_id, round_id, category_id, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'quiz/question_view.html', {'question': question})
 
-def answer_view(request, game_id, category_id, question_id):
+def answer_view(request, game_id, round_id, category_id, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'quiz/answer_view.html', {'question': question})
 

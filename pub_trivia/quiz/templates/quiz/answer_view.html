@@ -58,7 +58,7 @@
         <p>Question type not defined.</p>
     {% endif %}
 
-    <a href="{% url 'quiz:game_answers' question.game.id %}" class="button">Back to Answers</a>
+    <a href="{% url 'quiz:round_answers' question.game.id question.game_round.id %}" class="button">Back to Answers</a>
 
     
 
