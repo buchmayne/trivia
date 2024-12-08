@@ -52,16 +52,16 @@ class Question(models.Model):
 
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
-    text = models.TextField(blank=True, null=True)  # For textual answers
+    text = models.TextField(blank=True, null=True)  
     image_url = models.URLField(blank=True, null=True)
-    is_correct = models.BooleanField(default=False)  # Used for simple questions, can be expanded for others
+    is_correct = models.BooleanField(default=False) 
 
     # These fields are mainly relevant for ranking questions
-    display_order = models.PositiveIntegerField(null=True, blank=True)  # Optional, used for specifying order
-    correct_rank = models.PositiveIntegerField(null=True, blank=True)   # Optional, used only for ranking questions
+    display_order = models.PositiveIntegerField(null=True, blank=True)
+    correct_rank = models.PositiveIntegerField(null=True, blank=True)
     
     # Points field is general for all question types
-    points = models.PositiveIntegerField(default=1)  # Points for each answer, usable across different question types
+    points = models.PositiveIntegerField(default=1)
 
     # New fields for answer details:
     answer_text = models.CharField(max_length=255, blank=True, null=True)  # Actual value (e.g., coffee consumption, statue height)

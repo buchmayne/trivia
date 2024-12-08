@@ -1,12 +1,12 @@
 <h1>{{ game.name }}</h1>
 
-<h2>What would you like to do?</h2>
+<h2>Select Option</h2>
 <ul>
     <li>
-        <a href="{% url 'quiz:game_questions' game.id %}">View Questions</a>
+        <a href="{% url 'quiz:game_rounds_questions' game.id %}">Play Trivia</a>
     </li>
     <li>
-        <a href="{% url 'quiz:game_answers' game.id %}">View Answers</a>
+        <a href="{% url 'quiz:game_rounds_answers' game.id %}">Score Answers</a>
     </li>
 </ul>
 <a href="{% url 'quiz:game_list' %}" class="button">Back to Game Selection</a>

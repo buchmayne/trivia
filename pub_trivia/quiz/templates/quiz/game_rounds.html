@@ -1,0 +1,8 @@
+<h1>Rounds for {{ game.name }}</h1>
+<ul>
+    {% for round in rounds %}
+        <li>
+            <a href="{% url 'quiz:round_questions' game.id round.id %}">{{ round.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
