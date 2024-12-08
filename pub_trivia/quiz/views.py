@@ -26,12 +26,50 @@ def game_answers_view(request, game_id):
     return render(request, 'quiz/game_answers.html', {'game': game, 'questions': questions})
 
 def question_view(request, game_id, round_id, category_id, question_id):
+    game = get_object_or_404(Game, pk=game_id)
     question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'quiz/question_view.html', {'question': question})
+
+    # Get all the questions in the current round
+    round_questions = Question.objects.filter(
+        game=game,
+        game_round=question.game_round
+    ).order_by('question_number')
+
+    # Get the next question
+    next_question = (
+        round_questions.filter(question_number__gt=question.question_number).first()
+    )
+
+    context = {
+        'game': game,
+        'question': question,
+        'next_question': next_question,
+    }
+
+    return render(request, 'quiz/question_view.html', context)
 
 def answer_view(request, game_id, round_id, category_id, question_id):
+    game = get_object_or_404(Game, pk=game_id)
     question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'quiz/answer_view.html', {'question': question})
+
+    # Get all the questions in the current round
+    round_questions = Question.objects.filter(
+        game=game,
+        game_round=question.game_round
+    ).order_by('question_number')
+
+    # Get the next question
+    next_question = (
+        round_questions.filter(question_number__gt=question.question_number).first()
+    )
+
+    context = {
+        'game': game,
+        'question': question,
+        'next_question': next_question,
+    }
+
+    return render(request, 'quiz/answer_view.html', context)
 
 def game_rounds_view(request, game_id):
     """View to display all rounds in a game."""

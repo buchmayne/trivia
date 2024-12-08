@@ -51,7 +51,13 @@
         <p>Question type not defined.</p>
     {% endif %}
 
-    <a href="{% url 'quiz:round_questions' question.game.id question.game_round.id %}" class="button">Back to Questions</a>
+    {% if next_question %}
+        <a href="{% url 'quiz:question_view' game.id question.game_round.id next_question.category.id next_question.id %}" class="btn btn-primary">
+            Next Question
+        </a>
+    {% endif %}
+    <br><br>
+    <a href="{% url 'quiz:round_questions' question.game.id question.game_round.id %}" class="button">Back to All Questions in Round</a>
 
 
 </body>
