@@ -139,3 +139,44 @@ B. Climbing -- Yes (2020-)
 C. Softball -- Yes (1996-2008, 2020, 2028)
 
 D. Croquet -- Yes (1900)
+
+# Driving
+
+## 8. Order the following states by percentage of drivers with a DUI on their driving record from highest to lowest (1 Point Each)
+
+A. Oregon -- 0.99%
+
+B. Wyoming -- 2.73%
+
+C. Texas -- 0.39%
+
+D. Michigan -- 0.67%
+
+E. Wisconsin -- 1.53%
+
+# Politics
+
+## 9. Order the following female first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage registered as Democrats. Higher number means more Republican. Order from high to low (1 Point Each).
+
+A. Karen -- -1
+
+B. Darla -- 27
+
+C. Annie -- -55
+
+D. Kelsey -- -11
+
+E. Vicki -- 15
+
+## 10. Order the following male first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage registered as Democrats. Higher number means more Republican. Order from high to low (1 Point Each).
+
+A. Andre -- -63
+
+B. Anthony -- -6
+
+C. Michael -- 13
+
+D. Timothy -- 22
+
+E. Hunter -- 47
+
