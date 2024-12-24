@@ -8,7 +8,7 @@ format: revealjs
 
 ## 
 
-Part 1: ? Points
+Part 1: 64 Points
 
 Part 2: ? Points
 
@@ -179,4 +179,14 @@ C. Michael -- 13
 D. Timothy -- 22
 
 E. Hunter -- 47
+
+# Part 2
+
+# Bird's Eye View
+
+## 18. Identify the famous internationl location from the satellite image (5 Points).
+
+##
+
+<img src="img/birds_eye_view.png" width="100%">
 
