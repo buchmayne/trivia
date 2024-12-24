@@ -182,9 +182,21 @@ E. Hunter -- 47
 
 # Part 2
 
+# Movies
+
+## 17. Identify the movies and missing actor based on the actors common appearances (1 Point Each)
+
+##
+
+<img src="img/movies_question.png" width="100%">
+
+##
+
+<img src="img/movies_answer.png" width="100%">
+
 # Bird's Eye View
 
-## 18. Identify the famous internationl location from the satellite image (5 Points).
+## 18. Identify the famous international location from the satellite image (5 Points).
 
 ##
 
