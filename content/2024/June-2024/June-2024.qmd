@@ -182,6 +182,14 @@ E. Hunter -- 47
 
 # Part 2
 
+# Guess The Data
+
+## 16. Identify the data being shown on the map (5 Points)
+
+##
+
+<img src="img/ww2_shipwrecks.jpg" width="100%">
+
 # Movies
 
 ## 17. Identify the movies and missing actor based on the actors common appearances (1 Point Each)
