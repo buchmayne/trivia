@@ -188,19 +188,55 @@ E. Hunter -- 47
 
 ## 11A.
 
+Australia
+
 <img src="img/currency/australia.png" width="100%">
 
 ## 11B.
+
+Canada
 
 <img src="img/currency/canada.png" width="100%">
 
 ## 11C.
 
+Mexico
+
 <img src="img/currency/mexico.png" width="100%">
 
 ## 11D.
 
+South Korea
+
 <img src="img/currency/south_korea.jpg" width="100%">
+
+# Agriculture
+
+## 12. Identify the common cooking ingredient from the photo of it growing (spice, seasoning, herb, vegetable) (3 Points Each)
+
+## 12A.
+
+Cinnamon
+
+<img src="img/ingredients/cinnamon.jpg" width="100%">
+
+## 12B.
+
+Pepper
+
+<img src="img/ingredients/pepper.jpg" width="100%">
+
+## 12C.
+
+Vanilla
+
+<img src="img/ingredients/vanilla.jpg" width="100%">
+
+## 12D.
+
+Brussel Sprouts
+
+<img src="img/ingredients/brussel_sprouts.jpg" width="100%">
 
 # Guess The Data
 
@@ -230,3 +266,16 @@ E. Hunter -- 47
 
 <img src="img/birds_eye_view.png" width="100%">
 
+# Visual Pun
+
+## 19. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
+
+##
+
+Visual pun image here...
+
+# Final Round
+
+# Music/Listening/Something
+
+## 20. TBD
