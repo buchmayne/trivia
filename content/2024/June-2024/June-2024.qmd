@@ -238,6 +238,24 @@ Brussel Sprouts
 
 <img src="img/ingredients/brussel_sprouts.jpg" width="100%">
 
+# Six Degrees of Separation
+
+## 13. Connect the actors by films they share a collaborator with
+
+Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a degree:
+
+Meryl Streep (Don't Look Up) Leo DiCaprio
+
+Leo DiCaprio (The Departed) Mark Wahlberg
+
+Mark Wahlberg (The Other Guys) The Rock
+
+## Connect Zendaya to Kate Winslet in as few degrees as possible
+
+Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree
+
+<img src="img/actors.png" width="100%">
+
 # Guess The Data
 
 ## 16. Identify the data being shown on the map (5 Points)
@@ -280,22 +298,26 @@ Visual pun image here...
 
 ## 20. The following popular songs have been heavily featured in movies. For each of the songs name the title and the artist (2 Points Each). Then, name as many films as you can that feature the song (1 Point Each).
 
-A. "Sweet Home Alabama" - Lynyrd Skynyrd
-
-Sweet Home Alabama, Forrest Gump, Con Air, Sahara, The Girl Next Door, The Texas Chainsaw Massacre
-
-B. "Fortunate Son" - Creedence Clearwater Revival
+A. "Fortunate Son" - Creedence Clearwater Revival
 
 Forrest Gump, The Manchurian Candidate, Live Free or Die Hard, Battleship, War Dogs
 
-C. "Gimme Shelter" - The Rolling Stones
+B. "Gimme Shelter" - The Rolling Stones
 
 Goodfellas, Casino, The Departed, Flight, The Fan, Layer Cake
 
-D. "Country Roads" - John Denver
+C. "Country Roads" - John Denver
 
-The Machine, Glass Onion, Dark Waters, Logan Lucky, Kingsman: The Golden Circle, Alien: Covenant
+The Machine, Glass Onion, Dark Waters, Logan Lucky, Kingsman: The Golden Circle, Alien: Covenant, Okja
 
-E. "For What It's Worth" - Buffalo Springfield
+D. "For What It's Worth" - Buffalo Springfield
 
 Tropic Thunder, Forrest Gump, Coming Home, Born on the Fourth of July
+
+E. "London Calling" - The Clash
+
+Atomic Blonde, Conjuring 2, Patriot, Night at the Museum 2, The Pirates!, Get Him to the Greek, What a Girl Wants, Die Another Day, Billy Elliott
+
+F. “Spirit in The Sky” - Norman Greenbaum
+
+Apollo 13; Evan Almighty; Forrest Gump; Guardians Of The Galaxy; I, Tonya; Jesus Camp; Miami Blues; Michael; Remember The Titans; Suicide Squad; Sunshine Cleaning; Superstar; This Is The End; W;
