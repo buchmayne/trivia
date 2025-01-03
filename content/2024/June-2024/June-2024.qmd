@@ -256,6 +256,19 @@ Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree
 
 <img src="img/actors.png" width="100%">
 
+# Food
+
+## 14. Identify the style of hot dog from the illustration and description (2 Points Each)
+
+##
+
+<img src="img/hotdogs/hot_dog_questions.png" width="100%">
+
+##
+
+<img src="img/hotdogs/hot_dog_answers.png" width="100%">
+
+
 # Guess The Data
 
 ## 16. Identify the data being shown on the map (5 Points)
@@ -297,6 +310,8 @@ Visual pun image here...
 # Soundtracks
 
 ## 20. The following popular songs have been heavily featured in movies. For each of the songs name the title and the artist (2 Points Each). Then, name as many films as you can that feature the song (1 Point Each).
+
+##
 
 A. "Fortunate Son" - Creedence Clearwater Revival
 
