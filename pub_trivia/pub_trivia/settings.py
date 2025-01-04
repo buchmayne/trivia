@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", 'default-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False) == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',] # will need to add 'your_domain.com'
 
 
 # Application definition
