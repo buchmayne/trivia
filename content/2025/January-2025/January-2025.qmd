@@ -1,0 +1,331 @@
+---
+title: "Trivia January 2025"
+author: "Marley Buchman"
+format: revealjs
+---
+
+# 20 Questions 180 Points
+
+## 
+
+Part 1: 64 Points
+
+Part 2: 116 Points
+
+# Part 1
+
+# Days
+
+## 1. 
+
+Match each of the following nations to their national holiday (1 Point Each)
+
+**France, Mexico, Ireland, China, Canada**
+
+A. July 1st
+
+B. July 14th
+
+C. September 16th
+
+D. October 1st
+
+E. March 17th
+
+# Prologue
+
+## 2. Identify the movie from the opening text (2 Points Each)
+
+## 2A.
+
+<img src="img/movie_text/us.png" width="100%">
+
+## 2B.
+
+<img src="img/movie_text/fargo.png" width="100%">
+
+## 2C.
+
+<img src="img/movie_text/master_and_commander.png" width="100%">
+
+## 2D.
+
+<img src="img/movie_text/scarface.png" width="100%">
+
+# Sounds
+
+## 3. Match the written sound a dog makes to the language (1 Point Each)
+
+**Arabic, French, Chinese, Italian**
+
+A. Hau, hau
+
+B. Waouh, waouh
+
+C. Wang, wang
+
+D. Bau, bau
+
+# Pride
+
+## 4. Identify each component of the Progress Pride Flag shown below (2 Points Each)
+
+<img src="img/pride/pride.png" width="100%">
+
+## 4A. 
+
+<img src="img/pride/black_and_brown.png" width="100%">
+
+## 4B.
+
+<img src="img/pride/purple.png" width="100%">
+
+## 4C.
+
+<img src="img/pride/white_pink_blue.png" width="100%">
+
+## 4D.
+
+<img src="img/pride/yellow.png" width="100%">
+
+# Numbers
+
+## 5. Identify the City/Metro area from that area's area code (2 Points Each)
+
+A. 281
+
+B. 213
+
+C. 202
+
+D. 313
+
+# Food
+
+## 6. Identify the style of hot dog from the illustration and description (2 Points Each)
+
+##
+
+<img src="img/hotdogs/hot_dog_questions.png" width="100%">
+
+# Olympics
+
+## 7. For each of the following sports, where they ever an official Olympic event? (1 Point Each) 
+
+A. Tug of War
+
+B. Climbing
+
+C. Softball
+
+D. Croquet
+
+# Driving
+
+## 8. Order the following states by percentage of drivers with a DUI on their driving record from highest to lowest (1 Point Each)
+
+A. Oregon
+
+B. Wyoming
+
+C. Texas
+
+D. Michigan
+
+E. Wisconsin
+
+# Politics
+
+## 9. Order the following female first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage registered as Democrats. Higher number means more Republican. Order from high to low (1 Point Each).
+
+
+## 
+
+A. Karen
+
+B. Darla
+
+C. Annie
+
+D. Kelsey
+
+E. Vicki
+
+## 10. Order the following male first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage registered as Democrats. Higher number means more Republican. Order from high to low (1 Point Each).
+
+##
+
+A. Andre
+
+B. Anthony
+
+C. Michael
+
+D. Timothy
+
+E. Hunter
+
+# Part 2
+
+# Money
+
+## 11. Identify the currency from the image (2 Points Each)
+
+## 11A.
+
+<img src="img/currency/australia.png" width="100%">
+
+## 11B.
+
+<img src="img/currency/canada.png" width="100%">
+
+## 11C.
+
+<img src="img/currency/mexico.png" width="100%">
+
+## 11D.
+
+<img src="img/currency/south_korea.jpg" width="100%">
+
+# Agriculture
+
+## 12. Identify the common cooking ingredient from the photo of it growing (spice, seasoning, herb, vegetable) (3 Points Each)
+
+## 12A.
+
+<img src="img/ingredients/cinnamon.jpg" width="100%">
+
+## 12B.
+
+<img src="img/ingredients/pepper.jpg" width="100%">
+
+## 12C.
+
+<img src="img/ingredients/vanilla.jpg" width="100%">
+
+## 12D.
+
+<img src="img/ingredients/brussel_sprouts.jpg" width="100%">
+
+# Six Degrees of Separation
+
+## 13. Connect the actors by films they share a collaborator with
+
+Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a degree:
+
+Meryl Streep (Don't Look Up) Leo DiCaprio
+
+Leo DiCaprio (The Departed) Mark Wahlberg
+
+Mark Wahlberg (The Other Guys) The Rock
+
+## Connect Zendaya to Kate Winslet in as few degrees as possible
+
+Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree
+
+<img src="img/actors.png" width="100%">
+
+# Hypocoristics
+
+## 14. For each of the following pet names or short names, identify the formal English given name associated with it, i.e. Dick -> Richard (2 Points Each) 
+
+A. Barry
+
+B. Sally
+
+C. Tina
+
+D. Toby
+
+E. Simon
+
+F. Molly
+
+
+# Guess The Data
+
+## 15. Identify the data being shown on the map (5 Points)
+
+##
+
+<img src="img/ww2_shipwrecks.jpg" width="100%">
+
+# Movies
+
+## 16. Identify the movies and missing actor based on the actors common appearances (1 Point Each)
+
+##
+
+<img src="img/movies_question.png" width="100%">
+
+# Bird's Eye View
+
+## 17. Identify the famous international location from the satellite image (5 Points).
+
+##
+
+<img src="img/birds_eye_view.png" width="100%">
+
+# Visual Pun
+
+## 18. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
+
+##
+
+Visual pun image here...
+
+# Final Round
+
+# Genres
+
+## 19. Match the niche contemporary music genre to its description (1 Point Each). Additionally, match the song played to the genre its from (1 Point Each).
+
+##
+
+**Hyperpop, Zoomer Gaze, Hexd, Chillwave, Neoperreo, Future Funk**
+
+<span style="font-size: smaller;">
+A. Dark, experimental electronic music characterized by heavily distorted bass, industrial elements, and pitched-up vocals. Incorporates horror-like sounds and unsettling samples with aggressive, glitchy beats.
+</span>
+
+<span style="font-size: smaller;">
+B. An exaggerated, maximalist take on pop music featuring distorted bass, Auto-Tuned vocals, and glitchy electronic production.
+</span>
+
+<span style="font-size: smaller;">
+C. Blends dreamy, reverb-heavy guitars with trap beats and bedroom pop production. Mixes nostalgic 90s alternative sounds with contemporary music sensibilities.
+</span>
+
+<span style="font-size: smaller;">
+D. Fast-paced electronic genre that samples and remixes Japanese city pop and disco, adding heavy compression and modern dance beats.
+</span>
+
+<span style="font-size: smaller;">
+E. Electronic music genre that combines reggaeton rhythms with experimental low-fi production and aggressive, often sexually explicit lyrics
+</span>
+
+<span style="font-size: smaller;">
+F. Dark electronic music using occult symbols, chopped and screwed vocals, and trap-influenced beats. 
+</span>
+
+<span style="font-size: smaller;">
+G. Southern rap mixed with Memphis-style production, heavy bass, and cowbell beats.
+</span>
+
+# Soundtracks
+
+## 20. The following popular songs have been heavily featured in movies. For each of the songs name the title and the artist (2 Points Each). Then, name as many films as you can that feature the song (1 Point Each).
+
+##
+
+A.
+
+B. 
+
+C.
+
+D.
+
+E.
+
+F.
