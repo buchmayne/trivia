@@ -110,23 +110,17 @@ C. 202 -- Washington D.C.
 
 D. 313 -- Detroit
 
-# Hypocoristics
+# Food
 
-## 6. For each of the following pet names or short names, identify the formal English given name associated with it, i.e. Dick -> Richard (2 Points Each) 
+## 6. Identify the style of hot dog from the illustration and description (2 Points Each)
 
-A. Barry -- Bartholomew
+##
 
-B. Sally -- Sarah
+<img src="img/hotdogs/hot_dog_questions.png" width="100%">
 
-C. Tina -- Christina/Valentina
+##
 
-D. Toby -- Tobias
-
-E. Simon -- Sylvester
-
-F. Molly -- Mary
-
-[source](https://en.wiktionary.org/wiki/Appendix:English_given_names)
+<img src="img/hotdogs/hot_dog_answers.png" width="100%">
 
 # Olympics
 
@@ -256,22 +250,28 @@ Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree
 
 <img src="img/actors.png" width="100%">
 
-# Food
+# Hypocoristics
 
-## 14. Identify the style of hot dog from the illustration and description (2 Points Each)
+## 14. For each of the following pet names or short names, identify the formal English given name associated with it, i.e. Dick -> Richard (2 Points Each) 
 
-##
+A. Barry -- Bartholomew
 
-<img src="img/hotdogs/hot_dog_questions.png" width="100%">
+B. Sally -- Sarah
 
-##
+C. Tina -- Christina/Valentina
 
-<img src="img/hotdogs/hot_dog_answers.png" width="100%">
+D. Toby -- Tobias
+
+E. Simon -- Sylvester
+
+F. Molly -- Mary
+
+[source](https://en.wiktionary.org/wiki/Appendix:English_given_names)
 
 
 # Guess The Data
 
-## 16. Identify the data being shown on the map (5 Points)
+## 15. Identify the data being shown on the map (5 Points)
 
 ##
 
@@ -279,7 +279,7 @@ Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree
 
 # Movies
 
-## 17. Identify the movies and missing actor based on the actors common appearances (1 Point Each)
+## 16. Identify the movies and missing actor based on the actors common appearances (1 Point Each)
 
 ##
 
@@ -291,7 +291,7 @@ Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree
 
 # Bird's Eye View
 
-## 18. Identify the famous international location from the satellite image (5 Points).
+## 17. Identify the famous international location from the satellite image (5 Points).
 
 ##
 
@@ -299,13 +299,49 @@ Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree
 
 # Visual Pun
 
-## 19. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
+## 18. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
 
 ##
 
 Visual pun image here...
 
 # Final Round
+
+# Genres
+
+## 19. Match the niche contemporary music genre to its description (1 Point Each). Additionally, match the song played to the genre its from (1 Point Each).
+
+##
+
+**Hyperpop, Zoomer Gaze, Hexd, Chillwave, Neoperreo, Future Funk**
+
+A. Hexd: Dark, experimental electronic music characterized by heavily distorted bass, industrial elements, and pitched-up vocals. Incorporates horror-like sounds and unsettling samples with aggressive, glitchy beats.
+
+Where’s My Juul - Lik Mariko
+
+B. Hyperpop: An exaggerated, maximalist take on pop music featuring distorted bass, Auto-Tuned vocals, and glitchy electronic production.
+
+Money Machine - 100 gecs
+
+C. Zoomer Gaze: Blends dreamy, reverb-heavy guitars with trap beats and bedroom pop production. Mixes nostalgic 90s alternative sounds with contemporary music sensibilities.
+
+kenopsia - lil dirtbag
+
+D. Future Funk: Dast-paced electronic genre that samples and remixes Japanese city pop and disco, adding heavy compression and modern dance beats.
+
+Fly With Me - Sakura-Lee
+
+E. Neoperreo: Electronic music genre that combines reggaeton rhythms with experimental low-fi production and aggressive, often sexually explicit lyrics
+
+Tu Sicaria - Ms Nina
+
+F. Witch House: Dark electronic music using occult symbols, chopped and screwed vocals, and trap-influenced beats. 
+
+Excorcism - Sidewalks and Skeletons
+
+G. Phonk: Southern rap mixed with Memphis-style production, heavy bass, and cowbell beats.
+
+Murder in My Mind - Kordhell
 
 # Soundtracks
 
