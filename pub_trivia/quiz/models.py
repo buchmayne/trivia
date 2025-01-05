@@ -10,7 +10,7 @@ class Game(models.Model):
         return self.name
 
 class Category(models.Model):
-    games = models.ManyToManyField(Game, related_name='categories')
+    games = models.ManyToManyField(Game, related_name='categories', blank=True)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
 
@@ -34,10 +34,11 @@ class QuestionRound(models.Model):
 
 class Question(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='questions')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='questions')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='questions', blank=True, null=True)
     text = models.TextField()
     question_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE, related_name='questions')
-    image_url = models.URLField(blank=True, null=True)
+    question_image_url = models.URLField(blank=True, null=True)
+    answer_image_url = models.URLField(blank=True, null=True)
     question_number = models.IntegerField()  # Sequential question number for the entire game
     created_at = models.DateTimeField(auto_now_add=True)
     total_points = models.PositiveIntegerField(default=1)  # Total points for the question
@@ -53,7 +54,7 @@ class Question(models.Model):
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
     text = models.TextField(blank=True, null=True)  
-    image_url = models.URLField(blank=True, null=True)
+    question_image_url = models.URLField(blank=True, null=True)
     is_correct = models.BooleanField(default=False) 
 
     # These fields are mainly relevant for ranking questions
@@ -66,6 +67,7 @@ class Answer(models.Model):
     # New fields for answer details:
     answer_text = models.CharField(max_length=255, blank=True, null=True)  # Actual value (e.g., coffee consumption, statue height)
     explanation = models.TextField(blank=True, null=True)  # Explanation or answer details
+    answer_image_url = models.URLField(blank=True, null=True)
 
 
     def __str__(self):

@@ -7,18 +7,18 @@
 <body>
     <h1>{{ question.question_number }}. {{ question.text|safe }}</h1>
 
-    {% if question.image_url %}
+    {% if question.question_image_url %}
         <br>
-        <img src="{{ question.image_url }}" alt="" style="max-width: 600px; max-height: 400px;">
+        <img src="{{ question.question_image_url }}" alt="" style="max-width: 600px; max-height: 400px;">
     {% endif %}
     {% if question.question_type.name == 'Ranking' %}
         <ul>
             {% for answer in question.answers.all %}
                 <li>
                     {{ answer.text }}
-                    {% if answer.image_url %}
+                    {% if answer.question_image_url %}
                         <br>
-                        <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
+                        <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
                     {% endif %}
                 </li>
             {% endfor %}
@@ -28,9 +28,9 @@
             {% for answer in question.answers.all %}
                 <li>
                     {{ answer.text }}
-                    {% if answer.image_url %}
+                    {% if answer.question_image_url %}
                         <br>
-                        <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
+                        <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
                     {% endif %}
                 </li>
             {% endfor %}
@@ -40,9 +40,9 @@
             {% for answer in question.answers.all %}
                 <li>
                     {{ answer.text }}
-                    {% if answer.image_url %}
+                    {% if answer.question_image_url %}
                         <br>
-                        <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
+                        <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
                     {% endif %}
                 </li>
             {% endfor %}
