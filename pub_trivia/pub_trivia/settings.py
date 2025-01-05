@@ -78,16 +78,19 @@ TEMPLATES = [
 WSGI_APPLICATION = "pub_trivia.wsgi.application"
 
 
+# Database
+# Local Database Configuration
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'pub_trivia_db',
 #         'USER': 'pub_trivia_admin',
 #         'PASSWORD': 'triviapassword',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
+#         'HOST': "localhost",
+#         'PORT': "5432",
 #     }
 # }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -131,10 +134,16 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
+# Static files configuration
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
-STATIC_URL = "static/"
+# Media files configuration
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
