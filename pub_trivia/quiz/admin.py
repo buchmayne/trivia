@@ -10,7 +10,7 @@ class AnswerInline(admin.TabularInline):
     max_num = 10  # Maximum number of answer options
     verbose_name = "Answer"
     verbose_name_plural = "Answers"
-    fields = ['text', 'image_url', 'display_order', 'correct_rank', 'points', 'answer_text', 'explanation', 'answer_image_url']  # Add ranking fields
+    fields = ['text', 'question_image_url', 'display_order', 'correct_rank', 'points', 'answer_text', 'explanation', 'answer_image_url']  # Add ranking fields
     readonly_fields = ['image_preview']
 
     # Optional: Method to display a preview of the uploaded image

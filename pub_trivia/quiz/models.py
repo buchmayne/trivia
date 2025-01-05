@@ -37,7 +37,7 @@ class Question(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='questions')
     text = models.TextField()
     question_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE, related_name='questions')
-    image_url = models.URLField(blank=True, null=True)
+    question_image_url = models.URLField(blank=True, null=True)
     answer_image_url = models.URLField(blank=True, null=True)
     question_number = models.IntegerField()  # Sequential question number for the entire game
     created_at = models.DateTimeField(auto_now_add=True)
@@ -54,7 +54,7 @@ class Question(models.Model):
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
     text = models.TextField(blank=True, null=True)  
-    image_url = models.URLField(blank=True, null=True)
+    question_image_url = models.URLField(blank=True, null=True)
     is_correct = models.BooleanField(default=False) 
 
     # These fields are mainly relevant for ranking questions

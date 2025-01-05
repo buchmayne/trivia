@@ -11,9 +11,9 @@
         <br>
         <img src="{{ question.answer_image_url }}" alt="" style="max-width: 600px; max-height: 400px;">
     
-    {% elif question.image_url %}
+    {% elif question.question_image_url %}
         <br>
-        <img src="{{ question.image_url }}" alt="" style="max-width: 600px; max-height: 400px;">
+        <img src="{{ question.question_image_url }}" alt="" style="max-width: 600px; max-height: 400px;">
     {% endif %}
     {% if question.question_type.name == 'Ranking' %}
         <ul>
@@ -23,9 +23,9 @@
                     {% if answer.answer_image_url %}
                         <br>
                         <img src="{{ answer.answer_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
-                    {% elif answer.image_url %}
+                    {% elif answer.question_image_url %}
                         <br>
-                        <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
+                        <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
                     {% endif %}
                     {% if answer.explanation %}
                         <p>Correct Rank: {{ answer.correct_rank }} ({{ answer.explanation }})</p>
@@ -43,9 +43,9 @@
                     {% if answer.answer_image_url %}
                         <br>
                         <img src="{{ answer.answer_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
-                    {% elif answer.image_url %}
+                    {% elif answer.question_image_url %}
                         <br>
-                        <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
+                        <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
                     {% endif %}
                     
                 </li>
@@ -59,9 +59,9 @@
                     {% if answer.answer_image_url %}
                         <br>
                         <img src="{{ answer.answer_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
-                    {% elif answer.image_url %}
+                    {% elif answer.question_image_url %}
                         <br>
-                        <img src="{{ answer.image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
+                        <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
                     {% endif %}
                     
                     
