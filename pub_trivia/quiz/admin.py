@@ -1,6 +1,48 @@
+from django import forms
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import Game, Category, Question, Answer, QuestionType, QuestionRound
+
+class QuestionAdminForm(forms.ModelForm):
+    new_category_name = forms.CharField(
+        required=False,
+        help_text="Enter a new category name, or leave blank to select an existing category."
+    )
+
+    class Meta:
+        model = Question
+        fields = '__all__'
+
+    def clean(self):
+        cleaned_data = super().clean()
+        category = cleaned_data.get('category')
+        new_category_name = cleaned_data.get('new_category_name')
+
+        # Ensure either an existing category or a new category name is provided
+        if not category and not new_category_name:
+            raise forms.ValidationError(
+                "Please select an existing category or provide a new category name."
+            )
+
+        return cleaned_data
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+
+        # Handle creating a new category if a name is provided
+        new_category_name = self.cleaned_data.get("new_category_name")
+        if new_category_name:
+            category, created = Category.objects.get_or_create(name=new_category_name)
+            instance.category = category
+
+        # Add the game's reference to the category
+        if instance.category and instance.game:
+            instance.category.games.add(instance.game)
+
+        if commit:
+            instance.save()
+
+        return instance
 
 # Inline to add multiple answers directly in the question form
 class AnswerInline(admin.TabularInline):
@@ -22,6 +64,7 @@ class AnswerInline(admin.TabularInline):
 
 # Admin customization for Question
 class QuestionAdmin(admin.ModelAdmin):
+    form = QuestionAdminForm
     list_display = ('text', 'game', 'category', 'question_type', 'question_number', 'game_round', 'total_points')
     list_filter = ('game', 'category', 'question_type')
     search_fields = ['text']

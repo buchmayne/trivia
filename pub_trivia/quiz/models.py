@@ -10,7 +10,7 @@ class Game(models.Model):
         return self.name
 
 class Category(models.Model):
-    games = models.ManyToManyField(Game, related_name='categories')
+    games = models.ManyToManyField(Game, related_name='categories', blank=True)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
 
@@ -34,7 +34,7 @@ class QuestionRound(models.Model):
 
 class Question(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='questions')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='questions')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='questions', blank=True, null=True)
     text = models.TextField()
     question_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE, related_name='questions')
     question_image_url = models.URLField(blank=True, null=True)
