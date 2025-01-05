@@ -38,6 +38,7 @@ class Question(models.Model):
     text = models.TextField()
     question_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE, related_name='questions')
     image_url = models.URLField(blank=True, null=True)
+    answer_image_url = models.URLField(blank=True, null=True)
     question_number = models.IntegerField()  # Sequential question number for the entire game
     created_at = models.DateTimeField(auto_now_add=True)
     total_points = models.PositiveIntegerField(default=1)  # Total points for the question
@@ -66,6 +67,7 @@ class Answer(models.Model):
     # New fields for answer details:
     answer_text = models.CharField(max_length=255, blank=True, null=True)  # Actual value (e.g., coffee consumption, statue height)
     explanation = models.TextField(blank=True, null=True)  # Explanation or answer details
+    answer_image_url = models.URLField(blank=True, null=True)
 
 
     def __str__(self):

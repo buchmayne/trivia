@@ -79,25 +79,14 @@ WSGI_APPLICATION = "pub_trivia.wsgi.application"
 
 
 # Database
-# Local Database Configuration
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'pub_trivia_db',
-#         'USER': 'pub_trivia_admin',
-#         'PASSWORD': 'triviapassword',
-#         'HOST': "localhost",
-#         'PORT': "5432",
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv("DB_NAME"),
         'USER': os.getenv("DB_USER"),
         'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv("DB_HOST", "localhost"),
+        # 'HOST': os.getenv("DB_HOST", "localhost"), # Production: 'localhost' -> 'db'
+        'HOST': 'localhost',
         'PORT': os.getenv("DB_PORT", "5432"),
     }
 }
