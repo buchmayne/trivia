@@ -138,4 +138,5 @@ Answer-Key-August-2023_files/
 notes.md
 gsheets_key.json
 
-db_dump.sql
+db_backup.sql
+db_initial_data.json
