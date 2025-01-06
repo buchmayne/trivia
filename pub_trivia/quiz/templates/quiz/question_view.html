@@ -1,64 +1,81 @@
-<!-- templates/quiz/question_view.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ question.text }}</title>
-</head>
-<body>
-    <h1>{{ question.question_number }}. {{ question.text|safe }}</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-    {% if question.question_image_url %}
-        <br>
-        <img src="{{ question.question_image_url }}" alt="" style="max-width: 600px; max-height: 400px;">
-    {% endif %}
-    {% if question.question_type.name == 'Ranking' %}
-        <ul>
-            {% for answer in question.answers.all %}
-                <li>
-                    {{ answer.text }}
-                    {% if answer.question_image_url %}
-                        <br>
-                        <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% elif question.question_type.name == 'Matching' %}
-        <ul>
-            {% for answer in question.answers.all %}
-                <li>
-                    {{ answer.text }}
-                    {% if answer.question_image_url %}
-                        <br>
-                        <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% elif question.question_type.name == 'Multiple Open Ended' %}
-        <ul>
-            {% for answer in question.answers.all %}
-                <li>
-                    {{ answer.text }}
-                    {% if answer.question_image_url %}
-                        <br>
-                        <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" style="max-width: 600px; max-height: 400px;">
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Question type not defined.</p>
-    {% endif %}
+{% block title %}{{ question.text }}{% endblock %}
 
-    {% if next_question %}
-        <a href="{% url 'quiz:question_view' game.id question.game_round.id next_question.category.id next_question.id %}" class="btn btn-primary">
-            Next Question
-        </a>
-    {% endif %}
-    <br><br>
-    <a href="{% url 'quiz:round_questions' question.game.id question.game_round.id %}" class="button">Back to All Questions in Round</a>
+{% block content %}
+    <div class="question-container">
+        <div class="question-header">
+            <h1 class="question-title">
+                <span class="question-number">{{ question.question_number }}.</span>
+                {{ question.text|safe }}
+            </h1>
+        </div>
 
+        {% if question.question_image_url %}
+            <div class="question-image">
+                <img src="{{ question.question_image_url }}" alt="Question Image" class="responsive-image">
+            </div>
+        {% endif %}
 
-</body>
-</html>
+        <div class="answers-section">
+            {% if question.question_type.name == 'Ranking' %}
+                <ul class="answer-list ranking">
+                    {% for answer in question.answers.all %}
+                        <li class="answer-item">
+                            <div class="answer-text">{{ answer.text }}</div>
+                            {% if answer.question_image_url %}
+                                <div class="answer-image">
+                                    <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" class="responsive-image">
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% elif question.question_type.name == 'Matching' %}
+                <ul class="answer-list matching">
+                    {% for answer in question.answers.all %}
+                        <li class="answer-item">
+                            <div class="answer-text">{{ answer.text }}</div>
+                            {% if answer.question_image_url %}
+                                <div class="answer-image">
+                                    <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" class="responsive-image">
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% elif question.question_type.name == 'Multiple Open Ended' %}
+                <ul class="answer-list open-ended">
+                    {% for answer in question.answers.all %}
+                        <li class="answer-item">
+                            <div class="answer-text">{{ answer.text }}</div>
+                            {% if answer.question_image_url %}
+                                <div class="answer-image">
+                                    <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" class="responsive-image">
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="error-message">Question type not defined.</p>
+            {% endif %}
+        </div>
+
+        <div class="navigation-buttons">
+            {% if next_question %}
+                <a href="{% url 'quiz:question_view' game.id question.game_round.id next_question.category.id next_question.id %}" class="button button-primary">
+                    Next Question
+                </a>
+            {% endif %}
+            <a href="{% url 'quiz:round_questions' question.game.id question.game_round.id %}" class="button button-secondary">
+                Back to All Questions
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/modal.js' %}"></script>
+{% endblock %}
