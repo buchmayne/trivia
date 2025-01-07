@@ -714,8 +714,9 @@ body::after {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    max-width: 90%;
-    max-height: 90vh;
+    width: 95vw;  /* 95% of viewport width */
+    height: 95vh; /* 95% of viewport height */
+    max-width: none;  /* Remove max-width restriction */
     overflow: auto;
     z-index: 1001;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -738,15 +739,32 @@ body::after {
 }
 
 .modal-image {
-    max-width: 100%;
-    max-height: 80vh;
+    max-width: 95vw;  /* 95% of viewport width */
+    max-height: 90vh; /* 90% of viewport height */
     object-fit: contain;
+    margin: 0 auto;
+    display: block;
 }
 
 .modal-text {
-    font-size: 1.2em;
+    font-size: 2em;
     line-height: 1.6;
     color: #333;
+    padding: 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.modal-content.text-modal {
+    /* Center the text vertically */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Add some padding for comfort */
+    padding: 40px;
 }
 
 /* Make images and answers clickable */

@@ -51,7 +51,13 @@ function showImageModal(img) {
 function showAnswerModal(answer) {
     const modal = document.getElementById('modal');
     const modalBody = modal.querySelector('.modal-body');
+    const modalContent = modal.querySelector('.modal-content');
+    
+    // Clear previous content
     modalBody.innerHTML = '';
+    
+    // Add class for text-specific styling
+    modalContent.classList.add('text-modal');
     
     const modalText = document.createElement('div');
     modalText.className = 'modal-text';
@@ -59,6 +65,17 @@ function showAnswerModal(answer) {
     
     modalBody.appendChild(modalText);
     modal.style.display = 'block';
+    
+    // Clean up when modal closes
+    const cleanup = () => {
+        modalContent.classList.remove('text-modal');
+    };
+    
+    // Add cleanup to existing close handlers
+    modal.querySelector('.modal-close').addEventListener('click', cleanup, { once: true });
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) cleanup();
+    }, { once: true });
 }
 
 // Initialize modal functionality
@@ -75,3 +92,36 @@ document.addEventListener('DOMContentLoaded', () => {
         answer.addEventListener('click', () => showAnswerModal(answer));
     });
 });
+
+
+// Initialize modal functionality
+document.addEventListener('DOMContentLoaded', () => {
+    createModal();
+    
+    // Add click handlers for question images
+    document.querySelectorAll('.question-image img').forEach(img => {
+        img.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            showImageModal(img);
+        });
+    });
+    
+    // Add click handlers for answer images
+    document.querySelectorAll('.answer-image img').forEach(img => {
+        img.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            showImageModal(img);
+        });
+    });
+    
+    // Add click handlers for answer text
+    document.querySelectorAll('.answer-item').forEach(answer => {
+        answer.addEventListener('click', (e) => {
+            // Only show text modal if the click wasn't on an image
+            if (!e.target.closest('.answer-image')) {
+                showAnswerModal(answer);
+            }
+        });
+    });
+});
+
