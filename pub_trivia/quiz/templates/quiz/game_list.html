@@ -8,7 +8,9 @@
     <h1>Available Trivia Games</h1>
     <ul>
         {% for game in games %}
-            <li><a href="{% url 'quiz:game_options' game.id %}">{{ game.name }}</a></li>
+            {% if game.name != 'Future-Game' %}
+                <li><a href="{% url 'quiz:game_options' game.id %}">{{ game.name }}</a></li>
+            {% endif %}
         {% endfor %}
     </ul>
 </body>

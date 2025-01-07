@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Trivia{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="clouds-container">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
+        <div class="cloud cloud5"></div>
+    </div>
+    
+    <div class="geometric-elements">
+        <div class="geometric-shape shape-dna"></div>
+        <div class="geometric-shape shape-compass"></div>
+        <div class="math-grid"></div>
+    </div>
+
+    <div class="light-rays">
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+    </div>
+    
+    <div class="particles">
+        <div class="particle" style="top: 10%; left: 20%;"></div>
+        <div class="particle" style="top: 30%; left: 40%;"></div>
+        <div class="particle" style="top: 50%; left: 60%;"></div>
+        <div class="particle" style="top: 70%; left: 30%;"></div>
+        <div class="particle" style="top: 20%; left: 80%;"></div>
+        <div class="particle" style="top: 80%; left: 10%;"></div>
+        <div class="particle" style="top: 40%; left: 70%;"></div>
+        <div class="particle" style="top: 60%; left: 50%;"></div>
+        <div class="particle" style="top: 90%; left: 90%;"></div>
+    </div>
+    
+    <div class="glow-orbs">
+        <div class="glow-orb" style="top: 20%; left: 20%;"></div>
+        <div class="glow-orb" style="top: 60%; left: 70%;"></div>
+        <div class="glow-orb" style="top: 80%; left: 30%;"></div>
+    </div>
+    
+
+    <div class="page-wrapper">
+        <header class="site-header">
+            <div class="header-celestial">
+                <div class="star-field"></div>
+                <div class="orbit-ring"></div>
+                <div class="galaxy"></div>
+            </div>
+            <div class="header-books-left"></div>
+            <div class="header-books-right"></div>
+            <h1 class="site-title">Trivia</h1>
+            <div class="decorative-line"></div>
+        </header>
+        <main class="container">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+    
+    <script src="{% static 'js/clouds.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
