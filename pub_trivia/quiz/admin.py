@@ -65,7 +65,7 @@ class AnswerInline(admin.TabularInline):
 # Admin customization for Question
 class QuestionAdmin(admin.ModelAdmin):
     form = QuestionAdminForm
-    list_display = ('text', 'game', 'category', 'question_type', 'question_number', 'game_round', 'total_points')
+    list_display = ('text', 'game', 'category', 'question_type', 'question_number', 'game_round', 'total_points', 'answer_bank')
     list_filter = ('game', 'category', 'question_type')
     search_fields = ['text']
     

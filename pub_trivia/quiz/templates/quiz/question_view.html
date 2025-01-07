@@ -10,6 +10,14 @@
                 <span class="question-number">{{ question.question_number }}.</span>
                 {{ question.text|safe }}
             </h1>
+            {% if question.answer_bank %}
+                <div class="answer-bank">
+                    <h2 class="answer-bank-title">Answer Bank</h2>
+                    <div class="answer-bank-content">
+                        {{ question.answer_bank|safe }}
+                    </div>
+                </div>
+            {% endif %}
         </div>
 
         {% if question.question_image_url %}

@@ -35,12 +35,19 @@ class QuestionRound(models.Model):
 class Question(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='questions')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='questions', blank=True, null=True)
+    
     text = models.TextField()
+    answer_bank = models.TextField(blank=True, null=True) 
+
     question_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE, related_name='questions')
+    
     question_image_url = models.URLField(blank=True, null=True)
     answer_image_url = models.URLField(blank=True, null=True)
+    
     question_number = models.IntegerField()  # Sequential question number for the entire game
+    
     created_at = models.DateTimeField(auto_now_add=True)
+    
     total_points = models.PositiveIntegerField(default=1)  # Total points for the question
     game_round = models.ForeignKey(QuestionRound, on_delete=models.CASCADE, related_name='questions', null=True, blank=True)
 

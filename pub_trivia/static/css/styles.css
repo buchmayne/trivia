@@ -773,3 +773,57 @@ body::after {
 .answer-item:hover {
     transform: scale(1.02);
 }
+
+/* Answer Bank Styles */
+.answer-bank {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer; /* Make it look clickable */
+    transition: transform 0.2s ease;
+}
+
+.answer-bank:hover {
+    transform: scale(1.02);
+}
+
+.answer-bank-title {
+    font-family: 'Crimson Pro', serif;
+    color: #2c3e50;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.answer-bank-content {
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: #2c3e50;
+    /* Style for list items if your answer bank contains lists */
+    ul, ol {
+        margin: 10px 0;
+        padding-left: 20px;
+    }
+    li {
+        margin: 5px 0;
+    }
+}
+
+/* Modal specific styling for answer bank */
+.modal-answer-bank {
+    font-size: 2em;  /* Even bigger in modal */
+    line-height: 1.6;
+    color: #333;
+    padding: 30px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.modal-answer-bank .answer-bank-title {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
