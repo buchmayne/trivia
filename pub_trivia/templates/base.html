@@ -7,7 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
     <div class="clouds-container">
         <div class="cloud cloud1"></div>
         <div class="cloud cloud2"></div>
