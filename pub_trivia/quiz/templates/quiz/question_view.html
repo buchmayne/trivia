@@ -4,6 +4,44 @@
 {% block title %}{{ question.text }}{% endblock %}
 
 {% block content %}
+    <div class="navigation-bar">
+        <div class="nav-left">
+            <select class="round-selector" id="roundSelector">
+                {% for round in rounds %} 
+                    <option value="{{ round.id }}" 
+                            {% if round.id == question.game_round.id %}selected{% endif %}>
+                        {{ round.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="nav-center">
+            <div class="question-navigator">
+                {% for q in round_questions %}
+                    <button class="question-nav-button {% if q.id == question.id %}active{% endif %}"
+                            data-question-id="{{ q.id }}"
+                            data-category-id="{{ q.category.id }}"
+                            data-round-id="{{ question.game_round.id }}"
+                            data-game-id="{{ game.id }}">
+                        {{ q.question_number }}
+                    </button>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="view-toggle-button" id="viewToggle" 
+                    data-game-id="{{ game.id }}"
+                    data-round-id="{{ question.game_round.id }}"
+                    data-category-id="{{ question.category.id }}"
+                    data-question-id="{{ question.id }}">
+                {% if request.resolver_match.url_name == 'answer_view' %}
+                    Switch to Questions
+                {% else %}
+                    Switch to Answers
+                {% endif %}
+            </button>
+        </div>
+    </div>
     <div class="question-container">
         <div class="question-header">
             <h1 class="question-title">
@@ -70,20 +108,18 @@
                 <p class="error-message">Question type not defined.</p>
             {% endif %}
         </div>
-
         <div class="navigation-buttons">
             {% if next_question %}
-                <a href="{% url 'quiz:question_view' game.id question.game_round.id next_question.category.id next_question.id %}" class="button button-primary">
+                <a href="{% url 'quiz:question_view' game.id question.game_round.id next_question.category.id next_question.id %}" 
+                   class="button button-primary">
                     Next Question
                 </a>
             {% endif %}
-            <a href="{% url 'quiz:round_questions' question.game.id question.game_round.id %}" class="button button-secondary">
-                Back to All Questions
-            </a>
         </div>
     </div>
 {% endblock %}
 
 {% block scripts %}
     <script src="{% static 'js/modal.js' %}"></script>
+    <script src="{% static 'js/navigation.js' %}"></script>
 {% endblock %}
