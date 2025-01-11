@@ -1196,11 +1196,15 @@ body::after {
 }
 
 .game-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
 .start-game {
-    font-size: 1.2em;
+    font-size: 0.9em;
     padding: 15px 40px;
 }
 
