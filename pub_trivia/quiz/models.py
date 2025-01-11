@@ -1,9 +1,11 @@
 from django.db import models
 from django.utils import timezone
+from tinymce.models import HTMLField
 
 class Game(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
+    # description = models.TextField(blank=True, null=True)
+    description = HTMLField(blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -25,9 +27,13 @@ class QuestionType(models.Model):
         return self.name
 
 class QuestionRound(models.Model):
-    name = models.CharField(max_length=255)  # e.g., "Round 1", "Round 2", "Final Round"
+    name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
+    round_number = models.IntegerField(default=1)
 
+    class Meta:
+        ordering = ['round_number']
+    
     def __str__(self):
         return self.name
 

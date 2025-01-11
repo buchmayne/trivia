@@ -19,7 +19,7 @@
     <div class="games-grid">
         {% for game in games %}
             {% if game.name != 'Future-Game' %}
-                <a href="{% url 'quiz:game_options' game.id %}" class="game-card">
+                <a href="{% url 'quiz:game_overview' game.id %}" class="game-card">
                     <div class="game-card-content">
                         <h2 class="game-name">{{ game.name }}</h2>
                         <div class="game-icon">
@@ -38,21 +38,3 @@
     </div>
 </div>
 {% endblock %}
-
-
-{% comment %} <!DOCTYPE html>
-<html>
-<head>
-    <title>Trivia Games</title>
-</head>
-<body>
-    <h1>Select a Trivia Game to Play</h1>
-    <ul>
-        {% for game in games %}
-            {% if game.name != 'Future-Game' %}
-                <li><a href="{% url 'quiz:game_options' game.id %}">{{ game.name }}</a></li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-</body>
-</html> {% endcomment %}
