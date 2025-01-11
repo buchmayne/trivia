@@ -91,24 +91,23 @@ def answer_view(request, game_id, round_id, category_id, question_id):
     game = get_object_or_404(Game, pk=game_id)
     question = get_object_or_404(Question, pk=question_id)
 
-    # Get all the questions in the current round
-    round_questions = Question.objects.filter(
+    rounds = QuestionRound.objects.filter(questions__game=game).distinct().order_by('round_number')
+    round_questions = question.game_round.questions.filter(game=game).order_by('question_number')
+    
+
+    next_question = Question.objects.filter(
         game=game,
-        game_round=question.game_round
-    ).order_by('question_number')
+        game_round=question.game_round,
+        question_number__gt=question.question_number
+    ).order_by('question_number').first()
 
-    # Get the next question
-    next_question = (
-        round_questions.filter(question_number__gt=question.question_number).first()
-    )
-
-    context = {
+    return render(request, 'quiz/answer_view.html', {
         'game': game,
         'question': question,
+        'rounds': rounds,  # Added
+        'round_questions': round_questions,  # Added
         'next_question': next_question,
-    }
-
-    return render(request, 'quiz/answer_view.html', context)
+    })
 
 def game_rounds_view(request, game_id):
     """View to display all rounds in a game."""

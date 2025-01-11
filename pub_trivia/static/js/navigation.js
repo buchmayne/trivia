@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Helper function to determine if we're in answer view
+    function isAnswerView() {
+        return window.location.pathname.includes('answer');
+    }
+
+    // Helper function to get correct URL based on view mode
+    function getNavigationUrl(gameId, roundId, categoryId, questionId) {
+        if (isAnswerView()) {
+            return `/quiz/game/${gameId}/answers/round/${roundId}/answers/category/${categoryId}/question/${questionId}/`;
+        } else {
+            return `/quiz/game/${gameId}/questions/round/${roundId}/questions/category/${categoryId}/question/${questionId}/`;
+        }
+    }
+    
     // Round selector handling
     const roundSelector = document.getElementById('roundSelector');
     if (roundSelector) {
@@ -47,7 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const categoryId = this.dataset.categoryId;
         const questionId = this.dataset.questionId;
         
-        const newUrl = `/quiz/game/${gameId}/questions/round/${roundId}/questions/category/${categoryId}/question/${questionId}/`;
+        // const newUrl = `/quiz/game/${gameId}/questions/round/${roundId}/questions/category/${categoryId}/question/${questionId}/`;
+        const newUrl = getNavigationUrl(gameId, roundId, categoryId, questionId);
         window.location.href = newUrl;
     }
 
