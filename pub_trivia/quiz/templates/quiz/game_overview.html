@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}game-overview-page{% endblock %}
+
+{% block content %}
+<div class="game-overview-container">
+    <div class="game-header">
+        <h1 class="game-title">{{ game.name }}</h1>
+        {% if game.description %}
+            <div class="description-container">
+                <div class="game-description">{{ game.description|safe }}</div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="game-stats">
+        <div class="stats-summary">
+            <div class="stat-item">
+                <span class="stat-label">Total Questions</span>
+                <span class="stat-value">{{ total_questions }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Total Points</span>
+                <span class="stat-value">{{ total_points }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="rounds-overview">
+        {% for round_stat in rounds_stats %}
+            <div class="round-card">
+                <h2 class="round-title">{{ round_stat.round.name }}</h2>
+                <div class="round-stats">
+                    <div class="stat">
+                        <span class="stat-label">Questions:</span>
+                        <span class="stat-value">{{ round_stat.question_count }}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Points:</span>
+                        <span class="stat-value">{{ round_stat.total_points }}</span>
+                    </div>
+                </div>
+                {% if round_stat.round.description %}
+                    <p class="round-description">{{ round_stat.round.description }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="game-actions">
+        {% if rounds_stats %}
+            {% with first_round=rounds_stats.0 %}
+                {% with first_question=first_round.round.questions.filter.first %}
+                    <a href="{% url 'quiz:question_view' game.id first_round.round.id first_question.category.id first_question.id %}" 
+                       class="button button-primary start-game">
+                        Start Trivia
+                    </a>
+                {% endwith %}
+            {% endwith %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

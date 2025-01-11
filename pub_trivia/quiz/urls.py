@@ -30,4 +30,5 @@ urlpatterns = [
     path('api/rounds/<int:round_id>/first-question/', views.get_first_question, name='first_question'),
     path('quiz/game/<int:game_id>/round/<int:round_id>/first-question-info/', views.get_first_question_info, name='first_question_info'),
     path('game/<int:game_id>/questions/round/<int:round_id>/questions-list/', views.get_round_questions, name='round_questions_list'),
+    path('game/<int:game_id>/overview/', views.game_overview, name='game_overview'),
 ]

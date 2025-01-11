@@ -1,9 +1,11 @@
 from django.db import models
 from django.utils import timezone
+from tinymce.models import HTMLField
 
 class Game(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
+    # description = models.TextField(blank=True, null=True)
+    description = HTMLField(blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):

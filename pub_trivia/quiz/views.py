@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Game, Category, Question, QuestionRound
 from django.http import HttpResponseRedirect, JsonResponse
-from django.db.models import Sum
+from django.db import models
 
 def get_first_question(request, round_id):
     try:
@@ -121,12 +121,12 @@ def game_rounds_questions_view(request, game_id):
     game = get_object_or_404(Game, id=game_id)
 
     # Total points for the game
-    total_game_points = game.questions.aggregate(total_points=Sum('total_points'))['total_points'] or 0
+    total_game_points = game.questions.aggregate(total_points=models.Sum('total_points'))['total_points'] or 0
 
     # Get all rounds with questions in the game and calculate total points for each round
     rounds = (
         QuestionRound.objects.filter(questions__game=game)
-        .annotate(total_points=Sum('questions__total_points'))
+        .annotate(total_points=models.Sum('questions__total_points'))
         .distinct()
     )
 
@@ -143,12 +143,12 @@ def game_rounds_answers_view(request, game_id):
     game = get_object_or_404(Game, id=game_id)
 
     # Total points for the game
-    total_game_points = game.questions.aggregate(total_points=Sum('total_points'))['total_points'] or 0
+    total_game_points = game.questions.aggregate(total_points=models.Sum('total_points'))['total_points'] or 0
 
     # Get all rounds with questions in the game and calculate total points for each round
     rounds = (
         QuestionRound.objects.filter(questions__game=game)
-        .annotate(total_points=Sum('questions__total_points'))
+        .annotate(total_points=models.Sum('questions__total_points'))
         .distinct()
     )
 
@@ -167,7 +167,7 @@ def round_questions_view(request, game_id, round_id):
     questions = round_.questions.filter(game=game).order_by('question_number')  # Get questions in the round for the specific game
 
     # Total points for the round
-    total_round_points = questions.aggregate(total_points=Sum('total_points'))['total_points'] or 0
+    total_round_points = questions.aggregate(total_points=models.Sum('total_points'))['total_points'] or 0
 
     context = {
         'game': game,
@@ -185,7 +185,7 @@ def round_answers_view(request, game_id, round_id):
     questions = round_.questions.filter(game=game).order_by('question_number')  # Get questions in the round for the specific game
     
     # Total points for the round
-    total_round_points = questions.aggregate(total_points=Sum('total_points'))['total_points'] or 0
+    total_round_points = questions.aggregate(total_points=models.Sum('total_points'))['total_points'] or 0
 
     context = {
         'game': game,
@@ -208,4 +208,33 @@ def get_round_questions(request, game_id, round_id):
     
     return JsonResponse({
         'questions': list(questions)
+    })
+
+def game_overview(request, game_id):
+    game = Game.objects.get(id=game_id)
+    rounds = QuestionRound.objects.filter(questions__game=game).distinct().order_by('round_number')
+    
+    # Calculate stats for each round
+    rounds_stats = []
+    total_questions = 0
+    total_points = 0
+    
+    for round in rounds:
+        round_questions = Question.objects.filter(game=game, game_round=round)
+        question_count = round_questions.count()
+        points = round_questions.aggregate(total_points=models.Sum('total_points'))['total_points'] or 0
+        
+        rounds_stats.append({
+            'round': round,
+            'question_count': question_count,
+            'total_points': points
+        })
+        total_questions += question_count
+        total_points += points
+
+    return render(request, 'quiz/game_overview.html', {
+        'game': game,
+        'rounds_stats': rounds_stats,
+        'total_questions': total_questions,
+        'total_points': total_points,
     })
