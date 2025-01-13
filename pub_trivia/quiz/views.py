@@ -164,6 +164,15 @@ def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:
         .order_by("round_number")
     )
 
+    # Check if game is password protected
+    if game.is_password_protected:
+        # Check if password has been validated for this game
+        if f'game_password_verified_{game_id}' not in request.session:
+            return render(request, 'quiz/verify_password.html', {
+                'game': game,
+                'error_message': request.GET.get('error')
+            })
+
     # Calculate stats for each round
     rounds_stats = []
     total_questions = 0
@@ -195,3 +204,18 @@ def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:
             "total_points": total_points,
         },
     )
+
+
+def verify_game_password(request: HttpRequest, game_id: int) -> HttpResponse:
+    if request.method == 'POST':
+        game = Game.objects.get(id=game_id)
+        password = request.POST.get('password')
+        
+        if password == game.password:
+            # Store password verification in session
+            request.session[f'game_password_verified_{game_id}'] = True
+            return redirect('quiz:game_overview', game_id=game_id)
+        else:
+            return redirect('quiz:game_overview', game_id=game_id)
+    
+    return redirect('quiz:game_list')

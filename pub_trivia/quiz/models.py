@@ -8,6 +8,10 @@ class Game(models.Model):
     description = HTMLField(blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
+    # Adding password protection
+    is_password_protected = models.BooleanField(default=False)
+    password = models.CharField(max_length=50, blank=True, null=True)
+
     def __str__(self) -> str:
         return self.name
 
