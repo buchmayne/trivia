@@ -1,137 +1,197 @@
+from typing import Optional, Dict, Any, List, Union
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Game, Category, Question, QuestionRound
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpRequest, HttpResponse
 from django.db import models
+from .models import Game, Category, Question, QuestionRound
 
-def get_first_question(request, round_id):
+
+def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
     try:
-        game_id = request.GET.get('game_id')
-        first_question = Question.objects.filter(
-            game_id=game_id,
-            game_round_id=round_id
-        ).order_by('question_number').first()
-        
-        if first_question:
-            return JsonResponse({
-                'id': first_question.id,
-                'category_id': first_question.category.id
-            })
-        else:
-            return JsonResponse({'error': 'No questions found'}, status=404)
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+        game_id = request.GET.get("game_id")
+        first_question = (
+            Question.objects.filter(game_id=game_id, game_round_id=round_id)
+            .order_by("question_number")
+            .first()
+        )
 
-def game_list_view(request):
+        if first_question:
+            return JsonResponse(
+                {"id": first_question.id, "category_id": first_question.category.id}
+            )
+        else:
+            return JsonResponse({"error": "No questions found"}, status=404)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=400)
+
+
+def game_list_view(request: HttpRequest) -> HttpResponse:
     """View to list available trivia games."""
     games = Game.objects.all()
-    return render(request, 'quiz/game_list.html', {'games': games})
+    return render(request, "quiz/game_list.html", {"games": games})
 
 
-def get_first_question_info(request, game_id, round_id):
+def get_first_question_info(
+    request: HttpRequest, game_id: int, round_id: int
+) -> JsonResponse:
     try:
-        # Get the first question in the selected round
-        first_question = Question.objects.filter(
-            game_id=game_id,
-            game_round_id=round_id
-        ).order_by('question_number').first()
-        
-        return JsonResponse({
-            'id': first_question.id,
-            'category_id': first_question.category.id
-        })
+        first_question = (
+            Question.objects.filter(game_id=game_id, game_round_id=round_id)
+            .order_by("question_number")
+            .first()
+        )
+
+        return JsonResponse(
+            {"id": first_question.id, "category_id": first_question.category.id}
+        )
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+        return JsonResponse({"error": str(e)}, status=400)
 
-def get_next_question(question):
+
+def get_next_question(question: Question) -> Optional[Question]:
     """Get the next question in the same round"""
-    return Question.objects.filter(
-        game=question.game,
-        game_round=question.game_round,
-        question_number__gt=question.question_number
-    ).order_by('question_number').first()
+    return (
+        Question.objects.filter(
+            game=question.game,
+            game_round=question.game_round,
+            question_number__gt=question.question_number,
+        )
+        .order_by("question_number")
+        .first()
+    )
 
-def question_view(request, game_id, round_id, category_id, question_id):
+
+def question_view(
+    request: HttpRequest,
+    game_id: int,
+    round_id: int,
+    category_id: int,
+    question_id: int,
+) -> HttpResponse:
     game = Game.objects.get(id=game_id)
     question = Question.objects.get(id=question_id)
-    rounds = QuestionRound.objects.filter(questions__game=game).distinct().order_by('round_number')
-    round_questions = question.game_round.questions.filter(game=game).order_by('question_number')
-    
+    rounds = (
+        QuestionRound.objects.filter(questions__game=game)
+        .distinct()
+        .order_by("round_number")
+    )
+    round_questions = question.game_round.questions.filter(game=game).order_by(
+        "question_number"
+    )
+
     # Get next question
-    next_question = Question.objects.filter(
-        game=game,
-        game_round=question.game_round,
-        question_number__gt=question.question_number
-    ).order_by('question_number').first()
+    next_question = (
+        Question.objects.filter(
+            game=game,
+            game_round=question.game_round,
+            question_number__gt=question.question_number,
+        )
+        .order_by("question_number")
+        .first()
+    )
 
-    return render(request, 'quiz/question_view.html', {
-        'game': game,
-        'question': question,
-        'rounds': rounds,
-        'round_questions': round_questions,
-        'next_question': next_question,
-    })
+    return render(
+        request,
+        "quiz/question_view.html",
+        {
+            "game": game,
+            "question": question,
+            "rounds": rounds,
+            "round_questions": round_questions,
+            "next_question": next_question,
+        },
+    )
 
-def answer_view(request, game_id, round_id, category_id, question_id):
+
+def answer_view(
+    request: HttpRequest,
+    game_id: int,
+    round_id: int,
+    category_id: int,
+    question_id: int,
+) -> HttpResponse:
     game = get_object_or_404(Game, pk=game_id)
     question = get_object_or_404(Question, pk=question_id)
 
-    rounds = QuestionRound.objects.filter(questions__game=game).distinct().order_by('round_number')
-    round_questions = question.game_round.questions.filter(game=game).order_by('question_number')
-    
-
-    next_question = Question.objects.filter(
-        game=game,
-        game_round=question.game_round,
-        question_number__gt=question.question_number
-    ).order_by('question_number').first()
-
-    return render(request, 'quiz/answer_view.html', {
-        'game': game,
-        'question': question,
-        'rounds': rounds,  # Added
-        'round_questions': round_questions,  # Added
-        'next_question': next_question,
-    })
-
-def get_round_questions(request, game_id, round_id):
-    questions = Question.objects.filter(
-        game_id=game_id,
-        game_round_id=round_id
-    ).order_by('question_number').values(
-        'id', 
-        'question_number', 
-        'category_id'
+    rounds = (
+        QuestionRound.objects.filter(questions__game=game)
+        .distinct()
+        .order_by("round_number")
     )
-    
-    return JsonResponse({
-        'questions': list(questions)
-    })
+    round_questions = question.game_round.questions.filter(game=game).order_by(
+        "question_number"
+    )
 
-def game_overview(request, game_id):
+    next_question = (
+        Question.objects.filter(
+            game=game,
+            game_round=question.game_round,
+            question_number__gt=question.question_number,
+        )
+        .order_by("question_number")
+        .first()
+    )
+
+    return render(
+        request,
+        "quiz/answer_view.html",
+        {
+            "game": game,
+            "question": question,
+            "rounds": rounds,  # Added
+            "round_questions": round_questions,  # Added
+            "next_question": next_question,
+        },
+    )
+
+
+def get_round_questions(
+    request: HttpRequest, game_id: int, round_id: int
+) -> JsonResponse:
+    questions = (
+        Question.objects.filter(game_id=game_id, game_round_id=round_id)
+        .order_by("question_number")
+        .values("id", "question_number", "category_id")
+    )
+
+    return JsonResponse({"questions": list(questions)})
+
+
+def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:
     game = Game.objects.get(id=game_id)
-    rounds = QuestionRound.objects.filter(questions__game=game).distinct().order_by('round_number')
-    
+    rounds = (
+        QuestionRound.objects.filter(questions__game=game)
+        .distinct()
+        .order_by("round_number")
+    )
+
     # Calculate stats for each round
     rounds_stats = []
     total_questions = 0
     total_points = 0
-    
+
     for round in rounds:
         round_questions = Question.objects.filter(game=game, game_round=round)
         question_count = round_questions.count()
-        points = round_questions.aggregate(total_points=models.Sum('total_points'))['total_points'] or 0
-        
-        rounds_stats.append({
-            'round': round,
-            'question_count': question_count,
-            'total_points': points
-        })
+        points = (
+            round_questions.aggregate(total_points=models.Sum("total_points"))[
+                "total_points"
+            ]
+            or 0
+        )
+
+        rounds_stats.append(
+            {"round": round, "question_count": question_count, "total_points": points}
+        )
         total_questions += question_count
         total_points += points
 
-    return render(request, 'quiz/game_overview.html', {
-        'game': game,
-        'rounds_stats': rounds_stats,
-        'total_questions': total_questions,
-        'total_points': total_points,
-    })
+    return render(
+        request,
+        "quiz/game_overview.html",
+        {
+            "game": game,
+            "rounds_stats": rounds_stats,
+            "total_questions": total_questions,
+            "total_points": total_points,
+        },
+    )
