@@ -76,9 +76,11 @@ class QuestionAdmin(admin.ModelAdmin):
 
 # Admin customization for Game
 class GameAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created_at')
-    search_fields = ['name']
+    list_display = ('name', 'is_password_protected', 'created_at')
+    list_filter = ('is_password_protected',)
+    fields = ('name', 'description', 'is_password_protected', 'password')
     ordering = ['name']
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'get_games')
