@@ -15,6 +15,11 @@ RUN apt-get update && \
     nginx \
     && rm -rf /var/lib/apt/lists/*
 
+# Configure Nginx
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN rm -f /etc/nginx/sites-enabled/default && \
+    ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+
 # Install dependencies
 COPY requirements.txt /app/
 RUN pip install --upgrade pip && \
@@ -30,11 +35,6 @@ RUN python manage.py collectstatic --noinput
 # Create a non-root user and switch to it
 RUN useradd -m appuser && chown -R appuser:appuser /app
 USER appuser
-
-# Configure Nginx
-COPY nginx.conf /etc/nginx/sites-available/default
-RUN rm -f /etc/nginx/sites-enabled/default && \
-    ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
 
 # Expose port (optional, useful for debugging locally)
