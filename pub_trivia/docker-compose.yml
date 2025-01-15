@@ -15,18 +15,18 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     restart: always
 
-    letsencrypt:
-      image: nginxproxy/acme-companion
-      container_name: nginx-proxy-letsencrypt
-      volumes_from:
-        - nginx-proxy
-      volumes:
-        - certs:/etc/nginx/certs:rw
-        - acme:/etc/acme.sh
-        - /var/run/docker.sock:/var/run/docker.sock:ro
-      environment:
-        - DEFAULT_EMAIL=michaelmbuchman@gmail.com
-      restart: always
+  letsencrypt:
+    image: nginxproxy/acme-companion
+    container_name: nginx-proxy-letsencrypt
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - certs:/etc/nginx/certs:rw
+      - acme:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - DEFAULT_EMAIL=michaelmbuchman@gmail.com
+    restart: always
 
   web:
     build:
