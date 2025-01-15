@@ -1,0 +1,6648 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2024-11-11T20:05:48.237Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "April-2024",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2024-11-11T20:06:11.711Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Coffee (April-2024)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2024-11-11T20:06:36.757Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "Ranking",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2024-11-11T20:36:43.282Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "Q1: Rank the following nations from most coffee consumption per capita to least. (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. New Zealand\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Estonia\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. United States\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Finland\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Ethiopia\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2024-11-20T00:16:39.445Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "Ranking",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2024-11-20T00:38:06.366Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "Matching",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2024-11-20T00:38:33.505Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Research",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2024-11-20T00:56:42.851Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Q2: Match the Antarctica base/research institute to it's home country (1 Point Each).\r\n\r\n**Germany, U.K., South Korea, China, Brazil**",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2024-11-20T01:02:43.570Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Q2: Match the Antarctica base/research institute to it's home country (1 Point Each).\r\n\r\n**Germany, U.K., South Korea, China, Brazil**",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B.\", \"fields\": [\"Image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D.\", \"fields\": [\"Image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"E.\", \"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2024-11-20T01:03:35.664Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Q2: Match the Antarctica base/research institute to it's home country (1 Point Each).\r\n\r\n\r\nGermany, U.K., South Korea, China, Brazil",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2024-11-20T01:04:07.869Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Q2: Match the Antarctica base/research institute to it's home country (1 Point Each).\r\n<br>\r\n<br>\r\n\r\n<strong>Germany, U.K., South Korea, China, Brazil</strong>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2024-11-20T01:04:35.467Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Q2: Match the Antarctica base/research institute to it's home country (1 Point Each).\r\n\r\n\r\nGermany, U.K., South Korea, China, Brazil",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2024-11-20T03:33:51.979Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Q2: Match the Antarctica base/research institute to it's home country (1 Point Each).\r\n<br>\r\n<strong>Germany, U.K., South Korea, China, Brazil</strong>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2024-11-20T03:35:10.530Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Q2: Match the Antarctica base/research institute to it's home country (1 Point Each).\r\n<br><br>\r\n<i>Germany, U.K., South Korea, China, Brazil</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2024-11-20T03:36:28.297Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Companies",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2024-11-20T03:37:33.736Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "3",
+    "object_repr": "Multiple Open Ended",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2024-11-20T03:40:16.837Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "3",
+    "object_repr": "Q3: For each of the following lists of companies, name the state where all of the companies were founded (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Abercrombie & Fitch, IBM, Verizon, Barnes & Noble, MTV\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Panera, AMC Theaters, H&R Block, Budweiser, Enterprise Rent-A-Car\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. P&G (Procter and Gamble), Arby's, Wendy's, Goodyear Tire, Office Max, Kroger\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Gamestop, Whole Foods, Dr Pepper, Frito-Lay, 7-Eleven, Six Flags, Dell\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2024-11-20T03:47:13.371Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Names",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2024-11-20T03:52:34.824Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "4",
+    "object_repr": "Q4: Match the placeholder name (John Doe) to the country that uses it (1 Point Each)\r\n<br><br>\r\n<i> Petar Petrović, Max Mustermann, Jean Dupont, Jan Jansen, Jan Novák</i>",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Netherlands\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. France\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Germany\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Serbia\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Czech Republic\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2024-11-20T03:54:40.994Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Agriculture",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2024-11-20T03:58:03.736Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "Q5: Match the map of county crop production to the crop (1 Point Each).\r\n<br><br>\r\n<i>Sunflowers, Apples, Tomatoes, Grapes, Wheat</i>",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2024-11-20T03:59:08.760Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Traffic",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2024-11-20T04:04:27.626Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "Q6: Order the following rush hour (weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Los Angeles: LAX -> Staples Center/Crypto.com Arena (17.1 miles)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Boston: Paul Revere House -> Harvard Square (5.2 miles)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. D.C.: Nationals Park -> CIA Headquarters (12.1 miles)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. NYC: Empire State Building -> Yankee Stadium (8.6 miles)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2024-11-20T04:14:43.314Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Famous Criminals",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2024-11-20T04:18:24.485Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "Q7: Match the famous actor to their criminal history (1 Point Each)\r\n<br><br>\r\n<i>Robert Downey Jr., Mark Wahlberg, Kiefer Sutherland, Tim Allen</i>",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. assaulted a Vietnamese-American man on the street, calling him a \\\"Vietnam fucking shit\\\" & knocking him unconscious with a large stick. Later that same day he attacked another Vietnamese-American, punching him in the eye\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. was arrested for possession of heroin, cocaine, crack and an unloaded .357 Magnum handgun while he was speeding\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. was arrested at the Airport for possession of over 1.43 lb of cocaine\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. was charged in Los Angeles on drunk driving charges, after failing a field sobriety test. It was their fourth DUI charge\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2024-11-20T04:21:41.762Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "Where in the World",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2024-11-20T04:24:30.781Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "Q8: Guess the country that contains each of the following (3 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. The world's tallest statue\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. The world's largest airport\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. The world' biggest shopping mall\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. The world's second tallest building\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. The world's largest dam\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2024-11-20T04:26:15.045Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Alchemy",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2024-11-20T04:30:51.336Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "9",
+    "object_repr": "Q9: Identify the industry for each company in the table (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Black Rock\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Black Water\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Black Stone\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Bridge Rock\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Bridge Water\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"F. Bridge Stone\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2024-11-20T04:36:04.708Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "10",
+    "object_repr": "Quotes",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2024-11-20T04:41:13.001Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "10",
+    "object_repr": "Q10: For each of the following quotes, is it from Optimus Prime or Che Guevara (1 Point Each)?",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. \\\"We've suffered losses, but we've not lost the war.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. \\\"I have a wish. It as a fear as well - that in my end will be my beginning.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. \\\"I will never stop fighting for our freedom.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. \\\"Even if you defeat me...others will rise to defeat your tyranny.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. \\\"Do not forget what you have learned from our past...From it's lessons, the future is forged.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"F. \\\"There's a thin line between being a hero, and being a memory.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"G. \\\"Fate rarely calls upon as at a moment of our choosing.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"H. \\\"We cannot be sure of having something to live for unless we are willing to die for it.\\\"\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2024-11-20T04:46:10.292Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "11",
+    "object_repr": "Inflation",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2024-11-20T04:47:18.423Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "10",
+    "object_repr": "Q11: For each of the following quotes, is it from Optimus Prime or Che Guevara (1 Point Each)?",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question number\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2024-11-20T04:50:58.855Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "11",
+    "object_repr": "Q12: Convert each amount to nominal dollars (current value - April 2024) (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. $1,000 in 2000\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. $1,000 in 1990\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. $1 in 1933\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. $100,000 in 1968\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2024-11-20T04:52:57.954Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "12",
+    "object_repr": "Democracy",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2024-11-20T04:54:40.047Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "12",
+    "object_repr": "Q10: Guess the following vote shares for the 2020 Presidential Election (CNN exit polling) (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Trump won what % of voters who identify as \\\"Moderate\\\" (poll options were, Liberal, Moderate, Conservative)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Trump won what % of \\\"White\\\" voters\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Biden won what % of \\\"White, college degree\\\" voters\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Biden won what % of \\\"No religious affiliation\\\" voters\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2024-11-23T05:31:36.625Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "13",
+    "object_repr": "Six Degrees of Separation",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2024-11-23T05:34:48.565Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "Q13: Connect the actors by films they share a collaborator with\r\n\r\n<i>Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a degree:\r\n",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"1.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"2.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"3.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"4.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"5.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"6.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2024-11-23T05:35:42.218Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "Q13: Connect the actors by films they share a collaborator with. <br>\r\n\r\n<i>Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a deg",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2024-11-23T05:37:18.035Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "14",
+    "object_repr": "First Name Last Name",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2024-11-23T05:47:32.623Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "14",
+    "object_repr": "Q14: Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Academy Award winning British director famous for imax movies and nonlinear stories\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Famed baseball pitcher, known for his fastball and career longevity\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Phillies home run slugger from 2004-2016, also a character from The Office\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 2004 Democratic presidential nominee who had his political career derailed by a single scream\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Singer & actor from the 1950s. Known for friendship with Frank Sinatra and Sammy Davis Jr., who together with others formed the Rat Pack.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"F. 74 year old comedic actor starring in a Hulu series with another older comedic actor and Selena Gomez\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"G. Indiana Jones' sidekick\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2024-11-23T05:48:29.984Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "15",
+    "object_repr": "Guess the Data",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2024-11-23T05:51:18.755Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "15",
+    "object_repr": "Q15: Identify the data being shown on the map (5 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q15: Identify the data being shown on the map (5 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2024-11-23T05:53:08.614Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "16",
+    "object_repr": "Time",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2024-11-23T05:55:48.952Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "16",
+    "object_repr": "Q16: Order the following competitive eating world records from longest time to shortest time (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 4 32-ounce bowls of mayonnaise\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 121 Twinkies\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 29 Waffles (8 oz)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 48 Oreos and Half a Gallon of Whole Milk\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2024-11-23T05:56:21.234Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "17",
+    "object_repr": "Popularity",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2024-11-23T05:59:19.255Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "17",
+    "object_repr": "Q17: For each of the following charts of google search trends, identify the search term from the chart (3 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2024-11-23T06:01:33.754Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "18",
+    "object_repr": "Bird's Eye View",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2024-11-23T06:03:00.406Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "Q18: Identify the famous international place from the satelitte photo (5 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q18: Identify the famous international place from the satelitte photo (5 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2024-11-23T06:04:11.279Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "Q18: Identify the famous international place from the satelitte photo (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2024-11-23T06:04:45.239Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "19",
+    "object_repr": "Visual Pun",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2024-11-23T06:07:56.528Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "19",
+    "object_repr": "Q19: The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Top Left:\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Top Right:\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Bottom Left:\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Bottom Right:\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Category:\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2024-11-23T06:08:51.942Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "20",
+    "object_repr": "Soundtracks",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2024-11-23T06:14:11.498Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "20",
+    "object_repr": "Q20: You will listen to brief snippets of three different songs, each of which features prominently in a famous movie. \r\n<br>\r\n* For 1 Point name the artist for each song\r\n<br>\r\n* For 1 Point name the",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\\r\\n\\r\\nMovie: ____\\r\\n1. ____ - ____\\r\\n2. ____ - ____\\r\\n3. ____ - ____\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\\r\\n\\r\\nMovie: ____\\r\\n1. ____ - ____\\r\\n2. ____ - ____\\r\\n3. ____ - ____\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\\r\\n\\r\\nMovie: ____\\r\\n1. ____ - ____\\r\\n2. ____ - ____\\r\\n3. ____ - ____\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\\r\\n\\r\\nMovie: ____\\r\\n1. ____ - ____\\r\\n2. ____ - ____\\r\\n3. ____ - ____\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2024-11-29T23:14:33.649Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "Q6: Order the following rush hour (weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A. Los Angeles: LAX -> Staples Center/Crypto.com Arena (17.1 miles)\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B. Boston: Paul Revere House -> Harvard Square (5.2 miles)\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C. D.C.: Nationals Park -> CIA Headquarters (12.1 miles)\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D. NYC: Empire State Building -> Yankee Stadium (8.6 miles)\", \"fields\": [\"Answer text\", \"Explanation\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2024-11-29T23:18:21.431Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "16",
+    "object_repr": "Q16: Order the following competitive eating world records from longest time to shortest time (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A. 4 32-ounce bowls of mayonnaise\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B. 121 Twinkies\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C. 29 Waffles (8 oz)\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D. 48 Oreos and Half a Gallon of Whole Milk\", \"fields\": [\"Answer text\", \"Explanation\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2024-11-29T23:31:51.700Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "Q18: Identify the famous international place from the satelitte photo (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"Answer for Q18: Identify the famous international place from the satelitte photo (5 Points)\", \"fields\": [\"Answer text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2024-12-04T01:29:46.739Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "January-2025",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2024-12-04T01:30:08.533Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "21",
+    "object_repr": "Days",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2024-12-04T01:36:29.266Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "Q1: Match each of the following nations to their national holiday (1 Point Each).\r\n<br>\r\n<strong>France, Mexico, Ireland, China, Canada</strong>",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. July 1st\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. July 14th\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. September 16th\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. October 1st\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. March 17th\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2024-12-04T01:37:23.339Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "Q1: Match each of the following nations to their national holiday (1 Point Each).\r\n<br>\r\n<iFrance, Mexico, Ireland, China, Canada</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2024-12-04T01:40:42.268Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "Q1: Match each of the following nations to their national holiday (1 Point Each).\r\n<br>\r\n<i>France, Mexico, Ireland, China, Canada</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2024-12-04T01:50:36.235Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "22",
+    "object_repr": "Prologue",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2024-12-04T01:50:52.394Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "20",
+    "object_repr": "Soundtracks",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2024-12-04T01:50:56.440Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "19",
+    "object_repr": "Visual Pun",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 66,
+  "fields": {
+    "action_time": "2024-12-04T01:51:03.022Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "18",
+    "object_repr": "Bird's Eye View",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 67,
+  "fields": {
+    "action_time": "2024-12-04T01:51:07.395Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "17",
+    "object_repr": "Popularity",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 68,
+  "fields": {
+    "action_time": "2024-12-04T01:51:11.401Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "16",
+    "object_repr": "Time",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 69,
+  "fields": {
+    "action_time": "2024-12-04T01:51:14.982Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "15",
+    "object_repr": "Guess the Data",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 70,
+  "fields": {
+    "action_time": "2024-12-04T01:51:19.103Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "14",
+    "object_repr": "First Name Last Name",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 71,
+  "fields": {
+    "action_time": "2024-12-04T01:51:23.456Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "13",
+    "object_repr": "Six Degrees of Separation",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 72,
+  "fields": {
+    "action_time": "2024-12-04T01:51:27.430Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "12",
+    "object_repr": "Democracy",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 73,
+  "fields": {
+    "action_time": "2024-12-04T01:51:31.958Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "11",
+    "object_repr": "Inflation",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 74,
+  "fields": {
+    "action_time": "2024-12-04T01:51:36.869Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "10",
+    "object_repr": "Quotes",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 75,
+  "fields": {
+    "action_time": "2024-12-04T01:51:42.253Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Alchemy",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 76,
+  "fields": {
+    "action_time": "2024-12-04T01:51:47.003Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "Where in the World",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 77,
+  "fields": {
+    "action_time": "2024-12-04T01:51:53.870Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Famous Criminals",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 78,
+  "fields": {
+    "action_time": "2024-12-04T01:51:59.052Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Traffic",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 79,
+  "fields": {
+    "action_time": "2024-12-04T01:52:04.054Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Agriculture",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 80,
+  "fields": {
+    "action_time": "2024-12-04T01:52:16.674Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Names",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 81,
+  "fields": {
+    "action_time": "2024-12-04T01:52:28.271Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Companies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 82,
+  "fields": {
+    "action_time": "2024-12-04T01:52:33.337Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Research",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 83,
+  "fields": {
+    "action_time": "2024-12-04T01:52:38.239Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Coffee",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 84,
+  "fields": {
+    "action_time": "2024-12-04T01:55:49.296Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "22",
+    "object_repr": "Q2: Identify the movie from the opening text (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 85,
+  "fields": {
+    "action_time": "2024-12-04T02:10:42.833Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "23",
+    "object_repr": "Sounds",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 86,
+  "fields": {
+    "action_time": "2024-12-04T02:12:58.895Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "23",
+    "object_repr": "Q3: Match the written sound a dog makes to the language (1 Point Each)\r\n<br><i>Arabic, French, Chinese, Italian</i>",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Hau, hau\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Waouh, waouh\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Wang, wang\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Bau, bau\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 87,
+  "fields": {
+    "action_time": "2024-12-05T03:46:16.388Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "24",
+    "object_repr": "Pride",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 88,
+  "fields": {
+    "action_time": "2024-12-05T03:51:42.532Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "24",
+    "object_repr": "Q4: Identify each component of the Progress Pride Flag shown below (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 89,
+  "fields": {
+    "action_time": "2024-12-05T03:56:24.165Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "24",
+    "object_repr": "Q4: Identify each component of the Progress Pride Flag shown below (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"B.\", \"fields\": [\"Image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 90,
+  "fields": {
+    "action_time": "2024-12-05T03:57:15.430Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "24",
+    "object_repr": "Q4: Identify each component of the Progress Pride Flag shown below (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 91,
+  "fields": {
+    "action_time": "2024-12-05T04:11:55.097Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "25",
+    "object_repr": "Numbers",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 92,
+  "fields": {
+    "action_time": "2024-12-05T04:14:54.116Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "25",
+    "object_repr": "Q5: Identify the City/Metro area from that area's area code (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 281\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 213\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 202\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 313\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 93,
+  "fields": {
+    "action_time": "2024-12-05T04:33:37.107Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "26",
+    "object_repr": "Hypocoristics",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 94,
+  "fields": {
+    "action_time": "2024-12-05T04:39:06.014Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "26",
+    "object_repr": "Q6: For each of the following pet names or short names, identify the formal English given name associated with it, i.e. Dick -> Richard (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Barry\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Sally\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Tina\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Toby\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Simon\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"F. Molly\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 95,
+  "fields": {
+    "action_time": "2024-12-05T04:39:38.204Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "26",
+    "object_repr": "Q6: For each of the following pet names or short names, identify the formal English given name associated with it, <i>i.e. Dick -> Richard</i> (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 96,
+  "fields": {
+    "action_time": "2024-12-07T22:48:50.595Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "Q1: Rank the following nations from most coffee consumption per capita to least. (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game phase\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 97,
+  "fields": {
+    "action_time": "2024-12-07T22:49:30.643Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Q2: Match the Antarctica base/research institute to it's home country (1 Point Each).\r\n<br><br>\r\n<i>Germany, U.K., South Korea, China, Brazil</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game phase\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 98,
+  "fields": {
+    "action_time": "2024-12-07T22:54:38.151Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "Round 1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 99,
+  "fields": {
+    "action_time": "2024-12-07T22:54:41.180Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "2",
+    "object_repr": "Round 2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 100,
+  "fields": {
+    "action_time": "2024-12-07T22:54:44.863Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "3",
+    "object_repr": "Final Round",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 101,
+  "fields": {
+    "action_time": "2024-12-07T22:54:56.683Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "Q1: Rank the following nations from most coffee consumption per capita to least. (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 102,
+  "fields": {
+    "action_time": "2024-12-07T22:55:04.366Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Q2: Match the Antarctica base/research institute to it's home country (1 Point Each).\r\n<br><br>\r\n<i>Germany, U.K., South Korea, China, Brazil</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 103,
+  "fields": {
+    "action_time": "2024-12-07T22:55:12.779Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "3",
+    "object_repr": "Q3: For each of the following lists of companies, name the state where all of the companies were founded (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 104,
+  "fields": {
+    "action_time": "2024-12-07T22:55:19.448Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "4",
+    "object_repr": "Q4: Match the placeholder name (John Doe) to the country that uses it (1 Point Each)\r\n<br><br>\r\n<i> Petar Petrović, Max Mustermann, Jean Dupont, Jan Jansen, Jan Novák</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 105,
+  "fields": {
+    "action_time": "2024-12-07T22:55:26.088Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "Q5: Match the map of county crop production to the crop (1 Point Each).\r\n<br><br>\r\n<i>Sunflowers, Apples, Tomatoes, Grapes, Wheat</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 106,
+  "fields": {
+    "action_time": "2024-12-07T22:55:33.145Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "Q6: Order the following rush hour (weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 107,
+  "fields": {
+    "action_time": "2024-12-07T22:55:42.495Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "Q7: Match the famous actor to their criminal history (1 Point Each)\r\n<br><br>\r\n<i>Robert Downey Jr., Mark Wahlberg, Kiefer Sutherland, Tim Allen</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 108,
+  "fields": {
+    "action_time": "2024-12-07T22:55:54.879Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "Q8: Guess the country that contains each of the following (3 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 109,
+  "fields": {
+    "action_time": "2024-12-07T22:56:03.214Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "9",
+    "object_repr": "Q9: Identify the industry for each company in the table (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 110,
+  "fields": {
+    "action_time": "2024-12-07T22:56:16.584Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "12",
+    "object_repr": "Q10: Guess the following vote shares for the 2020 Presidential Election (CNN exit polling) (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 111,
+  "fields": {
+    "action_time": "2024-12-07T22:56:24.204Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "10",
+    "object_repr": "Q11: For each of the following quotes, is it from Optimus Prime or Che Guevara (1 Point Each)?",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 112,
+  "fields": {
+    "action_time": "2024-12-07T22:56:50.283Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "11",
+    "object_repr": "Q12: Convert each amount to nominal dollars (current value - April 2024) (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 113,
+  "fields": {
+    "action_time": "2024-12-07T22:56:59.451Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "Q13: Connect the actors by films they share a collaborator with. <br>\r\n\r\n<i>Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a deg",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 114,
+  "fields": {
+    "action_time": "2024-12-07T22:57:06.657Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "14",
+    "object_repr": "Q14: Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 115,
+  "fields": {
+    "action_time": "2024-12-07T22:57:16.133Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "15",
+    "object_repr": "Q15: Identify the data being shown on the map (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 116,
+  "fields": {
+    "action_time": "2024-12-07T22:57:23.529Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "16",
+    "object_repr": "Q16: Order the following competitive eating world records from longest time to shortest time (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 117,
+  "fields": {
+    "action_time": "2024-12-07T22:57:48.236Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "17",
+    "object_repr": "Q17: For each of the following charts of google search trends, identify the search term from the chart (3 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 118,
+  "fields": {
+    "action_time": "2024-12-07T22:58:14.486Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "Q18: Identify the famous international place from the satelitte photo (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 119,
+  "fields": {
+    "action_time": "2024-12-07T22:58:24.680Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "19",
+    "object_repr": "Q19: The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points ",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 120,
+  "fields": {
+    "action_time": "2024-12-07T22:58:38.263Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "20",
+    "object_repr": "Q20: You will listen to brief snippets of three different songs, each of which features prominently in a famous movie. \r\n<br>\r\n* For 1 Point name the artist for each song\r\n<br>\r\n* For 1 Point name the",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 121,
+  "fields": {
+    "action_time": "2024-12-07T22:58:50.896Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "Q1: Match each of the following nations to their national holiday (1 Point Each).\r\n<br>\r\n<i>France, Mexico, Ireland, China, Canada</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 122,
+  "fields": {
+    "action_time": "2024-12-07T22:58:57.818Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "22",
+    "object_repr": "Q2: Identify the movie from the opening text (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 123,
+  "fields": {
+    "action_time": "2024-12-07T22:59:04.131Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "23",
+    "object_repr": "Q3: Match the written sound a dog makes to the language (1 Point Each)\r\n<br><i>Arabic, French, Chinese, Italian</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 124,
+  "fields": {
+    "action_time": "2024-12-07T22:59:12.511Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "24",
+    "object_repr": "Q4: Identify each component of the Progress Pride Flag shown below (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 125,
+  "fields": {
+    "action_time": "2024-12-07T22:59:19.281Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "25",
+    "object_repr": "Q5: Identify the City/Metro area from that area's area code (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 126,
+  "fields": {
+    "action_time": "2024-12-07T22:59:27.189Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "26",
+    "object_repr": "Q6: For each of the following pet names or short names, identify the formal English given name associated with it, <i>i.e. Dick -> Richard</i> (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 127,
+  "fields": {
+    "action_time": "2024-12-08T21:50:18.599Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "27",
+    "object_repr": "Olympics",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 128,
+  "fields": {
+    "action_time": "2024-12-08T21:52:24.961Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "27",
+    "object_repr": "Q7: For each of the following sports, were they ever an official Olympic event? (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Tug of War\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Climbing\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Softball\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Croquet\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 129,
+  "fields": {
+    "action_time": "2024-12-16T05:54:44.480Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "28",
+    "object_repr": "Driving",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 130,
+  "fields": {
+    "action_time": "2024-12-16T05:57:44.175Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "28",
+    "object_repr": "Q8: Order the following states by percentage of drivers with a DUI on their driving record from highest to lowest (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Oregon\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Wyoming\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Texas\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Michigan\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Wisconsin\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 131,
+  "fields": {
+    "action_time": "2024-12-16T05:59:23.054Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "12",
+    "object_repr": "Democracy",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 132,
+  "fields": {
+    "action_time": "2024-12-16T06:02:03.519Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "29",
+    "object_repr": "Q9: Order the following male first names by net Republican party share. It is the percentage of registered Republicans with that first name minus the percentage of registered Democrats with that name.",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Karen\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Darla\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Annie\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Kelsey\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Vicki\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 133,
+  "fields": {
+    "action_time": "2024-12-16T06:07:48.712Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "29",
+    "object_repr": "Q9: Order the following female first names by net Republican party share. It is the percentage of registered Republicans with that first name minus the percentage of registered Democrats with that nam",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 134,
+  "fields": {
+    "action_time": "2024-12-16T06:11:56.789Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "30",
+    "object_repr": "Q10: ## 10. Order the following male first names by net Republican party share. It is the percentage of registered Republicans with that first name minus the percentage of registered Democrats with th",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Andre\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Anthony\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Michael\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Timothy\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Hunter\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 135,
+  "fields": {
+    "action_time": "2024-12-16T06:14:36.414Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "29",
+    "object_repr": "Q9: Order the following female first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage regist",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 136,
+  "fields": {
+    "action_time": "2024-12-16T06:14:51.157Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "30",
+    "object_repr": "Q10: 10. Order the following male first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage reg",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 137,
+  "fields": {
+    "action_time": "2024-12-16T06:15:16.863Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "30",
+    "object_repr": "Q10: Order the following male first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage registe",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 138,
+  "fields": {
+    "action_time": "2024-12-16T06:17:10.794Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "28",
+    "object_repr": "Q8: Order the following states by percentage of drivers with a DUI on their driving record from highest to lowest (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A. Oregon\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B. Wyoming\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C. Texas\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D. Michigan\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"E. Wisconsin\", \"fields\": [\"Answer text\", \"Explanation\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 139,
+  "fields": {
+    "action_time": "2024-12-16T06:17:36.194Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "29",
+    "object_repr": "Q9: Order the following female first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage regist",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A. Karen\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B. Darla\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C. Annie\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D. Kelsey\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"E. Vicki\", \"fields\": [\"Answer text\", \"Explanation\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 140,
+  "fields": {
+    "action_time": "2024-12-16T06:18:03.328Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "30",
+    "object_repr": "Q10: Order the following male first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage registe",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A. Andre\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B. Anthony\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C. Michael\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D. Timothy\", \"fields\": [\"Answer text\", \"Explanation\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"E. Hunter\", \"fields\": [\"Answer text\", \"Explanation\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 141,
+  "fields": {
+    "action_time": "2024-12-24T19:42:42.943Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "31",
+    "object_repr": "Q18: Identify the famous international place from the satellite photo (5 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q18: Identify the famous international place from the satellite photo (5 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 142,
+  "fields": {
+    "action_time": "2024-12-24T21:19:35.233Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "29",
+    "object_repr": "Movies",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 143,
+  "fields": {
+    "action_time": "2024-12-24T21:19:51.419Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "18",
+    "object_repr": "Bird's Eye View",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 144,
+  "fields": {
+    "action_time": "2024-12-24T21:23:10.362Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "32",
+    "object_repr": "Q17: Identify the movies and missing actor based on the actors common appearances (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"F.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"G.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 145,
+  "fields": {
+    "action_time": "2024-12-24T21:23:40.308Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "32",
+    "object_repr": "Q17: Identify the movies and missing actor based on the actors common appearances (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Category\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 146,
+  "fields": {
+    "action_time": "2024-12-30T02:07:36.678Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "33",
+    "object_repr": "Q16: Identify the data being shown on the map (5 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q16: Identify the data being shown on the map (5 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 147,
+  "fields": {
+    "action_time": "2024-12-31T19:23:58.029Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "15",
+    "object_repr": "Guess the Data",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 148,
+  "fields": {
+    "action_time": "2024-12-31T19:24:20.346Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "29",
+    "object_repr": "Movies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 149,
+  "fields": {
+    "action_time": "2024-12-31T19:31:07.374Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "30",
+    "object_repr": "Money",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 150,
+  "fields": {
+    "action_time": "2024-12-31T19:33:04.186Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "34",
+    "object_repr": "Q11: Identify the currency from the image (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 151,
+  "fields": {
+    "action_time": "2024-12-31T19:33:37.033Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "34",
+    "object_repr": "Q11: Identify the currency from the image (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D.\", \"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 152,
+  "fields": {
+    "action_time": "2024-12-31T19:53:48.541Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Agriculture",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Games\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 153,
+  "fields": {
+    "action_time": "2024-12-31T20:02:38.143Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "35",
+    "object_repr": "Q12: Identify the common cooking ingredient (spice, seasoning, herb, vegetable) from the photo of it growing (3 Points Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 154,
+  "fields": {
+    "action_time": "2025-01-05T21:09:54.176Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "Q6: Order the following rush hour (weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A. Los Angeles: LAX -> Staples Center/Crypto.com Arena (17.1 miles)\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B. Boston: Paul Revere House -> Harvard Square (5.2 miles)\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C. D.C.: Nationals Park -> CIA Headquarters (12.1 miles)\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D. NYC: Empire State Building -> Yankee Stadium (8.6 miles)\", \"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 155,
+  "fields": {
+    "action_time": "2025-01-05T21:18:27.312Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "9",
+    "object_repr": "Q9: Identify the industry for each company in the table (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 156,
+  "fields": {
+    "action_time": "2025-01-05T21:25:33.425Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "Q7: Match the famous actor to their criminal history (1 Point Each)\r\n<br><br>\r\n<i>Robert Downey Jr., Mark Wahlberg, Kiefer Sutherland, Tim Allen</i>",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A. assaulted a Vietnamese-American man on the street, calling him a \\\"Vietnam fucking shit\\\" & knocking him unconscious with a large stick. Later that same day he attacked another Vietnamese-American, punching him in the eye\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B. was arrested for possession of heroin, cocaine, crack and an unloaded .357 Magnum handgun while he was speeding\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C. was arrested at the Airport for possession of over 1.43 lb of cocaine\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D. was charged in Los Angeles on drunk driving charges, after failing a field sobriety test. It was their fourth DUI charge\", \"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 157,
+  "fields": {
+    "action_time": "2025-01-05T21:26:19.464Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "Q8: Guess the country that contains each of the following (3 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A. The world's tallest statue\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B. The world's largest airport\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C. The world' biggest shopping mall\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D. The world's second tallest building\", \"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 158,
+  "fields": {
+    "action_time": "2025-01-05T21:26:58.908Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "10",
+    "object_repr": "Q11: For each of the following quotes, is it from Optimus Prime or Che Guevara (1 Point Each)?",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 159,
+  "fields": {
+    "action_time": "2025-01-05T21:27:53.825Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "Q13: Connect the actors by films they share a collaborator with. <br>\r\n\r\n<i>Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a deg",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 160,
+  "fields": {
+    "action_time": "2025-01-05T21:28:45.417Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "15",
+    "object_repr": "Q15: Identify the data being shown on the map (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 161,
+  "fields": {
+    "action_time": "2025-01-05T21:29:35.697Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "17",
+    "object_repr": "Q17: For each of the following charts of google search trends, identify the search term from the chart (3 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B.\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D.\", \"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 162,
+  "fields": {
+    "action_time": "2025-01-05T21:30:06.226Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "Q18: Identify the famous international place from the satelitte photo (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 163,
+  "fields": {
+    "action_time": "2025-01-05T21:34:08.999Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "Q8: Guess the country that contains each of the following (3 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A. The world's tallest statue\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B. The world's largest airport\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C. The world' biggest shopping mall\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D. The world's second tallest building\", \"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 164,
+  "fields": {
+    "action_time": "2025-01-05T22:11:39.177Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Future-Game",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 165,
+  "fields": {
+    "action_time": "2025-01-05T22:17:58.607Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "36",
+    "object_repr": "Q19: Match the niche contemporary music genre to its description (1 Point Each). Additionally, match the song played to the genre its from (1 Point Each).\r\n\r\n**Hyperpop, Hexd**",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Dark, experimental electronic music characterized by heavily distorted bass, industrial elements, and pitched-up vocals. Incorporates horror-like sounds and unsettling samples with aggressive, glitchy beats.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. An exaggerated, maximalist take on pop music featuring distorted bass, Auto-Tuned vocals, and glitchy electronic production.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 166,
+  "fields": {
+    "action_time": "2025-01-05T22:21:47.834Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "36",
+    "object_repr": "Q19: Match the niche contemporary music genre to its description (1 Point Each). Additionally, match the song played to the genre its from (1 Point Each).\r\n\r\n**Hyperpop, Hexd**",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 167,
+  "fields": {
+    "action_time": "2025-01-06T00:13:35.705Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "Q8: Guess the country that contains each of the following (3 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"D. The world's second tallest building\", \"fields\": [\"Answer image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"E. The world's largest dam\", \"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 168,
+  "fields": {
+    "action_time": "2025-01-07T05:07:32.793Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Q2: Match the Antarctica base/research institute to it's home country (1 Point Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 169,
+  "fields": {
+    "action_time": "2025-01-07T05:15:26.814Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "4",
+    "object_repr": "Q4: Match the placeholder name (John Doe) to the country that uses it (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 170,
+  "fields": {
+    "action_time": "2025-01-07T05:15:44.660Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "Q5: Match the map of county crop production to the crop (1 Point Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 171,
+  "fields": {
+    "action_time": "2025-01-07T05:16:04.110Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "Q7: Match the famous actor to their criminal history (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 172,
+  "fields": {
+    "action_time": "2025-01-07T05:17:20.862Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "Q13: Connect the actors by films they share a collaborator with. Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 173,
+  "fields": {
+    "action_time": "2025-01-07T05:17:45.943Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "Q1: Match each of the following nations to their national holiday (1 Point Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 174,
+  "fields": {
+    "action_time": "2025-01-07T05:18:10.190Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "23",
+    "object_repr": "Q3: Match the written sound a dog makes to the language (1 Point Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 175,
+  "fields": {
+    "action_time": "2025-01-07T05:19:11.058Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "36",
+    "object_repr": "Q19: Match the niche contemporary music genre to its description (1 Point Each). Additionally, match the song played to the genre its from (1 Point Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 176,
+  "fields": {
+    "action_time": "2025-01-08T01:31:06.404Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "22",
+    "object_repr": "Q2: Identify the movie from the opening text (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D.\", \"fields\": [\"Question image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 177,
+  "fields": {
+    "action_time": "2025-01-08T01:31:44.646Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "22",
+    "object_repr": "Q2: Identify the movie from the opening text (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Question image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 178,
+  "fields": {
+    "action_time": "2025-01-08T01:35:41.525Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "24",
+    "object_repr": "Q4: Identify each component of the Progress Pride Flag shown below (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D.\", \"fields\": [\"Question image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 179,
+  "fields": {
+    "action_time": "2025-01-08T01:37:02.310Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "34",
+    "object_repr": "Q11: Identify the currency from the image (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D.\", \"fields\": [\"Question image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 180,
+  "fields": {
+    "action_time": "2025-01-08T01:37:49.598Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "35",
+    "object_repr": "Q12: Identify the common cooking ingredient (spice, seasoning, herb, vegetable) from the photo of it growing (3 Points Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D.\", \"fields\": [\"Question image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 181,
+  "fields": {
+    "action_time": "2025-01-08T01:38:15.292Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "33",
+    "object_repr": "Q16: Identify the data being shown on the map (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 182,
+  "fields": {
+    "action_time": "2025-01-08T01:38:37.082Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "32",
+    "object_repr": "Q17: Identify the movies and missing actor based on the actors common appearances (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 183,
+  "fields": {
+    "action_time": "2025-01-08T01:39:06.791Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "32",
+    "object_repr": "Q17: Identify the movies and missing actor based on the actors common appearances (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 184,
+  "fields": {
+    "action_time": "2025-01-08T01:39:47.529Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "31",
+    "object_repr": "Q18: Identify the famous international place from the satellite photo (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 185,
+  "fields": {
+    "action_time": "2025-01-09T04:41:12.585Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "Round 1",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 186,
+  "fields": {
+    "action_time": "2025-01-09T04:41:17.453Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "2",
+    "object_repr": "Round 2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Round number\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 187,
+  "fields": {
+    "action_time": "2025-01-09T04:41:21.888Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "3",
+    "object_repr": "Final Round",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Round number\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 188,
+  "fields": {
+    "action_time": "2025-01-11T18:18:53.916Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "April-2024",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 189,
+  "fields": {
+    "action_time": "2025-01-11T18:24:34.481Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "April-2024",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 190,
+  "fields": {
+    "action_time": "2025-01-11T18:31:50.654Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "April-2024",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 191,
+  "fields": {
+    "action_time": "2025-01-11T18:32:23.518Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "April-2024",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 192,
+  "fields": {
+    "action_time": "2025-01-11T18:33:08.027Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "January-2025",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 193,
+  "fields": {
+    "action_time": "2025-01-11T18:33:24.363Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "April-2024",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 194,
+  "fields": {
+    "action_time": "2025-01-13T23:24:15.309Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "January-2025",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is password protected\", \"Password\"]}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 4,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 4,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 4,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 4,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 5,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 5,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 5,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 5,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 6,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 6,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 6,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 6,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add category",
+    "content_type": 7,
+    "codename": "add_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change category",
+    "content_type": 7,
+    "codename": "change_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete category",
+    "content_type": 7,
+    "codename": "delete_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view category",
+    "content_type": 7,
+    "codename": "view_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add game",
+    "content_type": 8,
+    "codename": "add_game"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change game",
+    "content_type": 8,
+    "codename": "change_game"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete game",
+    "content_type": 8,
+    "codename": "delete_game"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view game",
+    "content_type": 8,
+    "codename": "view_game"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add question type",
+    "content_type": 9,
+    "codename": "add_questiontype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change question type",
+    "content_type": 9,
+    "codename": "change_questiontype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete question type",
+    "content_type": 9,
+    "codename": "delete_questiontype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view question type",
+    "content_type": 9,
+    "codename": "view_questiontype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add question",
+    "content_type": 10,
+    "codename": "add_question"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change question",
+    "content_type": 10,
+    "codename": "change_question"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete question",
+    "content_type": 10,
+    "codename": "delete_question"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view question",
+    "content_type": 10,
+    "codename": "view_question"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add answer",
+    "content_type": 11,
+    "codename": "add_answer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change answer",
+    "content_type": 11,
+    "codename": "change_answer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete answer",
+    "content_type": 11,
+    "codename": "delete_answer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view answer",
+    "content_type": 11,
+    "codename": "view_answer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add question round",
+    "content_type": 12,
+    "codename": "add_questionround"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change question round",
+    "content_type": 12,
+    "codename": "change_questionround"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete question round",
+    "content_type": 12,
+    "codename": "delete_questionround"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view question round",
+    "content_type": 12,
+    "codename": "view_questionround"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$GaKTcesAdq8CjrmLYTczde$NeJ5+0SVFd2oVRqur4JCuru8HjAHW7xoM878yxwcXbs=",
+    "last_login": "2025-01-05T21:03:09.860Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "michaelmbuchman@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-11-11T20:02:59.226Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "quiz",
+    "model": "category"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "quiz",
+    "model": "game"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "quiz",
+    "model": "questiontype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "quiz",
+    "model": "question"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "quiz",
+    "model": "answer"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "quiz",
+    "model": "questionround"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6oldkujyc8gq9ndbajw54xdjnrhtf0kw",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAYaaEu3fcMZGYYpGpoUtqV8e7apAvd_vfef6mI21ri1mSJU1IXZdXpdyPkh9QdpDvW26x5rusykd4VfdCmxznJ83q4fwcFW_nWkkECObG29yyZHXcgIDkMzNIZNsEBYLJBDNjBCZFB65HM2WHP2av3BwnPOKw:1tAadK:N03d8rKbeJLKjABD_taYk3CMlDsFMrG_0SNUVkAcVoU",
+    "expire_date": "2024-11-25T20:03:34.326Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9mdnoik50hyn9gp1r5i4ub8sh4hcs5k6",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSECpe24dO83kIEZWnwUA60ujP-uTbrQ7T3nnpdwuMyjWyoXl0gchBK7381juPC0AjrjNGQZ8jSX5OWqyI1WecrE1-Pm_gVGrOP3zUYDW9DKhI4gNNCYFo2PFjqL0FvP1Ps2BozERDqC4mgbHfbag1J-jQ54Y3fHWp-5kHtwSTExOS0Oc1n4_QHEHUS6:1tXTnW:0XKTu_xy3Uq2zA7uYj-p2WH1wht8QFcOpe31mtrooUY",
+    "expire_date": "2025-01-27T23:24:42.176Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mdyrpgzt5534y6yptl3lsimw1ng3f04f",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAYaaEu3fcMZGYYpGpoUtqV8e7apAvd_vfef6mI21ri1mSJU1IXZdXpdyPkh9QdpDvW26x5rusykd4VfdCmxznJ83q4fwcFW_nWkkECObG29yyZHXcgIDkMzNIZNsEBYLJBDNjBCZFB65HM2WHP2av3BwnPOKw:1tN43q:NdNEcEcenfb0i2AvpuqWKIPTw4hZAJ0WOudRTxSa3t8",
+    "expire_date": "2024-12-30T05:54:30.519Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qy1f23lhj8vqc1si35nxvts0aa2or74o",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAYaaEu3fcMZGYYpGpoUtqV8e7apAvd_vfef6mI21ri1mSJU1IXZdXpdyPkh9QdpDvW26x5rusykd4VfdCmxznJ83q4fwcFW_nWkkECObG29yyZHXcgIDkMzNIZNsEBYLJBDNjBCZFB65HM2WHP2av3BwnPOKw:1tH9br:nLL1h0HdIM4vdfSDaYqcrw2Gp-axazgxc1_NeMvn3DM",
+    "expire_date": "2024-12-13T22:37:11.243Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wq8rrob2ml2wafkgp3bv2bx32e5klr96",
+  "fields": {
+    "session_data": "eyJnYW1lX3Bhc3N3b3JkX3ZlcmlmaWVkXzIiOnRydWV9:1tXrRB:ADpHQJvS4sRwIzBWUl4qzBxtrPt86hrQC-ply9lCGsg",
+    "expire_date": "2025-01-29T00:39:13.143Z"
+  }
+},
+{
+  "model": "quiz.game",
+  "pk": 1,
+  "fields": {
+    "name": "April-2024",
+    "description": "<p><strong>Location</strong>: Lucky Lab NW</p>\r\n<p><strong>Date:</strong> April 12th, 2024</p>\r\n<p><strong><a href=\"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit?gid=435741819#gid=435741819\" target=\"_blank\" rel=\"noopener\">Game Results</a></strong></p>\r\n<p><strong>Description:</strong> Maggie and Kyle's joint bachelor/bachelorette party.&nbsp;</p>",
+    "created_at": "2024-11-11T20:04:18Z",
+    "is_password_protected": false,
+    "password": null
+  }
+},
+{
+  "model": "quiz.game",
+  "pk": 2,
+  "fields": {
+    "name": "January-2025",
+    "description": "<p><strong>Location</strong>: Lucky Lab NW</p>\r\n<p><strong>Date:</strong> January 21st, 2025</p>",
+    "created_at": "2024-12-04T01:29:28Z",
+    "is_password_protected": true,
+    "password": "luckylabnw"
+  }
+},
+{
+  "model": "quiz.game",
+  "pk": 3,
+  "fields": {
+    "name": "Future-Game",
+    "description": "Question bank",
+    "created_at": "2025-01-05T22:09:12Z",
+    "is_password_protected": false,
+    "password": null
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 1,
+  "fields": {
+    "name": "Coffee",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 2,
+  "fields": {
+    "name": "Research",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 3,
+  "fields": {
+    "name": "Companies",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 4,
+  "fields": {
+    "name": "Names",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 5,
+  "fields": {
+    "name": "Agriculture",
+    "description": "",
+    "games": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 6,
+  "fields": {
+    "name": "Traffic",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 7,
+  "fields": {
+    "name": "Famous Criminals",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 8,
+  "fields": {
+    "name": "Where in the World",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 9,
+  "fields": {
+    "name": "Alchemy",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 10,
+  "fields": {
+    "name": "Quotes",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 11,
+  "fields": {
+    "name": "Inflation",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 12,
+  "fields": {
+    "name": "Democracy",
+    "description": "",
+    "games": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 13,
+  "fields": {
+    "name": "Six Degrees of Separation",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 14,
+  "fields": {
+    "name": "First Name Last Name",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 15,
+  "fields": {
+    "name": "Guess the Data",
+    "description": "",
+    "games": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 16,
+  "fields": {
+    "name": "Time",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 17,
+  "fields": {
+    "name": "Popularity",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 18,
+  "fields": {
+    "name": "Bird's Eye View",
+    "description": "",
+    "games": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 19,
+  "fields": {
+    "name": "Visual Pun",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 20,
+  "fields": {
+    "name": "Soundtracks",
+    "description": "",
+    "games": [
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 21,
+  "fields": {
+    "name": "Days",
+    "description": "",
+    "games": [
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 22,
+  "fields": {
+    "name": "Prologue",
+    "description": "",
+    "games": [
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 23,
+  "fields": {
+    "name": "Sounds",
+    "description": "",
+    "games": [
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 24,
+  "fields": {
+    "name": "Pride",
+    "description": "",
+    "games": [
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 25,
+  "fields": {
+    "name": "Numbers",
+    "description": "",
+    "games": [
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 26,
+  "fields": {
+    "name": "Hypocoristics",
+    "description": "",
+    "games": [
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 27,
+  "fields": {
+    "name": "Olympics",
+    "description": "",
+    "games": [
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 28,
+  "fields": {
+    "name": "Driving",
+    "description": "",
+    "games": [
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 29,
+  "fields": {
+    "name": "Movies",
+    "description": "",
+    "games": [
+      2,
+      1
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 30,
+  "fields": {
+    "name": "Money",
+    "description": "",
+    "games": [
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 31,
+  "fields": {
+    "name": "Genres",
+    "description": null,
+    "games": [
+      2
+    ]
+  }
+},
+{
+  "model": "quiz.questiontype",
+  "pk": 1,
+  "fields": {
+    "name": "Ranking",
+    "description": "Given a list, rank each item in the list based on the criteria provided"
+  }
+},
+{
+  "model": "quiz.questiontype",
+  "pk": 2,
+  "fields": {
+    "name": "Matching",
+    "description": "Match the answer from the list to the description"
+  }
+},
+{
+  "model": "quiz.questiontype",
+  "pk": 3,
+  "fields": {
+    "name": "Multiple Open Ended",
+    "description": "Answer each of the open ended questions"
+  }
+},
+{
+  "model": "quiz.questionround",
+  "pk": 1,
+  "fields": {
+    "name": "Round 1",
+    "description": "",
+    "round_number": 1
+  }
+},
+{
+  "model": "quiz.questionround",
+  "pk": 2,
+  "fields": {
+    "name": "Round 2",
+    "description": "",
+    "round_number": 2
+  }
+},
+{
+  "model": "quiz.questionround",
+  "pk": 3,
+  "fields": {
+    "name": "Final Round",
+    "description": "",
+    "round_number": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 1,
+  "fields": {
+    "game": 1,
+    "category": 1,
+    "text": "Rank the following nations from most coffee consumption per capita to least. (1 Point Each)",
+    "answer_bank": null,
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 1,
+    "created_at": "2024-11-11T20:36:43.278Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 2,
+  "fields": {
+    "game": 1,
+    "category": 2,
+    "text": "Match the Antarctica base/research institute to it's home country (1 Point Each).",
+    "answer_bank": "Germany, U.K., South Korea, China, Brazil",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 2,
+    "created_at": "2024-11-20T00:56:42.848Z",
+    "total_points": 1,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 3,
+  "fields": {
+    "game": 1,
+    "category": 3,
+    "text": "For each of the following lists of companies, name the state where all of the companies were founded (2 Points Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 3,
+    "created_at": "2024-11-20T03:40:16.832Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 4,
+  "fields": {
+    "game": 1,
+    "category": 4,
+    "text": "Match the placeholder name (John Doe) to the country that uses it (1 Point Each)",
+    "answer_bank": "Petar Petrović, Max Mustermann, Jean Dupont, Jan Jansen, Jan Novák",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 4,
+    "created_at": "2024-11-20T03:52:34.819Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 5,
+  "fields": {
+    "game": 1,
+    "category": 5,
+    "text": "Match the map of county crop production to the crop (1 Point Each).",
+    "answer_bank": "Sunflowers, Apples, Tomatoes, Grapes, Wheat",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 5,
+    "created_at": "2024-11-20T03:58:03.734Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 6,
+  "fields": {
+    "game": 1,
+    "category": 6,
+    "text": "Order the following rush hour (weekday 5:00 PM) journeys from longest travel time to shortest (1 Point Each).",
+    "answer_bank": null,
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 6,
+    "created_at": "2024-11-20T04:04:27.620Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 7,
+  "fields": {
+    "game": 1,
+    "category": 7,
+    "text": "Match the famous actor to their criminal history (1 Point Each)",
+    "answer_bank": "Robert Downey Jr., Mark Wahlberg, Kiefer Sutherland, Tim Allen",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 7,
+    "created_at": "2024-11-20T04:18:24.481Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 8,
+  "fields": {
+    "game": 1,
+    "category": 8,
+    "text": "Guess the country that contains each of the following (3 Points Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 8,
+    "created_at": "2024-11-20T04:24:30.776Z",
+    "total_points": 15,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 9,
+  "fields": {
+    "game": 1,
+    "category": 9,
+    "text": "Identify the industry for each company in the table (1 Point Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/black.png",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/black_answer.png",
+    "question_number": 9,
+    "created_at": "2024-11-20T04:30:51.330Z",
+    "total_points": 6,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 10,
+  "fields": {
+    "game": 1,
+    "category": 10,
+    "text": "For each of the following quotes, is it from Optimus Prime or Che Guevara (1 Point Each)?",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/quotes.png",
+    "answer_image_url": null,
+    "question_number": 11,
+    "created_at": "2024-11-20T04:41:12.996Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 11,
+  "fields": {
+    "game": 1,
+    "category": 11,
+    "text": "Convert each amount to nominal dollars (current value - April 2024) (2 Points Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 12,
+    "created_at": "2024-11-20T04:50:58.851Z",
+    "total_points": 8,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 12,
+  "fields": {
+    "game": 1,
+    "category": 12,
+    "text": "Guess the following vote shares for the 2020 Presidential Election (CNN exit polling) (2 Points Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 10,
+    "created_at": "2024-11-20T04:54:40.042Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 13,
+  "fields": {
+    "game": 1,
+    "category": 13,
+    "text": "Connect the actors by films they share a collaborator with. Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree",
+    "answer_bank": "Example: connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a degree:\r\n<br>\r\nMeryl Streep (Don't Look Up) Leo DiCaprio (The Departed) Mark Wahlberg  (The Other Guys) The Rock\r\n<br>\r\nConnect Alan Rickman to Jacob Elordi in as few degrees as possible",
+    "question_type": 3,
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/actors.png",
+    "answer_image_url": null,
+    "question_number": 13,
+    "created_at": "2024-11-23T05:34:48.558Z",
+    "total_points": 11,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 14,
+  "fields": {
+    "game": 1,
+    "category": 14,
+    "text": "Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (1 Point Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 14,
+    "created_at": "2024-11-23T05:47:32.618Z",
+    "total_points": 7,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 15,
+  "fields": {
+    "game": 1,
+    "category": 15,
+    "text": "Identify the data being shown on the map (5 Points)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/violent_crime_rate.png",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/answer_violent_crime_rate.png",
+    "question_number": 15,
+    "created_at": "2024-11-23T05:51:18.754Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 16,
+  "fields": {
+    "game": 1,
+    "category": 16,
+    "text": "Order the following competitive eating world records from longest time to shortest time (1 Point Each)",
+    "answer_bank": null,
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 16,
+    "created_at": "2024-11-23T05:55:48.947Z",
+    "total_points": 4,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 17,
+  "fields": {
+    "game": 1,
+    "category": 17,
+    "text": "For each of the following charts of google search trends, identify the search term from the chart (3 Points Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 17,
+    "created_at": "2024-11-23T05:59:19.251Z",
+    "total_points": 12,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 18,
+  "fields": {
+    "game": 1,
+    "category": 18,
+    "text": "Identify the famous international place from the satelitte photo (5 Points)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/birds_eye_view/birds_eye_view.png",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/birds_eye_view/answer_birds_eye_view.png",
+    "question_number": 18,
+    "created_at": "2024-11-23T06:03:00.403Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 19,
+  "fields": {
+    "game": 1,
+    "category": 19,
+    "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/visual_pun.png",
+    "answer_image_url": null,
+    "question_number": 19,
+    "created_at": "2024-11-23T06:07:56.524Z",
+    "total_points": 1,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 20,
+  "fields": {
+    "game": 1,
+    "category": 20,
+    "text": "You will listen to brief snippets of three different songs, each of which features prominently in a famous movie. \r\n<br>\r\n* For 1 Point name the artist for each song\r\n<br>\r\n* For 1 Point name the title of each song \r\n<br>\r\n* For 4 Points name the movie \r\n<br>\r\n(10 Points Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 20,
+    "created_at": "2024-11-23T06:14:11.494Z",
+    "total_points": 40,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 21,
+  "fields": {
+    "game": 2,
+    "category": 21,
+    "text": "Match each of the following nations to their national holiday (1 Point Each).",
+    "answer_bank": "France, Mexico, Ireland, China, Canada",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 1,
+    "created_at": "2024-12-04T01:36:29.261Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 22,
+  "fields": {
+    "game": 2,
+    "category": 22,
+    "text": "Identify the movie from the opening text (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 2,
+    "created_at": "2024-12-04T01:55:49.291Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 23,
+  "fields": {
+    "game": 2,
+    "category": 23,
+    "text": "Match the written sound a dog makes to the language (1 Point Each).",
+    "answer_bank": "Arabic, French, Chinese, Italian",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 3,
+    "created_at": "2024-12-04T02:12:58.891Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 24,
+  "fields": {
+    "game": 2,
+    "category": 24,
+    "text": "Identify each component of the Progress Pride Flag shown below (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 4,
+    "created_at": "2024-12-05T03:51:42.529Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 25,
+  "fields": {
+    "game": 2,
+    "category": 25,
+    "text": "Identify the City/Metro area from that area's area code (2 Points Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 5,
+    "created_at": "2024-12-05T04:14:54.112Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 26,
+  "fields": {
+    "game": 2,
+    "category": 26,
+    "text": "For each of the following pet names or short names, identify the formal English given name associated with it, <i>i.e. Dick -> Richard</i> (2 Points Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 6,
+    "created_at": "2024-12-05T04:39:06.009Z",
+    "total_points": 12,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 27,
+  "fields": {
+    "game": 2,
+    "category": 27,
+    "text": "For each of the following sports, were they ever an official Olympic event? (1 Point Each)",
+    "answer_bank": null,
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 7,
+    "created_at": "2024-12-08T21:52:24.957Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 28,
+  "fields": {
+    "game": 2,
+    "category": 28,
+    "text": "Order the following states by percentage of drivers with a DUI on their driving record from highest to lowest (1 Point Each)",
+    "answer_bank": null,
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 8,
+    "created_at": "2024-12-16T05:57:44.171Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 29,
+  "fields": {
+    "game": 2,
+    "category": 12,
+    "text": "Order the following female first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage registered as Democrats. Higher number means more Republican. Order from high to low (1 Point Each).",
+    "answer_bank": null,
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 9,
+    "created_at": "2024-12-16T06:02:03.515Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 30,
+  "fields": {
+    "game": 2,
+    "category": 12,
+    "text": "Order the following male first names by net Republican party share. For each of the names, its the percentage of people with that first name registered as Republicans minus the percentage registered as Democrats. Higher number means more Republican. Order from high to low (1 Point Each).",
+    "answer_bank": null,
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 10,
+    "created_at": "2024-12-16T06:11:56.784Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 31,
+  "fields": {
+    "game": 2,
+    "category": 18,
+    "text": "Identify the famous international place from the satellite photo (5 Points)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/birds_eye_view.png",
+    "answer_image_url": null,
+    "question_number": 18,
+    "created_at": "2024-12-24T19:42:42.939Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 32,
+  "fields": {
+    "game": 2,
+    "category": 29,
+    "text": "Identify the movies and missing actor based on the actors common appearances (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/movies_question.png",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/movies_answer.png",
+    "question_number": 17,
+    "created_at": "2024-12-24T21:23:10.360Z",
+    "total_points": 7,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 33,
+  "fields": {
+    "game": 2,
+    "category": 15,
+    "text": "Identify the data being shown on the map (5 Points)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/ww2_shipwrecks.jpg",
+    "answer_image_url": null,
+    "question_number": 16,
+    "created_at": "2024-12-30T02:07:36.673Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 34,
+  "fields": {
+    "game": 2,
+    "category": 30,
+    "text": "Identify the currency from the image (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 11,
+    "created_at": "2024-12-31T19:33:04.177Z",
+    "total_points": 8,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 35,
+  "fields": {
+    "game": 2,
+    "category": 5,
+    "text": "Identify the common cooking ingredient (spice, seasoning, herb, vegetable) from the photo of it growing (3 Points Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 12,
+    "created_at": "2024-12-31T20:02:38.138Z",
+    "total_points": 12,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 36,
+  "fields": {
+    "game": 2,
+    "category": 31,
+    "text": "Match the niche contemporary music genre to its description (1 Point Each). Additionally, match the song played to the genre its from (1 Point Each).",
+    "answer_bank": "Hyperpop, Hexd",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 19,
+    "created_at": "2025-01-05T22:17:58.602Z",
+    "total_points": 1,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1,
+  "fields": {
+    "question": 1,
+    "text": "A. New Zealand",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": "2nd",
+    "explanation": "13.34 kg/person",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 2,
+  "fields": {
+    "question": 1,
+    "text": "B. Estonia",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": "1st",
+    "explanation": "16.8 kg/person",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 3,
+  "fields": {
+    "question": 1,
+    "text": "C. United States",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": "4th",
+    "explanation": "4.71 kg/person",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 4,
+  "fields": {
+    "question": 1,
+    "text": "D. Finland",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": "3rd",
+    "explanation": "11.2 kg/person",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 5,
+  "fields": {
+    "question": 1,
+    "text": "E. Ethiopia",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": 5,
+    "points": 1,
+    "answer_text": "5th",
+    "explanation": "1.17 kg/person",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 6,
+  "fields": {
+    "question": 2,
+    "text": "A.",
+    "question_image_url": "https://github.com/buchmayne/trivia/blob/main/content/2024/April-2024/img/antarctica/brazil.jpg?raw=true",
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Brazil",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 7,
+  "fields": {
+    "question": 2,
+    "text": "B.",
+    "question_image_url": "https://github.com/buchmayne/trivia/blob/main/content/2024/April-2024/img/antarctica/south_korea.png?raw=true",
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "South Korea",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 8,
+  "fields": {
+    "question": 2,
+    "text": "C.",
+    "question_image_url": "https://github.com/buchmayne/trivia/blob/main/content/2024/April-2024/img/antarctica/china.png?raw=true",
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "China",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 9,
+  "fields": {
+    "question": 2,
+    "text": "D.",
+    "question_image_url": "https://github.com/buchmayne/trivia/blob/main/content/2024/April-2024/img/antarctica/uk.png?raw=true",
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "U.K.",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 10,
+  "fields": {
+    "question": 2,
+    "text": "E.",
+    "question_image_url": "https://github.com/buchmayne/trivia/blob/main/content/2024/April-2024/img/antarctica/germany.png?raw=true",
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Germany",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 11,
+  "fields": {
+    "question": 3,
+    "text": "A. Abercrombie & Fitch, IBM, Verizon, Barnes & Noble, MTV",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "New York",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 12,
+  "fields": {
+    "question": 3,
+    "text": "B. Panera, AMC Theaters, H&R Block, Budweiser, Enterprise Rent-A-Car",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Missouri",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 13,
+  "fields": {
+    "question": 3,
+    "text": "C. P&G (Procter and Gamble), Arby's, Wendy's, Goodyear Tire, Office Max, Kroger",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Ohio",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 14,
+  "fields": {
+    "question": 3,
+    "text": "D. Gamestop, Whole Foods, Dr Pepper, Frito-Lay, 7-Eleven, Six Flags, Dell",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Texas",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 15,
+  "fields": {
+    "question": 4,
+    "text": "A. Netherlands",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Jan Jansen",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 16,
+  "fields": {
+    "question": 4,
+    "text": "B. France",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Jean Dupont",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 17,
+  "fields": {
+    "question": 4,
+    "text": "C. Germany",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Max Mustermann",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 18,
+  "fields": {
+    "question": 4,
+    "text": "D. Serbia",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Petar Petrović",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 19,
+  "fields": {
+    "question": 4,
+    "text": "E. Czech Republic",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Jan Novák",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 20,
+  "fields": {
+    "question": 5,
+    "text": "A.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/crops/tomatoes.png",
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Tomatoes",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 21,
+  "fields": {
+    "question": 5,
+    "text": "B.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/crops/wheat.png",
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Wheat",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 22,
+  "fields": {
+    "question": 5,
+    "text": "C.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/crops/sunflowers.png",
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Sunflowers",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 23,
+  "fields": {
+    "question": 5,
+    "text": "D.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/crops/apples.png",
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Apples",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 24,
+  "fields": {
+    "question": 5,
+    "text": "E.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/crops/grapes.png",
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Grapes",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 25,
+  "fields": {
+    "question": 6,
+    "text": "A. Los Angeles: LAX -> Staples Center/Crypto.com Arena (17.1 miles)",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/traffic/la_traffic.png",
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "50 min",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/traffic/answer_la_traffic.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 26,
+  "fields": {
+    "question": 6,
+    "text": "B. Boston: Paul Revere House -> Harvard Square (5.2 miles)",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/traffic/boston_traffic.png",
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "30 min",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/traffic/answer_boston_traffic.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 27,
+  "fields": {
+    "question": 6,
+    "text": "C. D.C.: Nationals Park -> CIA Headquarters (12.1 miles)",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/traffic/dc_traffic.png",
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "40 min",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/traffic/answer_dc_traffic.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 28,
+  "fields": {
+    "question": 6,
+    "text": "D. NYC: Empire State Building -> Yankee Stadium (8.6 miles)",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/traffic/nyc_traffic.png",
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "38 min",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/traffic/answer_nyc_traffic.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 29,
+  "fields": {
+    "question": 7,
+    "text": "A. assaulted a Vietnamese-American man on the street, calling him a \"Vietnam fucking shit\" & knocking him unconscious with a large stick. Later that same day he attacked another Vietnamese-American, punching him in the eye",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Mark Wahlberg",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/mark.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 30,
+  "fields": {
+    "question": 7,
+    "text": "B. was arrested for possession of heroin, cocaine, crack and an unloaded .357 Magnum handgun while he was speeding",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Robert Downey Jr.",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/rdj.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 31,
+  "fields": {
+    "question": 7,
+    "text": "C. was arrested at the Airport for possession of over 1.43 lb of cocaine",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Tim Allen",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/tim.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 32,
+  "fields": {
+    "question": 7,
+    "text": "D. was charged in Los Angeles on drunk driving charges, after failing a field sobriety test. It was their fourth DUI charge",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Kiefer Sutherland,",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/kiefer.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 33,
+  "fields": {
+    "question": 8,
+    "text": "A. The world's tallest statue",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "India",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/where/india.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 34,
+  "fields": {
+    "question": 8,
+    "text": "B. The world's largest airport",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Saudi Arabia",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/where/saudi.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 35,
+  "fields": {
+    "question": 8,
+    "text": "C. The world' biggest shopping mall",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Iran",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/where/iran.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 36,
+  "fields": {
+    "question": 8,
+    "text": "D. The world's second tallest building",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Malaysia",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/where/malaysia.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 37,
+  "fields": {
+    "question": 8,
+    "text": "E. The world's largest dam",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Pakistan",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/where/pakistan.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 38,
+  "fields": {
+    "question": 9,
+    "text": "A. Black Rock",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Investment Firm",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 39,
+  "fields": {
+    "question": 9,
+    "text": "B. Black Water",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Mercenaries",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 40,
+  "fields": {
+    "question": 9,
+    "text": "C. Black Stone",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Investment Firm",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 41,
+  "fields": {
+    "question": 9,
+    "text": "D. Bridge Rock",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Investment Firm",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 42,
+  "fields": {
+    "question": 9,
+    "text": "E. Bridge Water",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Investment Firm",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 43,
+  "fields": {
+    "question": 9,
+    "text": "F. Bridge Stone",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Tires",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 44,
+  "fields": {
+    "question": 10,
+    "text": "A. \"We've suffered losses, but we've not lost the war.\"",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Optimus",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 45,
+  "fields": {
+    "question": 10,
+    "text": "B. \"I have a wish. It as a fear as well - that in my end will be my beginning.\"",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Che Guevara",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 46,
+  "fields": {
+    "question": 10,
+    "text": "C. \"I will never stop fighting for our freedom.\"",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Optimus",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 47,
+  "fields": {
+    "question": 10,
+    "text": "D. \"Even if you defeat me...others will rise to defeat your tyranny.\"",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Optimus",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 48,
+  "fields": {
+    "question": 10,
+    "text": "E. \"Do not forget what you have learned from our past...From it's lessons, the future is forged.\"",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Optimus",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 49,
+  "fields": {
+    "question": 10,
+    "text": "F. \"There's a thin line between being a hero, and being a memory.\"",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Optimus",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 50,
+  "fields": {
+    "question": 10,
+    "text": "G. \"Fate rarely calls upon as at a moment of our choosing.\"",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 7,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Optimus",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 51,
+  "fields": {
+    "question": 10,
+    "text": "H. \"We cannot be sure of having something to live for unless we are willing to die for it.\"",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 8,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Che Guevara",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 52,
+  "fields": {
+    "question": 11,
+    "text": "A. $1,000 in 2000",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "$1,838  (1,746 - 1,929)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 53,
+  "fields": {
+    "question": 11,
+    "text": "B. $1,000 in 1990",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "$2,435 (2,313 - 2,556)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 54,
+  "fields": {
+    "question": 11,
+    "text": "C. $1 in 1933",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "$24 (22 - 26)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 55,
+  "fields": {
+    "question": 11,
+    "text": "D. $100,000 in 1968",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "$910,046 (864,543 - 955,548)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 56,
+  "fields": {
+    "question": 12,
+    "text": "A. Trump won what % of voters who identify as \"Moderate\" (poll options were, Liberal, Moderate, Conservative)",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "34% (31-37)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 57,
+  "fields": {
+    "question": 12,
+    "text": "B. Trump won what % of \"White\" voters",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "58% (55-61)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 58,
+  "fields": {
+    "question": 12,
+    "text": "C. Biden won what % of \"White, college degree\" voters",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "51% (48-54)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 59,
+  "fields": {
+    "question": 12,
+    "text": "D. Biden won what % of \"No religious affiliation\" voters",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "65% (62-68)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 60,
+  "fields": {
+    "question": 13,
+    "text": "1.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 11,
+    "answer_text": null,
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 61,
+  "fields": {
+    "question": 13,
+    "text": "2.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 9,
+    "answer_text": null,
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 62,
+  "fields": {
+    "question": 13,
+    "text": "3.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 7,
+    "answer_text": null,
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 63,
+  "fields": {
+    "question": 13,
+    "text": "4.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": null,
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 64,
+  "fields": {
+    "question": 13,
+    "text": "5.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": null,
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 65,
+  "fields": {
+    "question": 13,
+    "text": "6.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 66,
+  "fields": {
+    "question": 14,
+    "text": "A. Academy Award winning British director famous for imax movies and nonlinear stories",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Christopher Nolan",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 67,
+  "fields": {
+    "question": 14,
+    "text": "B. Famed baseball pitcher, known for his fastball and career longevity",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Nolan Ryan",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 68,
+  "fields": {
+    "question": 14,
+    "text": "C. Phillies home run slugger from 2004-2016, also a character from The Office",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Ryan Howard",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 69,
+  "fields": {
+    "question": 14,
+    "text": "D. 2004 Democratic presidential nominee who had his political career derailed by a single scream",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Howard Dean",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 70,
+  "fields": {
+    "question": 14,
+    "text": "E. Singer & actor from the 1950s. Known for friendship with Frank Sinatra and Sammy Davis Jr., who together with others formed the Rat Pack.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Dean Martin",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 71,
+  "fields": {
+    "question": 14,
+    "text": "F. 74 year old comedic actor starring in a Hulu series with another older comedic actor and Selena Gomez",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Martin Short",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 72,
+  "fields": {
+    "question": 14,
+    "text": "G. Indiana Jones' sidekick",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 7,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Short Round",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 73,
+  "fields": {
+    "question": 15,
+    "text": "",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Violent Crime Rate",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 74,
+  "fields": {
+    "question": 16,
+    "text": "A. 4 32-ounce bowls of mayonnaise",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "8 minutes",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 75,
+  "fields": {
+    "question": 16,
+    "text": "B. 121 Twinkies",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "6 minutes (Joey Chestnut)",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 76,
+  "fields": {
+    "question": 16,
+    "text": "C. 29 Waffles (8 oz)",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "10 minutes",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 77,
+  "fields": {
+    "question": 16,
+    "text": "D. 48 Oreos and Half a Gallon of Whole Milk",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "2 minutes 28 seconds",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 78,
+  "fields": {
+    "question": 17,
+    "text": "A.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/google/bitcoin.png",
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Bitcoin",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/google/bitcoin.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 79,
+  "fields": {
+    "question": 17,
+    "text": "B.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/google/trump.png",
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Trump",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/google/trump.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 80,
+  "fields": {
+    "question": 17,
+    "text": "C.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/google/ukraine.png",
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Ukraine",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/google/ukraine.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 81,
+  "fields": {
+    "question": 17,
+    "text": "D.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/google/covid.png",
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Covid",
+    "explanation": "",
+    "answer_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2024/April-2024/img/google/covid.png"
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 82,
+  "fields": {
+    "question": 18,
+    "text": "",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Machu Picchu",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 83,
+  "fields": {
+    "question": 19,
+    "text": "Top Left:",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Whiskey",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 84,
+  "fields": {
+    "question": 19,
+    "text": "Top Right:",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Fox Trot",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 85,
+  "fields": {
+    "question": 19,
+    "text": "Bottom Left:",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Tango",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 86,
+  "fields": {
+    "question": 19,
+    "text": "Bottom Right:",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Echo",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 87,
+  "fields": {
+    "question": 19,
+    "text": "Category:",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "NATO Phonetic Alphabet",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 88,
+  "fields": {
+    "question": 20,
+    "text": "A.\r\n\r\nMovie: ____\r\n1. ____ - ____\r\n2. ____ - ____\r\n3. ____ - ____",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 10,
+    "answer_text": "The Big Lebowski, 1. Bob Dylan - The Man in Me  2. Gipsy Kings - Hotel California (Spanish Mix)  3. Kenny Rogers & The First Edition - Just Dropped In (To See What Condition My Condition Is In)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 89,
+  "fields": {
+    "question": 20,
+    "text": "B.\r\n\r\nMovie: ____\r\n1. ____ - ____\r\n2. ____ - ____\r\n3. ____ - ____",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 10,
+    "answer_text": "Happy Gilmore 1. Exile - Kiss You All Over  2. House of Pain - Jump Around  3. Lionel Richie, Diana Ross - Endless Love",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 90,
+  "fields": {
+    "question": 20,
+    "text": "C.\r\n\r\nMovie: ____\r\n1. ____ - ____\r\n2. ____ - ____\r\n3. ____ - ____",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 10,
+    "answer_text": "Dazed and Confused 1. Alice Cooper - School's Out  2. War - Why Can't We Be Friends?  3. Dr. John - Right Place Wrong Time",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 91,
+  "fields": {
+    "question": 20,
+    "text": "D.\r\n\r\nMovie: ____\r\n1. ____ - ____\r\n2. ____ - ____\r\n3. ____ - ____",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 10,
+    "answer_text": "Wayne's World 1. Gary Wright - Dream Weaver  2. Jimi Hendrix - Foxey Lady  3. Sweet - Ballroom Blitz",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 92,
+  "fields": {
+    "question": 21,
+    "text": "A. July 1st",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Canada",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 93,
+  "fields": {
+    "question": 21,
+    "text": "B. July 14th",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "France",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 94,
+  "fields": {
+    "question": 21,
+    "text": "C. September 16th",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Mexico",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 95,
+  "fields": {
+    "question": 21,
+    "text": "D. October 1st",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "China",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 96,
+  "fields": {
+    "question": 21,
+    "text": "E. March 17th",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Ireland",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 97,
+  "fields": {
+    "question": 22,
+    "text": "A.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/movie_text/us.png",
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Us",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 98,
+  "fields": {
+    "question": 22,
+    "text": "B.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/movie_text/fargo.png",
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Fargo",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 99,
+  "fields": {
+    "question": 22,
+    "text": "C.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/movie_text/master_and_commander.png",
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Master and Commander: The Far Side of the World",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 100,
+  "fields": {
+    "question": 22,
+    "text": "D.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/movie_text/scarface.png",
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Scarface",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 101,
+  "fields": {
+    "question": 23,
+    "text": "A. Hau, hau",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Arabic",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 102,
+  "fields": {
+    "question": 23,
+    "text": "B. Waouh, waouh",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "French",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 103,
+  "fields": {
+    "question": 23,
+    "text": "C. Wang, wang",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Chinese",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 104,
+  "fields": {
+    "question": 23,
+    "text": "D. Bau, bau",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Italian",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 105,
+  "fields": {
+    "question": 24,
+    "text": "A.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/pride/black_and_brown.png",
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Represents marginalized communities and people living with or who have died from HIV/AIDS",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 106,
+  "fields": {
+    "question": 24,
+    "text": "B.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/pride/purple.png",
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Represents spirit",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 107,
+  "fields": {
+    "question": 24,
+    "text": "C.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/pride/white_pink_blue.png",
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Represents trans pride",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 108,
+  "fields": {
+    "question": 24,
+    "text": "D.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/pride/yellow.png",
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Represents sunlight and stimulating new ideas",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 109,
+  "fields": {
+    "question": 25,
+    "text": "A. 281",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Houston",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 110,
+  "fields": {
+    "question": 25,
+    "text": "B. 213",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Los Angeles",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 111,
+  "fields": {
+    "question": 25,
+    "text": "C. 202",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Washington D.C.",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 112,
+  "fields": {
+    "question": 25,
+    "text": "D. 313",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Detroit",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 113,
+  "fields": {
+    "question": 26,
+    "text": "A. Barry",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Bartholomew",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 114,
+  "fields": {
+    "question": 26,
+    "text": "B. Sally",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Sarah",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 115,
+  "fields": {
+    "question": 26,
+    "text": "C. Tina",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Christina/Valentina",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 116,
+  "fields": {
+    "question": 26,
+    "text": "D. Toby",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Tobias",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 117,
+  "fields": {
+    "question": 26,
+    "text": "E. Simon",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Sylvester",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 118,
+  "fields": {
+    "question": 26,
+    "text": "F. Molly",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Mary",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 119,
+  "fields": {
+    "question": 27,
+    "text": "A. Tug of War",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes (1900-1920)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 120,
+  "fields": {
+    "question": 27,
+    "text": "B. Climbing",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes (2020-)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 121,
+  "fields": {
+    "question": 27,
+    "text": "C. Softball",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes (1996-2008, 2020, 2028)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 122,
+  "fields": {
+    "question": 27,
+    "text": "D. Croquet",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes (1900)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 123,
+  "fields": {
+    "question": 28,
+    "text": "A. Oregon",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "0.99%",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 124,
+  "fields": {
+    "question": 28,
+    "text": "B. Wyoming",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "2.73%",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 125,
+  "fields": {
+    "question": 28,
+    "text": "C. Texas",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": 5,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "0.39%",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 126,
+  "fields": {
+    "question": 28,
+    "text": "D. Michigan",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "0.67%",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 127,
+  "fields": {
+    "question": 28,
+    "text": "E. Wisconsin",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "1.53%",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 128,
+  "fields": {
+    "question": 29,
+    "text": "A. Karen",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "-1",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 129,
+  "fields": {
+    "question": 29,
+    "text": "B. Darla",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "27",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 130,
+  "fields": {
+    "question": 29,
+    "text": "C. Annie",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": 5,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "-55",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 131,
+  "fields": {
+    "question": 29,
+    "text": "D. Kelsey",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "-11",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 132,
+  "fields": {
+    "question": 29,
+    "text": "E. Vicki",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "15",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 133,
+  "fields": {
+    "question": 30,
+    "text": "A. Andre",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": 5,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "-63",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 134,
+  "fields": {
+    "question": 30,
+    "text": "B. Anthony",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "-6",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 135,
+  "fields": {
+    "question": 30,
+    "text": "C. Michael",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "13",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 136,
+  "fields": {
+    "question": 30,
+    "text": "D. Timothy",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "22",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 137,
+  "fields": {
+    "question": 30,
+    "text": "E. Hunter",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "47",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 138,
+  "fields": {
+    "question": 31,
+    "text": "",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "The Louvre Museum",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 139,
+  "fields": {
+    "question": 32,
+    "text": "A.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Inception",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 140,
+  "fields": {
+    "question": 32,
+    "text": "B.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "The Dark Knight Rises",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 141,
+  "fields": {
+    "question": 32,
+    "text": "C.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Interstellar",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 142,
+  "fields": {
+    "question": 32,
+    "text": "D.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Dunkirk",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 143,
+  "fields": {
+    "question": 32,
+    "text": "E.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Tenet",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 144,
+  "fields": {
+    "question": 32,
+    "text": "F.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Oppenheimer",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 145,
+  "fields": {
+    "question": 32,
+    "text": "G.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 7,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Matt Damon",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 146,
+  "fields": {
+    "question": 33,
+    "text": "",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "WWII Shipwrecks",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 147,
+  "fields": {
+    "question": 34,
+    "text": "A.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/currency/australia.png",
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Australia",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 148,
+  "fields": {
+    "question": 34,
+    "text": "B.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/currency/canada.png",
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Canada",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 149,
+  "fields": {
+    "question": 34,
+    "text": "C.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/currency/mexico.png",
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Mexico",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 150,
+  "fields": {
+    "question": 34,
+    "text": "D.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/currency/south_korea.jpg",
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "South Korea",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 151,
+  "fields": {
+    "question": 35,
+    "text": "A.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/ingredients/cinnamon.jpg",
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Cinnamon",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 152,
+  "fields": {
+    "question": 35,
+    "text": "B.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/ingredients/pepper.jpg",
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Pepper",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 153,
+  "fields": {
+    "question": 35,
+    "text": "C.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/ingredients/vanilla.jpg",
+    "is_correct": false,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Vanilla",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 154,
+  "fields": {
+    "question": 35,
+    "text": "D.",
+    "question_image_url": "https://raw.githubusercontent.com/buchmayne/trivia/refs/heads/main/content/2025/January-2025/img/ingredients/brussel_sprouts.jpg",
+    "is_correct": false,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Brussel Sprouts",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 155,
+  "fields": {
+    "question": 36,
+    "text": "A. Dark, experimental electronic music characterized by heavily distorted bass, industrial elements, and pitched-up vocals. Incorporates horror-like sounds and unsettling samples with aggressive, glitchy beats.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Hexd",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 156,
+  "fields": {
+    "question": 36,
+    "text": "B. An exaggerated, maximalist take on pop music featuring distorted bass, Auto-Tuned vocals, and glitchy electronic production.",
+    "question_image_url": null,
+    "is_correct": false,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Hyperpop",
+    "explanation": "",
+    "answer_image_url": null
+  }
+}
+]
