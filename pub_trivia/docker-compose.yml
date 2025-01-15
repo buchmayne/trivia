@@ -1,6 +1,33 @@
 version: '3.9'
 
 services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: always
+
+    letsencrypt:
+      image: nginxproxy/acme-companion
+      container_name: nginx-proxy-letsencrypt
+      volumes_from:
+        - nginx-proxy
+      volumes:
+        - certs:/etc/nginx/certs:rw
+        - acme:/etc/acme.sh
+        - /var/run/docker.sock:/var/run/docker.sock:ro
+      environment:
+        - DEFAULT_EMAIL=michaelmbuchman@gmail.com
+      restart: always
+
   web:
     build:
       context: .
@@ -19,6 +46,8 @@ services:
     env_file:
       - .env
     environment:
+      - VIRTUAL_HOST=marleybuchman.com,www.marleybuchman.com
+      - LETSENCRYPT_HOST=marleybuchman.com,www.marleybuchman.com
       - DB_HOST=db
       - DB_PORT=5432
     depends_on:
@@ -53,3 +82,8 @@ volumes:
   postgres_data:
   static_volume:
   media_volume:
+  conf:
+  vhost:
+  html:
+  certs:
+  acme:
