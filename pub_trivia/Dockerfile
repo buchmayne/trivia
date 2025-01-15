@@ -33,7 +33,8 @@ USER appuser
 
 # Configure Nginx
 COPY nginx.conf /etc/nginx/sites-available/default
-RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+RUN rm -f /etc/nginx/sites-enabled/default && \
+    ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
 
 # Expose port (optional, useful for debugging locally)
