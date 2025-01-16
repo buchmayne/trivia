@@ -27,6 +27,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - DEFAULT_EMAIL=michaelmbuchman@gmail.com
+      - LETSENCRYPT_TEST=true
     restart: always
 
   nginx:
