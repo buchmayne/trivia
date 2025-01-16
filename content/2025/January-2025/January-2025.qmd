@@ -211,11 +211,9 @@ E. Hunter
 
 ## 13. Connect the actors by films they share a collaborator with
 
-Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a degree:
+Example, connect Jack Nicholson to The Rock. This is a possible answer, that is 2 degrees of separation as each movie is a degree:
 
-Meryl Streep (Don't Look Up) Leo DiCaprio
-
-Leo DiCaprio (The Departed) Mark Wahlberg
+Jack Nicholson (The Departed) Mark Wahlberg
 
 Mark Wahlberg (The Other Guys) The Rock
 
