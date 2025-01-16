@@ -29,7 +29,12 @@ SECRET_KEY = os.getenv("SECRET_KEY", 'default-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False) == 'True'
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',] # will need to add 'your_domain.com'
+ALLOWED_HOSTS = [
+    'marleybuchman.com',
+    'www.marleybuchman.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -86,8 +91,8 @@ DATABASES = {
         'NAME': os.getenv("DB_NAME"),
         'USER': os.getenv("DB_USER"),
         'PASSWORD': os.getenv("DB_PASSWORD"),
-        # 'HOST': os.getenv("DB_HOST", "localhost"), # Production: 'localhost' -> 'db'
-        'HOST': 'localhost',
+        'HOST': os.getenv("DB_HOST", "localhost"), # Production: 'localhost' -> 'db'
+        # 'HOST': 'localhost',
         'PORT': os.getenv("DB_PORT", "5432"),
     }
 }
@@ -139,3 +144,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Security settings
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Add this for HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

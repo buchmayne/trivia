@@ -12,21 +12,33 @@ WORKDIR /app
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     postgresql-client \
+    nginx \
     && rm -rf /var/lib/apt/lists/*
+
+# Configure Nginx
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN rm -f /etc/nginx/sites-enabled/default && \
+    ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
 # Install dependencies
 COPY requirements.txt /app/
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    pip install gunicorn
 
 # Copy project files
 COPY . /app/
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
 
 # Create a non-root user and switch to it
 RUN useradd -m appuser && chown -R appuser:appuser /app
 USER appuser
 
+
 # Expose port (optional, useful for debugging locally)
 EXPOSE 8000
 
 # Run Django development server by default
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "pub_trivia.wsgi:application"]
