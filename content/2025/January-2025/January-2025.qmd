@@ -268,9 +268,13 @@ F. Molly
 
 ## 18. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
 
+## Example
+
+<img src="img/vp/example_vp.png" width="100%">
+
 ##
 
-Visual pun image here...
+<img src="img/vp/visual_pun.png" width="100%">
 
 # Final Round
 

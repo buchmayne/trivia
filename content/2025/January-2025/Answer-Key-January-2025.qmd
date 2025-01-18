@@ -329,6 +329,12 @@ The Louvre Museum
 
 ##
 
+Fast Food Restaurants
+
+Chick-fil-A, Jack in the Box, Five Guys, Popeyes
+
+<img src="img/vp/visual_pun.png" width="100%">
+
 Visual pun image here...
 
 # Final Round
