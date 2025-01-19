@@ -224,35 +224,34 @@ South Korea
 
 Cinnamon
 
-<img src="img/ingredients/cinnamon.jpg" width="100%">
+<img src="img/ingredients/cinnamon.png" width="100%">
 
 ## 12B.
 
 Pepper
 
-<img src="img/ingredients/pepper.jpg" width="100%">
+<img src="img/ingredients/pepper.png" width="100%">
 
 ## 12C.
 
 Vanilla
 
-<img src="img/ingredients/vanilla.jpg" width="100%">
+<img src="img/ingredients/vanilla.png" width="100%">
 
 ## 12D.
 
-Brussel Sprouts
+Garlic
 
-<img src="img/ingredients/brussel_sprouts.jpg" width="100%">
+<img src="img/ingredients/garlic.png" width="100%">
 
 # Six Degrees of Separation
 
 ## 13. Connect the actors by films they share a collaborator with
 
-Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a degree:
+Example, connect Jack Nicholson to The Rock. This is a possible answer, that is 2 degrees of separation as each movie is a degree:
 
-Meryl Streep (Don't Look Up) Leo DiCaprio
 
-Leo DiCaprio (The Departed) Mark Wahlberg
+Jack Nicholson (The Departed) Mark Wahlberg
 
 Mark Wahlberg (The Other Guys) The Rock
 
@@ -330,6 +329,12 @@ The Louvre Museum
 
 ##
 
+Fast Food Restaurants
+
+Chick-fil-A, Jack in the Box, Five Guys, Popeyes
+
+<img src="img/vp/visual_pun.png" width="100%">
+
 Visual pun image here...
 
 # Final Round
@@ -340,7 +345,9 @@ Visual pun image here...
 
 ##
 
-**Hyperpop, Zoomer Gaze, Hexd, Chillwave, Neoperreo, Future Funk**
+**Hyperpop, Zoomer Gaze, Hexd, Neoperreo, Future Funk, Witch House, Phonk**
+
+1. (0:15-0:40) Money Machine - 100 gecs 2. Murder in My Mind - Kordhell (0:00-0:35) 3. Fly With Me - Sakura-Lee (1:05-1:20) 4. kenopsia - lil dirtbag (1:20-1:50) 5. Tu Sicaria - Ms Nina (0:10-0:40) 6. Excorcism - Sidewalks and Skeletons (0:00-0:30) 7. Where’s My Juul - Lik Mariko (1:10-1:30) 
 
 <span style="font-size: smaller;">
 A. Hexd: Dark, experimental electronic music characterized by heavily distorted bass, industrial elements, and pitched-up vocals. Incorporates horror-like sounds and unsettling samples with aggressive, glitchy beats.
@@ -413,3 +420,87 @@ Atomic Blonde, Conjuring 2, Patriot, Night at the Museum 2, The Pirates!, Get Hi
 F. “Spirit in The Sky” - Norman Greenbaum
 
 Apollo 13; Evan Almighty; Forrest Gump; Guardians Of The Galaxy; I, Tonya; Jesus Camp; Miami Blues; Michael; Remember The Titans; Suicide Squad; Sunshine Cleaning; Superstar; This Is The End; W;
+
+# TBD
+
+# Popularity
+
+## 21. Order the following Wikipedia pages from highest to lowest views in 2024 (1 Point Each).
+
+A. Deadpool & Wolverine - 23.3 Million
+
+B. World War II - 12.5 Million
+
+C. Kamala Harris - 29.4 Million
+
+D. Elon Musk - 18.7 Million
+
+E. Chappell Roan - 10.7 Million
+
+# Companies
+
+## 22. For each of the following brand logos, name the decade in which the logo was in use (2 Points Each).
+
+A. Pepsi - 1971-1987... 70s/80s
+
+<img src="img/logos/pepsi.png" width="100%">
+
+B. Pizza Hut - 1999-2008... 2000s
+
+<img src="img/logos/pizza_hut.png" width="100%">
+
+C. Shell - 1961-1971... 60s
+
+<img src="img/logos/shell.png" width="100%">
+
+D. Heineken - 1974-1991... 70s/80s
+
+<img src="img/logos/heineken.png" width="100%">
+
+# Neighborhoods
+
+## 23. Match each of the following Manhattan neighborhoods to the image of their approximate boundaries (1 Point Each).
+
+**Hell's Kitchen, Harlem, Chelsea, Greenwich Village, Tribeca, Financial District**
+
+A. <img src="img/nyc/tribeca.png" width="100%">
+
+B. <img src="img/nyc/chelsea.png" width="100%">
+
+C. <img src="img/nyc/harlem.png" width="100%">
+
+D. <img src="img/nyc/financial_district.png" width="100%">
+
+E. <img src="img/nyc/hells_kitchen.png" width="100%">
+
+F. <img src="img/nyc/greenwich_village.png" width="100%">
+
+# Government
+
+## 24. Order the following U.S. Government Agencies from highest to lowest federal spending (1 Point Each).
+
+A. Social Security Administration - 395 Billion
+
+B. Department of Defense Military Programs - 250 Billion
+
+C. Department of Health and Human Services - 452 Billion
+
+D. Department of Veteran Affairs - 105 Billion
+
+E. Department of Transportation - 30 Billion
+
+# Nature
+
+## 25. Match the following national parks to the image shown (1 Point Each)
+
+**Acadia, Badlands, Great Smoky Mountains, Yellowstone, Yosemite** 
+
+A. <img src="img/nature/yellowstone.png" width="100%">
+
+B. <img src="img/nature/yosemite.png" width="100%">
+
+C. <img src="img/nature/acadia.png" width="100%">
+
+D. <img src="img/nature/great_smoky_mountains.png" width="100%">
+
+E. <img src="img/nature/badlands.png" width="100%">

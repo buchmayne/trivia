@@ -193,29 +193,27 @@ E. Hunter
 
 ## 12A.
 
-<img src="img/ingredients/cinnamon.jpg" width="100%">
+<img src="img/ingredients/cinnamon.png" width="100%">
 
 ## 12B.
 
-<img src="img/ingredients/pepper.jpg" width="100%">
+<img src="img/ingredients/pepper.png" width="100%">
 
 ## 12C.
 
-<img src="img/ingredients/vanilla.jpg" width="100%">
+<img src="img/ingredients/vanilla.png" width="100%">
 
 ## 12D.
 
-<img src="img/ingredients/brussel_sprouts.jpg" width="100%">
+<img src="img/ingredients/garlic.png" width="100%">
 
 # Six Degrees of Separation
 
 ## 13. Connect the actors by films they share a collaborator with
 
-Example, connect Meryl Streep to The Rock. This is a possible answer, that is 3 degrees of separation as each movie is a degree:
+Example, connect Jack Nicholson to The Rock. This is a possible answer, that is 2 degrees of separation as each movie is a degree:
 
-Meryl Streep (Don't Look Up) Leo DiCaprio
-
-Leo DiCaprio (The Departed) Mark Wahlberg
+Jack Nicholson (The Departed) Mark Wahlberg
 
 Mark Wahlberg (The Other Guys) The Rock
 
@@ -270,9 +268,13 @@ F. Molly
 
 ## 18. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
 
+## Example
+
+<img src="img/vp/example_vp.png" width="100%">
+
 ##
 
-Visual pun image here...
+<img src="img/vp/visual_pun.png" width="100%">
 
 # Final Round
 
@@ -282,7 +284,9 @@ Visual pun image here...
 
 ##
 
-**Hyperpop, Zoomer Gaze, Hexd, Chillwave, Neoperreo, Future Funk**
+**Hyperpop, Zoomer Gaze, Hexd, Neoperreo, Future Funk, Witch House, Phonk**
+
+1. (0:15-0:40) 2. (0:00-0:35) 3. (1:05-1:20) 4. (1:20-1:50) 5. (0:10-0:40) 6. (0:00-0:30) 7. (1:10-1:30) 
 
 <span style="font-size: smaller;">
 A. Dark, experimental electronic music characterized by heavily distorted bass, industrial elements, and pitched-up vocals. Incorporates horror-like sounds and unsettling samples with aggressive, glitchy beats.
@@ -318,14 +322,14 @@ G. Southern rap mixed with Memphis-style production, heavy bass, and cowbell bea
 
 ##
 
-A.
+A. (0:00 - 0:30)
 
-B. 
+B. (0:50 - 1:15)
 
-C.
+C. (0:00 - 0:25)
 
-D.
+D. (0:00 - 0:25)
 
-E.
+E. (0:05 - 0:30)
 
-F.
+F. (0:30 - 0:50)
