@@ -224,25 +224,25 @@ South Korea
 
 Cinnamon
 
-<img src="img/ingredients/cinnamon.jpg" width="100%">
+<img src="img/ingredients/cinnamon.png" width="100%">
 
 ## 12B.
 
 Pepper
 
-<img src="img/ingredients/pepper.jpg" width="100%">
+<img src="img/ingredients/pepper.png" width="100%">
 
 ## 12C.
 
 Vanilla
 
-<img src="img/ingredients/vanilla.jpg" width="100%">
+<img src="img/ingredients/vanilla.png" width="100%">
 
 ## 12D.
 
-Brussel Sprouts
+Garlic
 
-<img src="img/ingredients/brussel_sprouts.jpg" width="100%">
+<img src="img/ingredients/garlic.png" width="100%">
 
 # Six Degrees of Separation
 
