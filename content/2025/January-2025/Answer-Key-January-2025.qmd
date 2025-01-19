@@ -345,7 +345,7 @@ Visual pun image here...
 
 ##
 
-**Hyperpop, Zoomer Gaze, Hexd, Chillwave, Neoperreo, Future Funk**
+**Hyperpop, Zoomer Gaze, Hexd, Neoperreo, Future Funk, Witch House, Phonk**
 
 <span style="font-size: smaller;">
 A. Hexd: Dark, experimental electronic music characterized by heavily distorted bass, industrial elements, and pitched-up vocals. Incorporates horror-like sounds and unsettling samples with aggressive, glitchy beats.
@@ -418,3 +418,87 @@ Atomic Blonde, Conjuring 2, Patriot, Night at the Museum 2, The Pirates!, Get Hi
 F. “Spirit in The Sky” - Norman Greenbaum
 
 Apollo 13; Evan Almighty; Forrest Gump; Guardians Of The Galaxy; I, Tonya; Jesus Camp; Miami Blues; Michael; Remember The Titans; Suicide Squad; Sunshine Cleaning; Superstar; This Is The End; W;
+
+# TBD
+
+# Popularity
+
+## TBD. Order the following Wikipedia pages from highest to lowest views in 2024 (1 Point Each).
+
+A. Deadpool & Wolverine - 23.3 Million
+
+B. World War II - 12.5 Million
+
+C. Kamala Harris - 29.4 Million
+
+D. Elon Musk - 18.7 Million
+
+E. Chappell Roan - 10.7 Million
+
+# Companies
+
+## TBD. For each of the following brand logos, name the decade in which the logo was in use (2 Points Each).
+
+A. Pepsi - 1971-1987... 70s/80s
+
+<img src="img/logos/pepsi.png" width="100%">
+
+B. Pizza Hut - 1999-2008... 2000s
+
+<img src="img/logos/pizza_hut.png" width="100%">
+
+C. Shell - 1961-1971... 60s
+
+<img src="img/logos/shell.png" width="100%">
+
+D. Heineken - 1974-1991... 70s/80s
+
+<img src="img/logos/heineken.png" width="100%">
+
+# Neighborhoods
+
+## TBD. Match each of the following Manhattan neighborhoods to the image of their approximate boundaries (1 Point Each).
+
+**Hell's Kitchen, Harlem, Chelsea, Greenwich Village, Tribeca, Financial District**
+
+A. <img src="img/nyc/tribeca.png" width="100%">
+
+B. <img src="img/nyc/chelsea.png" width="100%">
+
+C. <img src="img/nyc/harlem.png" width="100%">
+
+D. <img src="img/nyc/financial_district.png" width="100%">
+
+E. <img src="img/nyc/hells_kitchen.png" width="100%">
+
+F. <img src="img/nyc/greenwich_village.png" width="100%">
+
+# Government
+
+## TBD. Order the following U.S. Government Agencies from highest to lowest federal spending (1 Point Each).
+
+A. Social Security Administration - 395 Billion
+
+B. Department of Defense Military Programs - 250 Billion
+
+C. Department of Health and Human Services - 452 Billion
+
+D. Department of Veteran Affairs - 105 Billion
+
+E. Department of Transportation - 30 Billion
+
+# Nature
+
+## TBD. Match the following national parks to the image shown (1 Point Each)
+
+**Acadia, Badlands, Great Smoky Mountains, Yellowstone, Yosemite** 
+
+A. <img src="img/nature/yellowstone.png" width="100%">
+
+B. <img src="img/nature/yosemite.png" width="100%">
+
+C. <img src="img/nature/acadia.png" width="100%">
+
+D. <img src="img/nature/great_smoky_mountains.png" width="100%">
+
+E. <img src="img/nature/badlands.png" width="100%">
