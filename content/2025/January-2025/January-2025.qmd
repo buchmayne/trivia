@@ -262,7 +262,7 @@ F. Molly
 
 ##
 
-<img src="img/birds_eye_view.png" width="100%">
+<img src="img/birds_eye_view/venice_satellite.png" width="100%">
 
 # Visual Pun
 

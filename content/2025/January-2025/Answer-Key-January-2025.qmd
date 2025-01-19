@@ -315,13 +315,13 @@ WWII Shipwrecks (Shipwrecks is worth 4 Points)
 
 ##
 
-<img src="img/birds_eye_view.png" width="100%">
+<img src="img/birds_eye_view/venice_satellite.png" width="100%">
 
 ##
 
-The Louvre Museum
+Venice Grand Canal, Venice Italy
 
-<img src="img/louvre.jpg" width="100%">
+<img src="img/birds_eye_view/venice.png" width="100%">
 
 # Visual Pun
 
