@@ -1,10 +1,9 @@
-import os
 import random
 from typing import Optional
 from dataclasses import dataclass
 from time import sleep
 from datetime import date
-
+import requests
 import pandas as pd
 import numpy as np
 import gspread
@@ -128,9 +127,20 @@ def create_game_df(teams: list) -> pd.DataFrame:
     return df
 
 
-def read_player_list_from_csv(path_to_csv: str) -> list:
+def read_player_list_from_gsheet(csv_url: str, access_token: str) -> list:
+    # Create authenticated session
+    session = requests.Session()
+    session.headers.update({
+        'Authorization': f'Bearer {access_token}',
+        'Accept': 'text/csv'
+    })
+    response = session.get(csv_url)
+    
+    if response.status_code != 200:
+        raise Exception(f"Failed to download CSV: {response.status_code}")
+    
     player_dict = (
-        pd.read_csv(path_to_csv)
+        pd.read_csv(pd.io.common.StringIO(response.content.decode('utf-8')))
         .assign(
             gender=lambda df_: df_['gender'].map({"F": False, "M": True}),
         )
@@ -144,9 +154,24 @@ if __name__ == "__main__":
     print("Assigning Teams\n")
     sleep(0.5)
     
-    path_to_player_sheet = os.path.expanduser("~/Downloads/Trivia-Scoring - Players-04-12-24.csv")
+    # Open the Google Sheet
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name('gsheets_key.json', scope)
+    client = gspread.authorize(creds)
+    access_token = creds.get_access_token().access_token
+
+    spreadsheet_url = f"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit#gid=0"
+    spreadsheet = client.open_by_url(spreadsheet_url)
+
+    players_list_spreadsheet_name = 'Players-04-12-24'
+    players_list_spreadsheet = spreadsheet.worksheet(players_list_spreadsheet_name)
+    players_list_spreadsheet_id = players_list_spreadsheet.id
+
+    # Construct the CSV export URL
+    csv_url = f"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/export?format=csv&gid={players_list_spreadsheet_id}"
     
-    players = read_player_list_from_csv(path_to_csv=path_to_player_sheet)
+    # Download the CSV content from googlsheets
+    players = read_player_list_from_gsheet(csv_url, access_token)
 
     # Create teams and set max team size
     teams = [
@@ -168,14 +193,6 @@ if __name__ == "__main__":
 
     # Set up game data
     game_df = create_game_df(assigned_teams)
-
-    # Open the Google Sheet
-    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_name('gsheets_key.json', scope)
-    client = gspread.authorize(creds)
-
-    spreadsheet_url = f"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit#gid=0"
-    spreadsheet = client.open_by_url(spreadsheet_url)
     
     # Create new sheet
     sheet_name = f"trivia-{date.today()}"
