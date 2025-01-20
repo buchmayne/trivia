@@ -4,61 +4,35 @@ author: "Marley Buchman"
 format: revealjs
 ---
 
-# 20 Questions 180 Points
+# 20 Questions 146 Points
 
 ## 
 
-Part 1: 64 Points
+Part 1: 51 Points
 
-Part 2: 116 Points
+Part 2: 81 Points
+
+Final Round: 14 Points
 
 # Part 1
 
-# Days
+# Popularity
 
-## 1. 
+## 1. Order the following Wikipedia pages from highest to lowest views in 2024 (1 Point Each).
 
-Match each of the following nations to their national holiday (1 Point Each)
+A. Deadpool & Wolverine - 23.3 Million
 
-**France, Mexico, Ireland, China, Canada**
+B. World War II - 12.5 Million
 
-A. Canada -- July 1st
+C. Kamala Harris - 29.4 Million
 
-B. France -- July 14th
+D. Elon Musk - 18.7 Million
 
-C. Mexico -- September 16th
-
-D. China -- October 1st
-
-E. Ireland -- March 17th
-
-# Prologue
-
-## 2. Identify the movie from the opening text (2 Points Each)
-
-## 2A.
-
-Us
-<img src="img/movie_text/us.png" width="100%">
-
-## 2B.
-
-Fargo
-<img src="img/movie_text/fargo.png" width="100%">
-
-## 2C.
-
-Master and Commander
-<img src="img/movie_text/master_and_commander.png" width="100%">
-
-## 2D.
-
-Scarface
-<img src="img/movie_text/scarface.png" width="100%">
+E. Chappell Roan - 10.7 Million
 
 # Sounds
 
-## 3. Match the written sound a dog makes to the language (1 Point Each)
+## 2. Match the written sound a dog makes to the language (1 Point Each)
 
 **Arabic, French, Chinese, Italian**
 
@@ -71,6 +45,20 @@ C. Wang, wang -- Chinese
 D. Bau, bau -- Italian
 
 [source](https://www.babbel.com/en/magazine/dogs-bark-other-languages)
+
+# Government
+
+## 3. Order the following U.S. Government Agencies from highest to lowest federal spending (1 Point Each).
+
+A. Social Security Administration - 395 Billion
+
+B. Department of Defense Military Programs - 250 Billion
+
+C. Department of Health and Human Services - 452 Billion
+
+D. Department of Veteran Affairs - 105 Billion
+
+E. Department of Transportation - 30 Billion
 
 # Pride
 
@@ -102,17 +90,41 @@ Represents sunlight and stimulating new ideas
 
 <img src="img/pride/yellow.png" width="100%">
 
-# Numbers
+# Nature
 
-## 5. Identify the City/Metro area from that area's area code (2 Points Each)
+## 5. Match the following national parks to the image shown (1 Point Each)
 
-A. 281 -- Houston
+**Acadia, Badlands, Great Smoky Mountains, Yellowstone, Yosemite** 
 
-B. 213 -- Los Angeles
+## 5A.
 
-C. 202 -- Washington D.C.
+**Yellowstone** 
 
-D. 313 -- Detroit
+<img src="img/nature/yellowstone.png" width="100%">
+
+## 5B.
+
+**Yosemite** 
+
+<img src="img/nature/yosemite.png" width="100%">
+
+## 5C.
+
+**Acadia** 
+
+<img src="img/nature/acadia.png" width="100%">
+
+## 5D.
+
+**Great Smoky Mountains** 
+
+<img src="img/nature/great_smoky_mountains.png" width="100%">
+
+## 5E.
+
+**Badlands** 
+
+<img src="img/nature/badlands.png" width="100%">
 
 # Food
 
@@ -126,17 +138,33 @@ D. 313 -- Detroit
 
 <img src="img/hotdogs/hot_dog_answers.png" width="100%">
 
-# Olympics
+# Companies
 
-## 7. For each of the following sports, where they ever an official Olympic event? (1 Point Each) 
+## 7. For each of the following brand logos, name the decade in which the logo was in use (2 Points Each).
 
-A. Tug of War -- Yes (1900-1920)
+## 7A. 
 
-B. Climbing -- Yes (2020-)
+1971-1987... 70s/80s
 
-C. Softball -- Yes (1996-2008, 2020, 2028)
+<img src="img/logos/pepsi.png" width="100%">
 
-D. Croquet -- Yes (1900)
+## 7B.
+
+1999-2008... 2000s
+
+<img src="img/logos/pizza_hut.png" width="100%">
+
+## 7C.
+
+ 1961-1971... 60s
+
+<img src="img/logos/shell.png" width="100%">
+
+## 7D.
+
+ 1974-1991... 70s/80s
+
+<img src="img/logos/heineken.png" width="100%">
 
 # Driving
 
@@ -188,29 +216,50 @@ Hunter, Timothy, Michael, Anthony, Andre
 
 # Part 2
 
+# Neighborhoods
+
+## 11. Match each of the following Manhattan neighborhoods to the image of their approximate boundaries (1 Point Each).
+
+**Hell's Kitchen, Harlem, Chelsea, Greenwich Village, Tribeca, Financial District**
+
+<img src="img/nyc/map.png" width="100%">
+
+A. Tribeca
+
+B. Chelsea
+
+C. Harlem
+
+D. Financial District
+
+E. Hell's Kitchen
+
+F. Greenwich Village
+
+
 # Money
 
-## 11. Identify the currency from the image (2 Points Each)
+## 12. Identify the nation from the image of the currency (2 Points Each)
 
-## 11A.
+## 12A.
 
 Australia
 
 <img src="img/currency/australia.png" width="100%">
 
-## 11B.
+## 12B.
 
 Canada
 
 <img src="img/currency/canada.png" width="100%">
 
-## 11C.
+## 12C.
 
 Mexico
 
 <img src="img/currency/mexico.png" width="100%">
 
-## 11D.
+## 12D.
 
 South Korea
 
@@ -218,27 +267,27 @@ South Korea
 
 # Agriculture
 
-## 12. Identify the common cooking ingredient from the photo of it growing (spice, seasoning, herb, vegetable) (3 Points Each)
+## 13. Identify the common cooking ingredient from the photo of it growing (spice, seasoning, herb, vegetable) (3 Points Each)
 
-## 12A.
+## 13A.
 
 Cinnamon
 
 <img src="img/ingredients/cinnamon.png" width="100%">
 
-## 12B.
+## 13B.
 
 Pepper
 
 <img src="img/ingredients/pepper.png" width="100%">
 
-## 12C.
+## 13C.
 
 Vanilla
 
 <img src="img/ingredients/vanilla.png" width="100%">
 
-## 12D.
+## 13D.
 
 Garlic
 
@@ -246,7 +295,7 @@ Garlic
 
 # Six Degrees of Separation
 
-## 13. Connect the actors by films they share a collaborator with
+## 14. Connect the actors by films they share a collaborator with
 
 Example, connect Jack Nicholson to The Rock. This is a possible answer, that is 2 degrees of separation as each movie is a degree:
 
@@ -261,16 +310,9 @@ Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree
 
 <img src="img/actors.png" width="100%">
 
-##
-
-My Answer:
-Zendaya (Spiderman: Far From Home) Jake Gyllenhaal
-Jake Gyllenhall (Zodiac) Mark Ruffalo
-Mark Ruffalo (Eternal Sunshine of the Spotless Mind) Kate Winslet
-
 # Hypocoristics
 
-## 14. For each of the following pet names or short names, identify the formal English given name associated with it, i.e. Dick -> Richard (2 Points Each) 
+## 15. For each of the following pet names or short names, identify the formal English given name associated with it, i.e. Dick -> Richard (2 Points Each) 
 
 A. Barry -- Bartholomew
 
@@ -289,7 +331,7 @@ F. Molly -- Mary
 
 # Guess The Data
 
-## 15. Identify the data being shown on the map (5 Points)
+## 16. Identify the data being shown on the map (5 Points)
 
 ##
 
@@ -299,7 +341,7 @@ WWII Shipwrecks (Shipwrecks is worth 4 Points)
 
 # Movies
 
-## 16. Identify the movies and missing actor based on the actors common appearances (1 Point Each)
+## 17. Identify the movies and missing actor based on the actors common appearances (1 Point Each)
 
 ##
 
@@ -311,7 +353,7 @@ WWII Shipwrecks (Shipwrecks is worth 4 Points)
 
 # Bird's Eye View
 
-## 17. Identify the famous international location from the satellite image (5 Points).
+## 18. Identify the famous international location from the satellite image (5 Points).
 
 ##
 
@@ -325,7 +367,7 @@ Venice Grand Canal, Venice Italy
 
 # Visual Pun
 
-## 18. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
+## 19. The following four image collage is a visual pun. Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)
 
 ##
 
@@ -335,13 +377,11 @@ Chick-fil-A, Jack in the Box, Five Guys, Popeyes
 
 <img src="img/vp/visual_pun.png" width="100%">
 
-Visual pun image here...
-
 # Final Round
 
 # Genres
 
-## 19. Match the niche contemporary music genre to its description (1 Point Each). Additionally, match the song played to the genre its from (1 Point Each).
+## 20. Match the niche contemporary music genre to its description (1 Point Each). Additionally, match the song played to the genre its from (1 Point Each).
 
 ##
 
@@ -393,7 +433,7 @@ Murder in My Mind - Kordhell
 
 # Soundtracks
 
-## 20. The following popular songs have been heavily featured in movies. For each of the songs name the title and the artist (2 Points Each). Then, name as many films as you can that feature the song (1 Point Each).
+## 21. The following popular songs have been heavily featured in movies. For each of the songs name the title and the artist (2 Points Each). Then, name as many films as you can that feature the song (1 Point Each).
 
 ##
 
@@ -420,91 +460,3 @@ Atomic Blonde, Conjuring 2, Patriot, Night at the Museum 2, The Pirates!, Get Hi
 F. “Spirit in The Sky” - Norman Greenbaum
 
 Apollo 13; Evan Almighty; Forrest Gump; Guardians Of The Galaxy; I, Tonya; Jesus Camp; Miami Blues; Michael; Remember The Titans; Suicide Squad; Sunshine Cleaning; Superstar; This Is The End; W;
-
-# TBD
-
-# Popularity
-
-## 21. Order the following Wikipedia pages from highest to lowest views in 2024 (1 Point Each).
-
-A. Deadpool & Wolverine - 23.3 Million
-
-B. World War II - 12.5 Million
-
-C. Kamala Harris - 29.4 Million
-
-D. Elon Musk - 18.7 Million
-
-E. Chappell Roan - 10.7 Million
-
-# Companies
-
-## 22. For each of the following brand logos, name the decade in which the logo was in use (2 Points Each).
-
-A. Pepsi - 1971-1987... 70s/80s
-
-<img src="img/logos/pepsi.png" width="100%">
-
-B. Pizza Hut - 1999-2008... 2000s
-
-<img src="img/logos/pizza_hut.png" width="100%">
-
-C. Shell - 1961-1971... 60s
-
-<img src="img/logos/shell.png" width="100%">
-
-D. Heineken - 1974-1991... 70s/80s
-
-<img src="img/logos/heineken.png" width="100%">
-
-# Neighborhoods
-
-## 23. Match each of the following Manhattan neighborhoods to the image of their approximate boundaries (1 Point Each).
-
-**Hell's Kitchen, Harlem, Chelsea, Greenwich Village, Tribeca, Financial District**
-
-<img src="img/nyc/map.png" width="100%">
-
-##
-
-A. <img src="img/nyc/tribeca.png" width="100%">
-
-B. <img src="img/nyc/chelsea.png" width="100%">
-
-C. <img src="img/nyc/harlem.png" width="100%">
-
-D. <img src="img/nyc/financial_district.png" width="100%">
-
-E. <img src="img/nyc/hells_kitchen.png" width="100%">
-
-F. <img src="img/nyc/greenwich_village.png" width="100%">
-
-# Government
-
-## 24. Order the following U.S. Government Agencies from highest to lowest federal spending (1 Point Each).
-
-A. Social Security Administration - 395 Billion
-
-B. Department of Defense Military Programs - 250 Billion
-
-C. Department of Health and Human Services - 452 Billion
-
-D. Department of Veteran Affairs - 105 Billion
-
-E. Department of Transportation - 30 Billion
-
-# Nature
-
-## 25. Match the following national parks to the image shown (1 Point Each)
-
-**Acadia, Badlands, Great Smoky Mountains, Yellowstone, Yosemite** 
-
-A. <img src="img/nature/yellowstone.png" width="100%">
-
-B. <img src="img/nature/yosemite.png" width="100%">
-
-C. <img src="img/nature/acadia.png" width="100%">
-
-D. <img src="img/nature/great_smoky_mountains.png" width="100%">
-
-E. <img src="img/nature/badlands.png" width="100%">
