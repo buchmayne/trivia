@@ -50,14 +50,14 @@
 
     <div class="game-actions">
         {% if rounds_stats %}
-        {% with first_round=rounds_stats.0 %}
-        {% with first_question=first_round.round.questions.filter.first %}
-            <a href="{% url 'quiz:question_view' game.id first_round.round.id first_question.category.id first_question.id %}"
-            class="button button-primary start-game">
-                Start Trivia
-            </a>
-        {% endwith %}
-        {% endwith %}
+            {% with first_round=rounds_stats.0 %}
+                {% if first_round.first_question %}
+                    <a href="{% url 'quiz:question_view' game.id first_round.round.id first_round.first_question.category.id first_round.first_question.id %}"
+                        class="button button-primary start-game">
+                        Start Trivia
+                    </a>
+                {% endif %}
+            {% endwith %}
         {% endif %}
         <a href="{% url 'quiz:game_list' %}" class="button button-secondary">
             Back to Games

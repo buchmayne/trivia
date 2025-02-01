@@ -188,8 +188,11 @@ def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:
             or 0
         )
 
+        # Get the first question for this round (if any)
+        first_question = round_questions.order_by("question_number").first()
+        
         rounds_stats.append(
-            {"round": round, "question_count": question_count, "total_points": points}
+            {"round": round, "question_count": question_count, "total_points": points, "first_question": first_question}
         )
         total_questions += question_count
         total_points += points
