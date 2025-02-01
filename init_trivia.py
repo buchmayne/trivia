@@ -163,7 +163,7 @@ if __name__ == "__main__":
     spreadsheet_url = f"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit#gid=0"
     spreadsheet = client.open_by_url(spreadsheet_url)
 
-    players_list_spreadsheet_name = 'Players-04-12-24'
+    players_list_spreadsheet_name = 'Players-01-21-25'
     players_list_spreadsheet = spreadsheet.worksheet(players_list_spreadsheet_name)
     players_list_spreadsheet_id = players_list_spreadsheet.id
 
@@ -173,13 +173,15 @@ if __name__ == "__main__":
     # Download the CSV content from googlsheets
     players = read_player_list_from_gsheet(csv_url, access_token)
 
+    print(players)
+
     # Create teams and set max team size
     teams = [
         Team("Team 1", max_team_size=4),
         Team("Team 2", max_team_size=4),
         Team("Team 3", max_team_size=4),
         Team("Team 4", max_team_size=4),
-        Team("Team 5", max_team_size=4),
+        Team("Team 5", max_team_size=5),
 	    Team("Team 6", max_team_size=5),
     ]
 
