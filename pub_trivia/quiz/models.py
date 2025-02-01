@@ -97,7 +97,6 @@ class Answer(models.Model):
     )
     text = models.TextField(blank=True, null=True)
     question_image_url = models.URLField(blank=True, null=True)
-    is_correct = models.BooleanField(default=False)
 
     # These fields are mainly relevant for ranking questions
     display_order = models.PositiveIntegerField(null=True, blank=True)
