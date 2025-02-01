@@ -4,3 +4,5 @@ Pillow
 python-dotenv
 black
 django-tinymce==4.1.0
+django-storages
+boto3
