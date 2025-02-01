@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "quiz",
-    'tinymce',
+    "tinymce",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -154,3 +155,12 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Add this for HTTPS
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# AWS Settings
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'django-trivia-app-bucket'
+AWS_S3_REGION_NAME = 'us-west-2'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
