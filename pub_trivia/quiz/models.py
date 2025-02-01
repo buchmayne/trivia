@@ -12,6 +12,8 @@ class Game(models.Model):
     is_password_protected = models.BooleanField(default=False)
     password = models.CharField(max_length=50, blank=True, null=True)
 
+    game_order = models.IntegerField(default=1, null=True, blank=True)
+
     def __str__(self) -> str:
         return self.name
 

@@ -26,7 +26,7 @@ def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
 
 def game_list_view(request: HttpRequest) -> HttpResponse:
     """View to list available trivia games."""
-    games = Game.objects.all()
+    games = Game.objects.all().order_by('-game_order')
     return render(request, "quiz/game_list.html", {"games": games})
 
 
