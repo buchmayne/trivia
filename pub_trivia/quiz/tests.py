@@ -299,3 +299,38 @@ class ViewsTestCase(TestCase):
         
         next_question = get_next_question(last_question)
         self.assertIsNone(next_question)
+    
+    def test_first_question_correct_game(self):
+        # Create two games with their own questions
+        game1 = Game.objects.create(name="Game 1")
+        game2 = Game.objects.create(name="Game 2")
+        
+        round1 = QuestionRound.objects.create(name="Round 1", round_number=1)
+        
+        # Create first question for game1
+        question1 = Question.objects.create(
+            game=game1,
+            text="First question for game 1",
+            question_number=1,
+            game_round=round1,
+            question_type=self.question_type,
+            category=self.category
+        )
+        
+        # Create first question for game2
+        question2 = Question.objects.create(
+            game=game2,
+            text="First question for game 2",
+            question_number=1,
+            game_round=round1,
+            question_type=self.question_type,
+            category=self.category
+        )
+        
+        # Test game1's overview
+        response1 = self.client.get(reverse('quiz:first_question', args=[round1.id]), {'game_id': game1.id})
+        self.assertEqual(response1.status_code, 200)
+        
+        # Test game2's overview
+        response2 = self.client.get(reverse('quiz:first_question', args=[round1.id]), {'game_id': game2.id})
+        self.assertEqual(response2.status_code, 200)
