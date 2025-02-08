@@ -61,6 +61,14 @@ jobs:
         username: ${{ secrets.DROPLET_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
+          # Cleanup Docker resources
+          docker system prune -a -f
+
+          # Cleanup system logs
+          sudo journalctl --vacuum-time=3d
+          sudo apt clean
+
+          # Update codebase
           cd opt/trivia/
           git fetch origin main
           git reset --hard origin/main
