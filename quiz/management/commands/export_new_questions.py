@@ -25,12 +25,14 @@ class Command(BaseCommand):
             "answer_image_url": question.answer_image_url,
             "total_points": question.total_points,
             "category": question.category.name if question.category else None,
-            "game_round": {
-                "name": question.game_round.name,
-                "round_number": question.game_round.round_number,
-            }
-            if question.game_round
-            else None,
+            "game_round": (
+                {
+                    "name": question.game_round.name,
+                    "round_number": question.game_round.round_number,
+                }
+                if question.game_round
+                else None
+            ),
             "answers": [
                 {
                     "text": answer.text,
