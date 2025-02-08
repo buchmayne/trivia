@@ -86,7 +86,8 @@ jobs:
 
           EOL
 
-          docker-compose down
+          # Remove existing containers, volumes, and networks
+          docker-compose down -v --remove-orphans
           docker-compose up -d --build
 
     - name: Verify Deployment
