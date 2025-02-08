@@ -32,11 +32,15 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install black
+        pip install black==25.1.0
         
     - name: Run Tests
       env:
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432/github_actions
+         DB_NAME: github_actions
+         DB_USER: postgres
+         DB_PASSWORD: postgres
+         DB_HOST: localhost
+         DB_PORT: 5432
       run: |
         python manage.py test
         
