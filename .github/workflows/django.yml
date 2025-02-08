@@ -57,7 +57,7 @@ jobs:
         username: ${{ secrets.DROPLET_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /opt/trivia/pub_trivia
+          cd /opt/trivia/
           git fetch origin main
           git reset --hard origin/main
           docker-compose down
