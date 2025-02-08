@@ -3,20 +3,21 @@ from django.contrib import admin
 from django.utils.html import format_html
 from .models import Game, Category, Question, Answer, QuestionType, QuestionRound
 
+
 class QuestionAdminForm(forms.ModelForm):
     new_category_name = forms.CharField(
         required=False,
-        help_text="Enter a new category name, or leave blank to select an existing category."
+        help_text="Enter a new category name, or leave blank to select an existing category.",
     )
 
     class Meta:
         model = Question
-        fields = '__all__'
+        fields = "__all__"
 
     def clean(self):
         cleaned_data = super().clean()
-        category = cleaned_data.get('category')
-        new_category_name = cleaned_data.get('new_category_name')
+        category = cleaned_data.get("category")
+        new_category_name = cleaned_data.get("new_category_name")
 
         # Ensure either an existing category or a new category name is provided
         if not category and not new_category_name:
@@ -44,6 +45,7 @@ class QuestionAdminForm(forms.ModelForm):
 
         return instance
 
+
 # Inline to add multiple answers directly in the question form
 class AnswerInline(admin.TabularInline):
     model = Answer
@@ -52,46 +54,69 @@ class AnswerInline(admin.TabularInline):
     max_num = 10  # Maximum number of answer options
     verbose_name = "Answer"
     verbose_name_plural = "Answers"
-    fields = ['text', 'question_image_url', 'display_order', 'correct_rank', 'points', 'answer_text', 'explanation', 'answer_image_url']  # Add ranking fields
-    readonly_fields = ['image_preview']
+    fields = [
+        "text",
+        "question_image_url",
+        "display_order",
+        "correct_rank",
+        "points",
+        "answer_text",
+        "explanation",
+        "answer_image_url",
+    ]  # Add ranking fields
+    readonly_fields = ["image_preview"]
 
     # Optional: Method to display a preview of the uploaded image
     def image_preview(self, obj):
         if obj.image_url:
-            return format_html(f'<img src="{obj.image_url}" style="max-height: 100px;" />')
+            return format_html(
+                f'<img src="{obj.image_url}" style="max-height: 100px;" />'
+            )
         return "No Image"
+
     image_preview.short_description = "Image Preview"
+
 
 # Admin customization for Question
 class QuestionAdmin(admin.ModelAdmin):
     form = QuestionAdminForm
-    list_display = ('text', 'game', 'category', 'question_type', 'question_number', 'game_round', 'total_points', 'answer_bank')
-    list_filter = ('game', 'category', 'question_type')
-    search_fields = ['text']
-    
+    list_display = (
+        "text",
+        "game",
+        "category",
+        "question_type",
+        "question_number",
+        "game_round",
+        "total_points",
+        "answer_bank",
+    )
+    list_filter = ("game", "category", "question_type")
+    search_fields = ["text"]
+
     inlines = [AnswerInline]  # Inline answers in the question form
 
-    ordering = ['game', 'question_number']
+    ordering = ["game", "question_number"]
 
 
 # Admin customization for Game
 class GameAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_password_protected', 'created_at', 'game_order')
-    list_filter = ('is_password_protected',)
-    fields = ('name', 'description', 'game_order', 'is_password_protected', 'password')
-    ordering = ['name']
+    list_display = ("name", "is_password_protected", "created_at", "game_order")
+    list_filter = ("is_password_protected",)
+    fields = ("name", "description", "game_order", "is_password_protected", "password")
+    ordering = ["name"]
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'get_games')
-    list_filter = ('games',)
-    search_fields = ['name']
+    list_display = ("name", "get_games")
+    list_filter = ("games",)
+    search_fields = ["name"]
 
     # Custom method to display related games
     def get_games(self, obj):
         return ", ".join([game.name for game in obj.games.all()])
 
-    get_games.short_description = 'Games'
+    get_games.short_description = "Games"
+
 
 # Registering the models with custom admin interfaces
 admin.site.register(Game, GameAdmin)

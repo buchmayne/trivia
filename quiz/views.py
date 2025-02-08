@@ -26,7 +26,7 @@ def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
 
 def game_list_view(request: HttpRequest) -> HttpResponse:
     """View to list available trivia games."""
-    games = Game.objects.all().order_by('-game_order')
+    games = Game.objects.all().order_by("-game_order")
     return render(request, "quiz/game_list.html", {"games": games})
 
 
@@ -167,11 +167,12 @@ def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:
     # Check if game is password protected
     if game.is_password_protected:
         # Check if password has been validated for this game
-        if f'game_password_verified_{game_id}' not in request.session:
-            return render(request, 'quiz/verify_password.html', {
-                'game': game,
-                'error_message': request.GET.get('error')
-            })
+        if f"game_password_verified_{game_id}" not in request.session:
+            return render(
+                request,
+                "quiz/verify_password.html",
+                {"game": game, "error_message": request.GET.get("error")},
+            )
 
     # Calculate stats for each round
     rounds_stats = []
@@ -190,9 +191,14 @@ def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:
 
         # Get the first question for this round (if any)
         first_question = round_questions.order_by("question_number").first()
-        
+
         rounds_stats.append(
-            {"round": round, "question_count": question_count, "total_points": points, "first_question": first_question}
+            {
+                "round": round,
+                "question_count": question_count,
+                "total_points": points,
+                "first_question": first_question,
+            }
         )
         total_questions += question_count
         total_points += points
@@ -210,15 +216,15 @@ def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:
 
 
 def verify_game_password(request: HttpRequest, game_id: int) -> HttpResponse:
-    if request.method == 'POST':
+    if request.method == "POST":
         game = Game.objects.get(id=game_id)
-        password = request.POST.get('password')
-        
+        password = request.POST.get("password")
+
         if password == game.password:
             # Store password verification in session
-            request.session[f'game_password_verified_{game_id}'] = True
-            return redirect('quiz:game_overview', game_id=game_id)
+            request.session[f"game_password_verified_{game_id}"] = True
+            return redirect("quiz:game_overview", game_id=game_id)
         else:
-            return redirect('quiz:game_overview', game_id=game_id)
-    
-    return redirect('quiz:game_list')
+            return redirect("quiz:game_overview", game_id=game_id)
+
+    return redirect("quiz:game_list")
