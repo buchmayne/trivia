@@ -2,7 +2,7 @@ django==4.2.18
 psycopg2-binary
 Pillow
 python-dotenv
-black
+black==25.1.0
 django-tinymce==4.1.0
 django-storages
 boto3
