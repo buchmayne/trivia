@@ -222,3 +222,7 @@ def verify_game_password(request: HttpRequest, game_id: int) -> HttpResponse:
             return redirect('quiz:game_overview', game_id=game_id)
     
     return redirect('quiz:game_list')
+
+
+def health_check(request):
+    return HttpResponse("OK")
