@@ -16,6 +16,7 @@ from django.conf import settings
 import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from quiz.utils import AnalyticsLoader
 
 # Metadata needed to calculate player stats
 spreadsheet_url = "https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit#gid=0"
@@ -224,10 +225,15 @@ if __name__ == "__main__":
     players = get_players_list(spreadsheet_url, trivia_metadata)
     
     # Get stats from all games with custom metrics
-    game_results = get_game_results(spreadsheet_url, trivia_metadata) # included in analytics view
+    game_results_df = get_game_results(spreadsheet_url, trivia_metadata) # included in analytics view
 
     # Create players historical stats
-    players_stats = get_player_stats(game_results, players)
+    players_stats_df = get_player_stats(game_results_df, players)
 
     # Get aggregated player performance
-    career_stats = calculate_player_performance(players_stats) # included in analytics view
+    career_stats_df = calculate_player_performance(players_stats_df) # included in analytics view
+
+    # Load game results and player stats into the database
+    loader = AnalyticsLoader()
+    loader.load_game_results(game_results_df)
+    loader.load_player_stats(career_stats_df)
