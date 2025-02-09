@@ -1,7 +1,7 @@
 from django.db import transaction
 import pandas as pd
 from typing import Dict, Any
-from quiz.models import GameResult, PlayerStat
+from quiz.models import GameResult, PlayerStats
 
 
 class AnalyticsLoader:
@@ -29,7 +29,7 @@ class AnalyticsLoader:
         records = career_stats_df.to_dict('records')
         
         # Update or create player stats
-        PlayerStat.objects.all().delete()
-        PlayerStat.objects.bulk_create([
-            PlayerStat(**record) for record in records
+        PlayerStats.objects.all().delete()
+        PlayerStats.objects.bulk_create([
+            PlayerStats(**record) for record in records
         ])

@@ -2,8 +2,7 @@ from typing import Optional, Dict, Any, List, Union
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse, HttpRequest, HttpResponse
 from django.db import models
-from .models import Game, Category, Question, QuestionRound
-
+from .models import Game, Category, Question, QuestionRound, GameResult, PlayerStats
 
 def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
     try:
@@ -228,3 +227,59 @@ def verify_game_password(request: HttpRequest, game_id: int) -> HttpResponse:
             return redirect("quiz:game_overview", game_id=game_id)
 
     return redirect("quiz:game_list")
+
+
+def analytics_view(request):
+    # Get filter parameters from request
+    player_search = request.GET.get('player_search', '').strip()
+    multiple_games_only = True if not request.GET else request.GET.get('multiple_games') == 'on'
+    selected_date = request.GET.get('game_date')
+
+    # Get all unique game dates for the dropdown
+    game_dates = GameResult.objects.values_list('game_date', flat=True).distinct().order_by('-game_date')
+
+
+    # Get all results, ordered by date descending
+    game_results = GameResult.objects.all().order_by('game_date', 'place')
+
+    # Apply game date filter if selected
+    if selected_date:
+        game_results = game_results.filter(game_date=selected_date)
+
+    for result in game_results:
+        result.pct_rd1 *= 100
+        result.pct_rd2 *= 100
+        result.pct_final *= 100
+        result.pct_total *= 100
+
+    # Get player stats with optional filters
+    player_stats = PlayerStats.objects.all()
+    
+    # Apply player search filter if provided
+    if player_search:
+        player_stats = player_stats.filter(player__icontains=player_search)
+        game_results = game_results.filter(players__icontains=player_search)
+
+    # Filter for multiple games if requested
+    if multiple_games_only:
+        player_stats = player_stats.filter(games_played__gt=1)
+
+    # Order player stats by games played and average z-score
+    player_stats = player_stats.order_by('avg_final_place', '-avg_zscore_total_points')
+
+    for stat in player_stats:
+        stat.avg_pct_total_points *= 100
+        stat.avg_pct_rd1_points *= 100
+        stat.avg_pct_rd2_points *= 100
+        stat.avg_pct_final_rd_points *= 100
+
+    context = {
+        'game_results': game_results,
+        'player_stats': player_stats,
+        'player_search': player_search,
+        'multiple_games_only': multiple_games_only,
+        'game_dates': game_dates,
+        'selected_date': selected_date,
+    }
+    
+    return render(request, 'quiz/analytics.html', context)
