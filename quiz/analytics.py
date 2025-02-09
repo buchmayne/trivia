@@ -1,3 +1,18 @@
+import os
+import sys
+from pathlib import Path
+
+# Add the project root directory to the Python path
+project_root = Path(__file__).resolve().parent.parent
+sys.path.append(str(project_root))
+
+# Set up Django environment
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pub_trivia.settings')
+
+import django
+django.setup()
+
+from django.conf import settings
 import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -28,6 +43,17 @@ trivia_metadata = {
 
 
 # Functions
+def get_credentials_path():
+    """Get the path to credentials file whether running standalone or in Django"""
+    try:
+        # Try Django settings first
+        base_dir = settings.BASE_DIR
+    except:
+        # Fallback to calculating path relative to this file
+        base_dir = Path(__file__).resolve().parent.parent
+    
+    return os.path.join(base_dir, 'gsheets_key.json')
+
 def read_google_sheet(spreadsheet_url: str, sheet_name: str) -> pd.DataFrame:
     """
     Read a Google Sheet into a pandas DataFrame
@@ -49,7 +75,10 @@ def read_google_sheet(spreadsheet_url: str, sheet_name: str) -> pd.DataFrame:
         'https://spreadsheets.google.com/feeds',
         'https://www.googleapis.com/auth/drive'
     ]
-    creds = ServiceAccountCredentials.from_json_keyfile_name('../gsheets_key.json', scope)
+    
+    credentials_path = get_credentials_path()
+    
+    creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
     client = gspread.authorize(creds)
     
     try:
