@@ -49,7 +49,7 @@ def read_google_sheet(spreadsheet_url: str, sheet_name: str) -> pd.DataFrame:
         'https://spreadsheets.google.com/feeds',
         'https://www.googleapis.com/auth/drive'
     ]
-    creds = ServiceAccountCredentials.from_json_keyfile_name('gsheets_key.json', scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name('../gsheets_key.json', scope)
     client = gspread.authorize(creds)
     
     try:
