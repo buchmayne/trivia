@@ -115,13 +115,14 @@ class Answer(models.Model):
     def __str__(self) -> str:
         return self.text if self.text else f"Answer for {self.question}"
 
+
 # ANALYTICS MODELS
 class GameResult(models.Model):
     game_date = models.DateField()
     players = models.CharField(max_length=300)
     place = models.IntegerField()
     winner = models.BooleanField()
-    Round_1 = models.IntegerField() 
+    Round_1 = models.IntegerField()
     Round_2 = models.IntegerField()
     Final = models.IntegerField()
     Total = models.IntegerField()
@@ -133,7 +134,7 @@ class GameResult(models.Model):
     zscore_total = models.FloatField()
 
     class Meta:
-        unique_together = ['game_date', 'players']
+        unique_together = ["game_date", "players"]
 
 
 class PlayerStats(models.Model):

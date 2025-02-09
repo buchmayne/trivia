@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, JsonResponse, HttpRequest, HttpRes
 from django.db import models
 from .models import Game, Category, Question, QuestionRound, GameResult, PlayerStats
 
+
 def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
     try:
         game_id = request.GET.get("game_id")
@@ -231,16 +232,21 @@ def verify_game_password(request: HttpRequest, game_id: int) -> HttpResponse:
 
 def analytics_view(request):
     # Get filter parameters from request
-    player_search = request.GET.get('player_search', '').strip()
-    multiple_games_only = True if not request.GET else request.GET.get('multiple_games') == 'on'
-    selected_date = request.GET.get('game_date')
+    player_search = request.GET.get("player_search", "").strip()
+    multiple_games_only = (
+        True if not request.GET else request.GET.get("multiple_games") == "on"
+    )
+    selected_date = request.GET.get("game_date")
 
     # Get all unique game dates for the dropdown
-    game_dates = GameResult.objects.values_list('game_date', flat=True).distinct().order_by('-game_date')
-
+    game_dates = (
+        GameResult.objects.values_list("game_date", flat=True)
+        .distinct()
+        .order_by("-game_date")
+    )
 
     # Get all results, ordered by date descending
-    game_results = GameResult.objects.all().order_by('game_date', 'place')
+    game_results = GameResult.objects.all().order_by("game_date", "place")
 
     # Apply game date filter if selected
     if selected_date:
@@ -254,7 +260,7 @@ def analytics_view(request):
 
     # Get player stats with optional filters
     player_stats = PlayerStats.objects.all()
-    
+
     # Apply player search filter if provided
     if player_search:
         player_stats = player_stats.filter(player__icontains=player_search)
@@ -265,7 +271,7 @@ def analytics_view(request):
         player_stats = player_stats.filter(games_played__gt=1)
 
     # Order player stats by games played and average z-score
-    player_stats = player_stats.order_by('avg_final_place', '-avg_zscore_total_points')
+    player_stats = player_stats.order_by("avg_final_place", "-avg_zscore_total_points")
 
     for stat in player_stats:
         stat.avg_pct_total_points *= 100
@@ -274,12 +280,12 @@ def analytics_view(request):
         stat.avg_pct_final_rd_points *= 100
 
     context = {
-        'game_results': game_results,
-        'player_stats': player_stats,
-        'player_search': player_search,
-        'multiple_games_only': multiple_games_only,
-        'game_dates': game_dates,
-        'selected_date': selected_date,
+        "game_results": game_results,
+        "player_stats": player_stats,
+        "player_search": player_search,
+        "multiple_games_only": multiple_games_only,
+        "game_dates": game_dates,
+        "selected_date": selected_date,
     }
-    
-    return render(request, 'quiz/analytics.html', context)
+
+    return render(request, "quiz/analytics.html", context)
