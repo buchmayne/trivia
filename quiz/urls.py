@@ -36,4 +36,5 @@ urlpatterns = [
         views.verify_game_password,
         name="verify_password",
     ),
+    path("analytics/", views.analytics_view, name="analytics"),
 ]

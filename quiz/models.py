@@ -114,3 +114,38 @@ class Answer(models.Model):
 
     def __str__(self) -> str:
         return self.text if self.text else f"Answer for {self.question}"
+
+
+# ANALYTICS MODELS
+class GameResult(models.Model):
+    game_date = models.DateField()
+    players = models.CharField(max_length=300)
+    place = models.IntegerField()
+    winner = models.BooleanField()
+    Round_1 = models.IntegerField()
+    Round_2 = models.IntegerField()
+    Final = models.IntegerField()
+    Total = models.IntegerField()
+    pct_rd1 = models.FloatField()
+    pct_rd2 = models.FloatField()
+    pct_final = models.FloatField()
+    pct_total = models.FloatField()
+    normalized_total = models.FloatField()
+    zscore_total = models.FloatField()
+
+    class Meta:
+        unique_together = ["game_date", "players"]
+
+
+class PlayerStats(models.Model):
+    player = models.CharField(max_length=100)
+    avg_final_place = models.FloatField()
+    total_wins = models.IntegerField()
+    avg_zscore_total_points = models.FloatField()
+    avg_total_points = models.FloatField()
+    avg_pct_total_points = models.FloatField()
+    avg_normalized_total_points = models.FloatField()
+    avg_pct_rd1_points = models.FloatField()
+    avg_pct_rd2_points = models.FloatField()
+    avg_pct_final_rd_points = models.FloatField()
+    games_played = models.IntegerField()

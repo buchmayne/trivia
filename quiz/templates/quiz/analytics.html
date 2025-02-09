@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Analytics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-600">
+    <!-- Full width and height container with content panel -->
+    <div class="w-full min-h-screen p-4">
+        <!-- White background panel -->
+        <div class="bg-white rounded-lg shadow-xl mx-auto max-w-7xl p-8">
+            <!-- Header -->
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">Trivia Analytics</h1>
+
+            <!-- Filters Section -->
+            <div class="mb-8 p-4 bg-gray-100 rounded-lg">
+                <form method="get" class="flex flex-wrap gap-4 items-center">
+                    <!-- Existing player search -->
+                    <div class="flex-1">
+                        <label for="player_search" class="block text-sm font-medium text-gray-700">Search Player</label>
+                        <input type="text" 
+                            name="player_search" 
+                            id="player_search"
+                            value="{{ player_search }}"
+                            class="mt-1 block w-full rounded-md border border-gray-300 p-2"
+                            placeholder="Enter player name...">
+                    </div>
+
+                    <!-- New game date dropdown -->
+                    <div class="flex-1">
+                        <label for="game_date" class="block text-sm font-medium text-gray-700">Select Game</label>
+                        <select name="game_date" 
+                                id="game_date" 
+                                class="mt-1 block w-full rounded-md border border-gray-300 p-2"
+                                onchange="this.form.submit()">
+                            <option value="">All Games</option>
+                            {% for date in game_dates %}
+                                <option value="{{ date|date:'Y-m-d' }}" 
+                                        {% if date|date:'Y-m-d' == selected_date %}selected{% endif %}>
+                                    {{ date|date:"F j, Y" }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Existing multiple games checkbox -->
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" 
+                               name="multiple_games" 
+                               id="multiple_games"
+                               {% if multiple_games_only %}checked{% endif %}
+                               onchange="this.form.submit()"
+                               class="rounded border-gray-300">
+                        <label for="multiple_games" class="text-sm font-medium text-gray-700">
+                            Multiple games only
+                        </label>
+                    </div>
+
+                    <!-- Buttons container -->
+                    <div class="flex gap-2">
+                        <button type="submit" 
+                                class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                            Apply Filters
+                        </button>
+                        <a href="/analytics/" 
+                            class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 inline-block">
+                                Clear Filters
+                            </a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Player Stats Section -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Player Statistics</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Player</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Games Played</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Place</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Wins</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Z-Score</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Points</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg % Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for stat in player_stats %}
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{{ stat.player }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ stat.games_played }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ stat.avg_final_place|floatformat:1 }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ stat.total_wins }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ stat.avg_zscore_total_points|floatformat:2 }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ stat.avg_total_points|floatformat:1 }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ stat.avg_pct_total_points|floatformat:1 }}%</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Game Results Section -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Game Results</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Players</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Place</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Round 1</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Round 2</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Final</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Z-Score</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for result in game_results %}
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-900">{{ result.game_date }}</td>
+                                <td class="px-6 py-4 text-gray-900">{{ result.players }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ result.place }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ result.Round_1 }} ({{ result.pct_rd1|floatformat:1 }}%)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ result.Round_2 }} ({{ result.pct_rd2|floatformat:1 }}%)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ result.Final }} ({{ result.pct_final|floatformat:1 }}%)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ result.Total }} ({{ result.pct_total|floatformat:1 }}%)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">{{ result.zscore_total|floatformat:2 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-submit form when checkbox changes
+        document.getElementById('multiple_games').addEventListener('change', function() {
+            // Preserve the current game_date value when submitting
+            const gameDate = document.getElementById('game_date').value;
+            const playerSearch = document.getElementById('player_search').value;
+            
+            // Get the current form
+            const form = this.form;
+            
+            // Update hidden fields or create them if they don't exist
+            if (gameDate) {
+                let hiddenGameDate = form.querySelector('input[name="game_date"]');
+                if (!hiddenGameDate) {
+                    hiddenGameDate = document.createElement('input');
+                    hiddenGameDate.type = 'hidden';
+                    hiddenGameDate.name = 'game_date';
+                    form.appendChild(hiddenGameDate);
+                }
+                hiddenGameDate.value = gameDate;
+            }
+            
+            // Submit the form
+            form.submit();
+        });
+    </script>
+</body>
+</html>
