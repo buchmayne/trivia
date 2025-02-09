@@ -173,7 +173,7 @@ def calculate_player_performance(players_stats: pd.DataFrame) -> pd.DataFrame:
             "pct_rd2",
             "pct_final"
         ]]
-        .groupby('player')
+        .groupby('player', as_index=False)
         .agg(
             avg_final_place=("place", "mean"),
             total_wins=("winner", "sum"),
@@ -195,11 +195,10 @@ if __name__ == "__main__":
     players = get_players_list(spreadsheet_url, trivia_metadata)
     
     # Get stats from all games with custom metrics
-    game_results = get_game_results(spreadsheet_url, trivia_metadata)
+    game_results = get_game_results(spreadsheet_url, trivia_metadata) # included in analytics view
 
     # Create players historical stats
     players_stats = get_player_stats(game_results, players)
 
     # Get aggregated player performance
-    career_states = calculate_player_performance(players_stats)
-    
+    career_stats = calculate_player_performance(players_stats) # included in analytics view
