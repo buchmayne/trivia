@@ -1,9 +1,10 @@
-import requests
 import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 # Metadata needed to calculate player stats
+spreadsheet_url = "https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit#gid=0"
+
 trivia_metadata = {
         "trivia-2024-04-12": {
             "player_list_sheet_name": "Players-04-12-24",
@@ -107,7 +108,8 @@ def process_game_results(spreadsheet_url: str, game_sheet_name: str, game_data: 
             pct_final=lambda df_: df_['Final'] / game_data['Final_Round'],
             pct_total=lambda df_: df_['Total'] / game_data['Total'],
             normalized_total=lambda df_: df_['Total'] / df_['Total'].max(),
-            zscore_total=lambda df_: (df_['Total'] - df_['Total'].mean()) / df_['Total'].std()
+            zscore_total=lambda df_: (df_['Total'] - df_['Total'].mean()) / df_['Total'].std(),
+            winner=lambda df_: df_['place'] == 1
         )
         .assign(game_date=lambda df_: pd.to_datetime(df_['game'], format='%Y-%m-%d'))
         .drop(['Team_Name', 'game'], axis=1)
@@ -122,7 +124,7 @@ def exact_player_match(df, player_name):
         )
     ]
 
-def generate_game_results(spreadsheet_url: str, trivia_metadata: dict) -> pd.DataFrame:
+def get_game_results(spreadsheet_url: str, trivia_metadata: dict) -> pd.DataFrame:
     """Create game results for all games"""
     game_list_spreadsheet_names = trivia_metadata.keys()
     
@@ -139,7 +141,7 @@ def generate_game_results(spreadsheet_url: str, trivia_metadata: dict) -> pd.Dat
         )
     )
 
-def generate_historic_player_stats(game_results: pd.DataFrame, players: list) -> pd.DataFrame:
+def get_player_stats(game_results: pd.DataFrame, players: list) -> pd.DataFrame:
         """Create player level statistics for all games"""
         return (
             pd.concat([
@@ -155,41 +157,49 @@ def generate_historic_player_stats(game_results: pd.DataFrame, players: list) ->
             ], axis=0)
         )
 
-
+def calculate_player_performance(players_stats: pd.DataFrame) -> pd.DataFrame:
+    """Calculate player performance metrics averaged over all games"""
+    return (
+        players_stats
+        [[
+            "player",
+            "place",
+            "winner",
+            "Total",
+            "pct_total",
+            "normalized_total",
+            "zscore_total",
+            "pct_rd1",
+            "pct_rd2",
+            "pct_final"
+        ]]
+        .groupby('player')
+        .agg(
+            avg_final_place=("place", "mean"),
+            total_wins=("winner", "sum"),
+            avg_zscore_total_points=("zscore_total", "mean"),
+            avg_total_points=("Total", "mean"),
+            avg_pct_total_points=("pct_total", "mean"),
+            avg_normalized_total_points=("normalized_total", "mean"),
+            avg_pct_rd1_points=("pct_rd1", "mean"),
+            avg_pct_rd2_points=("pct_rd2", "mean"),
+            avg_pct_final_rd_points=("pct_final", "mean"),
+            games_played=("player", "count"),
+        )
+        .sort_values(['avg_final_place', 'total_wins', 'avg_zscore_total_points'], ascending=[True, True, False])
+        
+    )
 
 if __name__ == "__main__":
-    # Open the Google Sheet
-    scope = [
-        "https://spreadsheets.google.com/feeds",
-        "https://www.googleapis.com/auth/drive",
-    ]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("gsheets_key.json", scope)
-    client = gspread.authorize(creds)
-    access_token = creds.get_access_token().access_token
-
-    spreadsheet_url = f"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit#gid=0"
-    spreadsheet = client.open_by_url(spreadsheet_url)
-
     # Get players list and all game results
     players = get_players_list(spreadsheet_url, trivia_metadata)
     
     # Get stats from all games with custom metrics
-    game_results = generate_game_results(spreadsheet_url, trivia_metadata)
+    game_results = get_game_results(spreadsheet_url, trivia_metadata)
 
     # Create players historical stats
-    historic_players_stats = generate_historic_player_stats(game_results, players)
+    players_stats = get_player_stats(game_results, players)
 
-    # list of players who have played multiple games
-    list_of_players_who_have_played_multiple_games = (
-        historic_players_stats.loc[lambda df_: df_['games_played'] > 1, 'player'].drop_duplicates().tolist()
-    )
-
-    print(
-        historic_players_stats
-        .loc[lambda df_: df_['player'].isin(list_of_players_who_have_played_multiple_games)]
-        .drop(['team', 'Round_1', 'Round_2', 'Final', 'game_date', 'games_played'], axis=1)
-        .groupby('player')
-        .mean()
-        .sort_values('zscore_total', ascending=False)
-    )
+    # Get aggregated player performance
+    career_states = calculate_player_performance(players_stats)
     
