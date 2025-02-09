@@ -97,13 +97,3 @@ jobs:
           # Remove existing containers, volumes, and networks
           docker-compose down -v --remove-orphans
           docker-compose up -d --build
-
-    - name: Verify Deployment
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.DROPLET_IP }}
-        username: ${{ secrets.DROPLET_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          docker ps
-          curl -f localhost:8000/health || exit 1

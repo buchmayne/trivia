@@ -4459,6 +4459,71 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 344,
+  "fields": {
+    "action_time": "2025-02-08T19:08:36.043Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "31",
+    "object_repr": "Q18: Identify the famous international place from the satellite photo (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 345,
+  "fields": {
+    "action_time": "2025-02-08T19:10:45.424Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "90",
+    "object_repr": "Q1234: Identify the famous international place from the satellite photo (5 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 346,
+  "fields": {
+    "action_time": "2025-02-08T19:24:52.845Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "90",
+    "object_repr": "Q28251: Identify the famous international place from the satellite photo (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question number\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 347,
+  "fields": {
+    "action_time": "2025-02-08T19:31:02.600Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "90",
+    "object_repr": "Q28251: Identify the famous international place from the satellite photo (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q28251: Identify the famous international place from the satellite photo (5 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 348,
+  "fields": {
+    "action_time": "2025-02-08T19:41:13.617Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "90",
+    "object_repr": "Q28251: Identify the famous international place from the satellite photo (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"Answer for Q28251: Identify the famous international place from the satellite photo (5 Points)\", \"fields\": [\"Answer text\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -4891,6 +4956,78 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add player stats",
+    "content_type": 13,
+    "codename": "add_playerstats"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change player stats",
+    "content_type": 13,
+    "codename": "change_playerstats"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete player stats",
+    "content_type": 13,
+    "codename": "delete_playerstats"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view player stats",
+    "content_type": 13,
+    "codename": "view_playerstats"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add game result",
+    "content_type": 14,
+    "codename": "add_gameresult"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change game result",
+    "content_type": 14,
+    "codename": "change_gameresult"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete game result",
+    "content_type": 14,
+    "codename": "delete_gameresult"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view game result",
+    "content_type": 14,
+    "codename": "view_gameresult"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
@@ -5002,6 +5139,22 @@
   "fields": {
     "app_label": "quiz",
     "model": "questionround"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "quiz",
+    "model": "playerstats"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "quiz",
+    "model": "gameresult"
   }
 },
 {
@@ -5319,7 +5472,8 @@
       1,
       2,
       4,
-      5
+      5,
+      3
     ]
   }
 },
@@ -6331,7 +6485,7 @@
     "answer_bank": "",
     "question_type": 3,
     "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2025/January/BirdsEye/venice_satellite.png",
-    "answer_image_url": "https://django-trivia-app-bucket.s3.amazonaws.com/2025/January/BirdsEye/venice.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2025/January/BirdsEye/venice.png",
     "question_number": 18,
     "created_at": "2024-12-24T19:42:42.939Z",
     "total_points": 5,
@@ -7321,6 +7475,23 @@
     "question_number": 20,
     "created_at": "2025-01-20T19:33:53.970Z",
     "total_points": 2,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 90,
+  "fields": {
+    "game": 3,
+    "category": 18,
+    "text": "Identify the famous international place from the satellite photo (5 Points)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/Future-Games/Birds-Eye/stonehedge_satellite.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/Future-Games/Birds-Eye/stonehedge.png",
+    "question_number": 28251,
+    "created_at": "2025-02-08T19:10:45.422Z",
+    "total_points": 5,
     "game_round": 2
   }
 },
@@ -12527,6 +12698,992 @@
     "answer_text": "Category: Fast Food Restaurants",
     "explanation": "",
     "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 348,
+  "fields": {
+    "question": 90,
+    "text": "",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Stonehedge, U.K.",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 13,
+  "fields": {
+    "game_date": "2024-04-12",
+    "players": "Chad Smith, Annette Anderson, Andrew Dang, Pilar Hoch",
+    "place": 1,
+    "winner": true,
+    "Round_1": 35,
+    "Round_2": 37,
+    "Final": 28,
+    "Total": 100,
+    "pct_rd1": 0.5072463768115942,
+    "pct_rd2": 0.6981132075471698,
+    "pct_final": 0.7,
+    "pct_total": 0.6172839506172839,
+    "normalized_total": 1.0,
+    "zscore_total": 1.1119321277764236
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 14,
+  "fields": {
+    "game_date": "2024-04-12",
+    "players": "Jack Boston, Ali Anderson, Howie Rabin, Maggie Thompson",
+    "place": 2,
+    "winner": false,
+    "Round_1": 28,
+    "Round_2": 39,
+    "Final": 31,
+    "Total": 98,
+    "pct_rd1": 0.4057971014492754,
+    "pct_rd2": 0.7358490566037735,
+    "pct_final": 0.775,
+    "pct_total": 0.6049382716049383,
+    "normalized_total": 0.98,
+    "zscore_total": 0.7864885781833237
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 15,
+  "fields": {
+    "game_date": "2024-04-12",
+    "players": "Jayson Hobby, Brittney Malhoit, Kyle Anderson, Erica Scandalios",
+    "place": 3,
+    "winner": false,
+    "Round_1": 27,
+    "Round_2": 39,
+    "Final": 30,
+    "Total": 96,
+    "pct_rd1": 0.391304347826087,
+    "pct_rd2": 0.7358490566037735,
+    "pct_final": 0.75,
+    "pct_total": 0.5925925925925926,
+    "normalized_total": 0.96,
+    "zscore_total": 0.4610450285902239
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 16,
+  "fields": {
+    "game_date": "2024-04-12",
+    "players": "Andy Lipski, Claire Weaver, FJ Anderson, Althea Albright",
+    "place": 4,
+    "winner": false,
+    "Round_1": 24,
+    "Round_2": 39,
+    "Final": 30,
+    "Total": 93,
+    "pct_rd1": 0.34782608695652173,
+    "pct_rd2": 0.7358490566037735,
+    "pct_final": 0.75,
+    "pct_total": 0.5740740740740741,
+    "normalized_total": 0.93,
+    "zscore_total": -0.027120295799425754
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 17,
+  "fields": {
+    "game_date": "2024-04-12",
+    "players": "Dylan Scandalios, Shannon Boston, Blake Anderson, Sabina Beachdell",
+    "place": 5,
+    "winner": false,
+    "Round_1": 29,
+    "Round_2": 33,
+    "Final": 26,
+    "Total": 88,
+    "pct_rd1": 0.42028985507246375,
+    "pct_rd2": 0.6226415094339622,
+    "pct_final": 0.65,
+    "pct_total": 0.5432098765432098,
+    "normalized_total": 0.88,
+    "zscore_total": -0.8407291697821752
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 18,
+  "fields": {
+    "game_date": "2024-04-12",
+    "players": "Ben Dreyer, Farren Hobby, Gerik Illo, Jenna Carlson, Brook Goddard",
+    "place": 6,
+    "winner": false,
+    "Round_1": 29,
+    "Round_2": 31,
+    "Final": 24,
+    "Total": 84,
+    "pct_rd1": 0.42028985507246375,
+    "pct_rd2": 0.5849056603773585,
+    "pct_final": 0.6,
+    "pct_total": 0.5185185185185185,
+    "normalized_total": 0.84,
+    "zscore_total": -1.4916162689683747
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 19,
+  "fields": {
+    "game_date": "2025-01-21",
+    "players": "Andy Lipski, Pilar Hoch, Howie Rabin, Matt, Colby",
+    "place": 1,
+    "winner": true,
+    "Round_1": 23,
+    "Round_2": 62,
+    "Final": 9,
+    "Total": 94,
+    "pct_rd1": 0.45098039215686275,
+    "pct_rd2": 0.7654320987654321,
+    "pct_final": 0.6428571428571429,
+    "pct_total": 0.6438356164383562,
+    "normalized_total": 1.0,
+    "zscore_total": 0.8908009296463568
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 20,
+  "fields": {
+    "game_date": "2025-01-21",
+    "players": "Brittney Malhoit, Erica Scandalios, Ryan Mihuc, Meryl ",
+    "place": 2,
+    "winner": false,
+    "Round_1": 27,
+    "Round_2": 58,
+    "Final": 6,
+    "Total": 91,
+    "pct_rd1": 0.5294117647058824,
+    "pct_rd2": 0.7160493827160493,
+    "pct_final": 0.42857142857142855,
+    "pct_total": 0.6232876712328768,
+    "normalized_total": 0.9680851063829787,
+    "zscore_total": 0.7254976643511567
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 21,
+  "fields": {
+    "game_date": "2025-01-21",
+    "players": "Jesse Manzo, Jenna Carlson, Cody Damon, Elijah, Cam",
+    "place": 3,
+    "winner": false,
+    "Round_1": 26,
+    "Round_2": 45,
+    "Final": 12,
+    "Total": 83,
+    "pct_rd1": 0.5098039215686274,
+    "pct_rd2": 0.5555555555555556,
+    "pct_final": 0.8571428571428571,
+    "pct_total": 0.5684931506849316,
+    "normalized_total": 0.8829787234042553,
+    "zscore_total": 0.28468895689728946
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 22,
+  "fields": {
+    "game_date": "2025-01-21",
+    "players": "Steven Stark, Elliot Kennedy, Avi, Asaki",
+    "place": 4,
+    "winner": false,
+    "Round_1": 17,
+    "Round_2": 60,
+    "Final": 5,
+    "Total": 82,
+    "pct_rd1": 0.3333333333333333,
+    "pct_rd2": 0.7407407407407407,
+    "pct_final": 0.35714285714285715,
+    "pct_total": 0.5616438356164384,
+    "normalized_total": 0.8723404255319149,
+    "zscore_total": 0.2295878684655561
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 23,
+  "fields": {
+    "game_date": "2025-01-21",
+    "players": "Walker Om-Wing, Justin Davis, Dylan Scandalios, Scott Guidotti, Max",
+    "place": 5,
+    "winner": false,
+    "Round_1": 18,
+    "Round_2": 48,
+    "Final": 7,
+    "Total": 73,
+    "pct_rd1": 0.35294117647058826,
+    "pct_rd2": 0.5925925925925926,
+    "pct_final": 0.5,
+    "pct_total": 0.5,
+    "normalized_total": 0.776595744680851,
+    "zscore_total": -0.2663219274200445
+  }
+},
+{
+  "model": "quiz.gameresult",
+  "pk": 24,
+  "fields": {
+    "game_date": "2025-01-21",
+    "players": "Charlie Campbell, Brittney Franklin, Sunny Kalar, Savannah, Vishek",
+    "place": 6,
+    "winner": false,
+    "Round_1": 17,
+    "Round_2": 25,
+    "Final": 2,
+    "Total": 44,
+    "pct_rd1": 0.3333333333333333,
+    "pct_rd2": 0.30864197530864196,
+    "pct_final": 0.14285714285714285,
+    "pct_total": 0.3013698630136986,
+    "normalized_total": 0.46808510638297873,
+    "zscore_total": -1.864253491940313
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 1,
+  "fields": {
+    "player": "Andrew Dang",
+    "avg_final_place": 1.0,
+    "total_wins": 1,
+    "avg_zscore_total_points": 1.1119321277764236,
+    "avg_total_points": 100.0,
+    "avg_pct_total_points": 0.6172839506172839,
+    "avg_normalized_total_points": 1.0,
+    "avg_pct_rd1_points": 0.5072463768115942,
+    "avg_pct_rd2_points": 0.6981132075471698,
+    "avg_pct_final_rd_points": 0.7,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 2,
+  "fields": {
+    "player": "Annette Anderson",
+    "avg_final_place": 1.0,
+    "total_wins": 1,
+    "avg_zscore_total_points": 1.1119321277764236,
+    "avg_total_points": 100.0,
+    "avg_pct_total_points": 0.6172839506172839,
+    "avg_normalized_total_points": 1.0,
+    "avg_pct_rd1_points": 0.5072463768115942,
+    "avg_pct_rd2_points": 0.6981132075471698,
+    "avg_pct_final_rd_points": 0.7,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 3,
+  "fields": {
+    "player": "Chad Smith",
+    "avg_final_place": 1.0,
+    "total_wins": 1,
+    "avg_zscore_total_points": 1.1119321277764236,
+    "avg_total_points": 100.0,
+    "avg_pct_total_points": 0.6172839506172839,
+    "avg_normalized_total_points": 1.0,
+    "avg_pct_rd1_points": 0.5072463768115942,
+    "avg_pct_rd2_points": 0.6981132075471698,
+    "avg_pct_final_rd_points": 0.7,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 4,
+  "fields": {
+    "player": "Matt",
+    "avg_final_place": 1.0,
+    "total_wins": 1,
+    "avg_zscore_total_points": 0.8908009296463568,
+    "avg_total_points": 94.0,
+    "avg_pct_total_points": 0.6438356164383562,
+    "avg_normalized_total_points": 1.0,
+    "avg_pct_rd1_points": 0.45098039215686275,
+    "avg_pct_rd2_points": 0.7654320987654321,
+    "avg_pct_final_rd_points": 0.6428571428571429,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 5,
+  "fields": {
+    "player": "Pilar Hoch",
+    "avg_final_place": 1.0,
+    "total_wins": 2,
+    "avg_zscore_total_points": 1.0013665287113902,
+    "avg_total_points": 97.0,
+    "avg_pct_total_points": 0.63055978352782,
+    "avg_normalized_total_points": 1.0,
+    "avg_pct_rd1_points": 0.47911338448422847,
+    "avg_pct_rd2_points": 0.7317726531563009,
+    "avg_pct_final_rd_points": 0.6714285714285715,
+    "games_played": 2
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 6,
+  "fields": {
+    "player": "Howie Rabin",
+    "avg_final_place": 1.5,
+    "total_wins": 1,
+    "avg_zscore_total_points": 0.8386447539148403,
+    "avg_total_points": 96.0,
+    "avg_pct_total_points": 0.6243869440216472,
+    "avg_normalized_total_points": 0.99,
+    "avg_pct_rd1_points": 0.42838874680306904,
+    "avg_pct_rd2_points": 0.7506405776846028,
+    "avg_pct_final_rd_points": 0.7089285714285715,
+    "games_played": 2
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 7,
+  "fields": {
+    "player": "Ali Anderson",
+    "avg_final_place": 2.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.7864885781833237,
+    "avg_total_points": 98.0,
+    "avg_pct_total_points": 0.6049382716049383,
+    "avg_normalized_total_points": 0.98,
+    "avg_pct_rd1_points": 0.4057971014492754,
+    "avg_pct_rd2_points": 0.7358490566037735,
+    "avg_pct_final_rd_points": 0.775,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 8,
+  "fields": {
+    "player": "Jack Boston",
+    "avg_final_place": 2.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.7864885781833237,
+    "avg_total_points": 98.0,
+    "avg_pct_total_points": 0.6049382716049383,
+    "avg_normalized_total_points": 0.98,
+    "avg_pct_rd1_points": 0.4057971014492754,
+    "avg_pct_rd2_points": 0.7358490566037735,
+    "avg_pct_final_rd_points": 0.775,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 9,
+  "fields": {
+    "player": "Maggie Thompson",
+    "avg_final_place": 2.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.7864885781833237,
+    "avg_total_points": 98.0,
+    "avg_pct_total_points": 0.6049382716049383,
+    "avg_normalized_total_points": 0.98,
+    "avg_pct_rd1_points": 0.4057971014492754,
+    "avg_pct_rd2_points": 0.7358490566037735,
+    "avg_pct_final_rd_points": 0.775,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 10,
+  "fields": {
+    "player": "Ryan Mihuc",
+    "avg_final_place": 2.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.7254976643511567,
+    "avg_total_points": 91.0,
+    "avg_pct_total_points": 0.6232876712328768,
+    "avg_normalized_total_points": 0.9680851063829787,
+    "avg_pct_rd1_points": 0.5294117647058824,
+    "avg_pct_rd2_points": 0.7160493827160493,
+    "avg_pct_final_rd_points": 0.42857142857142855,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 11,
+  "fields": {
+    "player": "Brittney Malhoit",
+    "avg_final_place": 2.5,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.5932713464706902,
+    "avg_total_points": 93.5,
+    "avg_pct_total_points": 0.6079401319127347,
+    "avg_normalized_total_points": 0.9640425531914893,
+    "avg_pct_rd1_points": 0.4603580562659847,
+    "avg_pct_rd2_points": 0.7259492196599114,
+    "avg_pct_final_rd_points": 0.5892857142857143,
+    "games_played": 2
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 12,
+  "fields": {
+    "player": "Erica Scandalios",
+    "avg_final_place": 2.5,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.5932713464706902,
+    "avg_total_points": 93.5,
+    "avg_pct_total_points": 0.6079401319127347,
+    "avg_normalized_total_points": 0.9640425531914893,
+    "avg_pct_rd1_points": 0.4603580562659847,
+    "avg_pct_rd2_points": 0.7259492196599114,
+    "avg_pct_final_rd_points": 0.5892857142857143,
+    "games_played": 2
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 13,
+  "fields": {
+    "player": "Andy Lipski",
+    "avg_final_place": 2.5,
+    "total_wins": 1,
+    "avg_zscore_total_points": 0.43184031692346553,
+    "avg_total_points": 93.5,
+    "avg_pct_total_points": 0.6089548452562151,
+    "avg_normalized_total_points": 0.9650000000000001,
+    "avg_pct_rd1_points": 0.3994032395566922,
+    "avg_pct_rd2_points": 0.7506405776846028,
+    "avg_pct_final_rd_points": 0.6964285714285714,
+    "games_played": 2
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 14,
+  "fields": {
+    "player": "Jayson Hobby",
+    "avg_final_place": 3.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.4610450285902239,
+    "avg_total_points": 96.0,
+    "avg_pct_total_points": 0.5925925925925926,
+    "avg_normalized_total_points": 0.96,
+    "avg_pct_rd1_points": 0.391304347826087,
+    "avg_pct_rd2_points": 0.7358490566037735,
+    "avg_pct_final_rd_points": 0.75,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 15,
+  "fields": {
+    "player": "Kyle Anderson",
+    "avg_final_place": 3.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.4610450285902239,
+    "avg_total_points": 96.0,
+    "avg_pct_total_points": 0.5925925925925926,
+    "avg_normalized_total_points": 0.96,
+    "avg_pct_rd1_points": 0.391304347826087,
+    "avg_pct_rd2_points": 0.7358490566037735,
+    "avg_pct_final_rd_points": 0.75,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 16,
+  "fields": {
+    "player": "Cam",
+    "avg_final_place": 3.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.28468895689728946,
+    "avg_total_points": 83.0,
+    "avg_pct_total_points": 0.5684931506849316,
+    "avg_normalized_total_points": 0.8829787234042553,
+    "avg_pct_rd1_points": 0.5098039215686274,
+    "avg_pct_rd2_points": 0.5555555555555556,
+    "avg_pct_final_rd_points": 0.8571428571428571,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 17,
+  "fields": {
+    "player": "Cody Damon",
+    "avg_final_place": 3.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.28468895689728946,
+    "avg_total_points": 83.0,
+    "avg_pct_total_points": 0.5684931506849316,
+    "avg_normalized_total_points": 0.8829787234042553,
+    "avg_pct_rd1_points": 0.5098039215686274,
+    "avg_pct_rd2_points": 0.5555555555555556,
+    "avg_pct_final_rd_points": 0.8571428571428571,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 18,
+  "fields": {
+    "player": "Elijah",
+    "avg_final_place": 3.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.28468895689728946,
+    "avg_total_points": 83.0,
+    "avg_pct_total_points": 0.5684931506849316,
+    "avg_normalized_total_points": 0.8829787234042553,
+    "avg_pct_rd1_points": 0.5098039215686274,
+    "avg_pct_rd2_points": 0.5555555555555556,
+    "avg_pct_final_rd_points": 0.8571428571428571,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 19,
+  "fields": {
+    "player": "Jesse Manzo",
+    "avg_final_place": 3.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.28468895689728946,
+    "avg_total_points": 83.0,
+    "avg_pct_total_points": 0.5684931506849316,
+    "avg_normalized_total_points": 0.8829787234042553,
+    "avg_pct_rd1_points": 0.5098039215686274,
+    "avg_pct_rd2_points": 0.5555555555555556,
+    "avg_pct_final_rd_points": 0.8571428571428571,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 20,
+  "fields": {
+    "player": "Asaki",
+    "avg_final_place": 4.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.2295878684655561,
+    "avg_total_points": 82.0,
+    "avg_pct_total_points": 0.5616438356164384,
+    "avg_normalized_total_points": 0.8723404255319149,
+    "avg_pct_rd1_points": 0.3333333333333333,
+    "avg_pct_rd2_points": 0.7407407407407407,
+    "avg_pct_final_rd_points": 0.35714285714285715,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 21,
+  "fields": {
+    "player": "Avi",
+    "avg_final_place": 4.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.2295878684655561,
+    "avg_total_points": 82.0,
+    "avg_pct_total_points": 0.5616438356164384,
+    "avg_normalized_total_points": 0.8723404255319149,
+    "avg_pct_rd1_points": 0.3333333333333333,
+    "avg_pct_rd2_points": 0.7407407407407407,
+    "avg_pct_final_rd_points": 0.35714285714285715,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 22,
+  "fields": {
+    "player": "Elliot Kennedy",
+    "avg_final_place": 4.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.2295878684655561,
+    "avg_total_points": 82.0,
+    "avg_pct_total_points": 0.5616438356164384,
+    "avg_normalized_total_points": 0.8723404255319149,
+    "avg_pct_rd1_points": 0.3333333333333333,
+    "avg_pct_rd2_points": 0.7407407407407407,
+    "avg_pct_final_rd_points": 0.35714285714285715,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 23,
+  "fields": {
+    "player": "Steven Stark",
+    "avg_final_place": 4.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": 0.2295878684655561,
+    "avg_total_points": 82.0,
+    "avg_pct_total_points": 0.5616438356164384,
+    "avg_normalized_total_points": 0.8723404255319149,
+    "avg_pct_rd1_points": 0.3333333333333333,
+    "avg_pct_rd2_points": 0.7407407407407407,
+    "avg_pct_final_rd_points": 0.35714285714285715,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 24,
+  "fields": {
+    "player": "Althea Albright",
+    "avg_final_place": 4.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.027120295799425754,
+    "avg_total_points": 93.0,
+    "avg_pct_total_points": 0.5740740740740741,
+    "avg_normalized_total_points": 0.93,
+    "avg_pct_rd1_points": 0.34782608695652173,
+    "avg_pct_rd2_points": 0.7358490566037735,
+    "avg_pct_final_rd_points": 0.75,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 25,
+  "fields": {
+    "player": "Claire Weaver",
+    "avg_final_place": 4.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.027120295799425754,
+    "avg_total_points": 93.0,
+    "avg_pct_total_points": 0.5740740740740741,
+    "avg_normalized_total_points": 0.93,
+    "avg_pct_rd1_points": 0.34782608695652173,
+    "avg_pct_rd2_points": 0.7358490566037735,
+    "avg_pct_final_rd_points": 0.75,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 26,
+  "fields": {
+    "player": "FJ Anderson",
+    "avg_final_place": 4.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.027120295799425754,
+    "avg_total_points": 93.0,
+    "avg_pct_total_points": 0.5740740740740741,
+    "avg_normalized_total_points": 0.93,
+    "avg_pct_rd1_points": 0.34782608695652173,
+    "avg_pct_rd2_points": 0.7358490566037735,
+    "avg_pct_final_rd_points": 0.75,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 27,
+  "fields": {
+    "player": "Jenna Carlson",
+    "avg_final_place": 4.5,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.6034636560355426,
+    "avg_total_points": 83.5,
+    "avg_pct_total_points": 0.543505834601725,
+    "avg_normalized_total_points": 0.8614893617021276,
+    "avg_pct_rd1_points": 0.4650468883205456,
+    "avg_pct_rd2_points": 0.570230607966457,
+    "avg_pct_final_rd_points": 0.7285714285714285,
+    "games_played": 2
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 28,
+  "fields": {
+    "player": "Justin Davis",
+    "avg_final_place": 5.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.2663219274200445,
+    "avg_total_points": 73.0,
+    "avg_pct_total_points": 0.5,
+    "avg_normalized_total_points": 0.776595744680851,
+    "avg_pct_rd1_points": 0.35294117647058826,
+    "avg_pct_rd2_points": 0.5925925925925926,
+    "avg_pct_final_rd_points": 0.5,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 29,
+  "fields": {
+    "player": "Max",
+    "avg_final_place": 5.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.2663219274200445,
+    "avg_total_points": 73.0,
+    "avg_pct_total_points": 0.5,
+    "avg_normalized_total_points": 0.776595744680851,
+    "avg_pct_rd1_points": 0.35294117647058826,
+    "avg_pct_rd2_points": 0.5925925925925926,
+    "avg_pct_final_rd_points": 0.5,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 30,
+  "fields": {
+    "player": "Scott Guidotti",
+    "avg_final_place": 5.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.2663219274200445,
+    "avg_total_points": 73.0,
+    "avg_pct_total_points": 0.5,
+    "avg_normalized_total_points": 0.776595744680851,
+    "avg_pct_rd1_points": 0.35294117647058826,
+    "avg_pct_rd2_points": 0.5925925925925926,
+    "avg_pct_final_rd_points": 0.5,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 31,
+  "fields": {
+    "player": "Walker Om-Wing",
+    "avg_final_place": 5.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.2663219274200445,
+    "avg_total_points": 73.0,
+    "avg_pct_total_points": 0.5,
+    "avg_normalized_total_points": 0.776595744680851,
+    "avg_pct_rd1_points": 0.35294117647058826,
+    "avg_pct_rd2_points": 0.5925925925925926,
+    "avg_pct_final_rd_points": 0.5,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 32,
+  "fields": {
+    "player": "Dylan Scandalios",
+    "avg_final_place": 5.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.5535255486011098,
+    "avg_total_points": 80.5,
+    "avg_pct_total_points": 0.5216049382716049,
+    "avg_normalized_total_points": 0.8282978723404255,
+    "avg_pct_rd1_points": 0.386615515771526,
+    "avg_pct_rd2_points": 0.6076170510132775,
+    "avg_pct_final_rd_points": 0.575,
+    "games_played": 2
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 33,
+  "fields": {
+    "player": "Blake Anderson",
+    "avg_final_place": 5.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.8407291697821752,
+    "avg_total_points": 88.0,
+    "avg_pct_total_points": 0.5432098765432098,
+    "avg_normalized_total_points": 0.88,
+    "avg_pct_rd1_points": 0.42028985507246375,
+    "avg_pct_rd2_points": 0.6226415094339622,
+    "avg_pct_final_rd_points": 0.65,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 34,
+  "fields": {
+    "player": "Sabina Beachdell",
+    "avg_final_place": 5.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.8407291697821752,
+    "avg_total_points": 88.0,
+    "avg_pct_total_points": 0.5432098765432098,
+    "avg_normalized_total_points": 0.88,
+    "avg_pct_rd1_points": 0.42028985507246375,
+    "avg_pct_rd2_points": 0.6226415094339622,
+    "avg_pct_final_rd_points": 0.65,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 35,
+  "fields": {
+    "player": "Shannon Boston",
+    "avg_final_place": 5.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -0.8407291697821752,
+    "avg_total_points": 88.0,
+    "avg_pct_total_points": 0.5432098765432098,
+    "avg_normalized_total_points": 0.88,
+    "avg_pct_rd1_points": 0.42028985507246375,
+    "avg_pct_rd2_points": 0.6226415094339622,
+    "avg_pct_final_rd_points": 0.65,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 36,
+  "fields": {
+    "player": "Ben Dreyer",
+    "avg_final_place": 6.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -1.4916162689683747,
+    "avg_total_points": 84.0,
+    "avg_pct_total_points": 0.5185185185185185,
+    "avg_normalized_total_points": 0.84,
+    "avg_pct_rd1_points": 0.42028985507246375,
+    "avg_pct_rd2_points": 0.5849056603773585,
+    "avg_pct_final_rd_points": 0.6,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 37,
+  "fields": {
+    "player": "Brook Goddard",
+    "avg_final_place": 6.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -1.4916162689683747,
+    "avg_total_points": 84.0,
+    "avg_pct_total_points": 0.5185185185185185,
+    "avg_normalized_total_points": 0.84,
+    "avg_pct_rd1_points": 0.42028985507246375,
+    "avg_pct_rd2_points": 0.5849056603773585,
+    "avg_pct_final_rd_points": 0.6,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 38,
+  "fields": {
+    "player": "Farren Hobby",
+    "avg_final_place": 6.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -1.4916162689683747,
+    "avg_total_points": 84.0,
+    "avg_pct_total_points": 0.5185185185185185,
+    "avg_normalized_total_points": 0.84,
+    "avg_pct_rd1_points": 0.42028985507246375,
+    "avg_pct_rd2_points": 0.5849056603773585,
+    "avg_pct_final_rd_points": 0.6,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 39,
+  "fields": {
+    "player": "Gerik Illo",
+    "avg_final_place": 6.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -1.4916162689683747,
+    "avg_total_points": 84.0,
+    "avg_pct_total_points": 0.5185185185185185,
+    "avg_normalized_total_points": 0.84,
+    "avg_pct_rd1_points": 0.42028985507246375,
+    "avg_pct_rd2_points": 0.5849056603773585,
+    "avg_pct_final_rd_points": 0.6,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 40,
+  "fields": {
+    "player": "Brittney Franklin",
+    "avg_final_place": 6.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -1.864253491940313,
+    "avg_total_points": 44.0,
+    "avg_pct_total_points": 0.3013698630136986,
+    "avg_normalized_total_points": 0.46808510638297873,
+    "avg_pct_rd1_points": 0.3333333333333333,
+    "avg_pct_rd2_points": 0.30864197530864196,
+    "avg_pct_final_rd_points": 0.14285714285714285,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 41,
+  "fields": {
+    "player": "Charlie Campbell",
+    "avg_final_place": 6.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -1.864253491940313,
+    "avg_total_points": 44.0,
+    "avg_pct_total_points": 0.3013698630136986,
+    "avg_normalized_total_points": 0.46808510638297873,
+    "avg_pct_rd1_points": 0.3333333333333333,
+    "avg_pct_rd2_points": 0.30864197530864196,
+    "avg_pct_final_rd_points": 0.14285714285714285,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 42,
+  "fields": {
+    "player": "Savannah",
+    "avg_final_place": 6.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -1.864253491940313,
+    "avg_total_points": 44.0,
+    "avg_pct_total_points": 0.3013698630136986,
+    "avg_normalized_total_points": 0.46808510638297873,
+    "avg_pct_rd1_points": 0.3333333333333333,
+    "avg_pct_rd2_points": 0.30864197530864196,
+    "avg_pct_final_rd_points": 0.14285714285714285,
+    "games_played": 1
+  }
+},
+{
+  "model": "quiz.playerstats",
+  "pk": 43,
+  "fields": {
+    "player": "Sunny Kalar",
+    "avg_final_place": 6.0,
+    "total_wins": 0,
+    "avg_zscore_total_points": -1.864253491940313,
+    "avg_total_points": 44.0,
+    "avg_pct_total_points": 0.3013698630136986,
+    "avg_normalized_total_points": 0.46808510638297873,
+    "avg_pct_rd1_points": 0.3333333333333333,
+    "avg_pct_rd2_points": 0.30864197530864196,
+    "avg_pct_final_rd_points": 0.14285714285714285,
+    "games_played": 1
   }
 }
 ]
