@@ -83,9 +83,23 @@
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Games Played</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Place</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Wins</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Z-Score</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase relative group">
+                                    <span class="cursor-help">
+                                        Avg Z-Score
+                                        <div class="invisible group-hover:visible absolute left-0 top-full mt-2 w-48 p-2 bg-black text-white text-xs rounded shadow-lg z-50 normal-case">
+                                            Number of standard deviations above or below the mean score. A positive score means above average performance.
+                                        </div>
+                                    </span>
+                                </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Points</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg % Total</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase relative group">
+                                    <span class="cursor-help">
+                                        Avg % Total
+                                        <div class="invisible group-hover:visible absolute right-0 top-full mt-2 w-48 p-2 bg-black text-white text-xs rounded shadow-lg z-50 normal-case">
+                                            Average percentage of total points possible scored by the player in each game.
+                                        </div>
+                                    </span>
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -115,11 +129,46 @@
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Players</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Place</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Round 1</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Round 2</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Final</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Z-Score</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase relative group">
+                                    <span class="cursor-help">
+                                        Round 1
+                                        <div class="invisible group-hover:visible absolute left-0 top-full mt-2 w-48 p-2 bg-black text-white text-xs rounded shadow-lg z-50 normal-case">
+                                            Points scored, and percentage of possible points scored.
+                                        </div>
+                                    </span>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase relative group">
+                                    <span class="cursor-help">
+                                        Round 2
+                                        <div class="invisible group-hover:visible absolute left-0 top-full mt-2 w-48 p-2 bg-black text-white text-xs rounded shadow-lg z-50 normal-case">
+                                            Points scored, and percentage of possible points scored.
+                                        </div>
+                                    </span>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase relative group">
+                                    <span class="cursor-help">
+                                        Final
+                                        <div class="invisible group-hover:visible absolute left-0 top-full mt-2 w-48 p-2 bg-black text-white text-xs rounded shadow-lg z-50 normal-case">
+                                            Points scored, and percentage of possible points scored.
+                                        </div>
+                                    </span>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase relative group">
+                                    <span class="cursor-help">
+                                        Total
+                                        <div class="invisible group-hover:visible absolute left-0 top-full mt-2 w-48 p-2 bg-black text-white text-xs rounded shadow-lg z-50 normal-case">
+                                            Points scored, and percentage of possible points scored.
+                                        </div>
+                                    </span>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase relative group">
+                                    <span class="cursor-help">
+                                        Z-Score
+                                        <div class="invisible group-hover:visible absolute right-0 top-full mt-2 w-48 p-2 bg-black text-white text-xs rounded shadow-lg z-50 normal-case">
+                                            Standard deviations from mean score. Shows how exceptional the performance was relative to other teams.
+                                        </div>
+                                    </span>
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
