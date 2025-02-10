@@ -4,7 +4,7 @@ class Cloud {
         this.element = element;
         this.x = Math.random() * window.innerWidth;
         this.y = Math.random() * window.innerHeight * 0.8;
-        this.speed = 0.5 + Math.random() * 0.5;
+        this.speed = 0.5 + Math.random() * 0.3;
         this.depth = Math.random();
         this.init();
     }
