@@ -8,5 +8,5 @@ urlpatterns = [
     path("health/", views.health_check, name="health_check"),
     path("quiz/", include("quiz.urls")),
     path("", game_list_view, name="home"),
-     path("analytics/", analytics_view, name="analytics"),
+    path("analytics/", analytics_view, name="analytics"),
 ]
