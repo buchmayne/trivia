@@ -1886,6 +1886,127 @@
           ]
         }
       ]
+    },
+    {
+      "game_name": "July-2022",
+      "game_description": "",
+      "is_password_protected": false,
+      "password": null,
+      "game_order": 5,
+      "questions": [
+        {
+          "text": "A Septuagenarian is a person in their 70s, identify the related term for people of the following ages (2 Points Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 6,
+          "total_points": 8,
+          "category": "Age",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. 30s",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Tricenarian",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. 60s",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Sexagenarian",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. 40s",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Quadragenarian",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. 20s",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Vicenarian",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "For the following Muslim people, identify whether they're a Sunni or Shia Muslim (1 Point Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 7,
+          "total_points": 4,
+          "category": "Religion",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Bashar al-Assad (former President of Syria)",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Shia",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Ali Khamenei (Supreme Leader of Iran)",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Shia",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Saddam Hussein",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Sunni",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Osama Bin Laden",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Sunni",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        }
+      ]
     }
   ]
 }

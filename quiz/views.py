@@ -272,7 +272,7 @@ def analytics_view(request):
         result.pct_rd2 *= 100
         result.pct_final *= 100
         result.pct_total *= 100
-    
+
     for stat in player_stats:
         stat.avg_pct_total_points *= 100
         stat.avg_pct_rd1_points *= 100
