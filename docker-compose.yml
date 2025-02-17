@@ -51,7 +51,6 @@ services:
     command: >
       sh -c "python manage.py migrate &&
              python manage.py loaddata db_initial_data.json &&
-             python manage.py load_content_updates &&
              python manage.py collectstatic --noinput &&
              gunicorn --bind 0.0.0.0:8000 pub_trivia.wsgi:application"
     volumes:
