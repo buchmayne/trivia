@@ -4524,6 +4524,734 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 349,
+  "fields": {
+    "action_time": "2025-02-15T21:50:42.093Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "January-2025",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game order\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 350,
+  "fields": {
+    "action_time": "2025-02-15T21:50:51.455Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "April-2024",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game order\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 351,
+  "fields": {
+    "action_time": "2025-02-15T21:51:16.283Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "6",
+    "object_repr": "March-2021",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 352,
+  "fields": {
+    "action_time": "2025-02-15T22:02:46.283Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "92",
+    "object_repr": "Q1: Identify the Italian Pasta from the photo (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 353,
+  "fields": {
+    "action_time": "2025-02-15T22:06:38.249Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "93",
+    "object_repr": "Q2: Are each of the following celebrity names their birth name or a stage name? (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. David Bowie\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Michael Keaton\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Calvin Harris\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Bruce Springsteen\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Leonardo DiCaprio\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 354,
+  "fields": {
+    "action_time": "2025-02-15T22:15:21.257Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "94",
+    "object_repr": "Q3: Match the philosopher to one of their key ideas (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Believed that human beings are \\u201ccondemned to be free,\\u201d that because there is no Creator who is responsible for our actions, each of us alone is responsible for everything we do\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Believed in the individual\\u2019s creative capacity to resist social norms and cultural convention in order to live according to a greater set of virtues.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Demanded that social constructs be more closely examined for hierarchical inequalities, as well as through an analysis of the corresponding fields of knowledge supporting these unequal structures\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Resolved that because thought is inextricably tied to language, and because language is socially constructed, we have no real inner-space for the realization of our thoughts, which is to say that the language of our thoughts renders our thoughts inherently socially constructed.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 355,
+  "fields": {
+    "action_time": "2025-02-15T22:15:51.498Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "94",
+    "object_repr": "Q3: Match the philosopher to one of their key ideas (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game round\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 356,
+  "fields": {
+    "action_time": "2025-02-15T22:19:34.823Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "95",
+    "object_repr": "Q4: Match the opening line of the novel to the novel (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. \\\"Call me Ishmael.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. \\\"Mother died today.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. \\\"Happy families are all alike; every unhappy family is unhappy in its own way.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. \\\"He was an old man who fished alone in a skiff in the Gulf Stream and he had gone eighty-four days now without taking a fish.\\\"\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 357,
+  "fields": {
+    "action_time": "2025-02-15T22:22:29.638Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "96",
+    "object_repr": "Q5: Rank the following peaks from tallest to shortest (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Mt. Rainier, Washington\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Mt. Whitney, California\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Mt. Shasta, California\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Castle Mountain, Montana\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 358,
+  "fields": {
+    "action_time": "2025-02-15T22:37:36.031Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "97",
+    "object_repr": "Q6: For each of the following famous paintings, name either the painting OR the artists (2 Points Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 359,
+  "fields": {
+    "action_time": "2025-02-15T22:42:31.753Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "98",
+    "object_repr": "Q7: Match the famous painting shown to its artistic period/style/movement (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 360,
+  "fields": {
+    "action_time": "2025-02-15T22:45:47.243Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "99",
+    "object_repr": "Q8: Rank the following trips by longest to shortest distance (miles/google maps/car) (1 Points each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Los Angeles -> San Francisco\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Baltimore -> Boston\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Milwaukee -> Cleveland\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Atlanta -> Miami\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 361,
+  "fields": {
+    "action_time": "2025-02-15T22:52:12.060Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "100",
+    "object_repr": "Q9: Since 1950, 7 universities have won both a national championship in football and in men's basketball. Name these universities (1 Point Each). Max 7 Submissions",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"F.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"G.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 362,
+  "fields": {
+    "action_time": "2025-02-15T22:52:43.676Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "100",
+    "object_repr": "Q9: Since 1950, 7 universities have won both a national championship in football and in men's basketball. Name these universities (1 Point Each). Max 7 Submissions",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Display order\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B.\", \"fields\": [\"Display order\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Display order\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D.\", \"fields\": [\"Display order\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"E.\", \"fields\": [\"Display order\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"F.\", \"fields\": [\"Display order\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"G.\", \"fields\": [\"Display order\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 363,
+  "fields": {
+    "action_time": "2025-02-15T22:57:52.859Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "101",
+    "object_repr": "Q10: Rank the following Tom Cruise movies from highest to lowest Rotten Tomatoes tomato meter (critics score) (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Jerry Maguire\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Mission Impossible: Fallout\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Top Gun\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Minority Report\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 364,
+  "fields": {
+    "action_time": "2025-02-15T23:01:05.524Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "102",
+    "object_repr": "Q11: Order the following actors from oldest to youngest (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Samuel L. Jackson\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Liam Neeson\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Tom Cruise\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Tom Hanks\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 365,
+  "fields": {
+    "action_time": "2025-02-15T23:03:43.931Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "103",
+    "object_repr": "Q12: Match the plot synopsis to the entry in the Fast and the Furious film franchise (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Deckard Shaw, a rogue special forces assassin seeking to avenge his comatose younger brother Owen, puts the team of Dominic Toretto and Brian O'Conner in danger once again.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Dominic Toretto, Brian O'Conner and Mia Toretto (Jordana Brewster) plan a heist to steal 100 million dollars from corrupt businessman Hernan Reyes while being pursued for arrest by U.S. Diplomatic Security Service (DSS) agent Luke Hobbs.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Cyberterrorist Cipher coerces Dom into working for her and turns him against his team, forcing them to find Dominic and take down Cipher.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Dominic Toretto, Brian O'Conner and their team are offered amnesty for their crimes by Luke Hobbs, in exchange for helping him take down a skilled mercenary organization led by Owen Shaw, one member of which is Toretto's former lover Letty Ortiz. It is the last film to be set before Tokyo Drift.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 366,
+  "fields": {
+    "action_time": "2025-02-15T23:06:15.219Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "104",
+    "object_repr": "Q13: Identify the following mathematical formula (3 Points).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q13: Identify the following mathematical formula (3 Points).\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 367,
+  "fields": {
+    "action_time": "2025-02-15T23:09:11.563Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "105",
+    "object_repr": "Q14: TBD... (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"1. Front man of one of the best selling bands of the last 20 years\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"2. Comedic actor who costarred in a major film franchise with Will Smith\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"3. One of the NFL's greatest defensive players, regardless of his off field battle with drugs\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"4. Millennial artist rerecording earlier albums due to high profile label dispute\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 368,
+  "fields": {
+    "action_time": "2025-02-15T23:11:36.828Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "106",
+    "object_repr": "Q15: This was the headline of the Los Angeles Times on August 7th, 1945 (Four Words). Solve the following anagram (5 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q15: This was the headline of the Los Angeles Times on August 7th, 1945 (Four Words). Solve the following anagram (5 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 369,
+  "fields": {
+    "action_time": "2025-02-15T23:15:01.343Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "107",
+    "object_repr": "Q16: Each circle of the Venn Diagram is a movie featuring all of the actors listed within the circle. Identify each movie (2 Points Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Green Circle:\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Blue Circle:\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Red Circle:\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 370,
+  "fields": {
+    "action_time": "2025-02-15T23:17:18.340Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "108",
+    "object_repr": "Q17: Identify the data being shown on the map (5 Points).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 371,
+  "fields": {
+    "action_time": "2025-02-15T23:19:33.135Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "109",
+    "object_repr": "Q18: Answer the following puzzle/riddle (4 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q18: Answer the following puzzle/riddle (4 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 372,
+  "fields": {
+    "action_time": "2025-02-15T23:20:28.467Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "109",
+    "object_repr": "Q18: Answer the following puzzle/riddle (4 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 373,
+  "fields": {
+    "action_time": "2025-02-15T23:21:04.616Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "109",
+    "object_repr": "Q18: Answer the following puzzle/riddle (4 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 374,
+  "fields": {
+    "action_time": "2025-02-15T23:25:15.558Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "110",
+    "object_repr": "Q19: Identify the famous place from the satellite photo (5 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 375,
+  "fields": {
+    "action_time": "2025-02-15T23:25:59.345Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "110",
+    "object_repr": "Q19: Identify the famous place from the satellite photo (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q19: Identify the famous place from the satellite photo (5 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 376,
+  "fields": {
+    "action_time": "2025-02-15T23:28:42.707Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "111",
+    "object_repr": "Q20: The following four image collage is a visual pun.\r\n\r\nGuess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 377,
+  "fields": {
+    "action_time": "2025-02-15T23:29:56.270Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "111",
+    "object_repr": "Q20: The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points ",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 378,
+  "fields": {
+    "action_time": "2025-02-15T23:30:55.815Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "109",
+    "object_repr": "Q18: Answer the following puzzle/riddle (4 Points)<br><br>\r\nOnce upon a time a farmer went to a market and purchased a wolf, a goat, and a cabbage. On his way home, the farmer came to the bank of a ri",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 379,
+  "fields": {
+    "action_time": "2025-02-15T23:31:59.977Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "109",
+    "object_repr": "Q18: Once upon a time a farmer went to a market and purchased a wolf, a goat, and a cabbage. On his way home, the farmer came to the bank of a river and rented a boat. <br><br>But crossing the river b",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Answer bank\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 380,
+  "fields": {
+    "action_time": "2025-02-15T23:32:45.935Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "109",
+    "object_repr": "Q18: Once upon a time a farmer went to a market and purchased a wolf, a goat, and a cabbage. On his way home, the farmer came to the bank of a river and rented a boat. <br><br>Crossing the river by bo",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 381,
+  "fields": {
+    "action_time": "2025-02-15T23:33:07.696Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "105",
+    "object_repr": "Q14: Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 382,
+  "fields": {
+    "action_time": "2025-02-16T22:31:41.684Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "April-2021",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 383,
+  "fields": {
+    "action_time": "2025-02-16T22:41:06.016Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "112",
+    "object_repr": "Q1: Rank the following literary franchises based on number of books sold, from highest to lowest (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Twilight\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Harry Potter\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. The Hunger Games\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Fifty Shades\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Robert Langdon Series (Da Vinci Code)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 384,
+  "fields": {
+    "action_time": "2025-02-16T22:44:38.733Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "113",
+    "object_repr": "Q2: Match the fast food item to its caloric profile (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 540 Calories, 28g Total Fat, 950mg Sodium\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 1,010 Calories, 55g Total Fat, 1980mg Sodium\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 950 Calories, 62g Total Fat, 1810mg Sodium\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 385,
+  "fields": {
+    "action_time": "2025-02-16T22:48:47.682Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "114",
+    "object_repr": "Q3: Rank the following presidential elections by electoral college margin of victory, from largest to smallest (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Bush v. Kerry (2004)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Trump v. Clinton (2016)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Clinton v. Bush (1992)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Obama v. Romney (2012)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 386,
+  "fields": {
+    "action_time": "2025-02-16T22:51:55.924Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "115",
+    "object_repr": "Q4: Match the title of the series finale episode to the television series (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Felina\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Person to Person\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Everyone Dies\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Made in America\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 387,
+  "fields": {
+    "action_time": "2025-02-16T22:55:40.281Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "116",
+    "object_repr": "Q5: Name the U.S. State with the highest percentage of population with ancestry from the following European countries (2 Points Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Italy\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Germany\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Russia\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Ireland\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 388,
+  "fields": {
+    "action_time": "2025-02-16T22:58:55.809Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "117",
+    "object_repr": "Q6: The 10 tallest buildings in the world are in the following six countries. For each country, how many of the 10 tallest buildings in the world are in that country? (1 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. China\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. USA\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. South Korea\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Taiwan\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Saudi Arabia\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"F. United Arab Emirates\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 389,
+  "fields": {
+    "action_time": "2025-02-16T23:02:12.777Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "118",
+    "object_repr": "Q8: Rank the following occupations from highest to lowest fatal work injury rates (1 Point Each)/",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Fishing and hunting workers\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Logging workers\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Roofers\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Driver/sales workers and truck drivers\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 390,
+  "fields": {
+    "action_time": "2025-02-16T23:06:44.295Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "119",
+    "object_repr": "Q9: Match the portrait of the 19th century President to the President (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 391,
+  "fields": {
+    "action_time": "2025-02-16T23:09:22.584Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "120",
+    "object_repr": "Q10: Order the following scientific discoveries chronologically from oldest to most recent (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Theory of Continental Drift\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Dmitri Ivanovsky discovers for the first time a virus\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Hanaoka Seish\\u016b develops general anesthesia\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Ole R\\u00f8mer first measurement of the speed of light\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 392,
+  "fields": {
+    "action_time": "2025-02-16T23:10:55.679Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "118",
+    "object_repr": "Q8: Rank the following occupations from highest to lowest fatal work injury rates (1 Point Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 393,
+  "fields": {
+    "action_time": "2025-02-16T23:13:25.867Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "121",
+    "object_repr": "Q11: For each of the following years, list the most popular Male and Female Baby Name in the USA (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 2010\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 2000\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 1990\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 394,
+  "fields": {
+    "action_time": "2025-02-16T23:15:50.302Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "122",
+    "object_repr": "Q12: The goal of the puzzle is to link all 9 dots using four straight lines or fewer, without lifting the pen and without tracing the same line more than once (4 Points).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 395,
+  "fields": {
+    "action_time": "2025-02-16T23:20:34.169Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "123",
+    "object_repr": "Q13: Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (2 Points Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Actor most famous for having had too much to drink, or working in an office\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Where the riders of Rohan found refuge against Saruman and his army of orcs\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. The username of this redditor who sparked a short squeeze, testified before congress, and was played by Paul Dano in a 2023 feature film\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 396,
+  "fields": {
+    "action_time": "2025-02-16T23:24:25.370Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "124",
+    "object_repr": "Q14: Each circle in the Venn Diagram is a movie, identify each movie by the actors (2 Points Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Purple:\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Red:\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Yellow\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Blue\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Green\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 397,
+  "fields": {
+    "action_time": "2025-02-16T23:28:09.558Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "125",
+    "object_repr": "Q15: Identify the place from the satellite photo (5 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 398,
+  "fields": {
+    "action_time": "2025-02-16T23:30:21.804Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "126",
+    "object_repr": "Q16: Identify the mathematical concept from the formula (4 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q16: Identify the mathematical concept from the formula (4 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 399,
+  "fields": {
+    "action_time": "2025-02-16T23:33:50.002Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "127",
+    "object_repr": "Q17: The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 400,
+  "fields": {
+    "action_time": "2025-02-16T23:37:08.599Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "128",
+    "object_repr": "Q7: Rank the following construction projects from most to least expensive in today's dollars (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. The Big Dig: Dubbed \\u201cThe Big Dig\\u201d, the redirection of Route 1-93, the main road in the Boston areas transport network was dogged by design flaws, delays, and sunken ships.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Songdo IBD: South Korea\\u2019s Songdo IBD is a \\u201csmart city\\u201d built on 600 hectares of land reclaimed from sea 65 km from Seoul.Its ubiquitous technology allows residents to video-conference with their neighbors, while sensors gather information to alert authorities to criminal behavior, or tell passengers when the next bus is due.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Kashagan Fields : Shell, Exxon Mobil, Total, China National Petroleum Corp, KazMunaiGas, INPEX, and AgipKCO are working in collaboration to tap into around 13 billion barrels in the Caspian Sea.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. King Abdullah Economic City: Boasting luxury villages, an enormous airport and major universities, King Abdullah Economic City is anticipated to become a huge tourist attraction for Saudi Arabia.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 401,
+  "fields": {
+    "action_time": "2025-02-16T23:38:36.825Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "April-2024",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 402,
+  "fields": {
+    "action_time": "2025-02-17T01:01:46.607Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "8",
+    "object_repr": "July-2022",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 403,
+  "fields": {
+    "action_time": "2025-02-17T01:04:27.479Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "129",
+    "object_repr": "Q6: A Septuagenarian is a person in their 70s, identify the related term for people of the following ages (2 Points Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 30s\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 60s\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 40s\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 20s\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 404,
+  "fields": {
+    "action_time": "2025-02-17T01:10:41.534Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "130",
+    "object_repr": "Q7: For the following Muslim people, identify whether they're a Sunni or Shia Muslim (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Bashar al-Assad (former President of Syria)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Ali Khamenei (Supreme Leader of Iran)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Saddam Hussein\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Osama Bin Laden\"}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -5028,11 +5756,47 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add content update",
+    "content_type": 15,
+    "codename": "add_contentupdate"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change content update",
+    "content_type": 15,
+    "codename": "change_contentupdate"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete content update",
+    "content_type": 15,
+    "codename": "delete_contentupdate"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view content update",
+    "content_type": 15,
+    "codename": "view_contentupdate"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$GaKTcesAdq8CjrmLYTczde$NeJ5+0SVFd2oVRqur4JCuru8HjAHW7xoM878yxwcXbs=",
-    "last_login": "2025-02-01T04:51:31.439Z",
+    "last_login": "2025-02-15T21:48:26.871Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -5158,6 +5922,14 @@
   }
 },
 {
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "quiz",
+    "model": "contentupdate"
+  }
+},
+{
   "model": "sessions.session",
   "pk": "6abg218b2vbqvqguw4cu9who2tw1aqik",
   "fields": {
@@ -5199,6 +5971,14 @@
 },
 {
   "model": "sessions.session",
+  "pk": "w3mgb7b66aion5ll5c7u2kcypx3qx82u",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln4l2Qp6XMGa9e7xgHkSHFSIe4OkVJA-2bmvVTEbS1xa7LEidVFGXX63QjTQ-oO-I71Nus013WZSO-KPmjT48zyvB7u30HBVr61OAsSwBqXeobkwbsOHeUAfUAYAgkP1OWEmYXZZjCSg7fpbAmMIVbvD-y6OKY:1tjQ1S:GMIyXK7WfxMjTz5iJDIKxiJpRGNb62kjwFBx-t89Z7w",
+    "expire_date": "2025-03-01T21:48:26.885Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "wq8rrob2ml2wafkgp3bv2bx32e5klr96",
   "fields": {
     "session_data": "eyJnYW1lX3Bhc3N3b3JkX3ZlcmlmaWVkXzIiOnRydWV9:1tXrRB:ADpHQJvS4sRwIzBWUl4qzBxtrPt86hrQC-ply9lCGsg",
@@ -5210,11 +5990,11 @@
   "pk": 1,
   "fields": {
     "name": "April-2024",
-    "description": "<p><strong>Location</strong>: Lucky Lab NW</p>\r\n<p><strong>Date:</strong> April 12th, 2024</p>\r\n<p><strong><a href=\"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit?gid=435741819#gid=435741819\" target=\"_blank\" rel=\"noopener\">Game Results</a></strong></p>\r\n<p><strong>Description:</strong> Maggie and Kyle's joint bachelor/bachelorette party.&nbsp;</p>",
+    "description": "<p><strong>Location</strong>: Lucky Lab NW</p>\r\n<p><strong>Date:</strong> April 12th, 2024</p>\r\n<p><strong>Description:</strong> Maggie and Kyle's joint bachelor/bachelorette party.&nbsp;</p>",
     "created_at": "2024-11-11T20:04:18Z",
     "is_password_protected": false,
     "password": null,
-    "game_order": 3
+    "game_order": 14
   }
 },
 {
@@ -5226,7 +6006,7 @@
     "created_at": "2024-12-04T01:29:28Z",
     "is_password_protected": false,
     "password": "luckylabnw",
-    "game_order": 5
+    "game_order": 15
   }
 },
 {
@@ -5266,6 +6046,42 @@
   }
 },
 {
+  "model": "quiz.game",
+  "pk": 6,
+  "fields": {
+    "name": "March-2021",
+    "description": "<p>Zoom Era</p>",
+    "created_at": "2025-02-15T21:51:16.280Z",
+    "is_password_protected": false,
+    "password": null,
+    "game_order": 3
+  }
+},
+{
+  "model": "quiz.game",
+  "pk": 7,
+  "fields": {
+    "name": "April-2021",
+    "description": "",
+    "created_at": "2025-02-16T22:31:41.679Z",
+    "is_password_protected": false,
+    "password": null,
+    "game_order": 4
+  }
+},
+{
+  "model": "quiz.game",
+  "pk": 8,
+  "fields": {
+    "name": "July-2022",
+    "description": "",
+    "created_at": "2025-02-17T01:01:46.604Z",
+    "is_password_protected": false,
+    "password": null,
+    "game_order": 5
+  }
+},
+{
   "model": "quiz.category",
   "pk": 1,
   "fields": {
@@ -5295,8 +6111,8 @@
     "description": "",
     "games": [
       4,
-      1,
-      2
+      2,
+      1
     ]
   }
 },
@@ -5307,7 +6123,8 @@
     "name": "Names",
     "description": "",
     "games": [
-      1
+      1,
+      7
     ]
   }
 },
@@ -5318,8 +6135,8 @@
     "name": "Agriculture",
     "description": "",
     "games": [
-      1,
-      2
+      2,
+      1
     ]
   }
 },
@@ -5396,8 +6213,9 @@
     "name": "Democracy",
     "description": "",
     "games": [
-      1,
-      2
+      2,
+      7,
+      1
     ]
   }
 },
@@ -5408,9 +6226,9 @@
     "name": "Six Degrees of Separation",
     "description": "",
     "games": [
-      1,
+      5,
       2,
-      5
+      1
     ]
   }
 },
@@ -5421,6 +6239,8 @@
     "name": "First Name Last Name",
     "description": "",
     "games": [
+      6,
+      7,
       1
     ]
   }
@@ -5435,7 +6255,8 @@
       1,
       2,
       4,
-      5
+      5,
+      6
     ]
   }
 },
@@ -5457,8 +6278,8 @@
     "name": "Popularity",
     "description": "",
     "games": [
-      1,
-      2
+      2,
+      1
     ]
   }
 },
@@ -5469,11 +6290,13 @@
     "name": "Bird's Eye View",
     "description": "",
     "games": [
-      1,
-      2,
       4,
       5,
-      3
+      3,
+      2,
+      6,
+      7,
+      1
     ]
   }
 },
@@ -5487,7 +6310,9 @@
       1,
       2,
       4,
-      5
+      5,
+      6,
+      7
     ]
   }
 },
@@ -5498,9 +6323,9 @@
     "name": "Soundtracks",
     "description": "",
     "games": [
-      1,
+      3,
       2,
-      3
+      1
     ]
   }
 },
@@ -5511,8 +6336,8 @@
     "name": "Days",
     "description": "",
     "games": [
-      2,
-      3
+      3,
+      2
     ]
   }
 },
@@ -5523,8 +6348,8 @@
     "name": "Prologue",
     "description": "",
     "games": [
-      2,
-      3
+      3,
+      2
     ]
   }
 },
@@ -5557,8 +6382,8 @@
     "name": "Numbers",
     "description": "",
     "games": [
-      2,
-      3
+      3,
+      2
     ]
   }
 },
@@ -5580,8 +6405,8 @@
     "name": "Olympics",
     "description": "",
     "games": [
-      2,
-      3
+      3,
+      2
     ]
   }
 },
@@ -5606,7 +6431,8 @@
       2,
       1,
       4,
-      5
+      5,
+      6
     ]
   }
 },
@@ -5628,9 +6454,9 @@
     "name": "Genres",
     "description": null,
     "games": [
-      2,
       4,
-      5
+      5,
+      2
     ]
   }
 },
@@ -5641,7 +6467,9 @@
     "name": "Food",
     "description": null,
     "games": [
-      2
+      2,
+      6,
+      7
     ]
   }
 },
@@ -5674,7 +6502,8 @@
     "name": "Nature",
     "description": null,
     "games": [
-      2
+      2,
+      6
     ]
   }
 },
@@ -5696,7 +6525,8 @@
     "name": "Age",
     "description": null,
     "games": [
-      4
+      4,
+      8
     ]
   }
 },
@@ -5707,7 +6537,8 @@
     "name": "Sports",
     "description": null,
     "games": [
-      4
+      4,
+      6
     ]
   }
 },
@@ -5719,7 +6550,9 @@
     "description": null,
     "games": [
       4,
-      5
+      5,
+      6,
+      7
     ]
   }
 },
@@ -5752,7 +6585,8 @@
     "name": "Presidents",
     "description": null,
     "games": [
-      4
+      4,
+      7
     ]
   }
 },
@@ -5799,7 +6633,8 @@
     "description": null,
     "games": [
       4,
-      5
+      5,
+      6
     ]
   }
 },
@@ -5810,7 +6645,9 @@
     "name": "Venn Diagram",
     "description": null,
     "games": [
-      4
+      4,
+      6,
+      7
     ]
   }
 },
@@ -5832,7 +6669,8 @@
     "name": "Television",
     "description": null,
     "games": [
-      5
+      5,
+      7
     ]
   }
 },
@@ -5866,7 +6704,8 @@
     "name": "Architecture",
     "description": null,
     "games": [
-      5
+      5,
+      7
     ]
   }
 },
@@ -5877,7 +6716,8 @@
     "name": "Actors",
     "description": null,
     "games": [
-      5
+      5,
+      6
     ]
   }
 },
@@ -5910,7 +6750,130 @@
     "name": "Anagrams",
     "description": null,
     "games": [
-      5
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 57,
+  "fields": {
+    "name": "Stage Names",
+    "description": null,
+    "games": [
+      6
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 58,
+  "fields": {
+    "name": "Philosophy",
+    "description": null,
+    "games": [
+      6
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 59,
+  "fields": {
+    "name": "Literature",
+    "description": null,
+    "games": [
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 60,
+  "fields": {
+    "name": "Art",
+    "description": null,
+    "games": [
+      6
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 61,
+  "fields": {
+    "name": "Travel",
+    "description": null,
+    "games": [
+      6
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 62,
+  "fields": {
+    "name": "Demographics",
+    "description": null,
+    "games": [
+      7
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 63,
+  "fields": {
+    "name": "Danger",
+    "description": null,
+    "games": [
+      7
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 64,
+  "fields": {
+    "name": "Science",
+    "description": null,
+    "games": [
+      7
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 65,
+  "fields": {
+    "name": "Puzzle",
+    "description": null,
+    "games": [
+      7
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 66,
+  "fields": {
+    "name": "Engineering",
+    "description": null,
+    "games": [
+      7
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 67,
+  "fields": {
+    "name": "Religion",
+    "description": null,
+    "games": [
+      8
     ]
   }
 },
@@ -7493,6 +8456,669 @@
     "created_at": "2025-02-08T19:10:45.422Z",
     "total_points": 5,
     "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 92,
+  "fields": {
+    "game": 6,
+    "category": 32,
+    "text": "Identify the Italian Pasta from the photo (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Food/pasta.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Food/pasta_answers.png",
+    "question_number": 1,
+    "created_at": "2025-02-15T22:02:46.277Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 93,
+  "fields": {
+    "game": 6,
+    "category": 57,
+    "text": "Are each of the following celebrity names their birth name or a stage name? (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 2,
+    "created_at": "2025-02-15T22:06:38.244Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 94,
+  "fields": {
+    "game": 6,
+    "category": 58,
+    "text": "Match the philosopher to one of their key ideas (1 Point Each)",
+    "answer_bank": "Ludwig Wittgenstein (1889–1951), Jean-Paul Sartre (1905–80), Friedrich Nietzsche (1844–1900), Michel Foucault (1926-1984)",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 3,
+    "created_at": "2025-02-15T22:15:21.250Z",
+    "total_points": 1,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 95,
+  "fields": {
+    "game": 6,
+    "category": 59,
+    "text": "Match the opening line of the novel to the novel (1 Point Each).",
+    "answer_bank": "The Stranger, Anna Karenina, Moby Dick, The Old Man and the Sea",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 4,
+    "created_at": "2025-02-15T22:19:34.819Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 96,
+  "fields": {
+    "game": 6,
+    "category": 35,
+    "text": "Rank the following peaks from tallest to shortest (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 5,
+    "created_at": "2025-02-15T22:22:29.635Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 97,
+  "fields": {
+    "game": 6,
+    "category": 60,
+    "text": "For each of the following famous paintings, name either the painting OR the artists (2 Points Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 6,
+    "created_at": "2025-02-15T22:37:36.028Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 98,
+  "fields": {
+    "game": 6,
+    "category": 60,
+    "text": "Match the famous painting shown to its artistic period/style/movement (1 Point Each).",
+    "answer_bank": "Baroque (1600–1750), Impressionism (1865–1885), Post-Impressionism (1885–1910), Expressionism (1905–1920)",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 7,
+    "created_at": "2025-02-15T22:42:31.749Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 99,
+  "fields": {
+    "game": 6,
+    "category": 61,
+    "text": "Rank the following trips by longest to shortest distance (miles/google maps/car) (1 Points each)",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 8,
+    "created_at": "2025-02-15T22:45:47.237Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 100,
+  "fields": {
+    "game": 6,
+    "category": 38,
+    "text": "Since 1950, 7 universities have won both a national championship in football and in men's basketball. Name these universities (1 Point Each). Max 7 Submissions",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 9,
+    "created_at": "2025-02-15T22:52:12.053Z",
+    "total_points": 7,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 101,
+  "fields": {
+    "game": 6,
+    "category": 53,
+    "text": "Rank the following Tom Cruise movies from highest to lowest Rotten Tomatoes tomato meter (critics score) (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 10,
+    "created_at": "2025-02-15T22:57:52.854Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 102,
+  "fields": {
+    "game": 6,
+    "category": 53,
+    "text": "Order the following actors from oldest to youngest (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 11,
+    "created_at": "2025-02-15T23:01:05.519Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 103,
+  "fields": {
+    "game": 6,
+    "category": 29,
+    "text": "Match the plot synopsis to the entry in the Fast and the Furious film franchise (1 Point Each).",
+    "answer_bank": "Fast Five, Fast and Furious 6, Furious 7, The Fate of the Furious",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 12,
+    "created_at": "2025-02-15T23:03:43.925Z",
+    "total_points": 4,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 104,
+  "fields": {
+    "game": 6,
+    "category": 39,
+    "text": "Identify the following mathematical formula (3 Points).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Math/volume_sphere.png",
+    "answer_image_url": null,
+    "question_number": 13,
+    "created_at": "2025-02-15T23:06:15.216Z",
+    "total_points": 3,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 105,
+  "fields": {
+    "game": 6,
+    "category": 14,
+    "text": "Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 14,
+    "created_at": "2025-02-15T23:09:11.558Z",
+    "total_points": 8,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 106,
+  "fields": {
+    "game": 6,
+    "category": 56,
+    "text": "This was the headline of the Los Angeles Times on August 7th, 1945 (Four Words). Solve the following anagram (5 Points)",
+    "answer_bank": "j s m o n b i m o t a p a b c a t i h",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 15,
+    "created_at": "2025-02-15T23:11:36.826Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 107,
+  "fields": {
+    "game": 6,
+    "category": 47,
+    "text": "Each circle of the Venn Diagram is a movie featuring all of the actors listed within the circle. Identify each movie (2 Points Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Venn-Diagram/actors.png",
+    "answer_image_url": null,
+    "question_number": 16,
+    "created_at": "2025-02-15T23:15:01.339Z",
+    "total_points": 9,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 108,
+  "fields": {
+    "game": 6,
+    "category": 15,
+    "text": "Identify the data being shown on the map (5 Points).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Data/college.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Data/map_answer.png",
+    "question_number": 17,
+    "created_at": "2025-02-15T23:17:18.338Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 109,
+  "fields": {
+    "game": 6,
+    "category": 46,
+    "text": "Once upon a time a farmer went to a market and purchased a wolf, a goat, and a cabbage. On his way home, the farmer came to the bank of a river and rented a boat. <br><br>Crossing the river by boat, the farmer could carry only himself and a single one of his purchases: the wolf, the goat, or the cabbage.<br><br>If left unattended together, the wolf would eat the goat, or the goat would eat the cabbage. The farmer's challenge was to carry himself and his purchases to the far bank of the river, leaving each purchase intact. How did he do it?",
+    "answer_bank": "Answer the above riddle (4 Points).",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 18,
+    "created_at": "2025-02-15T23:19:33.131Z",
+    "total_points": 4,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 110,
+  "fields": {
+    "game": 6,
+    "category": 18,
+    "text": "Identify the famous place from the satellite photo (5 Points)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Birds-Eye/ground_zero.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Birds-Eye/ground_zero_answer.png",
+    "question_number": 19,
+    "created_at": "2025-02-15T23:25:15.557Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 111,
+  "fields": {
+    "game": 6,
+    "category": 19,
+    "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/VP/card_games.png",
+    "answer_image_url": null,
+    "question_number": 20,
+    "created_at": "2025-02-15T23:28:42.703Z",
+    "total_points": 15,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 112,
+  "fields": {
+    "game": 7,
+    "category": 59,
+    "text": "Rank the following literary franchises based on number of books sold, from highest to lowest (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 1,
+    "created_at": "2025-02-16T22:41:06.010Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 113,
+  "fields": {
+    "game": 7,
+    "category": 32,
+    "text": "Match the fast food item to its caloric profile (1 Point Each).",
+    "answer_bank": "McDonald's Big Mac, Carl's Jr. Double Western Bacon Cheeseburger, Wendy's Baconator",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 2,
+    "created_at": "2025-02-16T22:44:38.729Z",
+    "total_points": 3,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 114,
+  "fields": {
+    "game": 7,
+    "category": 12,
+    "text": "Rank the following presidential elections by electoral college margin of victory, from largest to smallest (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 3,
+    "created_at": "2025-02-16T22:48:47.677Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 115,
+  "fields": {
+    "game": 7,
+    "category": 49,
+    "text": "Match the title of the series finale episode to the television series (1 Point Each).",
+    "answer_bank": "The Sopranos, Breaking Bad, House, Mad Men",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 4,
+    "created_at": "2025-02-16T22:51:55.919Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 116,
+  "fields": {
+    "game": 7,
+    "category": 62,
+    "text": "Name the U.S. State with the highest percentage of population with ancestry from the following European countries (2 Points Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 5,
+    "created_at": "2025-02-16T22:55:40.275Z",
+    "total_points": 10,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 117,
+  "fields": {
+    "game": 7,
+    "category": 52,
+    "text": "The 10 tallest buildings in the world are in the following six countries. For each country, how many of the 10 tallest buildings in the world are in that country? (1 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 6,
+    "created_at": "2025-02-16T22:58:55.802Z",
+    "total_points": 6,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 118,
+  "fields": {
+    "game": 7,
+    "category": 63,
+    "text": "Rank the following occupations from highest to lowest fatal work injury rates (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 8,
+    "created_at": "2025-02-16T23:02:12.774Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 119,
+  "fields": {
+    "game": 7,
+    "category": 42,
+    "text": "Match the portrait of the 19th century President to the President (1 Point Each).",
+    "answer_bank": "Ulysses S. Grant, James Buchanan, Andrew Johnson, James A. Garfield",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 9,
+    "created_at": "2025-02-16T23:06:44.291Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 120,
+  "fields": {
+    "game": 7,
+    "category": 64,
+    "text": "Order the following scientific discoveries chronologically from oldest to most recent (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 10,
+    "created_at": "2025-02-16T23:09:22.579Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 121,
+  "fields": {
+    "game": 7,
+    "category": 4,
+    "text": "For each of the following years, list the most popular Male and Female Baby Name in the USA (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 11,
+    "created_at": "2025-02-16T23:13:25.848Z",
+    "total_points": 6,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 122,
+  "fields": {
+    "game": 7,
+    "category": 65,
+    "text": "The goal of the puzzle is to link all 9 dots using four straight lines or fewer, without lifting the pen and without tracing the same line more than once (4 Points).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Puzzle/dots.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Puzzle/dots_answer.png",
+    "question_number": 12,
+    "created_at": "2025-02-16T23:15:50.300Z",
+    "total_points": 4,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 123,
+  "fields": {
+    "game": 7,
+    "category": 14,
+    "text": "Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (2 Points Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 13,
+    "created_at": "2025-02-16T23:20:34.163Z",
+    "total_points": 6,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 124,
+  "fields": {
+    "game": 7,
+    "category": 47,
+    "text": "Each circle in the Venn Diagram is a movie, identify each movie by the actors (2 Points Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Venn-Diagram/april_actors.png",
+    "answer_image_url": null,
+    "question_number": 14,
+    "created_at": "2025-02-16T23:24:25.365Z",
+    "total_points": 10,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 125,
+  "fields": {
+    "game": 7,
+    "category": 18,
+    "text": "Identify the place from the satellite photo (5 Points)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Birds-Eye/glastonbury.jpg",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Birds-Eye/glastonbury_answer.jpeg",
+    "question_number": 15,
+    "created_at": "2025-02-16T23:28:09.556Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 126,
+  "fields": {
+    "game": 7,
+    "category": 39,
+    "text": "Identify the mathematical concept from the formula (4 Points)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Math/quadratic_formula.png",
+    "answer_image_url": null,
+    "question_number": 16,
+    "created_at": "2025-02-16T23:30:21.801Z",
+    "total_points": 4,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 127,
+  "fields": {
+    "game": 7,
+    "category": 19,
+    "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/VP/states.png",
+    "answer_image_url": null,
+    "question_number": 17,
+    "created_at": "2025-02-16T23:33:49.996Z",
+    "total_points": 15,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 128,
+  "fields": {
+    "game": 7,
+    "category": 66,
+    "text": "Rank the following construction projects from most to least expensive in today's dollars (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 7,
+    "created_at": "2025-02-16T23:37:08.595Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 129,
+  "fields": {
+    "game": 8,
+    "category": 37,
+    "text": "A Septuagenarian is a person in their 70s, identify the related term for people of the following ages (2 Points Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 6,
+    "created_at": "2025-02-17T01:04:27.474Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 130,
+  "fields": {
+    "game": 8,
+    "category": 67,
+    "text": "For the following Muslim people, identify whether they're a Sunni or Shia Muslim (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 7,
+    "created_at": "2025-02-17T01:10:41.530Z",
+    "total_points": 4,
+    "game_round": 1
   }
 },
 {
@@ -12716,6 +14342,2046 @@
   }
 },
 {
+  "model": "quiz.answer",
+  "pk": 349,
+  "fields": {
+    "question": 92,
+    "text": "A.",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Fusilli Bucati",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 350,
+  "fields": {
+    "question": 92,
+    "text": "B.",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Farfalle",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 351,
+  "fields": {
+    "question": 92,
+    "text": "C.",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Spaghetti",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 352,
+  "fields": {
+    "question": 92,
+    "text": "D.",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Conchiglie Rigate",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 353,
+  "fields": {
+    "question": 92,
+    "text": "E.",
+    "question_image_url": null,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Gnocchi",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 354,
+  "fields": {
+    "question": 93,
+    "text": "A. David Bowie",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Stage Name: (David Jones)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 355,
+  "fields": {
+    "question": 93,
+    "text": "B. Michael Keaton",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Stage Name: (Michael Douglas)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 356,
+  "fields": {
+    "question": 93,
+    "text": "C. Calvin Harris",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Stage Name: (Adam Richard Wiles)",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 357,
+  "fields": {
+    "question": 93,
+    "text": "D. Bruce Springsteen",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Birth Name",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 358,
+  "fields": {
+    "question": 93,
+    "text": "E. Leonardo DiCaprio",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Birth Name",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 359,
+  "fields": {
+    "question": 94,
+    "text": "A. Believed that human beings are “condemned to be free,” that because there is no Creator who is responsible for our actions, each of us alone is responsible for everything we do",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Jean-Paul Sartre",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 360,
+  "fields": {
+    "question": 94,
+    "text": "B. Believed in the individual’s creative capacity to resist social norms and cultural convention in order to live according to a greater set of virtues.",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Friedrich Nietzsche",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 361,
+  "fields": {
+    "question": 94,
+    "text": "C. Demanded that social constructs be more closely examined for hierarchical inequalities, as well as through an analysis of the corresponding fields of knowledge supporting these unequal structures",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Michel Foucault",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 362,
+  "fields": {
+    "question": 94,
+    "text": "D. Resolved that because thought is inextricably tied to language, and because language is socially constructed, we have no real inner-space for the realization of our thoughts, which is to say that the language of our thoughts renders our thoughts inherently socially constructed.",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Ludwig Wittgenstein",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 363,
+  "fields": {
+    "question": 95,
+    "text": "A. \"Call me Ishmael.\"",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Moby Dick",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 364,
+  "fields": {
+    "question": 95,
+    "text": "B. \"Mother died today.\"",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "The Stranger",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 365,
+  "fields": {
+    "question": 95,
+    "text": "C. \"Happy families are all alike; every unhappy family is unhappy in its own way.\"",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Anna Karenina",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 366,
+  "fields": {
+    "question": 95,
+    "text": "D. \"He was an old man who fished alone in a skiff in the Gulf Stream and he had gone eighty-four days now without taking a fish.\"",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "The Old Man and the Sea",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 367,
+  "fields": {
+    "question": 96,
+    "text": "A. Mt. Rainier, Washington",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "14,417 ft",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 368,
+  "fields": {
+    "question": 96,
+    "text": "B. Mt. Whitney, California",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "14,505 ft",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 369,
+  "fields": {
+    "question": 96,
+    "text": "C. Mt. Shasta, California",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "14,179 ft",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 370,
+  "fields": {
+    "question": 96,
+    "text": "D. Castle Mountain, Montana",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "12,618 ft",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 371,
+  "fields": {
+    "question": 97,
+    "text": "A.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/girl_with_the_pearl.jpg",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Girl with a Pearl Earring -- Vermeer",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 372,
+  "fields": {
+    "question": 97,
+    "text": "B.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/venus.jpg",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Birth of Venus -- Botticelli",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 373,
+  "fields": {
+    "question": 97,
+    "text": "C.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/mondrian.jpg",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Composition with Red, Blue and Yellow -- Mondrian",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 374,
+  "fields": {
+    "question": 97,
+    "text": "D.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/nighthawks.jpg",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Nighthawks -- Hopper",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 375,
+  "fields": {
+    "question": 98,
+    "text": "A.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/impressionism.jpg",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Impressionism",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 376,
+  "fields": {
+    "question": 98,
+    "text": "B.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/post-impressionism.jpg",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Post-Impressionism",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 377,
+  "fields": {
+    "question": 98,
+    "text": "C.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/expressionism.jpg",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Expressionism",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 378,
+  "fields": {
+    "question": 98,
+    "text": "D.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/baroque.jpg",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Baroque",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 379,
+  "fields": {
+    "question": 99,
+    "text": "A. Los Angeles -> San Francisco",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "382 miles",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 380,
+  "fields": {
+    "question": 99,
+    "text": "B. Baltimore -> Boston",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "404 miles",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 381,
+  "fields": {
+    "question": 99,
+    "text": "C. Milwaukee -> Cleveland",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "436 miles",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 382,
+  "fields": {
+    "question": 99,
+    "text": "D. Atlanta -> Miami",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "662 miles",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 383,
+  "fields": {
+    "question": 100,
+    "text": "A.",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "UCLA",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 384,
+  "fields": {
+    "question": 100,
+    "text": "B.",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Syracuse",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 385,
+  "fields": {
+    "question": 100,
+    "text": "C.",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Maryland",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 386,
+  "fields": {
+    "question": 100,
+    "text": "D.",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Michigan",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 387,
+  "fields": {
+    "question": 100,
+    "text": "E.",
+    "question_image_url": null,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Ohio State",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 388,
+  "fields": {
+    "question": 100,
+    "text": "F.",
+    "question_image_url": null,
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Michigan State",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 389,
+  "fields": {
+    "question": 100,
+    "text": "G.",
+    "question_image_url": null,
+    "display_order": 7,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Florida",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 390,
+  "fields": {
+    "question": 101,
+    "text": "A. Jerry Maguire",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "85%",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 391,
+  "fields": {
+    "question": 101,
+    "text": "B. Mission Impossible: Fallout",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "98%",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 392,
+  "fields": {
+    "question": 101,
+    "text": "C. Top Gun",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "59%",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 393,
+  "fields": {
+    "question": 101,
+    "text": "D. Minority Report",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "89%",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 394,
+  "fields": {
+    "question": 102,
+    "text": "A. Samuel L. Jackson",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "Born 1948",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 395,
+  "fields": {
+    "question": 102,
+    "text": "B. Liam Neeson",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "Born 1952",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 396,
+  "fields": {
+    "question": 102,
+    "text": "C. Tom Cruise",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "Born 1962",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 397,
+  "fields": {
+    "question": 102,
+    "text": "D. Tom Hanks",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "Born 1956",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 398,
+  "fields": {
+    "question": 103,
+    "text": "A. Deckard Shaw, a rogue special forces assassin seeking to avenge his comatose younger brother Owen, puts the team of Dominic Toretto and Brian O'Conner in danger once again.",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Furious 7",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 399,
+  "fields": {
+    "question": 103,
+    "text": "B. Dominic Toretto, Brian O'Conner and Mia Toretto (Jordana Brewster) plan a heist to steal 100 million dollars from corrupt businessman Hernan Reyes while being pursued for arrest by U.S. Diplomatic Security Service (DSS) agent Luke Hobbs.",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Fast Five",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 400,
+  "fields": {
+    "question": 103,
+    "text": "C. Cyberterrorist Cipher coerces Dom into working for her and turns him against his team, forcing them to find Dominic and take down Cipher.",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "The Fate of the Furious",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 401,
+  "fields": {
+    "question": 103,
+    "text": "D. Dominic Toretto, Brian O'Conner and their team are offered amnesty for their crimes by Luke Hobbs, in exchange for helping him take down a skilled mercenary organization led by Owen Shaw, one member of which is Toretto's former lover Letty Ortiz. It is the last film to be set before Tokyo Drift.",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Fast and Furious 6",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 402,
+  "fields": {
+    "question": 104,
+    "text": "",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Volume of a Sphere",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 403,
+  "fields": {
+    "question": 105,
+    "text": "1. Front man of one of the best selling bands of the last 20 years",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Chris Martin",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 404,
+  "fields": {
+    "question": 105,
+    "text": "2. Comedic actor who costarred in a major film franchise with Will Smith",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Martin Lawrence",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 405,
+  "fields": {
+    "question": 105,
+    "text": "3. One of the NFL's greatest defensive players, regardless of his off field battle with drugs",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Lawrence Taylor",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 406,
+  "fields": {
+    "question": 105,
+    "text": "4. Millennial artist rerecording earlier albums due to high profile label dispute",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Taylor Swift",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 407,
+  "fields": {
+    "question": 106,
+    "text": "",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Atomic Bomb Hits Japan",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 408,
+  "fields": {
+    "question": 107,
+    "text": "Green Circle:",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "The Wolf of Wall Street",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 409,
+  "fields": {
+    "question": 107,
+    "text": "Blue Circle:",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Once Upon a Time in Hollywood",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 410,
+  "fields": {
+    "question": 107,
+    "text": "Red Circle:",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "The Departed",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 411,
+  "fields": {
+    "question": 109,
+    "text": "",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "His actions in the solution are summarized in the following steps:  1. Take the goat over 2. Return 3. Take the wolf or cabbage over 4. Return with the goat 5. Take the cabbage or wolf over 6. Return 7. Take goat over  Thus there are seven crossings, four",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 412,
+  "fields": {
+    "question": 110,
+    "text": "",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Ground Zero, NYC",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 413,
+  "fields": {
+    "question": 111,
+    "text": "A.",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Go Fish",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 414,
+  "fields": {
+    "question": 111,
+    "text": "B.",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Solitaire",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 415,
+  "fields": {
+    "question": 111,
+    "text": "C.",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "War",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 416,
+  "fields": {
+    "question": 111,
+    "text": "D.",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Hearts",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 417,
+  "fields": {
+    "question": 111,
+    "text": "E.",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Card Games",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 418,
+  "fields": {
+    "question": 112,
+    "text": "A. Twilight",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "160 million",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 419,
+  "fields": {
+    "question": 112,
+    "text": "B. Harry Potter",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "600 million",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 420,
+  "fields": {
+    "question": 112,
+    "text": "C. The Hunger Games",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": 5,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "100 million",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 421,
+  "fields": {
+    "question": 112,
+    "text": "D. Fifty Shades",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "150 million",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 422,
+  "fields": {
+    "question": 112,
+    "text": "E. Robert Langdon Series (Da Vinci Code)",
+    "question_image_url": null,
+    "display_order": 5,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "200 million",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 423,
+  "fields": {
+    "question": 113,
+    "text": "A. 540 Calories, 28g Total Fat, 950mg Sodium",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "McDonald's Big Mac",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 424,
+  "fields": {
+    "question": 113,
+    "text": "B. 1,010 Calories, 55g Total Fat, 1980mg Sodium",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Carl's Jr. Double Western Bacon Cheeseburger",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 425,
+  "fields": {
+    "question": 113,
+    "text": "C. 950 Calories, 62g Total Fat, 1810mg Sodium",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Wendy's Baconator",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 426,
+  "fields": {
+    "question": 114,
+    "text": "A. Bush v. Kerry (2004)",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "(286 to 251)",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 427,
+  "fields": {
+    "question": 114,
+    "text": "B. Trump v. Clinton (2016)",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "(304 to 227)",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 428,
+  "fields": {
+    "question": 114,
+    "text": "C. Clinton v. Bush (1992)",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "(370 to 168)",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 429,
+  "fields": {
+    "question": 114,
+    "text": "D. Obama v. Romney (2012)",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "(332 to 206)",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 430,
+  "fields": {
+    "question": 115,
+    "text": "A. Felina",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Breaking Bad",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 431,
+  "fields": {
+    "question": 115,
+    "text": "B. Person to Person",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Mad Men",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 432,
+  "fields": {
+    "question": 115,
+    "text": "C. Everyone Dies",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "House",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 433,
+  "fields": {
+    "question": 115,
+    "text": "D. Made in America",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "The Sopranos",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 434,
+  "fields": {
+    "question": 116,
+    "text": "A. Italy",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Rhode Island",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 435,
+  "fields": {
+    "question": 116,
+    "text": "B. Germany",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "North Dakota",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 436,
+  "fields": {
+    "question": 116,
+    "text": "C. Russia",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "New York",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 437,
+  "fields": {
+    "question": 116,
+    "text": "D. Ireland",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Massachusetts",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 438,
+  "fields": {
+    "question": 117,
+    "text": "A. China",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "5",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 439,
+  "fields": {
+    "question": 117,
+    "text": "B. USA",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "1",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 440,
+  "fields": {
+    "question": 117,
+    "text": "C. South Korea",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "1",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 441,
+  "fields": {
+    "question": 117,
+    "text": "D. Taiwan",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "1",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 442,
+  "fields": {
+    "question": 117,
+    "text": "E. Saudi Arabia",
+    "question_image_url": null,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "1",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 443,
+  "fields": {
+    "question": 117,
+    "text": "F. United Arab Emirates",
+    "question_image_url": null,
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "1",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 444,
+  "fields": {
+    "question": 118,
+    "text": "A. Fishing and hunting workers",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "98.9 fatal work injury rate (per 100k full time workers)",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 445,
+  "fields": {
+    "question": 118,
+    "text": "B. Logging workers",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "86.9 fatal work injury rate (per 100k full time workers)",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 446,
+  "fields": {
+    "question": 118,
+    "text": "C. Roofers",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "51.8 fatal work injury rate (per 100k full time workers)",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 447,
+  "fields": {
+    "question": 118,
+    "text": "D. Driver/sales workers and truck drivers",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "26.8 fatal work injury rate (per 100k full time workers)",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 448,
+  "fields": {
+    "question": 119,
+    "text": "A.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Presidents/buchanan.png",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "James Buchanan",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 449,
+  "fields": {
+    "question": 119,
+    "text": "B.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Presidents/johnson.png",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Andrew Johnson",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 450,
+  "fields": {
+    "question": 119,
+    "text": "C.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Presidents/garfield.png",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "James A. Garfield",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 451,
+  "fields": {
+    "question": 119,
+    "text": "D.",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Presidents/grant.png",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Ulysses S. Grant",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 452,
+  "fields": {
+    "question": 120,
+    "text": "A. Theory of Continental Drift",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "20th Century",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 453,
+  "fields": {
+    "question": 120,
+    "text": "B. Dmitri Ivanovsky discovers for the first time a virus",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "19th Century",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 454,
+  "fields": {
+    "question": 120,
+    "text": "C. Hanaoka Seishū develops general anesthesia",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "18th Century",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 455,
+  "fields": {
+    "question": 120,
+    "text": "D. Ole Rømer first measurement of the speed of light",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "17th Century",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 456,
+  "fields": {
+    "question": 121,
+    "text": "A. 2010",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Jacob, Isabella",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 457,
+  "fields": {
+    "question": 121,
+    "text": "B. 2000",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Jacob, Emily",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 458,
+  "fields": {
+    "question": 121,
+    "text": "C. 1990",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Michael, Jessica",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 459,
+  "fields": {
+    "question": 123,
+    "text": "A. Actor most famous for having had too much to drink, or working in an office",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Ed Helms",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 460,
+  "fields": {
+    "question": 123,
+    "text": "B. Where the riders of Rohan found refuge against Saruman and his army of orcs",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Helms Deep",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 461,
+  "fields": {
+    "question": 123,
+    "text": "C. The username of this redditor who sparked a short squeeze, testified before congress, and was played by Paul Dano in a 2023 feature film",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "DeepFuckingValue",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 462,
+  "fields": {
+    "question": 124,
+    "text": "A. Purple:",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "The Big Short",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 463,
+  "fields": {
+    "question": 124,
+    "text": "B. Red:",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "American Hustle",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 464,
+  "fields": {
+    "question": 124,
+    "text": "C. Yellow",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Her",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 465,
+  "fields": {
+    "question": 124,
+    "text": "D. Blue",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Vice",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 466,
+  "fields": {
+    "question": 124,
+    "text": "E. Green",
+    "question_image_url": null,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Three Billboards Outside Ebbing Missouri",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 467,
+  "fields": {
+    "question": 126,
+    "text": "",
+    "question_image_url": null,
+    "display_order": null,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "Quadratic Formula",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 468,
+  "fields": {
+    "question": 127,
+    "text": "A.",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Florida",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 469,
+  "fields": {
+    "question": 127,
+    "text": "B.",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Rhode Island",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 470,
+  "fields": {
+    "question": 127,
+    "text": "C.",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "New Jersey",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 471,
+  "fields": {
+    "question": 127,
+    "text": "D.",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Ohio",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 472,
+  "fields": {
+    "question": 127,
+    "text": "E.",
+    "question_image_url": null,
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "States",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 473,
+  "fields": {
+    "question": 128,
+    "text": "A. The Big Dig: Dubbed “The Big Dig”, the redirection of Route 1-93, the main road in the Boston areas transport network was dogged by design flaws, delays, and sunken ships.",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "~$17.6 Billion",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 474,
+  "fields": {
+    "question": 128,
+    "text": "B. Songdo IBD: South Korea’s Songdo IBD is a “smart city” built on 600 hectares of land reclaimed from sea 65 km from Seoul.Its ubiquitous technology allows residents to video-conference with their neighbors, while sensors gather information to alert authorities to criminal behavior, or tell passengers when the next bus is due.",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "~$30 Billion",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 475,
+  "fields": {
+    "question": 128,
+    "text": "C. Kashagan Fields : Shell, Exxon Mobil, Total, China National Petroleum Corp, KazMunaiGas, INPEX, and AgipKCO are working in collaboration to tap into around 13 billion barrels in the Caspian Sea.",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "~$89 Billion",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 476,
+  "fields": {
+    "question": 128,
+    "text": "D. King Abdullah Economic City: Boasting luxury villages, an enormous airport and major universities, King Abdullah Economic City is anticipated to become a huge tourist attraction for Saudi Arabia.",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "~$66 Billion",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 477,
+  "fields": {
+    "question": 129,
+    "text": "A. 30s",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Tricenarian",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 478,
+  "fields": {
+    "question": 129,
+    "text": "B. 60s",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Sexagenarian",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 479,
+  "fields": {
+    "question": 129,
+    "text": "C. 40s",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Quadragenarian",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 480,
+  "fields": {
+    "question": 129,
+    "text": "D. 20s",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Vicenarian",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 481,
+  "fields": {
+    "question": 130,
+    "text": "A. Bashar al-Assad (former President of Syria)",
+    "question_image_url": null,
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Shia",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 482,
+  "fields": {
+    "question": 130,
+    "text": "B. Ali Khamenei (Supreme Leader of Iran)",
+    "question_image_url": null,
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Shia",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 483,
+  "fields": {
+    "question": 130,
+    "text": "C. Saddam Hussein",
+    "question_image_url": null,
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Sunni",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 484,
+  "fields": {
+    "question": 130,
+    "text": "D. Osama Bin Laden",
+    "question_image_url": null,
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Sunni",
+    "explanation": "",
+    "answer_image_url": null
+  }
+},
+{
   "model": "quiz.gameresult",
   "pk": 13,
   "fields": {
@@ -13684,6 +17350,42 @@
     "avg_pct_rd2_points": 0.30864197530864196,
     "avg_pct_final_rd_points": 0.14285714285714285,
     "games_played": 1
+  }
+},
+{
+  "model": "quiz.contentupdate",
+  "pk": 1,
+  "fields": {
+    "filename": "content_update_2025_02_17_0106.json",
+    "timestamp": "2025-02-17T01:06:28.046Z",
+    "processed": false,
+    "processed_at": null,
+    "checksum": "21ecc43e42331257e2e34a536a7711410a7749c72d1c51c2fe276ff01d7cab68",
+    "question_count": 128
+  }
+},
+{
+  "model": "quiz.contentupdate",
+  "pk": 2,
+  "fields": {
+    "filename": "content_update_2025_02_17_0110.json",
+    "timestamp": "2025-02-17T01:10:58.709Z",
+    "processed": false,
+    "processed_at": null,
+    "checksum": "40f7e686e302e26adabd38f412250ed64ff2b0fd9a8ea43392d5db41119cc9cd",
+    "question_count": 129
+  }
+},
+{
+  "model": "quiz.contentupdate",
+  "pk": 3,
+  "fields": {
+    "filename": "content_update_2025_02_17_0121.json",
+    "timestamp": "2025-02-17T01:21:04.778Z",
+    "processed": false,
+    "processed_at": null,
+    "checksum": "13063338efcf4c89306e2036a9a19af30899cad4f4b69b6cb543314bc569e382",
+    "question_count": 39
   }
 }
 ]
