@@ -252,12 +252,6 @@ def analytics_view(request):
     if selected_date:
         game_results = game_results.filter(game_date=selected_date)
 
-    for result in game_results:
-        result.pct_rd1 *= 100
-        result.pct_rd2 *= 100
-        result.pct_final *= 100
-        result.pct_total *= 100
-
     # Get player stats with optional filters
     player_stats = PlayerStats.objects.all()
 
@@ -272,6 +266,12 @@ def analytics_view(request):
 
     # Order player stats by games played and average z-score
     player_stats = player_stats.order_by("avg_final_place", "-avg_zscore_total_points")
+
+    for result in game_results:
+        result.pct_rd1 *= 100
+        result.pct_rd2 *= 100
+        result.pct_final *= 100
+        result.pct_total *= 100
 
     for stat in player_stats:
         stat.avg_pct_total_points *= 100

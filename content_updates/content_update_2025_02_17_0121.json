@@ -1,0 +1,2012 @@
+{
+  "question_groups": [
+    {
+      "game_name": "March-2021",
+      "game_description": "<p>Zoom Era</p>",
+      "is_password_protected": false,
+      "password": null,
+      "game_order": 3,
+      "questions": [
+        {
+          "text": "Identify the Italian Pasta from the photo (1 Point Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Food/pasta.png",
+          "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Food/pasta_answers.png",
+          "question_number": 1,
+          "total_points": 5,
+          "category": "Food",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A.",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Fusilli Bucati",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B.",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Farfalle",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C.",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Spaghetti",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D.",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Conchiglie Rigate",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "E.",
+              "question_image_url": null,
+              "display_order": 5,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Gnocchi",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Are each of the following celebrity names their birth name or a stage name? (1 Point Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 2,
+          "total_points": 5,
+          "category": "Stage Names",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. David Bowie",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Stage Name: (David Jones)",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Michael Keaton",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Stage Name: (Michael Douglas)",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Calvin Harris",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Stage Name: (Adam Richard Wiles)",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Bruce Springsteen",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Birth Name",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "E. Leonardo DiCaprio",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Birth Name",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Match the philosopher to one of their key ideas (1 Point Each)",
+          "answer_bank": "Ludwig Wittgenstein (1889\u20131951), Jean-Paul Sartre (1905\u201380), Friedrich Nietzsche (1844\u20131900), Michel Foucault (1926-1984)",
+          "question_type": "Matching",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 3,
+          "total_points": 1,
+          "category": "Philosophy",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Believed that human beings are \u201ccondemned to be free,\u201d that because there is no Creator who is responsible for our actions, each of us alone is responsible for everything we do",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Jean-Paul Sartre",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Believed in the individual\u2019s creative capacity to resist social norms and cultural convention in order to live according to a greater set of virtues.",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Friedrich Nietzsche",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Demanded that social constructs be more closely examined for hierarchical inequalities, as well as through an analysis of the corresponding fields of knowledge supporting these unequal structures",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Michel Foucault",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Resolved that because thought is inextricably tied to language, and because language is socially constructed, we have no real inner-space for the realization of our thoughts, which is to say that the language of our thoughts renders our thoughts inherently socially constructed.",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Ludwig Wittgenstein",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Match the opening line of the novel to the novel (1 Point Each).",
+          "answer_bank": "The Stranger, Anna Karenina, Moby Dick, The Old Man and the Sea",
+          "question_type": "Matching",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 4,
+          "total_points": 4,
+          "category": "Literature",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. \"Call me Ishmael.\"",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Moby Dick",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. \"Mother died today.\"",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "The Stranger",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. \"Happy families are all alike; every unhappy family is unhappy in its own way.\"",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Anna Karenina",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. \"He was an old man who fished alone in a skiff in the Gulf Stream and he had gone eighty-four days now without taking a fish.\"",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "The Old Man and the Sea",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Rank the following peaks from tallest to shortest (1 Point Each).",
+          "answer_bank": "",
+          "question_type": "Ranking",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 5,
+          "total_points": 4,
+          "category": "Nature",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Mt. Rainier, Washington",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": 2,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "14,417 ft",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Mt. Whitney, California",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": 1,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "14,505 ft",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Mt. Shasta, California",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": 3,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "14,179 ft",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Castle Mountain, Montana",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": 4,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "12,618 ft",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "For each of the following famous paintings, name either the painting OR the artists (2 Points Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 6,
+          "total_points": 8,
+          "category": "Art",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/girl_with_the_pearl.jpg",
+              "display_order": null,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Girl with a Pearl Earring -- Vermeer",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/venus.jpg",
+              "display_order": null,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Birth of Venus -- Botticelli",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/mondrian.jpg",
+              "display_order": null,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Composition with Red, Blue and Yellow -- Mondrian",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/nighthawks.jpg",
+              "display_order": null,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Nighthawks -- Hopper",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Match the famous painting shown to its artistic period/style/movement (1 Point Each).",
+          "answer_bank": "Baroque (1600\u20131750), Impressionism (1865\u20131885), Post-Impressionism (1885\u20131910), Expressionism (1905\u20131920)",
+          "question_type": "Matching",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 7,
+          "total_points": 4,
+          "category": "Art",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/impressionism.jpg",
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Impressionism",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/post-impressionism.jpg",
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Post-Impressionism",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/expressionism.jpg",
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Expressionism",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Art/baroque.jpg",
+              "display_order": null,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Baroque",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Rank the following trips by longest to shortest distance (miles/google maps/car) (1 Points each)",
+          "answer_bank": "",
+          "question_type": "Ranking",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 8,
+          "total_points": 4,
+          "category": "Travel",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Los Angeles -> San Francisco",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": 4,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "382 miles",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Baltimore -> Boston",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": 3,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "404 miles",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Milwaukee -> Cleveland",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": 2,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "436 miles",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Atlanta -> Miami",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": 1,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "662 miles",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Since 1950, 7 universities have won both a national championship in football and in men's basketball. Name these universities (1 Point Each). Max 7 Submissions",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 9,
+          "total_points": 7,
+          "category": "Sports",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "D.",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Michigan",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "E.",
+              "question_image_url": null,
+              "display_order": 5,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Ohio State",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "F.",
+              "question_image_url": null,
+              "display_order": 6,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Michigan State",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "G.",
+              "question_image_url": null,
+              "display_order": 7,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Florida",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "A.",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "UCLA",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B.",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Syracuse",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C.",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Maryland",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Rank the following Tom Cruise movies from highest to lowest Rotten Tomatoes tomato meter (critics score) (1 Point Each).",
+          "answer_bank": "",
+          "question_type": "Ranking",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 10,
+          "total_points": 4,
+          "category": "Actors",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "D. Minority Report",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": 2,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "89%",
+              "answer_image_url": null
+            },
+            {
+              "text": "A. Jerry Maguire",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": 3,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "85%",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Mission Impossible: Fallout",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": 1,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "98%",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Top Gun",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": 4,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "59%",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Order the following actors from oldest to youngest (1 Point Each)",
+          "answer_bank": "",
+          "question_type": "Ranking",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 11,
+          "total_points": 4,
+          "category": "Actors",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Samuel L. Jackson",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": 1,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "Born 1948",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Liam Neeson",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": 2,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "Born 1952",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Tom Cruise",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": 4,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "Born 1962",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Tom Hanks",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": 3,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "Born 1956",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Match the plot synopsis to the entry in the Fast and the Furious film franchise (1 Point Each).",
+          "answer_bank": "Fast Five, Fast and Furious 6, Furious 7, The Fate of the Furious",
+          "question_type": "Matching",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 12,
+          "total_points": 4,
+          "category": "Movies",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "A. Deckard Shaw, a rogue special forces assassin seeking to avenge his comatose younger brother Owen, puts the team of Dominic Toretto and Brian O'Conner in danger once again.",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Furious 7",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Dominic Toretto, Brian O'Conner and Mia Toretto (Jordana Brewster) plan a heist to steal 100 million dollars from corrupt businessman Hernan Reyes while being pursued for arrest by U.S. Diplomatic Security Service (DSS) agent Luke Hobbs.",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Fast Five",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Cyberterrorist Cipher coerces Dom into working for her and turns him against his team, forcing them to find Dominic and take down Cipher.",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "The Fate of the Furious",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Dominic Toretto, Brian O'Conner and their team are offered amnesty for their crimes by Luke Hobbs, in exchange for helping him take down a skilled mercenary organization led by Owen Shaw, one member of which is Toretto's former lover Letty Ortiz. It is the last film to be set before Tokyo Drift.",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Fast and Furious 6",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Identify the following mathematical formula (3 Points).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Math/volume_sphere.png",
+          "answer_image_url": null,
+          "question_number": 13,
+          "total_points": 3,
+          "category": "Mathematics",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "Volume of a Sphere",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "This was the headline of the Los Angeles Times on August 7th, 1945 (Four Words). Solve the following anagram (5 Points)",
+          "answer_bank": "j s m o n b i m o t a p a b c a t i h",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 15,
+          "total_points": 5,
+          "category": "Anagrams",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 5,
+              "answer_text": "Atomic Bomb Hits Japan",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Each circle of the Venn Diagram is a movie featuring all of the actors listed within the circle. Identify each movie (2 Points Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Venn-Diagram/actors.png",
+          "answer_image_url": null,
+          "question_number": 16,
+          "total_points": 9,
+          "category": "Venn Diagram",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "Green Circle:",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "The Wolf of Wall Street",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "Blue Circle:",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "Once Upon a Time in Hollywood",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "Red Circle:",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "The Departed",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Identify the data being shown on the map (5 Points).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Data/college.png",
+          "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Data/map_answer.png",
+          "question_number": 17,
+          "total_points": 5,
+          "category": "Guess the Data",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": []
+        },
+        {
+          "text": "Identify the famous place from the satellite photo (5 Points)",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Birds-Eye/ground_zero.png",
+          "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/Birds-Eye/ground_zero_answer.png",
+          "question_number": 19,
+          "total_points": 5,
+          "category": "Bird's Eye View",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 5,
+              "answer_text": "Ground Zero, NYC",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/March/VP/card_games.png",
+          "answer_image_url": null,
+          "question_number": 20,
+          "total_points": 15,
+          "category": "Visual Pun",
+          "round": {
+            "name": "Final Round",
+            "round_number": 3
+          },
+          "answers": [
+            {
+              "text": "A.",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "Go Fish",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B.",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "Solitaire",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C.",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "War",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D.",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "Hearts",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "E.",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "Card Games",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Once upon a time a farmer went to a market and purchased a wolf, a goat, and a cabbage. On his way home, the farmer came to the bank of a river and rented a boat. <br><br>Crossing the river by boat, the farmer could carry only himself and a single one of his purchases: the wolf, the goat, or the cabbage.<br><br>If left unattended together, the wolf would eat the goat, or the goat would eat the cabbage. The farmer's challenge was to carry himself and his purchases to the far bank of the river, leaving each purchase intact. How did he do it?",
+          "answer_bank": "Answer the above riddle (4 Points).",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 18,
+          "total_points": 4,
+          "category": "Logic",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 4,
+              "answer_text": "His actions in the solution are summarized in the following steps:  1. Take the goat over 2. Return 3. Take the wolf or cabbage over 4. Return with the goat 5. Take the cabbage or wolf over 6. Return 7. Take goat over  Thus there are seven crossings, four",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (1 Point Each)",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 14,
+          "total_points": 8,
+          "category": "First Name Last Name",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "1. Front man of one of the best selling bands of the last 20 years",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Chris Martin",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "2. Comedic actor who costarred in a major film franchise with Will Smith",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Martin Lawrence",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "3. One of the NFL's greatest defensive players, regardless of his off field battle with drugs",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Lawrence Taylor",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "4. Millennial artist rerecording earlier albums due to high profile label dispute",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Taylor Swift",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_name": "April-2021",
+      "game_description": "",
+      "is_password_protected": false,
+      "password": null,
+      "game_order": 4,
+      "questions": [
+        {
+          "text": "Match the portrait of the 19th century President to the President (1 Point Each).",
+          "answer_bank": "Ulysses S. Grant, James Buchanan, Andrew Johnson, James A. Garfield",
+          "question_type": "Matching",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 9,
+          "total_points": 4,
+          "category": "Presidents",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Presidents/buchanan.png",
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "James Buchanan",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Presidents/johnson.png",
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Andrew Johnson",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Presidents/garfield.png",
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "James A. Garfield",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D.",
+              "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Presidents/grant.png",
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Ulysses S. Grant",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Order the following scientific discoveries chronologically from oldest to most recent (1 Point Each)",
+          "answer_bank": "",
+          "question_type": "Ranking",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 10,
+          "total_points": 4,
+          "category": "Science",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Theory of Continental Drift",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": 1,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "20th Century",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Dmitri Ivanovsky discovers for the first time a virus",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": 3,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "19th Century",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Hanaoka Seish\u016b develops general anesthesia",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": 2,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "18th Century",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Ole R\u00f8mer first measurement of the speed of light",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": 1,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "17th Century",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Rank the following occupations from highest to lowest fatal work injury rates (1 Point Each).",
+          "answer_bank": "",
+          "question_type": "Ranking",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 8,
+          "total_points": 4,
+          "category": "Danger",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Fishing and hunting workers",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": 1,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "98.9 fatal work injury rate (per 100k full time workers)",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Logging workers",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": 2,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "86.9 fatal work injury rate (per 100k full time workers)",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Roofers",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": 3,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "51.8 fatal work injury rate (per 100k full time workers)",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Driver/sales workers and truck drivers",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": 4,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "26.8 fatal work injury rate (per 100k full time workers)",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "For each of the following years, list the most popular Male and Female Baby Name in the USA (2 Points Each)",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 11,
+          "total_points": 6,
+          "category": "Names",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "A. 2010",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Jacob, Isabella",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. 2000",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Jacob, Emily",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. 1990",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Michael, Jessica",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Rank the following literary franchises based on number of books sold, from highest to lowest (1 Point Each).",
+          "answer_bank": "",
+          "question_type": "Ranking",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 1,
+          "total_points": 5,
+          "category": "Literature",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Twilight",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": 3,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "160 million",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Harry Potter",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": 1,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "600 million",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. The Hunger Games",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": 5,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "100 million",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Fifty Shades",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": 4,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "150 million",
+              "answer_image_url": null
+            },
+            {
+              "text": "E. Robert Langdon Series (Da Vinci Code)",
+              "question_image_url": null,
+              "display_order": 5,
+              "correct_rank": 2,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "200 million",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Match the fast food item to its caloric profile (1 Point Each).",
+          "answer_bank": "McDonald's Big Mac, Carl's Jr. Double Western Bacon Cheeseburger, Wendy's Baconator",
+          "question_type": "Matching",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 2,
+          "total_points": 3,
+          "category": "Food",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. 540 Calories, 28g Total Fat, 950mg Sodium",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "McDonald's Big Mac",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. 1,010 Calories, 55g Total Fat, 1980mg Sodium",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Carl's Jr. Double Western Bacon Cheeseburger",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. 950 Calories, 62g Total Fat, 1810mg Sodium",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Wendy's Baconator",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Rank the following presidential elections by electoral college margin of victory, from largest to smallest (1 Point Each).",
+          "answer_bank": "",
+          "question_type": "Ranking",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 3,
+          "total_points": 4,
+          "category": "Democracy",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Bush v. Kerry (2004)",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": 4,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "(286 to 251)",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Trump v. Clinton (2016)",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": 3,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "(304 to 227)",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Clinton v. Bush (1992)",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": 1,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "(370 to 168)",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Obama v. Romney (2012)",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": 2,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "(332 to 206)",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Match the title of the series finale episode to the television series (1 Point Each).",
+          "answer_bank": "The Sopranos, Breaking Bad, House, Mad Men",
+          "question_type": "Matching",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 4,
+          "total_points": 4,
+          "category": "Television",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Felina",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Breaking Bad",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Person to Person",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Mad Men",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Everyone Dies",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "House",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Made in America",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "The Sopranos",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Name the U.S. State with the highest percentage of population with ancestry from the following European countries (2 Points Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 5,
+          "total_points": 10,
+          "category": "Demographics",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Italy",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Rhode Island",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Germany",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "North Dakota",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Russia",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "New York",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Ireland",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Massachusetts",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "The 10 tallest buildings in the world are in the following six countries. For each country, how many of the 10 tallest buildings in the world are in that country? (1 Points Each)",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 6,
+          "total_points": 6,
+          "category": "Architecture",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. China",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "5",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. USA",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "1",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. South Korea",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "1",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Taiwan",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "1",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "E. Saudi Arabia",
+              "question_image_url": null,
+              "display_order": 5,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "1",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "F. United Arab Emirates",
+              "question_image_url": null,
+              "display_order": 6,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "1",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "The goal of the puzzle is to link all 9 dots using four straight lines or fewer, without lifting the pen and without tracing the same line more than once (4 Points).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Puzzle/dots.png",
+          "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Puzzle/dots_answer.png",
+          "question_number": 12,
+          "total_points": 4,
+          "category": "Puzzle",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": []
+        },
+        {
+          "text": "Given each clue, solve the word puzzle where the last word of each answer is the first word of the next answer (2 Points Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 13,
+          "total_points": 6,
+          "category": "First Name Last Name",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "A. Actor most famous for having had too much to drink, or working in an office",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Ed Helms",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Where the riders of Rohan found refuge against Saruman and his army of orcs",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Helms Deep",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. The username of this redditor who sparked a short squeeze, testified before congress, and was played by Paul Dano in a 2023 feature film",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "DeepFuckingValue",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Each circle in the Venn Diagram is a movie, identify each movie by the actors (2 Points Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Venn-Diagram/april_actors.png",
+          "answer_image_url": null,
+          "question_number": 14,
+          "total_points": 10,
+          "category": "Venn Diagram",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "A. Purple:",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "The Big Short",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Red:",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "American Hustle",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Yellow",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Her",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Blue",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Vice",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "E. Green",
+              "question_image_url": null,
+              "display_order": 5,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Three Billboards Outside Ebbing Missouri",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Identify the place from the satellite photo (5 Points)",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Birds-Eye/glastonbury.jpg",
+          "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Birds-Eye/glastonbury_answer.jpeg",
+          "question_number": 15,
+          "total_points": 5,
+          "category": "Bird's Eye View",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": []
+        },
+        {
+          "text": "Identify the mathematical concept from the formula (4 Points)",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/Math/quadratic_formula.png",
+          "answer_image_url": null,
+          "question_number": 16,
+          "total_points": 4,
+          "category": "Mathematics",
+          "round": {
+            "name": "Round 2",
+            "round_number": 2
+          },
+          "answers": [
+            {
+              "text": "",
+              "question_image_url": null,
+              "display_order": null,
+              "correct_rank": null,
+              "points": 4,
+              "answer_text": "Quadratic Formula",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2021/April/VP/states.png",
+          "answer_image_url": null,
+          "question_number": 17,
+          "total_points": 15,
+          "category": "Visual Pun",
+          "round": {
+            "name": "Final Round",
+            "round_number": 3
+          },
+          "answers": [
+            {
+              "text": "A.",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "Florida",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B.",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "Rhode Island",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C.",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "New Jersey",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D.",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "Ohio",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "E.",
+              "question_image_url": null,
+              "display_order": 5,
+              "correct_rank": null,
+              "points": 3,
+              "answer_text": "States",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "Rank the following construction projects from most to least expensive in today's dollars (1 Point Each).",
+          "answer_bank": "",
+          "question_type": "Ranking",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 7,
+          "total_points": 4,
+          "category": "Engineering",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. The Big Dig: Dubbed \u201cThe Big Dig\u201d, the redirection of Route 1-93, the main road in the Boston areas transport network was dogged by design flaws, delays, and sunken ships.",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": 4,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "~$17.6 Billion",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Songdo IBD: South Korea\u2019s Songdo IBD is a \u201csmart city\u201d built on 600 hectares of land reclaimed from sea 65 km from Seoul.Its ubiquitous technology allows residents to video-conference with their neighbors, while sensors gather information to alert authorities to criminal behavior, or tell passengers when the next bus is due.",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": 3,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "~$30 Billion",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Kashagan Fields : Shell, Exxon Mobil, Total, China National Petroleum Corp, KazMunaiGas, INPEX, and AgipKCO are working in collaboration to tap into around 13 billion barrels in the Caspian Sea.",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": 1,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "~$89 Billion",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. King Abdullah Economic City: Boasting luxury villages, an enormous airport and major universities, King Abdullah Economic City is anticipated to become a huge tourist attraction for Saudi Arabia.",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": 2,
+              "points": 1,
+              "answer_text": null,
+              "explanation": "~$66 Billion",
+              "answer_image_url": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_name": "July-2022",
+      "game_description": "",
+      "is_password_protected": false,
+      "password": null,
+      "game_order": 5,
+      "questions": [
+        {
+          "text": "A Septuagenarian is a person in their 70s, identify the related term for people of the following ages (2 Points Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 6,
+          "total_points": 8,
+          "category": "Age",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. 30s",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Tricenarian",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. 60s",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Sexagenarian",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. 40s",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Quadragenarian",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. 20s",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 2,
+              "answer_text": "Vicenarian",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        },
+        {
+          "text": "For the following Muslim people, identify whether they're a Sunni or Shia Muslim (1 Point Each).",
+          "answer_bank": "",
+          "question_type": "Multiple Open Ended",
+          "question_image_url": null,
+          "answer_image_url": null,
+          "question_number": 7,
+          "total_points": 4,
+          "category": "Religion",
+          "round": {
+            "name": "Round 1",
+            "round_number": 1
+          },
+          "answers": [
+            {
+              "text": "A. Bashar al-Assad (former President of Syria)",
+              "question_image_url": null,
+              "display_order": 1,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Shia",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "B. Ali Khamenei (Supreme Leader of Iran)",
+              "question_image_url": null,
+              "display_order": 2,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Shia",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "C. Saddam Hussein",
+              "question_image_url": null,
+              "display_order": 3,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Sunni",
+              "explanation": "",
+              "answer_image_url": null
+            },
+            {
+              "text": "D. Osama Bin Laden",
+              "question_image_url": null,
+              "display_order": 4,
+              "correct_rank": null,
+              "points": 1,
+              "answer_text": "Sunni",
+              "explanation": "",
+              "answer_image_url": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

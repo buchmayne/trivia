@@ -139,6 +139,7 @@ def create_game_df(teams: list) -> pd.DataFrame:
             "players": str_list_to_pretty_str([player for player in team]),
             "Round_1": 0,
             "Round_2": 0,
+            "Final:": 0,
             "Total": 0,
         }
         for team in teams

@@ -149,3 +149,20 @@ class PlayerStats(models.Model):
     avg_pct_rd2_points = models.FloatField()
     avg_pct_final_rd_points = models.FloatField()
     games_played = models.IntegerField()
+
+
+class ContentUpdate(models.Model):
+    """Track content updates and their processing status"""
+
+    filename = models.CharField(max_length=255, unique=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    processed = models.BooleanField(default=False)
+    processed_at = models.DateTimeField(null=True)
+    checksum = models.CharField(max_length=64)
+    question_count = models.IntegerField()
+
+    class Meta:
+        ordering = ["timestamp"]
+
+    def __str__(self):
+        return f"{self.filename} ({'Processed' if self.processed else 'Pending'})"

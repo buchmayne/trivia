@@ -3,9 +3,10 @@ import json
 import os
 from datetime import datetime
 from django.conf import settings
-from quiz.models import Question
+from quiz.models import Question, ContentUpdate
 from django.core.serializers.json import DjangoJSONEncoder
-from typing import Dict, Set, Any
+from typing import Dict, Any
+import hashlib
 
 
 class Command(BaseCommand):
@@ -68,7 +69,6 @@ class Command(BaseCommand):
 
         if db_data != file_data:
             self.stdout.write("\nMain data mismatch!")
-            # Show which fields differ
             for key in set(db_data.keys()) | set(file_data.keys()):
                 if db_data.get(key) != file_data.get(key):
                     self.stdout.write(f"Field '{key}' differs:")
@@ -97,92 +97,107 @@ class Command(BaseCommand):
 
         return True
 
-    def load_file_questions(self, filename) -> Dict[str, Dict]:
-        """Load full question data from a file with proper ID resolution"""
+    def load_initial_data(self) -> Dict[str, Dict]:
+        """Load questions from initial data file"""
         questions = {}
         try:
-            with open(filename, "r") as f:
+            with open("db_initial_data.json", "r") as f:
                 data = json.load(f)
 
-            if filename.endswith("db_initial_data.json"):
-                # Create lookup tables
-                game_lookup = {
-                    entry["pk"]: entry["fields"]["name"]
-                    for entry in data
-                    if entry["model"] == "quiz.game"
+            # Create lookup tables
+            game_lookup = {
+                entry["pk"]: entry["fields"]["name"]
+                for entry in data
+                if entry["model"] == "quiz.game"
+            }
+            category_lookup = {
+                entry["pk"]: entry["fields"]["name"]
+                for entry in data
+                if entry["model"] == "quiz.category"
+            }
+            question_type_lookup = {
+                entry["pk"]: entry["fields"]["name"]
+                for entry in data
+                if entry["model"] == "quiz.questiontype"
+            }
+            round_lookup = {
+                entry["pk"]: {
+                    "name": entry["fields"]["name"],
+                    "round_number": entry["fields"]["round_number"],
                 }
-                category_lookup = {
-                    entry["pk"]: entry["fields"]["name"]
-                    for entry in data
-                    if entry["model"] == "quiz.category"
-                }
-                question_type_lookup = {
-                    entry["pk"]: entry["fields"]["name"]
-                    for entry in data
-                    if entry["model"] == "quiz.questiontype"
-                }
-                round_lookup = {
-                    entry["pk"]: {
-                        "name": entry["fields"]["name"],
-                        "round_number": entry["fields"]["round_number"],
+                for entry in data
+                if entry["model"] == "quiz.questionround"
+            }
+
+            for entry in data:
+                if entry["model"] == "quiz.question":
+                    fields = entry["fields"]
+                    game_name = game_lookup.get(fields["game"])
+                    category_name = category_lookup.get(fields.get("category"))
+                    key = self.create_question_key(
+                        game_name, category_name, fields["question_number"]
+                    )
+
+                    # Convert IDs to names/objects
+                    questions[key] = {
+                        "text": fields["text"],
+                        "answer_bank": fields.get("answer_bank", ""),
+                        "question_type": question_type_lookup.get(
+                            fields["question_type"]
+                        ),
+                        "question_image_url": fields.get("question_image_url"),
+                        "answer_image_url": fields.get("answer_image_url"),
+                        "total_points": fields.get("total_points", 1),
+                        "category": category_lookup.get(fields.get("category")),
+                        "game_round": round_lookup.get(fields.get("game_round")),
                     }
-                    for entry in data
-                    if entry["model"] == "quiz.questionround"
-                }
-
-                for entry in data:
-                    if entry["model"] == "quiz.question":
-                        fields = entry["fields"]
-                        game_name = game_lookup.get(fields["game"])
-                        category_name = category_lookup.get(fields.get("category"))
-                        key = self.create_question_key(
-                            game_name, category_name, fields["question_number"]
-                        )
-
-                        # Convert IDs to names/objects
-                        processed_fields = {
-                            "text": fields["text"],
-                            "answer_bank": fields.get("answer_bank", ""),
-                            "question_type": question_type_lookup.get(
-                                fields["question_type"]
-                            ),
-                            "question_image_url": fields.get("question_image_url"),
-                            "answer_image_url": fields.get("answer_image_url"),
-                            "total_points": fields.get("total_points", 1),
-                            "category": category_lookup.get(fields.get("category")),
-                            "game_round": round_lookup.get(fields.get("game_round")),
-                        }
-                        questions[key] = processed_fields
 
         except Exception as e:
-            self.stdout.write(self.style.WARNING(f"Error reading {filename}: {str(e)}"))
+            self.stdout.write(
+                self.style.WARNING(f"Error reading initial data: {str(e)}")
+            )
 
         return questions
 
-    def load_all_file_questions(self) -> Dict[str, Dict]:
-        """Load questions from initial data and all content updates"""
-        all_questions = {}
+    def load_processed_updates(self, updates_dir: str) -> Dict[str, Dict]:
+        """Load questions from processed content updates"""
+        processed_questions = {}
 
-        # Load from initial data
-        initial_questions = self.load_file_questions("db_initial_data.json")
-        all_questions.update(initial_questions)
+        for update in ContentUpdate.objects.filter(processed=True).order_by(
+            "timestamp"
+        ):
+            filepath = os.path.join(updates_dir, update.filename)
+            if os.path.exists(filepath):
+                with open(filepath, "r") as f:
+                    data = json.load(f)
+                    for game_data in data.get("question_groups", []):
+                        for question in game_data.get("questions", []):
+                            key = self.create_question_key(
+                                game_data["game_name"],
+                                question.get("category"),
+                                question["question_number"],
+                            )
+                            processed_questions[key] = question
 
-        # Load from content updates
-        updates_dir = os.path.join(settings.BASE_DIR, "content_updates")
-        if os.path.exists(updates_dir):
-            for filename in os.listdir(updates_dir):
-                if filename.endswith(".json"):
-                    file_questions = self.load_file_questions(
-                        os.path.join(updates_dir, filename)
-                    )
-                    all_questions.update(file_questions)
-
-        return all_questions
+        return processed_questions
 
     def handle(self, *args, **options):
-        # Get all questions from files
-        file_questions = self.load_all_file_questions()
-        self.stdout.write(f"Found {len(file_questions)} questions in files")
+        # Create content_updates directory if it doesn't exist
+        updates_dir = os.path.join(settings.BASE_DIR, "content_updates")
+        if not os.path.exists(updates_dir):
+            os.makedirs(updates_dir)
+
+        # Get questions from initial data and processed updates
+        initial_questions = self.load_initial_data()
+        processed_questions = self.load_processed_updates(updates_dir)
+
+        # Combine initial and processed questions, with processed taking precedence
+        all_existing_questions = {**initial_questions, **processed_questions}
+
+        self.stdout.write(
+            f"Found {len(initial_questions)} questions in initial data and "
+            f"{len(processed_questions)} questions in processed updates"
+        )
 
         # Get all questions from database and compare
         modified_questions = []
@@ -197,13 +212,11 @@ class Command(BaseCommand):
 
             db_data = self.get_question_data(question)
 
-            if key not in file_questions:
-                # This is a new question
+            if key not in all_existing_questions:
                 modified_questions.append(question)
                 self.stdout.write(f"New question found: {key}")
             else:
-                # Compare existing question data
-                if not self.compare_questions(db_data, file_questions[key]):
+                if not self.compare_questions(db_data, all_existing_questions[key]):
                     modified_questions.append(question)
                     self.stdout.write(f"Modified question found: {key}")
 
@@ -260,23 +273,24 @@ class Command(BaseCommand):
 
             games_data[question.game.name]["questions"].append(question_data)
 
-        # Create content_updates directory if it doesn't exist
-        updates_dir = os.path.join(settings.BASE_DIR, "content_updates")
-        if not os.path.exists(updates_dir):
-            os.makedirs(updates_dir)
-
-        # Create the update file with timestamp
+        # Create the update file
         timestamp = datetime.now().strftime("%Y_%m_%d_%H%M")
-        filename = f"content_updates/new_questions_{timestamp}.json"
+        filename = f"content_update_{timestamp}.json"
+        filepath = os.path.join(updates_dir, filename)
 
-        # Write the file
-        with open(filename, "w") as f:
-            json.dump(
-                {"question_groups": list(games_data.values())},
-                f,
-                indent=2,
-                cls=DjangoJSONEncoder,
-            )
+        # Write the file and create ContentUpdate record
+        update_data = {"question_groups": list(games_data.values())}
+        content = json.dumps(update_data, indent=2, cls=DjangoJSONEncoder)
+
+        with open(filepath, "w") as f:
+            f.write(content)
+
+        # Create ContentUpdate record
+        ContentUpdate.objects.create(
+            filename=filename,
+            checksum=hashlib.sha256(content.encode()).hexdigest(),
+            question_count=len(modified_questions),
+        )
 
         self.stdout.write(
             self.style.SUCCESS(
