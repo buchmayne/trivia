@@ -1,8 +1,12 @@
 from django.core.management.base import BaseCommand
 import json
 import os
+from datetime import datetime
 from django.conf import settings
-from quiz.models import Game, Category, Question, Answer, QuestionType, QuestionRound
+from django.core.serializers.json import DjangoJSONEncoder
+import hashlib
+from quiz.models import Game, Category, Question, Answer, QuestionType, QuestionRound, ContentUpdate
+from quiz.utils import ContentUtils
 import logging
 
 logger = logging.getLogger(__name__)
@@ -24,38 +28,49 @@ class Command(BaseCommand):
         parser.add_argument(
             '--debug',
             action='store_true',
-            help='Show detailed information about field differences',
+            help='Show extra debug information',
         )
 
-    def normalize_values(self, value):
-        """Normalize values for comparison"""
+    def normalize_value(self, value):
+        """Normalize values for consistent comparison"""
         if value is None:
             return ""
         if isinstance(value, bool):
             return value
         if isinstance(value, (int, float)):
             return value
-        # convert to a string and strip whitespace
+        # Convert to string and strip whitespace
         return str(value).strip()
     
     def values_equal(self, val1, val2, field_name=None, debug=False):
-        "Compare two values after normalizing them"
-        norm1 = self.normalize_values(val1)
-        norm2 = self.normalize_values(val2)
-
+        """Compare two values with normalization"""
+        norm1 = self.normalize_value(val1)
+        norm2 = self.normalize_value(val2)
+        
         result = norm1 == norm2
-
+        
         if debug and not result and field_name:
-            self.stdout.write(f"Field '{field_name}' differs:")
+            self.stdout.write(f"  Field '{field_name}' differs:")
             self.stdout.write(f"    Value 1: '{val1}' (type: {type(val1)}) -> normalized: '{norm1}' (type: {type(norm1)})")
             self.stdout.write(f"    Value 2: '{val2}' (type: {type(val2)}) -> normalized: '{norm2}' (type: {type(norm2)})")
-
+        
         return result
-    
+
+    def calculate_checksum(self, content: str) -> str:
+        """Calculate SHA-256 checksum of content"""
+        return hashlib.sha256(content.encode()).hexdigest()
+
     def handle(self, *args, **options):
         dry_run = options['dry_run']
         verbose = options['verbose']
         debug = options['debug']
+        output_dir = 'content_updates'
+        
+        # Ensure output directory exists
+        updates_dir = os.path.join(settings.BASE_DIR, output_dir)
+        if not os.path.exists(updates_dir):
+            os.makedirs(updates_dir)
+            self.stdout.write(f"Created directory: {updates_dir}")
         
         self.stdout.write("Comparing current database with initial data...")
         
@@ -221,10 +236,21 @@ class Command(BaseCommand):
         self.stdout.write(f"Found {len(initial_games_by_name)} games, {len(initial_categories)} categories, " + 
                          f"{len(initial_questions)} questions in initial data")
         
+        # Also load any processed content updates
+        processed_updates = ContentUtils.get_processed_questions(updates_dir)
+        if processed_updates:
+            initial_questions.update(processed_updates)
+            if verbose:
+                self.stdout.write(f"Loaded additional {len(processed_updates)} items from content updates")
+        
         # Step 3: Compare with current database
         # Track changes
         changed_games = {}
         new_or_changed_questions = []
+        
+        # Track categories and rounds for metadata
+        categories_data = {}
+        rounds_data = {}
         
         # Check games first
         games = Game.objects.all()
@@ -259,6 +285,22 @@ class Command(BaseCommand):
         ).prefetch_related('answers').all()
         
         for question in questions:
+            # Track category information if it exists
+            if question.category and question.category.name not in categories_data:
+                categories_data[question.category.name] = {
+                    "name": question.category.name,
+                    "description": question.category.description,
+                    "games": [g.name for g in question.category.games.all()]
+                }
+                
+            # Track round information if it exists
+            if question.game_round and question.game_round.name not in rounds_data:
+                rounds_data[question.game_round.name] = {
+                    "name": question.game_round.name,
+                    "description": question.game_round.description,
+                    "round_number": question.game_round.round_number
+                }
+                
             # If the question's game has changed, include the question
             if question.game.name in changed_games:
                 new_or_changed_questions.append(question)
@@ -308,8 +350,8 @@ class Command(BaseCommand):
                 new_or_changed_questions.append(question)
                 continue
             
-            # Sort answers by display order first, then by test, then by answer_text
-            # This is to ensure we're comparing the same answers in the same order
+            # Sort answers by display_order first, then by text, then by answer_text
+            # This helps ensure consistent ordering for comparison
             db_answers.sort(key=lambda a: (a.display_order or 0, str(a.text or ''), str(a.answer_text or '')))
             initial_answers.sort(key=lambda a: (a.get('display_order') or 0, str(a.get('text', '') or ''), str(a.get('answer_text', '') or '')))
             
@@ -346,9 +388,109 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS("No changes detected"))
             return
             
-        # At this point we'd prepare the changes file, but we'll implement that in the next step
-        self.stdout.write(self.style.SUCCESS("Comparison complete!"))
-        # Display summary
-        self.stdout.write("Changed games:")
+        # Step 4: Prepare and export changes
+        # Group questions by game and prepare export data
+        games_data = {}
+        
+        # First add changed games
         for game_name in changed_games:
-            self.stdout.write(f"  - {game_name}")
+            try:
+                game = Game.objects.get(name=game_name)
+                games_data[game_name] = {
+                    "game_name": game.name,
+                    "game_description": game.description,
+                    "is_password_protected": game.is_password_protected,
+                    "password": game.password,
+                    "game_order": game.game_order,
+                    "questions": []
+                }
+            except Game.DoesNotExist:
+                self.stderr.write(f"Error: Game '{game_name}' not found in database")
+                continue
+        
+        # Now process questions and add them to their games
+        for question in new_or_changed_questions:
+            game_name = question.game.name
+            
+            # If this game wasn't already added due to changes
+            if game_name not in games_data:
+                games_data[game_name] = {
+                    "game_name": game_name,
+                    "game_description": question.game.description,
+                    "is_password_protected": question.game.is_password_protected,
+                    "password": question.game.password,
+                    "game_order": question.game.game_order,
+                    "questions": []
+                }
+            
+            # Build question data
+            question_data = {
+                "text": question.text,
+                "answer_bank": question.answer_bank,
+                "question_type": question.question_type.name if question.question_type else None,
+                "question_image_url": question.question_image_url,
+                "answer_image_url": question.answer_image_url,
+                "question_number": question.question_number,
+                "total_points": question.total_points,
+            }
+            
+            if question.category:
+                question_data["category"] = question.category.name
+            
+            if question.game_round:
+                question_data["round"] = {
+                    "name": question.game_round.name,
+                    "round_number": question.game_round.round_number,
+                }
+            
+            # Add answers
+            question_data["answers"] = []
+            for answer in question.answers.all():
+                answer_data = {
+                    "text": answer.text,
+                    "question_image_url": answer.question_image_url,
+                    "display_order": answer.display_order,
+                    "correct_rank": answer.correct_rank,
+                    "points": answer.points,
+                    "answer_text": answer.answer_text,
+                    "explanation": answer.explanation,
+                    "answer_image_url": answer.answer_image_url,
+                }
+                question_data["answers"].append(answer_data)
+            
+            games_data[game_name]["questions"].append(question_data)
+        
+        # Create the update file
+        timestamp = datetime.now().strftime("%Y_%m_%d_%H%M")
+        filename = f"content_update_{timestamp}.json"
+        filepath = os.path.join(updates_dir, filename)
+        
+        # Build the final structure
+        update_data = {
+            "question_groups": list(games_data.values()),
+            "metadata": {
+                "categories": list(categories_data.values()),
+                "rounds": list(rounds_data.values())
+            }
+        }
+        
+        # Write to file
+        try:
+            content = json.dumps(update_data, indent=2, cls=DjangoJSONEncoder)
+            with open(filepath, "w") as f:
+                f.write(content)
+                
+            # Create ContentUpdate record
+            checksum = self.calculate_checksum(content)
+            ContentUpdate.objects.create(
+                filename=filename,
+                checksum=checksum,
+                question_count=len(new_or_changed_questions),
+            )
+            
+            self.stdout.write(self.style.SUCCESS(f"Successfully exported changes to {filename}"))
+            self.stdout.write(f"Exported {len(games_data)} games and {len(new_or_changed_questions)} questions")
+            
+        except Exception as e:
+            self.stderr.write(self.style.ERROR(f"Error exporting changes: {str(e)}"))
+            return
