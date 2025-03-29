@@ -64,6 +64,7 @@ class Command(BaseCommand):
         dry_run = options['dry_run']
         verbose = options['verbose']
         debug = options['debug']
+
         output_dir = 'content_updates'
         
         # Ensure output directory exists
@@ -242,6 +243,52 @@ class Command(BaseCommand):
             initial_questions.update(processed_updates)
             if verbose:
                 self.stdout.write(f"Loaded additional {len(processed_updates)} items from content updates")
+        
+        # Step 2.5: Load all content updates and merge with initial data
+        self.stdout.write("Loading existing content updates...")
+        all_updates = {}
+        update_files = 0
+        
+        # Get all content update files
+        for filename in os.listdir(updates_dir):
+            if filename.startswith('content_update_') and filename.endswith('.json'):
+                update_files += 1
+                filepath = os.path.join(updates_dir, filename)
+                try:
+                    with open(filepath, 'r') as f:
+                        update_data = json.load(f)
+                        
+                        # Process each game group
+                        for game_data in update_data.get("question_groups", []):
+                            game_name = game_data.get("game_name")
+                            
+                            # Update game info
+                            initial_games_by_name[game_name] = {
+                                'name': game_name,
+                                'description': game_data.get("game_description"),
+                                'is_password_protected': game_data.get("is_password_protected", False),
+                                'password': game_data.get("password"),
+                                'game_order': game_data.get("game_order", 1),
+                            }
+                            
+                            # Process each question
+                            for question_data in game_data.get("questions", []):
+                                # Create unique key
+                                question_number = question_data.get("question_number")
+                                category_name = question_data.get("category")
+                                key = f"{game_name}::{category_name}::{question_number}"
+                                
+                                # Add/update in our combined data
+                                all_updates[key] = question_data
+                except Exception as e:
+                    self.stderr.write(f"Error processing update file {filename}: {str(e)}")
+        
+        # Merge initial data with updates (updates take precedence)
+        initial_questions.update(all_updates)
+        
+        self.stdout.write(f"Loaded {update_files} content update files with {len(all_updates)} questions")
+        self.stdout.write(f"Total reference data: {len(initial_games_by_name)} games, {len(initial_questions)} questions")
+        
         
         # Step 3: Compare with current database
         # Track changes
