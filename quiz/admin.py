@@ -48,6 +48,12 @@ class QuestionAdminForm(forms.ModelForm):
             instance.save()
 
         return instance
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Order categories alphabetically by name
+        if 'category' in self.fields:
+            self.fields['category'].queryset = Category.objects.all().order_by('name')
 
 
 # Inline to add multiple answers directly in the question form
