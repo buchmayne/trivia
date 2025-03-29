@@ -102,7 +102,6 @@ class Answer(models.Model):
         Question, on_delete=models.CASCADE, related_name="answers"
     )
     text = models.TextField(blank=True, null=True)
-    # question_image_url = models.URLField(blank=True, null=True)
 
     # These fields are mainly relevant for ranking questions
     display_order = models.PositiveIntegerField(null=True, blank=True)
@@ -114,7 +113,6 @@ class Answer(models.Model):
     # New fields for answer details:
     answer_text = models.CharField(max_length=255, blank=True, null=True)
     explanation = models.TextField(blank=True, null=True)
-    # answer_image_url = models.URLField(blank=True, null=True)
 
     question_image_url = CloudFrontURLField(blank=True, null=True)
     answer_image_url = CloudFrontURLField(blank=True, null=True)
