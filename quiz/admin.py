@@ -13,6 +13,10 @@ class QuestionAdminForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = "__all__"
+        help_texts = {
+            'question_image_url': 'Enter only the S3 path (e.g., /2021/March/image.jpg). CloudFront domain will be added automatically.',
+            'answer_image_url': 'Enter only the S3 path (e.g., /2021/March/image.jpg). CloudFront domain will be added automatically.',
+        }
 
     def clean(self):
         cleaned_data = super().clean()
