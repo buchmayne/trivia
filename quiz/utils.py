@@ -1,11 +1,6 @@
-import hashlib
-import json
-import os
 from django.db import transaction
 import pandas as pd
-from typing import Dict, Any
-from quiz.models import GameResult, PlayerStats, ContentUpdate
-from django.conf import settings
+from quiz.models import GameResult, PlayerStats
 
 
 class AnalyticsLoader:
