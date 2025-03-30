@@ -67,9 +67,6 @@ class Question(models.Model):
         QuestionType, on_delete=models.CASCADE, related_name="questions"
     )
 
-    # question_image_url = models.URLField(blank=True, null=True)
-    # answer_image_url = models.URLField(blank=True, null=True)
-
     question_image_url = CloudFrontURLField(blank=True, null=True)
     answer_image_url = CloudFrontURLField(blank=True, null=True)
 
