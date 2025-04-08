@@ -28,4 +28,3 @@ class AnalyticsLoader:
         # Update or create player stats
         PlayerStats.objects.all().delete()
         PlayerStats.objects.bulk_create([PlayerStats(**record) for record in records])
-

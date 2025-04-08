@@ -151,4 +151,3 @@ class PlayerStats(models.Model):
     avg_pct_rd2_points = models.FloatField()
     avg_pct_final_rd_points = models.FloatField()
     games_played = models.IntegerField()
-
