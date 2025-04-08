@@ -5291,6 +5291,539 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 408,
+  "fields": {
+    "action_time": "2025-03-29T18:33:00.563Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "134",
+    "object_repr": "Q4: Imagine a list of all countries that is sorted by the distance between the two largest cities in each country. Name 3 countries in the top ten, as in name three countries that have the greatest di",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 409,
+  "fields": {
+    "action_time": "2025-03-29T18:34:21.370Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "134",
+    "object_repr": "Q4: Imagine a list of all countries that is sorted by the distance between the two largest cities in each country. Name 3 countries in the top ten, as in name three countries that have the greatest di",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 410,
+  "fields": {
+    "action_time": "2025-03-29T18:35:10.005Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "134",
+    "object_repr": "Q4: Imagine a list of all countries that is sorted by the distance between the two largest cities in each country. Name 3 countries in the top ten, as in name three countries that have the greatest di",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Answer image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 411,
+  "fields": {
+    "action_time": "2025-03-30T01:31:54.673Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "135",
+    "object_repr": "Q5: Order the following Hip-Hop artists from oldest to youngest (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. J Cole\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Kendrick Lamar\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Gucci Mane\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Nicki Minaj\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 412,
+  "fields": {
+    "action_time": "2025-03-30T01:36:08.273Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "136",
+    "object_repr": "Q8: Have the following actors ever appeared in a Marvel Cinematic Universe (MCU) film? (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Matt Damon\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Michael Douglas\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Sylvester Stallone\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Vin Diesel\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 413,
+  "fields": {
+    "action_time": "2025-03-30T01:39:39.424Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "137",
+    "object_repr": "Q9: For the following celebrities, name the university they graduated from and what their degree was in? (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Michael Jordan\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Natalie Portman\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Aziz Ansari\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Will Ferrell\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 414,
+  "fields": {
+    "action_time": "2025-03-30T03:35:42.214Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "138",
+    "object_repr": "Q10: For each of the following measurements convert them into the following units (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 29 degrees Celsius is _ degrees Fahrenheit?\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 4.8 kilometers is _ miles?\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 117 kilograms is _ pounds?\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 415,
+  "fields": {
+    "action_time": "2025-03-30T03:39:17.571Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "139",
+    "object_repr": "Q11: For each of the following countries you will be given the current population, what was the population in the given year? (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. USA 2020 331 Million, what was the population in 1920?\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Japan 2020 126 Million, what was the population in 1990?\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Russia 2020 146 Million, what was the population in 1989?\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 416,
+  "fields": {
+    "action_time": "2025-03-30T03:49:06.034Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "140",
+    "object_repr": "Q12: Each of the following series of images were created by providing a prompt/phrase/description to an AI (in 2022). Guess the prompt that was used to create the images. (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 417,
+  "fields": {
+    "action_time": "2025-03-30T03:53:11.477Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "140",
+    "object_repr": "Q12: Each of the following series of images were created by providing a prompt/phrase/description to an AI (in 2022). Guess the prompt that was used to create the images. (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B.\", \"fields\": [\"Question image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 418,
+  "fields": {
+    "action_time": "2025-03-30T04:00:52.678Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "141",
+    "object_repr": "Q13: Identify the city from the map of historic people who lived there during the listed time period (2 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q13: Identify the city from the map of historic people who lived there during the listed time period (2 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 419,
+  "fields": {
+    "action_time": "2025-03-30T04:01:33.697Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "141",
+    "object_repr": "Q13: Identify the city from the map of historic people who lived there during the listed time period (2 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"Answer for Q13: Identify the city from the map of historic people who lived there during the listed time period (2 Points)\", \"fields\": [\"Points\", \"Answer text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 420,
+  "fields": {
+    "action_time": "2025-03-30T04:09:09.349Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "142",
+    "object_repr": "Q14: What data is this map showing? (5pts)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 421,
+  "fields": {
+    "action_time": "2025-03-30T04:15:41.377Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "143",
+    "object_repr": "Q15: The following four image collage is a visual pun.\r\n\r\nGuess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q15: The following four image collage is a visual pun.\\r\\n\\r\\nGuess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q15: The following four image collage is a visual pun.\\r\\n\\r\\nGuess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q15: The following four image collage is a visual pun.\\r\\n\\r\\nGuess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q15: The following four image collage is a visual pun.\\r\\n\\r\\nGuess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q15: The following four image collage is a visual pun.\\r\\n\\r\\nGuess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 422,
+  "fields": {
+    "action_time": "2025-03-30T04:16:37.472Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "143",
+    "object_repr": "Q15: The following four image collage is a visual pun.\r\n\r\nGuess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 423,
+  "fields": {
+    "action_time": "2025-03-30T04:23:03.268Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "144",
+    "object_repr": "Q16: Each of the followings songs contains a sample that was used in a famous/iconic Hip Hop song. Identify the artist and title of the famous song that used the sample.",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 0:00 - 0:30\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 0:05 - 0:40\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 0:00 - 0:30\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 0:00 - 0:40\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. 0:00 - 0:15\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"F. 0:00 - 0:30\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 424,
+  "fields": {
+    "action_time": "2025-03-30T04:27:59.314Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "145",
+    "object_repr": "Q17: Each of the followings songs contains a sample that was used in a famous/iconic song. Identify the artist and title of the famous song that used the sample.",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 3:30 - 4:00\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 1:40 - 2:40\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 0:30 - 1:00\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 0:40 - 1:20\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. 1:30 - 2:10\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 425,
+  "fields": {
+    "action_time": "2025-03-30T23:14:09.080Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "9",
+    "object_repr": "August-2022",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 426,
+  "fields": {
+    "action_time": "2025-03-30T23:14:25.613Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "9",
+    "object_repr": "August-2022",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game order\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 427,
+  "fields": {
+    "action_time": "2025-03-30T23:17:42.006Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "146",
+    "object_repr": "Q1: For each of the following nations, what is the name for the position of head of government (e.g. President in the USA) (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. France\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. China\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Japan\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Germany\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 428,
+  "fields": {
+    "action_time": "2025-03-30T23:38:40.822Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "147",
+    "object_repr": "Q2: Answer the following questions about the U.S. interstates (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Does interstate 10 go through Los Angeles, CA?\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Does interstate 35 go through Chicago, IL?\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Does interstate 10 go through Jacksonville, FL?\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Does interstate 80 go through Philadelphia, PA?\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 429,
+  "fields": {
+    "action_time": "2025-03-31T01:01:52.361Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "148",
+    "object_repr": "Q3: Order the following U.S. airports by annual numbers of passengers boarded from highest to lowest (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Denver International Airport (DEN)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Los Angeles International Airport (LAX)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Hartsfield-Jackson Atlanta International Airport (ATL)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Dallas Love Field (DAL)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 430,
+  "fields": {
+    "action_time": "2025-03-31T01:11:59.052Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "149",
+    "object_repr": "Q4: For each of the following seeds, order them by number of final four appearances, from most to least (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 11th seed\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 3rd seed\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 5th seed\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 6th seed\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 431,
+  "fields": {
+    "action_time": "2025-03-31T01:17:59.181Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "150",
+    "object_repr": "Q5: For each of the following celebrities, are they still alive? (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Mother Teresa\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Gene Hackman\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Eddie Van Halen\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Regis Philbin\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Harvey Weinstein\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 432,
+  "fields": {
+    "action_time": "2025-03-31T02:00:16.932Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "151",
+    "object_repr": "Q6: Order the following U.S. presidents, from tallest to shortest (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Obama\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Trump\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Biden\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Thomas Jefferson\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 433,
+  "fields": {
+    "action_time": "2025-04-04T03:51:42.661Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "152",
+    "object_repr": "Q7: Name the Pokemon in each of the following images (2 Points Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 434,
+  "fields": {
+    "action_time": "2025-04-04T03:56:12.908Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "153",
+    "object_repr": "Q8: Rank the following artists by total number of Spotify streams (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Drake\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Taylor Swift\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Billie Eilish\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. The Weekend\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 435,
+  "fields": {
+    "action_time": "2025-04-04T04:00:06.636Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "154",
+    "object_repr": "Q9: Order the following states, by 2021 net domestic migration per capita (net domestic migration / population) (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Idaho\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Florida\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Texas\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Nevada\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 436,
+  "fields": {
+    "action_time": "2025-04-04T04:02:45.039Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "155",
+    "object_repr": "Q10: Are the following pairs of countries in the same timezone? (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Norway and Finland\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Sweden and Spain\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Argentina and Chile\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. South Korea and China\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 437,
+  "fields": {
+    "action_time": "2025-04-04T04:07:43.578Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "156",
+    "object_repr": "Q11: Identify the data used to create the map (5 Points).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 438,
+  "fields": {
+    "action_time": "2025-04-06T20:24:25.505Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "157",
+    "object_repr": "Q12: Match the Urban Dictionary definition to the term (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Half-cocked former middle-class dude who was a stoner in high school, discovered shrooms at a camping festival in college and has since decided to live as a nearly homeless walking tarot card.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Someone with strong math skills\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. A low-pressure, social gathering at a restaurant or pub for people into BDSM. Particularly intended for people new to the scene who might be intimidated by a play party\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. A person who is obsessed with anime, figures, and manga.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 439,
+  "fields": {
+    "action_time": "2025-04-06T20:27:01.243Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "158",
+    "object_repr": "Q13: Identify the famous international place from the satellite photo (5 Points).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 440,
+  "fields": {
+    "action_time": "2025-04-06T20:36:05.500Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "159",
+    "object_repr": "Q14: Each of the following images was created by an AI in 2022. The prompt used to create each image was \"A painting of Portland, Oregon in the style of artist X\". For each of the following images, id",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 441,
+  "fields": {
+    "action_time": "2025-04-06T20:36:54.109Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "159",
+    "object_repr": "Q14: Each of the following images was created by an AI in 2022. The prompt used to create each image was \"A painting of Portland, Oregon in the style of artist X\". For each of the following images, id",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 442,
+  "fields": {
+    "action_time": "2025-04-06T20:41:27.884Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "160",
+    "object_repr": "Q15: For each of the following film franchises, rank the movies from highest to lowest based on the Rotten Tomatoes tomato meter (critics) (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Lord of the Rings: The Fellowship of the Ring\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Lord of the Rings: The Two Towers\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Lord of the Rings: The Return of the King\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 443,
+  "fields": {
+    "action_time": "2025-04-06T20:44:52.222Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "161",
+    "object_repr": "Q16: For each of the following films  in the Fast and the Furious franchise, rank the movies from highest to lowest based on the Rotten Tomatoes tomato meter (critics) (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Fast and Furious 6\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. The Fast and the Furious (1st Movie)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Furious 7\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. F9 the Fast Saga\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 444,
+  "fields": {
+    "action_time": "2025-04-06T20:45:09.514Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "160",
+    "object_repr": "Q15: For each of the following films in the Lord of the Rings trilogy,  rank the movies from highest to lowest based on the Rotten Tomatoes tomato meter (critics) (1 Point Each).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 445,
+  "fields": {
+    "action_time": "2025-04-06T20:48:18.649Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "162",
+    "object_repr": "Q17: The following four image collage is a visual pun.\r\n\r\nGuess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 446,
+  "fields": {
+    "action_time": "2025-04-06T20:50:07.764Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "162",
+    "object_repr": "Q17: The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points ",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\", \"Question image url\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Answer text\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"B.\", \"fields\": [\"Answer text\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"C.\", \"fields\": [\"Answer text\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D.\", \"fields\": [\"Answer text\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"E.\", \"fields\": [\"Answer text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 447,
+  "fields": {
+    "action_time": "2025-04-06T20:53:03.655Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "163",
+    "object_repr": "Q18: For each of the following songs, match the song to the sub genre of rock music (1 Point Each). Name the artist of the song for an additional (2 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 448,
+  "fields": {
+    "action_time": "2025-04-06T20:54:44.445Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "164",
+    "object_repr": "Q19: For each of the following songs, match the song to the sub genre of house music (1 Point Each).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -6129,6 +6662,18 @@
   }
 },
 {
+  "model": "quiz.game",
+  "pk": 9,
+  "fields": {
+    "name": "August-2022",
+    "description": "",
+    "created_at": "2025-03-30T23:14:09.075Z",
+    "is_password_protected": false,
+    "password": null,
+    "game_order": 6
+  }
+},
+{
   "model": "quiz.category",
   "pk": 1,
   "fields": {
@@ -6303,7 +6848,9 @@
       2,
       4,
       5,
-      6
+      6,
+      8,
+      9
     ]
   }
 },
@@ -6343,7 +6890,8 @@
       2,
       6,
       7,
-      1
+      1,
+      9
     ]
   }
 },
@@ -6359,7 +6907,9 @@
       4,
       5,
       6,
-      7
+      7,
+      8,
+      9
     ]
   }
 },
@@ -6479,7 +7029,8 @@
       1,
       4,
       5,
-      6
+      6,
+      9
     ]
   }
 },
@@ -6503,7 +7054,8 @@
     "games": [
       4,
       5,
-      2
+      2,
+      9
     ]
   }
 },
@@ -6539,7 +7091,8 @@
     "description": null,
     "games": [
       2,
-      8
+      8,
+      9
     ]
   }
 },
@@ -6586,7 +7139,8 @@
     "description": null,
     "games": [
       4,
-      6
+      6,
+      9
     ]
   }
 },
@@ -6634,7 +7188,8 @@
     "description": null,
     "games": [
       4,
-      7
+      7,
+      9
     ]
   }
 },
@@ -6645,7 +7200,8 @@
     "name": "Timezones",
     "description": null,
     "games": [
-      4
+      4,
+      9
     ]
   }
 },
@@ -6765,7 +7321,8 @@
     "description": null,
     "games": [
       5,
-      6
+      6,
+      8
     ]
   }
 },
@@ -6776,7 +7333,9 @@
     "name": "Music",
     "description": null,
     "games": [
-      5
+      5,
+      8,
+      9
     ]
   }
 },
@@ -6844,7 +7403,8 @@
     "name": "Art",
     "description": null,
     "games": [
-      6
+      6,
+      9
     ]
   }
 },
@@ -6855,7 +7415,8 @@
     "name": "Travel",
     "description": null,
     "games": [
-      6
+      6,
+      9
     ]
   }
 },
@@ -6866,7 +7427,9 @@
     "name": "Demographics",
     "description": null,
     "games": [
-      7
+      7,
+      8,
+      9
     ]
   }
 },
@@ -6944,6 +7507,94 @@
     "description": null,
     "games": [
       8
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 70,
+  "fields": {
+    "name": "Hip-Hop",
+    "description": null,
+    "games": [
+      8
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 71,
+  "fields": {
+    "name": "College",
+    "description": null,
+    "games": [
+      8
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 72,
+  "fields": {
+    "name": "Measurements",
+    "description": null,
+    "games": [
+      8
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 73,
+  "fields": {
+    "name": "Guess the Prompt",
+    "description": null,
+    "games": [
+      8
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 74,
+  "fields": {
+    "name": "History",
+    "description": null,
+    "games": [
+      8
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 75,
+  "fields": {
+    "name": "Life",
+    "description": null,
+    "games": [
+      9
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 76,
+  "fields": {
+    "name": "Pokemon",
+    "description": null,
+    "games": [
+      9
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 77,
+  "fields": {
+    "name": "Slang",
+    "description": null,
+    "games": [
+      9
     ]
   }
 },
@@ -9240,6 +9891,533 @@
     "created_at": "2025-03-27T21:23:01.695Z",
     "total_points": 4,
     "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 134,
+  "fields": {
+    "game": 8,
+    "category": 69,
+    "text": "Imagine a list of all countries that is sorted by the distance between the two largest cities in each country. Name 3 countries in the top ten, as in name three countries that have the greatest distance between their biggest and second biggest city (2 Points Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/July/Countries/countries_dist.png",
+    "question_number": 4,
+    "created_at": "2025-03-29T18:33:00.562Z",
+    "total_points": 6,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 135,
+  "fields": {
+    "game": 8,
+    "category": 70,
+    "text": "Order the following Hip-Hop artists from oldest to youngest (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 5,
+    "created_at": "2025-03-30T01:31:54.667Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 136,
+  "fields": {
+    "game": 8,
+    "category": 53,
+    "text": "Have the following actors ever appeared in a Marvel Cinematic Universe (MCU) film? (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 8,
+    "created_at": "2025-03-30T01:36:08.268Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 137,
+  "fields": {
+    "game": 8,
+    "category": 71,
+    "text": "For the following celebrities, name the university they graduated from and what their degree was in? (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 9,
+    "created_at": "2025-03-30T01:39:39.417Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 138,
+  "fields": {
+    "game": 8,
+    "category": 72,
+    "text": "For each of the following measurements convert them into the following units (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 10,
+    "created_at": "2025-03-30T03:35:42.208Z",
+    "total_points": 6,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 139,
+  "fields": {
+    "game": 8,
+    "category": 62,
+    "text": "For each of the following countries you will be given the current population, what was the population in the given year? (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 11,
+    "created_at": "2025-03-30T03:39:17.566Z",
+    "total_points": 6,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 140,
+  "fields": {
+    "game": 8,
+    "category": 73,
+    "text": "Each of the following series of images were created by providing a prompt/phrase/description to an AI (in 2022). Guess the prompt that was used to create the images. (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 12,
+    "created_at": "2025-03-30T03:49:06.029Z",
+    "total_points": 8,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 141,
+  "fields": {
+    "game": 8,
+    "category": 74,
+    "text": "Identify the city from the map of historic people who lived there during the listed time period (2 Points)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/July/History/vienna.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/July/History/vienna_answer.jpg",
+    "question_number": 13,
+    "created_at": "2025-03-30T04:00:52.675Z",
+    "total_points": 2,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 142,
+  "fields": {
+    "game": 8,
+    "category": 15,
+    "text": "What data is this map showing? (5pts)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/July/Guess_The_Data/believe-god.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/July/Guess_The_Data/believe-god_answer.png",
+    "question_number": 14,
+    "created_at": "2025-03-30T04:09:09.347Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 143,
+  "fields": {
+    "game": 8,
+    "category": 19,
+    "text": "The following four image collage is a visual pun.\r\n\r\nGuess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/July/VisualPun/astrological-signs.png",
+    "answer_image_url": null,
+    "question_number": 15,
+    "created_at": "2025-03-30T04:15:41.371Z",
+    "total_points": 15,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 144,
+  "fields": {
+    "game": 8,
+    "category": 70,
+    "text": "Each of the followings songs contains a sample that was used in a famous/iconic Hip Hop song. Identify the artist and title of the famous song that used the sample.",
+    "answer_bank": "1 point for artist, 1 point for song title. Identifying the artist of the sample is worth 3 points.",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 16,
+    "created_at": "2025-03-30T04:23:03.262Z",
+    "total_points": 1,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 145,
+  "fields": {
+    "game": 8,
+    "category": 54,
+    "text": "Each of the followings songs contains a sample that was used in a famous/iconic song. Identify the artist and title of the famous song that used the sample.",
+    "answer_bank": "1 point for artist, 1 point for song title. Identifying the artist of the sample is worth 3 points.",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 17,
+    "created_at": "2025-03-30T04:27:59.308Z",
+    "total_points": 15,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 146,
+  "fields": {
+    "game": 9,
+    "category": 34,
+    "text": "For each of the following nations, what is the name for the position of head of government (e.g. President in the USA) (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 1,
+    "created_at": "2025-03-30T23:17:42.000Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 147,
+  "fields": {
+    "game": 9,
+    "category": 61,
+    "text": "Answer the following questions about the U.S. interstates (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 2,
+    "created_at": "2025-03-30T23:38:40.817Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 148,
+  "fields": {
+    "game": 9,
+    "category": 61,
+    "text": "Order the following U.S. airports by annual numbers of passengers boarded from highest to lowest (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 3,
+    "created_at": "2025-03-31T01:01:52.356Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 149,
+  "fields": {
+    "game": 9,
+    "category": 38,
+    "text": "For each of the following seeds, order them by number of final four appearances, from most to least (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 4,
+    "created_at": "2025-03-31T01:11:59.047Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 150,
+  "fields": {
+    "game": 9,
+    "category": 75,
+    "text": "For each of the following celebrities, are they still alive? (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 5,
+    "created_at": "2025-03-31T01:17:59.175Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 151,
+  "fields": {
+    "game": 9,
+    "category": 42,
+    "text": "Order the following U.S. presidents, from tallest to shortest (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 6,
+    "created_at": "2025-03-31T02:00:16.929Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 152,
+  "fields": {
+    "game": 9,
+    "category": 76,
+    "text": "Name the Pokemon in each of the following images (2 Points Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 7,
+    "created_at": "2025-04-04T03:51:42.655Z",
+    "total_points": 6,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 153,
+  "fields": {
+    "game": 9,
+    "category": 54,
+    "text": "Rank the following artists by total number of Spotify streams (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 8,
+    "created_at": "2025-04-04T03:56:12.902Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 154,
+  "fields": {
+    "game": 9,
+    "category": 62,
+    "text": "Order the following states, by 2021 net domestic migration per capita (net domestic migration / population) (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 9,
+    "created_at": "2025-04-04T04:00:06.631Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 155,
+  "fields": {
+    "game": 9,
+    "category": 43,
+    "text": "Are the following pairs of countries in the same timezone? (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 10,
+    "created_at": "2025-04-04T04:02:45.033Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 156,
+  "fields": {
+    "game": 9,
+    "category": 15,
+    "text": "Identify the data used to create the map (5 Points).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Guess_The_Data/data_map.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Guess_The_Data/data_map_answer.png",
+    "question_number": 11,
+    "created_at": "2025-04-04T04:07:43.576Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 157,
+  "fields": {
+    "game": 9,
+    "category": 77,
+    "text": "Match the Urban Dictionary definition to the term (1 Point Each).",
+    "answer_bank": "Munch, Wook, Rotator, Weeb",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 12,
+    "created_at": "2025-04-06T20:24:25.498Z",
+    "total_points": 4,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 158,
+  "fields": {
+    "game": 9,
+    "category": 18,
+    "text": "Identify the famous international place from the satellite photo (5 Points).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Birds_Eye_View/mecca.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Birds_Eye_View/mecca_answer.png",
+    "question_number": 13,
+    "created_at": "2025-04-06T20:27:01.240Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 159,
+  "fields": {
+    "game": 9,
+    "category": 60,
+    "text": "Each of the following images was created by an AI in 2022. The prompt used to create each image was \"A painting of Portland, Oregon in the style of artist X\". For each of the following images, identify the artist used in the prompt (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 14,
+    "created_at": "2025-04-06T20:36:05.494Z",
+    "total_points": 10,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 160,
+  "fields": {
+    "game": 9,
+    "category": 29,
+    "text": "For each of the following films in the Lord of the Rings trilogy,  rank the movies from highest to lowest based on the Rotten Tomatoes tomato meter (critics) (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 15,
+    "created_at": "2025-04-06T20:41:27.879Z",
+    "total_points": 3,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 161,
+  "fields": {
+    "game": 9,
+    "category": 29,
+    "text": "For each of the following films  in the Fast and the Furious franchise, rank the movies from highest to lowest based on the Rotten Tomatoes tomato meter (critics) (1 Point Each).",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 16,
+    "created_at": "2025-04-06T20:44:52.217Z",
+    "total_points": 4,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 162,
+  "fields": {
+    "game": 9,
+    "category": 19,
+    "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points. (15 Points Total).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Visual_Pun/tvshows.png",
+    "answer_image_url": null,
+    "question_number": 17,
+    "created_at": "2025-04-06T20:48:18.643Z",
+    "total_points": 15,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 163,
+  "fields": {
+    "game": 9,
+    "category": 31,
+    "text": "For each of the following songs, match the song to the sub genre of rock music (1 Point Each). Name the artist of the song for an additional (2 Points)",
+    "answer_bank": "Shoegaze, Post-Grunge, Grunge, Yacht Rock, Psychedelic Rock",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 18,
+    "created_at": "2025-04-06T20:53:03.650Z",
+    "total_points": 15,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 164,
+  "fields": {
+    "game": 9,
+    "category": 31,
+    "text": "For each of the following songs, match the song to the sub genre of house music (1 Point Each).",
+    "answer_bank": "Deep House, Tech House, Acid House, Tropical House",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_number": 19,
+    "created_at": "2025-04-06T20:54:44.440Z",
+    "total_points": 4,
+    "game_round": 3
   }
 },
 {
@@ -16668,6 +17846,1641 @@
   }
 },
 {
+  "model": "quiz.answer",
+  "pk": 496,
+  "fields": {
+    "question": 135,
+    "text": "A. J Cole",
+    "display_order": 1,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "1985",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 497,
+  "fields": {
+    "question": 135,
+    "text": "B. Kendrick Lamar",
+    "display_order": 2,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "1987",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 498,
+  "fields": {
+    "question": 135,
+    "text": "C. Gucci Mane",
+    "display_order": 3,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "1980",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 499,
+  "fields": {
+    "question": 135,
+    "text": "D. Nicki Minaj",
+    "display_order": 4,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "1982",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 500,
+  "fields": {
+    "question": 136,
+    "text": "A. Matt Damon",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes - Thor Ragnarok",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 501,
+  "fields": {
+    "question": 136,
+    "text": "B. Michael Douglas",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes - Ant Man",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 502,
+  "fields": {
+    "question": 136,
+    "text": "C. Sylvester Stallone",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes - Guardians of the Galaxy 2",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 503,
+  "fields": {
+    "question": 136,
+    "text": "D. Vin Diesel",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes - Guardians of the Galaxy",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 504,
+  "fields": {
+    "question": 137,
+    "text": "A. Michael Jordan",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "University of North Carolina: Geography",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 505,
+  "fields": {
+    "question": 137,
+    "text": "B. Natalie Portman",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Harvard: Psychology",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 506,
+  "fields": {
+    "question": 137,
+    "text": "C. Aziz Ansari",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "New York University: Marketing",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 507,
+  "fields": {
+    "question": 137,
+    "text": "D. Will Ferrell",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "University of Southern California: Sports Information (will accept Sports Management/Business)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 508,
+  "fields": {
+    "question": 138,
+    "text": "A. 29 degrees Celsius is _ degrees Fahrenheit?",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "84 degrees F (82 - 86 accepted)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 509,
+  "fields": {
+    "question": 138,
+    "text": "B. 4.8 kilometers is _ miles?",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "3 Miles (2.98)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 510,
+  "fields": {
+    "question": 138,
+    "text": "C. 117 kilograms is _ pounds?",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "258 lbs (248 - 268 accepted)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 511,
+  "fields": {
+    "question": 139,
+    "text": "A. USA 2020 331 Million, what was the population in 1920?",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "106 Million (101 - 111)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 512,
+  "fields": {
+    "question": 139,
+    "text": "B. Japan 2020 126 Million, what was the population in 1990?",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "123 Million (116 - 130)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 513,
+  "fields": {
+    "question": 139,
+    "text": "C. Russia 2020 146 Million, what was the population in 1989?",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "147 Million (140 - 154)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 514,
+  "fields": {
+    "question": 140,
+    "text": "A.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Gritty on the Joe Rogan Podcast",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/July/Guess_The_Prompt/gritty-on-the-joe-rogan-exerience.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 515,
+  "fields": {
+    "question": 140,
+    "text": "B.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Guy Fieri as the KFC logo",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/July/Guess_The_Prompt/guy-fieiri-kfc-logo.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 516,
+  "fields": {
+    "question": 140,
+    "text": "C.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Security cam footage of the Michelin Man",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/July/Guess_The_Prompt/security-cam-michelin-man.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 517,
+  "fields": {
+    "question": 140,
+    "text": "D.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Vaporwave Colonel Sanders",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/July/Guess_The_Prompt/vaporwave-colonel-sanders.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 518,
+  "fields": {
+    "question": 141,
+    "text": "",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 519,
+  "fields": {
+    "question": 143,
+    "text": "",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Capricorn",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 520,
+  "fields": {
+    "question": 143,
+    "text": "",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Gemini",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 521,
+  "fields": {
+    "question": 143,
+    "text": "",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Pisces",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 522,
+  "fields": {
+    "question": 143,
+    "text": "",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Taurus",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 523,
+  "fields": {
+    "question": 143,
+    "text": "",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Astrological Signs",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 524,
+  "fields": {
+    "question": 144,
+    "text": "A. 0:00 - 0:30",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Big Poppa - Notorious B.I.G. (The Isley Brothers)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 525,
+  "fields": {
+    "question": 144,
+    "text": "B. 0:05 - 0:40",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Money Trees - Kendrick Lamar (Beach House)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 526,
+  "fields": {
+    "question": 144,
+    "text": "C. 0:00 - 0:30",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Int'l PLayers Anthem - UGK, Outkast (Willie Hutch)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 527,
+  "fields": {
+    "question": 144,
+    "text": "D. 0:00 - 0:40",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "It Was A Good Day - Ice Cube (The Isley Brothers)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 528,
+  "fields": {
+    "question": 144,
+    "text": "E. 0:00 - 0:15",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Where The Hood At - DMX (Albert King)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 529,
+  "fields": {
+    "question": 144,
+    "text": "F. 0:00 - 0:30",
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Angel - Shaggy (Steve Miller Band)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 530,
+  "fields": {
+    "question": 145,
+    "text": "A. 3:30 - 4:00",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Right Herem Right Now - Fatboy Slim (James Gang)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 531,
+  "fields": {
+    "question": 145,
+    "text": "B. 1:40 - 2:40",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Steal My Sunshine - LEN (Andre True Connection)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 532,
+  "fields": {
+    "question": 145,
+    "text": "C. 0:30 - 1:00",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Where's Your Head At - Basement Jaxx (Gary Numan)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 533,
+  "fields": {
+    "question": 145,
+    "text": "D. 0:40 - 1:20",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Butterfly - Crazy Town (Red Hot Chili Peppers)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 534,
+  "fields": {
+    "question": 145,
+    "text": "E. 1:30 - 2:10",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Timber - Kesha (Lee Oskar)",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 535,
+  "fields": {
+    "question": 146,
+    "text": "A. France",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "President",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 536,
+  "fields": {
+    "question": 146,
+    "text": "B. China",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "General Secretary of the Ruling Party",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 537,
+  "fields": {
+    "question": 146,
+    "text": "C. Japan",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "President",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 538,
+  "fields": {
+    "question": 146,
+    "text": "D. Germany",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Chancellor",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 539,
+  "fields": {
+    "question": 147,
+    "text": "A. Does interstate 10 go through Los Angeles, CA?",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 540,
+  "fields": {
+    "question": 147,
+    "text": "B. Does interstate 35 go through Chicago, IL?",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "No",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 541,
+  "fields": {
+    "question": 147,
+    "text": "C. Does interstate 10 go through Jacksonville, FL?",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 542,
+  "fields": {
+    "question": 147,
+    "text": "D. Does interstate 80 go through Philadelphia, PA?",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "No",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 543,
+  "fields": {
+    "question": 148,
+    "text": "A. Denver International Airport (DEN)",
+    "display_order": 1,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "28.6 Million",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 544,
+  "fields": {
+    "question": 148,
+    "text": "B. Los Angeles International Airport (LAX)",
+    "display_order": 2,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "23.6 Million",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 545,
+  "fields": {
+    "question": 148,
+    "text": "C. Hartsfield-Jackson Atlanta International Airport (ATL)",
+    "display_order": 3,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "36.6 Million",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 546,
+  "fields": {
+    "question": 148,
+    "text": "D. Dallas Love Field (DAL)",
+    "display_order": 4,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "3.6 Million",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 547,
+  "fields": {
+    "question": 149,
+    "text": "A. 11th seed",
+    "display_order": 1,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "5 appearances",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 548,
+  "fields": {
+    "question": 149,
+    "text": "B. 3rd seed",
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "17 appearances",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 549,
+  "fields": {
+    "question": 149,
+    "text": "C. 5th seed",
+    "display_order": 3,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "7 appearances",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 550,
+  "fields": {
+    "question": 149,
+    "text": "D. 6th seed",
+    "display_order": 4,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "3 appearances",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 551,
+  "fields": {
+    "question": 150,
+    "text": "A. Mother Teresa",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Died 1997",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 552,
+  "fields": {
+    "question": 150,
+    "text": "B. Gene Hackman",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Died 2025",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 553,
+  "fields": {
+    "question": 150,
+    "text": "C. Eddie Van Halen",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Died 2020",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 554,
+  "fields": {
+    "question": 150,
+    "text": "D. Regis Philbin",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Died 2020",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 555,
+  "fields": {
+    "question": 150,
+    "text": "E. Harvey Weinstein",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Still Alive",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 556,
+  "fields": {
+    "question": 151,
+    "text": "A. Obama",
+    "display_order": 1,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "6 foot 1 1/2 inches",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 557,
+  "fields": {
+    "question": 151,
+    "text": "B. Trump",
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "6 foot 3 inches",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 558,
+  "fields": {
+    "question": 151,
+    "text": "C. Biden",
+    "display_order": 3,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "5 foot 11 1/2 inches",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 559,
+  "fields": {
+    "question": 151,
+    "text": "D. Thomas Jefferson",
+    "display_order": 4,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "6 foot 2 1/2 inches",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 560,
+  "fields": {
+    "question": 152,
+    "text": "A.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Geodude",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Pokemon/geodude.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 561,
+  "fields": {
+    "question": 152,
+    "text": "B.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Jynx",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Pokemon/jynx.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 562,
+  "fields": {
+    "question": 152,
+    "text": "C.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Gyarados",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Pokemon/gyarados.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 563,
+  "fields": {
+    "question": 153,
+    "text": "A. Drake",
+    "display_order": 1,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 564,
+  "fields": {
+    "question": 153,
+    "text": "B. Taylor Swift",
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 565,
+  "fields": {
+    "question": 153,
+    "text": "C. Billie Eilish",
+    "display_order": 3,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 566,
+  "fields": {
+    "question": 153,
+    "text": "D. The Weekend",
+    "display_order": 4,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 567,
+  "fields": {
+    "question": 154,
+    "text": "A. Idaho",
+    "display_order": 1,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "(25.71 per 1,000 inhabitants) 48,876",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 568,
+  "fields": {
+    "question": 154,
+    "text": "B. Florida",
+    "display_order": 2,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "(10.14 per 1,000 inhabitants) 220,890",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 569,
+  "fields": {
+    "question": 154,
+    "text": "C. Texas",
+    "display_order": 3,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "(5.77 per 1,000 inhabitants) 170,307",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 570,
+  "fields": {
+    "question": 154,
+    "text": "D. Nevada",
+    "display_order": 4,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "(8.06 per 1,000 inhabitants) 25,327",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 571,
+  "fields": {
+    "question": 155,
+    "text": "A. Norway and Finland",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "No",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 572,
+  "fields": {
+    "question": 155,
+    "text": "B. Sweden and Spain",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Yes",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 573,
+  "fields": {
+    "question": 155,
+    "text": "C. Argentina and Chile",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "No",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 574,
+  "fields": {
+    "question": 155,
+    "text": "D. South Korea and China",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "No",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 575,
+  "fields": {
+    "question": 157,
+    "text": "A. Half-cocked former middle-class dude who was a stoner in high school, discovered shrooms at a camping festival in college and has since decided to live as a nearly homeless walking tarot card.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Wook",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 576,
+  "fields": {
+    "question": 157,
+    "text": "B. Someone with strong math skills",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Rotator",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 577,
+  "fields": {
+    "question": 157,
+    "text": "C. A low-pressure, social gathering at a restaurant or pub for people into BDSM. Particularly intended for people new to the scene who might be intimidated by a play party",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Munch",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 578,
+  "fields": {
+    "question": 157,
+    "text": "D. A person who is obsessed with anime, figures, and manga.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Weeb",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 579,
+  "fields": {
+    "question": 159,
+    "text": "A.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Salvador Dali",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Art/salvadordali.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 580,
+  "fields": {
+    "question": 159,
+    "text": "B.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Jackson Pollock",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Art/pollock.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 581,
+  "fields": {
+    "question": 159,
+    "text": "C.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Caspar David Friedrich",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Art/friedrich.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 582,
+  "fields": {
+    "question": 159,
+    "text": "D.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Keith Haring",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Art/herring.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 583,
+  "fields": {
+    "question": 159,
+    "text": "E.",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Vincent Van Gogh",
+    "explanation": "",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2022/August/Art/vangogh.png",
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 584,
+  "fields": {
+    "question": 160,
+    "text": "A. Lord of the Rings: The Fellowship of the Ring",
+    "display_order": 1,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "92%",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 585,
+  "fields": {
+    "question": 160,
+    "text": "B. Lord of the Rings: The Two Towers",
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "95%",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 586,
+  "fields": {
+    "question": 160,
+    "text": "C. Lord of the Rings: The Return of the King",
+    "display_order": 3,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "94%",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 587,
+  "fields": {
+    "question": 161,
+    "text": "A. Fast and Furious 6",
+    "display_order": 1,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "71%",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 588,
+  "fields": {
+    "question": 161,
+    "text": "B. The Fast and the Furious (1st Movie)",
+    "display_order": 2,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "55%",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 589,
+  "fields": {
+    "question": 161,
+    "text": "C. Furious 7",
+    "display_order": 3,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "82%",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 590,
+  "fields": {
+    "question": 161,
+    "text": "D. F9 the Fast Saga",
+    "display_order": 4,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": null,
+    "explanation": "59%",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 591,
+  "fields": {
+    "question": 162,
+    "text": "A.",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "The Office",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 592,
+  "fields": {
+    "question": 162,
+    "text": "B.",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Game of Thrones",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 593,
+  "fields": {
+    "question": 162,
+    "text": "C.",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Mad Men",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 594,
+  "fields": {
+    "question": 162,
+    "text": "D.",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Stranger Things",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 595,
+  "fields": {
+    "question": 162,
+    "text": "E.",
+    "display_order": null,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Category: TV Shows",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 596,
+  "fields": {
+    "question": 163,
+    "text": "A.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Grunge - Alice in Chains",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 597,
+  "fields": {
+    "question": 163,
+    "text": "B.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Yacht Rock - Michael McDonald",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 598,
+  "fields": {
+    "question": 163,
+    "text": "C.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Psychedlic Rock - The Doors",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 599,
+  "fields": {
+    "question": 163,
+    "text": "D.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Shoegaze - DIIV",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 600,
+  "fields": {
+    "question": 163,
+    "text": "E.",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Post-Grunge - Seether",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 601,
+  "fields": {
+    "question": 164,
+    "text": "A.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Acid House",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 602,
+  "fields": {
+    "question": 164,
+    "text": "B.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Tropical House",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 603,
+  "fields": {
+    "question": 164,
+    "text": "C.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Deep House",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 604,
+  "fields": {
+    "question": 164,
+    "text": "D.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Tech House",
+    "explanation": "",
+    "question_image_url": null,
+    "answer_image_url": null
+  }
+},
+{
   "model": "quiz.gameresult",
   "pk": 13,
   "fields": {
@@ -17636,42 +20449,6 @@
     "avg_pct_rd2_points": 0.30864197530864196,
     "avg_pct_final_rd_points": 0.14285714285714285,
     "games_played": 1
-  }
-},
-{
-  "model": "quiz.contentupdate",
-  "pk": 1,
-  "fields": {
-    "filename": "content_update_2025_02_17_0106.json",
-    "timestamp": "2025-02-17T01:06:28.046Z",
-    "processed": false,
-    "processed_at": null,
-    "checksum": "21ecc43e42331257e2e34a536a7711410a7749c72d1c51c2fe276ff01d7cab68",
-    "question_count": 128
-  }
-},
-{
-  "model": "quiz.contentupdate",
-  "pk": 2,
-  "fields": {
-    "filename": "content_update_2025_02_17_0110.json",
-    "timestamp": "2025-02-17T01:10:58.709Z",
-    "processed": false,
-    "processed_at": null,
-    "checksum": "40f7e686e302e26adabd38f412250ed64ff2b0fd9a8ea43392d5db41119cc9cd",
-    "question_count": 129
-  }
-},
-{
-  "model": "quiz.contentupdate",
-  "pk": 3,
-  "fields": {
-    "filename": "content_update_2025_02_17_0121.json",
-    "timestamp": "2025-02-17T01:21:04.778Z",
-    "processed": false,
-    "processed_at": null,
-    "checksum": "13063338efcf4c89306e2036a9a19af30899cad4f4b69b6cb543314bc569e382",
-    "question_count": 39
   }
 }
 ]
