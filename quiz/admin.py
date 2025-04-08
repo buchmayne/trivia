@@ -13,6 +13,10 @@ class QuestionAdminForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = "__all__"
+        help_texts = {
+            "question_image_url": "Enter only the S3 path (e.g., /2021/March/image.jpg). CloudFront domain will be added automatically.",
+            "answer_image_url": "Enter only the S3 path (e.g., /2021/March/image.jpg). CloudFront domain will be added automatically.",
+        }
 
     def clean(self):
         cleaned_data = super().clean()
@@ -44,6 +48,12 @@ class QuestionAdminForm(forms.ModelForm):
             instance.save()
 
         return instance
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Order categories alphabetically by name
+        if "category" in self.fields:
+            self.fields["category"].queryset = Category.objects.all().order_by("name")
 
 
 # Inline to add multiple answers directly in the question form
@@ -103,7 +113,7 @@ class GameAdmin(admin.ModelAdmin):
     list_display = ("name", "is_password_protected", "created_at", "game_order")
     list_filter = ("is_password_protected",)
     fields = ("name", "description", "game_order", "is_password_protected", "password")
-    ordering = ["name"]
+    ordering = ["-game_order"]
 
 
 class CategoryAdmin(admin.ModelAdmin):

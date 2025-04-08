@@ -100,7 +100,7 @@
                 <ul class="answer-list matching">
                     {% for answer in question.answers.all %}
                         <li class="answer-item">
-                            <div class="answer-text">{{ answer.text }} - {{ answer.answer_text }}</div>
+                            <div class="answer-text">{{ answer.text }} - <strong>{{ answer.answer_text }}</strong></div>
                             {% if answer.answer_image_url %}
                                 <div class="answer-image">
                                     <img src="{{ answer.answer_image_url }}" alt="{{ answer.text }}" class="responsive-image">
@@ -117,7 +117,7 @@
                 <ul class="answer-list open-ended">
                     {% for answer in question.answers.all %}
                         <li class="answer-item">
-                            <div class="answer-text">{{ answer.text }} - {{ answer.answer_text }}</div>
+                            <div class="answer-text">{{ answer.text }} - <strong>{{ answer.answer_text }}</strong></div>
                             {% if answer.answer_image_url %}
                                 <div class="answer-image">
                                     <img src="{{ answer.answer_image_url }}" alt="{{ answer.text }}" class="responsive-image">

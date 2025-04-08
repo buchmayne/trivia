@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from tinymce.models import HTMLField
+from .fields import CloudFrontURLField
 
 
 class Game(models.Model):
@@ -66,8 +67,8 @@ class Question(models.Model):
         QuestionType, on_delete=models.CASCADE, related_name="questions"
     )
 
-    question_image_url = models.URLField(blank=True, null=True)
-    answer_image_url = models.URLField(blank=True, null=True)
+    question_image_url = CloudFrontURLField(blank=True, null=True)
+    answer_image_url = CloudFrontURLField(blank=True, null=True)
 
     question_number = (
         models.IntegerField()
@@ -98,7 +99,6 @@ class Answer(models.Model):
         Question, on_delete=models.CASCADE, related_name="answers"
     )
     text = models.TextField(blank=True, null=True)
-    question_image_url = models.URLField(blank=True, null=True)
 
     # These fields are mainly relevant for ranking questions
     display_order = models.PositiveIntegerField(null=True, blank=True)
@@ -110,7 +110,9 @@ class Answer(models.Model):
     # New fields for answer details:
     answer_text = models.CharField(max_length=255, blank=True, null=True)
     explanation = models.TextField(blank=True, null=True)
-    answer_image_url = models.URLField(blank=True, null=True)
+
+    question_image_url = CloudFrontURLField(blank=True, null=True)
+    answer_image_url = CloudFrontURLField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.text if self.text else f"Answer for {self.question}"
@@ -149,20 +151,3 @@ class PlayerStats(models.Model):
     avg_pct_rd2_points = models.FloatField()
     avg_pct_final_rd_points = models.FloatField()
     games_played = models.IntegerField()
-
-
-class ContentUpdate(models.Model):
-    """Track content updates and their processing status"""
-
-    filename = models.CharField(max_length=255, unique=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    processed = models.BooleanField(default=False)
-    processed_at = models.DateTimeField(null=True)
-    checksum = models.CharField(max_length=64)
-    question_count = models.IntegerField()
-
-    class Meta:
-        ordering = ["timestamp"]
-
-    def __str__(self):
-        return f"{self.filename} ({'Processed' if self.processed else 'Pending'})"

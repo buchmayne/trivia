@@ -1,11 +1,6 @@
-import hashlib
-import json
-import os
 from django.db import transaction
 import pandas as pd
-from typing import Dict, Any
-from quiz.models import GameResult, PlayerStats, ContentUpdate
-from django.conf import settings
+from quiz.models import GameResult, PlayerStats
 
 
 class AnalyticsLoader:
@@ -33,29 +28,3 @@ class AnalyticsLoader:
         # Update or create player stats
         PlayerStats.objects.all().delete()
         PlayerStats.objects.bulk_create([PlayerStats(**record) for record in records])
-
-
-class ContentUtils:
-    @staticmethod
-    def calculate_checksum(content: str) -> str:
-        """Calculate SHA-256 checksum of content"""
-        return hashlib.sha256(content.encode()).hexdigest()
-
-    @staticmethod
-    def get_processed_questions(updates_dir: str) -> dict:
-        """Load all previously processed questions"""
-        processed_questions = {}
-
-        for update in ContentUpdate.objects.filter(processed=True).order_by(
-            "timestamp"
-        ):
-            filepath = os.path.join(updates_dir, update.filename)
-            if os.path.exists(filepath):
-                with open(filepath, "r") as f:
-                    data = json.load(f)
-                    for game_data in data.get("question_groups", []):
-                        for question in game_data.get("questions", []):
-                            key = f"{game_data['game_name']}::{question.get('category')}::{question['question_number']}"
-                            processed_questions[key] = question
-
-        return processed_questions
