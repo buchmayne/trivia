@@ -43,5 +43,9 @@ class S3ImageField(models.FileField):
 
     def __init__(self, *args, **kwargs):
         kwargs['storage'] = S3MediaStorage()
-        kwargs['upload_to'] = get_upload_path
+        if 'upload_to' in kwargs:
+            del kwargs['upload_to']
         super().__init__(*args, **kwargs)
+
+    def generate_filename(self, instance, filename):
+        return get_upload_path(instance, filename)

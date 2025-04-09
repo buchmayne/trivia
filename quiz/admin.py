@@ -52,11 +52,14 @@ class QuestionAdminForm(forms.ModelForm):
         # Process custom path for question_image if provided
         q_image_path = self.data.get('question_image_path', '')
         if 'question_image' in self.files and q_image_path:
-            # If the user specified a custom path, use it instead of the dynamic path
             file = self.files['question_image']
-            upload_to = f"{q_image_path.rstrip('/')}/{file.name}"
+            # Use the custom path directly - no need to append filename
+            upload_to = q_image_path
+            if not upload_to.endswith('/'):
+                upload_to += '/'
+            upload_to += file.name
             
-            # We need to manually handle the upload with custom path
+            # Manually handle the upload with custom path
             storage = instance.question_image.field.storage
             name = storage.save(upload_to, file)
             
@@ -64,16 +67,17 @@ class QuestionAdminForm(forms.ModelForm):
             instance.question_image.name = name
             instance.question_image_url = name
         elif 'question_image' in self.files:
-            # If no custom path, let the dynamic path function handle it
-            # But make sure we update the question_image_url field
-            instance.save()  # Need to save first to get the file path
-            instance.question_image_url = instance.question_image.name
-        
+            # Let our custom generate_filename handle it
+            pass
+            
         # Similar logic for answer_image
         a_image_path = self.data.get('answer_image_path', '')
         if 'answer_image' in self.files and a_image_path:
             file = self.files['answer_image']
-            upload_to = f"{a_image_path.rstrip('/')}/{file.name}"
+            upload_to = a_image_path
+            if not upload_to.endswith('/'):
+                upload_to += '/'
+            upload_to += file.name
             
             storage = instance.answer_image.field.storage
             name = storage.save(upload_to, file)
@@ -81,12 +85,15 @@ class QuestionAdminForm(forms.ModelForm):
             instance.answer_image.name = name
             instance.answer_image_url = name
         
-        elif 'answer_image' in self.files:
-            instance.save()
-            instance.answer_image_url = instance.answer_image.name
-            
         if commit:
             instance.save()
+
+        # Update URL fields after saving
+        if instance.question_image:
+            instance.question_image_url = instance.question_image.name
+            
+        if instance.answer_image:
+            instance.answer_image_url = instance.answer_image.name
 
         return instance
 
