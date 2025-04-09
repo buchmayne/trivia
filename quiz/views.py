@@ -2,6 +2,7 @@ from typing import Optional, Dict, Any, List, Union
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse, HttpRequest, HttpResponse
 from django.db import models
+from django.contrib.admin.views.decorators import staff_member_required
 from .models import Game, Category, Question, QuestionRound, GameResult, PlayerStats
 
 
@@ -289,3 +290,20 @@ def analytics_view(request):
     }
 
     return render(request, "quiz/analytics.html", context)
+
+
+@staff_member_required
+def get_next_question_number(request, game_id):
+    """API view to get the next available question number"""
+    try:
+        # Get all existing question numbers for this game
+        existing_numbers = set(Question.objects.filter(game_id=game_id).values_list('question_number', flat=True))
+        
+        # Find the first available number
+        next_number = 1
+        while next_number in existing_numbers:
+            next_number += 1
+        
+        return JsonResponse({'next_number': next_number})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
