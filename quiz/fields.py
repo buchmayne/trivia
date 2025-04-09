@@ -38,13 +38,14 @@ class CloudFrontURLField(models.CharField):
             return path
         return f"{settings.AWS_CLOUDFRONT_DOMAIN}{path}"
 
+
 class S3ImageField(models.FileField):
     """A custom field that uploads to S3 and stores the path in CloudFrontURLField"""
 
     def __init__(self, *args, **kwargs):
-        kwargs['storage'] = S3MediaStorage()
-        if 'upload_to' in kwargs:
-            del kwargs['upload_to']
+        kwargs["storage"] = S3MediaStorage()
+        if "upload_to" in kwargs:
+            del kwargs["upload_to"]
         super().__init__(*args, **kwargs)
 
     def generate_filename(self, instance, filename):

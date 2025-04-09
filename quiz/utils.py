@@ -36,6 +36,5 @@ def get_content_type(filename):
     """Get the content type of a file based on its extension"""
     content_type, _ = mimetypes.guess_type(filename)
     if not content_type:
-        content_type = 'application/octet-stream' # default behavior is binary data, don't know if this is correct
+        content_type = "application/octet-stream"  # default behavior is binary data, don't know if this is correct
     return content_type
-

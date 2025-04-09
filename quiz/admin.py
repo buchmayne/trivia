@@ -19,8 +19,8 @@ class QuestionAdminForm(forms.ModelForm):
             "answer_image_url": "Enter only the S3 path (e.g., /2021/March/image.jpg). CloudFront domain will be added automatically.",
         }
         widgets = {
-            "question_image": S3ImageUploadWidget(field_name='question_image'),
-            "answer_image": S3ImageUploadWidget(field_name='answer_image'),
+            "question_image": S3ImageUploadWidget(field_name="question_image"),
+            "answer_image": S3ImageUploadWidget(field_name="answer_image"),
         }
 
     def clean(self):
@@ -50,48 +50,48 @@ class QuestionAdminForm(forms.ModelForm):
             instance.category.games.add(instance.game)
 
         # Process custom path for question_image if provided
-        q_image_path = self.data.get('question_image_path', '')
-        if 'question_image' in self.files and q_image_path:
-            file = self.files['question_image']
+        q_image_path = self.data.get("question_image_path", "")
+        if "question_image" in self.files and q_image_path:
+            file = self.files["question_image"]
             # Use the custom path directly - no need to append filename
             upload_to = q_image_path
-            if not upload_to.endswith('/'):
-                upload_to += '/'
+            if not upload_to.endswith("/"):
+                upload_to += "/"
             upload_to += file.name
-            
+
             # Manually handle the upload with custom path
             storage = instance.question_image.field.storage
             name = storage.save(upload_to, file)
-            
+
             # Store the path
             instance.question_image.name = name
             instance.question_image_url = name
-        elif 'question_image' in self.files:
+        elif "question_image" in self.files:
             # Let our custom generate_filename handle it
             pass
-            
+
         # Similar logic for answer_image
-        a_image_path = self.data.get('answer_image_path', '')
-        if 'answer_image' in self.files and a_image_path:
-            file = self.files['answer_image']
+        a_image_path = self.data.get("answer_image_path", "")
+        if "answer_image" in self.files and a_image_path:
+            file = self.files["answer_image"]
             upload_to = a_image_path
-            if not upload_to.endswith('/'):
-                upload_to += '/'
+            if not upload_to.endswith("/"):
+                upload_to += "/"
             upload_to += file.name
-            
+
             storage = instance.answer_image.field.storage
             name = storage.save(upload_to, file)
-            
+
             instance.answer_image.name = name
             instance.answer_image_url = name
-        
+
         if commit:
             instance.save()
 
         # Update URL fields after saving
         if instance.question_image:
             instance.question_image_url = instance.question_image.name
-            
+
         if instance.answer_image:
             instance.answer_image_url = instance.answer_image.name
 
