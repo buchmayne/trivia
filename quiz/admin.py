@@ -23,16 +23,15 @@ class QuestionAdminForm(forms.ModelForm):
             "answer_image": S3ImageUploadWidget(field_name="answer_image"),
         }
 
-    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Order categories alphabetically by name
         if "category" in self.fields:
             self.fields["category"].queryset = Category.objects.all().order_by("name")
-        
+
         if not self.instance.pk:
             # Set a default placeholder
-            self.fields['question_number'].widget.attrs['placeholder'] = '...'
+            self.fields["question_number"].widget.attrs["placeholder"] = "..."
 
     def clean(self):
         cleaned_data = super().clean()
@@ -44,27 +43,31 @@ class QuestionAdminForm(forms.ModelForm):
             raise forms.ValidationError(
                 "Please select an existing category or provide a new category name."
             )
-        
+
         # Only apply for new questions and when game is selected
-        if not self.instance.pk and 'game' in cleaned_data and cleaned_data['game']:
+        if not self.instance.pk and "game" in cleaned_data and cleaned_data["game"]:
             # If question_number is not set by the user
-            if not cleaned_data.get('question_number'):
-                game = cleaned_data['game']
-                
+            if not cleaned_data.get("question_number"):
+                game = cleaned_data["game"]
+
                 # Get all existing question numbers for this game
-                existing_numbers = set(Question.objects.filter(game=game).values_list('question_number', flat=True))
-                
+                existing_numbers = set(
+                    Question.objects.filter(game=game).values_list(
+                        "question_number", flat=True
+                    )
+                )
+
                 # Find the first available number
                 next_number = 1
                 while next_number in existing_numbers:
                     next_number += 1
-                
+
                 # Set the next available number
-                cleaned_data['question_number'] = next_number
-                
+                cleaned_data["question_number"] = next_number
+
                 # Update the form field to show the value
                 self.data = self.data.copy()  # Make mutable
-                self.data['question_number'] = next_number
+                self.data["question_number"] = next_number
 
         return cleaned_data
 
@@ -128,9 +131,9 @@ class QuestionAdminForm(forms.ModelForm):
             instance.answer_image_url = instance.answer_image.name
 
         return instance
-    
+
     class Media:
-        js = ('js/question_admin.js',)
+        js = ("js/question_admin.js",)
 
 
 # Inline to add multiple answers directly in the question form

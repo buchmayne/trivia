@@ -37,5 +37,9 @@ urlpatterns = [
         name="verify_password",
     ),
     path("analytics/", views.analytics_view, name="analytics"),
-    path('next-question/<int:game_id>/', views.get_next_question_number, name='next_question_number'),
+    path(
+        "next-question/<int:game_id>/",
+        views.get_next_question_number,
+        name="next_question_number",
+    ),
 ]
