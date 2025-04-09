@@ -1,6 +1,8 @@
+import os
 from django.db import transaction
 import pandas as pd
 from quiz.models import GameResult, PlayerStats
+import mimetypes
 
 
 class AnalyticsLoader:
@@ -28,3 +30,12 @@ class AnalyticsLoader:
         # Update or create player stats
         PlayerStats.objects.all().delete()
         PlayerStats.objects.bulk_create([PlayerStats(**record) for record in records])
+
+
+def get_content_type(filename):
+    """Get the content type of a file based on its extension"""
+    content_type, _ = mimetypes.guess_type(filename)
+    if not content_type:
+        content_type = 'application/octet-stream' # default behavior is binary data, don't know if this is correct
+    return content_type
+

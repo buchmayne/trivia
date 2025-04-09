@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from .storage import S3MediaStorage
+from .upload_helpers import get_upload_path
 
 
 class CloudFrontURLField(models.CharField):
@@ -35,3 +37,11 @@ class CloudFrontURLField(models.CharField):
         if path.startswith(settings.AWS_CLOUDFRONT_DOMAIN):
             return path
         return f"{settings.AWS_CLOUDFRONT_DOMAIN}{path}"
+
+class S3ImageField(models.FileField):
+    """A custom field that uploads to S3 and stores the path in CloudFrontURLField"""
+
+    def __init__(self, *args, **kwargs):
+        kwargs['storage'] = S3MediaStorage()
+        kwargs['upload_to'] = get_upload_path
+        super().__init__(*args, **kwargs)

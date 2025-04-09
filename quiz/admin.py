@@ -2,6 +2,7 @@ from django import forms
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import Game, Category, Question, Answer, QuestionType, QuestionRound
+from .widgets import S3ImageUploadWidget
 
 
 class QuestionAdminForm(forms.ModelForm):
@@ -16,6 +17,10 @@ class QuestionAdminForm(forms.ModelForm):
         help_texts = {
             "question_image_url": "Enter only the S3 path (e.g., /2021/March/image.jpg). CloudFront domain will be added automatically.",
             "answer_image_url": "Enter only the S3 path (e.g., /2021/March/image.jpg). CloudFront domain will be added automatically.",
+        }
+        widgets = {
+            "question_image": S3ImageUploadWidget(field_name='question_image'),
+            "answer_image": S3ImageUploadWidget(field_name='answer_image'),
         }
 
     def clean(self):
@@ -44,6 +49,42 @@ class QuestionAdminForm(forms.ModelForm):
         if instance.category and instance.game:
             instance.category.games.add(instance.game)
 
+        # Process custom path for question_image if provided
+        q_image_path = self.data.get('question_image_path', '')
+        if 'question_image' in self.files and q_image_path:
+            # If the user specified a custom path, use it instead of the dynamic path
+            file = self.files['question_image']
+            upload_to = f"{q_image_path.rstrip('/')}/{file.name}"
+            
+            # We need to manually handle the upload with custom path
+            storage = instance.question_image.field.storage
+            name = storage.save(upload_to, file)
+            
+            # Store the path
+            instance.question_image.name = name
+            instance.question_image_url = name
+        elif 'question_image' in self.files:
+            # If no custom path, let the dynamic path function handle it
+            # But make sure we update the question_image_url field
+            instance.save()  # Need to save first to get the file path
+            instance.question_image_url = instance.question_image.name
+        
+        # Similar logic for answer_image
+        a_image_path = self.data.get('answer_image_path', '')
+        if 'answer_image' in self.files and a_image_path:
+            file = self.files['answer_image']
+            upload_to = f"{a_image_path.rstrip('/')}/{file.name}"
+            
+            storage = instance.answer_image.field.storage
+            name = storage.save(upload_to, file)
+            
+            instance.answer_image.name = name
+            instance.answer_image_url = name
+        
+        elif 'answer_image' in self.files:
+            instance.save()
+            instance.answer_image_url = instance.answer_image.name
+            
         if commit:
             instance.save()
 
@@ -66,12 +107,14 @@ class AnswerInline(admin.TabularInline):
     verbose_name_plural = "Answers"
     fields = [
         "text",
+        "question_image",
         "question_image_url",
         "display_order",
         "correct_rank",
         "points",
         "answer_text",
         "explanation",
+        "answer_image",
         "answer_image_url",
     ]  # Add ranking fields
     readonly_fields = ["image_preview"]

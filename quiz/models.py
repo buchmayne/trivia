@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from tinymce.models import HTMLField
-from .fields import CloudFrontURLField
+from .fields import CloudFrontURLField, S3ImageField
 
 
 class Game(models.Model):
@@ -70,6 +70,9 @@ class Question(models.Model):
     question_image_url = CloudFrontURLField(blank=True, null=True)
     answer_image_url = CloudFrontURLField(blank=True, null=True)
 
+    question_image = S3ImageField(blank=True, null=True)
+    answer_image = S3ImageField(blank=True, null=True)
+
     question_number = (
         models.IntegerField()
     )  # Sequential question number for the entire game
@@ -113,6 +116,9 @@ class Answer(models.Model):
 
     question_image_url = CloudFrontURLField(blank=True, null=True)
     answer_image_url = CloudFrontURLField(blank=True, null=True)
+
+    question_image = S3ImageField(blank=True, null=True)
+    answer_image = S3ImageField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.text if self.text else f"Answer for {self.question}"
