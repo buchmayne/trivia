@@ -168,6 +168,19 @@ class AnswerInline(admin.TabularInline):
 
     image_preview.short_description = "Image Preview"
 
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+
+        original_init = formset.__init__
+
+        def __init__(self, *args, **krwargs):
+            original_init(self, *args, **kwargs)
+            for i, form in enumerate(self.forms):
+                if not form.instance.pk and not form.initial.get('display_order'):
+                    form.initial['display_order'] = i + 1
+        
+        formset.__init__ = __init__
+        return formset
 
 # Admin customization for Question
 class QuestionAdmin(admin.ModelAdmin):

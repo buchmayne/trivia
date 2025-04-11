@@ -122,6 +122,19 @@ class Answer(models.Model):
 
     def __str__(self) -> str:
         return self.text if self.text else f"Answer for {self.question}"
+    
+    class Meta:
+        ordering = ['display_order', 'id']
+    
+    def save(self, *args, **kwargs):
+        # If display_order is not set, set it based on the highest existing order + 1
+        if self.display_order is None:
+            max_order = Answer.objects.filter(question=self.question).aggregate(
+                max_order=models.Max('display_order')
+            )['max_order'] or 0
+            self.display_order = max_order + 1
+        
+        super().save(*args, **kwargs)
 
 
 # ANALYTICS MODELS
