@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "quiz",
     "tinymce",
     "storages",
+    "rest_framework",
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -171,3 +173,14 @@ AWS_CLOUDFRONT_DOMAIN = "https://d1eomq1h9ixjmb.cloudfront.net"
 AWS_S3_CUSTOM_DOMAIN = AWS_CLOUDFRONT_DOMAIN
 AWS_LOCATION = ""
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+
+# REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
