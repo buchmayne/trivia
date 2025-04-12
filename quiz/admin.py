@@ -176,11 +176,12 @@ class AnswerInline(admin.TabularInline):
         def __init__(self, *args, **krwargs):
             original_init(self, *args, **kwargs)
             for i, form in enumerate(self.forms):
-                if not form.instance.pk and not form.initial.get('display_order'):
-                    form.initial['display_order'] = i + 1
-        
+                if not form.instance.pk and not form.initial.get("display_order"):
+                    form.initial["display_order"] = i + 1
+
         formset.__init__ = __init__
         return formset
+
 
 # Admin customization for Question
 class QuestionAdmin(admin.ModelAdmin):

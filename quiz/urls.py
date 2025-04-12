@@ -6,8 +6,8 @@ from .api import GameViewSet, QuestionViewSet
 app_name = "quiz"
 
 router = DefaultRouter()
-router.register(r'games', GameViewSet)
-router.register(r'questions', QuestionViewSet)
+router.register(r"games", GameViewSet)
+router.register(r"questions", QuestionViewSet)
 
 urlpatterns = [
     path("", views.game_list_view, name="game_list"),  # List available games
@@ -48,5 +48,5 @@ urlpatterns = [
         views.get_next_question_number,
         name="next_question_number",
     ),
-    path("api/", include(router.urls))
+    path("api/", include(router.urls)),
 ]

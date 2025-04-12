@@ -1,26 +1,37 @@
 from rest_framework import serializers
 from .models import Game, Question, Answer, QuestionRound
 
+
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ['id', 'text', 'points', 'explanation']
+        fields = ["id", "text", "points", "explanation"]
+
 
 class QuestionSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True, read_only=True)
-    
+
     class Meta:
         model = Question
-        fields = ['id', 'text', 'question_number', 'total_points', 'question_image_url', 'answers']
+        fields = [
+            "id",
+            "text",
+            "question_number",
+            "total_points",
+            "question_image_url",
+            "answers",
+        ]
+
 
 class GameRoundSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuestionRound
-        fields = ['id', 'name', 'round_number', 'description']
+        fields = ["id", "name", "round_number", "description"]
+
 
 class GameSerializer(serializers.ModelSerializer):
-    rounds = GameRoundSerializer(source='questionround_set', many=True, read_only=True)
-    
+    rounds = GameRoundSerializer(source="questionround_set", many=True, read_only=True)
+
     class Meta:
         model = Game
-        fields = ['id', 'name', 'description', 'created_at', 'rounds']
+        fields = ["id", "name", "description", "created_at", "rounds"]
