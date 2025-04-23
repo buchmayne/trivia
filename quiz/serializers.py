@@ -5,7 +5,7 @@ from .models import Game, Question, Answer, QuestionRound
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ["id", "text", "points", "answer_text", "explanation", "question_image_url", "answer_image_url"]
+        fields = ["id", "text", "points", "answer_text", "explanation", "question_image_url", "answer_image_url", "display_order", "correct_rank"]
 
 
 class QuestionSerializer(serializers.ModelSerializer):
