@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GameList from './components/GameList';
+import QuestionPlayground from './pages/QuestionPlayground';
 
 function App() {
   return (
@@ -8,10 +9,14 @@ function App() {
       <header className="bg-blue-600 text-white p-4">
         <h1 className="text-xl font-bold">Trivia App</h1>
       </header>
-      <main className="container mx-auto p-4">
-        <h2 className="text-2xl mb-4">Welcome to Trivia App</h2>
-        {/* Your router will go here eventually */}
-      </main>
+      <Router>
+        <main className="container mx-auto p-4">
+          <Routes>
+            <Route path="/" element={<GameList />} />
+            <Route path="/question-playground" element={<QuestionPlayground />} />
+          </Routes>
+        </main>
+      </Router>
     </div>
   );
 }
