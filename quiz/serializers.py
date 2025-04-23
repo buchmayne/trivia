@@ -16,6 +16,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "text",
+            "question_type",
             "question_number",
             "total_points",
             "question_image_url",
