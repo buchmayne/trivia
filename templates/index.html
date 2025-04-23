@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trivia App</title>
+    {% load static %}
+    <!-- During development, this will be empty, and React's dev server will handle everything -->
+    <!-- In production, these will link to your built React files -->
+    {% if not debug %}
+    <link rel="stylesheet" href="{% static 'react/css/main.css' %}" />
+    {% endif %}
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    {% if not debug %}
+    <script src="{% static 'react/js/main.js' %}"></script>
+    {% endif %}
+</body>
+</html>
