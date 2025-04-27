@@ -1,20 +1,22 @@
 {% include "django/forms/widgets/input.html" %}
 {% if widget.current_path %}
-    <p>Current image: <a href="{{ widget.current_path }}" target="_blank">{{ widget.current_path }}</a></p>
-    <img src="{{ widget.current_path }}" style="max-height: 200px; max-width: 400px;" />
+    <div>
+        <a href="{{ widget.current_path }}" target="_blank" class="image-link">
+            <img src="{{ widget.current_path }}" style="max-height: 50px; max-width: 100px;" />
+        </a>
+    </div>
 {% endif %}
-<p class="help">Upload a new image, or leave blank to keep the current one.</p>
-<div class="s3-path-form">
-    <label for="id_{{ widget.field_name }}_path">Custom S3 Path (optional):</label>
-    <input type="text" id="id_{{ widget.field_name }}_path" name="{{ widget.field_name }}_path" placeholder="e.g., 2025/April/" />
-    <span class="help">Leave blank to use automatic path based on Game/Category</span>
+<div class="s3-path-form" style="margin-top: 5px;">
+    <input type="text" id="id_{{ widget.field_name }}_path" 
+           name="{{ widget.name }}_path" 
+           placeholder="Custom S3 path (optional)" 
+           style="width: 100%;" />
 </div>
 
-<!-- image preview JavaScript code -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const field = document.getElementById('{{ widget.attrs.id }}');
-        
+document.addEventListener('DOMContentLoaded', function() {
+    const field = document.getElementById('{{ widget.attrs.id }}');
+    if (field) {
         field.addEventListener('change', function() {
             if (this.files && this.files[0]) {
                 const reader = new FileReader();
@@ -30,9 +32,9 @@
                     // Create new preview
                     const preview = document.createElement('img');
                     preview.src = e.target.result;
-                    preview.style.maxHeight = '200px';
-                    preview.style.maxWidth = '400px';
-                    preview.style.marginTop = '10px';
+                    preview.style.maxHeight = '50px';
+                    preview.style.maxWidth = '100px';
+                    preview.style.marginTop = '5px';
                     preview.className = 'upload-preview';
                     
                     // Add to the DOM
@@ -42,5 +44,6 @@
                 reader.readAsDataURL(this.files[0]);
             }
         });
-    });
-    </script>
+    }
+});
+</script>

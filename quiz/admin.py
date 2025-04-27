@@ -71,9 +71,10 @@ class QuestionAdminForm(forms.ModelForm):
 
         return cleaned_data
 
+    
     def save(self, commit=True):
         instance = super().save(commit=False)
-
+        
         # Handle creating a new category if a name is provided
         new_category_name = self.cleaned_data.get("new_category_name")
         if new_category_name:
@@ -83,102 +84,102 @@ class QuestionAdminForm(forms.ModelForm):
         # Add the game's reference to the category
         if instance.category and instance.game:
             instance.category.games.add(instance.game)
-
-        # Process custom path for question_image if provided
-        q_image_path = self.data.get("question_image_path", "")
-        if "question_image" in self.files and q_image_path:
-            file = self.files["question_image"]
-            # Use the custom path directly - no need to append filename
-            upload_to = q_image_path
-            if not upload_to.endswith("/"):
-                upload_to += "/"
-            upload_to += file.name
-
-            # Manually handle the upload with custom path
-            storage = instance.question_image.field.storage
-            name = storage.save(upload_to, file)
-
-            # Store the path
-            instance.question_image.name = name
-            instance.question_image_url = name
-        elif "question_image" in self.files:
-            # Let our custom generate_filename handle it
-            pass
-
-        # Similar logic for answer_image
-        a_image_path = self.data.get("answer_image_path", "")
-        if "answer_image" in self.files and a_image_path:
-            file = self.files["answer_image"]
-            upload_to = a_image_path
-            if not upload_to.endswith("/"):
-                upload_to += "/"
-            upload_to += file.name
-
-            storage = instance.answer_image.field.storage
-            name = storage.save(upload_to, file)
-
-            instance.answer_image.name = name
-            instance.answer_image_url = name
-
-        if commit:
-            instance.save()
-
-        # Update URL fields after saving
+        
+        # Always save the instance to handle file fields properly
+        instance.save()
+        
+        # Manual URL update after the instance is saved
         if instance.question_image:
             instance.question_image_url = instance.question_image.name
-
+            # We need to save again for the URL update
+            instance.save(update_fields=['question_image_url'])
+        
         if instance.answer_image:
             instance.answer_image_url = instance.answer_image.name
-
+            # Save again for this field if it wasn't already saved above
+            instance.save(update_fields=['answer_image_url'])
+        
         return instance
 
     class Media:
         js = ("js/question_admin.js",)
 
 
-# Inline to add multiple answers directly in the question form
+class AnswerInlineForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = '__all__'
+        widgets = {
+            'question_image': S3ImageUploadWidget(field_name="question_image"),
+            'answer_image': S3ImageUploadWidget(field_name="answer_image"),
+        }
+    
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        
+        # Save the instance first to generate IDs, etc.
+        if commit:
+            instance.save()
+            # After saving, update the URL fields to match the file fields
+            if instance.question_image:
+                instance.question_image_url = instance.question_image.name
+                
+            if instance.answer_image:
+                instance.answer_image_url = instance.answer_image.name
+                
+            # Save again to update URLs
+            instance.save()
+        
+        return instance
+
+
 class AnswerInline(admin.TabularInline):
     model = Answer
-    extra = 4  # Set the default number of answer fields to display
-    min_num = 1  # Require at least one answer
-    max_num = 10  # Maximum number of answer options
+    form = AnswerInlineForm
+    extra = 4
+    min_num = 1
+    max_num = 10
     verbose_name = "Answer"
     verbose_name_plural = "Answers"
     fields = [
         "text",
-        "question_image",
-        "question_image_url",
-        "display_order",
-        "correct_rank",
         "points",
         "answer_text",
+        "correct_rank",
+        "question_image", 
         "explanation",
-        "answer_image",
-        "answer_image_url",
-    ]  # Add ranking fields
+        "question_image_url", 
+        "answer_image", 
+        "answer_image_url", 
+        "display_order",
+    ]
     readonly_fields = ["image_preview"]
 
-    # Optional: Method to display a preview of the uploaded image
     def image_preview(self, obj):
-        if obj.image_url:
+        if obj.question_image_url:
             return format_html(
-                f'<img src="{obj.image_url}" style="max-height: 100px;" />'
+                f'<img src="{obj.question_image_url}" style="max-height: 100px;" />'
+            )
+        elif obj.answer_image_url:
+            return format_html(
+                f'<img src="{obj.answer_image_url}" style="max-height: 100px;" />'
             )
         return "No Image"
 
     image_preview.short_description = "Image Preview"
-
+    
     def get_formset(self, request, obj=None, **kwargs):
         formset = super().get_formset(request, obj, **kwargs)
-
+        
+        # Add initialization for the formset to handle ordering
         original_init = formset.__init__
-
-        def __init__(self, *args, **krwargs):
+        
+        def __init__(self, *args, **kwargs):
             original_init(self, *args, **kwargs)
             for i, form in enumerate(self.forms):
                 if not form.instance.pk and not form.initial.get("display_order"):
                     form.initial["display_order"] = i + 1
-
+        
         formset.__init__ = __init__
         return formset
 

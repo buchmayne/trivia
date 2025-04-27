@@ -29,14 +29,15 @@ class CloudFrontURLField(models.CharField):
         if value.startswith(settings.AWS_CLOUDFRONT_DOMAIN):
             return value.replace(settings.AWS_CLOUDFRONT_DOMAIN, "")
         return value
-
+    
     @staticmethod
     def get_full_url(path):
         if not path:
             return path
         if path.startswith(settings.AWS_CLOUDFRONT_DOMAIN):
             return path
-        return f"{settings.AWS_CLOUDFRONT_DOMAIN}{path}"
+        return f"{settings.AWS_CLOUDFRONT_DOMAIN}/{path.lstrip('/')}"
+
 
 
 class S3ImageField(models.FileField):
@@ -49,4 +50,26 @@ class S3ImageField(models.FileField):
         super().__init__(*args, **kwargs)
 
     def generate_filename(self, instance, filename):
-        return get_upload_path(instance, filename)
+        """
+        Get the path from get_upload_path and modify it to avoid Django's security check
+        """
+        full_path = get_upload_path(instance, filename)
+        # Remove leading slash for Django's security check but preserve path structure
+        if full_path.startswith('/'):
+            return full_path[1:]
+        return full_path
+    
+    def pre_save(self, model_instance, add):
+        """
+        Before saving, update the corresponding URL field with the full path
+        """
+        file = super().pre_save(model_instance, add)
+        if file and file.name:
+            # Get the field name (e.g., 'question_image' or 'answer_image')
+            field_name = self.name
+            # Find the corresponding URL field (e.g., 'question_image_url' or 'answer_image_url')
+            url_field_name = f"{field_name}_url"
+            if hasattr(model_instance, url_field_name):
+                # Set the URL field to match the file path
+                setattr(model_instance, url_field_name, file.name)
+        return file
