@@ -102,7 +102,7 @@ class QuestionAdminForm(forms.ModelForm):
         return instance
 
     class Media:
-        js = ("js/question_admin.js",)
+        js = ("js/question_admin.js", "js/category_defaults.js",)
 
 
 class AnswerInlineForm(forms.ModelForm):
