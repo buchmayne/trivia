@@ -71,10 +71,9 @@ class QuestionAdminForm(forms.ModelForm):
 
         return cleaned_data
 
-    
     def save(self, commit=True):
         instance = super().save(commit=False)
-        
+
         # Handle creating a new category if a name is provided
         new_category_name = self.cleaned_data.get("new_category_name")
         if new_category_name:
@@ -84,52 +83,55 @@ class QuestionAdminForm(forms.ModelForm):
         # Add the game's reference to the category
         if instance.category and instance.game:
             instance.category.games.add(instance.game)
-        
+
         # Always save the instance to handle file fields properly
         instance.save()
-        
+
         # Manual URL update after the instance is saved
         if instance.question_image:
             instance.question_image_url = instance.question_image.name
             # We need to save again for the URL update
-            instance.save(update_fields=['question_image_url'])
-        
+            instance.save(update_fields=["question_image_url"])
+
         if instance.answer_image:
             instance.answer_image_url = instance.answer_image.name
             # Save again for this field if it wasn't already saved above
-            instance.save(update_fields=['answer_image_url'])
-        
+            instance.save(update_fields=["answer_image_url"])
+
         return instance
 
     class Media:
-        js = ("js/question_admin.js", "js/category_defaults.js",)
+        js = (
+            "js/question_admin.js",
+            "js/category_defaults.js",
+        )
 
 
 class AnswerInlineForm(forms.ModelForm):
     class Meta:
         model = Answer
-        fields = '__all__'
+        fields = "__all__"
         widgets = {
-            'question_image': S3ImageUploadWidget(field_name="question_image"),
-            'answer_image': S3ImageUploadWidget(field_name="answer_image"),
+            "question_image": S3ImageUploadWidget(field_name="question_image"),
+            "answer_image": S3ImageUploadWidget(field_name="answer_image"),
         }
-    
+
     def save(self, commit=True):
         instance = super().save(commit=False)
-        
+
         # Save the instance first to generate IDs, etc.
         if commit:
             instance.save()
             # After saving, update the URL fields to match the file fields
             if instance.question_image:
                 instance.question_image_url = instance.question_image.name
-                
+
             if instance.answer_image:
                 instance.answer_image_url = instance.answer_image.name
-                
+
             # Save again to update URLs
             instance.save()
-        
+
         return instance
 
 
@@ -146,11 +148,11 @@ class AnswerInline(admin.TabularInline):
         "points",
         "answer_text",
         "correct_rank",
-        "question_image", 
+        "question_image",
         "explanation",
-        "question_image_url", 
-        "answer_image", 
-        "answer_image_url", 
+        "question_image_url",
+        "answer_image",
+        "answer_image_url",
         "display_order",
     ]
     readonly_fields = ["image_preview"]
@@ -167,19 +169,19 @@ class AnswerInline(admin.TabularInline):
         return "No Image"
 
     image_preview.short_description = "Image Preview"
-    
+
     def get_formset(self, request, obj=None, **kwargs):
         formset = super().get_formset(request, obj, **kwargs)
-        
+
         # Add initialization for the formset to handle ordering
         original_init = formset.__init__
-        
+
         def __init__(self, *args, **kwargs):
             original_init(self, *args, **kwargs)
             for i, form in enumerate(self.forms):
                 if not form.instance.pk and not form.initial.get("display_order"):
                     form.initial["display_order"] = i + 1
-        
+
         formset.__init__ = __init__
         return formset
 

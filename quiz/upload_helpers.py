@@ -4,14 +4,14 @@ def get_upload_path(instance, filename):
     Format: /2025/January/Birds_Eye_View/my_image.png
     """
     # For Answer model, we need to get the game through the question
-    if hasattr(instance, 'question'):
+    if hasattr(instance, "question"):
         game = instance.question.game if instance.question else None
         category = instance.question.category if instance.question else None
     # For Question model, we can access game directly
     else:
-        game = instance.game if hasattr(instance, 'game') else None
-        category = instance.category if hasattr(instance, 'category') else None
-    
+        game = instance.game if hasattr(instance, "game") else None
+        category = instance.category if hasattr(instance, "category") else None
+
     # game name is either Month-Year or Future-Game
     game_name = game.name if game else "Unknown"
 

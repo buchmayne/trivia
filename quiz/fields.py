@@ -29,7 +29,7 @@ class CloudFrontURLField(models.CharField):
         if value.startswith(settings.AWS_CLOUDFRONT_DOMAIN):
             return value.replace(settings.AWS_CLOUDFRONT_DOMAIN, "")
         return value
-    
+
     @staticmethod
     def get_full_url(path):
         if not path:
@@ -37,7 +37,6 @@ class CloudFrontURLField(models.CharField):
         if path.startswith(settings.AWS_CLOUDFRONT_DOMAIN):
             return path
         return f"{settings.AWS_CLOUDFRONT_DOMAIN}/{path.lstrip('/')}"
-
 
 
 class S3ImageField(models.FileField):
@@ -55,10 +54,10 @@ class S3ImageField(models.FileField):
         """
         full_path = get_upload_path(instance, filename)
         # Remove leading slash for Django's security check but preserve path structure
-        if full_path.startswith('/'):
+        if full_path.startswith("/"):
             return full_path[1:]
         return full_path
-    
+
     def pre_save(self, model_instance, add):
         """
         Before saving, update the corresponding URL field with the full path
