@@ -149,10 +149,9 @@ class AnswerInline(admin.TabularInline):
         "answer_text",
         "correct_rank",
         "question_image",
-        "explanation",
-        "question_image_url",
         "answer_image",
-        "answer_image_url",
+        # "question_image_url",
+        # "answer_image_url",
         "display_order",
     ]
     readonly_fields = ["image_preview"]

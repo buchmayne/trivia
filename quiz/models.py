@@ -112,7 +112,6 @@ class Answer(models.Model):
 
     # New fields for answer details:
     answer_text = models.CharField(max_length=255, blank=True, null=True)
-    explanation = models.TextField(blank=True, null=True)
 
     question_image_url = CloudFrontURLField(blank=True, null=True)
     answer_image_url = CloudFrontURLField(blank=True, null=True)
