@@ -83,10 +83,10 @@
                                     <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" class="responsive-image">
                                 </div>
                             {% endif %}
-                            {% if answer.explanation %}
+                            {% if answer.answer_text %}
                                 <div class="answer-explanation">
                                     <strong>Correct Rank: {{ answer.correct_rank }}</strong>
-                                    <p>{{ answer.explanation }}</p>
+                                    <p>{{ answer.answer_text }}</p>
                                 </div>
                             {% else %}
                                 <div class="answer-explanation">
