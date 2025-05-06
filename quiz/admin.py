@@ -104,6 +104,7 @@ class QuestionAdminForm(forms.ModelForm):
         js = (
             "js/question_admin.js",
             "js/category_defaults.js",
+            'js/conditional_fields.js',
         )
 
 
