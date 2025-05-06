@@ -153,7 +153,6 @@ class AnswerInline(admin.TabularInline):
         "answer_image",
         # "question_image_url",
         # "answer_image_url",
-        "display_order",
     ]
     readonly_fields = ["image_preview"]
 
