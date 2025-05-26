@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import Game, Category, Question, Answer, QuestionType, QuestionRound
-from .widgets import S3ImageUploadWidget
+from .widgets import S3ImageUploadWidget, S3VideoUploadWidget
 
 
 class QuestionAdminForm(forms.ModelForm):
@@ -21,6 +21,8 @@ class QuestionAdminForm(forms.ModelForm):
         widgets = {
             "question_image": S3ImageUploadWidget(field_name="question_image"),
             "answer_image": S3ImageUploadWidget(field_name="answer_image"),
+            "question_video": S3VideoUploadWidget(field_name="question_video"),
+            "answer_video": S3VideoUploadWidget(field_name="answer_video"),
         }
 
     def __init__(self, *args, **kwargs):
@@ -97,6 +99,15 @@ class QuestionAdminForm(forms.ModelForm):
             instance.answer_image_url = instance.answer_image.name
             # Save again for this field if it wasn't already saved above
             instance.save(update_fields=["answer_image_url"])
+        
+        # Add video URL updates
+        if instance.question_video:
+            instance.question_video_url = instance.question_video.name
+            instance.save(update_fields=["question_video_url"])
+
+        if instance.answer_video:
+            instance.answer_video_url = instance.answer_video.name
+            instance.save(update_fields=["answer_video_url"])
 
         return instance
 
@@ -115,6 +126,8 @@ class AnswerInlineForm(forms.ModelForm):
         widgets = {
             "question_image": S3ImageUploadWidget(field_name="question_image"),
             "answer_image": S3ImageUploadWidget(field_name="answer_image"),
+            "question_video": S3VideoUploadWidget(field_name="question_video"),
+            "answer_video": S3VideoUploadWidget(field_name="answer_video"),
         }
 
     def save(self, commit=True):
@@ -129,6 +142,12 @@ class AnswerInlineForm(forms.ModelForm):
 
             if instance.answer_image:
                 instance.answer_image_url = instance.answer_image.name
+            
+            if instance.question_video:
+                instance.question_video_url = instance.question_video.name
+            
+            if instance.answer_video:
+                instance.answer_video_url = instance.answer_video.name
 
             # Save again to update URLs
             instance.save()
@@ -151,8 +170,8 @@ class AnswerInline(admin.TabularInline):
         "correct_rank",
         "question_image",
         "answer_image",
-        # "question_image_url",
-        # "answer_image_url",
+        "question_video",
+        "answer_video",
     ]
     readonly_fields = ["image_preview"]
 

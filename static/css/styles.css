@@ -1252,3 +1252,47 @@ body::after {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+
+/* Video Styles */
+.question-video, .answer-video {
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.responsive-video {
+    max-width: 100%;
+    max-height: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    object-fit: contain; /* This ensures the entire video is visible */
+}
+
+/* Modal video styles */
+.modal-video {
+    max-width: 95vw;
+    max-height: 90vh;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Make videos clickable like images */
+.question-video video:hover, 
+.answer-video video:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+/* Responsive design for videos */
+@media (max-width: 768px) {
+    .responsive-video {
+        max-width: 100%;
+        max-height: 300px;
+    }
+}
