@@ -13,6 +13,8 @@ class AnswerSerializer(serializers.ModelSerializer):
             "explanation",
             "question_image_url",
             "answer_image_url",
+            "question_video_url",
+            "answer_video_url",
             "display_order",
             "correct_rank",
         ]
@@ -31,6 +33,8 @@ class QuestionSerializer(serializers.ModelSerializer):
             "total_points",
             "question_image_url",
             "answer_image_url",
+            "question_video_url",
+            "answer_video_url",
             "answers",
         ]
 
