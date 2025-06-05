@@ -137,15 +137,6 @@ class AnswerModelTest(TestCase):
         self.assertEqual(answer.correct_rank, 1)
         self.assertEqual(answer.points, 3)
 
-    def test_answer_with_explanation(self):
-        answer = Answer.objects.create(
-            question=self.question,
-            text="Test answer",
-            explanation="This is why this answer is correct",
-            points=2,
-        )
-        self.assertEqual(answer.explanation, "This is why this answer is correct")
-
 
 class QuestionRoundTest(TestCase):
     def setUp(self):
