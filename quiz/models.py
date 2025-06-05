@@ -76,7 +76,7 @@ class Question(models.Model):
     # Video fields
     question_video_url = CloudFrontURLField(blank=True, null=True)
     answer_video_url = CloudFrontURLField(blank=True, null=True)
-    
+
     question_video = S3VideoField(blank=True, null=True)
     answer_video = S3VideoField(blank=True, null=True)
 
@@ -129,7 +129,7 @@ class Answer(models.Model):
     # Video fields
     question_video_url = CloudFrontURLField(blank=True, null=True)
     answer_video_url = CloudFrontURLField(blank=True, null=True)
-    
+
     question_video = S3VideoField(blank=True, null=True)
     answer_video = S3VideoField(blank=True, null=True)
 

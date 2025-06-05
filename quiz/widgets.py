@@ -17,6 +17,7 @@ class S3ImageUploadWidget(forms.FileInput):
             context["widget"]["current_path"] = value.url
         return context
 
+
 class S3VideoUploadWidget(forms.FileInput):
     template_name = "admin/widgets/s3_video_input.html"
 

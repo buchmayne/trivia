@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from quiz.models import Question, Answer, QuestionType
 from django.db import transaction
 
+
 class Command(BaseCommand):
     help = "Migrate answer explanations to answer text field for Ranking questions"
 
@@ -27,7 +28,9 @@ class Command(BaseCommand):
         self.stdout.write(f"Found {ranking_questions.count()} ranking questions.")
 
         if dry_run:
-            self.stdout.write(self.style.WARNING("DRY RUN MODE - No changes will be made"))
+            self.stdout.write(
+                self.style.WARNING("DRY RUN MODE - No changes will be made")
+            )
 
         # Statistics
         total_answers = 0
@@ -39,13 +42,15 @@ class Command(BaseCommand):
         for question in ranking_questions:
             answers = Answer.objects.filter(question=question)
             total_answers += answers.count()
-            
+
             for answer in answers:
                 if not answer.explanation:
                     would_skip_empty += 1
-                    self.stdout.write(f"Would skip answer #{answer.id} (no explanation)")
+                    self.stdout.write(
+                        f"Would skip answer #{answer.id} (no explanation)"
+                    )
                     continue
-                    
+
                 if answer.answer_text and answer.answer_text != answer.explanation:
                     # Potential conflict - text field already has data that's different
                     would_skip_conflict += 1
@@ -57,19 +62,19 @@ class Command(BaseCommand):
                         )
                     )
                     continue
-                
+
                 # Otherwise, we can migrate
                 would_migrate += 1
                 self.stdout.write(
                     f"Would migrate answer #{answer.id}: "
                     f"Explanation -> Text: '{answer.explanation}'"
                 )
-                
+
                 if not dry_run:
                     with transaction.atomic():
                         answer.answer_text = answer.explanation
                         answer.save(update_fields=["answer_text"])
-        
+
         # Print summary
         if dry_run:
             self.stdout.write(

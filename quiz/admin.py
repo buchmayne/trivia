@@ -99,7 +99,7 @@ class QuestionAdminForm(forms.ModelForm):
             instance.answer_image_url = instance.answer_image.name
             # Save again for this field if it wasn't already saved above
             instance.save(update_fields=["answer_image_url"])
-        
+
         # Add video URL updates
         if instance.question_video:
             instance.question_video_url = instance.question_video.name
@@ -115,7 +115,7 @@ class QuestionAdminForm(forms.ModelForm):
         js = (
             "js/question_admin.js",
             "js/category_defaults.js",
-            'js/conditional_fields.js',
+            "js/conditional_fields.js",
         )
 
 
@@ -142,10 +142,10 @@ class AnswerInlineForm(forms.ModelForm):
 
             if instance.answer_image:
                 instance.answer_image_url = instance.answer_image.name
-            
+
             if instance.question_video:
                 instance.question_video_url = instance.question_video.name
-            
+
             if instance.answer_video:
                 instance.answer_video_url = instance.answer_video.name
 
