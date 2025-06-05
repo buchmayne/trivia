@@ -76,7 +76,9 @@ class QuestionModelTest(TestCase):
     def test_unique_question_number_constraint(self):
         # Test that we can't create two questions with same number in same game
         with self.assertRaises(IntegrityError):
-            with transaction.atomic():  # We need this to properly catch the database error
+            with (
+                transaction.atomic()
+            ):  # We need this to properly catch the database error
                 Question.objects.create(
                     game=self.game,
                     text="Another question",
@@ -134,15 +136,6 @@ class AnswerModelTest(TestCase):
         self.assertEqual(answer.display_order, 1)
         self.assertEqual(answer.correct_rank, 1)
         self.assertEqual(answer.points, 3)
-
-    def test_answer_with_explanation(self):
-        answer = Answer.objects.create(
-            question=self.question,
-            text="Test answer",
-            explanation="This is why this answer is correct",
-            points=2,
-        )
-        self.assertEqual(answer.explanation, "This is why this answer is correct")
 
 
 class QuestionRoundTest(TestCase):

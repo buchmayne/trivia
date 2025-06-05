@@ -62,6 +62,14 @@
             <div class="question-image">
                 <img src="{{ question.answer_image_url }}" alt="Answer Image" class="responsive-image">
             </div>
+        {% elif question.question_video_url %}
+            <div class="question-video">
+                <video controls class="responsive-video">
+                    <source src="{{ question.question_video_url }}" type="video/mp4">
+                    <source src="{{ question.question_video_url }}" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         {% elif question.question_image_url %}
             <div class="question-image">
                 <img src="{{ question.question_image_url }}" alt="Question Image" class="responsive-image">
@@ -82,11 +90,19 @@
                                 <div class="answer-image">
                                     <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" class="responsive-image">
                                 </div>
+                            {% elif answer.question_video_url %}
+                                <div class="answer-video">
+                                    <video controls class="responsive-video">
+                                        <source src="{{ answer.question_video_url }}" type="video/mp4">
+                                        <source src="{{ answer.question_video_url }}" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
                             {% endif %}
-                            {% if answer.explanation %}
+                            {% if answer.answer_text %}
                                 <div class="answer-explanation">
                                     <strong>Correct Rank: {{ answer.correct_rank }}</strong>
-                                    <p>{{ answer.explanation }}</p>
+                                    <p>{{ answer.answer_text }}</p>
                                 </div>
                             {% else %}
                                 <div class="answer-explanation">
@@ -109,6 +125,14 @@
                                 <div class="answer-image">
                                     <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" class="responsive-image">
                                 </div>
+                            {% elif answer.question_video_url %}
+                                <div class="answer-video">
+                                    <video controls class="responsive-video">
+                                        <source src="{{ answer.question_video_url }}" type="video/mp4">
+                                        <source src="{{ answer.question_video_url }}" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
                             {% endif %}
                         </li>
                     {% endfor %}
@@ -125,6 +149,14 @@
                             {% elif answer.question_image_url %}
                                 <div class="answer-image">
                                     <img src="{{ answer.question_image_url }}" alt="{{ answer.text }}" class="responsive-image">
+                                </div>
+                            {% elif answer.question_video_url %}
+                                <div class="answer-video">
+                                    <video controls class="responsive-video">
+                                        <source src="{{ answer.question_video_url }}" type="video/mp4">
+                                        <source src="{{ answer.question_video_url }}" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
                                 </div>
                             {% endif %}
                         </li>

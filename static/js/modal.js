@@ -119,6 +119,31 @@ function showAnswerBankModal(answerBank) {
 }
 
 
+// Show video in modal
+function showVideoModal(video) {
+    const modal = document.getElementById('modal');
+    const modalBody = modal.querySelector('.modal-body');
+    modalBody.innerHTML = '';
+    
+    const modalVideo = document.createElement('video');
+    modalVideo.src = video.src;
+    modalVideo.controls = true;
+    modalVideo.className = 'modal-video';
+    modalVideo.autoplay = false; // Don't autoplay in modal
+    
+    // Copy all source elements for format compatibility
+    const sources = video.querySelectorAll('source');
+    sources.forEach(source => {
+        const newSource = document.createElement('source');
+        newSource.src = source.src;
+        newSource.type = source.type;
+        modalVideo.appendChild(newSource);
+    });
+    
+    modalBody.appendChild(modalVideo);
+    modal.style.display = 'block';
+}
+
 // Initialize modal functionality
 document.addEventListener('DOMContentLoaded', () => {
     createModal();
@@ -138,12 +163,27 @@ document.addEventListener('DOMContentLoaded', () => {
             showImageModal(img);
         });
     });
+
+    // New video handlers
+    document.querySelectorAll('.question-video video').forEach(video => {
+        video.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showVideoModal(video);
+        });
+    });
+    
+    document.querySelectorAll('.answer-video video').forEach(video => {
+        video.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showVideoModal(video);
+        });
+    });
     
     // Add click handlers for answer text
     document.querySelectorAll('.answer-item').forEach(answer => {
         answer.addEventListener('click', (e) => {
             // Only show text modal if the click wasn't on an image
-            if (!e.target.closest('.answer-image')) {
+            if (!e.target.closest('.answer-image') && !e.target.closest('.answer-video')) {
                 showAnswerModal(answer);
             }
         });
@@ -158,4 +198,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
-

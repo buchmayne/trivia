@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from tinymce.models import HTMLField
-from .fields import CloudFrontURLField
+from .fields import CloudFrontURLField, S3ImageField, S3VideoField
 
 
 class Game(models.Model):
@@ -70,6 +70,16 @@ class Question(models.Model):
     question_image_url = CloudFrontURLField(blank=True, null=True)
     answer_image_url = CloudFrontURLField(blank=True, null=True)
 
+    question_image = S3ImageField(blank=True, null=True)
+    answer_image = S3ImageField(blank=True, null=True)
+
+    # Video fields
+    question_video_url = CloudFrontURLField(blank=True, null=True)
+    answer_video_url = CloudFrontURLField(blank=True, null=True)
+
+    question_video = S3VideoField(blank=True, null=True)
+    answer_video = S3VideoField(blank=True, null=True)
+
     question_number = (
         models.IntegerField()
     )  # Sequential question number for the entire game
@@ -109,13 +119,38 @@ class Answer(models.Model):
 
     # New fields for answer details:
     answer_text = models.CharField(max_length=255, blank=True, null=True)
-    explanation = models.TextField(blank=True, null=True)
 
     question_image_url = CloudFrontURLField(blank=True, null=True)
     answer_image_url = CloudFrontURLField(blank=True, null=True)
 
+    question_image = S3ImageField(blank=True, null=True)
+    answer_image = S3ImageField(blank=True, null=True)
+
+    # Video fields
+    question_video_url = CloudFrontURLField(blank=True, null=True)
+    answer_video_url = CloudFrontURLField(blank=True, null=True)
+
+    question_video = S3VideoField(blank=True, null=True)
+    answer_video = S3VideoField(blank=True, null=True)
+
     def __str__(self) -> str:
         return self.text if self.text else f"Answer for {self.question}"
+
+    class Meta:
+        ordering = ["display_order", "id"]
+
+    def save(self, *args, **kwargs):
+        # If display_order is not set, set it based on the highest existing order + 1
+        if self.display_order is None:
+            max_order = (
+                Answer.objects.filter(question=self.question).aggregate(
+                    max_order=models.Max("display_order")
+                )["max_order"]
+                or 0
+            )
+            self.display_order = max_order + 1
+
+        super().save(*args, **kwargs)
 
 
 # ANALYTICS MODELS

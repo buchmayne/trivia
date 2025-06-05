@@ -1,7 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework.routers import DefaultRouter
+from .api import GameViewSet, QuestionViewSet
 
 app_name = "quiz"
+
+router = DefaultRouter()
+router.register(r"games", GameViewSet)
+router.register(r"questions", QuestionViewSet)
 
 urlpatterns = [
     path("", views.game_list_view, name="game_list"),  # List available games
@@ -37,4 +43,10 @@ urlpatterns = [
         name="verify_password",
     ),
     path("analytics/", views.analytics_view, name="analytics"),
+    path(
+        "next-question/<int:game_id>/",
+        views.get_next_question_number,
+        name="next_question_number",
+    ),
+    path("api/", include(router.urls)),
 ]

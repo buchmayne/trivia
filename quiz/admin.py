@@ -2,6 +2,7 @@ from django import forms
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import Game, Category, Question, Answer, QuestionType, QuestionRound
+from .widgets import S3ImageUploadWidget, S3VideoUploadWidget
 
 
 class QuestionAdminForm(forms.ModelForm):
@@ -17,6 +18,22 @@ class QuestionAdminForm(forms.ModelForm):
             "question_image_url": "Enter only the S3 path (e.g., /2021/March/image.jpg). CloudFront domain will be added automatically.",
             "answer_image_url": "Enter only the S3 path (e.g., /2021/March/image.jpg). CloudFront domain will be added automatically.",
         }
+        widgets = {
+            "question_image": S3ImageUploadWidget(field_name="question_image"),
+            "answer_image": S3ImageUploadWidget(field_name="answer_image"),
+            "question_video": S3VideoUploadWidget(field_name="question_video"),
+            "answer_video": S3VideoUploadWidget(field_name="answer_video"),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Order categories alphabetically by name
+        if "category" in self.fields:
+            self.fields["category"].queryset = Category.objects.all().order_by("name")
+
+        if not self.instance.pk:
+            # Set a default placeholder
+            self.fields["question_number"].widget.attrs["placeholder"] = "..."
 
     def clean(self):
         cleaned_data = super().clean()
@@ -28,6 +45,31 @@ class QuestionAdminForm(forms.ModelForm):
             raise forms.ValidationError(
                 "Please select an existing category or provide a new category name."
             )
+
+        # Only apply for new questions and when game is selected
+        if not self.instance.pk and "game" in cleaned_data and cleaned_data["game"]:
+            # If question_number is not set by the user
+            if not cleaned_data.get("question_number"):
+                game = cleaned_data["game"]
+
+                # Get all existing question numbers for this game
+                existing_numbers = set(
+                    Question.objects.filter(game=game).values_list(
+                        "question_number", flat=True
+                    )
+                )
+
+                # Find the first available number
+                next_number = 1
+                while next_number in existing_numbers:
+                    next_number += 1
+
+                # Set the next available number
+                cleaned_data["question_number"] = next_number
+
+                # Update the form field to show the value
+                self.data = self.data.copy()  # Make mutable
+                self.data["question_number"] = next_number
 
         return cleaned_data
 
@@ -44,47 +86,122 @@ class QuestionAdminForm(forms.ModelForm):
         if instance.category and instance.game:
             instance.category.games.add(instance.game)
 
+        # Always save the instance to handle file fields properly
+        instance.save()
+
+        # Manual URL update after the instance is saved
+        if instance.question_image:
+            instance.question_image_url = instance.question_image.name
+            # We need to save again for the URL update
+            instance.save(update_fields=["question_image_url"])
+
+        if instance.answer_image:
+            instance.answer_image_url = instance.answer_image.name
+            # Save again for this field if it wasn't already saved above
+            instance.save(update_fields=["answer_image_url"])
+
+        # Add video URL updates
+        if instance.question_video:
+            instance.question_video_url = instance.question_video.name
+            instance.save(update_fields=["question_video_url"])
+
+        if instance.answer_video:
+            instance.answer_video_url = instance.answer_video.name
+            instance.save(update_fields=["answer_video_url"])
+
+        return instance
+
+    class Media:
+        js = (
+            "js/question_admin.js",
+            "js/category_defaults.js",
+            "js/conditional_fields.js",
+        )
+
+
+class AnswerInlineForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = "__all__"
+        widgets = {
+            "question_image": S3ImageUploadWidget(field_name="question_image"),
+            "answer_image": S3ImageUploadWidget(field_name="answer_image"),
+            "question_video": S3VideoUploadWidget(field_name="question_video"),
+            "answer_video": S3VideoUploadWidget(field_name="answer_video"),
+        }
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+
+        # Save the instance first to generate IDs, etc.
         if commit:
+            instance.save()
+            # After saving, update the URL fields to match the file fields
+            if instance.question_image:
+                instance.question_image_url = instance.question_image.name
+
+            if instance.answer_image:
+                instance.answer_image_url = instance.answer_image.name
+
+            if instance.question_video:
+                instance.question_video_url = instance.question_video.name
+
+            if instance.answer_video:
+                instance.answer_video_url = instance.answer_video.name
+
+            # Save again to update URLs
             instance.save()
 
         return instance
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Order categories alphabetically by name
-        if "category" in self.fields:
-            self.fields["category"].queryset = Category.objects.all().order_by("name")
 
-
-# Inline to add multiple answers directly in the question form
 class AnswerInline(admin.TabularInline):
     model = Answer
-    extra = 4  # Set the default number of answer fields to display
-    min_num = 1  # Require at least one answer
-    max_num = 10  # Maximum number of answer options
+    form = AnswerInlineForm
+    extra = 4
+    min_num = 1
+    max_num = 10
     verbose_name = "Answer"
     verbose_name_plural = "Answers"
     fields = [
         "text",
-        "question_image_url",
-        "display_order",
-        "correct_rank",
         "points",
         "answer_text",
-        "explanation",
-        "answer_image_url",
-    ]  # Add ranking fields
+        "correct_rank",
+        "question_image",
+        "answer_image",
+        "question_video",
+        "answer_video",
+    ]
     readonly_fields = ["image_preview"]
 
-    # Optional: Method to display a preview of the uploaded image
     def image_preview(self, obj):
-        if obj.image_url:
+        if obj.question_image_url:
             return format_html(
-                f'<img src="{obj.image_url}" style="max-height: 100px;" />'
+                f'<img src="{obj.question_image_url}" style="max-height: 100px;" />'
+            )
+        elif obj.answer_image_url:
+            return format_html(
+                f'<img src="{obj.answer_image_url}" style="max-height: 100px;" />'
             )
         return "No Image"
 
     image_preview.short_description = "Image Preview"
+
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+
+        # Add initialization for the formset to handle ordering
+        original_init = formset.__init__
+
+        def __init__(self, *args, **kwargs):
+            original_init(self, *args, **kwargs)
+            for i, form in enumerate(self.forms):
+                if not form.instance.pk and not form.initial.get("display_order"):
+                    form.initial["display_order"] = i + 1
+
+        formset.__init__ = __init__
+        return formset
 
 
 # Admin customization for Question

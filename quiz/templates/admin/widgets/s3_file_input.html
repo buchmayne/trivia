@@ -1,0 +1,49 @@
+{% include "django/forms/widgets/input.html" %}
+{% if widget.current_path %}
+    <div>
+        <a href="{{ widget.current_path }}" target="_blank" class="image-link">
+            <img src="{{ widget.current_path }}" style="max-height: 50px; max-width: 100px;" />
+        </a>
+    </div>
+{% endif %}
+<div class="s3-path-form" style="margin-top: 5px;">
+    <input type="text" id="id_{{ widget.field_name }}_path" 
+           name="{{ widget.name }}_path" 
+           placeholder="Custom S3 path (optional)" 
+           style="width: 100%;" />
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const field = document.getElementById('{{ widget.attrs.id }}');
+    if (field) {
+        field.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // Remove any existing preview
+                    const container = field.parentNode;
+                    const existingPreview = container.querySelector('.upload-preview');
+                    if (existingPreview) {
+                        container.removeChild(existingPreview);
+                    }
+                    
+                    // Create new preview
+                    const preview = document.createElement('img');
+                    preview.src = e.target.result;
+                    preview.style.maxHeight = '50px';
+                    preview.style.maxWidth = '100px';
+                    preview.style.marginTop = '5px';
+                    preview.className = 'upload-preview';
+                    
+                    // Add to the DOM
+                    container.appendChild(preview);
+                }
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    }
+});
+</script>
