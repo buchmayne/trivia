@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}session-host-page{% endblock %}
+
+{% block title %}Host Game Session{% endblock %}
+
+{% block content %}
+<div class="session-host-container">
+    <h1>Host a Trivia Game Session</h1>
+    
+    <div class="create-session-form" id="create-form">
+        <h2>Create New Session</h2>
+        <form id="create-session-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="game-select">Select Game:</label>
+                <select name="game" id="game-select" required>
+                    <option value="">Choose a game...</option>
+                    {% for game in games %}
+                    <option value="{{ game.id }}">{{ game.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="host-name">Your Name:</label>
+                <input type="text" name="host_name" id="host-name" placeholder="Host Name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="max-teams">Max Teams (optional):</label>
+                <input type="number" name="max_teams" id="max-teams" value="10" min="2" max="20">
+            </div>
+            
+            <button type="submit" class="button button-primary">Create Session</button>
+        </form>
+    </div>
+    
+    <div id="session-info" style="display:none;">
+        <div class="session-header">
+            <h2>Session Created!</h2>
+            <div class="session-code-display">
+                <strong>Session Code: <span id="session-code" class="code"></span></strong>
+                <p>Share this code with teams to join</p>
+            </div>
+        </div>
+        
+        <div class="session-controls">
+            <button id="start-session" class="button button-primary" disabled>Start Game</button>
+            <button id="cancel-session" class="button button-secondary">Cancel Session</button>
+        </div>
+        
+        <div class="teams-section">
+            <h3>Teams Joined (<span id="team-count">0</span>)</h3>
+            <div id="teams-list" class="teams-grid">
+                <!-- Teams will be populated via WebSocket -->
+            </div>
+        </div>
+        
+        <div class="session-status">
+            <p>Status: <span id="session-status">Waiting for teams</span></p>
+        </div>
+    </div>
+    
+    <div class="navigation-buttons">
+        <a href="{% url 'quiz:game_list' %}" class="button button-secondary">
+            Back to Games
+        </a>
+    </div>
+</div>
+
+<style>
+.session-host-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.create-session-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.session-code-display {
+    background: #f0f8ff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.code {
+    font-size: 2em;
+    font-family: monospace;
+    color: #0056b3;
+    letter-spacing: 3px;
+}
+
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.team-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    text-align: center;
+}
+
+.session-controls {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.session-controls button {
+    margin: 0 10px;
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const createForm = document.getElementById('create-session-form');
+    const sessionInfo = document.getElementById('session-info');
+    const createFormDiv = document.getElementById('create-form');
+    
+    createForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(createForm);
+        const data = {
+            game: formData.get('game'),
+            host_name: formData.get('host_name'),
+            max_teams: parseInt(formData.get('max_teams')) || 10
+        };
+        
+        try {
+            const response = await fetch('/quiz/api/sessions/create/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                },
+                body: JSON.stringify(data)
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                
+                // Hide create form, show session info
+                createFormDiv.style.display = 'none';
+                sessionInfo.style.display = 'block';
+                
+                // Update session info
+                document.getElementById('session-code').textContent = result.session_code;
+                
+                // TODO: Connect to Go WebSocket service here
+                // connectToSession(result.session_code, true);
+                
+                alert('Session created! Go service connection will be added next.');
+                
+            } else {
+                alert('Error creating session. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error creating session. Please try again.');
+        }
+    });
+});
+</script>
+{% endblock %}
