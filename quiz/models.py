@@ -202,6 +202,7 @@ class GameSession(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     started_at = models.DateTimeField(null=True, blank=True)
     completed_at = models.DateTimeField(null=True, blank=True)
+    max_teams = models.IntegerField(default=16) 
 
 class SessionTeam(models.Model):
     session = models.ForeignKey(GameSession, on_delete=models.CASCADE, related_name='teams')

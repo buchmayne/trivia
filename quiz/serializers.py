@@ -71,6 +71,7 @@ class AnswerForGameSerializer(serializers.ModelSerializer):
 
 class QuestionWithAnswersSerializer(serializers.ModelSerializer):
     answers = AnswerForGameSerializer(many=True, read_only=True)
+    question_type = serializers.CharField(source='question_type.name', read_only=True) 
     
     class Meta:
         model = Question

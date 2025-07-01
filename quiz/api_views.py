@@ -1,5 +1,6 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
@@ -14,6 +15,7 @@ from .serializers import (
 )
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def create_session(request):
     """Go service calls this to create new session"""
     serializer = SessionCreateSerializer(data=request.data)
@@ -31,6 +33,7 @@ def create_session(request):
     return Response(serializer.errors, status=400)
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_game_questions(request, game_id):
     """Go service fetches all questions for a game"""
     game = get_object_or_404(Game, id=game_id)
@@ -42,6 +45,7 @@ def get_game_questions(request, game_id):
     })
 
 @api_view(['POST'])
+# @permission_classes([AllowAny])
 def submit_team_answer(request):
     """Go service submits answers for scoring"""
     serializer = TeamAnswerSubmissionSerializer(data=request.data)
@@ -55,6 +59,7 @@ def submit_team_answer(request):
     return Response(serializer.errors, status=400)
 
 @api_view(['POST'])
+# @permission_classes([AllowAny])
 def update_session_status(request, session_id):
     """Go service updates session status and current question"""
     session = get_object_or_404(GameSession, id=session_id)
@@ -75,6 +80,7 @@ def update_session_status(request, session_id):
     return Response({'status': 'updated'})
 
 @api_view(['POST'])
+# @permission_classes([AllowAny])
 def add_team_to_session(request, session_id):
     """Go service adds team to session"""
     session = get_object_or_404(GameSession, id=session_id)
@@ -103,6 +109,7 @@ def add_team_to_session(request, session_id):
     })
 
 @api_view(['POST'])
+# @permission_classes([AllowAny])
 def finalize_session(request, session_id):
     """Go service marks session complete, sends final results"""
     session = get_object_or_404(GameSession, id=session_id)
@@ -121,6 +128,7 @@ def finalize_session(request, session_id):
     return Response({'status': 'session_finalized'})
 
 @api_view(['GET'])
+# @permission_classes([AllowAny])
 def get_session_info(request, session_id):
     """Go service gets current session state"""
     session = get_object_or_404(GameSession, id=session_id)
