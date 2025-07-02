@@ -122,7 +122,7 @@ var (
 )
 
 func main() {
-	fmt.Println("🎯 Trivia Session Service Starting...")
+	fmt.Println("Trivia Session Service Starting...")
 
 	// Initialize Django client
 	django = NewDjangoClient("http://127.0.0.1:8000")
@@ -142,9 +142,9 @@ func main() {
 	r.HandleFunc("/test/{code}", testPageHandler)
 
 	port := ":8080"
-	fmt.Printf("🚀 Trivia service running at http://localhost%s\n", port)
-	fmt.Println("📡 Django API integration ready")
-	fmt.Println("🌐 WebSocket coordination active")
+	fmt.Printf("Trivia service running at http://localhost%s\n", port)
+	fmt.Println("Django API integration ready")
+	fmt.Println("WebSocket coordination active")
 	fmt.Println("\nAPI Endpoints:")
 	fmt.Println("  POST /api/sessions - Create new session")
 	fmt.Println("  GET  /api/sessions/{code} - Get session info")
@@ -250,7 +250,7 @@ func createSessionHandler(w http.ResponseWriter, r *http.Request) {
 
 	go session.Run()
 
-	fmt.Printf("✅ Created session %s for game '%s' (%d questions)\n",
+	fmt.Printf("Created session %s for game '%s' (%d questions)\n",
 		session.Code, session.GameName, len(session.Questions))
 
 	w.Header().Set("Content-Type", "application/json")
@@ -652,7 +652,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	html := `<!DOCTYPE html>
 <html><head><title>Trivia Service</title></head>
 <body>
-<h1>🎯 Trivia Session Service</h1>
+<h1>Trivia Session Service</h1>
 <h2>Create New Session</h2>
 <form id="createForm">
 <label>Game ID: <input type="number" id="gameId" value="1"></label><br>
@@ -716,7 +716,7 @@ input { padding: 5px; margin: 5px; border: 1px solid #ddd; border-radius: 3px; }
 <h1>🎮 Session: %s</h1>
 
 <div class="section host-controls">
-<h3>🎪 Host Controls</h3>
+<h3>Host Controls</h3>
 <button onclick="connectHost()" id="hostBtn">Connect as Host</button>
 <div id="hostControls" style="display:none;">
   <button onclick="startGame()" id="startBtn">Start Game</button>
@@ -727,7 +727,7 @@ input { padding: 5px; margin: 5px; border: 1px solid #ddd; border-radius: 3px; }
 </div>
 
 <div class="section team-controls">
-<h3>👥 Team Controls</h3>
+<h3>Team Controls</h3>
 <input type="text" id="teamName" placeholder="Team name" value="Test Team">
 <button onclick="connectTeam()" id="teamBtn">Connect as Team</button>
 <div id="teamControls" style="display:none;">
@@ -737,14 +737,14 @@ input { padding: 5px; margin: 5px; border: 1px solid #ddd; border-radius: 3px; }
 </div>
 
 <div class="section">
-<h3>📊 Session Status</h3>
+<h3>Session Status</h3>
 <div id="status">Not connected</div>
 <div><strong>Teams:</strong> <span id="teamList">None</span></div>
 <div><strong>Current Question:</strong> <span id="currentQuestion">None</span></div>
 </div>
 
 <div class="section">
-<h3>📝 Messages</h3>
+<h3>Messages</h3>
 <div id="messages"></div>
 </div>
 
@@ -787,7 +787,7 @@ function connectTeam() {
 
 function setupWebSocket(label) {
   ws.onopen = () => {
-    document.getElementById('status').textContent = '✅ Connected as ' + label;
+    document.getElementById('status').textContent = 'Connected as ' + label;
     addMessage('system', 'Connected as ' + label);
   };
   
@@ -797,7 +797,7 @@ function setupWebSocket(label) {
   };
   
   ws.onclose = () => {
-    document.getElementById('status').textContent = '❌ Disconnected';
+    document.getElementById('status').textContent = 'Disconnected';
     addMessage('system', 'Disconnected');
   };
 }
@@ -810,12 +810,12 @@ function handleMessage(msg) {
       break;
       
     case 'team_joined':
-      addMessage('team-joined', '🎉 Team "' + msg.data.team_name + '" joined! (' + msg.data.total_teams + ' teams total)');
+      addMessage('team-joined', 'Team "' + msg.data.team_name + '" joined! (' + msg.data.total_teams + ' teams total)');
       updateTeamList(msg.data.teams);
       break;
       
     case 'game_started':
-      addMessage('game-started', '🚀 ' + msg.data.message);
+      addMessage('game-started', ' ' + msg.data.message);
       if (isHost) {
         document.getElementById('showQuestionBtn').disabled = false;
       }
