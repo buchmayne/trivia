@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Game, Question, Answer, QuestionRound, GameSession, SessionTeam, TeamAnswer
+from .models import Game, Question, Answer, GameSession, SessionTeam, TeamAnswer, QuestionRound
+
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,7 +10,6 @@ class AnswerSerializer(serializers.ModelSerializer):
             "text",
             "points",
             "answer_text",
-            "explanation",
             "question_image_url",
             "answer_image_url",
             "question_video_url",
@@ -17,7 +17,6 @@ class AnswerSerializer(serializers.ModelSerializer):
             "display_order",
             "correct_rank",
         ]
-
 
 class QuestionSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True, read_only=True)
@@ -37,12 +36,10 @@ class QuestionSerializer(serializers.ModelSerializer):
             "answers",
         ]
 
-
 class GameRoundSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuestionRound
         fields = ["id", "name", "round_number", "description"]
-
 
 class GameSerializer(serializers.ModelSerializer):
     rounds = GameRoundSerializer(source="questionround_set", many=True, read_only=True)
@@ -62,34 +59,46 @@ class GameDetailSerializer(serializers.ModelSerializer):
     def get_total_questions(self, obj):
         return obj.questions.count()
 
-
 class AnswerForGameSerializer(serializers.ModelSerializer):
-    """Answers without correct information - for live gameplay"""
+    """Complete answer information for game display"""
     class Meta:
         model = Answer
-        fields = ['id', 'text', 'question_image_url']
+        fields = [
+            "id",
+            "text",
+            "points",
+            "answer_text",
+            "question_image_url",
+            "answer_image_url",
+            "question_video_url",
+            "answer_video_url",
+            "display_order",
+            "correct_rank",
+        ]
 
 class QuestionWithAnswersSerializer(serializers.ModelSerializer):
     answers = AnswerForGameSerializer(many=True, read_only=True)
-    question_type = serializers.CharField(source='question_type.name', read_only=True) 
+    question_type = serializers.CharField(source='question_type.name', read_only=True)  # Get the name instead of ID
     
     class Meta:
         model = Question
         fields = [
-            'id', 
-            'text', 
-            'question_number', 
-            'total_points', 
-            'question_image_url', 
-            'answer_bank',
-            'question_type',
-            'answers'
+            "id",
+            "text",
+            "question_type",
+            "question_number",
+            "total_points",
+            "question_image_url",
+            "answer_image_url",
+            "question_video_url",
+            "answer_video_url",
+            "answers",
         ]
 
 class SessionCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = GameSession
-        fields = ['game', 'host_name', 'max_teams']
+        fields = ['game', 'host_name']  # Removed 'max_teams'
 
 class SessionTeamSerializer(serializers.ModelSerializer):
     class Meta:

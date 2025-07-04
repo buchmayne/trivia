@@ -2,7 +2,13 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import Game, Question, QuestionRound
-from .serializers import GameSerializer, QuestionSerializer, GameRoundSerializer
+from .serializers import (
+    GameDetailSerializer, 
+    QuestionWithAnswersSerializer, 
+    GameSerializer,
+    QuestionSerializer,
+    GameRoundSerializer
+)
 from django_filters.rest_framework import DjangoFilterBackend
 
 
