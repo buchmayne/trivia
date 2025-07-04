@@ -1,0 +1,88 @@
+<!-- session_service/templates/host_session.html -->
+{{define "content"}}
+<div class="host-session">
+    <div class="session-header">
+        <h2>Hosting: {{.GameName}}</h2>
+        <div class="session-code-display">
+            <span class="label">Session Code:</span>
+            <span class="session-code" id="session-code-display">{{.SessionCode}}</span>
+            <button class="btn btn-small" onclick="copySessionCode()">📋 Copy</button>
+        </div>
+    </div>
+    
+    <div class="host-controls">
+        <div class="control-section">
+            <h3>Game Controls</h3>
+            <div class="button-group">
+                <button id="start-game-btn" class="btn btn-success">▶️ Start Game</button>
+                <button id="next-question-btn" class="btn btn-primary" disabled>⏭️ Next Question</button>
+                <button id="show-scores-btn" class="btn btn-secondary" disabled>🏆 Show Scores</button>
+            </div>
+        </div>
+        
+        <div class="control-section">
+            <h3>Quick Actions</h3>
+            <div class="button-group">
+                <button id="show-question-btn" class="btn btn-outline" disabled>❓ Show Question</button>
+                <button id="end-session-btn" class="btn btn-danger">🛑 End Session</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="game-status">
+        <div class="status-card">
+            <h4>Game Status</h4>
+            <div class="status-info">
+                <span class="status-label">Status:</span>
+                <span id="game-status" class="status-value">Waiting</span>
+            </div>
+            <div class="status-info">
+                <span class="status-label">Question:</span>
+                <span id="current-question" class="status-value">0/{{len .Session.Questions}}</span>
+            </div>
+            <div class="status-info">
+                <span class="status-label">Teams:</span>
+                <span id="team-count" class="status-value">0</span>
+            </div>
+        </div>
+        
+        <div class="connection-status">
+            <div class="connection-indicator" id="connection-status">
+                <span class="indicator-dot"></span>
+                <span id="connection-text">Connecting...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="teams-list">
+        <h3>Connected Teams</h3>
+        <div id="teams-container" class="teams-grid">
+            <div class="no-teams">No teams connected yet</div>
+        </div>
+    </div>
+    
+    <div class="question-display hidden" id="question-display">
+        <h3>Current Question</h3>
+        <div class="question-card">
+            <div class="question-text" id="question-text"></div>
+            <div class="question-answers" id="question-answers"></div>
+            <div class="question-meta">
+                <span>Question <span id="question-number">1</span> of <span id="total-questions">{{len .Session.Questions}}</span></span>
+                <span>Points: <span id="question-points">1</span></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Auto-connect to WebSocket when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Connect as host
+    triviaApp.connectWebSocket('{{.SessionCode}}', true, 'Host');
+});
+</script>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/host.js"></script>
+{{end}}

@@ -1,0 +1,19 @@
+<!-- session_service/templates/error.html -->
+{{define "content"}}
+<div class="error-page">
+    <div class="error-content">
+        <div class="error-icon">❌</div>
+        <h1>Oops! Something went wrong</h1>
+        <p class="error-message">{{.Error}}</p>
+        
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">🏠 Go Home</a>
+            <a href="/join" class="btn btn-secondary">🔄 Try Again</a>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<!-- Error page specific scripts -->
+{{end}}
