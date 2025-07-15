@@ -187,31 +187,40 @@ class PlayerStats(models.Model):
     avg_pct_final_rd_points = models.FloatField()
     games_played = models.IntegerField()
 
+
 # API for Session Models
 class GameSession(models.Model):
     session_code = models.CharField(max_length=8, unique=True)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     host_name = models.CharField(max_length=100)
-    status = models.CharField(max_length=20, choices=[
-        ('waiting', 'Waiting for Teams'),
-        ('active', 'Game Active'), 
-        ('paused', 'Paused'),
-        ('completed', 'Completed')
-    ], default='waiting')
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ("waiting", "Waiting for Teams"),
+            ("active", "Game Active"),
+            ("paused", "Paused"),
+            ("completed", "Completed"),
+        ],
+        default="waiting",
+    )
     current_question_number = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     started_at = models.DateTimeField(null=True, blank=True)
     completed_at = models.DateTimeField(null=True, blank=True)
-    max_teams = models.IntegerField(default=16) 
+    max_teams = models.IntegerField(default=16)
+
 
 class SessionTeam(models.Model):
-    session = models.ForeignKey(GameSession, on_delete=models.CASCADE, related_name='teams')
+    session = models.ForeignKey(
+        GameSession, on_delete=models.CASCADE, related_name="teams"
+    )
     team_name = models.CharField(max_length=100)
     total_score = models.IntegerField(default=0)
     joined_at = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
-        unique_together = ['session', 'team_name']
+        unique_together = ["session", "team_name"]
+
 
 class TeamAnswer(models.Model):
     team = models.ForeignKey(SessionTeam, on_delete=models.CASCADE)
@@ -219,6 +228,6 @@ class TeamAnswer(models.Model):
     submitted_answer = models.TextField()
     points_awarded = models.IntegerField(default=0)
     submitted_at = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
-        unique_together = ['team', 'question']
+        unique_together = ["team", "question"]

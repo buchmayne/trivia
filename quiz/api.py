@@ -3,11 +3,11 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import Game, Question, QuestionRound
 from .serializers import (
-    GameDetailSerializer, 
-    QuestionWithAnswersSerializer, 
+    GameDetailSerializer,
+    QuestionWithAnswersSerializer,
     GameSerializer,
     QuestionSerializer,
-    GameRoundSerializer
+    GameRoundSerializer,
 )
 from django_filters.rest_framework import DjangoFilterBackend
 

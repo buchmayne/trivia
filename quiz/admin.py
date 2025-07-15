@@ -10,7 +10,7 @@ from .models import (
     QuestionRound,
     GameSession,
     SessionTeam,
-    TeamAnswer
+    TeamAnswer,
 )
 from .widgets import S3ImageUploadWidget, S3VideoUploadWidget
 
@@ -257,52 +257,72 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class SessionTeamInline(admin.TabularInline):
     model = SessionTeam
-    readonly_fields = ['joined_at']  # removed 'last_seen' - doesn't exist
+    readonly_fields = ["joined_at"]  # removed 'last_seen' - doesn't exist
     extra = 0
-    fields = ['team_name', 'total_score', 'current_question_score', 'joined_at']  # removed 'is_connected'
+    fields = [
+        "team_name",
+        "total_score",
+        "current_question_score",
+        "joined_at",
+    ]  # removed 'is_connected'
+
 
 class GameSessionAdmin(admin.ModelAdmin):
     list_display = [
-        'session_code', 
-        'game', 
-        'host_name', 
-        'status', 
-        'current_question_number',
-        'team_count',
-        'created_at'
+        "session_code",
+        "game",
+        "host_name",
+        "status",
+        "current_question_number",
+        "team_count",
+        "created_at",
     ]
-    list_filter = ['status', 'game', 'created_at']
-    readonly_fields = ['session_code', 'created_at', 'started_at', 'completed_at']
-    search_fields = ['session_code', 'host_name', 'game__name']
+    list_filter = ["status", "game", "created_at"]
+    readonly_fields = ["session_code", "created_at", "started_at", "completed_at"]
+    search_fields = ["session_code", "host_name", "game__name"]
     inlines = [SessionTeamInline]
-    
+
     def team_count(self, obj):
         return obj.teams.count()
-    team_count.short_description = 'Teams'
+
+    team_count.short_description = "Teams"
+
 
 class SessionTeamAdmin(admin.ModelAdmin):
-    list_display = ['team_name', 'session', 'total_score', 'joined_at']  # removed 'is_connected'
-    list_filter = ['session__game', 'session__status']  # removed 'is_connected'
-    search_fields = ['team_name', 'session__session_code']
+    list_display = [
+        "team_name",
+        "session",
+        "total_score",
+        "joined_at",
+    ]  # removed 'is_connected'
+    list_filter = ["session__game", "session__status"]  # removed 'is_connected'
+    search_fields = ["team_name", "session__session_code"]
+
 
 class TeamAnswerAdmin(admin.ModelAdmin):
     list_display = [
-        'team', 
-        'question_number', 
-        'submitted_answer_preview', 
-        'points_awarded', 
-        'submitted_at'  # removed 'is_correct'
+        "team",
+        "question_number",
+        "submitted_answer_preview",
+        "points_awarded",
+        "submitted_at",  # removed 'is_correct'
     ]
-    list_filter = ['question__game', 'submitted_at']  # removed 'is_correct'
-    search_fields = ['team__team_name', 'submitted_answer']
-    
+    list_filter = ["question__game", "submitted_at"]  # removed 'is_correct'
+    search_fields = ["team__team_name", "submitted_answer"]
+
     def question_number(self, obj):
         return f"Q{obj.question.question_number}"
-    question_number.short_description = 'Question'
-    
+
+    question_number.short_description = "Question"
+
     def submitted_answer_preview(self, obj):
-        return obj.submitted_answer[:50] + "..." if len(obj.submitted_answer) > 50 else obj.submitted_answer
-    submitted_answer_preview.short_description = 'Answer'
+        return (
+            obj.submitted_answer[:50] + "..."
+            if len(obj.submitted_answer) > 50
+            else obj.submitted_answer
+        )
+
+    submitted_answer_preview.short_description = "Answer"
 
 
 # Registering the models with custom admin interfaces
