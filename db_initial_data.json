@@ -7007,6 +7007,45 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 540,
+  "fields": {
+    "action_time": "2025-06-27T02:28:34.082Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "10",
+    "object_repr": "July-2025",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 541,
+  "fields": {
+    "action_time": "2025-06-27T02:30:57.633Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "10",
+    "object_repr": "August-2025",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 542,
+  "fields": {
+    "action_time": "2025-06-27T02:34:49.274Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "11",
+    "object_repr": "September-2025",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -7547,11 +7586,119 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add session team",
+    "content_type": 16,
+    "codename": "add_sessionteam"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change session team",
+    "content_type": 16,
+    "codename": "change_sessionteam"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete session team",
+    "content_type": 16,
+    "codename": "delete_sessionteam"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view session team",
+    "content_type": 16,
+    "codename": "view_sessionteam"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add game session",
+    "content_type": 17,
+    "codename": "add_gamesession"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change game session",
+    "content_type": 17,
+    "codename": "change_gamesession"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete game session",
+    "content_type": 17,
+    "codename": "delete_gamesession"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view game session",
+    "content_type": 17,
+    "codename": "view_gamesession"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add team answer",
+    "content_type": 18,
+    "codename": "add_teamanswer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change team answer",
+    "content_type": 18,
+    "codename": "change_teamanswer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete team answer",
+    "content_type": 18,
+    "codename": "delete_teamanswer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view team answer",
+    "content_type": 18,
+    "codename": "view_teamanswer"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$GaKTcesAdq8CjrmLYTczde$NeJ5+0SVFd2oVRqur4JCuru8HjAHW7xoM878yxwcXbs=",
-    "last_login": "2025-05-26T21:31:43.112Z",
+    "last_login": "2025-06-20T01:14:35.576Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -7685,6 +7832,30 @@
   }
 },
 {
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "quiz",
+    "model": "sessionteam"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "quiz",
+    "model": "gamesession"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 18,
+  "fields": {
+    "app_label": "quiz",
+    "model": "teamanswer"
+  }
+},
+{
   "model": "sessions.session",
   "pk": "0mrhb6iyugxipilhhz89hdgjtdzwr0jn",
   "fields": {
@@ -7714,6 +7885,14 @@
   "fields": {
     "session_data": ".eJxVjMsOwiAQRf-FtSECpe24dO83kIEZWnwUA60ujP-uTbrQ7T3nnpdwuMyjWyoXl0gchBK7381juPC0AjrjNGQZ8jSX5OWqyI1WecrE1-Pm_gVGrOP3zUYDW9DKhI4gNNCYFo2PFjqL0FvP1Ps2BozERDqC4mgbHfbag1J-jQ54Y3fHWp-5kHtwSTExOS0Oc1n4_QHEHUS6:1tXTnW:0XKTu_xy3Uq2zA7uYj-p2WH1wht8QFcOpe31mtrooUY",
     "expire_date": "2025-01-27T23:24:42.176Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hdwa5x175pktjwswjbgfdl8i9gj471pt",
+  "fields": {
+    "session_data": ".eJx1j8sOgyAURP-FdUMERMVl9_0GcuFelD6kAW0XTf-9NXXjotuZMyeZFxvgRvYOpTxTRvugHEMktKJi_ZwXOjALyzzapVC2EVnPBNtlDvyFprXAM0xD4j5Nc46Orwjf2sJPCel63NidYIQyftekpCFtpFC-ReNrU6sGlAvatBpMpx1h55rgISAhymAEBV1LX0lnhHCr9N8V8bvy_gCpDVEt:1uUyvd:JyK_k5yM2uPtQWE8g0VZxzox95tDrPPHzrNCEDNj0oI",
+    "expire_date": "2025-07-11T02:35:01.137Z"
   }
 },
 {
@@ -7884,12 +8063,24 @@
   "model": "quiz.game",
   "pk": 10,
   "fields": {
-    "name": "June-2025",
+    "name": "August-2025",
     "description": "",
     "created_at": "2025-04-09T00:16:47.710Z",
     "is_password_protected": true,
     "password": "icecream123",
     "game_order": 16
+  }
+},
+{
+  "model": "quiz.game",
+  "pk": 11,
+  "fields": {
+    "name": "September-2025",
+    "description": "",
+    "created_at": "2025-06-27T02:34:49.266Z",
+    "is_password_protected": true,
+    "password": "icecream123",
+    "game_order": 17
   }
 },
 {
@@ -27862,6 +28053,186 @@
     "avg_pct_rd2_points": 0.30864197530864196,
     "avg_pct_final_rd_points": 0.14285714285714285,
     "games_played": 1
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 1,
+  "fields": {
+    "session_code": "TEST_01",
+    "game": 1,
+    "host_name": "TEST HOST",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-06-20T01:07:36.801Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 16
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 2,
+  "fields": {
+    "session_code": "3TX7X4",
+    "game": 1,
+    "host_name": "Debug Test",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-01T05:38:30.468Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 8
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 3,
+  "fields": {
+    "session_code": "HI7TGU",
+    "game": 1,
+    "host_name": "Go Test Host",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-01T05:41:42.622Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 8
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 4,
+  "fields": {
+    "session_code": "XRV0US",
+    "game": 1,
+    "host_name": "Go Test Host",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-01T05:44:58.576Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 8
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 5,
+  "fields": {
+    "session_code": "7SQYDE",
+    "game": 1,
+    "host_name": "Go Test Host",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-01T05:46:32.000Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 8
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 6,
+  "fields": {
+    "session_code": "25KW8F",
+    "game": 1,
+    "host_name": "Test Host",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-02T01:33:44.434Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 10
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 7,
+  "fields": {
+    "session_code": "OQCW69",
+    "game": 1,
+    "host_name": "Test Host",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-02T01:37:05.256Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 10
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 8,
+  "fields": {
+    "session_code": "6UBPDW",
+    "game": 1,
+    "host_name": "Test Host",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-02T01:42:26.986Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 10
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 9,
+  "fields": {
+    "session_code": "3OJ2L8",
+    "game": 1,
+    "host_name": "Test Host",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-04T01:09:07.835Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 10
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 10,
+  "fields": {
+    "session_code": "AX1DLM",
+    "game": 1,
+    "host_name": "Test Host",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-04T17:42:53.134Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 16
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 11,
+  "fields": {
+    "session_code": "SEVJ16",
+    "game": 1,
+    "host_name": "Test Host",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-04T17:43:31.041Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 16
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 12,
+  "fields": {
+    "session_code": "5CF6YS",
+    "game": 1,
+    "host_name": "Test Host",
+    "status": "waiting",
+    "current_question_number": 0,
+    "created_at": "2025-07-04T17:44:06.318Z",
+    "started_at": null,
+    "completed_at": null,
+    "max_teams": 16
   }
 }
 ]
