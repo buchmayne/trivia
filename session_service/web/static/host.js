@@ -259,6 +259,38 @@ class HostController {
         }
     }
 
+    handleMessage(message) {
+        console.log('Host received message:', message);
+        
+        switch (message.type) {
+            case 'question_displayed':
+                this.displayQuestion(message.data);
+                break;
+            case 'game_started':
+                this.handleGameStarted(message.data);
+                break;
+            // other cases...
+        }
+    }
+
+    displayQuestion(data) {
+        console.log('Displaying question:', data);
+        const questionContainer = document.getElementById('question-container');
+        if (questionContainer) {
+            // Update the question display
+            questionContainer.innerHTML = `
+                <h3>Question ${data.question_number} of ${data.total_questions}</h3>
+                <p>${data.question.Text}</p>
+                <div class="answers">
+                    ${data.question.Answers.map(answer => 
+                        `<div class="answer">${answer.Text}: ${answer.AnswerText}</div>`
+                    ).join('')}
+                </div>
+            `;
+            questionContainer.style.display = 'block';
+        }
+    }
+
     handleTeamJoined(data) {
         triviaApp.showAlert(`Team "${data.team_name}" joined the game!`, 'success');
         
