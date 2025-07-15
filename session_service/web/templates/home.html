@@ -1,0 +1,67 @@
+<!-- session_service/templates/home.html -->
+{{define "content"}}
+<div class="hero">
+    <h1>🎯 Welcome to Trivia Service</h1>
+    <p class="hero-subtitle">Host or join real-time multiplayer trivia games</p>
+    
+    <div class="hero-actions">
+        <a href="/host" class="btn btn-primary btn-large">🎪 Host a Game</a>
+        <a href="/join" class="btn btn-secondary btn-large">👥 Join a Game</a>
+    </div>
+</div>
+
+<div class="features">
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Instant Setup</h3>
+            <p>Create a game session in seconds with a unique join code</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Real-time Sync</h3>
+            <p>All players see questions and answers simultaneously</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3>Live Scoring</h3>
+            <p>Track team performance with instant score updates</p>
+        </div>
+    </div>
+</div>
+
+<div class="quick-start">
+    <h2>Quick Start</h2>
+    <div class="steps">
+        <div class="step">
+            <span class="step-number">1</span>
+            <div class="step-content">
+                <h4>Create Session</h4>
+                <p>Choose a trivia game and generate a session code</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">2</span>
+            <div class="step-content">
+                <h4>Teams Join</h4>
+                <p>Players use the session code to join their teams</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">3</span>
+            <div class="step-content">
+                <h4>Play & Score</h4>
+                <p>Start the game and track answers in real-time</p>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<!-- Home page specific scripts -->
+{{end}}

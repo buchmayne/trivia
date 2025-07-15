@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views
+from . import views, api_views, session_views
 from rest_framework.routers import DefaultRouter
 from .api import GameViewSet, QuestionViewSet
 
@@ -48,5 +48,42 @@ urlpatterns = [
         views.get_next_question_number,
         name="next_question_number",
     ),
+    # New Session Frontend URLs (for humans)
+    path("sessions/host/", session_views.host_dashboard, name="host_dashboard"),
+    path("sessions/join/", session_views.team_join, name="team_join"),
+    path(
+        "sessions/live/<str:session_code>/",
+        session_views.live_session,
+        name="live_session",
+    ),
+    # New API URLs (for Go service)
+    path("api/sessions/create/", api_views.create_session, name="api_create_session"),
+    path(
+        "api/sessions/<int:session_id>/info/",
+        api_views.get_session_info,
+        name="api_session_info",
+    ),
+    path(
+        "api/sessions/<int:session_id>/status/",
+        api_views.update_session_status,
+        name="api_update_session_status",
+    ),
+    path(
+        "api/sessions/<int:session_id>/teams/add/",
+        api_views.add_team_to_session,
+        name="api_add_team",
+    ),
+    path(
+        "api/sessions/<int:session_id>/finalize/",
+        api_views.finalize_session,
+        name="api_finalize_session",
+    ),
+    path(
+        "api/games/<int:game_id>/questions/",
+        api_views.get_game_questions,
+        name="api_game_questions",
+    ),
+    path("api/answers/submit/", api_views.submit_team_answer, name="api_submit_answer"),
+    # Existing DRF API
     path("api/", include(router.urls)),
 ]

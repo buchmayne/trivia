@@ -1,0 +1,107 @@
+<!-- session_service/templates/team_session.html -->
+{{define "content"}}
+<div class="team-session">
+    <div class="session-header">
+        <h2 id="game-title">Playing {{.GameName}}</h2>
+        <div class="team-info">
+            <span class="label">Team:</span>
+            <span class="team-name" id="team-name-display">{{.TeamName}}</span>
+        </div>
+        <div class="session-info">
+            <span class="label">Session:</span>
+            <span class="session-code" id="session-code-display">{{.SessionCode}}</span>
+        </div>
+    </div>
+    
+    <div class="game-status">
+        <div class="status-card">
+            <div class="connection-status">
+                <div class="connection-indicator" id="connection-status">
+                    <span class="indicator-dot"></span>
+                    <span id="connection-text">Connecting...</span>
+                </div>
+            </div>
+            <div class="status-info">
+                <span class="status-label">Status:</span>
+                <span id="game-status" class="status-value">Waiting</span>
+            </div>
+            <div class="status-info">
+                <span class="status-label">Question:</span>
+                <span id="current-question" class="status-value">0/0</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="waiting-room" id="waiting-room">
+        <div class="waiting-content">
+            <div class="waiting-icon">⏳</div>
+            <h3>Waiting for game to start...</h3>
+            <p>The host will begin the game when all teams are ready.</p>
+            
+            <div class="teams-waiting">
+                <h4>Teams in this game:</h4>
+                <div id="teams-list" class="teams-list-compact">
+                    <div class="loading">Loading teams...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="question-display hidden" id="question-display">
+        <div class="question-header">
+            <span class="question-meta">Question <span id="question-number">1</span> of <span id="total-questions">10</span></span>
+            <span class="question-points">Points: <span id="question-points">1</span></span>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-text" id="question-text"></div>
+            <div class="question-image" id="question-image"></div>
+        </div>
+        
+        <div class="answer-form" id="answer-form">
+            <h4>Select your answer:</h4>
+            <div class="answer-options" id="answer-options">
+                <!-- Answer options will be populated by JavaScript -->
+            </div>
+            <button id="submit-answer-btn" class="btn btn-primary btn-large" disabled>📝 Submit Answer</button>
+        </div>
+        
+        <div class="answer-submitted hidden" id="answer-submitted">
+            <div class="submitted-message">
+                <span class="check-icon">✅</span>
+                <h4>Answer Submitted!</h4>
+                <p>Waiting for other teams to answer...</p>
+                <div class="submitted-answer">
+                    Your answer: <strong id="submitted-answer-text"></strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="scores-display hidden" id="scores-display">
+        <h3>🏆 Current Scores</h3>
+        <div id="scores-list" class="scores-list">
+            <!-- Scores will be populated by JavaScript -->
+        </div>
+    </div>
+</div>
+
+<script>
+// Auto-connect to WebSocket when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Connect as team
+    triviaApp.connectWebSocket('{{.SessionCode}}', false, '{{.TeamName}}');
+    
+    // Send join message after connection
+    setTimeout(() => {
+        triviaApp.sendMessage('join_team', {
+            team_name: '{{.TeamName}}'
+        });
+    }, 1000);
+});
+</script>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/team.js"></script>
+{{end}}

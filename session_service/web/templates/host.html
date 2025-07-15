@@ -1,0 +1,112 @@
+<!-- session_service/templates/host.html -->
+{{define "content"}}
+<div class="page-header">
+    <h1>🎪 Host Dashboard</h1>
+    <p>Create and manage your trivia game session</p>
+</div>
+
+<div class="host-setup" id="setup-form">
+    <div class="card">
+        <h2>Create New Session</h2>
+        <form id="create-session-form" class="form">
+            <div class="form-group">
+                <label for="game-id">Game ID</label>
+                <input type="number" id="game-id" name="game" value="1" min="1" required>
+                <small>Enter the ID of the trivia game to host</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="host-name">Your Name</label>
+                <input type="text" id="host-name" name="host_name" value="Host" required>
+                <small>Your name as the game host</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="max-teams">Maximum Teams</label>
+                <input type="number" id="max-teams" name="max_teams" value="10" min="1" max="50" required>
+                <small>Maximum number of teams that can join</small>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-large">🚀 Create Session</button>
+        </form>
+    </div>
+</div>
+
+<div class="host-session hidden" id="session-dashboard">
+    <div class="session-header">
+        <h2>Session Active</h2>
+        <div class="session-code-display">
+            <span class="label">Session Code:</span>
+            <span class="session-code" id="session-code-display">------</span>
+            <button class="btn btn-small" onclick="copySessionCode()">📋 Copy</button>
+        </div>
+    </div>
+    
+    <div class="host-controls">
+        <div class="control-section">
+            <h3>Game Controls</h3>
+            <div class="button-group">
+                <button id="start-game-btn" class="btn btn-success">▶️ Start Game</button>
+                <button id="next-question-btn" class="btn btn-primary" disabled>⏭️ Next Question</button>
+                <button id="show-scores-btn" class="btn btn-secondary" disabled>🏆 Show Scores</button>
+            </div>
+        </div>
+        
+        <div class="control-section">
+            <h3>Quick Actions</h3>
+            <div class="button-group">
+                <button id="show-question-btn" class="btn btn-outline">❓ Show Question</button>
+                <button id="end-session-btn" class="btn btn-danger">🛑 End Session</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="game-status">
+        <div class="status-card">
+            <h4>Game Status</h4>
+            <div class="status-info">
+                <span class="status-label">Status:</span>
+                <span id="game-status" class="status-value">Waiting</span>
+            </div>
+            <div class="status-info">
+                <span class="status-label">Question:</span>
+                <span id="current-question" class="status-value">0/0</span>
+            </div>
+            <div class="status-info">
+                <span class="status-label">Teams:</span>
+                <span id="team-count" class="status-value">0</span>
+            </div>
+        </div>
+        
+        <div class="connection-status">
+            <div class="connection-indicator" id="connection-status">
+                <span class="indicator-dot"></span>
+                <span id="connection-text">Disconnected</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="teams-list">
+        <h3>Connected Teams</h3>
+        <div id="teams-container" class="teams-grid">
+            <div class="no-teams">No teams connected yet</div>
+        </div>
+    </div>
+    
+    <div class="question-display hidden" id="question-display">
+        <h3>Current Question</h3>
+        <div class="question-card">
+            <div class="question-text" id="question-text"></div>
+            <div class="question-answers" id="question-answers"></div>
+            <div class="question-meta">
+                <span>Question <span id="question-number">1</span> of <span id="total-questions">10</span></span>
+                <span>Points: <span id="question-points">1</span></span>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/host.js"></script>
+{{end}}
