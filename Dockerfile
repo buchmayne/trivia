@@ -30,7 +30,7 @@ COPY . /app/
 RUN uv sync --frozen --no-dev
 
 # Collect static files
-RUN uv manage.py collectstatic --noinput
+RUN uv run manage.py collectstatic --noinput
 
 # Create a non-root user and switch to it
 RUN useradd -m appuser && chown -R appuser:appuser /app
