@@ -1296,3 +1296,88 @@ body::after {
         max-height: 300px;
     }
 }
+
+/* Analytics Section Styles - Add this to your existing styles.css */
+
+.analytics-section {
+    margin-top: 50px;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.analytics-container {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e1e5e9;
+    margin: 0 auto;
+}
+
+.analytics-title {
+    font-size: 1.8em;
+    color: #1a202c;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.analytics-description {
+    color: #4a5568;
+    margin-bottom: 25px;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.analytics-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #0056b3, #0088ff);
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1em;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+    border: none;
+}
+
+.analytics-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #0088ff, #40a3ff);
+    box-shadow: 0 6px 20px rgba(0, 86, 179, 0.4);
+}
+
+/* Responsive design for analytics section */
+@media (max-width: 768px) {
+    .analytics-section {
+        margin-top: 40px;
+        padding: 20px 15px;
+    }
+    
+    .analytics-container {
+        padding: 25px 20px;
+    }
+    
+    .analytics-title {
+        font-size: 1.5em;
+    }
+    
+    .analytics-description {
+        font-size: 0.9em;
+        margin-bottom: 20px;
+    }
+    
+    .analytics-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}

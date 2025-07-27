@@ -36,5 +36,16 @@
             {% endif %}
         {% endfor %}
     </div>
+
+    <!-- Analytics Link Section -->
+    <div class="analytics-section">
+        <div class="analytics-container">
+            <h3 class="analytics-title">Analytics</h3>
+            <p class="analytics-description">View past game results and player performance</p>
+            <a href="{% url 'analytics' %}" class="analytics-button">
+                Game History and Player Analytics
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}
