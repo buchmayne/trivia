@@ -27,14 +27,9 @@ RUN rm -f /etc/nginx/sites-enabled/default && \
 COPY . /app/
 
 # Install dependencies
-# COPY requirements.txt /app/
-# RUN pip install --upgrade pip && \
-#     pip install -r requirements.txt && \
-#     pip install gunicorn
 RUN uv sync --frozen --no-dev
 
 # Collect static files
-# RUN python manage.py collectstatic --noinput
 RUN uv manage.py collectstatic --noinput
 
 # Create a non-root user and switch to it
