@@ -19,20 +19,6 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from quiz.utils import AnalyticsLoader
 
-# Metadata needed to calculate player stats
-spreadsheet_url = "https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit#gid=0"
-
-trivia_metadata = {
-    "trivia-2024-04-12": {
-        "player_list_sheet_name": "Players-04-12-24",
-        "game_data": {"Round_1": 69, "Round_2": 53, "Final_Round": 40, "Total": 162},
-    },
-    "trivia-2025-01-21": {
-        "player_list_sheet_name": "Players-01-21-25",
-        "game_data": {"Round_1": 51, "Round_2": 81, "Final_Round": 14, "Total": 146},
-    },
-}
-
 
 # Functions
 def get_credentials_path():
@@ -223,6 +209,25 @@ def calculate_player_performance(players_stats: pd.DataFrame) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
+    # Before running update spreadsheet url to be the Players sheet for the new game to add
+    spreadsheet_url = "https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit?gid=1761671058#gid=1761671058"
+
+    # Before running update the dictionary containing the sheet name for the scoring and the total points available in each round
+    trivia_metadata = {
+        "trivia-2024-04-12": {
+            "player_list_sheet_name": "Players-04-12-24",
+            "game_data": {"Round_1": 69, "Round_2": 53, "Final_Round": 40, "Total": 162},
+        },
+        "trivia-2025-01-21": {
+            "player_list_sheet_name": "Players-01-21-25",
+            "game_data": {"Round_1": 51, "Round_2": 81, "Final_Round": 14, "Total": 146},
+        },
+        "trivia-2025-07-19": {
+            "player_list_sheet_name": "Players-07-19-25",
+            "game_data": {"Round_1": 55, "Round_2": 64, "Final_Round": 14, "Total": 133},
+        },
+    }
+    
     # Get players list and all game results
     players = get_players_list(spreadsheet_url, trivia_metadata)
 

@@ -189,10 +189,11 @@ if __name__ == "__main__":
     client = gspread.authorize(creds)
     access_token = creds.get_access_token().access_token
 
+    # need to pass in the url of the Players spreadsheet
     spreadsheet_url = f"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit#gid=0"
     spreadsheet = client.open_by_url(spreadsheet_url)
 
-    players_list_spreadsheet_name = "Players-01-21-25"
+    players_list_spreadsheet_name = "Players-07-19-25"
     players_list_spreadsheet = spreadsheet.worksheet(players_list_spreadsheet_name)
     players_list_spreadsheet_id = players_list_spreadsheet.id
 
@@ -210,8 +211,6 @@ if __name__ == "__main__":
         Team("Team 2", max_team_size=4),
         Team("Team 3", max_team_size=4),
         Team("Team 4", max_team_size=4),
-        Team("Team 5", max_team_size=5),
-        Team("Team 6", max_team_size=5),
     ]
 
     assigned_teams = assign_teams(players, teams)
