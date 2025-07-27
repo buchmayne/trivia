@@ -216,18 +216,33 @@ if __name__ == "__main__":
     trivia_metadata = {
         "trivia-2024-04-12": {
             "player_list_sheet_name": "Players-04-12-24",
-            "game_data": {"Round_1": 69, "Round_2": 53, "Final_Round": 40, "Total": 162},
+            "game_data": {
+                "Round_1": 69,
+                "Round_2": 53,
+                "Final_Round": 40,
+                "Total": 162,
+            },
         },
         "trivia-2025-01-21": {
             "player_list_sheet_name": "Players-01-21-25",
-            "game_data": {"Round_1": 51, "Round_2": 81, "Final_Round": 14, "Total": 146},
+            "game_data": {
+                "Round_1": 51,
+                "Round_2": 81,
+                "Final_Round": 14,
+                "Total": 146,
+            },
         },
         "trivia-2025-07-19": {
             "player_list_sheet_name": "Players-07-19-25",
-            "game_data": {"Round_1": 55, "Round_2": 64, "Final_Round": 14, "Total": 133},
+            "game_data": {
+                "Round_1": 55,
+                "Round_2": 64,
+                "Final_Round": 14,
+                "Total": 133,
+            },
         },
     }
-    
+
     # Get players list and all game results
     players = get_players_list(spreadsheet_url, trivia_metadata)
 
