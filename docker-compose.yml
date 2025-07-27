@@ -49,13 +49,11 @@ services:
       context: .
     container_name: trivia_app_web
     command: >
-      sh -c "sudo chown -R appuser:appuser /app &&
-             uv run manage.py migrate &&
+      sh -c "uv run manage.py migrate &&
              uv run manage.py loaddata db_initial_data.json &&
              uv run manage.py collectstatic --noinput &&
              uv run gunicorn --bind 0.0.0.0:8000 pub_trivia.wsgi:application"
     volumes:
-      - .:/app
       - static_volume:/app/staticfiles
       - media_volume:/app/mediafiles
     expose:
