@@ -23,19 +23,18 @@ COPY nginx.conf /etc/nginx/sites-available/default
 RUN rm -f /etc/nginx/sites-enabled/default && \
     ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
+# Create a non-root user and switch to it
+RUN useradd -m appuser && chown -R appuser:appuser /app
+USER appuser
+
 # Copy project files
-COPY . /app/
+COPY --chown=appuser:appuser . /app/
 
 # Install dependencies
 RUN uv sync --frozen --no-dev
 
 # Collect static files
 RUN uv run manage.py collectstatic --noinput
-
-# Create a non-root user and switch to it
-RUN useradd -m appuser && chown -R appuser:appuser /app
-USER appuser
-
 
 # Expose port (optional, useful for debugging locally)
 EXPOSE 8000
