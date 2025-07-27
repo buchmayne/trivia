@@ -54,7 +54,6 @@ services:
              uv run manage.py collectstatic --noinput &&
              uv run gunicorn --bind 0.0.0.0:8000 pub_trivia.wsgi:application"
     volumes:
-      - .:/app
       - static_volume:/app/staticfiles
       - media_volume:/app/mediafiles
     expose:
