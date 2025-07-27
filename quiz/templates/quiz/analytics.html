@@ -11,6 +11,16 @@
     <div class="w-full min-h-screen p-4">
         <!-- White background panel -->
         <div class="bg-white rounded-lg shadow-xl mx-auto max-w-7xl p-8">
+            <!-- Home Link in Upper Right Corner -->
+            <div class="absolute top-6 right-6">
+                <a href="{% url 'home' %}" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    Home
+                </a>
+            </div>
             <!-- Header -->
             <h1 class="text-3xl font-bold text-gray-900 mb-8">Trivia Analytics</h1>
 

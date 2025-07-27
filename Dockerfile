@@ -5,6 +5,9 @@ FROM python:3.10-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+# Install uv
+RUN pip install --no-cache-dir --upgrade uv
+
 # Set working directory
 WORKDIR /app
 
@@ -20,17 +23,14 @@ COPY nginx.conf /etc/nginx/sites-available/default
 RUN rm -f /etc/nginx/sites-enabled/default && \
     ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
-# Install dependencies
-COPY requirements.txt /app/
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt && \
-    pip install gunicorn
-
 # Copy project files
 COPY . /app/
 
+# Install dependencies
+RUN uv sync --frozen --no-dev
+
 # Collect static files
-RUN python manage.py collectstatic --noinput
+RUN uv manage.py collectstatic --noinput
 
 # Create a non-root user and switch to it
 RUN useradd -m appuser && chown -R appuser:appuser /app
@@ -41,4 +41,4 @@ USER appuser
 EXPOSE 8000
 
 # Run Django development server by default
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "pub_trivia.wsgi:application"]
+CMD ["uv", "run", "gunicorn", "--bind", "0.0.0.0:8000", "pub_trivia.wsgi:application"]
