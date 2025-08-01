@@ -247,7 +247,7 @@ def analytics_view(request):
     )
 
     # Get all results, ordered by date descending
-    game_results = GameResult.objects.all().order_by("game_date", "place")
+    game_results = GameResult.objects.all().order_by("-game_date", "place")
 
     # Apply game date filter if selected
     if selected_date:
