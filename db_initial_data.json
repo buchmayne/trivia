@@ -7059,6 +7059,58 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 544,
+  "fields": {
+    "action_time": "2025-07-31T04:46:24.328Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "12",
+    "object_repr": "Team-Masri's-Trivia",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 545,
+  "fields": {
+    "action_time": "2025-07-31T04:46:38.152Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "12",
+    "object_repr": "Team-Masri-Retreat",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 546,
+  "fields": {
+    "action_time": "2025-08-01T21:56:13.064Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "12",
+    "object_repr": "Team-Masri-Retreat",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 547,
+  "fields": {
+    "action_time": "2025-08-01T21:57:06.644Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "26",
+    "object_repr": "Q15: For each of the following pet names or short names, identify the formal English given name associated with it, <i>i.e. Dick -> Richard</i> (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"E. Kit\", \"fields\": [\"Text\", \"Answer text\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -7711,7 +7763,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$GaKTcesAdq8CjrmLYTczde$NeJ5+0SVFd2oVRqur4JCuru8HjAHW7xoM878yxwcXbs=",
-    "last_login": "2025-07-15T19:02:39.631Z",
+    "last_login": "2025-07-31T04:42:41.746Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -7946,6 +7998,14 @@
   "fields": {
     "session_data": ".eJxVjEEOwiAQRe_C2hAYaaEu3fcMZGYYpGpoUtqV8e7apAvd_vfef6mI21ri1mSJU1IXZdXpdyPkh9QdpDvW26x5rusykd4VfdCmxznJ83q4fwcFW_nWkkECObG29yyZHXcgIDkMzNIZNsEBYLJBDNjBCZFB65HM2WHP2av3BwnPOKw:1tH9br:nLL1h0HdIM4vdfSDaYqcrw2Gp-axazgxc1_NeMvn3DM",
     "expire_date": "2024-12-13T22:37:11.243Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "sykm5wkro2zfro9w0n7m4due45iu5fff",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSECpe24dO83kIEZWnwUA60ujP-uTbrQ7T3nnpdwuMyjWyoXl0gchBK7381juPC0AjrjNGQZ8jSX5OWqyI1WecrE1-Pm_gVGrOP3zUYDW9DKhI4gNNCYFo2PFjqL0FvP1Ps2BozERDqC4mgbHfbag1J-jQ54Y3fHWp-5kHtwSTExOaXEYS4Lvz8HzETq:1uhLQt:mWEQswwnXBx1G1XLR0g5mpw79ZqTk170r9QNBLQ91ZU",
+    "expire_date": "2025-08-14T05:02:23.768Z"
   }
 },
 {
@@ -15730,11 +15790,11 @@
   "pk": 117,
   "fields": {
     "question": 26,
-    "text": "E. Simon",
+    "text": "E. Kit",
     "display_order": 5,
     "correct_rank": null,
     "points": 2,
-    "answer_text": "Sylvester",
+    "answer_text": "Katherine/Christopher",
     "question_image_url": null,
     "answer_image_url": null,
     "question_image": "",
