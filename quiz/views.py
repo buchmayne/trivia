@@ -49,11 +49,10 @@ def get_first_question_info(
 
 
 def get_next_question(question: Question) -> Optional[Question]:
-    """Get the next question in the same round"""
+    """Get the next question across all rounds in the game"""
     return (
         Question.objects.filter(
             game=question.game,
-            game_round=question.game_round,
             question_number__gt=question.question_number,
         )
         .order_by("question_number")
@@ -79,11 +78,10 @@ def question_view(
         "question_number"
     )
 
-    # Get next question
+    # Get next question across all rounds
     next_question = (
         Question.objects.filter(
             game=game,
-            game_round=question.game_round,
             question_number__gt=question.question_number,
         )
         .order_by("question_number")
@@ -122,10 +120,10 @@ def answer_view(
         "question_number"
     )
 
+    # Get next question across all rounds
     next_question = (
         Question.objects.filter(
             game=game,
-            game_round=question.game_round,
             question_number__gt=question.question_number,
         )
         .order_by("question_number")
