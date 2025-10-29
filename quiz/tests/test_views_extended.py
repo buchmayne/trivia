@@ -114,12 +114,14 @@ class GameOverviewExtendedTest(TestCase):
         round1 = QuestionRound.objects.create(name="Round 1", round_number=1)
         round2 = QuestionRound.objects.create(name="Round 2", round_number=2)
         round3 = QuestionRound.objects.create(name="Final Round", round_number=3)
+        category = Category.objects.create(name="Test Category")
 
         # Add questions to each round with varying points
         Question.objects.create(
             game=self.game,
             question_type=self.question_type,
             game_round=round1,
+            category=category,
             text="Q1",
             question_number=1,
             total_points=10,
@@ -128,6 +130,7 @@ class GameOverviewExtendedTest(TestCase):
             game=self.game,
             question_type=self.question_type,
             game_round=round1,
+            category=category,
             text="Q2",
             question_number=2,
             total_points=15,
@@ -136,6 +139,7 @@ class GameOverviewExtendedTest(TestCase):
             game=self.game,
             question_type=self.question_type,
             game_round=round2,
+            category=category,
             text="Q3",
             question_number=3,
             total_points=20,
@@ -144,6 +148,7 @@ class GameOverviewExtendedTest(TestCase):
             game=self.game,
             question_type=self.question_type,
             game_round=round3,
+            category=category,
             text="Q4",
             question_number=4,
             total_points=25,

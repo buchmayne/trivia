@@ -53,11 +53,11 @@ class GameSessionModelTest(TestCase):
         """Test different session status values"""
         statuses = ["waiting", "active", "paused", "completed"]
 
-        for status_value in statuses:
+        for i, status_value in enumerate(statuses):
             session = GameSession.objects.create(
                 game=self.game,
                 host_name="Test Host",
-                session_code=f"CODE{status_value}",
+                session_code=f"CODE{i}",  # Keep session_code short (max 8 chars)
                 status=status_value,
             )
             self.assertEqual(session.status, status_value)

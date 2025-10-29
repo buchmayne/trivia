@@ -452,7 +452,9 @@ class DRFViewSetIntegrationTest(TestCase):
         game1_questions_url = reverse("quiz:game-questions", args=[self.game1.id])
         response = self.api_client.get(game1_questions_url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data), 5)
+        # Note: URL resolves to api_views.get_game_questions which returns {"game": {...}, "questions": [...]}
+        self.assertIn("questions", response.data)
+        self.assertEqual(len(response.data["questions"]), 5)
 
         # 3. Get all questions and filter by game1
         questions_url = reverse("quiz:question-list")

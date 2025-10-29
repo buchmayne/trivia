@@ -235,8 +235,9 @@ class AnalyticsUtilsTest(TestCase):
         """Test get_content_type for unknown file types"""
         from quiz.utils import get_content_type
 
-        # Should return default for unknown extensions
-        result = get_content_type("file.xyz")
+        # .xyz is actually a known mimetype (chemical/x-xyz)
+        # Use a truly unknown extension for testing default behavior
+        result = get_content_type("file.unknownext123")
         self.assertEqual(result, "application/octet-stream")
 
     def test_get_content_type_no_extension(self):
