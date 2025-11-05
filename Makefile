@@ -1,4 +1,4 @@
-.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate
+.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data
 
 help:
 	@echo "Available commands:"
@@ -23,6 +23,7 @@ help:
 	@echo "  make docker-down      - Stop all Docker services"
 	@echo "  make docker-logs      - View Docker logs"
 	@echo "  make docker-migrate   - Run migrations in Docker container"
+	@echo "  make dump-data.       - Dump content from local database to json file"
 
 # Run development server
 run:
@@ -96,3 +97,7 @@ docker-logs:
 
 docker-migrate:
 	docker-compose exec web uv run manage.py migrate
+
+# Dump content from database to json file
+dump-data:
+	uv run manage.py dumpdata --indent 2 > db_initial_data.json
