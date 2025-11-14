@@ -7410,6 +7410,331 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 571,
+  "fields": {
+    "action_time": "2025-11-12T01:16:36.806Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "14",
+    "object_repr": "May-2023",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 572,
+  "fields": {
+    "action_time": "2025-11-12T01:19:28.382Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "212",
+    "object_repr": "Q1: For each of the following sports franchises, name a city that the franchise was previoulsy located in (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Arizona Cardinals\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Sacramento Kings\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Washington Nationals\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Oakland Athletics (A's)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 573,
+  "fields": {
+    "action_time": "2025-11-12T01:21:39.795Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "213",
+    "object_repr": "Q2: Can you name all of the current Supreme Court justices (1 Point for Each Correct Answer, -1 Point for Each Incorrect Answer)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q2: Can you name all of the current Supreme Court justices (1 Point for Each Correct Answer, -1 Point for Each Incorrect Answer)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 574,
+  "fields": {
+    "action_time": "2025-11-12T01:24:55.298Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "214",
+    "object_repr": "Q3: Identify the punctuation mark that shares a key on a computer keyboard with each of the following numbers (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 1\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 3\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 6\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 9\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 575,
+  "fields": {
+    "action_time": "2025-11-14T01:10:45.278Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "215",
+    "object_repr": "Q4: Match the coffee drink to the description (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Made using equal amounts of espresso and steamed milk. The milk is steamed but not foamy or frothy as in other drinks\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. One-third espresso, one-third hot milk, and one-third milk foam\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Made by repeatedly boiling very finely ground coffee with sugar. This process produces a frothy, lightly textured drink\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Consisting of espresso with micro foam (steamed milk with small, fine bubbles and a glossy or velvety consistency)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 576,
+  "fields": {
+    "action_time": "2025-11-14T01:30:35.620Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "216",
+    "object_repr": "Q5: Identify what has a greater land area (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. (Oregon + California) or France\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. (Germany + Poland + Czech Republic) or Texas\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. (USA + Canada) or Russia\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. (New York (State) + New Jersey + Pennsylvania) or United Kingdom\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 577,
+  "fields": {
+    "action_time": "2025-11-14T01:32:00.587Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "217",
+    "object_repr": "Q6: Match the dying words of the famous person to the famous person (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. \\\"It matters not how strait the gate, How charged with punishments the scroll, I am the master of my fate: I am the captain of my soul.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. \\\"I know you are here to kill me. Shoot, coward, you are only going to kill a man.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. \\\"I've always loved my wife, my children, and my grandchildren, and I've always loved my country. I want to go. God, take me.\\\"\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. \\\"I'm bored with it all.\\\"\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 578,
+  "fields": {
+    "action_time": "2025-11-14T01:33:34.957Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "218",
+    "object_repr": "Q7: For each of the following pairs of historical figures, were they alive at the same time? (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Martin Luther King Jr. & Mark Twain\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Mahatma Gandhi & Karl Marx\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. George Washington & Abraham Lincoln\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Billie Eilish & Ronald Reagan\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 579,
+  "fields": {
+    "action_time": "2025-11-14T01:35:05.920Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "219",
+    "object_repr": "Q8: Match each of the following phobias to the description of the phobia (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Fear of the penis and in a broader sense an excessive aversion to masculinity\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Fear of bridges and tunnels\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Fear of bad breath\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Fear of the dark\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 580,
+  "fields": {
+    "action_time": "2025-11-14T04:43:38.653Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "220",
+    "object_repr": "Q9: You will be shown a picture of a city from each of the regions in the answer bank. \r\n\r\nEach city shown is the city with the largest population of any city in that region. For 1 point, match the pi",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q9: You will be shown a picture of a city from each of the regions in the answer bank. \\r\\n\\r\\nEach city shown is the city with the largest population of any city in that region. For 1 point, match the picture of a city to the region. For 2 points, name the country for which the city is located. For 3 points, name the city shown in the image. (24 Points Possible)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q9: You will be shown a picture of a city from each of the regions in the answer bank. \\r\\n\\r\\nEach city shown is the city with the largest population of any city in that region. For 1 point, match the picture of a city to the region. For 2 points, name the country for which the city is located. For 3 points, name the city shown in the image. (24 Points Possible)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q9: You will be shown a picture of a city from each of the regions in the answer bank. \\r\\n\\r\\nEach city shown is the city with the largest population of any city in that region. For 1 point, match the picture of a city to the region. For 2 points, name the country for which the city is located. For 3 points, name the city shown in the image. (24 Points Possible)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q9: You will be shown a picture of a city from each of the regions in the answer bank. \\r\\n\\r\\nEach city shown is the city with the largest population of any city in that region. For 1 point, match the picture of a city to the region. For 2 points, name the country for which the city is located. For 3 points, name the city shown in the image. (24 Points Possible)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 581,
+  "fields": {
+    "action_time": "2025-11-14T04:43:59.949Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "220",
+    "object_repr": "Q9: You will be shown a picture of a city from each of the regions in the answer bank. \r\n\\n\\n\r\nEach city shown is the city with the largest population of any city in that region. For 1 point, match th",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 582,
+  "fields": {
+    "action_time": "2025-11-14T04:44:16.085Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "220",
+    "object_repr": "Q9: You will be shown a picture of a city from each of the regions in the answer bank. \r\n<br><br>\r\nEach city shown is the city with the largest population of any city in that region. For 1 point, matc",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 583,
+  "fields": {
+    "action_time": "2025-11-14T04:47:10.902Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "221",
+    "object_repr": "Q10: For each of the following unlabeled countries, you will be given the population in a specific year, and the average annual population growth rate between that year and a later year. Estimate the ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Population in 1980 is 226.5 million, what is the population in 2020? The average annual population growth rate is 1.13%\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Population in 1960 is 36.27 million, what is the population in 1970? The average annual population growth rate is 3.86%\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 584,
+  "fields": {
+    "action_time": "2025-11-14T04:49:09.266Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "222",
+    "object_repr": "Q11: Rank the following companies, from highest to lowest 2022 revenues. (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Coca-Cola Company\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. CVS Health\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Microsoft\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. PepsiCo\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 585,
+  "fields": {
+    "action_time": "2025-11-14T04:50:45.815Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "223",
+    "object_repr": "Q12: Rank the following companies, from most to fewest employees (2022). (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Nike\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Tesla\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. The Walt Disney Company\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Wells Fargo\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 586,
+  "fields": {
+    "action_time": "2025-11-14T04:53:23.620Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "224",
+    "object_repr": "Q13: Based on the clue identify the person/character/thing/etc. The last name in the answer for question A will be the first name in the answer for question B, and so on. (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. A fictional monkey who is the title character of a series of popular children's\\r\\nbooks.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Iconic British pop star of the 1980s and 1990s. A hit song of theirs contains the lyric \\\"Guilty feet have got no rhythm\\\", and another hit song of theirs was covered by Limp Bizkit on their debut album.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. This actor was in HBO's crime drama The Wire early in his career, before going on to bigger roles, including a part in the Marvel Cinematic Universe. He made his directorial debut this year.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Very likely the most famous Canadian Psychologist, dead or alive. Most people know him as a pod caster who discusses cultural issues\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 587,
+  "fields": {
+    "action_time": "2025-11-14T05:08:28.178Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "225",
+    "object_repr": "Q14: You will be shown the poster for four films. For each of these films, the director of the film also directed a film that won the Oscar for Best Picture between 2010-2023. Name the film that won B",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q14: You will be shown the poster for four films. For each of these films, the director of the film also directed a film that won the Oscar for Best Picture between 2010-2023. Name the film that won Best Picture for 2 Points, and name the director for 3 points (5 Points Each).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q14: You will be shown the poster for four films. For each of these films, the director of the film also directed a film that won the Oscar for Best Picture between 2010-2023. Name the film that won Best Picture for 2 Points, and name the director for 3 points (5 Points Each).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q14: You will be shown the poster for four films. For each of these films, the director of the film also directed a film that won the Oscar for Best Picture between 2010-2023. Name the film that won Best Picture for 2 Points, and name the director for 3 points (5 Points Each).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q14: You will be shown the poster for four films. For each of these films, the director of the film also directed a film that won the Oscar for Best Picture between 2010-2023. Name the film that won Best Picture for 2 Points, and name the director for 3 points (5 Points Each).\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 588,
+  "fields": {
+    "action_time": "2025-11-14T05:11:39.584Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "226",
+    "object_repr": "Q15: Identify the Studio/Production company by their iconic sound (2 Points Each).\r\n\r\nhttps://www.youtube.com/watch?v=2eSQm6EH0eY",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 0:22\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 3:04\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 3:39\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 8:37\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. 8:56\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"F. 12:46\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 589,
+  "fields": {
+    "action_time": "2025-11-14T05:12:37.083Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "227",
+    "object_repr": "Q16: Identify the data being shown on the map (5 Points).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 590,
+  "fields": {
+    "action_time": "2025-11-14T05:13:55.765Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "228",
+    "object_repr": "Q17: Identify the famous international place from the satellite photo (5 Points).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q17: Identify the famous international place from the satellite photo (5 Points).\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 591,
+  "fields": {
+    "action_time": "2025-11-14T05:18:47.872Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "229",
+    "object_repr": "Q18: The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points T",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q18: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\\r\\n<br>\\r\\nFor this trivia there is an added element to the puzzle. Step 1 in solving the puzzle is deciphering what the image is. Step 2 requires using the example provided, to figure out the relationship between the clue and the answer, and then apply that relationship to each of the images in step 1.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q18: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\\r\\n<br>\\r\\nFor this trivia there is an added element to the puzzle. Step 1 in solving the puzzle is deciphering what the image is. Step 2 requires using the example provided, to figure out the relationship between the clue and the answer, and then apply that relationship to each of the images in step 1.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 592,
+  "fields": {
+    "action_time": "2025-11-14T05:20:51.084Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "230",
+    "object_repr": "Q19: You will listen to a brief portion of four songs. The songs were all released 2 years a part (e.g. 1980, 1982, 1984, 1986). Name the title of the song (1 Point), name the artist (1 Point), name t",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 0:35 - 1:20\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 0:00 - 0:55\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 0:15 - 1:00\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 0:00 - 0:45\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 593,
+  "fields": {
+    "action_time": "2025-11-14T05:22:42.652Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "231",
+    "object_repr": "Q20: You will listen to a brief portion of four songs. The songs were all released 2 years a part (e.g. 1980, 1982, 1984, 1986). Name the title of the song (1 Point), name the artist (1 Point), name t",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 0:00 - 0:45\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 0:00 - 0:48\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 0:10 - 0:45\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 0:26 - 1:10\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 594,
+  "fields": {
+    "action_time": "2025-11-14T05:24:17.978Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "232",
+    "object_repr": "Q21: You will listen to a brief portion of four songs. The songs were all released 2 years a part (e.g. 1980, 1982, 1984, 1986). Name the title of the song (1 Point), name the artist (1 Point), name t",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 0:10 - 0:55\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 0:05 - 0:50\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 0:10 - 0:59\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 0:30 - 1:15\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 595,
+  "fields": {
+    "action_time": "2025-11-14T05:26:21.583Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "229",
+    "object_repr": "Q18: The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points T",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"Example:\", \"fields\": [\"Text\", \"Question image\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"Puzzle:\", \"fields\": [\"Text\", \"Question image\", \"Answer image\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -8472,13 +8797,26 @@
   }
 },
 {
+  "model": "quiz.game",
+  "pk": 14,
+  "fields": {
+    "name": "May-2023",
+    "description": "",
+    "created_at": "2025-11-12T01:16:36.801Z",
+    "is_password_protected": false,
+    "password": null,
+    "game_order": 8
+  }
+},
+{
   "model": "quiz.category",
   "pk": 1,
   "fields": {
     "name": "Coffee",
     "description": "",
     "games": [
-      1
+      1,
+      14
     ]
   }
 },
@@ -8503,7 +8841,8 @@
       4,
       2,
       1,
-      13
+      13,
+      14
     ]
   }
 },
@@ -8583,7 +8922,8 @@
     "name": "Quotes",
     "description": "",
     "games": [
-      1
+      1,
+      14
     ]
   }
 },
@@ -8636,7 +8976,8 @@
       6,
       7,
       1,
-      10
+      10,
+      14
     ]
   }
 },
@@ -8655,7 +8996,8 @@
       1,
       8,
       9,
-      10
+      10,
+      14
     ]
   }
 },
@@ -8699,7 +9041,8 @@
       1,
       9,
       10,
-      13
+      13,
+      14
     ]
   }
 },
@@ -8719,7 +9062,8 @@
       8,
       9,
       10,
-      13
+      13,
+      14
     ]
   }
 },
@@ -8841,7 +9185,8 @@
       6,
       1,
       9,
-      10
+      10,
+      14
     ]
   }
 },
@@ -8928,7 +9273,8 @@
     "name": "Skylines",
     "description": null,
     "games": [
-      4
+      4,
+      14
     ]
   }
 },
@@ -8955,7 +9301,8 @@
       4,
       6,
       9,
-      10
+      10,
+      14
     ]
   }
 },
@@ -8982,7 +9329,8 @@
     "games": [
       4,
       10,
-      13
+      13,
+      14
     ]
   }
 },
@@ -9155,7 +9503,8 @@
       5,
       8,
       9,
-      13
+      13,
+      14
     ]
   }
 },
@@ -9251,7 +9600,8 @@
       7,
       8,
       9,
-      13
+      13,
+      14
     ]
   }
 },
@@ -9398,7 +9748,8 @@
     "name": "Life",
     "description": null,
     "games": [
-      9
+      9,
+      14
     ]
   }
 },
@@ -9431,7 +9782,8 @@
     "name": "Computers",
     "description": null,
     "games": [
-      10
+      10,
+      14
     ]
   }
 },
@@ -9487,6 +9839,28 @@
     "description": null,
     "games": [
       13
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 84,
+  "fields": {
+    "name": "Law",
+    "description": null,
+    "games": [
+      14
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 85,
+  "fields": {
+    "name": "Fear",
+    "description": null,
+    "games": [
+      14
     ]
   }
 },
@@ -14184,6 +14558,489 @@
     "question_number": 17,
     "created_at": "2025-11-06T03:20:52.903Z",
     "total_points": 12,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 212,
+  "fields": {
+    "game": 14,
+    "category": 38,
+    "text": "For each of the following sports franchises, name a city that the franchise was previoulsy located in (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 1,
+    "created_at": "2025-11-12T01:19:28.370Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 213,
+  "fields": {
+    "game": 14,
+    "category": 84,
+    "text": "Can you name all of the current Supreme Court justices (1 Point for Each Correct Answer, -1 Point for Each Incorrect Answer)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 2,
+    "created_at": "2025-11-12T01:21:39.787Z",
+    "total_points": 9,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 214,
+  "fields": {
+    "game": 14,
+    "category": 78,
+    "text": "Identify the punctuation mark that shares a key on a computer keyboard with each of the following numbers (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 3,
+    "created_at": "2025-11-12T01:24:55.283Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 215,
+  "fields": {
+    "game": 14,
+    "category": 1,
+    "text": "Match the coffee drink to the description (1 Point Each)",
+    "answer_bank": "Turkish Coffee, Flat White, Cappuccino, Cortado",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 4,
+    "created_at": "2025-11-14T01:10:45.261Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 216,
+  "fields": {
+    "game": 14,
+    "category": 40,
+    "text": "Identify what has a greater land area (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 5,
+    "created_at": "2025-11-14T01:30:35.605Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 217,
+  "fields": {
+    "game": 14,
+    "category": 10,
+    "text": "Match the dying words of the famous person to the famous person (1 Point Each)",
+    "answer_bank": "Timothy McVeigh, Che Guevara, Dwight D. Eisenhower, Winston Churchill",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 6,
+    "created_at": "2025-11-14T01:32:00.573Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 218,
+  "fields": {
+    "game": 14,
+    "category": 75,
+    "text": "For each of the following pairs of historical figures, were they alive at the same time? (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 7,
+    "created_at": "2025-11-14T01:33:34.947Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 219,
+  "fields": {
+    "game": 14,
+    "category": 85,
+    "text": "Match each of the following phobias to the description of the phobia (1 Point Each)",
+    "answer_bank": "Halitophobia, Nyctophobia, Phallophobia, Gephyrophobia",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 8,
+    "created_at": "2025-11-14T01:35:05.904Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 220,
+  "fields": {
+    "game": 14,
+    "category": 36,
+    "text": "You will be shown a picture of a city from each of the regions in the answer bank. \r\n<br><br>\r\nEach city shown is the city with the largest population of any city in that region. For 1 point, match the picture of a city to the region. For 2 points, name the country for which the city is located. For 3 points, name the city shown in the image. (24 Points Possible)",
+    "answer_bank": "Central America, The Middle East, Central Asia (The Stans), Sub-Saharan Africa.",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 9,
+    "created_at": "2025-11-14T04:43:37.694Z",
+    "total_points": 24,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 221,
+  "fields": {
+    "game": 14,
+    "category": 62,
+    "text": "For each of the following unlabeled countries, you will be given the population in a specific year, and the average annual population growth rate between that year and a later year. Estimate the population in the outer year (2 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 10,
+    "created_at": "2025-11-14T04:47:10.891Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 222,
+  "fields": {
+    "game": 14,
+    "category": 3,
+    "text": "Rank the following companies, from highest to lowest 2022 revenues. (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 11,
+    "created_at": "2025-11-14T04:49:09.253Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 223,
+  "fields": {
+    "game": 14,
+    "category": 3,
+    "text": "Rank the following companies, from most to fewest employees (2022). (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 12,
+    "created_at": "2025-11-14T04:50:45.801Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 224,
+  "fields": {
+    "game": 14,
+    "category": 14,
+    "text": "Based on the clue identify the person/character/thing/etc. The last name in the answer for question A will be the first name in the answer for question B, and so on. (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 13,
+    "created_at": "2025-11-14T04:53:23.610Z",
+    "total_points": 8,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 225,
+  "fields": {
+    "game": 14,
+    "category": 29,
+    "text": "You will be shown the poster for four films. For each of these films, the director of the film also directed a film that won the Oscar for Best Picture between 2010-2023. Name the film that won Best Picture for 2 Points, and name the director for 3 points (5 Points Each).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 14,
+    "created_at": "2025-11-14T05:08:26.324Z",
+    "total_points": 20,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 226,
+  "fields": {
+    "game": 14,
+    "category": 29,
+    "text": "Identify the Studio/Production company by their iconic sound (2 Points Each).\r\n\r\nhttps://www.youtube.com/watch?v=2eSQm6EH0eY",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 15,
+    "created_at": "2025-11-14T05:11:39.564Z",
+    "total_points": 12,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 227,
+  "fields": {
+    "game": 14,
+    "category": 15,
+    "text": "Identify the data being shown on the map (5 Points).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Guess_the_Data/coup.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Guess_the_Data/coup_answer.jpg",
+    "question_image": "2023/May/Guess_the_Data/coup.png",
+    "answer_image": "2023/May/Guess_the_Data/coup_answer.jpg",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 16,
+    "created_at": "2025-11-14T05:12:37.080Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 228,
+  "fields": {
+    "game": 14,
+    "category": 18,
+    "text": "Identify the famous international place from the satellite photo (5 Points).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Birds_Eye_View/buenos_aires2.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Birds_Eye_View/birds_eye_answer.png",
+    "question_image": "2023/May/Birds_Eye_View/buenos_aires2.png",
+    "answer_image": "2023/May/Birds_Eye_View/birds_eye_answer.png",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 17,
+    "created_at": "2025-11-14T05:13:55.751Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 229,
+  "fields": {
+    "game": 14,
+    "category": 19,
+    "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\r\n<br>\r\nFor this trivia there is an added element to the puzzle. Step 1 in solving the puzzle is deciphering what the image is. Step 2 requires using the example provided, to figure out the relationship between the clue and the answer, and then apply that relationship to each of the images in step 1.",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 18,
+    "created_at": "2025-11-14T05:18:47.860Z",
+    "total_points": 15,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 230,
+  "fields": {
+    "game": 14,
+    "category": 54,
+    "text": "You will listen to a brief portion of four songs. The songs were all released 2 years a part (e.g. 1980, 1982, 1984, 1986). Name the title of the song (1 Point), name the artist (1 Point), name the year it was released (1 Point), and order the songs by release date (oldest to newest) (1 Point Each). (Total Points Possible: 16)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 19,
+    "created_at": "2025-11-14T05:20:51.075Z",
+    "total_points": 16,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 231,
+  "fields": {
+    "game": 14,
+    "category": 54,
+    "text": "You will listen to a brief portion of four songs. The songs were all released 2 years a part (e.g. 1980, 1982, 1984, 1986). Name the title of the song (1 Point), name the artist (1 Point), name the year it was released (1 Point), and order the songs by release date (oldest to newest) (1 Point Each). (Total Points Possible: 16)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 20,
+    "created_at": "2025-11-14T05:22:42.637Z",
+    "total_points": 16,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 232,
+  "fields": {
+    "game": 14,
+    "category": 54,
+    "text": "You will listen to a brief portion of four songs. The songs were all released 2 years a part (e.g. 1980, 1982, 1984, 1986). Name the title of the song (1 Point), name the artist (1 Point), name the year it was released (1 Point), and order the songs by release date (oldest to newest) (1 Point Each). (Total Points Possible: 16)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 21,
+    "created_at": "2025-11-14T05:24:17.963Z",
+    "total_points": 16,
     "game_round": 3
   }
 },
@@ -29077,6 +29934,1446 @@
     "correct_rank": null,
     "points": 2,
     "answer_text": "Semisonic - Closing Time",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 749,
+  "fields": {
+    "question": 212,
+    "text": "A. Arizona Cardinals",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Chicago, St. Louis",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 750,
+  "fields": {
+    "question": 212,
+    "text": "B. Sacramento Kings",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Kansas City",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 751,
+  "fields": {
+    "question": 212,
+    "text": "C. Washington Nationals",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Montreal",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 752,
+  "fields": {
+    "question": 212,
+    "text": "D. Oakland Athletics (A's)",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Kansas City",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 753,
+  "fields": {
+    "question": 213,
+    "text": "",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 9,
+    "answer_text": "John Roberts, Clarence Thomas, Samuel Alito,  Sonia Sotomayor, Elena Kagan, Neil Gorsuch,  Brett Kavanaugh, Amy Coney Barrett, Ketanji Brown Jackson",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 754,
+  "fields": {
+    "question": 214,
+    "text": "A. 1",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "!",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 755,
+  "fields": {
+    "question": 214,
+    "text": "B. 3",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "#",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 756,
+  "fields": {
+    "question": 214,
+    "text": "C. 6",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "^",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 757,
+  "fields": {
+    "question": 214,
+    "text": "D. 9",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "(",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 758,
+  "fields": {
+    "question": 215,
+    "text": "A. Made using equal amounts of espresso and steamed milk. The milk is steamed but not foamy or frothy as in other drinks",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Cortado",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 759,
+  "fields": {
+    "question": 215,
+    "text": "B. One-third espresso, one-third hot milk, and one-third milk foam",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Cappuccino",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 760,
+  "fields": {
+    "question": 215,
+    "text": "C. Made by repeatedly boiling very finely ground coffee with sugar. This process produces a frothy, lightly textured drink",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Turkish Coffee",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 761,
+  "fields": {
+    "question": 215,
+    "text": "D. Consisting of espresso with micro foam (steamed milk with small, fine bubbles and a glossy or velvety consistency)",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Flat White",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 762,
+  "fields": {
+    "question": 216,
+    "text": "A. (Oregon + California) or France",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "States 262,000 mi2 > 213,000 mi2",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 763,
+  "fields": {
+    "question": 216,
+    "text": "B. (Germany + Poland + Czech Republic) or Texas",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Euro Countries 289,000 mi2 > 268,000 mi2",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 764,
+  "fields": {
+    "question": 216,
+    "text": "C. (USA + Canada) or Russia",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "USA + Canada 7.65 million mi2 > 6.6 million mi2",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 765,
+  "fields": {
+    "question": 216,
+    "text": "D. (New York (State) + New Jersey + Pennsylvania) or United Kingdom",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "States 109,000 mi2 > 93,000 mi2",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 766,
+  "fields": {
+    "question": 217,
+    "text": "A. \"It matters not how strait the gate, How charged with punishments the scroll, I am the master of my fate: I am the captain of my soul.\"",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Timothy McVeigh",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 767,
+  "fields": {
+    "question": 217,
+    "text": "B. \"I know you are here to kill me. Shoot, coward, you are only going to kill a man.\"",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Che Guevara",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 768,
+  "fields": {
+    "question": 217,
+    "text": "C. \"I've always loved my wife, my children, and my grandchildren, and I've always loved my country. I want to go. God, take me.\"",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Dwight D. Eisenhower",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 769,
+  "fields": {
+    "question": 217,
+    "text": "D. \"I'm bored with it all.\"",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Winston Churchill",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 770,
+  "fields": {
+    "question": 218,
+    "text": "A. Martin Luther King Jr. & Mark Twain",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "False (Born: 1929, Died: 1910)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 771,
+  "fields": {
+    "question": 218,
+    "text": "B. Mahatma Gandhi & Karl Marx",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "True (Born: 1869, Died: 1883)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 772,
+  "fields": {
+    "question": 218,
+    "text": "C. George Washington & Abraham Lincoln",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "False (Died: 1799, Born: 1809)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 773,
+  "fields": {
+    "question": 218,
+    "text": "D. Billie Eilish & Ronald Reagan",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "True (Born: 2001, Died: 2004)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 774,
+  "fields": {
+    "question": 219,
+    "text": "A. Fear of the penis and in a broader sense an excessive aversion to masculinity",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Phallophobia",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 775,
+  "fields": {
+    "question": 219,
+    "text": "B. Fear of bridges and tunnels",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Gephyrophobia",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 776,
+  "fields": {
+    "question": 219,
+    "text": "C. Fear of bad breath",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Halitophobia",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 777,
+  "fields": {
+    "question": 219,
+    "text": "D. Fear of the dark",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Nyctophobia",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 778,
+  "fields": {
+    "question": 220,
+    "text": "",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 6,
+    "answer_text": "1 Point: Central Asia, 2 Points: Uzbekistan, 3 Points: Tashkent",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Skylines/tashkent.jpg",
+    "answer_image_url": null,
+    "question_image": "2023/May/Skylines/tashkent.jpg",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 779,
+  "fields": {
+    "question": 220,
+    "text": "",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 6,
+    "answer_text": "1 Point: Middle East, 2 Points: Egypt, 3 Points: Cairo",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Skylines/cairo.jpg",
+    "answer_image_url": null,
+    "question_image": "2023/May/Skylines/cairo.jpg",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 780,
+  "fields": {
+    "question": 220,
+    "text": "",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 6,
+    "answer_text": "1 Point: Sub-Saharan Africa, 2 Points: Democratic Republic of Congo, 3 Points: Kinshasa",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Skylines/kinshasa.jpg",
+    "answer_image_url": null,
+    "question_image": "2023/May/Skylines/kinshasa.jpg",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 781,
+  "fields": {
+    "question": 220,
+    "text": "",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 6,
+    "answer_text": "1 Point: Central America, 2 Points: Panama, 3 Points: Panama City",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Skylines/panama_city.jpg",
+    "answer_image_url": null,
+    "question_image": "2023/May/Skylines/panama_city.jpg",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 782,
+  "fields": {
+    "question": 221,
+    "text": "A. Population in 1980 is 226.5 million, what is the population in 2020? The average annual population growth rate is 1.13%",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "329.5 (313.025, 345.975) Accepted",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 783,
+  "fields": {
+    "question": 221,
+    "text": "B. Population in 1960 is 36.27 million, what is the population in 1970? The average annual population growth rate is 3.86%",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "50.29 (47.7755, 52.8045) Accepted",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 784,
+  "fields": {
+    "question": 222,
+    "text": "A. Coca-Cola Company",
+    "display_order": 1,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": "38,655 Million",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 785,
+  "fields": {
+    "question": 222,
+    "text": "B. CVS Health",
+    "display_order": 2,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": "292,111 Million",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 786,
+  "fields": {
+    "question": 222,
+    "text": "C. Microsoft",
+    "display_order": 3,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": "198,087 Million",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 787,
+  "fields": {
+    "question": 222,
+    "text": "D. PepsiCo",
+    "display_order": 4,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": "79,474 Million",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 788,
+  "fields": {
+    "question": 223,
+    "text": "A. Nike",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "73k",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 789,
+  "fields": {
+    "question": 223,
+    "text": "B. Tesla",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "99k",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 790,
+  "fields": {
+    "question": 223,
+    "text": "C. The Walt Disney Company",
+    "display_order": 3,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": "171k",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 791,
+  "fields": {
+    "question": 223,
+    "text": "D. Wells Fargo",
+    "display_order": 4,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": "247k",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 792,
+  "fields": {
+    "question": 224,
+    "text": "A. A fictional monkey who is the title character of a series of popular children's\r\nbooks.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Curious George",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 793,
+  "fields": {
+    "question": 224,
+    "text": "B. Iconic British pop star of the 1980s and 1990s. A hit song of theirs contains the lyric \"Guilty feet have got no rhythm\", and another hit song of theirs was covered by Limp Bizkit on their debut album.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "George Michael",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 794,
+  "fields": {
+    "question": 224,
+    "text": "C. This actor was in HBO's crime drama The Wire early in his career, before going on to bigger roles, including a part in the Marvel Cinematic Universe. He made his directorial debut this year.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Michael B. Jordan",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 795,
+  "fields": {
+    "question": 224,
+    "text": "D. Very likely the most famous Canadian Psychologist, dead or alive. Most people know him as a pod caster who discusses cultural issues",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Jordan Peterson",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 796,
+  "fields": {
+    "question": 225,
+    "text": "",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Nomadland -- Chloe Zhao",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Movies/eternals.jpg",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Movies/nomadland.jpg",
+    "question_image": "2023/May/Movies/eternals.jpg",
+    "answer_image": "2023/May/Movies/nomadland.jpg",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 797,
+  "fields": {
+    "question": 225,
+    "text": "",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Green Book -- Peter Farrelly",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Movies/dumb_and_dumber.jpg",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Movies/green_book.jpg",
+    "question_image": "2023/May/Movies/dumb_and_dumber.jpg",
+    "answer_image": "2023/May/Movies/green_book.jpg",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 798,
+  "fields": {
+    "question": 225,
+    "text": "",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Argo -- Ben Affleck",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Movies/gbg.jpg",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Movies/argo.jpg",
+    "question_image": "2023/May/Movies/gbg.jpg",
+    "answer_image": "2023/May/Movies/argo.jpg",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 799,
+  "fields": {
+    "question": 225,
+    "text": "",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "The King's Speech -- Tom Hooper",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Movies/cats.jpg",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Movies/kings_speech.jpg",
+    "question_image": "2023/May/Movies/cats.jpg",
+    "answer_image": "2023/May/Movies/kings_speech.jpg",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 800,
+  "fields": {
+    "question": 226,
+    "text": "A. 0:22",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "20th Century Fox",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 801,
+  "fields": {
+    "question": 226,
+    "text": "B. 3:04",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Columbia",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 802,
+  "fields": {
+    "question": 226,
+    "text": "C. 3:39",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Dreamworks",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 803,
+  "fields": {
+    "question": 226,
+    "text": "D. 8:37",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "New Line Cinema",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 804,
+  "fields": {
+    "question": 226,
+    "text": "E. 8:56",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Paramount",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 805,
+  "fields": {
+    "question": 226,
+    "text": "F. 12:46",
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Universal",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 806,
+  "fields": {
+    "question": 228,
+    "text": "",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Buenos Aires",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 807,
+  "fields": {
+    "question": 229,
+    "text": "Example:",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 0,
+    "answer_text": null,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Visual_Pun/vp_example.png",
+    "answer_image_url": null,
+    "question_image": "2023/May/Visual_Pun/vp_example.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 808,
+  "fields": {
+    "question": 229,
+    "text": "Puzzle:",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 15,
+    "answer_text": "Black Keys, Fall Out Boy, The Killers, Good Charlotte",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Visual_Pun/vp_clues.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2023/May/Visual_Pun/vp_answers.png",
+    "question_image": "2023/May/Visual_Pun/vp_clues.png",
+    "answer_image": "2023/May/Visual_Pun/vp_answers.png",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 809,
+  "fields": {
+    "question": 230,
+    "text": "A. 0:35 - 1:20",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "Steal My Sunshine - LEN 1999",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 810,
+  "fields": {
+    "question": 230,
+    "text": "B. 0:00 - 0:55",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "I Believe in a Thing Called Love -- The Darkness 2003",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 811,
+  "fields": {
+    "question": 230,
+    "text": "C. 0:15 - 1:00",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "Around the World -- Daft Punk 1997",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 812,
+  "fields": {
+    "question": 230,
+    "text": "D. 0:00 - 0:45",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "The Middle -- Jimmy Eat World 2001",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 813,
+  "fields": {
+    "question": 231,
+    "text": "A. 0:00 - 0:45",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "Buggin Out -- A Tribe Called Quest 1991",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 814,
+  "fields": {
+    "question": 231,
+    "text": "B. 0:00 - 0:48",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "Just a Friend -- Biz Markie 1989",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 815,
+  "fields": {
+    "question": 231,
+    "text": "C. 0:10 - 0:45",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "This is How We Do It -- Montell Jordan 1995",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 816,
+  "fields": {
+    "question": 231,
+    "text": "D. 0:26 - 1:10",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "C.R.E.A.M. -- Wu-Tang Clan 1993",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 817,
+  "fields": {
+    "question": 232,
+    "text": "A. 0:10 - 0:55",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "Too Little Too Late -- JoJo 2006",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 818,
+  "fields": {
+    "question": 232,
+    "text": "B. 0:05 - 0:50",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "Stronger -- Brittany Spears 2000",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 819,
+  "fields": {
+    "question": 232,
+    "text": "C. 0:10 - 0:59",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "Foolish -- Ashanti 2002",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 820,
+  "fields": {
+    "question": 232,
+    "text": "D. 0:30 - 1:15",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 4,
+    "answer_text": "Goodies -- Ciara 2004",
     "question_image_url": null,
     "answer_image_url": null,
     "question_image": "",
