@@ -121,7 +121,7 @@ class SessionCreateSerializer(serializers.ModelSerializer):
 class SessionTeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = SessionTeam
-        fields = ["id", "team_name", "total_score", "is_connected", "joined_at"]
+        fields = ["id", "team_name", "total_score", "joined_at"]
 
 
 class GameSessionSerializer(serializers.ModelSerializer):
