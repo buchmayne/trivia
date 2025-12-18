@@ -1,6 +1,7 @@
 """
 Tests for quiz/session_views.py - Frontend views for game sessions
 """
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from quiz.models import Game, GameSession

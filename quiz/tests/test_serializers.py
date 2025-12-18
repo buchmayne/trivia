@@ -1,6 +1,7 @@
 """
 Tests for quiz/serializers.py - Django REST Framework serializers
 """
+
 from django.test import TestCase
 from quiz.models import (
     Game,
@@ -351,9 +352,7 @@ class TeamAnswerSubmissionSerializerTest(TestCase):
         self.session = GameSession.objects.create(
             game=self.game, host_name="Host", session_code="ABC123"
         )
-        self.team = SessionTeam.objects.create(
-            session=self.session, team_name="Team A"
-        )
+        self.team = SessionTeam.objects.create(session=self.session, team_name="Team A")
 
     def test_create_team_answer(self):
         """Test creating a team answer through serializer"""

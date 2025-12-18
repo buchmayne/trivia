@@ -1,6 +1,7 @@
 """
 Integration tests for complete trivia application workflows
 """
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from rest_framework.test import APIClient
@@ -91,9 +92,7 @@ class CompleteTriviaGameWorkflowTest(TestCase):
         self.assertContains(response, "Integration Test Trivia")
 
         # 2. View game overview
-        response = self.client.get(
-            reverse("quiz:game_overview", args=[self.game.id])
-        )
+        response = self.client.get(reverse("quiz:game_overview", args=[self.game.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["total_questions"], 3)
         self.assertEqual(response.context["total_points"], 35)
@@ -151,7 +150,9 @@ class CompleteTriviaGameWorkflowTest(TestCase):
         # 3. Start the session
         status_url = reverse("quiz:api_update_session_status", args=[session_id])
         response = self.api_client.post(
-            status_url, {"status": "active", "current_question_number": 1}, format="json"
+            status_url,
+            {"status": "active", "current_question_number": 1},
+            format="json",
         )
         self.assertEqual(response.status_code, 200)
 

@@ -1,6 +1,7 @@
 """
 Tests for quiz/analytics.py and quiz/utils.py - Analytics and utility functions
 """
+
 from django.test import TestCase
 from unittest.mock import patch, MagicMock
 import pandas as pd

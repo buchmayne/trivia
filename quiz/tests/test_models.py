@@ -1,6 +1,7 @@
 """
 Tests for core models (Game, Question, Answer, QuestionRound, Category, QuestionType)
 """
+
 from django.test import TestCase
 from django.db import IntegrityError, transaction
 from django.utils import timezone

@@ -1,6 +1,7 @@
 """
 Tests for GameSession, SessionTeam, and TeamAnswer models
 """
+
 from django.test import TestCase
 from django.db import IntegrityError, transaction
 from django.utils import timezone
@@ -109,9 +110,7 @@ class SessionTeamModelTest(TestCase):
 
     def test_create_team(self):
         """Test creating a team in a session"""
-        team = SessionTeam.objects.create(
-            session=self.session, team_name="Team Alpha"
-        )
+        team = SessionTeam.objects.create(session=self.session, team_name="Team Alpha")
 
         self.assertEqual(team.session, self.session)
         self.assertEqual(team.team_name, "Team Alpha")
@@ -120,9 +119,7 @@ class SessionTeamModelTest(TestCase):
 
     def test_team_default_total_score(self):
         """Test that total_score defaults to 0"""
-        team = SessionTeam.objects.create(
-            session=self.session, team_name="Team Alpha"
-        )
+        team = SessionTeam.objects.create(session=self.session, team_name="Team Alpha")
 
         self.assertEqual(team.total_score, 0)
 
@@ -132,9 +129,7 @@ class SessionTeamModelTest(TestCase):
 
         with self.assertRaises(IntegrityError):
             with transaction.atomic():
-                SessionTeam.objects.create(
-                    session=self.session, team_name="Team Alpha"
-                )
+                SessionTeam.objects.create(session=self.session, team_name="Team Alpha")
 
     def test_same_team_name_different_sessions(self):
         """Test that same team name can exist in different sessions"""
@@ -142,9 +137,7 @@ class SessionTeamModelTest(TestCase):
             game=self.game, host_name="Another Host", session_code="XYZ789"
         )
 
-        team1 = SessionTeam.objects.create(
-            session=self.session, team_name="Team Alpha"
-        )
+        team1 = SessionTeam.objects.create(session=self.session, team_name="Team Alpha")
         team2 = SessionTeam.objects.create(session=session2, team_name="Team Alpha")
 
         self.assertEqual(team1.team_name, team2.team_name)
@@ -152,18 +145,14 @@ class SessionTeamModelTest(TestCase):
 
     def test_team_joined_at_auto_set(self):
         """Test that joined_at is automatically set"""
-        team = SessionTeam.objects.create(
-            session=self.session, team_name="Team Alpha"
-        )
+        team = SessionTeam.objects.create(session=self.session, team_name="Team Alpha")
 
         self.assertIsNotNone(team.joined_at)
         self.assertIsInstance(team.joined_at, timezone.datetime)
 
     def test_update_team_score(self):
         """Test updating a team's total score"""
-        team = SessionTeam.objects.create(
-            session=self.session, team_name="Team Alpha"
-        )
+        team = SessionTeam.objects.create(session=self.session, team_name="Team Alpha")
 
         team.total_score = 100
         team.save()
@@ -230,9 +219,7 @@ class TeamAnswerModelTest(TestCase):
 
     def test_different_teams_same_question(self):
         """Test that different teams can answer the same question"""
-        team2 = SessionTeam.objects.create(
-            session=self.session, team_name="Team Beta"
-        )
+        team2 = SessionTeam.objects.create(session=self.session, team_name="Team Beta")
 
         answer1 = TeamAnswer.objects.create(
             team=self.team, question=self.question, submitted_answer="Paris"
@@ -304,10 +291,16 @@ class SessionWorkflowTest(TestCase):
 
         # Teams answer questions
         TeamAnswer.objects.create(
-            team=team1, question=self.questions[0], submitted_answer="A", points_awarded=10
+            team=team1,
+            question=self.questions[0],
+            submitted_answer="A",
+            points_awarded=10,
         )
         TeamAnswer.objects.create(
-            team=team2, question=self.questions[0], submitted_answer="B", points_awarded=5
+            team=team2,
+            question=self.questions[0],
+            submitted_answer="B",
+            points_awarded=5,
         )
 
         # Update team scores

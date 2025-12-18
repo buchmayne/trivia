@@ -1,6 +1,7 @@
 """
 Tests for quiz/api_views.py - REST API endpoints for game sessions
 """
+
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
@@ -175,9 +176,7 @@ class AddTeamToSessionAPITest(TestCase):
         """Test adding team when session is at max capacity"""
         # Fill the session
         for i in range(self.session.max_teams):
-            SessionTeam.objects.create(
-                session=self.session, team_name=f"Team {i + 1}"
-            )
+            SessionTeam.objects.create(session=self.session, team_name=f"Team {i + 1}")
 
         url = reverse("quiz:api_add_team", args=[self.session.id])
         data = {"team_name": "Extra Team"}
@@ -277,9 +276,7 @@ class SubmitTeamAnswerAPITest(TestCase):
         self.session = GameSession.objects.create(
             game=self.game, host_name="Host", session_code="ABC123"
         )
-        self.team = SessionTeam.objects.create(
-            session=self.session, team_name="Team A"
-        )
+        self.team = SessionTeam.objects.create(session=self.session, team_name="Team A")
 
     def test_submit_answer_success(self):
         """Test successfully submitting a team answer"""
@@ -297,9 +294,7 @@ class SubmitTeamAnswerAPITest(TestCase):
         self.assertIn("answer_id", response.data)
         self.assertEqual(response.data["points_awarded"], 10)
         self.assertTrue(
-            TeamAnswer.objects.filter(
-                team=self.team, question=self.question
-            ).exists()
+            TeamAnswer.objects.filter(team=self.team, question=self.question).exists()
         )
 
     def test_submit_answer_missing_fields(self):

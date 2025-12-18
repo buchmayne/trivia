@@ -1,6 +1,7 @@
 """
 Tests for quiz/fields.py - Custom model fields for S3/CloudFront integration
 """
+
 from django.test import TestCase
 from django.conf import settings
 from unittest.mock import Mock, patch, MagicMock

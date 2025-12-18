@@ -1,6 +1,7 @@
 """
 Tests for core views (game_list, game_overview, question_view, answer_view, etc.)
 """
+
 from django.test import TestCase, RequestFactory, Client
 from django.urls import reverse
 from quiz.models import Game, Category, QuestionType, QuestionRound, Question

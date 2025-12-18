@@ -1,6 +1,7 @@
 """
 Tests for quiz/api.py - Django REST Framework ViewSets
 """
+
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
@@ -117,7 +118,10 @@ class GameViewSetTest(TestCase):
         response = self.client.post(url, data, format="json")
 
         # Should return 403 Forbidden or 405 Method Not Allowed
-        self.assertIn(response.status_code, [status.HTTP_403_FORBIDDEN, status.HTTP_405_METHOD_NOT_ALLOWED])
+        self.assertIn(
+            response.status_code,
+            [status.HTTP_403_FORBIDDEN, status.HTTP_405_METHOD_NOT_ALLOWED],
+        )
 
     def test_retrieve_nonexistent_game(self):
         """Test retrieving a game that doesn't exist"""
@@ -266,7 +270,10 @@ class QuestionViewSetTest(TestCase):
         response = self.client.post(url, data, format="json")
 
         # Should return 403 Forbidden or 405 Method Not Allowed
-        self.assertIn(response.status_code, [status.HTTP_403_FORBIDDEN, status.HTTP_405_METHOD_NOT_ALLOWED])
+        self.assertIn(
+            response.status_code,
+            [status.HTTP_403_FORBIDDEN, status.HTTP_405_METHOD_NOT_ALLOWED],
+        )
 
     def test_multiple_filters_combined(self):
         """Test using multiple filters together"""

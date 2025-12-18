@@ -1,6 +1,7 @@
 """
 Extended tests for quiz/views.py - Additional edge cases and scenarios
 """
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.db.models import Sum
@@ -238,9 +239,7 @@ class GetRoundQuestionsExtendedTest(TestCase):
             question_number=2,
         )
 
-        url = reverse(
-            "quiz:round_questions_list", args=[self.game.id, self.round.id]
-        )
+        url = reverse("quiz:round_questions_list", args=[self.game.id, self.round.id])
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -262,9 +261,7 @@ class GetRoundQuestionsExtendedTest(TestCase):
             question_number=1,
         )
 
-        url = reverse(
-            "quiz:round_questions_list", args=[self.game.id, self.round.id]
-        )
+        url = reverse("quiz:round_questions_list", args=[self.game.id, self.round.id])
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -366,9 +363,7 @@ class AnalyticsViewExtendedTest(TestCase):
             self.assertIn("Alice", result.players)
 
         # Player stats should only have Alice
-        self.assertTrue(
-            all(stat.player == "Alice" for stat in player_stats)
-        )
+        self.assertTrue(all(stat.player == "Alice" for stat in player_stats))
 
     def test_analytics_filter_multiple_games_only(self):
         """Test filtering to show only players with multiple games"""
