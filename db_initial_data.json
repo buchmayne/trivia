@@ -8671,6 +8671,422 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 668,
+  "fields": {
+    "action_time": "2025-12-05T00:57:01.731Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "18",
+    "object_repr": "January-2026",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 669,
+  "fields": {
+    "action_time": "2025-12-05T00:57:11.825Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "18",
+    "object_repr": "January-2026",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game order\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 670,
+  "fields": {
+    "action_time": "2025-12-05T01:33:31.614Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "292",
+    "object_repr": "Q1: Each of the following images is a state that has been rotated. Identify the U.S. state (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 671,
+  "fields": {
+    "action_time": "2025-12-05T01:34:41.518Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "292",
+    "object_repr": "Q1: Each of the following images is a state that has been rotated. Identify the U.S. state (2 Points Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"A.\", \"fields\": [\"Question image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 672,
+  "fields": {
+    "action_time": "2025-12-05T01:41:24.215Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "293",
+    "object_repr": "Q2: Match the description of the doctor specialization to the doctor specialization (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Specialty for both adult internal medicine and pediatric medicine that concerns the study of the kidneys\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Branch of medicine that deals with the study, treatment, diagnosis, and prevention of cancer.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Branch of medicine devoted to the diagnosis and management of disorders of which the common feature is inflammation in the bones, muscles, joints, and internal organs.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Branch of medicine that deals with the diagnosis, treatment, and surgery of eye diseases and disorders.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 673,
+  "fields": {
+    "action_time": "2025-12-07T01:03:16.770Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "294",
+    "object_repr": "Q13: Solve the puzzle by getting the correct three digit password (5 Points)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q13: Solve the puzzle by getting the correct three digit password (5 Points)\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 674,
+  "fields": {
+    "action_time": "2025-12-07T01:49:48.428Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "176",
+    "object_repr": "Q14: Identify the data shown on the map (5 Points).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game\", \"Question number\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 675,
+  "fields": {
+    "action_time": "2025-12-07T01:51:34.557Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "294",
+    "object_repr": "Q13: Solve the puzzle by getting the correct three digit password (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 676,
+  "fields": {
+    "action_time": "2025-12-07T01:52:18.348Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "176",
+    "object_repr": "Q14: Identify the data shown on the map (5 Points).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 677,
+  "fields": {
+    "action_time": "2025-12-07T02:17:52.860Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "295",
+    "object_repr": "Q15: Identify the famous international place from the satellite photo (5 Points).",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q15: Identify the famous international place from the satellite photo (5 Points).\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 678,
+  "fields": {
+    "action_time": "2025-12-07T02:18:38.245Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "295",
+    "object_repr": "Q18: Identify the famous international place from the satellite photo (5 Points).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question number\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 679,
+  "fields": {
+    "action_time": "2025-12-07T02:18:48.157Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "176",
+    "object_repr": "Q17: Identify the data shown on the map (5 Points).",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question number\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 680,
+  "fields": {
+    "action_time": "2025-12-07T02:18:57.803Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "294",
+    "object_repr": "Q16: Solve the puzzle by getting the correct three digit password (5 Points)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Question number\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 681,
+  "fields": {
+    "action_time": "2025-12-07T02:30:52.256Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "296",
+    "object_repr": "Q3: Select the right answer from the options for each question (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. When was the last time a Republican was Governor of Oregon: 1975, 1987, 1995, 2001\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. When was the last time there was a Democrat Senator of Florida: 2011, 2015, 2019, 2023\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. When was the last time a Democrat was Governor of Texas: 1955, 1970, 1995, 2000\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. When was the last time there a Republican was Governor of Vermont: 1987, 1999, 2012, 2017\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 682,
+  "fields": {
+    "action_time": "2025-12-07T02:50:15.831Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "297",
+    "object_repr": "Q4: For each of the listed Dr. Pepper varieties, was it a real soda or a made up idea?",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Dr. Pepper Red Fusion\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Dr Pepper Strawberries and Cream\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Dr. Pepper 10\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Dr Pepper Tropical Burst\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 683,
+  "fields": {
+    "action_time": "2025-12-07T02:50:50.043Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "297",
+    "object_repr": "Q4: For each of the listed Dr. Pepper varieties, was it a real soda or a made up idea?",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"B. Dr. Pepper Strawberries and Cream\", \"fields\": [\"Text\"]}}, {\"changed\": {\"name\": \"answer\", \"object\": \"D. Dr. Pepper Tropical Burst\", \"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 684,
+  "fields": {
+    "action_time": "2025-12-07T03:03:37.192Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "298",
+    "object_repr": "Q15: Connect the actors by films they share a collaborator with. Connect Sydney Sweeney to Julia Roberts in as few degrees as possible. Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree.",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q15: Connect the actors by films they share a collaborator with. Connect Sydney Sweeney to Julia Roberts in as few degrees as possible. Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 685,
+  "fields": {
+    "action_time": "2025-12-07T03:06:29.566Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "298",
+    "object_repr": "Q15: Connect the actors by films they share a collaborator with. Connect Sydney Sweeney to Julia Roberts in as few degrees as possible. Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree.",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"Answer for Q15: Connect the actors by films they share a collaborator with. Connect Sydney Sweeney to Julia Roberts in as few degrees as possible. Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree.\", \"fields\": [\"Answer text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 686,
+  "fields": {
+    "action_time": "2025-12-07T03:26:51.416Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "299",
+    "object_repr": "Q5: Match the sub genre of Jazz music to its description (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Style of jazz characterized by a fast tempo, instrumental virtuosity, and improvisation based on a combination of harmonic structure and occasional references to the melody.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Combined elements of soul music, funk, disco, including looping beats and modal harmony\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Combines elements of jazz, funk, and rock. Characterized by electronic instruments, riffs, and extended solos.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Pioneered by Miles Davis, among others, is characterized by the use of modes, such as dorian modes, as the primary organizing element.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 687,
+  "fields": {
+    "action_time": "2025-12-09T04:31:55.805Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "300",
+    "object_repr": "Q6: What is the name of each of the following polygons? (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. 5 sided polygon\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. 6 sides polygon\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. 7 sided polygon\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. 8 sided polygon\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 688,
+  "fields": {
+    "action_time": "2025-12-09T04:39:26.934Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "301",
+    "object_repr": "Q7: Order the following mammals from fastest to slowest max speed (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Hippopotamus\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Warthog\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Tiger\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Wombat\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 689,
+  "fields": {
+    "action_time": "2025-12-09T05:10:39.372Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "302",
+    "object_repr": "Q8: Match the description of the Protestant tradition to its name (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Tradition whose origins, doctrine and practice derive from the life and teachings of John Wesley. Focuses on sanctification and the transforming effect of faith on the character of a Christian, exemplified by living a victorious life over sin. Unique to BLANK is its definition of sin: a \\\"voluntary transgression of a known law of God.\\\" Distinguishing doctrines include the new birth, assurance, imparted righteousness, and obedience to God manifested in performing works of piety.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Protestant tradition of Christianity distinguished by baptizing only believers (believer's baptism) and doing so by total immersion. Modern BLANK churches generally subscribe to the doctrines of soul competency (the responsibility and accountability of every person before God), sola fide (justification by faith alone), sola scriptura (the Bible as the sole infallible authority) and congregationalist ecclesiastical polity.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Adheres to the inerrancy of the Bible and the necessity of being born again: an individual repenting of their sin and \\\"accepting Jesus Christ as their personal Lord and Savior\\\". This empowerment includes the use of spiritual gifts: such as speaking in tongues and divine healing.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Generally united by a belief in each human's ability to be guided by the inward light to \\\"make the witness of God\\\" known to everyone. They have traditionally professed a priesthood of all believers inspired by the First Epistle of Peter. To differing extents, they avoid creeds and hierarchical structures.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 690,
+  "fields": {
+    "action_time": "2025-12-09T05:22:35.460Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "303",
+    "object_repr": "Q9: Match the popular television medical drama to its synopsis (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Set in Chicago, this medical drama deals with the personal and professional crises of the doctors in the emergency room at County General Hospital. From the exciting to the mundane, a day in the frantic hospital serves up many interesting dilemmas as well as heartrending choices for everyone on staff.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Shaun Murphy, a young autistic surgeon who has savant syndrome, relocates from a quiet country life to join the surgical unit at the prestigious San Jose St. Bonaventure Hospital . Having survived a troubled childhood, Shaun is alone in the world and unable to personally connect with those around him, but he finds his niche using his extraordinary medical skill and intuition to save lives and challenge the skepticism of his colleagues.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. The medical drama series focuses on a group of young doctors at Seattle Grace Mercy West Hospital, who began their careers at the facility as interns. One of the young doctors is the daughter of a famous surgeon. They  struggle to maintain relationships with their colleagues, particularly the hospital's one-time chief of surgery, Richard Webber, due to a pre-existing relationship between them.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. The ongoing lives of the diverse and evolving citizens of the fictional town of Port Charles in upstate New York. The glamour and excitement of those who have come to find their destinies in the familiar seaport town intertwine with the lives, loves and fortunes of beloved faces. Love, danger and mind-blowing plot twists abound.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. A realistic examination of the challenges facing healthcare workers in America as seen through the lens of the frontline heroes working in a modern-day hospital\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 691,
+  "fields": {
+    "action_time": "2025-12-09T05:24:54.753Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "298",
+    "object_repr": "Q15: Connect the actors by films they share a collaborator with. Connect Sydney Sweeney to Julia Roberts in as few degrees as possible. Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree.",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"answer\", \"object\": \"Answer for Q15: Connect the actors by films they share a collaborator with. Connect Sydney Sweeney to Julia Roberts in as few degrees as possible. Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree.\", \"fields\": [\"Answer text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 692,
+  "fields": {
+    "action_time": "2025-12-09T05:59:09.428Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "304",
+    "object_repr": "Q10: Based on the definition/description identify the Gen Z/Alpha Slang term (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. General term for spending too much time online watching low quality content\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. This slang, which could mean good, bad, cool, is named after the popular YouTube series by animator Alexey Gerasimov. Most of the videos show toilets with the heads of grown men spinning and talking while singing songs.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. A lie or something that\\u2019s not true.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. When an enemy is out to get you\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 693,
+  "fields": {
+    "action_time": "2025-12-11T04:33:09.990Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "305",
+    "object_repr": "Q11: Identify the music super group name from the list of members (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Snoop Dogg, Warren G, Nate Dogg\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Thom Yorke (Radiohead), Flea (The Red Hot Chili Peppers), Nigel Godrich (long time producer for Radiohead), Joey Waronker (who has played drums for acts such as R.E.M, Beck and Smashing Pumpkins), Mauro Refosco (David Byrne and Forro in the Dark)\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Kendrick Lamar, Ab-Soul, Jay Rock, Schoolboy Q\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Steve Angello, Axwell, Sebastian Ingrosso\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. Phoebe Bridgers, Julien Baker, Lucy Dacus\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 694,
+  "fields": {
+    "action_time": "2025-12-16T02:17:53.423Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "306",
+    "object_repr": "Q12: Order the following NBA players from highest to lowest AVERAGE annual salary (1 Point Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A. Victor Wembanyama\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B. Kobe Bryant\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C. Tobias Harris\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D. Michael Jordan\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E. LeBron James\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 695,
+  "fields": {
+    "action_time": "2025-12-17T00:55:39.433Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "307",
+    "object_repr": "Q13: Identify the written language from the example (2 Points Each)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"A.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"B.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"C.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"D.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"E.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"F.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 696,
+  "fields": {
+    "action_time": "2025-12-17T01:20:24.033Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "308",
+    "object_repr": "Q14: Fill in the rest of the 2025 Spotify U.S. top Podcasts chart. For each correct podcast listed in the top 10 (2 Points), and an additional (1 Point) for each correct ranking.",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"2.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"3.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"4.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"5.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"6.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"8.\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"9.\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 697,
+  "fields": {
+    "action_time": "2025-12-17T03:05:26.639Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "309",
+    "object_repr": "Q19: The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points T",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q19: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q19: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q19: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q19: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q19: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 698,
+  "fields": {
+    "action_time": "2025-12-17T03:09:37.023Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "310",
+    "object_repr": "Q3: The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points To",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q3: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q3: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q3: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q3: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"Answer for Q3: The following four image collage is a visual pun.\\r\\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 699,
+  "fields": {
+    "action_time": "2025-12-18T05:14:41.977Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "311",
+    "object_repr": "Q20: Listen to each of the following songs that appeared in the top 5 of one of three music publications best songs of 2025 list. For each song identify the song title and artist, and which publicatio",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"answer\", \"object\": \"1. 0:05 - 1:05\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"2. 0:00 - 1:05\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"3. 0:30 - 1:25\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"4. 0:00 - 0:50\"}}, {\"added\": {\"name\": \"answer\", \"object\": \"5. 0:30 - 1:30\"}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -9588,8 +10004,8 @@
   "model": "sessions.session",
   "pk": "vy27ix5qmryfwfdv9tjguhr5fghx5yxa",
   "fields": {
-    "session_data": ".eJxVjDsOwjAQBe_iGln4l2Qp6XMGa9e7xgHkSHFSIe4OkVJA-2bmvVTEbS1xa7LEidVFGXX63QjTQ-oO-I71Nus013WZSO-KPmjT48zyvB7u30HBVr61OAsSwBqXeobkwbsOHeUAfUAYAgkP1OWEmYXZZjCSg7fpbAmMIVbvD-y6OKY:1vQyF4:kjAOWFyOeNc0X7JaBCGCasV1aXXe7IMDqyLrU9o11tQ",
-    "expire_date": "2025-12-18T01:34:46.400Z"
+    "session_data": ".eJxVjMsOwiAQRf-FtSECpe24dO83kIEZWnwUA60ujP-uTbrQ7T3nnpdwuMyjWyoXl0gchBK7381juPC0AjrjNGQZ8jSX5OWqyI1WecrE1-Pm_gVGrOP3zUYDW9DKhI4gNNCYFo2PFjqL0FvP1Ps2BozERDqC4mgbHfbag1J-jQ54Y3fHWp-5kHtwSTExOdWLw1wWfn8ACARE8Q:1vRKho:aiKev7KHZI10NT-IFU9ZYvEj9XFu6ja9rJoXXBn6xgI",
+    "expire_date": "2025-12-19T01:33:56.331Z"
   }
 },
 {
@@ -9797,6 +10213,18 @@
   }
 },
 {
+  "model": "quiz.game",
+  "pk": 18,
+  "fields": {
+    "name": "January-2026",
+    "description": "",
+    "created_at": "2025-12-05T00:57:01.727Z",
+    "is_password_protected": true,
+    "password": "january2026",
+    "game_order": 15
+  }
+},
+{
   "model": "quiz.category",
   "pk": 1,
   "fields": {
@@ -9951,7 +10379,8 @@
       17,
       1,
       2,
-      10
+      10,
+      18
     ]
   }
 },
@@ -9990,7 +10419,8 @@
       17,
       1,
       2,
-      10
+      10,
+      18
     ]
   }
 },
@@ -10038,7 +10468,8 @@
       16,
       1,
       2,
-      10
+      10,
+      18
     ]
   }
 },
@@ -10051,6 +10482,7 @@
     "games": [
       4,
       5,
+      3,
       6,
       7,
       8,
@@ -10062,7 +10494,8 @@
       17,
       1,
       2,
-      10
+      10,
+      18
     ]
   }
 },
@@ -10214,7 +10647,8 @@
       5,
       9,
       16,
-      2
+      2,
+      18
     ]
   }
 },
@@ -10229,7 +10663,8 @@
       7,
       13,
       16,
-      2
+      2,
+      18
     ]
   }
 },
@@ -10254,7 +10689,8 @@
       8,
       9,
       2,
-      10
+      10,
+      18
     ]
   }
 },
@@ -10309,7 +10745,8 @@
       14,
       15,
       16,
-      10
+      10,
+      18
     ]
   }
 },
@@ -10324,7 +10761,8 @@
       5,
       6,
       7,
-      15
+      15,
+      18
     ]
   }
 },
@@ -10341,7 +10779,8 @@
       15,
       16,
       17,
-      10
+      10,
+      18
     ]
   }
 },
@@ -10453,7 +10892,8 @@
     "description": null,
     "games": [
       5,
-      7
+      7,
+      18
     ]
   }
 },
@@ -10523,7 +10963,8 @@
       14,
       15,
       16,
-      17
+      17,
+      18
     ]
   }
 },
@@ -10658,7 +11099,8 @@
     "description": null,
     "games": [
       7,
-      17
+      17,
+      18
     ]
   }
 },
@@ -10680,7 +11122,8 @@
     "name": "Religion",
     "description": null,
     "games": [
-      8
+      8,
+      18
     ]
   }
 },
@@ -10797,7 +11240,8 @@
     "name": "Slang",
     "description": null,
     "games": [
-      9
+      9,
+      18
     ]
   }
 },
@@ -10832,7 +11276,8 @@
     "name": "Internet",
     "description": null,
     "games": [
-      10
+      10,
+      18
     ]
   }
 },
@@ -10979,6 +11424,39 @@
     "description": null,
     "games": [
       17
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 94,
+  "fields": {
+    "name": "Medicine",
+    "description": null,
+    "games": [
+      18
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 95,
+  "fields": {
+    "name": "Animals",
+    "description": null,
+    "games": [
+      18
+    ]
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 96,
+  "fields": {
+    "name": "Language",
+    "description": null,
+    "games": [
+      18
     ]
   }
 },
@@ -14855,20 +15333,20 @@
   "model": "quiz.question",
   "pk": 176,
   "fields": {
-    "game": 3,
+    "game": 18,
     "category": 15,
     "text": "Identify the data shown on the map (5 Points).",
     "answer_bank": "",
     "question_type": 3,
-    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/coalition_of_the_willing.png",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Guess_the_Data/Screenshot 2025-12-06 at 5.50.35PM.png",
     "answer_image_url": null,
-    "question_image": "Future-Game/Guess_the_Data/coalition_of_the_willing.png",
+    "question_image": "2026/January/Guess_the_Data/Screenshot 2025-12-06 at 5.50.35PM.png",
     "answer_image": "",
     "question_video_url": null,
     "answer_video_url": null,
     "question_video": "",
     "answer_video": "",
-    "question_number": 3,
+    "question_number": 17,
     "created_at": "2025-04-26T21:00:53.617Z",
     "total_points": 5,
     "game_round": 2
@@ -17516,6 +17994,466 @@
     "question_number": 21,
     "created_at": "2025-12-04T02:07:13.373Z",
     "total_points": 32,
+    "game_round": 3
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 292,
+  "fields": {
+    "game": 18,
+    "category": 40,
+    "text": "Each of the following images is a state that has been rotated. Identify the U.S. state (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 1,
+    "created_at": "2025-12-05T01:33:30.002Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 293,
+  "fields": {
+    "game": 18,
+    "category": 94,
+    "text": "Match the description of the doctor specialization to the doctor specialization (1 Point Each)",
+    "answer_bank": "Rheumatology, Nephrology, Oncology, Ophthalmology",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 2,
+    "created_at": "2025-12-05T01:41:24.203Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 294,
+  "fields": {
+    "game": 18,
+    "category": 65,
+    "text": "Solve the puzzle by getting the correct three digit password (5 Points)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Puzzle/Screenshot 2025-12-06 at 5.51.00PM.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Puzzle/Screenshot 2025-12-06 at 5.51.00PM.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 16,
+    "created_at": "2025-12-07T01:03:16.752Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 295,
+  "fields": {
+    "game": 18,
+    "category": 18,
+    "text": "Identify the famous international place from the satellite photo (5 Points).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Birds_Eye_View/Sydney-Opera-House-BEV.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Birds_Eye_View/Sydney-Answer.png",
+    "question_image": "2026/January/Birds_Eye_View/Sydney-Opera-House-BEV.png",
+    "answer_image": "2026/January/Birds_Eye_View/Sydney-Answer.png",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 18,
+    "created_at": "2025-12-07T02:17:52.848Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 296,
+  "fields": {
+    "game": 18,
+    "category": 34,
+    "text": "Select the right answer from the options for each question (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 3,
+    "created_at": "2025-12-07T02:30:52.246Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 297,
+  "fields": {
+    "game": 18,
+    "category": 32,
+    "text": "For each of the listed Dr. Pepper varieties, was it a real soda or a made up idea?",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 4,
+    "created_at": "2025-12-07T02:50:15.815Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 298,
+  "fields": {
+    "game": 18,
+    "category": 13,
+    "text": "Connect the actors by films they share a collaborator with. Connect Sydney Sweeney to Julia Roberts in as few degrees as possible. Scoring: 6 Degrees: 1 Point, +2 Points for each fewer degree.",
+    "answer_bank": "Example, connect Jack Nicholson to The Rock. This is a possible answer, that is 2 degrees of separation as each movie is a degree: 1. Jack Nicholson (The Departed) Mark Wahlberg 2. Mark Wahlberg (The Other Guys) The Rock",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Six_Degrees_of_Separation/Screenshot 2025-12-06 at 7.00.10PM.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Six_Degrees_of_Separation/Screenshot 2025-12-06 at 7.00.10PM.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 15,
+    "created_at": "2025-12-07T03:03:37.176Z",
+    "total_points": 11,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 299,
+  "fields": {
+    "game": 18,
+    "category": 31,
+    "text": "Match the sub genre of Jazz music to its description (1 Point Each)",
+    "answer_bank": "Acid Jazz, Bebop, Jazz Fusion, Modal Jazz",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 5,
+    "created_at": "2025-12-07T03:26:51.403Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 300,
+  "fields": {
+    "game": 18,
+    "category": 39,
+    "text": "What is the name of each of the following polygons? (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 6,
+    "created_at": "2025-12-09T04:31:55.791Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 301,
+  "fields": {
+    "game": 18,
+    "category": 95,
+    "text": "Order the following mammals from fastest to slowest max speed (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 7,
+    "created_at": "2025-12-09T04:39:26.919Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 302,
+  "fields": {
+    "game": 18,
+    "category": 67,
+    "text": "Match the description of the Protestant tradition to its name (1 Point Each)",
+    "answer_bank": "Baptist, Methodism, Quakers, Pentecostalism",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 8,
+    "created_at": "2025-12-09T05:10:39.359Z",
+    "total_points": 4,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 303,
+  "fields": {
+    "game": 18,
+    "category": 49,
+    "text": "Match the popular television medical drama to its synopsis (1 Point Each)",
+    "answer_bank": "ER, Grey's Anatomy, General Hospital, The Good Doctor, The Pitt",
+    "question_type": 2,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 9,
+    "created_at": "2025-12-09T05:22:35.441Z",
+    "total_points": 5,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 304,
+  "fields": {
+    "game": 18,
+    "category": 77,
+    "text": "Based on the definition/description identify the Gen Z/Alpha Slang term (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 10,
+    "created_at": "2025-12-09T05:59:09.412Z",
+    "total_points": 8,
+    "game_round": 1
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 305,
+  "fields": {
+    "game": 18,
+    "category": 54,
+    "text": "Identify the music super group name from the list of members (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 11,
+    "created_at": "2025-12-11T04:33:09.967Z",
+    "total_points": 10,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 306,
+  "fields": {
+    "game": 18,
+    "category": 38,
+    "text": "Order the following NBA players from highest to lowest AVERAGE annual salary (1 Point Each)",
+    "answer_bank": "",
+    "question_type": 1,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 12,
+    "created_at": "2025-12-16T02:17:51.769Z",
+    "total_points": 5,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 307,
+  "fields": {
+    "game": 18,
+    "category": 96,
+    "text": "Identify the written language from the example (2 Points Each)",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 13,
+    "created_at": "2025-12-17T00:55:38.177Z",
+    "total_points": 12,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 308,
+  "fields": {
+    "game": 18,
+    "category": 80,
+    "text": "Fill in the rest of the 2025 Spotify U.S. top Podcasts chart. For each correct podcast listed in the top 10 (2 Points), and an additional (1 Point) for each correct ranking.",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Internet/Podcasts_Question.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Internet/Podcasts_Answers.png",
+    "question_image": "2026/January/Internet/Podcasts_Question.png",
+    "answer_image": "2026/January/Internet/Podcasts_Answers.png",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 14,
+    "created_at": "2025-12-17T01:20:23.992Z",
+    "total_points": 21,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 309,
+  "fields": {
+    "game": 18,
+    "category": 19,
+    "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Visual_Pun/Potential_VP_2_Jan_26.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Visual_Pun/Potential_VP_2_Jan_26.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 19,
+    "created_at": "2025-12-17T03:05:26.613Z",
+    "total_points": 15,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 310,
+  "fields": {
+    "game": 3,
+    "category": 19,
+    "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).",
+    "answer_bank": "",
+    "question_type": 3,
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/Future-Games/Visual_Pun/Potential_VP_Jan_26.png",
+    "answer_image_url": null,
+    "question_image": "Future-Games/Visual_Pun/Potential_VP_Jan_26.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 3,
+    "created_at": "2025-12-17T03:09:37.003Z",
+    "total_points": 15,
+    "game_round": 2
+  }
+},
+{
+  "model": "quiz.question",
+  "pk": 311,
+  "fields": {
+    "game": 18,
+    "category": 54,
+    "text": "Listen to each of the following songs that appeared in the top 5 of one of three music publications best songs of 2025 list. For each song identify the song title and artist, and which publication had it listed in the corresponding slot (3 Points Each)",
+    "answer_bank": "Rolling Stone, Billboard (Staff), Pitchfork",
+    "question_type": 3,
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": "",
+    "question_number": 20,
+    "created_at": "2025-12-18T05:14:41.956Z",
+    "total_points": 15,
     "game_round": 3
   }
 },
@@ -38189,6 +39127,1646 @@
     "correct_rank": null,
     "points": 8,
     "answer_text": "\"My heart sinks as I jump up. Your hand grips hand as my eyes shut\" -- 1 Point Each (Heart, Sinks, Jump, Hand, Grips, Hand, Eyes, Shut)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1038,
+  "fields": {
+    "question": 292,
+    "text": "A.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Oregon",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Geography/Screenshot 2025-12-04 at 5.34.29PM.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Geography/Screenshot 2025-12-04 at 5.29.42PM.png",
+    "question_image": "2026/January/Geography/Screenshot 2025-12-04 at 5.34.29PM.png",
+    "answer_image": "2026/January/Geography/Screenshot 2025-12-04 at 5.29.42PM.png",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1039,
+  "fields": {
+    "question": 292,
+    "text": "B.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "West Virginia",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Geography/Screenshot 2025-12-04 at 5.29.47PM.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Geography/Screenshot 2025-12-04 at 5.30.04PM.png",
+    "question_image": "2026/January/Geography/Screenshot 2025-12-04 at 5.29.47PM.png",
+    "answer_image": "2026/January/Geography/Screenshot 2025-12-04 at 5.30.04PM.png",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1040,
+  "fields": {
+    "question": 292,
+    "text": "C.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Maryland",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Geography/Screenshot 2025-12-04 at 5.30.20PM.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Geography/Screenshot 2025-12-04 at 5.30.26PM.png",
+    "question_image": "2026/January/Geography/Screenshot 2025-12-04 at 5.30.20PM.png",
+    "answer_image": "2026/January/Geography/Screenshot 2025-12-04 at 5.30.26PM.png",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1041,
+  "fields": {
+    "question": 292,
+    "text": "D.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Alabama",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Geography/Screenshot 2025-12-04 at 5.30.48PM.png",
+    "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Geography/Screenshot 2025-12-04 at 5.30.52PM.png",
+    "question_image": "2026/January/Geography/Screenshot 2025-12-04 at 5.30.48PM.png",
+    "answer_image": "2026/January/Geography/Screenshot 2025-12-04 at 5.30.52PM.png",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1042,
+  "fields": {
+    "question": 293,
+    "text": "A. Specialty for both adult internal medicine and pediatric medicine that concerns the study of the kidneys",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Nephrology",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1043,
+  "fields": {
+    "question": 293,
+    "text": "B. Branch of medicine that deals with the study, treatment, diagnosis, and prevention of cancer.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Oncology",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1044,
+  "fields": {
+    "question": 293,
+    "text": "C. Branch of medicine devoted to the diagnosis and management of disorders of which the common feature is inflammation in the bones, muscles, joints, and internal organs.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Rheumatology",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1045,
+  "fields": {
+    "question": 293,
+    "text": "D. Branch of medicine that deals with the diagnosis, treatment, and surgery of eye diseases and disorders.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Ophthalmology",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1046,
+  "fields": {
+    "question": 294,
+    "text": "",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "042",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1047,
+  "fields": {
+    "question": 295,
+    "text": "",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 5,
+    "answer_text": "Sydney Opera House",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1048,
+  "fields": {
+    "question": 296,
+    "text": "A. When was the last time a Republican was Governor of Oregon: 1975, 1987, 1995, 2001",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "1987",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1049,
+  "fields": {
+    "question": 296,
+    "text": "B. When was the last time there was a Democrat Senator of Florida: 2011, 2015, 2019, 2023",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "2019",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1050,
+  "fields": {
+    "question": 296,
+    "text": "C. When was the last time a Democrat was Governor of Texas: 1955, 1970, 1995, 2000",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "1995",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1051,
+  "fields": {
+    "question": 296,
+    "text": "D. When was the last time there a Republican was Governor of Vermont: 1987, 1999, 2012, 2017",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "2017",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1052,
+  "fields": {
+    "question": 297,
+    "text": "A. Dr. Pepper Red Fusion",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Real: 2002 - A cherry-flavored, red-colored variety. It was the first new flavor added to the Dr. Pepper family of beverages in the company's 122-year history.",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1053,
+  "fields": {
+    "question": 297,
+    "text": "B. Dr. Pepper Strawberries and Cream",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Real: 2023 - A strawberry cream-flavored version of Dr. Pepper that was initially released as a limited edition for Valentine's Day, but became a permanent edition afterward.",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1054,
+  "fields": {
+    "question": 297,
+    "text": "C. Dr. Pepper 10",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Real: 2011 - A mid-calorie version of the drink sweetened with a blend of corn syrup, aspartame, and acesulfame potassium, intending on having only ten calories per serving.",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1055,
+  "fields": {
+    "question": 297,
+    "text": "D. Dr. Pepper Tropical Burst",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Made up",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1056,
+  "fields": {
+    "question": 298,
+    "text": "",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 11,
+    "answer_text": "Sydney Sweeney (Once Upon a Time in Hollywood) Brad Pitt (Ocean's 11) Julia Roberts",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1057,
+  "fields": {
+    "question": 299,
+    "text": "A. Style of jazz characterized by a fast tempo, instrumental virtuosity, and improvisation based on a combination of harmonic structure and occasional references to the melody.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Bebop",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1058,
+  "fields": {
+    "question": 299,
+    "text": "B. Combined elements of soul music, funk, disco, including looping beats and modal harmony",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Acid Jazz",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1059,
+  "fields": {
+    "question": 299,
+    "text": "C. Combines elements of jazz, funk, and rock. Characterized by electronic instruments, riffs, and extended solos.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Jazz Fusion",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1060,
+  "fields": {
+    "question": 299,
+    "text": "D. Pioneered by Miles Davis, among others, is characterized by the use of modes, such as dorian modes, as the primary organizing element.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Modal Jazz",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1061,
+  "fields": {
+    "question": 300,
+    "text": "A. 5 sided polygon",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Pentagon",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1062,
+  "fields": {
+    "question": 300,
+    "text": "B. 6 sides polygon",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Hexagon",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1063,
+  "fields": {
+    "question": 300,
+    "text": "C. 7 sided polygon",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Heptagon (or Septagon)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1064,
+  "fields": {
+    "question": 300,
+    "text": "D. 8 sided polygon",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Octagon",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1065,
+  "fields": {
+    "question": 301,
+    "text": "A. Hippopotamus",
+    "display_order": 1,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": "19 mph",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1066,
+  "fields": {
+    "question": 301,
+    "text": "B. Warthog",
+    "display_order": 2,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": "30-34 mph",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1067,
+  "fields": {
+    "question": 301,
+    "text": "C. Tiger",
+    "display_order": 3,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": "35-40 mph",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1068,
+  "fields": {
+    "question": 301,
+    "text": "D. Wombat",
+    "display_order": 4,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": "25 mph",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1069,
+  "fields": {
+    "question": 302,
+    "text": "A. Tradition whose origins, doctrine and practice derive from the life and teachings of John Wesley. Focuses on sanctification and the transforming effect of faith on the character of a Christian, exemplified by living a victorious life over sin. Unique to BLANK is its definition of sin: a \"voluntary transgression of a known law of God.\" Distinguishing doctrines include the new birth, assurance, imparted righteousness, and obedience to God manifested in performing works of piety.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Methodism",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1070,
+  "fields": {
+    "question": 302,
+    "text": "B. Protestant tradition of Christianity distinguished by baptizing only believers (believer's baptism) and doing so by total immersion. Modern BLANK churches generally subscribe to the doctrines of soul competency (the responsibility and accountability of every person before God), sola fide (justification by faith alone), sola scriptura (the Bible as the sole infallible authority) and congregationalist ecclesiastical polity.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Baptist",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1071,
+  "fields": {
+    "question": 302,
+    "text": "C. Adheres to the inerrancy of the Bible and the necessity of being born again: an individual repenting of their sin and \"accepting Jesus Christ as their personal Lord and Savior\". This empowerment includes the use of spiritual gifts: such as speaking in tongues and divine healing.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Pentecostalism",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1072,
+  "fields": {
+    "question": 302,
+    "text": "D. Generally united by a belief in each human's ability to be guided by the inward light to \"make the witness of God\" known to everyone. They have traditionally professed a priesthood of all believers inspired by the First Epistle of Peter. To differing extents, they avoid creeds and hierarchical structures.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Quakers",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1073,
+  "fields": {
+    "question": 303,
+    "text": "A. Set in Chicago, this medical drama deals with the personal and professional crises of the doctors in the emergency room at County General Hospital. From the exciting to the mundane, a day in the frantic hospital serves up many interesting dilemmas as well as heartrending choices for everyone on staff.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "ER",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1074,
+  "fields": {
+    "question": 303,
+    "text": "B. Shaun Murphy, a young autistic surgeon who has savant syndrome, relocates from a quiet country life to join the surgical unit at the prestigious San Jose St. Bonaventure Hospital . Having survived a troubled childhood, Shaun is alone in the world and unable to personally connect with those around him, but he finds his niche using his extraordinary medical skill and intuition to save lives and challenge the skepticism of his colleagues.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "The Good Doctor",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1075,
+  "fields": {
+    "question": 303,
+    "text": "C. The medical drama series focuses on a group of young doctors at Seattle Grace Mercy West Hospital, who began their careers at the facility as interns. One of the young doctors is the daughter of a famous surgeon. They  struggle to maintain relationships with their colleagues, particularly the hospital's one-time chief of surgery, Richard Webber, due to a pre-existing relationship between them.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "Grey's Anatomy",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1076,
+  "fields": {
+    "question": 303,
+    "text": "D. The ongoing lives of the diverse and evolving citizens of the fictional town of Port Charles in upstate New York. The glamour and excitement of those who have come to find their destinies in the familiar seaport town intertwine with the lives, loves and fortunes of beloved faces. Love, danger and mind-blowing plot twists abound.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "General Hospital",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1077,
+  "fields": {
+    "question": 303,
+    "text": "E. A realistic examination of the challenges facing healthcare workers in America as seen through the lens of the frontline heroes working in a modern-day hospital",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 1,
+    "answer_text": "The Pitt",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1078,
+  "fields": {
+    "question": 304,
+    "text": "A. General term for spending too much time online watching low quality content",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Brain Rot",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1079,
+  "fields": {
+    "question": 304,
+    "text": "B. This slang, which could mean good, bad, cool, is named after the popular YouTube series by animator Alexey Gerasimov. Most of the videos show toilets with the heads of grown men spinning and talking while singing songs.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Skibidi",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1080,
+  "fields": {
+    "question": 304,
+    "text": "C. A lie or something that’s not true.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Opp",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1081,
+  "fields": {
+    "question": 304,
+    "text": "D. When an enemy is out to get you",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Opp",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1082,
+  "fields": {
+    "question": 305,
+    "text": "A. Snoop Dogg, Warren G, Nate Dogg",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "213",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1083,
+  "fields": {
+    "question": 305,
+    "text": "B. Thom Yorke (Radiohead), Flea (The Red Hot Chili Peppers), Nigel Godrich (long time producer for Radiohead), Joey Waronker (who has played drums for acts such as R.E.M, Beck and Smashing Pumpkins), Mauro Refosco (David Byrne and Forro in the Dark)",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Atoms for Peace",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1084,
+  "fields": {
+    "question": 305,
+    "text": "C. Kendrick Lamar, Ab-Soul, Jay Rock, Schoolboy Q",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Black Hippy",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1085,
+  "fields": {
+    "question": 305,
+    "text": "D. Steve Angello, Axwell, Sebastian Ingrosso",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Swedish House Mafia",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1086,
+  "fields": {
+    "question": 305,
+    "text": "E. Phoebe Bridgers, Julien Baker, Lucy Dacus",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "boygenius",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1087,
+  "fields": {
+    "question": 306,
+    "text": "A. Victor Wembanyama",
+    "display_order": 1,
+    "correct_rank": 4,
+    "points": 1,
+    "answer_text": "$12,768,840.00",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Sports/Screenshot 2025-12-15 at 6.13.55PM.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Sports/Screenshot 2025-12-15 at 6.13.55PM.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1088,
+  "fields": {
+    "question": 306,
+    "text": "B. Kobe Bryant",
+    "display_order": 2,
+    "correct_rank": 3,
+    "points": 1,
+    "answer_text": "$16,411,903.10",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Sports/Screenshot 2025-12-15 at 6.16.33PM.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Sports/Screenshot 2025-12-15 at 6.16.33PM.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1089,
+  "fields": {
+    "question": 306,
+    "text": "C. Tobias Harris",
+    "display_order": 3,
+    "correct_rank": 2,
+    "points": 1,
+    "answer_text": "$20,191,272",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Sports/Screenshot 2025-12-15 at 6.17.20PM.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Sports/Screenshot 2025-12-15 at 6.17.20PM.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1090,
+  "fields": {
+    "question": 306,
+    "text": "D. Michael Jordan",
+    "display_order": 4,
+    "correct_rank": 5,
+    "points": 1,
+    "answer_text": "$5,876,406.25",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Sports/Screenshot 2025-12-15 at 6.14.25PM.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Sports/Screenshot 2025-12-15 at 6.14.25PM.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1091,
+  "fields": {
+    "question": 306,
+    "text": "E. LeBron James",
+    "display_order": 5,
+    "correct_rank": 1,
+    "points": 1,
+    "answer_text": "$25,389,127.22",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Sports/Screenshot 2025-12-15 at 6.15.51PM.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Sports/Screenshot 2025-12-15 at 6.15.51PM.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1092,
+  "fields": {
+    "question": 307,
+    "text": "A.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Vietnamese",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Language/Vietnamese.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Language/Vietnamese.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1093,
+  "fields": {
+    "question": 307,
+    "text": "B.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Korean",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Language/Korean.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Language/Korean.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1094,
+  "fields": {
+    "question": 307,
+    "text": "C.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Turkish",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Language/Turkish.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Language/Turkish.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1095,
+  "fields": {
+    "question": 307,
+    "text": "D.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Greek",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Language/Greek.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Language/Greek.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1096,
+  "fields": {
+    "question": 307,
+    "text": "E.",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Thai",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Language/Thai.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Language/Thai.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1097,
+  "fields": {
+    "question": 307,
+    "text": "F.",
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 2,
+    "answer_text": "Hebrew",
+    "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/2026/January/Language/Hebrew.png",
+    "answer_image_url": null,
+    "question_image": "2026/January/Language/Hebrew.png",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1098,
+  "fields": {
+    "question": 308,
+    "text": "2.",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "This Past Weekend w/ Theo Von",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1099,
+  "fields": {
+    "question": 308,
+    "text": "3.",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "The Shawn Ryan Show",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1100,
+  "fields": {
+    "question": 308,
+    "text": "4.",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Crime Junkie",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1101,
+  "fields": {
+    "question": 308,
+    "text": "5.",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Good Hang with Amy Poehler",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1102,
+  "fields": {
+    "question": 308,
+    "text": "6.",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "The Tucker Carlson Show",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1103,
+  "fields": {
+    "question": 308,
+    "text": "8.",
+    "display_order": 6,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Matt and Shane's Secret Podcast",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1104,
+  "fields": {
+    "question": 308,
+    "text": "9.",
+    "display_order": 7,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Up First from NPR",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1105,
+  "fields": {
+    "question": 309,
+    "text": "",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Hilton",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1106,
+  "fields": {
+    "question": 309,
+    "text": "",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Marriott",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1107,
+  "fields": {
+    "question": 309,
+    "text": "",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Ritz-Carlton",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1108,
+  "fields": {
+    "question": 309,
+    "text": "",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Hyatt",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1109,
+  "fields": {
+    "question": 309,
+    "text": "",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Hotel Chains",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1110,
+  "fields": {
+    "question": 310,
+    "text": "",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Pigs in a Blanket",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1111,
+  "fields": {
+    "question": 310,
+    "text": "",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Corn Dog",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1112,
+  "fields": {
+    "question": 310,
+    "text": "",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Pop-Tart",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1113,
+  "fields": {
+    "question": 310,
+    "text": "",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Hot Pocket",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1114,
+  "fields": {
+    "question": 310,
+    "text": "",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Snack Foods (...and abstract interpretations of a Calzone)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1115,
+  "fields": {
+    "question": 311,
+    "text": "1. 0:05 - 1:05",
+    "display_order": 1,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "KPop Demon Hunters/Huntr/x, ‘Golden’ (Billboard)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1116,
+  "fields": {
+    "question": 311,
+    "text": "2. 0:00 - 1:05",
+    "display_order": 2,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "MJ Lenderman and This Is Lorelei, ‘Dancing in the Club’ (Rolling Stone)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1117,
+  "fields": {
+    "question": 311,
+    "text": "3. 0:30 - 1:25",
+    "display_order": 3,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Bad Bunny, “Nuevayol” (Billboard)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1118,
+  "fields": {
+    "question": 311,
+    "text": "4. 0:00 - 0:50",
+    "display_order": 4,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Addison Rae: “Headphones On” (Pitchfork)",
+    "question_image_url": null,
+    "answer_image_url": null,
+    "question_image": "",
+    "answer_image": "",
+    "question_video_url": null,
+    "answer_video_url": null,
+    "question_video": "",
+    "answer_video": ""
+  }
+},
+{
+  "model": "quiz.answer",
+  "pk": 1119,
+  "fields": {
+    "question": 311,
+    "text": "5. 0:30 - 1:30",
+    "display_order": 5,
+    "correct_rank": null,
+    "points": 3,
+    "answer_text": "Kehlani, ‘Folded’ (Rolling Stone)",
     "question_image_url": null,
     "answer_image_url": null,
     "question_image": "",
