@@ -236,7 +236,23 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 # Admin customization for Game
+class GameAdminForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set a default placeholder for new games
+        if not self.instance.pk:
+            self.fields["game_order"].widget.attrs["placeholder"] = "..."
+
+    class Media:
+        js = ("js/game_admin.js",)
+
+
 class GameAdmin(admin.ModelAdmin):
+    form = GameAdminForm
     list_display = ("name", "is_password_protected", "created_at", "game_order")
     list_filter = ("is_password_protected",)
     fields = ("name", "description", "game_order", "is_password_protected", "password")
