@@ -1,4 +1,5 @@
 import random
+import argparse
 from typing import Optional
 from dataclasses import dataclass
 from time import sleep
@@ -176,10 +177,7 @@ def read_player_list_from_gsheet(csv_url: str, access_token: str) -> list:
     return [Player(d["name"], d["gender"], d["partner"]) for d in player_dict]
 
 
-if __name__ == "__main__":
-    print("Assigning Teams\n")
-    sleep(0.5)
-
+def connect_to_gsheets() -> tuple:
     # Open the Google Sheet
     scope = [
         "https://spreadsheets.google.com/feeds",
@@ -193,8 +191,60 @@ if __name__ == "__main__":
     spreadsheet_url = f"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/edit#gid=0"
     spreadsheet = client.open_by_url(spreadsheet_url)
 
-    players_list_spreadsheet_name = "Players-07-19-25"
-    players_list_spreadsheet = spreadsheet.worksheet(players_list_spreadsheet_name)
+    return spreadsheet, access_token
+
+
+def generate_teams_list(number_of_teams: int, min_team_size: int, number_of_players: int) -> list:
+    teams = []
+    for i in range(number_of_teams):
+        teams.append(Team(
+            f"Team {i+1}", max_team_size=min_team_size
+        ))
+    # assign remainder of players to teams
+    remaining_players_to_be_assigned = number_of_players - (number_of_teams * min_team_size)
+    if remaining_players_to_be_assigned > 0:
+        for i in range(remaining_players_to_be_assigned):
+            teams[i].max_team_size = min_team_size + 1
+    
+    return teams
+
+
+def main() -> None:
+    """
+    Example: 
+    """
+    parser = argparse.ArgumentParser(
+        description="Tool to run team assignment function. Requires the list of players to be completed in google sheets, the number of teams determined, and the minimum team size.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument(
+        "--player-sheet-name",
+        type=str,
+        default=None,
+        help="Name of the google sheet listing the players"
+    )
+    parser.add_argument(
+        "--number-of-teams",
+        type=int,
+        default=None,
+        help="Number of teams in the game"
+    )
+    parser.add_argument(
+        "--minimum-team-size",
+        type=int,
+        default=None,
+        help="The smallest number of players to include on a given team"
+    )
+
+    args = parser.parse_args()
+    
+    print("Assigning Teams\n")
+    sleep(0.5)
+
+    # connect to google sheets
+    spreadsheet, access_token = connect_to_gsheets()
+    
+    players_list_spreadsheet = spreadsheet.worksheet(args.player_sheet_name)
     players_list_spreadsheet_id = players_list_spreadsheet.id
 
     # Construct the CSV export URL
@@ -203,16 +253,11 @@ if __name__ == "__main__":
     # Download the CSV content from googlsheets
     players = read_player_list_from_gsheet(csv_url, access_token)
 
-    print(players)
-
     # Create teams and set max team size
-    teams = [
-        Team("Team 1", max_team_size=4),
-        Team("Team 2", max_team_size=4),
-        Team("Team 3", max_team_size=4),
-        Team("Team 4", max_team_size=4),
-    ]
-
+    teams = generate_teams_list(
+        args.number_of_teams, args.minimum_team_size, number_of_players=len(players)
+    )
+    
     assigned_teams = assign_teams(players, teams)
 
     print("Teams Assigned\n")
@@ -230,3 +275,10 @@ if __name__ == "__main__":
 
     # Upload game data
     sheet.update([game_df.columns.values.tolist()] + game_df.values.tolist())
+    
+    return None
+
+
+if __name__ == "__main__":
+    main()
+
