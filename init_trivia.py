@@ -1,14 +1,16 @@
 import random
-import argparse
-from typing import Optional
+from typing import Optional, List
 from dataclasses import dataclass
-from time import sleep
+import time
 from datetime import date
 import requests
 import pandas as pd
 import numpy as np
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+
+
+## Define Player and Team Functionality
 
 
 @dataclass
@@ -37,7 +39,10 @@ class Team:
         return str([str(player) for player in self.players])
 
 
-def sort_players_by_sex(players: list) -> dict:
+## Team Assignment
+
+
+def sort_players_by_sex(players: List) -> dict:
     men = []
     women = []
     for player in players:
@@ -49,7 +54,7 @@ def sort_players_by_sex(players: list) -> dict:
     return {"men": men, "women": women}
 
 
-def assign_teams(players: list, teams: list) -> None:
+def assign_teams(players: List, teams: List) -> None:
     # try to balance teams by sex
     sorted_by_sex = sort_players_by_sex(players)
     men = sorted_by_sex["men"]
@@ -114,27 +119,77 @@ def assign_teams(players: list, teams: list) -> None:
     return teams
 
 
+def generate_teams_list(
+    number_of_teams: int, min_team_size: int, number_of_players: int
+) -> List:
+    teams = []
+    for i in range(number_of_teams):
+        teams.append(Team(f"Team {i+1}", max_team_size=min_team_size))
+    # assign remainder of players to teams
+    remaining_players_to_be_assigned = number_of_players - (
+        number_of_teams * min_team_size
+    )
+    if remaining_players_to_be_assigned > 0:
+        for i in range(remaining_players_to_be_assigned):
+            teams[i].max_team_size = min_team_size + 1
+
+    return teams
+
+
+## Reveal Results of Assignment
+
+
 def dramatic_print(string: str) -> None:
     for char in string:
         print(char, end="", flush=True)
-        sleep(0.05)
+        time.sleep(0.05)
 
 
 def str_list_to_pretty_str(x) -> str:
     return str(x).replace("'", "").replace("[", "").replace("]", "")
 
 
-def display_teams(teams: list) -> None:
+def spotlight_reveal(team_name: str, player: str, player_num: int) -> None:
+    """Create spotlight effect for each player."""
+
+    if player_num == 1:
+        print(f"\n╔{'═'*48}╗")
+        print(f"║  {team_name:^44}  ║")
+        print(f"╚{'═'*48}╝\n")
+        time.sleep(0.3)
+
+    # Countdown effect
+    print("  ", end="", flush=True)
+    for i in range(3, 0, -1):
+        print(f"{i}...", end="", flush=True)
+        time.sleep(0.3)
+
+    # Reveal with emphasis
+    print(f"\r  ⚡ Player {player_num}: {player}     ")
+    time.sleep(0.5)
+
+
+def display_teams(teams: List) -> None:
+    """Spotlight-style dramatic reveal."""
+    print("\n" + "█" * 50)
+    print("  📣📜📣  TEAM REVEAL CEREMONY  📣📜📣")
+    print("█" * 50)
+    time.sleep(1)
+
     for team in teams:
-        team_name = team.name
-        players = str_list_to_pretty_str(team)
-        to_display = f"{team_name}: {players}"
+        players = str_list_to_pretty_str(team).split(", ")
 
-        dramatic_print(to_display)
-        print("\n")
+        for i, player in enumerate(players, 1):
+            spotlight_reveal(team.name, player, i)
+
+        print()
+        time.sleep(0.8)
 
 
-def create_game_df(teams: list) -> pd.DataFrame:
+## Create Data for Export
+
+
+def create_game_df(teams: List) -> pd.DataFrame:
     team_dict = {
         team.name: {
             "players": str_list_to_pretty_str([player for player in team]),
@@ -155,7 +210,10 @@ def create_game_df(teams: list) -> pd.DataFrame:
     return df
 
 
-def read_player_list_from_gsheet(csv_url: str, access_token: str) -> list:
+## Connect to Google Sheets
+
+
+def read_player_list_from_gsheet(csv_url: str, access_token: str) -> List:
     # Create authenticated session
     session = requests.Session()
     session.headers.update(
@@ -194,74 +252,60 @@ def connect_to_gsheets() -> tuple:
     return spreadsheet, access_token
 
 
-def generate_teams_list(number_of_teams: int, min_team_size: int, number_of_players: int) -> list:
-    teams = []
-    for i in range(number_of_teams):
-        teams.append(Team(
-            f"Team {i+1}", max_team_size=min_team_size
-        ))
-    # assign remainder of players to teams
-    remaining_players_to_be_assigned = number_of_players - (number_of_teams * min_team_size)
-    if remaining_players_to_be_assigned > 0:
-        for i in range(remaining_players_to_be_assigned):
-            teams[i].max_team_size = min_team_size + 1
-    
-    return teams
+## Main
 
 
 def main() -> None:
     """
-    Example: 
+    Example:
+     player-sheet-name: Test
+     number-of-teams: 6
+     minimum-team-size: 4
     """
-    parser = argparse.ArgumentParser(
-        description="Tool to run team assignment function. Requires the list of players to be completed in google sheets, the number of teams determined, and the minimum team size.",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
-    )
-    parser.add_argument(
-        "--player-sheet-name",
-        type=str,
-        default=None,
-        help="Name of the google sheet listing the players"
-    )
-    parser.add_argument(
-        "--number-of-teams",
-        type=int,
-        default=None,
-        help="Number of teams in the game"
-    )
-    parser.add_argument(
-        "--minimum-team-size",
-        type=int,
-        default=None,
-        help="The smallest number of players to include on a given team"
-    )
+    print("=== Trivia Team Assignment ===\n")
 
-    args = parser.parse_args()
-    
-    print("Assigning Teams\n")
-    sleep(0.5)
+    # Prompt for parameters
+    player_sheet_name = input("Enter the player sheet name: ").strip()
+
+    while True:
+        try:
+            number_of_teams = int(input("Enter number of teams: ").strip())
+            break
+        except ValueError:
+            print("Please enter a valid integer for number of teams.")
+
+    while True:
+        try:
+            minimum_team_size = int(input("Enter minimum team size: ").strip())
+            break
+        except ValueError:
+            print("Please enter a valid integer for minimum team size.")
+
+    print("...Initiating Team Assignment\n")
+    time.sleep(0.25)
 
     # connect to google sheets
     spreadsheet, access_token = connect_to_gsheets()
-    
-    players_list_spreadsheet = spreadsheet.worksheet(args.player_sheet_name)
+
+    players_list_spreadsheet = spreadsheet.worksheet(player_sheet_name)
     players_list_spreadsheet_id = players_list_spreadsheet.id
 
     # Construct the CSV export URL
-    csv_url = f"https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/export?format=csv&gid={players_list_spreadsheet_id}"
+    BASE_URL = "https://docs.google.com/spreadsheets/d/1IuTrl0XtZTPC-WYG6VF8CacRIOcUyaP6l_xWN6GKavM/export?format=csv&gid="
+    csv_url = f"{BASE_URL}{players_list_spreadsheet_id}"
 
     # Download the CSV content from googlsheets
     players = read_player_list_from_gsheet(csv_url, access_token)
 
     # Create teams and set max team size
     teams = generate_teams_list(
-        args.number_of_teams, args.minimum_team_size, number_of_players=len(players)
+        number_of_teams, minimum_team_size, number_of_players=len(players)
     )
-    
+
     assigned_teams = assign_teams(players, teams)
 
-    print("Teams Assigned\n")
-    sleep(0.5)
+    print("...All Players Succesfully Assigned to Teams\n\n\n")
+    time.sleep(0.25)
 
     # Print team assignments for players
     display_teams(assigned_teams)
@@ -275,10 +319,9 @@ def main() -> None:
 
     # Upload game data
     sheet.update([game_df.columns.values.tolist()] + game_df.values.tolist())
-    
+
     return None
 
 
 if __name__ == "__main__":
     main()
-
