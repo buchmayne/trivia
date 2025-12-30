@@ -332,7 +332,9 @@ def get_next_game_order(request):
         for order in sorted(all_orders):
             if order == next_order:
                 next_order += 1
-            elif order > next_order + 10:  # If there's a gap > 10, stop (handles 999 case)
+            elif (
+                order > next_order + 10
+            ):  # If there's a gap > 10, stop (handles 999 case)
                 break
 
         return JsonResponse({"next_order": next_order})

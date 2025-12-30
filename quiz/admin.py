@@ -18,12 +18,14 @@ from .widgets import S3ImageUploadWidget, S3VideoUploadWidget
 
 # Custom filter for alphabetically sorted categories
 class AlphabeticalCategoryFilter(SimpleListFilter):
-    title = 'category'  # Display name in the admin sidebar
-    parameter_name = 'category'  # URL parameter name
+    title = "category"  # Display name in the admin sidebar
+    parameter_name = "category"  # URL parameter name
 
     def lookups(self, request, model_admin):
         # Get all categories used in questions, ordered alphabetically
-        categories = Category.objects.filter(questions__isnull=False).distinct().order_by('name')
+        categories = (
+            Category.objects.filter(questions__isnull=False).distinct().order_by("name")
+        )
         return [(cat.id, cat.name) for cat in categories]
 
     def queryset(self, request, queryset):
