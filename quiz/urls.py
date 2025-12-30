@@ -48,6 +48,11 @@ urlpatterns = [
         views.get_next_question_number,
         name="next_question_number",
     ),
+    path(
+        "next-game-order/",
+        views.get_next_game_order,
+        name="next_game_order",
+    ),
     # New Session Frontend URLs (for humans)
     path("sessions/host/", session_views.host_dashboard, name="host_dashboard"),
     path("sessions/join/", session_views.team_join, name="team_join"),

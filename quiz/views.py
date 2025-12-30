@@ -309,3 +309,34 @@ def get_next_question_number(request, game_id):
         return JsonResponse({"next_number": next_number})
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
+
+
+@staff_member_required
+def get_next_game_order(request):
+    """API view to get the next available game order"""
+    try:
+        # Get all existing game orders, excluding very high numbers (like 999)
+        # We only want consecutive numbers
+        all_orders = list(
+            Game.objects.exclude(game_order__isnull=True)
+            .values_list("game_order", flat=True)
+            .order_by("game_order")
+        )
+
+        if not all_orders:
+            return JsonResponse({"next_order": 1})
+
+        # Find the highest consecutive number
+        # Start from 1 and find where the sequence breaks
+        next_order = 1
+        for order in sorted(all_orders):
+            if order == next_order:
+                next_order += 1
+            elif (
+                order > next_order + 10
+            ):  # If there's a gap > 10, stop (handles 999 case)
+                break
+
+        return JsonResponse({"next_order": next_order})
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)

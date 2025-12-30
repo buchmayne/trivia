@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import admin
+from django.contrib.admin import SimpleListFilter
 from django.utils.html import format_html
 from .models import (
     Game,
@@ -13,6 +14,25 @@ from .models import (
     TeamAnswer,
 )
 from .widgets import S3ImageUploadWidget, S3VideoUploadWidget
+
+
+# Custom filter for alphabetically sorted categories
+class AlphabeticalCategoryFilter(SimpleListFilter):
+    title = "category"  # Display name in the admin sidebar
+    parameter_name = "category"  # URL parameter name
+
+    def lookups(self, request, model_admin):
+        # Get all categories used in questions, ordered alphabetically
+        categories = (
+            Category.objects.filter(questions__isnull=False).distinct().order_by("name")
+        )
+        return [(cat.id, cat.name) for cat in categories]
+
+    def queryset(self, request, queryset):
+        # Filter the queryset based on the selected category
+        if self.value():
+            return queryset.filter(category__id=self.value())
+        return queryset
 
 
 class QuestionAdminForm(forms.ModelForm):
@@ -227,16 +247,33 @@ class QuestionAdmin(admin.ModelAdmin):
         "total_points",
         "answer_bank",
     )
-    list_filter = ("game", "category", "question_type")
+    list_filter = ("game", AlphabeticalCategoryFilter, "question_type")
     search_fields = ["text"]
 
     inlines = [AnswerInline]  # Inline answers in the question form
 
-    ordering = ["game", "question_number"]
+    # Order by game_order (descending, most recent first), then question_number (descending)
+    ordering = ["-game__game_order", "-question_number"]
 
 
 # Admin customization for Game
+class GameAdminForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set a default placeholder for new games
+        if not self.instance.pk:
+            self.fields["game_order"].widget.attrs["placeholder"] = "..."
+
+    class Media:
+        js = ("js/game_admin.js",)
+
+
 class GameAdmin(admin.ModelAdmin):
+    form = GameAdminForm
     list_display = ("name", "is_password_protected", "created_at", "game_order")
     list_filter = ("is_password_protected",)
     fields = ("name", "description", "game_order", "is_password_protected", "password")
