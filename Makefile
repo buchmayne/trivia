@@ -1,4 +1,4 @@
-.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data run-black start
+.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data black start
 
 help:
 	@echo "Available commands:"
@@ -24,7 +24,7 @@ help:
 	@echo "  make docker-logs      - View Docker logs"
 	@echo "  make docker-migrate   - Run migrations in Docker container"
 	@echo "  make dump-data        - Dump content from local database to json file"
-	@echo "  make run-black        - Run black across repo"
+	@echo "  make black        - Run black across repo"
 	@echo "  make start            - Run game initializer"
 
 # Run development server
@@ -105,7 +105,7 @@ dump-data:
 	uv run manage.py dumpdata --indent 2 > db_initial_data.json
 
 # Run black
-run-black:
+black:
 	uv run black .
 
 # Start a new game

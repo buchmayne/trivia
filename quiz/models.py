@@ -2,6 +2,9 @@ from django.db import models
 from django.utils import timezone
 from tinymce.models import HTMLField
 from .fields import CloudFrontURLField, S3ImageField, S3VideoField
+import secrets
+import random
+import string
 
 
 class Game(models.Model):
@@ -188,46 +191,165 @@ class PlayerStats(models.Model):
     games_played = models.IntegerField()
 
 
-# API for Session Models
+# SESSION MODELS - Live multiplayer game sessions
+
+
 class GameSession(models.Model):
-    session_code = models.CharField(max_length=8, unique=True)
-    game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    host_name = models.CharField(max_length=100)
-    status = models.CharField(
-        max_length=20,
-        choices=[
-            ("waiting", "Waiting for Teams"),
-            ("active", "Game Active"),
-            ("paused", "Paused"),
-            ("completed", "Completed"),
-        ],
-        default="waiting",
+    """A live game session where teams compete"""
+
+    class Status(models.TextChoices):
+        LOBBY = "lobby", "Waiting for Teams"
+        PLAYING = "playing", "Game in Progress"
+        PAUSED = "paused", "Paused (Admin Disconnected)"
+        SCORING = "scoring", "Scoring Round"
+        COMPLETED = "completed", "Game Completed"
+
+    code = models.CharField(max_length=6, unique=True, db_index=True)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="sessions")
+    admin_name = models.CharField(max_length=100)
+    admin_token = models.CharField(
+        max_length=64, unique=True, default=secrets.token_urlsafe
     )
-    current_question_number = models.IntegerField(default=0)
+
+    status = models.CharField(
+        max_length=20, choices=Status.choices, default=Status.LOBBY
+    )
+    status_before_pause = models.CharField(
+        max_length=20, null=True, blank=True
+    )  # For resume after disconnect
+
+    current_question = models.ForeignKey(
+        Question, on_delete=models.SET_NULL, null=True, blank=True, related_name="+"
+    )
+    current_round = models.ForeignKey(
+        QuestionRound,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="+",
+    )
+
+    max_teams = models.PositiveIntegerField(default=16)
+    allow_late_joins = models.BooleanField(default=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     started_at = models.DateTimeField(null=True, blank=True)
     completed_at = models.DateTimeField(null=True, blank=True)
-    max_teams = models.IntegerField(default=16)
+    admin_last_seen = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self) -> str:
+        return f"{self.code} - {self.game.name}"
+
+    def save(self, *args, **kwargs):
+        if not self.code:
+            self.code = self._generate_unique_code()
+        super().save(*args, **kwargs)
+
+    @staticmethod
+    def _generate_unique_code():
+        """Generate a unique 6-character session code"""
+        while True:
+            code = "".join(random.choices(string.ascii_uppercase + string.digits, k=6))
+            if not GameSession.objects.filter(code=code).exists():
+                return code
+
+    def pause(self):
+        """Pause session (admin disconnect)."""
+        if self.status not in [self.Status.COMPLETED, self.Status.PAUSED]:
+            self.status_before_pause = self.status
+            self.status = self.Status.PAUSED
+            self.save()
+
+    def resume(self):
+        """Resume session (admin reconnect)."""
+        if self.status == self.Status.PAUSED and self.status_before_pause:
+            self.status = self.status_before_pause
+            self.status_before_pause = None
+            self.save()
 
 
 class SessionTeam(models.Model):
+    """A team participating in a game session"""
+
     session = models.ForeignKey(
         GameSession, on_delete=models.CASCADE, related_name="teams"
     )
-    team_name = models.CharField(max_length=100)
-    total_score = models.IntegerField(default=0)
+    name = models.CharField(max_length=100)
+    token = models.CharField(max_length=64, unique=True, default=secrets.token_urlsafe)
+    score = models.IntegerField(default=0)
+
     joined_at = models.DateTimeField(auto_now_add=True)
+    last_seen = models.DateTimeField(auto_now=True)
+    joined_late = models.BooleanField(
+        default=False
+    )  # True if joined after game started
 
     class Meta:
-        unique_together = ["session", "team_name"]
+        unique_together = ["session", "name"]
+        ordering = ["-score", "joined_at"]
+
+    def __str__(self) -> str:
+        return f"{self.name} ({self.session.code})"
+
+
+class SessionRound(models.Model):
+    """Tracks round state within a session"""
+
+    class Status(models.TextChoices):
+        PENDING = "pending", "Not Started"
+        ACTIVE = "active", "In Progress"
+        LOCKED = "locked", "Answers Locked"
+        SCORED = "scored", "Scoring Complete"
+
+    session = models.ForeignKey(
+        GameSession, on_delete=models.CASCADE, related_name="session_rounds"
+    )
+    round = models.ForeignKey(QuestionRound, on_delete=models.CASCADE)
+    status = models.CharField(
+        max_length=20, choices=Status.choices, default=Status.PENDING
+    )
+
+    started_at = models.DateTimeField(null=True, blank=True)
+    locked_at = models.DateTimeField(null=True, blank=True)
+    scored_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        unique_together = ["session", "round"]
+        ordering = ["round__round_number"]
+
+    def __str__(self) -> str:
+        return f"{self.session.code} - {self.round.name}"
 
 
 class TeamAnswer(models.Model):
-    team = models.ForeignKey(SessionTeam, on_delete=models.CASCADE)
+    """A team's answer to a question"""
+
+    team = models.ForeignKey(
+        SessionTeam, on_delete=models.CASCADE, related_name="answers"
+    )
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    submitted_answer = models.TextField()
-    points_awarded = models.IntegerField(default=0)
+    session_round = models.ForeignKey(
+        SessionRound, on_delete=models.CASCADE, related_name="answers"
+    )
+
+    answer_text = models.TextField(blank=True, default="")
+    is_locked = models.BooleanField(default=False)
+
+    # Scoring: null means not yet scored, value is admin-assigned points
+    points_awarded = models.IntegerField(null=True, blank=True)
+    scored_at = models.DateTimeField(null=True, blank=True)
+
     submitted_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         unique_together = ["team", "question"]
+        indexes = [
+            models.Index(fields=["session_round", "team"]),
+        ]
+
+    def __str__(self) -> str:
+        return f"{self.team.name} - Q{self.question.question_number}"

@@ -11,6 +11,7 @@ from .models import (
     QuestionRound,
     GameSession,
     SessionTeam,
+    SessionRound,
     TeamAnswer,
 )
 from .widgets import S3ImageUploadWidget, S3VideoUploadWidget
@@ -292,82 +293,469 @@ class CategoryAdmin(admin.ModelAdmin):
     get_games.short_description = "Games"
 
 
-class SessionTeamInline(admin.TabularInline):
-    model = SessionTeam
-    readonly_fields = ["joined_at"]  # removed 'last_seen' - doesn't exist
-    extra = 0
-    fields = [
-        "team_name",
-        "total_score",
-        "current_question_score",
-        "joined_at",
-    ]  # removed 'is_connected'
-
-
-class GameSessionAdmin(admin.ModelAdmin):
-    list_display = [
-        "session_code",
-        "game",
-        "host_name",
-        "status",
-        "current_question_number",
-        "team_count",
-        "created_at",
-    ]
-    list_filter = ["status", "game", "created_at"]
-    readonly_fields = ["session_code", "created_at", "started_at", "completed_at"]
-    search_fields = ["session_code", "host_name", "game__name"]
-    inlines = [SessionTeamInline]
-
-    def team_count(self, obj):
-        return obj.teams.count()
-
-    team_count.short_description = "Teams"
-
-
-class SessionTeamAdmin(admin.ModelAdmin):
-    list_display = [
-        "team_name",
-        "session",
-        "total_score",
-        "joined_at",
-    ]  # removed 'is_connected'
-    list_filter = ["session__game", "session__status"]  # removed 'is_connected'
-    search_fields = ["team_name", "session__session_code"]
-
-
-class TeamAnswerAdmin(admin.ModelAdmin):
-    list_display = [
-        "team",
-        "question_number",
-        "submitted_answer_preview",
-        "points_awarded",
-        "submitted_at",  # removed 'is_correct'
-    ]
-    list_filter = ["question__game", "submitted_at"]  # removed 'is_correct'
-    search_fields = ["team__team_name", "submitted_answer"]
-
-    def question_number(self, obj):
-        return f"Q{obj.question.question_number}"
-
-    question_number.short_description = "Question"
-
-    def submitted_answer_preview(self, obj):
-        return (
-            obj.submitted_answer[:50] + "..."
-            if len(obj.submitted_answer) > 50
-            else obj.submitted_answer
-        )
-
-    submitted_answer_preview.short_description = "Answer"
-
-
 # Registering the models with custom admin interfaces
 admin.site.register(Game, GameAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(QuestionType)
 admin.site.register(QuestionRound)
+
+
+# ============================================================================
+# SESSION ADMIN CUSTOMIZATION
+# ============================================================================
+
+
+class SessionTeamInline(admin.TabularInline):
+    """Inline display of teams within a game session"""
+
+    model = SessionTeam
+    extra = 0
+    fields = (
+        "name",
+        "score",
+        "joined_at",
+        "joined_late",
+        "last_seen",
+    )
+    readonly_fields = ("token", "joined_at", "last_seen")
+    can_delete = False
+
+    def has_add_permission(self, request, obj=None):
+        # Don't allow adding teams through admin (should use API)
+        return False
+
+
+class SessionRoundInline(admin.TabularInline):
+    """Inline display of rounds within a game session"""
+
+    model = SessionRound
+    extra = 0
+    fields = (
+        "round",
+        "status",
+        "started_at",
+        "locked_at",
+        "scored_at",
+    )
+    readonly_fields = ("started_at", "locked_at", "scored_at")
+    can_delete = False
+
+    def has_add_permission(self, request, obj=None):
+        # Rounds are auto-created when session is created
+        return False
+
+
+class SessionStatusFilter(SimpleListFilter):
+    """Custom filter for session status"""
+
+    title = "session status"
+    parameter_name = "status"
+
+    def lookups(self, request, model_admin):
+        return GameSession.Status.choices
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(status=self.value())
+        return queryset
+
+
+class GameSessionAdmin(admin.ModelAdmin):
+    """Admin interface for GameSession"""
+
+    list_display = (
+        "code",
+        "game",
+        "admin_name",
+        "status",
+        "team_count",
+        "created_at",
+        "started_at",
+    )
+    list_filter = (SessionStatusFilter, "game", "created_at", "allow_late_joins")
+    search_fields = ("code", "admin_name", "game__name")
+    readonly_fields = (
+        "code",
+        "admin_token",
+        "created_at",
+        "started_at",
+        "completed_at",
+        "admin_last_seen",
+        "display_admin_token",
+    )
+    fieldsets = (
+        (
+            "Session Info",
+            {
+                "fields": (
+                    "code",
+                    "game",
+                    "admin_name",
+                    "status",
+                    "status_before_pause",
+                )
+            },
+        ),
+        (
+            "Game State",
+            {
+                "fields": (
+                    "current_round",
+                    "current_question",
+                )
+            },
+        ),
+        (
+            "Settings",
+            {
+                "fields": (
+                    "max_teams",
+                    "allow_late_joins",
+                )
+            },
+        ),
+        (
+            "Security & Timestamps",
+            {
+                "fields": (
+                    "display_admin_token",
+                    "created_at",
+                    "started_at",
+                    "completed_at",
+                    "admin_last_seen",
+                ),
+                "classes": ("collapse",),
+            },
+        ),
+    )
+
+    inlines = [SessionTeamInline, SessionRoundInline]
+    ordering = ["-created_at"]
+
+    actions = ["end_session", "recalculate_team_scores"]
+
+    def team_count(self, obj):
+        """Display number of teams"""
+        return obj.teams.count()
+
+    team_count.short_description = "Teams"
+
+    def display_admin_token(self, obj):
+        """Display admin token with copy button"""
+        if obj.admin_token:
+            return format_html(
+                '<input type="text" value="{}" readonly style="width: 300px;" '
+                "onclick=\"this.select(); document.execCommand('copy');\" "
+                'title="Click to copy" />',
+                obj.admin_token,
+            )
+        return "-"
+
+    display_admin_token.short_description = "Admin Token (click to copy)"
+
+    def end_session(self, request, queryset):
+        """Custom action to end selected sessions"""
+        from django.utils import timezone
+
+        count = 0
+        for session in queryset:
+            if session.status != GameSession.Status.COMPLETED:
+                session.status = GameSession.Status.COMPLETED
+                session.completed_at = timezone.now()
+                session.save()
+                count += 1
+
+        self.message_user(request, f"{count} session(s) marked as completed.")
+
+    end_session.short_description = "End selected sessions"
+
+    def recalculate_team_scores(self, request, queryset):
+        """Recalculate all team scores for selected sessions"""
+        from django.db.models import Sum
+
+        count = 0
+        for session in queryset:
+            for team in session.teams.all():
+                team.score = (
+                    team.answers.filter(points_awarded__isnull=False).aggregate(
+                        total=Sum("points_awarded")
+                    )["total"]
+                    or 0
+                )
+                team.save()
+                count += 1
+
+        self.message_user(request, f"Recalculated scores for {count} team(s).")
+
+    recalculate_team_scores.short_description = "Recalculate team scores"
+
+
+class TeamAnswerInline(admin.TabularInline):
+    """Inline display of answers within a team"""
+
+    model = TeamAnswer
+    extra = 0
+    fields = (
+        "question",
+        "answer_text",
+        "points_awarded",
+        "is_locked",
+        "submitted_at",
+    )
+    readonly_fields = ("submitted_at", "updated_at", "scored_at")
+    can_delete = False
+
+    def has_add_permission(self, request, obj=None):
+        # Don't allow adding answers through admin
+        return False
+
+
+class SessionTeamAdmin(admin.ModelAdmin):
+    """Admin interface for SessionTeam"""
+
+    list_display = (
+        "name",
+        "session_code",
+        "score",
+        "joined_at",
+        "joined_late",
+        "answer_count",
+    )
+    list_filter = ("joined_late", "session__game", "session__status")
+    search_fields = ("name", "session__code", "session__game__name")
+    readonly_fields = ("token", "joined_at", "last_seen", "display_token")
+    fieldsets = (
+        (
+            "Team Info",
+            {
+                "fields": (
+                    "session",
+                    "name",
+                    "score",
+                )
+            },
+        ),
+        (
+            "Status",
+            {
+                "fields": (
+                    "joined_late",
+                    "joined_at",
+                    "last_seen",
+                )
+            },
+        ),
+        (
+            "Security",
+            {
+                "fields": ("display_token",),
+                "classes": ("collapse",),
+            },
+        ),
+    )
+
+    inlines = [TeamAnswerInline]
+    ordering = ["-session__created_at", "-score"]
+
+    def session_code(self, obj):
+        """Display session code"""
+        return obj.session.code
+
+    session_code.short_description = "Session"
+    session_code.admin_order_field = "session__code"
+
+    def answer_count(self, obj):
+        """Display number of answers submitted"""
+        return obj.answers.count()
+
+    answer_count.short_description = "Answers"
+
+    def display_token(self, obj):
+        """Display team token with copy button"""
+        if obj.token:
+            return format_html(
+                '<input type="text" value="{}" readonly style="width: 300px;" '
+                "onclick=\"this.select(); document.execCommand('copy');\" "
+                'title="Click to copy" />',
+                obj.token,
+            )
+        return "-"
+
+    display_token.short_description = "Team Token (click to copy)"
+
+
+class RoundStatusFilter(SimpleListFilter):
+    """Custom filter for round status"""
+
+    title = "round status"
+    parameter_name = "status"
+
+    def lookups(self, request, model_admin):
+        return SessionRound.Status.choices
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(status=self.value())
+        return queryset
+
+
+class SessionRoundAdmin(admin.ModelAdmin):
+    """Admin interface for SessionRound"""
+
+    list_display = (
+        "session_code",
+        "round_name",
+        "round_number",
+        "status",
+        "started_at",
+        "scored_at",
+    )
+    list_filter = (RoundStatusFilter, "session__game")
+    search_fields = ("session__code", "round__name")
+    readonly_fields = ("started_at", "locked_at", "scored_at")
+    fieldsets = (
+        (
+            "Round Info",
+            {
+                "fields": (
+                    "session",
+                    "round",
+                    "status",
+                )
+            },
+        ),
+        (
+            "Timestamps",
+            {
+                "fields": (
+                    "started_at",
+                    "locked_at",
+                    "scored_at",
+                )
+            },
+        ),
+    )
+
+    ordering = ["-session__created_at", "round__round_number"]
+
+    def session_code(self, obj):
+        """Display session code"""
+        return obj.session.code
+
+    session_code.short_description = "Session"
+    session_code.admin_order_field = "session__code"
+
+    def round_name(self, obj):
+        """Display round name"""
+        return obj.round.name
+
+    round_name.short_description = "Round"
+    round_name.admin_order_field = "round__name"
+
+    def round_number(self, obj):
+        """Display round number"""
+        return obj.round.round_number
+
+    round_number.short_description = "#"
+    round_number.admin_order_field = "round__round_number"
+
+
+class TeamAnswerAdmin(admin.ModelAdmin):
+    """Admin interface for TeamAnswer"""
+
+    list_display = (
+        "team_name",
+        "session_code",
+        "question_number",
+        "answer_preview",
+        "points_awarded",
+        "is_locked",
+        "submitted_at",
+    )
+    list_filter = (
+        "is_locked",
+        "session_round__session__game",
+        "session_round__status",
+    )
+    search_fields = (
+        "team__name",
+        "team__session__code",
+        "question__text",
+        "answer_text",
+    )
+    readonly_fields = ("submitted_at", "updated_at", "scored_at")
+    fieldsets = (
+        (
+            "Answer Info",
+            {
+                "fields": (
+                    "team",
+                    "question",
+                    "session_round",
+                    "answer_text",
+                )
+            },
+        ),
+        (
+            "Scoring",
+            {
+                "fields": (
+                    "points_awarded",
+                    "is_locked",
+                    "scored_at",
+                )
+            },
+        ),
+        (
+            "Timestamps",
+            {
+                "fields": (
+                    "submitted_at",
+                    "updated_at",
+                ),
+                "classes": ("collapse",),
+            },
+        ),
+    )
+
+    ordering = ["-submitted_at"]
+
+    def team_name(self, obj):
+        """Display team name"""
+        return obj.team.name
+
+    team_name.short_description = "Team"
+    team_name.admin_order_field = "team__name"
+
+    def session_code(self, obj):
+        """Display session code"""
+        return obj.team.session.code
+
+    session_code.short_description = "Session"
+
+    def question_number(self, obj):
+        """Display question number"""
+        return f"Q{obj.question.question_number}"
+
+    question_number.short_description = "Question"
+    question_number.admin_order_field = "question__question_number"
+
+    def answer_preview(self, obj):
+        """Display truncated answer text"""
+        if obj.answer_text:
+            return (
+                obj.answer_text[:50] + "..."
+                if len(obj.answer_text) > 50
+                else obj.answer_text
+            )
+        return "(empty)"
+
+    answer_preview.short_description = "Answer"
+
+
+# Register session models
 admin.site.register(GameSession, GameSessionAdmin)
 admin.site.register(SessionTeam, SessionTeamAdmin)
+admin.site.register(SessionRound, SessionRoundAdmin)
 admin.site.register(TeamAnswer, TeamAnswerAdmin)
