@@ -474,6 +474,7 @@
         let roundQuestions = []; // Questions in current round for navigation
         let currentQuestionIndex = 0; // Current question position in round
         let ACTIVE_ROLE = null; // Track which role user is acting as
+        let renderedQuestionId = null; // Track which question's inputs are currently rendered
 
         // Initialize
         if (!IS_ADMIN && !IS_TEAM) {
@@ -574,21 +575,29 @@
                 document.getElementById('teamLobby').classList.remove('hidden');
                 document.getElementById('hostName').textContent = state.admin_name;
                 renderLobbyTeams(state.teams, 'teamLobbyList');
+                renderedQuestionId = null; // Reset when not in playing state
             } else if (state.status === 'playing') {
                 document.getElementById('teamPlaying').classList.remove('hidden');
                 if (state.current_question) {
                     renderFullQuestion(state.current_question, 'teamQuestionDisplay');
-                    renderTeamAnswerInputs(state.current_question);
-                    loadTeamAnswer(state.current_question.id);
+
+                    // Only render inputs if question has changed
+                    if (renderedQuestionId !== state.current_question.id) {
+                        renderTeamAnswerInputs(state.current_question);
+                        loadTeamAnswer(state.current_question.id);
+                        renderedQuestionId = state.current_question.id;
+                    }
 
                     // Render answer overview for all questions in round
                     renderTeamAnswerOverview();
                 }
             } else if (state.status === 'scoring') {
                 document.getElementById('teamScoring').classList.remove('hidden');
+                renderedQuestionId = null; // Reset when not in playing state
             } else if (state.status === 'completed') {
                 document.getElementById('teamResults').classList.remove('hidden');
                 loadTeamResults();
+                renderedQuestionId = null; // Reset when not in playing state
             }
         }
 
