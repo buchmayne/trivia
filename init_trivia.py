@@ -258,6 +258,7 @@ def connect_to_gsheets() -> tuple:
 def main() -> None:
     """
     Example:
+    make start
      player-sheet-name: Test
      number-of-teams: 6
      minimum-team-size: 4
