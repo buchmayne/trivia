@@ -637,7 +637,8 @@
                     html += '<ul class="answer-list ranking">';
                     question.answers.forEach(answer => {
                         html += '<li class="answer-item">';
-                        html += `<div class="answer-text">${answer.text || answer.answer_text}</div>`;
+                        // Only show text field, never answer_text (correct answer)
+                        html += `<div class="answer-text">${answer.text || ''}</div>`;
                         if (answer.video_url) {
                             html += '<div class="answer-video">';
                             html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
@@ -652,7 +653,8 @@
                     html += '<ul class="answer-list matching">';
                     question.answers.forEach(answer => {
                         html += '<li class="answer-item">';
-                        html += `<div class="answer-text">${answer.text || answer.answer_text}</div>`;
+                        // Only show text field, never answer_text (correct answer)
+                        html += `<div class="answer-text">${answer.text || ''}</div>`;
                         if (answer.video_url) {
                             html += '<div class="answer-video">';
                             html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
@@ -667,7 +669,8 @@
                     html += '<ul class="answer-list open-ended">';
                     question.answers.forEach((answer, idx) => {
                         html += '<li class="answer-item">';
-                        html += `<div class="answer-text"><strong>${String.fromCharCode(97 + idx)})</strong> ${answer.text || answer.answer_text}</div>`;
+                        // Only show text field, never answer_text (correct answer)
+                        html += `<div class="answer-text"><strong>${String.fromCharCode(97 + idx)})</strong> ${answer.text || ''}</div>`;
                         if (answer.video_url) {
                             html += '<div class="answer-video">';
                             html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
@@ -729,10 +732,12 @@
 
                 question.answers.forEach((subQ, idx) => {
                     const label = String.fromCharCode(97 + idx); // a, b, c, d...
+                    // Only show text field, never answer_text (correct answer) to teams
+                    const questionText = subQ.text || '';
                     html += `
                         <div style="margin-bottom: 1.5rem;">
                             <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151;">
-                                ${label}) ${subQ.text || subQ.answer_text}
+                                ${label}) ${questionText}
                             </label>
                             <textarea
                                 class="sub-answer-input"
@@ -991,14 +996,44 @@
         function renderScoringUI(data) {
             const container = document.getElementById('scoringContent');
             container.innerHTML = data.questions.map(q => {
-                const correctAnswers = q.correct_answers.map(a => escapeHtml(a.text)).join(', ');
+                // Format correct answers based on question type
+                let correctAnswersHtml = '';
+                if (q.correct_answers && q.correct_answers.length > 0) {
+                    if (q.question_type === 'Ranking') {
+                        // Show correct ranking order
+                        correctAnswersHtml = '<div style="padding: 1rem; background: #f0fdf4; border: 2px solid #10b981; border-top: none;">';
+                        correctAnswersHtml += '<strong>Correct Ranking:</strong><ol style="margin: 0.5rem 0 0 1.5rem;">';
+                        const sortedByRank = [...q.correct_answers].sort((a, b) => (a.correct_rank || 0) - (b.correct_rank || 0));
+                        sortedByRank.forEach(a => {
+                            if (a.correct_rank) {
+                                correctAnswersHtml += `<li>${escapeHtml(a.sub_question || a.answer_text || '')}</li>`;
+                            }
+                        });
+                        correctAnswersHtml += '</ol></div>';
+                    } else if (q.question_type === 'Multiple Open Ended') {
+                        // Show sub-questions with correct answers
+                        correctAnswersHtml = '<div style="padding: 1rem; background: #f0fdf4; border: 2px solid #10b981; border-top: none;">';
+                        correctAnswersHtml += '<strong>Correct Answers:</strong><ul style="margin: 0.5rem 0 0 1.5rem; list-style: none;">';
+                        q.correct_answers.forEach((a, idx) => {
+                            const label = String.fromCharCode(97 + idx); // a, b, c...
+                            correctAnswersHtml += `<li><strong>${label})</strong> ${escapeHtml(a.answer_text || 'N/A')}</li>`;
+                        });
+                        correctAnswersHtml += '</ul></div>';
+                    } else {
+                        // Default: show answer_text
+                        const answers = q.correct_answers.map(a => escapeHtml(a.answer_text || a.sub_question || '')).filter(t => t).join(', ');
+                        if (answers) {
+                            correctAnswersHtml = `<div style="padding: 1rem; background: #f0fdf4; border: 2px solid #10b981; border-top: none;"><strong>Correct Answer(s):</strong> ${answers}</div>`;
+                        }
+                    }
+                }
 
                 return `
                     <div class="scoring-section">
                         <div class="scoring-question-header">
                             <strong>Q${q.number}:</strong> ${escapeHtml(q.text)} (${q.total_points} points available)
                         </div>
-                        ${correctAnswers ? `<div style="padding: 1rem; background: #f0fdf4; border: 2px solid #10b981; border-top: none;"><strong>Correct Answer(s):</strong> ${correctAnswers}</div>` : ''}
+                        ${correctAnswersHtml}
                         <table class="scoring-table">
                             <thead>
                                 <tr>

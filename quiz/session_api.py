@@ -400,8 +400,15 @@ def admin_get_scoring_data(request, code):
             "number": question.question_number,
             "text": question.text,
             "total_points": question.total_points,
+            "question_type": question.question_type.name if question.question_type else None,
             "correct_answers": [
-                {"text": a.text, "points": a.points} for a in question.answers.all()
+                {
+                    "sub_question": a.text,
+                    "answer_text": a.answer_text,
+                    "correct_rank": a.correct_rank,
+                    "points": a.points,
+                }
+                for a in question.answers.all().order_by("display_order")
             ],
             "team_answers": [],
         }
