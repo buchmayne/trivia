@@ -807,9 +807,14 @@
                     question.answers.forEach((answer, idx) => {
                         html += '<li class="answer-item">';
                         // Only show text field, never answer_text (correct answer)
-                        // Smart label: only prepend if text doesn't already start with A., B., etc.
-                        const label = shouldPrependLabel(answer.text) ? `<strong>${String.fromCharCode(97 + idx)})</strong> ` : '';
-                        html += `<div class="answer-text">${label}${answer.text || ''}</div>`;
+                        // Strip any existing label prefix (like "A. ") and always prepend our own label
+                        if (answer.text) {
+                            const cleanText = stripLabelPrefix(answer.text);
+                            // Only show text if there's content after stripping the label
+                            if (cleanText) {
+                                html += `<div class="answer-text"><strong>${String.fromCharCode(97 + idx)})</strong> ${cleanText}</div>`;
+                            }
+                        }
                         if (answer.video_url) {
                             html += '<div class="answer-video">';
                             html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
@@ -931,13 +936,13 @@
                     question.answers.forEach((subQ, idx) => {
                         const letterLabel = String.fromCharCode(97 + idx); // a, b, c, d...
                         // Only show text field, never answer_text (correct answer) to teams
+                        // Strip any existing label prefix (like "A. ") and always prepend our own label
                         const questionText = subQ.text || '';
-                        // Smart label: only prepend if text doesn't already start with A., B., etc.
-                        const labelPrefix = shouldPrependLabel(questionText) ? `${letterLabel}) ` : '';
+                        const cleanText = stripLabelPrefix(questionText);
                         html += `
                             <div style="margin-bottom: 1.5rem;">
                                 <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151;">
-                                    ${labelPrefix}${questionText}
+                                    ${letterLabel}) ${cleanText}
                                 </label>
                                 <textarea
                                     class="sub-answer-input"
@@ -1842,8 +1847,23 @@
          */
         function shouldPrependLabel(text) {
             if (!text) return true;
-            // Check if text starts with A. through G. (common in old questions)
-            return !/^[A-G]\.\s/.test(text.trim());
+            const trimmed = text.trim();
+            // Check if text starts with:
+            // - Uppercase letter followed by period and space: A. B. C. etc.
+            // - Lowercase letter followed by closing paren: a) b) c) etc.
+            // - Uppercase letter followed by closing paren: A) B) C) etc.
+            return !/^[A-Za-z][\.\)]\s/.test(trimmed);
+        }
+
+        /**
+         * Remove letter label prefix from text if it exists
+         * Removes patterns like "A. ", "B. ", "a) ", "A) " from the beginning
+         */
+        function stripLabelPrefix(text) {
+            if (!text) return '';
+            const trimmed = text.trim();
+            // Remove single letter followed by period or paren and space at the start
+            return trimmed.replace(/^[A-Za-z][\.\)]\s/, '');
         }
     </script>
 </body>
