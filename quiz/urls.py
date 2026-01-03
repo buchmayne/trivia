@@ -80,6 +80,11 @@ urlpatterns = [
         name="session_admin_question",
     ),
     path(
+        "api/sessions/<str:code>/admin/toggle-team-navigation/",
+        session_api.admin_toggle_team_navigation,
+        name="session_admin_toggle_nav",
+    ),
+    path(
         "api/sessions/<str:code>/admin/lock-round/",
         session_api.admin_lock_round,
         name="session_admin_lock",
@@ -109,6 +114,11 @@ urlpatterns = [
         "api/sessions/<str:code>/team/answers/",
         session_api.team_get_answers,
         name="session_team_answers",
+    ),
+    path(
+        "api/sessions/<str:code>/team/question/",
+        session_api.team_get_question_details,
+        name="session_team_question",
     ),
     path(
         "api/sessions/<str:code>/team/results/",

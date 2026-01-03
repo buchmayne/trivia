@@ -267,6 +267,7 @@ def get_session_state(request, code):
             "teams": teams_data,
             "team_count": len(teams_data),
             "max_teams": session.max_teams,
+            "allow_team_navigation": session.allow_team_navigation,
         }
     )
 
@@ -352,6 +353,33 @@ def admin_set_question(request, code):
             "status": "ok",
             "question_id": question.id,
             "question_number": question.question_number,
+        }
+    )
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+@require_admin_token
+def admin_toggle_team_navigation(request, code):
+    """Toggle whether teams can navigate between questions in the round."""
+    session = request.session_obj
+
+    try:
+        data = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+    allow_navigation = data.get("allow_team_navigation")
+    if allow_navigation is None:
+        return JsonResponse({"error": "allow_team_navigation required"}, status=400)
+
+    session.allow_team_navigation = bool(allow_navigation)
+    session.save(update_fields=["allow_team_navigation"])
+
+    return JsonResponse(
+        {
+            "status": "ok",
+            "allow_team_navigation": session.allow_team_navigation,
         }
     )
 
@@ -690,6 +718,54 @@ def team_get_answers(request, code):
             "answers": answers_data,
         }
     )
+
+
+@require_http_methods(["GET"])
+@require_team_token
+def team_get_question_details(request, code):
+    """Get full details for a specific question (for team navigation)."""
+    session = request.session_obj
+    team = request.team
+
+    question_id = request.GET.get("question_id")
+    if not question_id:
+        return JsonResponse({"error": "question_id required"}, status=400)
+
+    question = get_object_or_404(Question, id=question_id, game=session.game)
+    session_round = session.session_rounds.filter(round=question.game_round).first()
+
+    # Verify question is in current or completed round (not future rounds)
+    if not session_round or session_round.status == SessionRound.Status.PENDING:
+        return JsonResponse(
+            {"error": "Question not accessible yet"}, status=400
+        )
+
+    question_data = {
+        "id": question.id,
+        "number": question.question_number,
+        "text": question.text,
+        "total_points": question.total_points,
+        "image_url": question.question_image_url,
+        "video_url": question.question_video_url,
+        "answer_bank": question.answer_bank,
+        "question_type": (
+            question.question_type.name if question.question_type else None
+        ),
+        "answers": [
+            {
+                "id": a.id,
+                "text": a.text,
+                "answer_text": a.answer_text,
+                "display_order": a.display_order,
+                "image_url": a.question_image_url,
+                "video_url": a.question_video_url,
+                "points": a.points,
+            }
+            for a in question.answers.all().order_by("display_order")
+        ],
+    }
+
+    return JsonResponse({"question": question_data})
 
 
 @require_http_methods(["GET"])

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ session.code }} - Live Game</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <style>
         body {
             background: #f3f4f6;
@@ -65,6 +66,73 @@
         .btn-danger { background: #ef4444; color: white; }
         .btn-danger:hover { background: #dc2626; }
         .btn:disabled { background: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+
+        /* Question Selector */
+        .question-selector {
+            padding: 0.75rem 1rem;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            background: white;
+            color: #374151;
+            min-width: 200px;
+        }
+        .question-selector:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Ranking Question Styles */
+        .ranking-item {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            cursor: move;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .ranking-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+        .ranking-item.sortable-ghost {
+            opacity: 0.4;
+        }
+        .ranking-item.sortable-drag {
+            opacity: 1;
+            background: #f3f4f6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .ranking-handle {
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: grab;
+        }
+        .ranking-handle:active {
+            cursor: grabbing;
+        }
+        .ranking-number {
+            min-width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .ranking-content {
+            flex: 1;
+            font-weight: 500;
+        }
 
         /* Question Display Styles (matching original views) */
         .question-container {
@@ -371,15 +439,20 @@
 
                 <!-- Navigation Controls -->
                 <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
                         <button class="btn btn-secondary" id="prevQuestionBtn">◄ Previous Question</button>
-                        <span id="questionIndicator" style="font-weight: 600; color: #6b7280;"></span>
+                        <select id="questionSelector" class="question-selector">
+                            <option value="">Loading questions...</option>
+                        </select>
                         <button class="btn btn-secondary" id="nextQuestionBtn">Next Question ►</button>
                     </div>
                     <h2>Team Status</h2>
                     <div id="teamStatus" class="teams-grid"></div>
-                    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
-                        <button class="btn btn-danger" id="lockRoundBtn">Lock Round & Start Scoring</button>
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                        <button class="btn btn-secondary" id="toggleTeamNavBtn" style="flex: 0 0 auto;">
+                            <span id="teamNavStatus">🔒 Enable Team Navigation</span>
+                        </button>
+                        <button class="btn btn-danger" id="lockRoundBtn" style="flex: 0 0 auto;">Lock Round & Start Scoring</button>
                     </div>
                 </div>
             </div>
@@ -420,6 +493,27 @@
                 <div class="card">
                     <div id="teamAnswerInputSection">
                         <!-- Answer inputs will be dynamically generated here -->
+                    </div>
+
+                    <!-- Team Question Navigation (shown when enabled) - Moved below answer inputs -->
+                    <div id="teamQuestionNav" class="hidden" style="margin-top: 2rem; padding: 1.5rem; background: #f0fdf4; border-radius: 8px; border: 2px solid #10b981;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <span style="font-size: 1.5rem;">✓</span>
+                            <div>
+                                <div style="font-weight: 700; font-size: 1.1rem; color: #059669; margin-bottom: 0.25rem;">
+                                    Question Navigation Enabled
+                                </div>
+                                <div style="font-size: 0.9rem; color: #047857;">
+                                    You can navigate between questions in this round at your own pace
+                                </div>
+                            </div>
+                        </div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #059669;">
+                            Select a Question:
+                        </label>
+                        <select id="teamQuestionSelector" class="question-selector" style="width: 100%; max-width: 400px;">
+                            <option value="">Loading questions...</option>
+                        </select>
                     </div>
 
                     <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e5e7eb;">
@@ -475,6 +569,10 @@
         let currentQuestionIndex = 0; // Current question position in round
         let ACTIVE_ROLE = null; // Track which role user is acting as
         let renderedQuestionId = null; // Track which question's inputs are currently rendered
+        let autoSaveTimer = null; // Timer for debounced auto-save
+        let teamQuestions = []; // Questions available to team (for navigation)
+        let teamCurrentQuestionId = null; // Team's current question (may differ from host)
+        let teamQuestionCache = {}; // Cache full question data for team navigation
 
         // Initialize
         if (!IS_ADMIN && !IS_TEAM) {
@@ -554,6 +652,9 @@
 
                 // Load round questions for navigation
                 loadRoundQuestions();
+
+                // Update team navigation toggle button
+                updateTeamNavToggle(state.allow_team_navigation);
             } else if (state.status === 'scoring') {
                 document.getElementById('scoringState').classList.remove('hidden');
                 if (state.current_round) {
@@ -578,19 +679,55 @@
                 renderedQuestionId = null; // Reset when not in playing state
             } else if (state.status === 'playing') {
                 document.getElementById('teamPlaying').classList.remove('hidden');
-                if (state.current_question) {
-                    renderFullQuestion(state.current_question, 'teamQuestionDisplay');
 
-                    // Only render inputs if question has changed
-                    if (renderedQuestionId !== state.current_question.id) {
+                // Handle team navigation
+                const navEnabled = state.allow_team_navigation;
+                const teamNavDiv = document.getElementById('teamQuestionNav');
+
+                console.log('=== TEAM NAVIGATION DEBUG ===');
+                console.log('Full state object:', state);
+                console.log('Team navigation status:', navEnabled);
+                console.log('TeamNavDiv element:', teamNavDiv);
+                console.log('===========================');
+
+                if (navEnabled) {
+                    // Show navigation selector
+                    console.log('Showing team navigation');
+                    teamNavDiv.classList.remove('hidden');
+                    loadTeamQuestions(state);
+
+                    // Cache current question data
+                    if (state.current_question) {
+                        teamQuestionCache[state.current_question.id] = state.current_question;
+                    }
+
+                    // Use team's selected question or default to host's
+                    let questionToShow = state.current_question;
+                    if (teamCurrentQuestionId && teamQuestionCache[teamCurrentQuestionId]) {
+                        questionToShow = teamQuestionCache[teamCurrentQuestionId];
+                    }
+
+                    if (questionToShow && renderedQuestionId !== questionToShow.id) {
+                        renderFullQuestion(questionToShow, 'teamQuestionDisplay');
+                        renderTeamAnswerInputs(questionToShow);
+                        loadTeamAnswer(questionToShow.id);
+                        renderedQuestionId = questionToShow.id;
+                    }
+                } else {
+                    // Hide navigation, lock to host's question
+                    teamNavDiv.classList.add('hidden');
+                    teamCurrentQuestionId = null; // Reset team navigation
+
+                    if (state.current_question && renderedQuestionId !== state.current_question.id) {
+                        renderFullQuestion(state.current_question, 'teamQuestionDisplay');
                         renderTeamAnswerInputs(state.current_question);
                         loadTeamAnswer(state.current_question.id);
                         renderedQuestionId = state.current_question.id;
                     }
-
-                    // Render answer overview for all questions in round
-                    renderTeamAnswerOverview();
                 }
+
+                // Render answer overview for all questions in round
+                renderTeamAnswerOverview();
             } else if (state.status === 'scoring') {
                 document.getElementById('teamScoring').classList.remove('hidden');
                 renderedQuestionId = null; // Reset when not in playing state
@@ -670,7 +807,9 @@
                     question.answers.forEach((answer, idx) => {
                         html += '<li class="answer-item">';
                         // Only show text field, never answer_text (correct answer)
-                        html += `<div class="answer-text"><strong>${String.fromCharCode(97 + idx)})</strong> ${answer.text || ''}</div>`;
+                        // Smart label: only prepend if text doesn't already start with A., B., etc.
+                        const label = shouldPrependLabel(answer.text) ? `<strong>${String.fromCharCode(97 + idx)})</strong> ` : '';
+                        html += `<div class="answer-text">${label}${answer.text || ''}</div>`;
                         if (answer.video_url) {
                             html += '<div class="answer-video">';
                             html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
@@ -727,27 +866,89 @@
 
             // Check if question has sub-questions
             if (question.answers && question.answers.length > 0) {
-                html += '<h3>Your Answers</h3>';
-                html += '<p style="color: #6b7280; margin-bottom: 1rem;">Please provide an answer for each part:</p>';
+                // Check if this is a Ranking question
+                if (question.question_type === 'Ranking') {
+                    html += '<h3>Rank the Following</h3>';
+                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Drag and drop to rank from 1st to last:</p>';
+                    html += '<div id="rankingList" class="ranking-list">';
 
-                question.answers.forEach((subQ, idx) => {
-                    const label = String.fromCharCode(97 + idx); // a, b, c, d...
-                    // Only show text field, never answer_text (correct answer) to teams
-                    const questionText = subQ.text || '';
-                    html += `
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151;">
-                                ${label}) ${questionText}
-                            </label>
-                            <textarea
-                                class="sub-answer-input"
-                                data-sub-index="${idx}"
-                                placeholder="Enter your answer for part ${label}..."
-                                style="width: 100%; min-height: 80px; padding: 0.75rem; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;"
-                            ></textarea>
-                        </div>
-                    `;
-                });
+                    question.answers.forEach((item, idx) => {
+                        const questionText = item.text || '';
+                        html += `
+                            <div class="ranking-item" data-answer-id="${item.id}" data-original-index="${idx}">
+                                <div class="ranking-handle">⋮⋮</div>
+                                <div class="ranking-number">${idx + 1}</div>
+                                <div class="ranking-content">${escapeHtml(questionText)}</div>
+                            </div>
+                        `;
+                    });
+
+                    html += '</div>';
+                    html += '<input type="hidden" id="rankingAnswerInput" value="">';
+                } else if (question.question_type === 'Matching' && question.answer_bank) {
+                    // Check if this is a Matching question with answer bank
+                    // Parse answer bank options (split by comma)
+                    const bankOptions = question.answer_bank.split(',').map(opt => opt.trim()).filter(opt => opt);
+
+                    html += '<h3>Your Answers</h3>';
+                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Select the correct answer for each part:</p>';
+
+                    question.answers.forEach((subQ, idx) => {
+                        const letterLabel = String.fromCharCode(97 + idx); // a, b, c, d...
+                        const questionText = subQ.text || '';
+                        const labelPrefix = shouldPrependLabel(questionText) ? `${letterLabel}) ` : '';
+
+                        html += `
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; font-weight: 600; margin-bottom: 0.75rem; color: #374151;">
+                                    ${labelPrefix}${questionText}
+                                </label>
+                                <div class="answer-bank-buttons" data-sub-index="${idx}" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        `;
+
+                        // Create button for each answer bank option
+                        bankOptions.forEach((option, optIdx) => {
+                            html += `
+                                <button type="button" class="bank-option-btn" data-sub-index="${idx}" data-option="${escapeHtml(option)}"
+                                    style="padding: 0.75rem 1rem; border: 2px solid #d1d5db; border-radius: 6px; background: white;
+                                           cursor: pointer; font-size: 0.95rem; transition: all 0.2s; font-weight: 500;">
+                                    ${escapeHtml(option)}
+                                </button>
+                            `;
+                        });
+
+                        html += `
+                                </div>
+                                <input type="hidden" class="matching-answer-input" data-sub-index="${idx}" value="">
+                            </div>
+                        `;
+                    });
+                } else {
+                    // Regular Multiple Open Ended questions
+                    html += '<h3>Your Answers</h3>';
+                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Please provide an answer for each part:</p>';
+
+                    question.answers.forEach((subQ, idx) => {
+                        const letterLabel = String.fromCharCode(97 + idx); // a, b, c, d...
+                        // Only show text field, never answer_text (correct answer) to teams
+                        const questionText = subQ.text || '';
+                        // Smart label: only prepend if text doesn't already start with A., B., etc.
+                        const labelPrefix = shouldPrependLabel(questionText) ? `${letterLabel}) ` : '';
+                        html += `
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151;">
+                                    ${labelPrefix}${questionText}
+                                </label>
+                                <textarea
+                                    class="sub-answer-input"
+                                    data-sub-index="${idx}"
+                                    placeholder="Enter your answer for part ${letterLabel}..."
+                                    style="width: 100%; min-height: 80px; padding: 0.75rem; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;"
+                                ></textarea>
+                            </div>
+                        `;
+                    });
+                }
             } else {
                 // Single answer question
                 html += '<h3>Your Answer</h3>';
@@ -760,7 +961,10 @@
                 `;
             }
 
-            html += '<button class="btn btn-primary" id="submitAnswerBtn" style="margin-top: 1rem; width: 100%;">Save Answer</button>';
+            html += '<div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem;">';
+            html += '<button class="btn btn-primary" id="submitAnswerBtn" style="flex: 1;">Submit Answer</button>';
+            html += '<div id="autoSaveStatus" style="font-size: 0.9rem; color: #6b7280; min-width: 100px;"></div>';
+            html += '</div>';
             html += '<div id="answerStatus" class="answer-status hidden"></div>';
             html += '</div>';
 
@@ -768,6 +972,105 @@
 
             // Attach event listener to submit button
             document.getElementById('submitAnswerBtn').addEventListener('click', submitTeamAnswer);
+
+            // Attach auto-save listeners to all text inputs
+            const allInputs = container.querySelectorAll('textarea');
+            allInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    handleAutoSave();
+                });
+            });
+
+            // Attach click listeners to matching question buttons
+            const bankButtons = container.querySelectorAll('.bank-option-btn');
+            bankButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const subIndex = e.target.dataset.subIndex;
+                    const selectedOption = e.target.dataset.option;
+
+                    // Remove selection from other buttons in same group
+                    const buttonsInGroup = container.querySelectorAll(`.bank-option-btn[data-sub-index="${subIndex}"]`);
+                    buttonsInGroup.forEach(b => {
+                        b.style.background = 'white';
+                        b.style.borderColor = '#d1d5db';
+                        b.style.color = '#374151';
+                    });
+
+                    // Highlight selected button
+                    e.target.style.background = '#667eea';
+                    e.target.style.borderColor = '#667eea';
+                    e.target.style.color = 'white';
+
+                    // Store selection in hidden input
+                    const hiddenInput = container.querySelector(`.matching-answer-input[data-sub-index="${subIndex}"]`);
+                    if (hiddenInput) {
+                        hiddenInput.value = selectedOption;
+                    }
+
+                    // Trigger auto-save
+                    handleAutoSave();
+                });
+            });
+
+            // Initialize SortableJS for ranking questions
+            const rankingList = document.getElementById('rankingList');
+            if (rankingList) {
+                Sortable.create(rankingList, {
+                    animation: 150,
+                    handle: '.ranking-handle',
+                    ghostClass: 'sortable-ghost',
+                    dragClass: 'sortable-drag',
+                    onEnd: function() {
+                        // Update ranking numbers
+                        updateRankingNumbers();
+                        // Store ranking order
+                        saveRankingOrder();
+                        // Trigger auto-save
+                        handleAutoSave();
+                    }
+                });
+            }
+        }
+
+        function updateRankingNumbers() {
+            const rankingItems = document.querySelectorAll('.ranking-item');
+            rankingItems.forEach((item, idx) => {
+                const numberEl = item.querySelector('.ranking-number');
+                if (numberEl) {
+                    numberEl.textContent = idx + 1;
+                }
+            });
+        }
+
+        function saveRankingOrder() {
+            const rankingItems = document.querySelectorAll('.ranking-item');
+            const order = Array.from(rankingItems).map(item => item.dataset.originalIndex);
+            const hiddenInput = document.getElementById('rankingAnswerInput');
+            if (hiddenInput) {
+                hiddenInput.value = JSON.stringify(order);
+            }
+        }
+
+        function restoreRankingOrder(order) {
+            const rankingList = document.getElementById('rankingList');
+            if (!rankingList || !order || !Array.isArray(order)) return;
+
+            // Get all ranking items
+            const items = Array.from(document.querySelectorAll('.ranking-item'));
+
+            // Reorder items based on saved order
+            const orderedItems = order.map(originalIdx => {
+                return items.find(item => item.dataset.originalIndex === String(originalIdx));
+            }).filter(item => item); // Remove any nulls
+
+            // Clear the list and re-append in correct order
+            rankingList.innerHTML = '';
+            orderedItems.forEach(item => {
+                rankingList.appendChild(item);
+            });
+
+            // Update ranking numbers
+            updateRankingNumbers();
         }
 
         async function loadTeamAnswer(questionId) {
@@ -785,11 +1088,35 @@
                     try {
                         const parsedAnswers = JSON.parse(answer.answer_text);
                         if (Array.isArray(parsedAnswers)) {
-                            // Multi-part answer
-                            parsedAnswers.forEach((ans, idx) => {
-                                const input = document.querySelector(`textarea[data-sub-index="${idx}"]`);
-                                if (input) input.value = ans || '';
-                            });
+                            // Check if this is ranking question (array of indices)
+                            const rankingInput = document.getElementById('rankingAnswerInput');
+                            if (rankingInput) {
+                                // Ranking question - restore order
+                                rankingInput.value = answer.answer_text;
+                                restoreRankingOrder(parsedAnswers);
+                            } else {
+                                // Multi-part answer - could be text inputs or matching buttons
+                                parsedAnswers.forEach((ans, idx) => {
+                                    // Try textarea first
+                                    const textarea = document.querySelector(`textarea[data-sub-index="${idx}"]`);
+                                    if (textarea) {
+                                        textarea.value = ans || '';
+                                    } else {
+                                        // Try matching question buttons
+                                        const hiddenInput = document.querySelector(`.matching-answer-input[data-sub-index="${idx}"]`);
+                                        if (hiddenInput && ans) {
+                                            hiddenInput.value = ans;
+                                            // Highlight the corresponding button
+                                            const selectedBtn = document.querySelector(`.bank-option-btn[data-sub-index="${idx}"][data-option="${ans}"]`);
+                                            if (selectedBtn) {
+                                                selectedBtn.style.background = '#667eea';
+                                                selectedBtn.style.borderColor = '#667eea';
+                                                selectedBtn.style.color = 'white';
+                                            }
+                                        }
+                                    }
+                                });
+                            }
                         }
                     } catch {
                         // Single answer
@@ -802,6 +1129,7 @@
                     if (answer.is_locked) {
                         // Disable all inputs
                         document.querySelectorAll('textarea').forEach(t => t.disabled = true);
+                        document.querySelectorAll('.bank-option-btn').forEach(b => b.disabled = true);
                         document.getElementById('submitAnswerBtn').disabled = true;
                         statusDiv.textContent = '🔒 Answer locked for scoring';
                         statusDiv.className = 'answer-status locked';
@@ -813,23 +1141,56 @@
             }
         }
 
-        async function submitTeamAnswer() {
-            if (!currentState.current_question) return;
+        function handleAutoSave() {
+            // Clear existing timer
+            if (autoSaveTimer) {
+                clearTimeout(autoSaveTimer);
+            }
 
-            const btn = document.getElementById('submitAnswerBtn');
-            const statusDiv = document.getElementById('answerStatus');
+            const statusDiv = document.getElementById('autoSaveStatus');
+            if (statusDiv) {
+                statusDiv.textContent = 'Typing...';
+                statusDiv.style.color = '#6b7280';
+            }
+
+            // Set new timer for 1.5 seconds
+            autoSaveTimer = setTimeout(async () => {
+                await autoSaveAnswer();
+            }, 1500);
+        }
+
+        async function autoSaveAnswer() {
+            // Use team's current question if navigation is enabled, otherwise host's question
+            const questionId = (currentState.allow_team_navigation && teamCurrentQuestionId)
+                ? teamCurrentQuestionId
+                : (currentState.current_question ? currentState.current_question.id : null);
+
+            if (!questionId) return;
+
+            const statusDiv = document.getElementById('autoSaveStatus');
 
             try {
-                btn.disabled = true;
-                btn.textContent = 'Saving...';
+                if (statusDiv) {
+                    statusDiv.textContent = 'Saving...';
+                    statusDiv.style.color = '#6b7280';
+                }
 
                 // Collect answer(s)
                 let answerText;
                 const subInputs = document.querySelectorAll('.sub-answer-input');
+                const matchingInputs = document.querySelectorAll('.matching-answer-input');
+                const rankingInput = document.getElementById('rankingAnswerInput');
 
-                if (subInputs.length > 0) {
-                    // Multi-part question - collect all sub-answers as JSON array
+                if (rankingInput && rankingInput.value) {
+                    // Ranking question - use stored ranking order
+                    answerText = rankingInput.value;
+                } else if (subInputs.length > 0) {
+                    // Multi-part text question - collect all sub-answers as JSON array
                     const answers = Array.from(subInputs).map(input => input.value.trim());
+                    answerText = JSON.stringify(answers);
+                } else if (matchingInputs.length > 0) {
+                    // Matching question - collect selected options as JSON array
+                    const answers = Array.from(matchingInputs).map(input => input.value.trim());
                     answerText = JSON.stringify(answers);
                 } else {
                     // Single answer
@@ -844,7 +1205,88 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        question_id: currentState.current_question.id,
+                        question_id: questionId,
+                        answer_text: answerText
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Auto-save failed');
+                }
+
+                currentAnswerText = answerText;
+
+                if (statusDiv) {
+                    statusDiv.textContent = '✓ Saved';
+                    statusDiv.style.color = '#10b981';
+                }
+
+                // Refresh the answer overview to show updated status
+                if (ACTIVE_ROLE === 'team') {
+                    renderTeamAnswerOverview();
+                }
+
+                // Clear "Saved" message after 2 seconds
+                setTimeout(() => {
+                    if (statusDiv) {
+                        statusDiv.textContent = '';
+                    }
+                }, 2000);
+            } catch (error) {
+                console.error('Auto-save error:', error);
+                if (statusDiv) {
+                    statusDiv.textContent = '⚠ Save failed';
+                    statusDiv.style.color = '#ef4444';
+                }
+            }
+        }
+
+        async function submitTeamAnswer() {
+            // Use team's current question if navigation is enabled, otherwise host's question
+            const questionId = (currentState.allow_team_navigation && teamCurrentQuestionId)
+                ? teamCurrentQuestionId
+                : (currentState.current_question ? currentState.current_question.id : null);
+
+            if (!questionId) return;
+
+            const btn = document.getElementById('submitAnswerBtn');
+            const statusDiv = document.getElementById('answerStatus');
+
+            try {
+                btn.disabled = true;
+                btn.textContent = 'Saving...';
+
+                // Collect answer(s)
+                let answerText;
+                const subInputs = document.querySelectorAll('.sub-answer-input');
+                const matchingInputs = document.querySelectorAll('.matching-answer-input');
+                const rankingInput = document.getElementById('rankingAnswerInput');
+
+                if (rankingInput && rankingInput.value) {
+                    // Ranking question - use stored ranking order
+                    answerText = rankingInput.value;
+                } else if (subInputs.length > 0) {
+                    // Multi-part text question - collect all sub-answers as JSON array
+                    const answers = Array.from(subInputs).map(input => input.value.trim());
+                    answerText = JSON.stringify(answers);
+                } else if (matchingInputs.length > 0) {
+                    // Matching question - collect selected options as JSON array
+                    const answers = Array.from(matchingInputs).map(input => input.value.trim());
+                    answerText = JSON.stringify(answers);
+                } else {
+                    // Single answer
+                    const answerInput = document.getElementById('answerInput');
+                    answerText = answerInput ? answerInput.value.trim() : '';
+                }
+
+                const response = await fetch(`/quiz/api/sessions/${CODE}/team/answer/`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${TEAM_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        question_id: questionId,
                         answer_text: answerText
                     })
                 });
@@ -926,12 +1368,92 @@
         function updateNavigationButtons() {
             const prevBtn = document.getElementById('prevQuestionBtn');
             const nextBtn = document.getElementById('nextQuestionBtn');
-            const indicator = document.getElementById('questionIndicator');
+            const selector = document.getElementById('questionSelector');
 
-            if (prevBtn && nextBtn && indicator && roundQuestions.length > 0) {
+            if (prevBtn && nextBtn && selector && roundQuestions.length > 0) {
                 prevBtn.disabled = currentQuestionIndex === 0;
                 nextBtn.disabled = currentQuestionIndex === roundQuestions.length - 1;
-                indicator.textContent = `Question ${currentQuestionIndex + 1} of ${roundQuestions.length}`;
+
+                // Populate dropdown with all questions in round
+                selector.innerHTML = roundQuestions.map((q, idx) => {
+                    return `<option value="${q.id}" ${idx === currentQuestionIndex ? 'selected' : ''}>
+                        Question ${q.number} (${idx + 1} of ${roundQuestions.length})
+                    </option>`;
+                }).join('');
+            }
+        }
+
+        function updateTeamNavToggle(allowNavigation) {
+            const btn = document.getElementById('toggleTeamNavBtn');
+            const statusSpan = document.getElementById('teamNavStatus');
+
+            if (btn && statusSpan) {
+                if (allowNavigation) {
+                    statusSpan.textContent = '✓ Team Navigation Enabled';
+                    btn.classList.remove('btn-secondary');
+                    btn.classList.add('btn-primary');
+                } else {
+                    statusSpan.textContent = '🔒 Enable Team Navigation';
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-secondary');
+                }
+            }
+        }
+
+        async function toggleTeamNavigation() {
+            const currentlyAllowed = currentState.allow_team_navigation;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/toggle-team-navigation/`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        allow_team_navigation: !currentlyAllowed
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to toggle team navigation');
+                }
+
+                pollState(); // Refresh state
+            } catch (error) {
+                console.error('Toggle navigation error:', error);
+                alert('Failed to toggle team navigation');
+            }
+        }
+
+        async function loadTeamQuestions(state) {
+            if (!state.current_round) return;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/team/answers/`, {
+                    headers: { 'Authorization': `Bearer ${TEAM_TOKEN}` }
+                });
+                const data = await response.json();
+
+                // Build teamQuestions from answers data
+                teamQuestions = data.answers.map(a => ({
+                    id: a.question_id,
+                    number: a.question_number,
+                    text: a.question_text
+                }));
+
+                // Update team question selector
+                const selector = document.getElementById('teamQuestionSelector');
+                if (selector && teamQuestions.length > 0) {
+                    const currentId = teamCurrentQuestionId || state.current_question.id;
+                    selector.innerHTML = teamQuestions.map((q) => {
+                        return `<option value="${q.id}" ${q.id === currentId ? 'selected' : ''}>
+                            Question ${q.number}
+                        </option>`;
+                    }).join('');
+                }
+            } catch (error) {
+                console.error('Load team questions error:', error);
             }
         }
 
@@ -1211,6 +1733,57 @@
             }
         });
 
+        document.getElementById('questionSelector')?.addEventListener('change', (e) => {
+            const questionId = parseInt(e.target.value);
+            if (questionId && roundQuestions.length > 0) {
+                navigateToQuestion(questionId);
+            }
+        });
+
+        document.getElementById('toggleTeamNavBtn')?.addEventListener('click', toggleTeamNavigation);
+
+        document.getElementById('teamQuestionSelector')?.addEventListener('change', async (e) => {
+            const questionId = parseInt(e.target.value);
+            if (questionId) {
+                teamCurrentQuestionId = questionId;
+
+                // Check if we have cached data
+                if (teamQuestionCache[questionId]) {
+                    const question = teamQuestionCache[questionId];
+                    renderFullQuestion(question, 'teamQuestionDisplay');
+                    renderTeamAnswerInputs(question);
+                    loadTeamAnswer(questionId);
+                    renderedQuestionId = questionId;
+                } else {
+                    // Fetch full question details from backend
+                    try {
+                        const response = await fetch(`/quiz/api/sessions/${CODE}/team/question/?question_id=${questionId}`, {
+                            headers: { 'Authorization': `Bearer ${TEAM_TOKEN}` }
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch question details');
+                        }
+
+                        const data = await response.json();
+                        const question = data.question;
+
+                        // Cache the question data
+                        teamQuestionCache[questionId] = question;
+
+                        // Render the question
+                        renderFullQuestion(question, 'teamQuestionDisplay');
+                        renderTeamAnswerInputs(question);
+                        loadTeamAnswer(questionId);
+                        renderedQuestionId = questionId;
+                    } catch (error) {
+                        console.error('Failed to load question:', error);
+                        alert('Failed to load question details. Please try again.');
+                    }
+                }
+            }
+        });
+
         async function scoreAnswer(btn, answerId, teamId, questionId, maxPoints) {
             const input = btn.parentElement.previousElementSibling.querySelector('input');
             const points = parseInt(input.value);
@@ -1261,6 +1834,16 @@
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
+        }
+
+        /**
+         * Check if text already starts with a letter label (A., B., C., etc.)
+         * to avoid duplication like "a) A. answer text"
+         */
+        function shouldPrependLabel(text) {
+            if (!text) return true;
+            // Check if text starts with A. through G. (common in old questions)
+            return !/^[A-G]\.\s/.test(text.trim());
         }
     </script>
 </body>

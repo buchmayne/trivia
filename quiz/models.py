@@ -231,6 +231,9 @@ class GameSession(models.Model):
 
     max_teams = models.PositiveIntegerField(default=16)
     allow_late_joins = models.BooleanField(default=True)
+    allow_team_navigation = models.BooleanField(
+        default=False, help_text="Allow teams to navigate between questions in a round"
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
     started_at = models.DateTimeField(null=True, blank=True)
