@@ -32,20 +32,23 @@ def session_play(request: HttpRequest, code: str) -> HttpResponse:
     session = get_object_or_404(GameSession, code=code)
 
     # Prefetch data for initial render - get all rounds and their questions
+    from .models import QuestionRound
+
     rounds_data = {}
-    for round_obj in session.game.questions.values(
-        "game_round__id", "game_round__round_number", "game_round__name"
-    ).distinct():
-        round_id = round_obj["game_round__id"]
+    # Get all unique rounds for this game's questions
+    round_ids = session.game.questions.values_list('game_round_id', flat=True).distinct()
+
+    for round_id in round_ids:
         if round_id:  # Only if round exists
+            round_obj = QuestionRound.objects.get(id=round_id)
             questions = list(
                 session.game.questions.filter(game_round_id=round_id)
                 .order_by("question_number")
                 .values("id", "question_number", "text", "total_points")
             )
             rounds_data[round_id] = {
-                "round_number": round_obj["game_round__round_number"],
-                "round_name": round_obj["game_round__name"],
+                "round_number": round_obj.round_number,
+                "round_name": round_obj.name,
                 "questions": questions,
             }
 

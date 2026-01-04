@@ -36,6 +36,11 @@ urlpatterns = [
         views.get_round_questions,
         name="round_questions_list",
     ),
+    path(
+        "api/game/<int:game_id>/questions/",
+        views.get_game_questions,
+        name="api_game_questions",
+    ),
     path("game/<int:game_id>/overview/", views.game_overview, name="game_overview"),
     path(
         "game/<int:game_id>/verify-password/",

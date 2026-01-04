@@ -428,7 +428,9 @@ def admin_get_scoring_data(request, code):
             "number": question.question_number,
             "text": question.text,
             "total_points": question.total_points,
-            "question_type": question.question_type.name if question.question_type else None,
+            "question_type": (
+                question.question_type.name if question.question_type else None
+            ),
             "correct_answers": [
                 {
                     "sub_question": a.text,
@@ -736,9 +738,7 @@ def team_get_question_details(request, code):
 
     # Verify question is in current or completed round (not future rounds)
     if not session_round or session_round.status == SessionRound.Status.PENDING:
-        return JsonResponse(
-            {"error": "Question not accessible yet"}, status=400
-        )
+        return JsonResponse({"error": "Question not accessible yet"}, status=400)
 
     question_data = {
         "id": question.id,

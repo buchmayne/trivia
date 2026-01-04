@@ -19,9 +19,14 @@ class GameViewSet(viewsets.ReadOnlyModelViewSet):
     @action(detail=True)
     def questions(self, request, pk=None):
         """Get all questions for a specific game"""
+        game = self.get_object()
         questions = Question.objects.filter(game_id=pk).order_by("question_number")
-        serializer = QuestionSerializer(questions, many=True)
-        return Response(serializer.data)
+        question_serializer = QuestionSerializer(questions, many=True)
+        game_serializer = GameSerializer(game)
+        return Response({
+            "game": game_serializer.data,
+            "questions": question_serializer.data
+        })
 
     @action(detail=True)
     def rounds(self, request, pk=None):
