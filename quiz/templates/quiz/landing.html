@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Game Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+        h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .mode-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+        .mode-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .mode-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .mode-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .mode-description {
+            color: #6b7280;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .mode-card.gallery {
+            border-top: 6px solid #3b82f6;
+        }
+        .mode-card.play {
+            border-top: 6px solid #10b981;
+        }
+        .mode-card.analytics {
+            border-top: 6px solid #8b5cf6;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .modes-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .mode-card {
+                padding: 2rem;
+            }
+            .mode-icon {
+                font-size: 3rem;
+            }
+            .mode-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trivia Game Platform</h1>
+        <p class="subtitle">Choose your experience</p>
+
+        <div class="modes-grid">
+            <a href="{% url 'quiz:gallery' %}" class="mode-card gallery">
+                <span class="mode-icon">🎮</span>
+                <h2 class="mode-title">Gallery Mode</h2>
+                <p class="mode-description">
+                    Browse and explore available trivia games. View questions, answers, and game details.
+                </p>
+            </a>
+
+            <a href="{% url 'quiz:session_landing' %}" class="mode-card play">
+                <span class="mode-icon">🎯</span>
+                <h2 class="mode-title">Play Mode</h2>
+                <p class="mode-description">
+                    Host a live trivia game or join as a team. Compete in real-time with friends!
+                </p>
+            </a>
+
+            <a href="{% url 'quiz:analytics' %}" class="mode-card analytics">
+                <span class="mode-icon">📊</span>
+                <h2 class="mode-title">Analytics</h2>
+                <p class="mode-description">
+                    View game statistics, player performance, and historical results.
+                </p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

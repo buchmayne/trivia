@@ -42399,6 +42399,132 @@
   }
 },
 {
+  "model": "quiz.gamesession",
+  "pk": 17,
+  "fields": {
+    "code": "5W8JR5",
+    "game": 18,
+    "admin_name": "xxcd",
+    "admin_token": "iWEePH0j0jMgGzm9Bbmc_jDY8NWAX8OgCl-_7wv-XRY",
+    "status": "paused",
+    "status_before_pause": "playing",
+    "current_question": 300,
+    "current_round": 1,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-04T05:16:48.962Z",
+    "started_at": "2026-01-04T05:17:00.270Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-04T05:22:51.605Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 18,
+  "fields": {
+    "code": "34NGQX",
+    "game": 18,
+    "admin_name": "sdcdsc",
+    "admin_token": "RlZQ0TDZGnX8jXRnU-0jxSXA4JW_Zvr5qNnTL-9gXTc",
+    "status": "paused",
+    "status_before_pause": "playing",
+    "current_question": 296,
+    "current_round": 1,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-04T05:23:29.627Z",
+    "started_at": "2026-01-04T05:23:45.624Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-04T05:23:59.140Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 19,
+  "fields": {
+    "code": "DQ6PKL",
+    "game": 18,
+    "admin_name": "Marley",
+    "admin_token": "1F0lhig5AINVd_b9PWubw1ihkL3eRxeNEKqfO7mGpVw",
+    "status": "reviewing",
+    "status_before_pause": null,
+    "current_question": 292,
+    "current_round": 1,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-04T06:13:13.213Z",
+    "started_at": "2026-01-04T06:13:27.117Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-04T06:26:25.844Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 20,
+  "fields": {
+    "code": "OM1ZX0",
+    "game": 18,
+    "admin_name": "Test-Host",
+    "admin_token": "1kt2MCPQPd9HdxOI113IdtFVyZ_6pXF3bevI1E3ehKA",
+    "status": "playing",
+    "status_before_pause": null,
+    "current_question": 305,
+    "current_round": 2,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-04T19:08:17.478Z",
+    "started_at": "2026-01-04T19:08:41.020Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-04T19:31:19.544Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 21,
+  "fields": {
+    "code": "R2B3GG",
+    "game": 18,
+    "admin_name": "Host",
+    "admin_token": "aRQSQbdTg1_rTt3eQy2ZOk3M5td7ZVLZDKbK2YPetDA",
+    "status": "reviewing",
+    "status_before_pause": null,
+    "current_question": 292,
+    "current_round": 1,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-04T19:36:41.902Z",
+    "started_at": "2026-01-04T19:36:57.770Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-04T19:48:50.747Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 22,
+  "fields": {
+    "code": "D7CV2B",
+    "game": 18,
+    "admin_name": "sdks",
+    "admin_token": "ntVWutCrKA5vZ7LOj1mktV_Br2CEgI1kfuBd985-OVU",
+    "status": "reviewing",
+    "status_before_pause": null,
+    "current_question": 293,
+    "current_round": 1,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-04T19:49:33.011Z",
+    "started_at": "2026-01-04T19:49:48.706Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-04T19:52:59.479Z"
+  }
+},
+{
   "model": "quiz.sessionteam",
   "pk": 1,
   "fields": {
@@ -42603,6 +42729,110 @@
     "score": 0,
     "joined_at": "2026-01-04T01:56:40.836Z",
     "last_seen": "2026-01-04T02:08:44.941Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 17,
+  "fields": {
+    "session": 17,
+    "name": "jkj",
+    "token": "pgLrY0AyxMmW8i2F8gFCh9lt2tiBWUxwSmTn0SJg1Ns",
+    "score": 0,
+    "joined_at": "2026-01-04T05:16:57.212Z",
+    "last_seen": "2026-01-04T05:23:20.739Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 18,
+  "fields": {
+    "session": 18,
+    "name": "dskh",
+    "token": "qUBsm-vdqqtN-_OKzMyqAdMXSIDF8PqJFlzHLdZt3Hw",
+    "score": 0,
+    "joined_at": "2026-01-04T05:23:42.746Z",
+    "last_seen": "2026-01-04T05:24:29.148Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 19,
+  "fields": {
+    "session": 19,
+    "name": "Team 1",
+    "token": "t2U7uk23CbP0IqjE-Mfv2r9Lmjg2slUCh-uuKUMCtgw",
+    "score": 0,
+    "joined_at": "2026-01-04T06:13:23.501Z",
+    "last_seen": "2026-01-04T06:20:49.101Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 20,
+  "fields": {
+    "session": 20,
+    "name": "Team 1",
+    "token": "06TsQNNiS88tee4n-CQ0xFqKdHLKykWmeoCH04Z-MGk",
+    "score": 0,
+    "joined_at": "2026-01-04T19:08:33.430Z",
+    "last_seen": "2026-01-04T19:31:33.516Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 21,
+  "fields": {
+    "session": 20,
+    "name": "Team 2",
+    "token": "MXMg1MiP0N8dHOSmzy9q-W2sgNc0v1M-3i7AAcABq88",
+    "score": 0,
+    "joined_at": "2026-01-04T19:08:38.232Z",
+    "last_seen": "2026-01-04T19:31:34.481Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 22,
+  "fields": {
+    "session": 21,
+    "name": "T2",
+    "token": "rnauakKmwr6LaLLTRiHrEQSXS7cyZGE33P3ba9lE0zY",
+    "score": 0,
+    "joined_at": "2026-01-04T19:36:49.964Z",
+    "last_seen": "2026-01-04T19:47:16.001Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 23,
+  "fields": {
+    "session": 21,
+    "name": "T1",
+    "token": "K0axwQS270XSIUXOgoNEm9-LSDl_O7zD49COx9hzqEE",
+    "score": 0,
+    "joined_at": "2026-01-04T19:36:55.757Z",
+    "last_seen": "2026-01-04T19:48:50.863Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 24,
+  "fields": {
+    "session": 22,
+    "name": "ddff",
+    "token": "CuXkEOK-6_pzY93jTyhx2QBAp6k87XSIxi1tpt6mr-I",
+    "score": 0,
+    "joined_at": "2026-01-04T19:49:46.612Z",
+    "last_seen": "2026-01-04T19:52:17.342Z",
     "joined_late": false
   }
 },
@@ -43183,6 +43413,222 @@
   }
 },
 {
+  "model": "quiz.sessionround",
+  "pk": 49,
+  "fields": {
+    "session": 17,
+    "round": 1,
+    "status": "active",
+    "started_at": "2026-01-04T05:17:00.272Z",
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 50,
+  "fields": {
+    "session": 17,
+    "round": 2,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 51,
+  "fields": {
+    "session": 17,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 52,
+  "fields": {
+    "session": 18,
+    "round": 1,
+    "status": "active",
+    "started_at": "2026-01-04T05:23:45.626Z",
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 53,
+  "fields": {
+    "session": 18,
+    "round": 2,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 54,
+  "fields": {
+    "session": 18,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 55,
+  "fields": {
+    "session": 19,
+    "round": 1,
+    "status": "scored",
+    "started_at": "2026-01-04T06:13:27.120Z",
+    "locked_at": "2026-01-04T06:19:17.889Z",
+    "scored_at": "2026-01-04T06:20:51.262Z"
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 56,
+  "fields": {
+    "session": 19,
+    "round": 2,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 57,
+  "fields": {
+    "session": 19,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 58,
+  "fields": {
+    "session": 20,
+    "round": 1,
+    "status": "scored",
+    "started_at": "2026-01-04T19:08:41.022Z",
+    "locked_at": "2026-01-04T19:11:47.880Z",
+    "scored_at": "2026-01-04T19:12:51.843Z"
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 59,
+  "fields": {
+    "session": 20,
+    "round": 2,
+    "status": "active",
+    "started_at": "2026-01-04T19:17:16.832Z",
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 60,
+  "fields": {
+    "session": 20,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 61,
+  "fields": {
+    "session": 21,
+    "round": 1,
+    "status": "scored",
+    "started_at": "2026-01-04T19:36:57.772Z",
+    "locked_at": "2026-01-04T19:37:22.691Z",
+    "scored_at": "2026-01-04T19:37:34.212Z"
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 62,
+  "fields": {
+    "session": 21,
+    "round": 2,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 63,
+  "fields": {
+    "session": 21,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 64,
+  "fields": {
+    "session": 22,
+    "round": 1,
+    "status": "scored",
+    "started_at": "2026-01-04T19:49:48.708Z",
+    "locked_at": "2026-01-04T19:50:59.114Z",
+    "scored_at": "2026-01-04T19:51:07.878Z"
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 65,
+  "fields": {
+    "session": 22,
+    "round": 2,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 66,
+  "fields": {
+    "session": 22,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
   "model": "quiz.teamanswer",
   "pk": 1,
   "fields": {
@@ -43330,6 +43776,276 @@
     "scored_at": null,
     "submitted_at": "2026-01-03T19:43:02.944Z",
     "updated_at": "2026-01-03T19:43:19.714Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 11,
+  "fields": {
+    "team": 17,
+    "question": 300,
+    "session_round": 49,
+    "answer_text": "[\"\",\"\",\"\",\"\"]",
+    "is_locked": false,
+    "points_awarded": null,
+    "scored_at": null,
+    "submitted_at": "2026-01-04T05:23:09.625Z",
+    "updated_at": "2026-01-04T05:23:09.629Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 12,
+  "fields": {
+    "team": 19,
+    "question": 292,
+    "session_round": 55,
+    "answer_text": "[\"cd.nc\",\"vdfv\",\"dv\",\"vdfv\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T06:19:37.917Z",
+    "submitted_at": "2026-01-04T06:13:47.114Z",
+    "updated_at": "2026-01-04T06:19:37.918Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 13,
+  "fields": {
+    "team": 19,
+    "question": 296,
+    "session_round": 55,
+    "answer_text": "[\"dfdf\",\"dfdf\",\"dfdf\",\"ddf\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T06:19:44.330Z",
+    "submitted_at": "2026-01-04T06:15:17.982Z",
+    "updated_at": "2026-01-04T06:19:44.330Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 14,
+  "fields": {
+    "team": 19,
+    "question": 297,
+    "session_round": 55,
+    "answer_text": "[\"y\",\"y\",\"y\",\"y\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T06:19:48.366Z",
+    "submitted_at": "2026-01-04T06:15:31.236Z",
+    "updated_at": "2026-01-04T06:19:48.366Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 15,
+  "fields": {
+    "team": 19,
+    "question": 299,
+    "session_round": 55,
+    "answer_text": "[\"Acid Jazz\",\"Bebop\",\"Jazz Fusion\",\"Modal Jazz\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T06:19:50.853Z",
+    "submitted_at": "2026-01-04T06:15:46.674Z",
+    "updated_at": "2026-01-04T06:19:50.853Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 16,
+  "fields": {
+    "team": 19,
+    "question": 300,
+    "session_round": 55,
+    "answer_text": "[\"dvd\",\"dfbgfgb\",\"cbfvb\",\"f\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T06:20:37.586Z",
+    "submitted_at": "2026-01-04T06:16:01.602Z",
+    "updated_at": "2026-01-04T06:20:37.587Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 17,
+  "fields": {
+    "team": 19,
+    "question": 301,
+    "session_round": 55,
+    "answer_text": "[\"2\",\"1\",\"0\",\"3\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T06:20:40.128Z",
+    "submitted_at": "2026-01-04T06:16:23.346Z",
+    "updated_at": "2026-01-04T06:20:40.128Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 18,
+  "fields": {
+    "team": 19,
+    "question": 302,
+    "session_round": 55,
+    "answer_text": "[\"Methodism\",\"Methodism\",\"Methodism\",\"Methodism\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T06:20:41.538Z",
+    "submitted_at": "2026-01-04T06:16:49.834Z",
+    "updated_at": "2026-01-04T06:20:41.538Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 19,
+  "fields": {
+    "team": 19,
+    "question": 303,
+    "session_round": 55,
+    "answer_text": "[\"ER\",\"Grey's Anatomy\",\"General Hospital\",\"The Good Doctor\",\"The Pitt\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T06:20:45.702Z",
+    "submitted_at": "2026-01-04T06:17:07.824Z",
+    "updated_at": "2026-01-04T06:20:45.702Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 20,
+  "fields": {
+    "team": 19,
+    "question": 304,
+    "session_round": 55,
+    "answer_text": "[\"a\",\"a\",\"a\",\"a\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T06:20:49.098Z",
+    "submitted_at": "2026-01-04T06:17:25.082Z",
+    "updated_at": "2026-01-04T06:20:49.098Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 21,
+  "fields": {
+    "team": 19,
+    "question": 293,
+    "session_round": 55,
+    "answer_text": "[\"Rheumatology\",\"Rheumatology\",\"Rheumatology\",\"Rheumatology\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T06:19:39.608Z",
+    "submitted_at": "2026-01-04T06:17:42.270Z",
+    "updated_at": "2026-01-04T06:19:39.608Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 22,
+  "fields": {
+    "team": 20,
+    "question": 292,
+    "session_round": 58,
+    "answer_text": "[\"Oregon\",\"rjlj\",\"ldjfldjf\",\"ldjfljd\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T19:12:46.492Z",
+    "submitted_at": "2026-01-04T19:09:02.659Z",
+    "updated_at": "2026-01-04T19:12:46.492Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 23,
+  "fields": {
+    "team": 21,
+    "question": 292,
+    "session_round": 58,
+    "answer_text": "[\"Oregon\",\"West Virginia\",\"dkfkh\",\"akdfkshf\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T19:12:47.312Z",
+    "submitted_at": "2026-01-04T19:09:16.912Z",
+    "updated_at": "2026-01-04T19:12:47.312Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 24,
+  "fields": {
+    "team": 23,
+    "question": 292,
+    "session_round": 61,
+    "answer_text": "[\"dfd\",\"dfdf\",\"dfd\",\"dfd\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T19:37:26.266Z",
+    "submitted_at": "2026-01-04T19:37:08.892Z",
+    "updated_at": "2026-01-04T19:37:26.266Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 25,
+  "fields": {
+    "team": 22,
+    "question": 292,
+    "session_round": 61,
+    "answer_text": "[\"dsfdf\",\"sfsf\",\"sfsf\",\"sfsf\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T19:37:25.539Z",
+    "submitted_at": "2026-01-04T19:37:17.452Z",
+    "updated_at": "2026-01-04T19:37:25.539Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 26,
+  "fields": {
+    "team": 24,
+    "question": 292,
+    "session_round": 64,
+    "answer_text": "[\"sfsf\",\"sddf\",\"sfsf\",\"sfsf\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T19:51:00.341Z",
+    "submitted_at": "2026-01-04T19:49:59.050Z",
+    "updated_at": "2026-01-04T19:51:00.341Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 27,
+  "fields": {
+    "team": 24,
+    "question": 293,
+    "session_round": 64,
+    "answer_text": "[\"Rheumatology\",\"Nephrology\",\"Oncology\",\"Ophthalmology\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T19:51:01.390Z",
+    "submitted_at": "2026-01-04T19:50:14.159Z",
+    "updated_at": "2026-01-04T19:51:01.390Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 28,
+  "fields": {
+    "team": 24,
+    "question": 301,
+    "session_round": 64,
+    "answer_text": "[\"2\",\"1\",\"0\",\"3\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-04T19:51:04.767Z",
+    "submitted_at": "2026-01-04T19:50:48.733Z",
+    "updated_at": "2026-01-04T19:51:04.767Z"
   }
 }
 ]

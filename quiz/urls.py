@@ -10,7 +10,8 @@ router.register(r"games", GameViewSet)
 router.register(r"questions", QuestionViewSet)
 
 urlpatterns = [
-    path("", views.game_list_view, name="game_list"),  # List available games
+    # Gallery mode - browse games
+    path("gallery/", views.game_list_view, name="gallery"),
     path(
         "game/<int:game_id>/questions/round/<int:round_id>/questions/category/<int:category_id>/question/<int:question_id>/",
         views.question_view,
@@ -47,6 +48,7 @@ urlpatterns = [
         views.verify_game_password,
         name="verify_password",
     ),
+    # Analytics mode
     path("analytics/", views.analytics_view, name="analytics"),
     path(
         "next-question/<int:game_id>/",
@@ -108,6 +110,11 @@ urlpatterns = [
         "api/sessions/<str:code>/admin/complete-round/",
         session_api.admin_complete_round,
         name="session_admin_complete",
+    ),
+    path(
+        "api/sessions/<str:code>/admin/start-next-round/",
+        session_api.admin_start_next_round,
+        name="session_admin_start_next",
     ),
     # Session API - Team
     path(

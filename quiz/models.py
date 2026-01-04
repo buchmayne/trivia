@@ -202,6 +202,7 @@ class GameSession(models.Model):
         PLAYING = "playing", "Game in Progress"
         PAUSED = "paused", "Paused (Admin Disconnected)"
         SCORING = "scoring", "Scoring Round"
+        REVIEWING = "reviewing", "Reviewing Answers"
         COMPLETED = "completed", "Game Completed"
 
     code = models.CharField(max_length=6, unique=True, db_index=True)

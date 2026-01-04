@@ -221,7 +221,10 @@ def get_session_state(request, code):
             "total_points": question.total_points,
             "image_url": question.question_image_url,
             "video_url": question.question_video_url,
+            "answer_image_url": question.answer_image_url,
+            "answer_video_url": question.answer_video_url,
             "answer_bank": question.answer_bank,
+            "category_name": question.category.name if question.category else None,
             "question_type": (
                 question.question_type.name if question.question_type else None
             ),
@@ -232,8 +235,11 @@ def get_session_state(request, code):
                     "answer_text": a.answer_text,
                     "display_order": a.display_order,
                     "image_url": a.question_image_url,
+                    "answer_image_url": a.answer_image_url,
                     "video_url": a.question_video_url,
+                    "answer_video_url": a.answer_video_url,
                     "points": a.points,
+                    "correct_rank": a.correct_rank,
                 }
                 for a in question.answers.all().order_by("display_order")
             ],
@@ -338,11 +344,16 @@ def admin_set_question(request, code):
 
     # Verify question is in an accessible round
     session_round = session.session_rounds.filter(round=question.game_round).first()
-    if not session_round or session_round.status in [
-        SessionRound.Status.PENDING,
-        SessionRound.Status.SCORED,
-    ]:
+    if not session_round or session_round.status == SessionRound.Status.PENDING:
         return JsonResponse({"error": "Question not in active round"}, status=400)
+
+    # In REVIEWING mode, only allow navigation within current round
+    if session.status == GameSession.Status.REVIEWING:
+        if question.game_round != session.current_round:
+            return JsonResponse(
+                {"error": "Can only navigate within current round in review mode"},
+                status=400,
+            )
 
     session.current_question = question
     session.current_round = question.game_round
@@ -428,6 +439,7 @@ def admin_get_scoring_data(request, code):
             "number": question.question_number,
             "text": question.text,
             "total_points": question.total_points,
+            "category_name": question.category.name if question.category else None,
             "question_type": (
                 question.question_type.name if question.question_type else None
             ),
@@ -546,7 +558,7 @@ def admin_score_answer(request, code):
 @require_http_methods(["POST"])
 @require_admin_token
 def admin_complete_round(request, code):
-    """Mark round as scored, advance to next round or end game."""
+    """Mark round as scored, transition to REVIEWING state."""
     session = request.session_obj
     session_round = session.session_rounds.get(round=session.current_round)
 
@@ -565,6 +577,36 @@ def admin_complete_round(request, code):
     session_round.status = SessionRound.Status.SCORED
     session_round.scored_at = timezone.now()
     session_round.save()
+
+    # Transition to REVIEWING state
+    session.status = GameSession.Status.REVIEWING
+    # Reset to first question of the round for review
+    first_question = (
+        session.game.questions.filter(game_round=session.current_round)
+        .order_by("question_number")
+        .first()
+    )
+    session.current_question = first_question
+    session.save()
+
+    return JsonResponse(
+        {
+            "status": "reviewing",
+            "round_number": session.current_round.round_number,
+            "round_name": session.current_round.name,
+        }
+    )
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+@require_admin_token
+def admin_start_next_round(request, code):
+    """Exit review mode and start next round or end game."""
+    session = request.session_obj
+
+    if session.status != GameSession.Status.REVIEWING:
+        return JsonResponse({"error": "Not in review mode"}, status=400)
 
     # Check for next round
     next_session_round = (
@@ -747,7 +789,10 @@ def team_get_question_details(request, code):
         "total_points": question.total_points,
         "image_url": question.question_image_url,
         "video_url": question.question_video_url,
+        "answer_image_url": question.answer_image_url,
+        "answer_video_url": question.answer_video_url,
         "answer_bank": question.answer_bank,
+        "category_name": question.category.name if question.category else None,
         "question_type": (
             question.question_type.name if question.question_type else None
         ),
@@ -758,8 +803,11 @@ def team_get_question_details(request, code):
                 "answer_text": a.answer_text,
                 "display_order": a.display_order,
                 "image_url": a.question_image_url,
+                "answer_image_url": a.answer_image_url,
                 "video_url": a.question_video_url,
+                "answer_video_url": a.answer_video_url,
                 "points": a.points,
+                "correct_rank": a.correct_rank,
             }
             for a in question.answers.all().order_by("display_order")
         ],

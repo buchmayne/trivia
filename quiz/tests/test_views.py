@@ -20,7 +20,7 @@ class GameListViewTest(TestCase):
 
     def test_game_list_view(self):
         """Test that game list displays all games"""
-        response = self.client.get(reverse("quiz:game_list"))
+        response = self.client.get(reverse("quiz:gallery"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "quiz/game_list.html")
         self.assertIn("games", response.context)
