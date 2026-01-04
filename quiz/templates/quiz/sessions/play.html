@@ -808,13 +808,18 @@
                         html += '<li class="answer-item">';
                         // Only show text field, never answer_text (correct answer)
                         // Strip any existing label prefix (like "A. ") and always prepend our own label
-                        if (answer.text) {
-                            const cleanText = stripLabelPrefix(answer.text);
-                            // Only show text if there's content after stripping the label
-                            if (cleanText) {
-                                html += `<div class="answer-text"><strong>${String.fromCharCode(97 + idx)})</strong> ${cleanText}</div>`;
-                            }
+                        const letterLabel = String.fromCharCode(97 + idx); // a, b, c...
+                        const cleanText = answer.text ? stripLabelPrefix(answer.text) : '';
+
+                        // Always show the label, with text if available
+                        if (cleanText) {
+                            // Has text content after stripping label
+                            html += `<div class="answer-text"><strong>${letterLabel})</strong> ${cleanText}</div>`;
+                        } else if (answer.image_url || answer.video_url) {
+                            // No text but has media - show just the label
+                            html += `<div class="answer-text"><strong>${letterLabel})</strong></div>`;
                         }
+
                         if (answer.video_url) {
                             html += '<div class="answer-video">';
                             html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
@@ -1862,8 +1867,8 @@
         function stripLabelPrefix(text) {
             if (!text) return '';
             const trimmed = text.trim();
-            // Remove single letter followed by period or paren and space at the start
-            return trimmed.replace(/^[A-Za-z][\.\)]\s/, '');
+            // Remove single letter followed by period or paren and optional space at the start
+            return trimmed.replace(/^[A-Za-z][\.\)]\s*/, '');
         }
     </script>
 </body>
