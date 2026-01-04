@@ -54,7 +54,7 @@ def sort_players_by_sex(players: List) -> dict:
     return {"men": men, "women": women}
 
 
-def assign_teams(players: List, teams: List) -> None:
+def assign_teams(players: List, teams: List) -> List:
     # try to balance teams by sex
     sorted_by_sex = sort_players_by_sex(players)
     men = sorted_by_sex["men"]
@@ -145,7 +145,7 @@ def dramatic_print(string: str) -> None:
         time.sleep(0.05)
 
 
-def str_list_to_pretty_str(x) -> str:
+def str_list_to_pretty_str(x: List) -> str:
     return str(x).replace("'", "").replace("[", "").replace("]", "")
 
 
@@ -313,6 +313,10 @@ def main() -> None:
 
     # Set up game data
     game_df = create_game_df(assigned_teams)
+
+    # Print compact list of each team and the assigned players
+    for team in assigned_teams:
+        print(f"{team.name}: {str_list_to_pretty_str(team.players)}")
 
     # Create new sheet
     sheet_name = f"trivia-{date.today()}"
