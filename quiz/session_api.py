@@ -350,7 +350,10 @@ def admin_set_question(request, code):
     # In REVIEWING mode, only allow navigation within current round
     if session.status == GameSession.Status.REVIEWING:
         if question.game_round != session.current_round:
-            return JsonResponse({"error": "Can only navigate within current round in review mode"}, status=400)
+            return JsonResponse(
+                {"error": "Can only navigate within current round in review mode"},
+                status=400,
+            )
 
     session.current_question = question
     session.current_round = question.game_round
