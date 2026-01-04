@@ -636,11 +636,17 @@
                 ACTIVE_ROLE = 'team';
             } else if (IS_ADMIN && !IS_TEAM) {
                 ACTIVE_ROLE = 'admin';
+                // Set preference for future refreshes
+                localStorage.setItem(`session_${CODE}_role`, 'admin');
             } else if (IS_TEAM && !IS_ADMIN) {
                 ACTIVE_ROLE = 'team';
+                // Set preference for future refreshes
+                localStorage.setItem(`session_${CODE}_role`, 'team');
             } else {
                 // Fallback: if both tokens exist but no preference, default to admin
                 ACTIVE_ROLE = IS_ADMIN ? 'admin' : 'team';
+                // Set preference for future refreshes
+                localStorage.setItem(`session_${CODE}_role`, ACTIVE_ROLE);
             }
 
             const viewToShow = ACTIVE_ROLE === 'admin' ? 'adminView' : 'teamView';
