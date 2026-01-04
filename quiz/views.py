@@ -3,7 +3,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse, HttpRequest, HttpResponse
 from django.db import models
 from django.contrib.admin.views.decorators import staff_member_required
-from .models import Game, Category, Question, QuestionRound, GameResult, PlayerStats, Answer
+from .models import (
+    Game,
+    Category,
+    Question,
+    QuestionRound,
+    GameResult,
+    PlayerStats,
+    Answer,
+)
 
 
 def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
@@ -158,7 +166,11 @@ def get_round_questions(
 def get_game_questions(request: HttpRequest, game_id: int) -> JsonResponse:
     """Get all questions for a game with their answers"""
     game = get_object_or_404(Game, id=game_id)
-    questions = Question.objects.filter(game=game).order_by("question_number").prefetch_related("answers")
+    questions = (
+        Question.objects.filter(game=game)
+        .order_by("question_number")
+        .prefetch_related("answers")
+    )
 
     questions_data = []
     for question in questions:
@@ -174,26 +186,30 @@ def get_game_questions(request: HttpRequest, game_id: int) -> JsonResponse:
             for answer in question.answers.all().order_by("display_order")
         ]
 
-        questions_data.append({
-            "id": question.id,
-            "text": question.text,
-            "question_number": question.question_number,
-            "total_points": question.total_points,
-            "question_image_url": question.question_image_url,
-            "answer_image_url": question.answer_image_url,
-            "question_video_url": question.question_video_url,
-            "answer_video_url": question.answer_video_url,
-            "answers": answers_data,
-        })
+        questions_data.append(
+            {
+                "id": question.id,
+                "text": question.text,
+                "question_number": question.question_number,
+                "total_points": question.total_points,
+                "question_image_url": question.question_image_url,
+                "answer_image_url": question.answer_image_url,
+                "question_video_url": question.question_video_url,
+                "answer_video_url": question.answer_video_url,
+                "answers": answers_data,
+            }
+        )
 
-    return JsonResponse({
-        "game": {
-            "id": game.id,
-            "name": game.name,
-            "description": game.description,
-        },
-        "questions": questions_data
-    })
+    return JsonResponse(
+        {
+            "game": {
+                "id": game.id,
+                "name": game.name,
+                "description": game.description,
+            },
+            "questions": questions_data,
+        }
+    )
 
 
 def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:

@@ -36,7 +36,9 @@ def session_play(request: HttpRequest, code: str) -> HttpResponse:
 
     rounds_data = {}
     # Get all unique rounds for this game's questions
-    round_ids = session.game.questions.values_list('game_round_id', flat=True).distinct()
+    round_ids = session.game.questions.values_list(
+        "game_round_id", flat=True
+    ).distinct()
 
     for round_id in round_ids:
         if round_id:  # Only if round exists
