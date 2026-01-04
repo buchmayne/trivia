@@ -199,6 +199,8 @@
 
                 // Store admin token in localStorage
                 localStorage.setItem(`session_${data.code}_admin`, data.admin_token);
+                // Set role preference to indicate this user is a host
+                localStorage.setItem(`session_${data.code}_role`, 'admin');
 
                 // Redirect to live session
                 window.location.href = `/quiz/play/${data.code}/`;

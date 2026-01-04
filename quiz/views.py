@@ -33,8 +33,13 @@ def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
         return JsonResponse({"error": str(e)}, status=400)
 
 
+def landing_page_view(request: HttpRequest) -> HttpResponse:
+    """Main landing page with links to gallery, play, and analytics modes."""
+    return render(request, "quiz/landing.html")
+
+
 def game_list_view(request: HttpRequest) -> HttpResponse:
-    """View to list available trivia games."""
+    """View to list available trivia games (Gallery Mode)."""
     games = Game.objects.all().order_by("-game_order")
     return render(request, "quiz/game_list.html", {"games": games})
 

@@ -428,6 +428,7 @@ def admin_get_scoring_data(request, code):
             "number": question.question_number,
             "text": question.text,
             "total_points": question.total_points,
+            "category_name": question.category.name if question.category else None,
             "question_type": (
                 question.question_type.name if question.question_type else None
             ),

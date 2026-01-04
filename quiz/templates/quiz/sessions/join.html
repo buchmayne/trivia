@@ -203,6 +203,8 @@
 
                 // Store team token in localStorage
                 localStorage.setItem(`session_${code}_team`, data.team_token);
+                // Set role preference to indicate this user is a team
+                localStorage.setItem(`session_${code}_role`, 'team');
 
                 // Redirect to live session
                 window.location.href = `/quiz/play/${code}/`;

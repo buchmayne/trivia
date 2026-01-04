@@ -350,6 +350,63 @@
             transform: scale(1.05);
         }
 
+        /* Category Flash Overlay */
+        .category-flash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .category-flash-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .category-flash-content {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+        .category-flash-label {
+            font-size: 1.5rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+        .category-flash-name {
+            font-size: 4rem;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 1.5rem;
+        }
+        .category-flash-round {
+            font-size: 1.8rem;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .category-flash-label {
+                font-size: 1rem;
+            }
+            .category-flash-name {
+                font-size: 2.5rem;
+            }
+            .category-flash-round {
+                font-size: 1.2rem;
+            }
+        }
+
         /* Utility */
         .hidden { display: none !important; }
         .error-msg {
@@ -400,26 +457,17 @@
         </div>
     </div>
 
+    <!-- Category Flash Overlay -->
+    <div id="categoryFlashOverlay" class="category-flash-overlay">
+        <div class="category-flash-content">
+            <div class="category-flash-label">Next Category</div>
+            <div class="category-flash-name" id="flashCategoryName"></div>
+            <div class="category-flash-round" id="flashRoundName"></div>
+        </div>
+    </div>
+
     <div class="container-fluid">
         <div id="errorContainer"></div>
-
-        <!-- Role Selection (shown when both tokens exist) -->
-        <div id="roleSelector" class="hidden">
-            <div class="card" style="text-align: center; max-width: 600px; margin: 2rem auto;">
-                <h2 style="margin-bottom: 1.5rem;">Choose Your View</h2>
-                <p style="margin-bottom: 2rem; color: #6b7280;">
-                    You have access to both host and team views for this session. Which would you like to use?
-                </p>
-                <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <button class="btn btn-primary" id="chooseAdminBtn" style="flex: 1; max-width: 200px;">
-                        Host View
-                    </button>
-                    <button class="btn btn-primary" id="chooseTeamBtn" style="flex: 1; max-width: 200px;">
-                        Team View
-                    </button>
-                </div>
-            </div>
-        </div>
 
         <!-- ADMIN VIEW -->
         <div id="adminView" class="hidden">
@@ -548,6 +596,7 @@
         const CODE = '{{ session.code }}';
         const ADMIN_TOKEN = localStorage.getItem(`session_${CODE}_admin`);
         const TEAM_TOKEN = localStorage.getItem(`session_${CODE}_team`);
+        const ROLE_PREFERENCE = localStorage.getItem(`session_${CODE}_role`);
         const IS_ADMIN = !!ADMIN_TOKEN;
         const IS_TEAM = !!TEAM_TOKEN;
         const POLL_INTERVAL = 2000;
@@ -557,6 +606,7 @@
         console.log('Session Code:', CODE);
         console.log('Admin Token:', ADMIN_TOKEN);
         console.log('Team Token:', TEAM_TOKEN);
+        console.log('Role Preference:', ROLE_PREFERENCE);
         console.log('IS_ADMIN:', IS_ADMIN);
         console.log('IS_TEAM:', IS_TEAM);
         console.log('All localStorage keys:', Object.keys(localStorage));
@@ -578,30 +628,22 @@
         if (!IS_ADMIN && !IS_TEAM) {
             document.getElementById('errorContainer').innerHTML =
                 '<div class="error-msg">You must be an admin or team member to view this page. Please return to the join/host page.</div>';
-        } else if (IS_ADMIN && IS_TEAM) {
-            // Both tokens exist - let user choose
-            console.log('Both tokens exist - showing role selector');
-            document.getElementById('roleSelector').classList.remove('hidden');
-
-            document.getElementById('chooseAdminBtn').addEventListener('click', () => {
-                ACTIVE_ROLE = 'admin';
-                console.log('User chose admin role');
-                document.getElementById('roleSelector').classList.add('hidden');
-                document.getElementById('adminView').classList.remove('hidden');
-                startPolling();
-            });
-
-            document.getElementById('chooseTeamBtn').addEventListener('click', () => {
-                ACTIVE_ROLE = 'team';
-                console.log('User chose team role');
-                document.getElementById('roleSelector').classList.add('hidden');
-                document.getElementById('teamView').classList.remove('hidden');
-                startPolling();
-            });
         } else {
-            // Only one token exists
-            ACTIVE_ROLE = IS_ADMIN ? 'admin' : 'team';
-            const viewToShow = IS_ADMIN ? 'adminView' : 'teamView';
+            // Determine role based on preference first, then fallback to token availability
+            if (ROLE_PREFERENCE === 'admin' && IS_ADMIN) {
+                ACTIVE_ROLE = 'admin';
+            } else if (ROLE_PREFERENCE === 'team' && IS_TEAM) {
+                ACTIVE_ROLE = 'team';
+            } else if (IS_ADMIN && !IS_TEAM) {
+                ACTIVE_ROLE = 'admin';
+            } else if (IS_TEAM && !IS_ADMIN) {
+                ACTIVE_ROLE = 'team';
+            } else {
+                // Fallback: if both tokens exist but no preference, default to admin
+                ACTIVE_ROLE = IS_ADMIN ? 'admin' : 'team';
+            }
+
+            const viewToShow = ACTIVE_ROLE === 'admin' ? 'adminView' : 'teamView';
             console.log('Showing view:', viewToShow, 'ACTIVE_ROLE:', ACTIVE_ROLE);
             document.getElementById(viewToShow).classList.remove('hidden');
             startPolling();
@@ -878,8 +920,8 @@
             if (question.answers && question.answers.length > 0) {
                 // Check if this is a Ranking question
                 if (question.question_type === 'Ranking') {
-                    html += '<h3>Rank the Following</h3>';
-                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Drag and drop to rank from 1st to last:</p>';
+                    html += '<h3>' + escapeHtml(question.text) + '</h3>';
+                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Drag and drop to rank your answers:</p>';
                     html += '<div id="rankingList" class="ranking-list">';
 
                     question.answers.forEach((item, idx) => {
@@ -1436,6 +1478,34 @@
             }
         }
 
+        async function showCategoryFlash(question) {
+            // Get question details to find category and round info
+            const overlay = document.getElementById('categoryFlashOverlay');
+            const categoryNameEl = document.getElementById('flashCategoryName');
+            const roundNameEl = document.getElementById('flashRoundName');
+
+            if (!overlay || !categoryNameEl || !roundNameEl) return;
+
+            // Set the category name and question number
+            const categoryName = question.category_name || 'Unknown Category';
+            const questionNumber = question.number || question.question_number || '?';
+
+            categoryNameEl.textContent = categoryName;
+            roundNameEl.textContent = `Question ${questionNumber}`;
+
+            // Show the overlay with fade in
+            overlay.classList.add('show');
+
+            // Wait for 2.5 seconds
+            await new Promise(resolve => setTimeout(resolve, 2500));
+
+            // Hide the overlay with fade out
+            overlay.classList.remove('show');
+
+            // Wait for fade out animation to complete
+            await new Promise(resolve => setTimeout(resolve, 300));
+        }
+
         async function loadTeamQuestions(state) {
             if (!state.current_round) return;
 
@@ -1736,10 +1806,16 @@
             }
         });
 
-        document.getElementById('nextQuestionBtn')?.addEventListener('click', () => {
+        document.getElementById('nextQuestionBtn')?.addEventListener('click', async () => {
             if (currentQuestionIndex < roundQuestions.length - 1 && roundQuestions.length > 0) {
                 currentQuestionIndex++;
-                navigateToQuestion(roundQuestions[currentQuestionIndex].id);
+                const nextQuestion = roundQuestions[currentQuestionIndex];
+
+                // Show category flash before navigating
+                await showCategoryFlash(nextQuestion);
+
+                // Then navigate to the question
+                navigateToQuestion(nextQuestion.id);
             }
         });
 
