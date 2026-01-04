@@ -145,3 +145,5 @@ quiz_backup.json
 create_teams.py
 
 staticfiles/
+.claude/
+TODO.md

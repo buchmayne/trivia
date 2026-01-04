@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views, api_views, session_views
+from . import views, session_api, session_views
 from rest_framework.routers import DefaultRouter
 from .api import GameViewSet, QuestionViewSet
 
@@ -36,6 +36,11 @@ urlpatterns = [
         views.get_round_questions,
         name="round_questions_list",
     ),
+    path(
+        "api/game/<int:game_id>/questions/",
+        views.get_game_questions,
+        name="api_game_questions",
+    ),
     path("game/<int:game_id>/overview/", views.game_overview, name="game_overview"),
     path(
         "game/<int:game_id>/verify-password/",
@@ -53,42 +58,78 @@ urlpatterns = [
         views.get_next_game_order,
         name="next_game_order",
     ),
-    # New Session Frontend URLs (for humans)
-    path("sessions/host/", session_views.host_dashboard, name="host_dashboard"),
-    path("sessions/join/", session_views.team_join, name="team_join"),
+    # Session Frontend Views
+    path("play/", session_views.session_landing, name="session_landing"),
+    path("play/host/", session_views.session_host, name="session_host"),
+    path("play/join/", session_views.session_join, name="session_join"),
+    path("play/<str:code>/", session_views.session_play, name="session_play"),
+    # Session API - Public
+    path("api/sessions/create/", session_api.create_session, name="session_create"),
     path(
-        "sessions/live/<str:session_code>/",
-        session_views.live_session,
-        name="live_session",
-    ),
-    # New API URLs (for Go service)
-    path("api/sessions/create/", api_views.create_session, name="api_create_session"),
-    path(
-        "api/sessions/<int:session_id>/info/",
-        api_views.get_session_info,
-        name="api_session_info",
+        "api/sessions/<str:code>/join/", session_api.join_session, name="session_join"
     ),
     path(
-        "api/sessions/<int:session_id>/status/",
-        api_views.update_session_status,
-        name="api_update_session_status",
+        "api/sessions/<str:code>/state/",
+        session_api.get_session_state,
+        name="session_state",
+    ),
+    # Session API - Admin
+    path(
+        "api/sessions/<str:code>/admin/start/",
+        session_api.admin_start_game,
+        name="session_admin_start",
     ),
     path(
-        "api/sessions/<int:session_id>/teams/add/",
-        api_views.add_team_to_session,
-        name="api_add_team",
+        "api/sessions/<str:code>/admin/question/",
+        session_api.admin_set_question,
+        name="session_admin_question",
     ),
     path(
-        "api/sessions/<int:session_id>/finalize/",
-        api_views.finalize_session,
-        name="api_finalize_session",
+        "api/sessions/<str:code>/admin/toggle-team-navigation/",
+        session_api.admin_toggle_team_navigation,
+        name="session_admin_toggle_nav",
     ),
     path(
-        "api/games/<int:game_id>/questions/",
-        api_views.get_game_questions,
-        name="api_game_questions",
+        "api/sessions/<str:code>/admin/lock-round/",
+        session_api.admin_lock_round,
+        name="session_admin_lock",
     ),
-    path("api/answers/submit/", api_views.submit_team_answer, name="api_submit_answer"),
-    # Existing DRF API
+    path(
+        "api/sessions/<str:code>/admin/scoring-data/",
+        session_api.admin_get_scoring_data,
+        name="session_admin_scoring",
+    ),
+    path(
+        "api/sessions/<str:code>/admin/score/",
+        session_api.admin_score_answer,
+        name="session_admin_score",
+    ),
+    path(
+        "api/sessions/<str:code>/admin/complete-round/",
+        session_api.admin_complete_round,
+        name="session_admin_complete",
+    ),
+    # Session API - Team
+    path(
+        "api/sessions/<str:code>/team/answer/",
+        session_api.team_submit_answer,
+        name="session_team_answer",
+    ),
+    path(
+        "api/sessions/<str:code>/team/answers/",
+        session_api.team_get_answers,
+        name="session_team_answers",
+    ),
+    path(
+        "api/sessions/<str:code>/team/question/",
+        session_api.team_get_question_details,
+        name="session_team_question",
+    ),
+    path(
+        "api/sessions/<str:code>/team/results/",
+        session_api.team_get_results,
+        name="session_team_results",
+    ),
+    # DRF API
     path("api/", include(router.urls)),
 ]

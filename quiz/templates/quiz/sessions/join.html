@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join a Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding-top: 3rem;
+        }
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .form-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+        input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        #sessionCode {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            text-align: center;
+        }
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-1px);
+        }
+        .btn-primary:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: white;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .error {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .hint {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Join a Game</h1>
+
+        <div class="form-card">
+            <div id="error" class="error"></div>
+
+            <form id="joinForm">
+                <div class="form-group">
+                    <label for="sessionCode">Game Code</label>
+                    <input
+                        type="text"
+                        id="sessionCode"
+                        placeholder="ABC123"
+                        required
+                        maxlength="6"
+                        pattern="[A-Z0-9]{6}"
+                    >
+                    <div class="hint">Enter the 6-character code provided by the host</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="teamName">Team Name</label>
+                    <input
+                        type="text"
+                        id="teamName"
+                        placeholder="Enter your team name"
+                        required
+                        minlength="2"
+                        maxlength="100"
+                    >
+                    <div class="hint">Choose a unique name for your team</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    Join Game
+                </button>
+            </form>
+
+            <a href="{% url 'quiz:session_landing' %}" class="back-link">← Back</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('joinForm');
+        const errorDiv = document.getElementById('error');
+        const submitBtn = document.getElementById('submitBtn');
+        const codeInput = document.getElementById('sessionCode');
+
+        // Auto-uppercase code input
+        codeInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.toUpperCase();
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const code = codeInput.value.trim();
+            const teamName = document.getElementById('teamName').value.trim();
+
+            if (code.length !== 6) {
+                showError('Game code must be 6 characters');
+                return;
+            }
+
+            if (teamName.length < 2) {
+                showError('Team name must be at least 2 characters');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${code}/join/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        team_name: teamName
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to join session');
+                }
+
+                // Store team token in localStorage
+                localStorage.setItem(`session_${code}_team`, data.team_token);
+
+                // Redirect to live session
+                window.location.href = `/quiz/play/${code}/`;
+
+            } catch (error) {
+                showError(error.message);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join Game';
+            }
+        });
+
+        function showError(message) {
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

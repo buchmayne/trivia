@@ -123,138 +123,91 @@ class CompleteTriviaGameWorkflowTest(TestCase):
 
     def test_complete_session_workflow_api(self):
         """Test complete game session workflow through API"""
+        import json
+
         # 1. Create a game session
-        create_url = reverse("quiz:api_create_session")
-        response = self.api_client.post(
-            create_url, {"game": self.game.id, "host_name": "Test Host"}, format="json"
+        create_url = reverse("quiz:session_create")
+        response = self.client.post(
+            create_url,
+            json.dumps({"game_id": self.game.id, "admin_name": "Test Host"}),
+            content_type="application/json",
         )
         self.assertEqual(response.status_code, 200)
-        session_id = response.data["session_id"]
-        session_code = response.data["session_code"]
+        data = response.json()
+        session_code = data["code"]
+        admin_token = data["admin_token"]
 
         # 2. Add teams to session
-        team1_url = reverse("quiz:api_add_team", args=[session_id])
-        response = self.api_client.post(
-            team1_url, {"team_name": "Team Alpha"}, format="json"
+        team1_url = reverse("quiz:session_join", args=[session_code])
+        response = self.client.post(
+            team1_url,
+            json.dumps({"team_name": "Team Alpha"}),
+            content_type="application/json",
         )
         self.assertEqual(response.status_code, 200)
-        team1_id = response.data["team_id"]
+        team1_data = response.json()
+        team1_id = team1_data["team_id"]
+        team1_token = team1_data["team_token"]
 
-        team2_url = reverse("quiz:api_add_team", args=[session_id])
-        response = self.api_client.post(
-            team2_url, {"team_name": "Team Beta"}, format="json"
+        team2_url = reverse("quiz:session_join", args=[session_code])
+        response = self.client.post(
+            team2_url,
+            json.dumps({"team_name": "Team Beta"}),
+            content_type="application/json",
         )
         self.assertEqual(response.status_code, 200)
-        team2_id = response.data["team_id"]
+        team2_data = response.json()
+        team2_id = team2_data["team_id"]
+        team2_token = team2_data["team_token"]
 
-        # 3. Start the session
-        status_url = reverse("quiz:api_update_session_status", args=[session_id])
-        response = self.api_client.post(
-            status_url,
-            {"status": "active", "current_question_number": 1},
-            format="json",
+        # 3. Start the session (as admin)
+        start_url = reverse("quiz:session_admin_start", args=[session_code])
+        response = self.client.post(
+            start_url,
+            json.dumps({}),
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {admin_token}",
         )
         self.assertEqual(response.status_code, 200)
 
         # 4. Teams submit answers for question 1
-        submit_url = reverse("quiz:api_submit_answer")
-        response = self.api_client.post(
+        submit_url = reverse("quiz:session_team_answer", args=[session_code])
+        response = self.client.post(
             submit_url,
-            {
-                "team_id": team1_id,
-                "question_id": self.q1.id,
-                "submitted_answer": "Paris",
-                "points_awarded": 10,
-            },
-            format="json",
+            json.dumps({"question_id": self.q1.id, "answer_text": "Paris"}),
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {team1_token}",
         )
         self.assertEqual(response.status_code, 200)
 
-        response = self.api_client.post(
+        response = self.client.post(
             submit_url,
-            {
-                "team_id": team2_id,
-                "question_id": self.q1.id,
-                "submitted_answer": "London",
-                "points_awarded": 0,
-            },
-            format="json",
+            json.dumps({"question_id": self.q1.id, "answer_text": "London"}),
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {team2_token}",
         )
         self.assertEqual(response.status_code, 200)
 
-        # 5. Move to next question
-        response = self.api_client.post(
-            status_url, {"current_question_number": 2}, format="json"
-        )
+        # 5. Verify session state
+        state_url = reverse("quiz:session_state", args=[session_code])
+        response = self.client.get(state_url)
         self.assertEqual(response.status_code, 200)
-
-        # 6. Teams submit answers for question 2
-        response = self.api_client.post(
-            submit_url,
-            {
-                "team_id": team1_id,
-                "question_id": self.q2.id,
-                "submitted_answer": "Madrid",
-                "points_awarded": 10,
-            },
-            format="json",
-        )
-        self.assertEqual(response.status_code, 200)
-
-        response = self.api_client.post(
-            submit_url,
-            {
-                "team_id": team2_id,
-                "question_id": self.q2.id,
-                "submitted_answer": "Madrid",
-                "points_awarded": 10,
-            },
-            format="json",
-        )
-        self.assertEqual(response.status_code, 200)
-
-        # 7. Finalize the session
-        finalize_url = reverse("quiz:api_finalize_session", args=[session_id])
-        response = self.api_client.post(
-            finalize_url,
-            {
-                "teams": [
-                    {"name": "Team Alpha", "score": 20},
-                    {"name": "Team Beta", "score": 10},
-                ]
-            },
-            format="json",
-        )
-        self.assertEqual(response.status_code, 200)
-
-        # 8. Verify final session state
-        info_url = reverse("quiz:api_session_info", args=[session_id])
-        response = self.api_client.get(info_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data["status"], "completed")
-
-        # Verify team scores
-        teams = response.data["teams"]
-        team_alpha = next(t for t in teams if t["name"] == "Team Alpha")
-        team_beta = next(t for t in teams if t["name"] == "Team Beta")
-        self.assertEqual(team_alpha["score"], 20)
-        self.assertEqual(team_beta["score"], 10)
-
-        # Verify all answers were recorded
-        self.assertEqual(TeamAnswer.objects.filter(team_id=team1_id).count(), 2)
-        self.assertEqual(TeamAnswer.objects.filter(team_id=team2_id).count(), 2)
+        state_data = response.json()
+        self.assertEqual(state_data["status"], "playing")
+        self.assertEqual(state_data["team_count"], 2)
 
     def test_api_game_questions_retrieval(self):
         """Test retrieving all game questions through API"""
         url = reverse("quiz:api_game_questions", args=[self.game.id])
-        response = self.api_client.get(url)
+        response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data["questions"]), 3)
-        self.assertEqual(response.data["game"]["id"], self.game.id)
+        data = response.json()
+        self.assertEqual(len(data["questions"]), 3)
+        self.assertEqual(data["game"]["id"], self.game.id)
 
         # Verify questions are ordered
-        questions = response.data["questions"]
+        questions = data["questions"]
         self.assertEqual(questions[0]["question_number"], 1)
         self.assertEqual(questions[1]["question_number"], 2)
         self.assertEqual(questions[2]["question_number"], 3)
