@@ -1,4 +1,4 @@
-.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data black start
+.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data black start preprod
 
 help:
 	@echo "Available commands:"
@@ -24,8 +24,9 @@ help:
 	@echo "  make docker-logs      - View Docker logs"
 	@echo "  make docker-migrate   - Run migrations in Docker container"
 	@echo "  make dump-data        - Dump content from local database to json file"
-	@echo "  make black        - Run black across repo"
+	@echo "  make black            - Run black across repo"
 	@echo "  make start            - Run game initializer"
+	@echo "  make preprod          - Run all preflight steps before pushing to production (linting, tests, and database dump)"
 
 # Run development server
 run:
@@ -111,3 +112,10 @@ black:
 # Start a new game
 start:
 	uv run init_trivia.py
+
+
+# Run all preflight steps before pushing to prod
+preprod:
+	uv run manage.py dumpdata --indent 2 > db_initial_data.json
+	uv run black .
+	uv run manage.py test quiz
