@@ -111,6 +111,11 @@ urlpatterns = [
         session_api.admin_complete_round,
         name="session_admin_complete",
     ),
+    path(
+        "api/sessions/<str:code>/admin/start-next-round/",
+        session_api.admin_start_next_round,
+        name="session_admin_start_next",
+    ),
     # Session API - Team
     path(
         "api/sessions/<str:code>/team/answer/",

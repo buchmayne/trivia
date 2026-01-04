@@ -87,7 +87,7 @@ class CompleteTriviaGameWorkflowTest(TestCase):
     def test_complete_game_flow_frontend(self):
         """Test complete game flow through frontend views"""
         # 1. View game list
-        response = self.client.get(reverse("quiz:game_list"))
+        response = self.client.get(reverse("quiz:gallery"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Integration Test Trivia")
 
