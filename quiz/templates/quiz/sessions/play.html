@@ -725,6 +725,13 @@
 
                 // Update team navigation toggle button
                 updateTeamNavToggle(state.allow_team_navigation);
+
+                // Reset lock round button state (in case returning from previous round)
+                const lockBtn = document.getElementById('lockRoundBtn');
+                if (lockBtn) {
+                    lockBtn.disabled = false;
+                    lockBtn.textContent = 'Lock Round & Start Scoring';
+                }
             } else if (state.status === 'scoring') {
                 document.getElementById('scoringState').classList.remove('hidden');
                 if (state.current_round) {
