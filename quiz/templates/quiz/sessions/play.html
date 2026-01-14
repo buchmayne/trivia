@@ -646,36 +646,154 @@
         let teamCurrentQuestionId = null; // Team's current question (may differ from host)
         let teamQuestionCache = {}; // Cache full question data for team navigation
 
-        // Initialize
-        if (!IS_ADMIN && !IS_TEAM) {
-            document.getElementById('errorContainer').innerHTML =
-                '<div class="error-msg">You must be an admin or team member to view this page. Please return to the join/host page.</div>';
-        } else {
-            // Determine role based on preference first, then fallback to token availability
-            if (ROLE_PREFERENCE === 'admin' && IS_ADMIN) {
-                ACTIVE_ROLE = 'admin';
-            } else if (ROLE_PREFERENCE === 'team' && IS_TEAM) {
-                ACTIVE_ROLE = 'team';
-            } else if (IS_ADMIN && !IS_TEAM) {
-                ACTIVE_ROLE = 'admin';
-                // Set preference for future refreshes
-                localStorage.setItem(`session_${CODE}_role`, 'admin');
-            } else if (IS_TEAM && !IS_ADMIN) {
-                ACTIVE_ROLE = 'team';
-                // Set preference for future refreshes
-                localStorage.setItem(`session_${CODE}_role`, 'team');
-            } else {
-                // Fallback: if both tokens exist but no preference, default to admin
-                ACTIVE_ROLE = IS_ADMIN ? 'admin' : 'team';
-                // Set preference for future refreshes
-                localStorage.setItem(`session_${CODE}_role`, ACTIVE_ROLE);
+        // Initialize with SERVER-SIDE TOKEN VALIDATION
+        // CRITICAL: This is the ROBUST solution that prevents host role loss on refresh
+        async function initializeSession() {
+            console.log('=== INITIALIZING SESSION ===');
+
+            // Step 1: Check if we have any tokens at all
+            if (!ADMIN_TOKEN && !TEAM_TOKEN) {
+                showError(
+                    'No session credentials found.',
+                    'Please <a href="/quiz/play/host/">host a game</a> or <a href="/quiz/play/join/">join a game</a>.'
+                );
+                return;
             }
 
-            const viewToShow = ACTIVE_ROLE === 'admin' ? 'adminView' : 'teamView';
-            console.log('Showing view:', viewToShow, 'ACTIVE_ROLE:', ACTIVE_ROLE);
-            document.getElementById(viewToShow).classList.remove('hidden');
-            startPolling();
+            // Step 2: Validate tokens with server (SOURCE OF TRUTH)
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/validate/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        admin_token: ADMIN_TOKEN,
+                        team_token: TEAM_TOKEN
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Validation request failed');
+                }
+
+                const validation = await response.json();
+                console.log('Validation result:', validation);
+
+                // Step 3: Determine role based on VALIDATED tokens (not localStorage preference)
+                const hasValidAdmin = validation.is_valid_admin;
+                const hasValidTeam = validation.is_valid_team;
+
+                if (!hasValidAdmin && !hasValidTeam) {
+                    // No valid tokens - offer rejoin for teams
+                    showRejoinError();
+                    return;
+                }
+
+                // Step 4: ADMIN TOKEN ALWAYS TAKES PRIORITY
+                // This is the KEY FIX: Host never loses control on refresh
+                if (hasValidAdmin) {
+                    ACTIVE_ROLE = 'admin';
+                    localStorage.setItem(`session_${CODE}_role`, 'admin');
+                    // Clean up any invalid team token
+                    if (TEAM_TOKEN && !hasValidTeam) {
+                        console.log('Removing invalid team token');
+                        localStorage.removeItem(`session_${CODE}_team`);
+                    }
+                    console.log('✓ Showing ADMIN view');
+                    document.getElementById('adminView').classList.remove('hidden');
+                    startPolling();
+                } else if (hasValidTeam) {
+                    ACTIVE_ROLE = 'team';
+                    localStorage.setItem(`session_${CODE}_role`, 'team');
+                    // Clean up any invalid admin token
+                    if (ADMIN_TOKEN && !hasValidAdmin) {
+                        console.log('Removing invalid admin token');
+                        localStorage.removeItem(`session_${CODE}_admin`);
+                    }
+                    console.log('✓ Showing TEAM view');
+                    document.getElementById('teamView').classList.remove('hidden');
+                    startPolling();
+                }
+
+            } catch (error) {
+                console.error('Session initialization error:', error);
+                showError(
+                    'Failed to connect to session.',
+                    'Please refresh the page or <a href="/quiz/play/">return to session menu</a>.'
+                );
+            }
         }
+
+        function showError(title, message) {
+            document.getElementById('errorContainer').innerHTML = `
+                <div class="error-msg">
+                    <h3>${title}</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        function showRejoinError() {
+            document.getElementById('errorContainer').innerHTML = `
+                <div class="error-msg">
+                    <h3>Session credentials are invalid or expired</h3>
+                    <p>If you're a team member, you can rejoin with your team name:</p>
+                    <form id="rejoinForm" style="margin-top: 1rem;">
+                        <input
+                            type="text"
+                            id="rejoinTeamName"
+                            placeholder="Enter your team name"
+                            style="width: 100%; padding: 0.75rem; margin-bottom: 0.5rem; border: 2px solid #d1d5db; border-radius: 8px;"
+                            required
+                        >
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            Rejoin Game
+                        </button>
+                    </form>
+                    <p style="margin-top: 1rem;">
+                        Or <a href="/quiz/play/host/">host a new game</a> / <a href="/quiz/play/join/">join as new team</a>
+                    </p>
+                </div>
+            `;
+
+            // Handle rejoin form submission
+            document.getElementById('rejoinForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const teamName = document.getElementById('rejoinTeamName').value.trim();
+                await handleRejoin(teamName);
+            });
+        }
+
+        async function handleRejoin(teamName) {
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/rejoin/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ team_name: teamName })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    alert(data.error || 'Failed to rejoin');
+                    return;
+                }
+
+                // Success! Store the token and reload
+                localStorage.setItem(`session_${CODE}_team`, data.team_token);
+                localStorage.setItem(`session_${CODE}_role`, 'team');
+                localStorage.removeItem(`session_${CODE}_admin`); // Clean up any stale admin token
+
+                console.log('✓ Rejoined successfully as', data.team_name);
+                window.location.reload();
+
+            } catch (error) {
+                console.error('Rejoin error:', error);
+                alert('Failed to rejoin. Please try again.');
+            }
+        }
+
+        // Start the initialization
+        initializeSession();
 
         function startPolling() {
             pollState();
@@ -738,12 +856,26 @@
                     document.getElementById('scoringRound').textContent = state.current_round.round_number;
                 }
                 loadScoringData();
+
+                // Reset complete round button state (in case returning from previous action)
+                const completeBtn = document.getElementById('completeRoundBtn');
+                if (completeBtn) {
+                    completeBtn.disabled = false;
+                    completeBtn.textContent = 'Complete Round & Continue';
+                }
             } else if (state.status === 'reviewing') {
                 document.getElementById('reviewingState').classList.remove('hidden');
                 if (state.current_round) {
                     document.getElementById('reviewingRound').textContent = state.current_round.round_number;
                 }
                 renderReviewUI(state);
+
+                // Reset start next round button state (in case returning from previous action)
+                const startNextBtn = document.getElementById('startNextRoundBtn');
+                if (startNextBtn) {
+                    startNextBtn.disabled = false;
+                    startNextBtn.textContent = 'Start Next Round';
+                }
             } else if (state.status === 'completed') {
                 document.getElementById('completedState').classList.remove('hidden');
                 loadFinalStandings();

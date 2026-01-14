@@ -181,6 +181,13 @@
                 return;
             }
 
+            // CRITICAL: Prevent host from joining their own game as a team
+            const existingAdminToken = localStorage.getItem(`session_${code}_admin`);
+            if (existingAdminToken) {
+                showError('You are the host of this game. Please use the host view instead of joining as a team.');
+                return;
+            }
+
             submitBtn.disabled = true;
             submitBtn.textContent = 'Joining...';
 
@@ -206,7 +213,7 @@
                 // Set role preference to indicate this user is a team
                 localStorage.setItem(`session_${code}_role`, 'team');
 
-                // Redirect to live session
+                // Redirect to live session (validation will clean up any conflicts)
                 window.location.href = `/quiz/play/${code}/`;
 
             } catch (error) {

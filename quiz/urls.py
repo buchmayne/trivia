@@ -75,6 +75,16 @@ urlpatterns = [
         session_api.get_session_state,
         name="session_state",
     ),
+    path(
+        "api/sessions/<str:code>/validate/",
+        session_api.validate_session_access,
+        name="session_validate",
+    ),
+    path(
+        "api/sessions/<str:code>/rejoin/",
+        session_api.rejoin_session,
+        name="session_rejoin",
+    ),
     # Session API - Admin
     path(
         "api/sessions/<str:code>/admin/start/",

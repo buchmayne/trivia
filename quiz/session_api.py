@@ -856,3 +856,103 @@ def team_get_results(request, code):
             "standings": standings,
         }
     )
+
+
+# ============================================================================
+# SESSION VALIDATION & RE-AUTHENTICATION ENDPOINTS
+# ============================================================================
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def validate_session_access(request, code):
+    """
+    Validates admin and/or team tokens for a session.
+    Returns which roles the user has valid access to.
+    This is the SOURCE OF TRUTH for role determination on page load.
+    """
+    session = get_object_or_404(GameSession, code=code)
+
+    try:
+        data = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+    admin_token = data.get("admin_token")
+    team_token = data.get("team_token")
+
+    response = {
+        "is_valid_admin": False,
+        "is_valid_team": False,
+        "team_id": None,
+        "team_name": None,
+    }
+
+    # Validate admin token
+    if admin_token and session.admin_token == admin_token:
+        response["is_valid_admin"] = True
+        # Update admin heartbeat
+        session.admin_last_seen = timezone.now()
+        session.save(update_fields=["admin_last_seen"])
+
+    # Validate team token
+    if team_token:
+        try:
+            team = session.teams.get(token=team_token)
+            response["is_valid_team"] = True
+            response["team_id"] = team.id
+            response["team_name"] = team.name
+            # Update team heartbeat
+            team.last_seen = timezone.now()
+            team.save(update_fields=["last_seen"])
+        except SessionTeam.DoesNotExist:
+            pass
+
+    return JsonResponse(response)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def rejoin_session(request, code):
+    """
+    Allows a team to rejoin a session by providing their team name.
+    Returns existing team token if team name matches, allowing recovery from token loss.
+    This preserves all team progress, answers, and state.
+    """
+    session = get_object_or_404(GameSession, code=code)
+
+    try:
+        data = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+    team_name = data.get("team_name", "").strip()
+
+    # Validate team name
+    if len(team_name) < 2 or len(team_name) > 100:
+        return JsonResponse(
+            {"error": "Team name must be 2-100 characters"}, status=400
+        )
+
+    # Check if session is still active
+    if session.status == GameSession.Status.COMPLETED:
+        return JsonResponse({"error": "Game has ended"}, status=400)
+
+    # Try to find existing team with this name
+    try:
+        team = session.teams.get(name__iexact=team_name)
+        # Team found - return their existing token
+        return JsonResponse(
+            {
+                "team_id": team.id,
+                "team_token": team.token,
+                "team_name": team.name,
+                "score": team.score,
+                "rejoined": True,
+            }
+        )
+    except SessionTeam.DoesNotExist:
+        # Team name not found in this session
+        return JsonResponse(
+            {"error": f"No team named '{team_name}' found in this session"}, status=404
+        )

@@ -202,7 +202,7 @@
                 // Set role preference to indicate this user is a host
                 localStorage.setItem(`session_${data.code}_role`, 'admin');
 
-                // Redirect to live session
+                // Redirect to live session (validation will clean up any conflicts)
                 window.location.href = `/quiz/play/${data.code}/`;
 
             } catch (error) {
