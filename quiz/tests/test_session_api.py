@@ -425,6 +425,150 @@ class AdminLockRoundAPITest(TestCase):
         self.answer.refresh_from_db()
         self.assertTrue(self.answer.is_locked)
 
+    def test_lock_round_auto_scores_unanswered_questions(self):
+        """Test that locking a round auto-creates TeamAnswer objects with 0 points for unanswered questions"""
+        # Create a second question that the team hasn't answered
+        question2 = Question.objects.create(
+            game=self.game,
+            question_type=self.q_type,
+            game_round=self.round,
+            text="Q2",
+            question_number=2,
+        )
+
+        # Create a second team that hasn't answered any questions
+        team2 = SessionTeam.objects.create(session=self.session, name="Team B")
+
+        url = reverse("quiz:session_admin_lock", args=[self.session.code])
+
+        response = self.client.post(
+            url,
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {self.session.admin_token}",
+        )
+
+        self.assertEqual(response.status_code, 200)
+
+        # Verify that Team A's unanswered question (Q2) was auto-scored as 0
+        team_a_q2_answer = TeamAnswer.objects.get(team=self.team, question=question2)
+        self.assertEqual(team_a_q2_answer.answer_text, "")
+        self.assertEqual(team_a_q2_answer.points_awarded, 0)
+        self.assertTrue(team_a_q2_answer.is_locked)
+        self.assertIsNotNone(team_a_q2_answer.scored_at)
+
+        # Verify that Team B's unanswered questions (Q1 and Q2) were auto-scored as 0
+        team_b_q1_answer = TeamAnswer.objects.get(team=team2, question=self.question)
+        self.assertEqual(team_b_q1_answer.answer_text, "")
+        self.assertEqual(team_b_q1_answer.points_awarded, 0)
+        self.assertTrue(team_b_q1_answer.is_locked)
+        self.assertIsNotNone(team_b_q1_answer.scored_at)
+
+        team_b_q2_answer = TeamAnswer.objects.get(team=team2, question=question2)
+        self.assertEqual(team_b_q2_answer.answer_text, "")
+        self.assertEqual(team_b_q2_answer.points_awarded, 0)
+        self.assertTrue(team_b_q2_answer.is_locked)
+        self.assertIsNotNone(team_b_q2_answer.scored_at)
+
+
+class AdminCompleteRoundAPITest(TestCase):
+    """Test the admin_complete_round endpoint"""
+
+    def setUp(self):
+        self.client = Client()
+        self.game = Game.objects.create(name="Test Game")
+        self.session = GameSession.objects.create(
+            game=self.game, admin_name="Host", status=GameSession.Status.SCORING
+        )
+        self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
+        self.q_type = QuestionType.objects.create(name="Multiple Choice")
+        self.question1 = Question.objects.create(
+            game=self.game,
+            question_type=self.q_type,
+            game_round=self.round,
+            text="Q1",
+            question_number=1,
+            total_points=10,
+        )
+        self.question2 = Question.objects.create(
+            game=self.game,
+            question_type=self.q_type,
+            game_round=self.round,
+            text="Q2",
+            question_number=2,
+            total_points=5,
+        )
+        self.session_round = SessionRound.objects.create(
+            session=self.session, round=self.round, status=SessionRound.Status.LOCKED
+        )
+        self.session.current_round = self.round
+        self.session.save()
+
+        self.team = SessionTeam.objects.create(session=self.session, name="Team A")
+
+    def test_complete_round_success_with_auto_scored_answers(self):
+        """Test completing a round where some answers were auto-scored as 0"""
+        # Team answered Q1 and got points
+        answer1 = TeamAnswer.objects.create(
+            team=self.team,
+            question=self.question1,
+            session_round=self.session_round,
+            answer_text="My answer",
+            is_locked=True,
+            points_awarded=10,
+            scored_at=timezone.now(),
+        )
+
+        # Q2 was auto-scored as 0 (team didn't answer)
+        answer2 = TeamAnswer.objects.create(
+            team=self.team,
+            question=self.question2,
+            session_round=self.session_round,
+            answer_text="",
+            is_locked=True,
+            points_awarded=0,
+            scored_at=timezone.now(),
+        )
+
+        url = reverse("quiz:session_admin_complete", args=[self.session.code])
+
+        response = self.client.post(
+            url,
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {self.session.admin_token}",
+        )
+
+        self.assertEqual(response.status_code, 200)
+
+        self.session_round.refresh_from_db()
+        self.assertEqual(self.session_round.status, SessionRound.Status.SCORED)
+        self.assertIsNotNone(self.session_round.scored_at)
+
+        self.session.refresh_from_db()
+        self.assertEqual(self.session.status, GameSession.Status.REVIEWING)
+
+    def test_complete_round_fails_if_answers_not_scored(self):
+        """Test that completing a round fails if not all answers are scored"""
+        # Create an answer that hasn't been scored yet
+        TeamAnswer.objects.create(
+            team=self.team,
+            question=self.question1,
+            session_round=self.session_round,
+            answer_text="My answer",
+            is_locked=True,
+            # points_awarded is None (not scored)
+        )
+
+        url = reverse("quiz:session_admin_complete", args=[self.session.code])
+
+        response = self.client.post(
+            url,
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {self.session.admin_token}",
+        )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("answers still need scoring", response.json()["error"])
+
 
 class AdminScoreAnswerAPITest(TestCase):
     """Test the admin_score_answer endpoint"""

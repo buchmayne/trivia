@@ -399,15 +399,39 @@ def admin_toggle_team_navigation(request, code):
 @require_http_methods(["POST"])
 @require_admin_token
 def admin_lock_round(request, code):
-    """Lock current round for scoring. All team answers become locked."""
+    """Lock current round for scoring. All team answers become locked.
+    Auto-creates TeamAnswer objects with 0 points for unanswered questions."""
     session = request.session_obj
     session_round = session.session_rounds.get(round=session.current_round)
 
     if session_round.status != SessionRound.Status.ACTIVE:
         return JsonResponse({"error": "Round not active"}, status=400)
 
-    # Lock all answers in this round
+    # Lock all existing answers in this round
     TeamAnswer.objects.filter(session_round=session_round).update(is_locked=True)
+
+    # Get all questions in the current round
+    questions_in_round = session.game.questions.filter(game_round=session.current_round)
+
+    # For each team, create missing TeamAnswer objects with 0 points for unanswered questions
+    for team in session.teams.all():
+        for question in questions_in_round:
+            # Check if team has an answer for this question
+            answer_exists = TeamAnswer.objects.filter(
+                team=team, question=question
+            ).exists()
+
+            if not answer_exists:
+                # Create a TeamAnswer with 0 points for unanswered questions
+                TeamAnswer.objects.create(
+                    team=team,
+                    question=question,
+                    session_round=session_round,
+                    answer_text="",
+                    is_locked=True,
+                    points_awarded=0,
+                    scored_at=timezone.now()
+                )
 
     session_round.status = SessionRound.Status.LOCKED
     session_round.locked_at = timezone.now()
@@ -562,11 +586,10 @@ def admin_complete_round(request, code):
     session = request.session_obj
     session_round = session.session_rounds.get(round=session.current_round)
 
-    # Verify all answers are scored
+    # Verify all answers are scored (including auto-scored unanswered questions)
     unscored = TeamAnswer.objects.filter(
         session_round=session_round,
         points_awarded__isnull=True,
-        answer_text__gt="",  # Only count answers that were submitted
     ).count()
 
     if unscored > 0:
