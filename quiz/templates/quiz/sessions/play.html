@@ -407,6 +407,82 @@
             }
         }
 
+        /* Round Progress Tracker */
+        .progress-tracker {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .progress-tracker h3 {
+            margin: 0 0 1rem 0;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+        .progress-questions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .progress-question {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .progress-question.current {
+            background: #ede9fe;
+            border-color: #667eea;
+        }
+        .progress-question.complete {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+        .progress-question-number {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        .progress-question.current .progress-question-number {
+            color: #667eea;
+        }
+        .progress-question.complete .progress-question-number {
+            color: #059669;
+        }
+        .progress-count {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        .progress-count-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        /* Back to Landing Link */
+        .back-to-landing {
+            display: block;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        .back-to-landing:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+
         /* Utility */
         .hidden { display: none !important; }
         .error-msg {
@@ -485,6 +561,14 @@
             <div id="playingState" class="hidden">
                 <div id="questionDisplay"></div>
 
+                <!-- Round Progress Tracker -->
+                <div class="progress-tracker">
+                    <h3>Round Progress - Team Submissions</h3>
+                    <div id="progressQuestions" class="progress-questions">
+                        <!-- Progress items will be inserted here by JavaScript -->
+                    </div>
+                </div>
+
                 <!-- Navigation Controls -->
                 <div class="card">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
@@ -543,6 +627,8 @@
                     <div id="finalStandings" class="standings-list"></div>
                 </div>
             </div>
+
+            <a href="{% url 'quiz:session_landing' %}" class="back-to-landing">← Back to Sessions</a>
         </div>
 
         <!-- TEAM VIEW -->
@@ -611,6 +697,8 @@
                     <div id="standingsDisplay"></div>
                 </div>
             </div>
+
+            <a href="{% url 'quiz:session_landing' %}" class="back-to-landing">← Back to Sessions</a>
         </div>
     </div>
 
@@ -837,6 +925,9 @@
                     renderFullQuestion(state.current_question, 'questionDisplay');
                 }
                 renderTeamStatus(state.teams, state.current_question);
+
+                // Render round progress tracker
+                renderRoundProgress(state.round_progress, state.current_question);
 
                 // Load round questions for navigation
                 loadRoundQuestions();
@@ -1238,6 +1329,32 @@
                     <div class="team-status">${t.has_answered_current ? '✓ Answered' : '○ Not answered yet'}</div>
                 </div>
             `).join('');
+        }
+
+        function renderRoundProgress(roundProgress, currentQuestion) {
+            const container = document.getElementById('progressQuestions');
+            if (!roundProgress || roundProgress.length === 0) {
+                container.innerHTML = '<p style="color: #6b7280;">No questions in current round.</p>';
+                return;
+            }
+
+            const currentQuestionId = currentQuestion ? currentQuestion.id : null;
+
+            container.innerHTML = roundProgress.map(progress => {
+                const isCurrent = progress.question_id === currentQuestionId;
+                const isComplete = progress.submitted_count === progress.total_teams && progress.total_teams > 0;
+                const classes = ['progress-question'];
+                if (isCurrent) classes.push('current');
+                if (isComplete) classes.push('complete');
+
+                return `
+                    <div class="${classes.join(' ')}" title="Question ${progress.question_number}: ${progress.submitted_count}/${progress.total_teams} teams submitted">
+                        <div class="progress-question-number">Q${progress.question_number}</div>
+                        <div class="progress-count">${progress.submitted_count}/${progress.total_teams}</div>
+                        <div class="progress-count-label">teams</div>
+                    </div>
+                `;
+            }).join('');
         }
 
         function renderTeamAnswerInputs(question) {

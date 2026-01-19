@@ -262,6 +262,30 @@ def get_session_state(request, code):
         for t in session.teams.all()
     ]
 
+    # Get round progress: submission counts for each question in current round
+    round_progress = []
+    if session.current_round:
+        questions_in_round = session.game.questions.filter(
+            game_round=session.current_round
+        ).order_by("question_number")
+
+        total_teams = session.teams.count()
+
+        for question in questions_in_round:
+            # Count teams that have submitted an answer (non-empty answer_text)
+            submitted_count = TeamAnswer.objects.filter(
+                question=question,
+                team__session=session,
+                answer_text__gt=""
+            ).count()
+
+            round_progress.append({
+                "question_id": question.id,
+                "question_number": question.question_number,
+                "submitted_count": submitted_count,
+                "total_teams": total_teams
+            })
+
     return JsonResponse(
         {
             "status": session.status,
@@ -274,6 +298,7 @@ def get_session_state(request, code):
             "team_count": len(teams_data),
             "max_teams": session.max_teams,
             "allow_team_navigation": session.allow_team_navigation,
+            "round_progress": round_progress,
         }
     )
 
