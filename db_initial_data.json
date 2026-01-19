@@ -9100,6 +9100,45 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 701,
+  "fields": {
+    "action_time": "2026-01-19T21:11:09.769Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "306",
+    "object_repr": "Q12: Order the following NBA players from highest to lowest AVERAGE annual salary over their entire career (1 Point Each)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 702,
+  "fields": {
+    "action_time": "2026-01-19T21:14:20.505Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "20",
+    "object_repr": "Progress Test Game",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 703,
+  "fields": {
+    "action_time": "2026-01-19T21:14:20.507Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "19",
+    "object_repr": "Progress Test Game",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -9788,7 +9827,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$GaKTcesAdq8CjrmLYTczde$NeJ5+0SVFd2oVRqur4JCuru8HjAHW7xoM878yxwcXbs=",
-    "last_login": "2026-01-03T20:12:41.776Z",
+    "last_login": "2026-01-19T21:10:07.216Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -10079,6 +10118,14 @@
   "fields": {
     "session_data": ".eJxVjDsOwjAQBe_iGln4l2Qp6XMGa9e7xgHkSHFSIe4OkVJA-2bmvVTEbS1xa7LEidVFGXX63QjTQ-oO-I71Nus013WZSO-KPmjT48zyvB7u30HBVr61OAsSwBqXeobkwbsOHeUAfUAYAgkP1OWEmYXZZjCSg7fpbAmMIVbvD-y6OKY:1tjQ1S:GMIyXK7WfxMjTz5iJDIKxiJpRGNb62kjwFBx-t89Z7w",
     "expire_date": "2025-03-01T21:48:26.885Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "w53fucel913berxmp2kicismxkwa469r",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln4l2Qp6XMGa9e7xgHkSHFSIe4OkVJA-2bmvVTEbS1xa7LEidVFGXX63QjTQ-oO-I71Nus013WZSO-KPmjT48zyvB7u30HBVr61OAsSwBqXeobkwbsOHeUAfUAYAgkP1OWEmYXZZjCSg7fpbAmMIVbvD-y6OKY:1vhwVj:Im-PUPY0vIgpAnevTY9mSPddG7j9zZzysk0eutAm0Ls",
+    "expire_date": "2026-02-02T21:10:07.218Z"
   }
 },
 {
@@ -11542,6 +11589,24 @@
   }
 },
 {
+  "model": "quiz.category",
+  "pk": 97,
+  "fields": {
+    "name": "Test Category",
+    "description": null,
+    "games": []
+  }
+},
+{
+  "model": "quiz.category",
+  "pk": 98,
+  "fields": {
+    "name": "Test Category",
+    "description": null,
+    "games": []
+  }
+},
+{
   "model": "quiz.questiontype",
   "pk": 1,
   "fields": {
@@ -11563,6 +11628,14 @@
   "fields": {
     "name": "Multiple Open Ended",
     "description": "Answer each of the open ended questions"
+  }
+},
+{
+  "model": "quiz.questiontype",
+  "pk": 4,
+  "fields": {
+    "name": "Standard",
+    "description": null
   }
 },
 {
@@ -11590,6 +11663,24 @@
     "name": "Final Round",
     "description": "",
     "round_number": 3
+  }
+},
+{
+  "model": "quiz.questionround",
+  "pk": 4,
+  "fields": {
+    "name": "Test Round",
+    "description": null,
+    "round_number": 1
+  }
+},
+{
+  "model": "quiz.questionround",
+  "pk": 5,
+  "fields": {
+    "name": "Test Round",
+    "description": null,
+    "round_number": 1
   }
 },
 {
@@ -18406,7 +18497,7 @@
   "fields": {
     "game": 18,
     "category": 38,
-    "text": "Order the following NBA players from highest to lowest AVERAGE annual salary (1 Point Each)",
+    "text": "Order the following NBA players from highest to lowest AVERAGE annual salary over their entire career (1 Point Each)",
     "answer_bank": "",
     "question_type": 1,
     "question_image_url": null,
@@ -42525,6 +42616,153 @@
   }
 },
 {
+  "model": "quiz.gamesession",
+  "pk": 23,
+  "fields": {
+    "code": "8Q4KO9",
+    "game": 18,
+    "admin_name": "dfdfd",
+    "admin_token": "82sD8etdYk77_8wPekscMtf5yLPCalPGEj7MQn_kMVk",
+    "status": "paused",
+    "status_before_pause": "playing",
+    "current_question": 309,
+    "current_round": 2,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": true,
+    "created_at": "2026-01-14T03:23:17.611Z",
+    "started_at": "2026-01-14T03:23:30.845Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-14T03:32:43.467Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 24,
+  "fields": {
+    "code": "D9MCPM",
+    "game": 18,
+    "admin_name": "dSDd",
+    "admin_token": "-JwMgKb18MvxiAbnJg2wpQeIzqQ89-21xfIuqYMnHSg",
+    "status": "playing",
+    "status_before_pause": null,
+    "current_question": 293,
+    "current_round": 1,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-14T03:45:16.107Z",
+    "started_at": "2026-01-14T03:45:25.223Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-14T03:46:21.505Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 25,
+  "fields": {
+    "code": "HPNX2F",
+    "game": 18,
+    "admin_name": "dfdf",
+    "admin_token": "ISbN-ay0O6nwgGvCTVrtz64FfdwzTnoChaDdXwa9ll4",
+    "status": "playing",
+    "status_before_pause": null,
+    "current_question": 292,
+    "current_round": 1,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-14T03:46:36.744Z",
+    "started_at": "2026-01-14T03:46:46.474Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-14T03:50:32.253Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 26,
+  "fields": {
+    "code": "FOY8YQ",
+    "game": 18,
+    "admin_name": "dfdsf",
+    "admin_token": "1kVBOVc5wMU3LlIbmEPuxgQvop9-jdRb26-WEzzt15w",
+    "status": "paused",
+    "status_before_pause": "playing",
+    "current_question": 293,
+    "current_round": 1,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-14T03:50:39.824Z",
+    "started_at": "2026-01-14T03:50:52.411Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-14T03:51:15.556Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 27,
+  "fields": {
+    "code": "15LC6A",
+    "game": 18,
+    "admin_name": "sdfsf",
+    "admin_token": "YYRPcrcRLxdW3NlEk9csTRBUKHQRFveA4fm3i4Pursg",
+    "status": "playing",
+    "status_before_pause": null,
+    "current_question": 293,
+    "current_round": 1,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-14T04:14:18.992Z",
+    "started_at": "2026-01-14T04:15:17.186Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-14T04:15:45.552Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 28,
+  "fields": {
+    "code": "TCJLDM",
+    "game": 10,
+    "admin_name": "Marley",
+    "admin_token": "BRQxlsIAVGc3LD1cXEVM0mYQesNIUpZb8lvu1xXr5wM",
+    "status": "reviewing",
+    "status_before_pause": null,
+    "current_question": 174,
+    "current_round": 1,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": true,
+    "created_at": "2026-01-14T04:20:07.521Z",
+    "started_at": "2026-01-14T04:20:35.178Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-14T04:22:35.849Z"
+  }
+},
+{
+  "model": "quiz.gamesession",
+  "pk": 30,
+  "fields": {
+    "code": "7XJB65",
+    "game": 18,
+    "admin_name": "Test-Host",
+    "admin_token": "iQcMmbXVIhG4xSEY0XPEG02FtHtTqrH5iqYpzBM6vjA",
+    "status": "scoring",
+    "status_before_pause": null,
+    "current_question": 298,
+    "current_round": 2,
+    "max_teams": 16,
+    "allow_late_joins": true,
+    "allow_team_navigation": false,
+    "created_at": "2026-01-19T21:03:52.184Z",
+    "started_at": "2026-01-19T21:04:27.726Z",
+    "completed_at": null,
+    "admin_last_seen": "2026-01-19T21:09:46.103Z"
+  }
+},
+{
   "model": "quiz.sessionteam",
   "pk": 1,
   "fields": {
@@ -42833,6 +43071,110 @@
     "score": 0,
     "joined_at": "2026-01-04T19:49:46.612Z",
     "last_seen": "2026-01-04T19:52:17.342Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 25,
+  "fields": {
+    "session": 23,
+    "name": "8Q4KO9",
+    "token": "EVJiB0XOeYYkAfWiunZ67vzt5msnLD82_LR3vmM6QXc",
+    "score": 0,
+    "joined_at": "2026-01-14T03:23:26.732Z",
+    "last_seen": "2026-01-14T03:33:12.899Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 26,
+  "fields": {
+    "session": 24,
+    "name": "dsfsdf",
+    "token": "LqctTbRcmYXrLfiWPkh3RjSRw1iqdSL0iBqDIyelV2o",
+    "score": 0,
+    "joined_at": "2026-01-14T03:45:21.361Z",
+    "last_seen": "2026-01-14T03:45:21.361Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 27,
+  "fields": {
+    "session": 25,
+    "name": "sdsfdsf",
+    "token": "wd1W7WWMWQBGuD8v0mSMCOPXBrFkB_TgjM4qS5QkHyI",
+    "score": 0,
+    "joined_at": "2026-01-14T03:46:42.838Z",
+    "last_seen": "2026-01-14T03:46:42.838Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 28,
+  "fields": {
+    "session": 26,
+    "name": "aaaa",
+    "token": "hhFlDRR77AdV01pZKfz7TZ-IhYQYgl2gsPnoHkZEu-s",
+    "score": 0,
+    "joined_at": "2026-01-14T03:50:49.581Z",
+    "last_seen": "2026-01-14T03:51:45.151Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 29,
+  "fields": {
+    "session": 27,
+    "name": "fsdfsdfsf",
+    "token": "upIPC4KNVsbzsbsJUBGD35rJt5bzEyLVXQj0DuwA270",
+    "score": 0,
+    "joined_at": "2026-01-14T04:15:08.392Z",
+    "last_seen": "2026-01-14T04:15:49.251Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 30,
+  "fields": {
+    "session": 28,
+    "name": "Jenna's Team",
+    "token": "PlHgD7mOmq6rL7nQ5aQxpg4DCXijooYFQrxqI-EXqwI",
+    "score": 0,
+    "joined_at": "2026-01-14T04:20:29.911Z",
+    "last_seen": "2026-01-14T04:22:07.489Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 34,
+  "fields": {
+    "session": 30,
+    "name": "Team 1",
+    "token": "Agm28eOBPbOUL3seiVxwYea1n05zohfVdK5bfxl0bwI",
+    "score": 0,
+    "joined_at": "2026-01-19T21:04:16.330Z",
+    "last_seen": "2026-01-19T21:06:53.592Z",
+    "joined_late": false
+  }
+},
+{
+  "model": "quiz.sessionteam",
+  "pk": 35,
+  "fields": {
+    "session": 30,
+    "name": "Team 2",
+    "token": "LdvWT7ossw5bFoU9LisLPlS2sH0T-1EYCSWhkrlne-A",
+    "score": 0,
+    "joined_at": "2026-01-19T21:04:22.401Z",
+    "last_seen": "2026-01-19T21:08:49.879Z",
     "joined_late": false
   }
 },
@@ -43629,6 +43971,258 @@
   }
 },
 {
+  "model": "quiz.sessionround",
+  "pk": 67,
+  "fields": {
+    "session": 23,
+    "round": 1,
+    "status": "scored",
+    "started_at": "2026-01-14T03:23:30.847Z",
+    "locked_at": "2026-01-14T03:25:05.506Z",
+    "scored_at": "2026-01-14T03:25:23.830Z"
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 68,
+  "fields": {
+    "session": 23,
+    "round": 2,
+    "status": "active",
+    "started_at": "2026-01-14T03:25:47.726Z",
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 69,
+  "fields": {
+    "session": 23,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 70,
+  "fields": {
+    "session": 24,
+    "round": 1,
+    "status": "active",
+    "started_at": "2026-01-14T03:45:25.225Z",
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 71,
+  "fields": {
+    "session": 24,
+    "round": 2,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 72,
+  "fields": {
+    "session": 24,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 73,
+  "fields": {
+    "session": 25,
+    "round": 1,
+    "status": "active",
+    "started_at": "2026-01-14T03:46:46.476Z",
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 74,
+  "fields": {
+    "session": 25,
+    "round": 2,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 75,
+  "fields": {
+    "session": 25,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 76,
+  "fields": {
+    "session": 26,
+    "round": 1,
+    "status": "active",
+    "started_at": "2026-01-14T03:50:52.413Z",
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 77,
+  "fields": {
+    "session": 26,
+    "round": 2,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 78,
+  "fields": {
+    "session": 26,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 79,
+  "fields": {
+    "session": 27,
+    "round": 1,
+    "status": "active",
+    "started_at": "2026-01-14T04:15:17.188Z",
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 80,
+  "fields": {
+    "session": 27,
+    "round": 2,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 81,
+  "fields": {
+    "session": 27,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 82,
+  "fields": {
+    "session": 28,
+    "round": 1,
+    "status": "scored",
+    "started_at": "2026-01-14T04:20:35.180Z",
+    "locked_at": "2026-01-14T04:21:53.205Z",
+    "scored_at": "2026-01-14T04:22:06.269Z"
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 83,
+  "fields": {
+    "session": 28,
+    "round": 2,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 84,
+  "fields": {
+    "session": 28,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 86,
+  "fields": {
+    "session": 30,
+    "round": 1,
+    "status": "scored",
+    "started_at": "2026-01-19T21:04:27.729Z",
+    "locked_at": "2026-01-19T21:06:12.317Z",
+    "scored_at": "2026-01-19T21:06:57.953Z"
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 87,
+  "fields": {
+    "session": 30,
+    "round": 2,
+    "status": "locked",
+    "started_at": "2026-01-19T21:07:08.529Z",
+    "locked_at": "2026-01-19T21:08:45.204Z",
+    "scored_at": null
+  }
+},
+{
+  "model": "quiz.sessionround",
+  "pk": 88,
+  "fields": {
+    "session": 30,
+    "round": 3,
+    "status": "pending",
+    "started_at": null,
+    "locked_at": null,
+    "scored_at": null
+  }
+},
+{
   "model": "quiz.teamanswer",
   "pk": 1,
   "fields": {
@@ -44046,6 +44640,621 @@
     "scored_at": "2026-01-04T19:51:04.767Z",
     "submitted_at": "2026-01-04T19:50:48.733Z",
     "updated_at": "2026-01-04T19:51:04.767Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 29,
+  "fields": {
+    "team": 25,
+    "question": 309,
+    "session_round": 68,
+    "answer_text": "[\"sdfds\",\"sdfdsfs\",\"sfsdf\",\"sfsdf\",\"sfsf\"]",
+    "is_locked": false,
+    "points_awarded": null,
+    "scored_at": null,
+    "submitted_at": "2026-01-14T03:28:12.439Z",
+    "updated_at": "2026-01-14T03:28:13.066Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 30,
+  "fields": {
+    "team": 30,
+    "question": 174,
+    "session_round": 82,
+    "answer_text": "[\"1\",\"2\",\"3\",\"0\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-14T04:21:57.668Z",
+    "submitted_at": "2026-01-14T04:20:53.660Z",
+    "updated_at": "2026-01-14T04:21:57.668Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 31,
+  "fields": {
+    "team": 30,
+    "question": 185,
+    "session_round": 82,
+    "answer_text": "[\"Evergreen\",\"Sea green\",\"Pine green\",\"Jade\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-14T04:22:04.872Z",
+    "submitted_at": "2026-01-14T04:21:42.396Z",
+    "updated_at": "2026-01-14T04:22:04.872Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 36,
+  "fields": {
+    "team": 34,
+    "question": 292,
+    "session_round": 86,
+    "answer_text": "[\"dfdf\",\"sds\",\"sods\",\"sdsdds\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:53.587Z",
+    "submitted_at": "2026-01-19T21:05:06.986Z",
+    "updated_at": "2026-01-19T21:06:53.587Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 37,
+  "fields": {
+    "team": 35,
+    "question": 292,
+    "session_round": 86,
+    "answer_text": "[\"a\",\"b\",\"c\",\"d\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:52.254Z",
+    "submitted_at": "2026-01-19T21:05:13.015Z",
+    "updated_at": "2026-01-19T21:06:52.254Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 38,
+  "fields": {
+    "team": 34,
+    "question": 293,
+    "session_round": 86,
+    "answer_text": "[\"Rheumatology\",\"Nephrology\",\"Oncology\",\"Ophthalmology\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:50.816Z",
+    "submitted_at": "2026-01-19T21:05:32.927Z",
+    "updated_at": "2026-01-19T21:06:50.816Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 39,
+  "fields": {
+    "team": 35,
+    "question": 296,
+    "session_round": 86,
+    "answer_text": "[\"sdfsdfs\",\"sfsfsf\",\"sffsf\",\"sffsfsf\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:46.269Z",
+    "submitted_at": "2026-01-19T21:05:59.924Z",
+    "updated_at": "2026-01-19T21:06:46.270Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 40,
+  "fields": {
+    "team": 34,
+    "question": 302,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.290Z",
+    "submitted_at": "2026-01-19T21:06:12.290Z",
+    "updated_at": "2026-01-19T21:06:12.290Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 41,
+  "fields": {
+    "team": 34,
+    "question": 299,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.292Z",
+    "submitted_at": "2026-01-19T21:06:12.292Z",
+    "updated_at": "2026-01-19T21:06:12.292Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 42,
+  "fields": {
+    "team": 34,
+    "question": 296,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.294Z",
+    "submitted_at": "2026-01-19T21:06:12.294Z",
+    "updated_at": "2026-01-19T21:06:12.294Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 43,
+  "fields": {
+    "team": 34,
+    "question": 297,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.295Z",
+    "submitted_at": "2026-01-19T21:06:12.295Z",
+    "updated_at": "2026-01-19T21:06:12.295Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 44,
+  "fields": {
+    "team": 34,
+    "question": 300,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.296Z",
+    "submitted_at": "2026-01-19T21:06:12.296Z",
+    "updated_at": "2026-01-19T21:06:12.296Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 45,
+  "fields": {
+    "team": 34,
+    "question": 301,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.298Z",
+    "submitted_at": "2026-01-19T21:06:12.298Z",
+    "updated_at": "2026-01-19T21:06:12.298Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 46,
+  "fields": {
+    "team": 34,
+    "question": 303,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.299Z",
+    "submitted_at": "2026-01-19T21:06:12.299Z",
+    "updated_at": "2026-01-19T21:06:12.299Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 47,
+  "fields": {
+    "team": 34,
+    "question": 304,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.301Z",
+    "submitted_at": "2026-01-19T21:06:12.301Z",
+    "updated_at": "2026-01-19T21:06:12.301Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 48,
+  "fields": {
+    "team": 35,
+    "question": 302,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.304Z",
+    "submitted_at": "2026-01-19T21:06:12.304Z",
+    "updated_at": "2026-01-19T21:06:12.304Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 49,
+  "fields": {
+    "team": 35,
+    "question": 293,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.306Z",
+    "submitted_at": "2026-01-19T21:06:12.306Z",
+    "updated_at": "2026-01-19T21:06:12.306Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 50,
+  "fields": {
+    "team": 35,
+    "question": 299,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.307Z",
+    "submitted_at": "2026-01-19T21:06:12.307Z",
+    "updated_at": "2026-01-19T21:06:12.307Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 51,
+  "fields": {
+    "team": 35,
+    "question": 297,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.309Z",
+    "submitted_at": "2026-01-19T21:06:12.309Z",
+    "updated_at": "2026-01-19T21:06:12.309Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 52,
+  "fields": {
+    "team": 35,
+    "question": 300,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.311Z",
+    "submitted_at": "2026-01-19T21:06:12.311Z",
+    "updated_at": "2026-01-19T21:06:12.311Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 53,
+  "fields": {
+    "team": 35,
+    "question": 301,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.313Z",
+    "submitted_at": "2026-01-19T21:06:12.313Z",
+    "updated_at": "2026-01-19T21:06:12.313Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 54,
+  "fields": {
+    "team": 35,
+    "question": 303,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.314Z",
+    "submitted_at": "2026-01-19T21:06:12.314Z",
+    "updated_at": "2026-01-19T21:06:12.314Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 55,
+  "fields": {
+    "team": 35,
+    "question": 304,
+    "session_round": 86,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:06:12.316Z",
+    "submitted_at": "2026-01-19T21:06:12.316Z",
+    "updated_at": "2026-01-19T21:06:12.316Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 56,
+  "fields": {
+    "team": 35,
+    "question": 305,
+    "session_round": 87,
+    "answer_text": "[\"Snoop Dogg\",\"sljdlsj\",\"dirge\",\"Swedish House Mafia\",\"boy genius\"]",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:49.876Z",
+    "submitted_at": "2026-01-19T21:07:18.710Z",
+    "updated_at": "2026-01-19T21:08:49.876Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 57,
+  "fields": {
+    "team": 35,
+    "question": 306,
+    "session_round": 87,
+    "answer_text": "[\"4\",\"2\",\"1\",\"0\",\"3\"]",
+    "is_locked": true,
+    "points_awarded": null,
+    "scored_at": null,
+    "submitted_at": "2026-01-19T21:07:53.500Z",
+    "updated_at": "2026-01-19T21:08:20.416Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 58,
+  "fields": {
+    "team": 34,
+    "question": 176,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.167Z",
+    "submitted_at": "2026-01-19T21:08:45.167Z",
+    "updated_at": "2026-01-19T21:08:45.167Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 59,
+  "fields": {
+    "team": 34,
+    "question": 294,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.171Z",
+    "submitted_at": "2026-01-19T21:08:45.171Z",
+    "updated_at": "2026-01-19T21:08:45.171Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 60,
+  "fields": {
+    "team": 34,
+    "question": 295,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.174Z",
+    "submitted_at": "2026-01-19T21:08:45.175Z",
+    "updated_at": "2026-01-19T21:08:45.175Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 61,
+  "fields": {
+    "team": 34,
+    "question": 298,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.176Z",
+    "submitted_at": "2026-01-19T21:08:45.176Z",
+    "updated_at": "2026-01-19T21:08:45.176Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 62,
+  "fields": {
+    "team": 34,
+    "question": 306,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.178Z",
+    "submitted_at": "2026-01-19T21:08:45.178Z",
+    "updated_at": "2026-01-19T21:08:45.178Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 63,
+  "fields": {
+    "team": 34,
+    "question": 305,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.181Z",
+    "submitted_at": "2026-01-19T21:08:45.181Z",
+    "updated_at": "2026-01-19T21:08:45.181Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 64,
+  "fields": {
+    "team": 34,
+    "question": 307,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.182Z",
+    "submitted_at": "2026-01-19T21:08:45.183Z",
+    "updated_at": "2026-01-19T21:08:45.183Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 65,
+  "fields": {
+    "team": 34,
+    "question": 308,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.184Z",
+    "submitted_at": "2026-01-19T21:08:45.184Z",
+    "updated_at": "2026-01-19T21:08:45.184Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 66,
+  "fields": {
+    "team": 34,
+    "question": 309,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.186Z",
+    "submitted_at": "2026-01-19T21:08:45.186Z",
+    "updated_at": "2026-01-19T21:08:45.186Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 67,
+  "fields": {
+    "team": 35,
+    "question": 176,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.189Z",
+    "submitted_at": "2026-01-19T21:08:45.189Z",
+    "updated_at": "2026-01-19T21:08:45.189Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 68,
+  "fields": {
+    "team": 35,
+    "question": 294,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.192Z",
+    "submitted_at": "2026-01-19T21:08:45.192Z",
+    "updated_at": "2026-01-19T21:08:45.192Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 69,
+  "fields": {
+    "team": 35,
+    "question": 295,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.193Z",
+    "submitted_at": "2026-01-19T21:08:45.194Z",
+    "updated_at": "2026-01-19T21:08:45.194Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 70,
+  "fields": {
+    "team": 35,
+    "question": 298,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.195Z",
+    "submitted_at": "2026-01-19T21:08:45.195Z",
+    "updated_at": "2026-01-19T21:08:45.195Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 71,
+  "fields": {
+    "team": 35,
+    "question": 307,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.198Z",
+    "submitted_at": "2026-01-19T21:08:45.199Z",
+    "updated_at": "2026-01-19T21:08:45.199Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 72,
+  "fields": {
+    "team": 35,
+    "question": 308,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.200Z",
+    "submitted_at": "2026-01-19T21:08:45.200Z",
+    "updated_at": "2026-01-19T21:08:45.200Z"
+  }
+},
+{
+  "model": "quiz.teamanswer",
+  "pk": 73,
+  "fields": {
+    "team": 35,
+    "question": 309,
+    "session_round": 87,
+    "answer_text": "",
+    "is_locked": true,
+    "points_awarded": 0,
+    "scored_at": "2026-01-19T21:08:45.202Z",
+    "submitted_at": "2026-01-19T21:08:45.202Z",
+    "updated_at": "2026-01-19T21:08:45.202Z"
   }
 }
 ]
