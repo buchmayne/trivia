@@ -15,10 +15,7 @@ def session_landing(request: HttpRequest) -> HttpResponse:
 
 def session_host(request: HttpRequest) -> HttpResponse:
     """Admin creates sessions. Lists available games."""
-    games = (
-        Game.objects.exclude(name="Future Games")
-        .order_by("-game_order")
-    )
+    games = Game.objects.exclude(name="Future Games").order_by("-game_order")
     return render(request, "quiz/sessions/host.html", {"games": games})
 
 

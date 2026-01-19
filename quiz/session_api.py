@@ -274,17 +274,17 @@ def get_session_state(request, code):
         for question in questions_in_round:
             # Count teams that have submitted an answer (non-empty answer_text)
             submitted_count = TeamAnswer.objects.filter(
-                question=question,
-                team__session=session,
-                answer_text__gt=""
+                question=question, team__session=session, answer_text__gt=""
             ).count()
 
-            round_progress.append({
-                "question_id": question.id,
-                "question_number": question.question_number,
-                "submitted_count": submitted_count,
-                "total_teams": total_teams
-            })
+            round_progress.append(
+                {
+                    "question_id": question.id,
+                    "question_number": question.question_number,
+                    "submitted_count": submitted_count,
+                    "total_teams": total_teams,
+                }
+            )
 
     return JsonResponse(
         {
@@ -455,7 +455,7 @@ def admin_lock_round(request, code):
                     answer_text="",
                     is_locked=True,
                     points_awarded=0,
-                    scored_at=timezone.now()
+                    scored_at=timezone.now(),
                 )
 
     session_round.status = SessionRound.Status.LOCKED
@@ -978,9 +978,7 @@ def rejoin_session(request, code):
 
     # Validate team name
     if len(team_name) < 2 or len(team_name) > 100:
-        return JsonResponse(
-            {"error": "Team name must be 2-100 characters"}, status=400
-        )
+        return JsonResponse({"error": "Team name must be 2-100 characters"}, status=400)
 
     # Check if session is still active
     if session.status == GameSession.Status.COMPLETED:
