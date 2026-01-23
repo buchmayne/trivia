@@ -368,5 +368,7 @@ class TeamAnswer(models.Model):
         ]
 
     def __str__(self) -> str:
-        part_str = f" (Part {self.answer_part.display_order})" if self.answer_part else ""
+        part_str = (
+            f" (Part {self.answer_part.display_order})" if self.answer_part else ""
+        )
         return f"{self.team.name} - Q{self.question.question_number}{part_str}"

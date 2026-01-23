@@ -916,7 +916,7 @@ class PerPartScoringTest(TestCase):
             team=self.team,
             question=self.ranking_question,
             session_round=self.session_round,
-            answer_text='[0, 1, 2]',
+            answer_text="[0, 1, 2]",
         )
 
         url = reverse("quiz:session_admin_lock", args=[self.session.code])
@@ -951,7 +951,7 @@ class PerPartScoringTest(TestCase):
             team=self.team,
             question=self.ranking_question,
             session_round=self.session_round,
-            answer_text='[0, 1, 2]',
+            answer_text="[0, 1, 2]",
         )
 
         url = reverse("quiz:session_admin_lock", args=[self.session.code])
@@ -982,7 +982,7 @@ class PerPartScoringTest(TestCase):
             team=self.team,
             question=self.ranking_question,
             session_round=self.session_round,
-            answer_text='[1, 0, 2]',
+            answer_text="[1, 0, 2]",
         )
 
         url = reverse("quiz:session_admin_lock", args=[self.session.code])
@@ -1063,7 +1063,7 @@ class PerPartScoringTest(TestCase):
             team=self.team,
             question=self.single_question,
             session_round=self.session_round,
-            answer_text='My single answer',
+            answer_text="My single answer",
         )
 
         url = reverse("quiz:session_admin_lock", args=[self.session.code])
