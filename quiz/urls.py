@@ -126,6 +126,16 @@ urlpatterns = [
         session_api.admin_start_next_round,
         name="session_admin_start_next",
     ),
+    path(
+        "api/sessions/<str:code>/admin/show-leaderboard/",
+        session_api.admin_show_leaderboard,
+        name="session_admin_show_leaderboard",
+    ),
+    path(
+        "api/sessions/<str:code>/leaderboard/",
+        session_api.get_leaderboard_data,
+        name="session_leaderboard",
+    ),
     # Session API - Team
     path(
         "api/sessions/<str:code>/team/answer/",

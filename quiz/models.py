@@ -203,6 +203,7 @@ class GameSession(models.Model):
         PAUSED = "paused", "Paused (Admin Disconnected)"
         SCORING = "scoring", "Scoring Round"
         REVIEWING = "reviewing", "Reviewing Answers"
+        LEADERBOARD = "leaderboard", "Showing Leaderboard"
         COMPLETED = "completed", "Game Completed"
 
     code = models.CharField(max_length=6, unique=True, db_index=True)
@@ -329,7 +330,7 @@ class SessionRound(models.Model):
 
 
 class TeamAnswer(models.Model):
-    """A team's answer to a question"""
+    """A team's answer to a question (or a specific part of a multi-part question)"""
 
     team = models.ForeignKey(
         SessionTeam, on_delete=models.CASCADE, related_name="answers"
@@ -337,6 +338,15 @@ class TeamAnswer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     session_round = models.ForeignKey(
         SessionRound, on_delete=models.CASCADE, related_name="answers"
+    )
+
+    # Link to specific answer/part (null for single-answer questions or initial submission)
+    answer_part = models.ForeignKey(
+        Answer,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="team_answers",
     )
 
     answer_text = models.TextField(blank=True, default="")
@@ -350,10 +360,13 @@ class TeamAnswer(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ["team", "question"]
+        # Allow multiple TeamAnswers per team per question (one per part)
+        unique_together = ["team", "question", "answer_part"]
         indexes = [
             models.Index(fields=["session_round", "team"]),
+            models.Index(fields=["team", "question"]),
         ]
 
     def __str__(self) -> str:
-        return f"{self.team.name} - Q{self.question.question_number}"
+        part_str = f" (Part {self.answer_part.display_order})" if self.answer_part else ""
+        return f"{self.team.name} - Q{self.question.question_number}{part_str}"

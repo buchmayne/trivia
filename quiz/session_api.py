@@ -15,6 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db import models
 
 from .models import (
+    Answer,
     Game,
     Question,
     QuestionRound,
@@ -259,7 +260,7 @@ def get_session_state(request, code):
                 else False
             ),
         }
-        for t in session.teams.all()
+        for t in session.teams.order_by("id")
     ]
 
     # Get round progress: submission counts for each question in current round
@@ -420,11 +421,116 @@ def admin_toggle_team_navigation(request, code):
     )
 
 
+# ============================================================================
+# PER-PART SCORING HELPERS
+# ============================================================================
+
+
+def _is_multi_part_question(question):
+    """Check if a question has multiple parts that need individual scoring."""
+    if not question.question_type:
+        return False
+    return question.question_type.name in ["Ranking", "Matching", "Multiple Open Ended"]
+
+
+def _split_answer_into_parts(team_answer):
+    """
+    Split a team's JSON array answer into individual TeamAnswer records per part.
+    Returns list of created/updated TeamAnswer objects.
+    """
+    question = team_answer.question
+    answers = question.answers.order_by("display_order")
+
+    if not answers.exists():
+        return [team_answer]  # No parts defined, keep original
+
+    # Parse the JSON array answer
+    try:
+        parsed_answers = json.loads(team_answer.answer_text) if team_answer.answer_text else []
+        if not isinstance(parsed_answers, list):
+            parsed_answers = [parsed_answers] if parsed_answers else []
+    except json.JSONDecodeError:
+        parsed_answers = []
+
+    created_parts = []
+    for idx, answer_part in enumerate(answers):
+        team_answer_text = ""
+        if idx < len(parsed_answers):
+            team_answer_text = str(parsed_answers[idx]) if parsed_answers[idx] is not None else ""
+
+        # Create or update per-part TeamAnswer
+        part_answer, _ = TeamAnswer.objects.update_or_create(
+            team=team_answer.team,
+            question=question,
+            answer_part=answer_part,
+            defaults={
+                "session_round": team_answer.session_round,
+                "answer_text": team_answer_text,
+                "is_locked": True,
+            },
+        )
+        created_parts.append(part_answer)
+
+    return created_parts
+
+
+def _auto_score_ranking_matching(part_answers, question):
+    """
+    Auto-score Ranking and Matching questions with per-item partial credit.
+    Each correctly placed/matched item earns its Answer.points value.
+    """
+    question_type = question.question_type.name if question.question_type else None
+
+    # For ranking, build lookup of answers by their display_order (original index)
+    answers_by_display_order = {}
+    if question_type == "Ranking":
+        for a in question.answers.all():
+            answers_by_display_order[a.display_order] = a
+
+    for idx, part_answer in enumerate(part_answers):
+        answer_part = part_answer.answer_part
+        if not answer_part:
+            continue
+
+        is_correct = False
+        if question_type == "Ranking":
+            # For Ranking: team answer is the original index (display_order) of the item
+            # they placed at this position.
+            # part_answer corresponds to position idx (0-indexed).
+            # answer_text contains the display_order of the item they placed here.
+            try:
+                team_selection = int(part_answer.answer_text) if part_answer.answer_text else None
+            except (ValueError, TypeError):
+                team_selection = None
+
+            if team_selection is not None:
+                # Find the item the team placed at this position
+                selected_item = answers_by_display_order.get(team_selection)
+                if selected_item:
+                    # Check if the selected item's correct_rank matches this position
+                    # Position is 0-indexed (idx), rank is 1-indexed
+                    expected_rank = idx + 1
+                    is_correct = selected_item.correct_rank == expected_rank
+
+        elif question_type == "Matching":
+            # For Matching: team answer should match the correct answer_text
+            team_answer = part_answer.answer_text.strip().lower() if part_answer.answer_text else ""
+            correct_answer = answer_part.answer_text.strip().lower() if answer_part.answer_text else ""
+            is_correct = team_answer == correct_answer
+
+        # Score: full points if correct, 0 if incorrect
+        part_answer.points_awarded = answer_part.points if is_correct else 0
+        part_answer.scored_at = timezone.now()
+        part_answer.save()
+
+
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
 def admin_lock_round(request, code):
     """Lock current round for scoring. All team answers become locked.
+    For multi-part questions, splits answers into per-part records.
+    Auto-scores Ranking and Matching questions.
     Auto-creates TeamAnswer objects with 0 points for unanswered questions."""
     session = request.session_obj
     session_round = session.session_rounds.get(round=session.current_round)
@@ -432,31 +538,64 @@ def admin_lock_round(request, code):
     if session_round.status != SessionRound.Status.ACTIVE:
         return JsonResponse({"error": "Round not active"}, status=400)
 
-    # Lock all existing answers in this round
-    TeamAnswer.objects.filter(session_round=session_round).update(is_locked=True)
-
     # Get all questions in the current round
-    questions_in_round = session.game.questions.filter(game_round=session.current_round)
+    questions_in_round = session.game.questions.filter(
+        game_round=session.current_round
+    ).prefetch_related("answers", "question_type")
 
-    # For each team, create missing TeamAnswer objects with 0 points for unanswered questions
-    for team in session.teams.all():
-        for question in questions_in_round:
-            # Check if team has an answer for this question
-            answer_exists = TeamAnswer.objects.filter(
-                team=team, question=question
-            ).exists()
+    teams = list(session.teams.order_by("id"))
 
-            if not answer_exists:
-                # Create a TeamAnswer with 0 points for unanswered questions
-                TeamAnswer.objects.create(
-                    team=team,
-                    question=question,
-                    session_round=session_round,
-                    answer_text="",
-                    is_locked=True,
-                    points_awarded=0,
-                    scored_at=timezone.now(),
-                )
+    for question in questions_in_round:
+        is_multi_part = _is_multi_part_question(question)
+        question_type = question.question_type.name if question.question_type else None
+
+        for team in teams:
+            # Get existing answer for this team/question (without answer_part)
+            existing_answer = TeamAnswer.objects.filter(
+                team=team, question=question, answer_part__isnull=True
+            ).first()
+
+            if is_multi_part:
+                if existing_answer:
+                    # Split into per-part records
+                    part_answers = _split_answer_into_parts(existing_answer)
+
+                    # Auto-score Ranking and Matching questions
+                    if question_type in ["Ranking", "Matching"]:
+                        _auto_score_ranking_matching(part_answers, question)
+                    # Multiple Open Ended: leave points_awarded null for manual scoring
+
+                    # Delete the original combined answer (parts are now separate)
+                    existing_answer.delete()
+                else:
+                    # No answer submitted - create per-part records with 0 points
+                    for answer_part in question.answers.order_by("display_order"):
+                        TeamAnswer.objects.create(
+                            team=team,
+                            question=question,
+                            answer_part=answer_part,
+                            session_round=session_round,
+                            answer_text="",
+                            is_locked=True,
+                            points_awarded=0,
+                            scored_at=timezone.now(),
+                        )
+            else:
+                # Single-answer question
+                if existing_answer:
+                    existing_answer.is_locked = True
+                    existing_answer.save(update_fields=["is_locked"])
+                else:
+                    # Create TeamAnswer with 0 points for unanswered questions
+                    TeamAnswer.objects.create(
+                        team=team,
+                        question=question,
+                        session_round=session_round,
+                        answer_text="",
+                        is_locked=True,
+                        points_awarded=0,
+                        scored_at=timezone.now(),
+                    )
 
     session_round.status = SessionRound.Status.LOCKED
     session_round.locked_at = timezone.now()
@@ -471,18 +610,24 @@ def admin_lock_round(request, code):
 @require_http_methods(["GET"])
 @require_admin_token
 def admin_get_scoring_data(request, code):
-    """Get all answers for current round for scoring UI."""
+    """Get all answers for current round for scoring UI.
+    Returns per-part structure for multi-part questions."""
     session = request.session_obj
     session_round = session.session_rounds.get(round=session.current_round)
 
     questions = (
         session.game.questions.filter(game_round=session.current_round)
         .order_by("question_number")
-        .prefetch_related("answers")
+        .prefetch_related("answers", "question_type")
     )
 
+    teams = list(session.teams.order_by("id"))
     data = []
+
     for question in questions:
+        is_multi_part = _is_multi_part_question(question)
+        answer_parts = list(question.answers.order_by("display_order"))
+
         q_data = {
             "id": question.id,
             "number": question.question_number,
@@ -492,31 +637,82 @@ def admin_get_scoring_data(request, code):
             "question_type": (
                 question.question_type.name if question.question_type else None
             ),
+            "is_multi_part": is_multi_part,
             "correct_answers": [
                 {
+                    "id": a.id,
                     "sub_question": a.text,
                     "answer_text": a.answer_text,
                     "correct_rank": a.correct_rank,
                     "points": a.points,
+                    "display_order": a.display_order,
                 }
-                for a in question.answers.all().order_by("display_order")
+                for a in answer_parts
             ],
             "team_answers": [],
         }
 
-        for team in session.teams.all():
-            answer = TeamAnswer.objects.filter(team=team, question=question).first()
+        for team in teams:
+            if is_multi_part:
+                # Get per-part TeamAnswer records
+                part_answers = TeamAnswer.objects.filter(
+                    team=team, question=question, answer_part__isnull=False
+                ).select_related("answer_part")
 
-            q_data["team_answers"].append(
-                {
+                # Build lookup by answer_part_id
+                part_lookup = {pa.answer_part_id: pa for pa in part_answers}
+
+                parts = []
+                total_points_awarded = 0
+                all_scored = True
+
+                for answer_part in answer_parts:
+                    part_answer = part_lookup.get(answer_part.id)
+                    if part_answer:
+                        parts.append({
+                            "answer_part_id": answer_part.id,
+                            "team_answer_id": part_answer.id,
+                            "answer_text": part_answer.answer_text,
+                            "points_awarded": part_answer.points_awarded,
+                            "max_points": answer_part.points,
+                            "is_scored": part_answer.points_awarded is not None,
+                        })
+                        if part_answer.points_awarded is not None:
+                            total_points_awarded += part_answer.points_awarded
+                        else:
+                            all_scored = False
+                    else:
+                        parts.append({
+                            "answer_part_id": answer_part.id,
+                            "team_answer_id": None,
+                            "answer_text": "",
+                            "points_awarded": None,
+                            "max_points": answer_part.points,
+                            "is_scored": False,
+                        })
+                        all_scored = False
+
+                q_data["team_answers"].append({
+                    "team_id": team.id,
+                    "team_name": team.name,
+                    "parts": parts,
+                    "total_points_awarded": total_points_awarded if all_scored else None,
+                    "is_scored": all_scored,
+                })
+            else:
+                # Single-answer question (backwards compatible)
+                answer = TeamAnswer.objects.filter(
+                    team=team, question=question, answer_part__isnull=True
+                ).first()
+
+                q_data["team_answers"].append({
                     "team_id": team.id,
                     "team_name": team.name,
                     "answer_id": answer.id if answer else None,
                     "answer_text": answer.answer_text if answer else "",
                     "points_awarded": answer.points_awarded if answer else None,
                     "is_scored": answer.points_awarded is not None if answer else False,
-                }
-            )
+                })
 
         data.append(q_data)
 
@@ -533,7 +729,9 @@ def admin_get_scoring_data(request, code):
 @require_http_methods(["POST"])
 @require_admin_token
 def admin_score_answer(request, code):
-    """Award points for an answer. Admin can set any value from 0 to question max."""
+    """Award points for an answer or answer part.
+    For per-part scoring, use team_answer_id (the TeamAnswer record ID).
+    For single-answer questions, use answer_id or team_id + question_id."""
     session = request.session_obj
 
     try:
@@ -541,9 +739,12 @@ def admin_score_answer(request, code):
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON"}, status=400)
 
-    answer_id = data.get("answer_id")
+    # Support multiple ways to identify the answer to score
+    team_answer_id = data.get("team_answer_id")  # Per-part scoring (TeamAnswer.id)
+    answer_id = data.get("answer_id")  # Legacy: TeamAnswer.id
     team_id = data.get("team_id")
     question_id = data.get("question_id")
+    answer_part_id = data.get("answer_part_id")  # Optional: Answer.id for per-part
     points = data.get("points")
 
     if points is None:
@@ -554,28 +755,54 @@ def admin_score_answer(request, code):
     except (ValueError, TypeError):
         return JsonResponse({"error": "points must be an integer"}, status=400)
 
-    # Support scoring by answer_id or by team_id + question_id
-    if answer_id:
+    if points < 0:
+        return JsonResponse({"error": "Points cannot be negative"}, status=400)
+
+    # Find the TeamAnswer to score
+    answer = None
+
+    if team_answer_id:
+        # Per-part scoring via team_answer_id
+        answer = get_object_or_404(TeamAnswer, id=team_answer_id)
+    elif answer_id:
+        # Legacy: answer_id is TeamAnswer.id
         answer = get_object_or_404(TeamAnswer, id=answer_id)
-    else:
-        if not team_id or not question_id:
-            return JsonResponse(
-                {"error": "Either answer_id or (team_id + question_id) required"},
-                status=400,
-            )
+    elif team_id and question_id:
         team = get_object_or_404(SessionTeam, id=team_id, session=session)
         question = get_object_or_404(Question, id=question_id)
         session_round = session.session_rounds.get(round=question.game_round)
-        answer, _ = TeamAnswer.objects.get_or_create(
-            team=team,
-            question=question,
-            defaults={"session_round": session_round, "is_locked": True},
+
+        if answer_part_id:
+            # Per-part scoring via team_id + question_id + answer_part_id
+            answer_part = get_object_or_404(Answer, id=answer_part_id)
+            answer, _ = TeamAnswer.objects.get_or_create(
+                team=team,
+                question=question,
+                answer_part=answer_part,
+                defaults={"session_round": session_round, "is_locked": True},
+            )
+        else:
+            # Single-answer question
+            answer, _ = TeamAnswer.objects.get_or_create(
+                team=team,
+                question=question,
+                answer_part=None,
+                defaults={"session_round": session_round, "is_locked": True},
+            )
+    else:
+        return JsonResponse(
+            {"error": "Provide team_answer_id, answer_id, or (team_id + question_id)"},
+            status=400,
         )
 
-    # Validate points range
-    max_points = answer.question.total_points
-    if points < 0:
-        return JsonResponse({"error": "Points cannot be negative"}, status=400)
+    # Validate points range based on whether this is per-part or full question
+    if answer.answer_part:
+        # Per-part scoring: max is the Answer.points value
+        max_points = answer.answer_part.points
+    else:
+        # Full question scoring: max is question.total_points
+        max_points = answer.question.total_points
+
     if points > max_points:
         return JsonResponse({"error": f"Points cannot exceed {max_points}"}, status=400)
 
@@ -583,7 +810,7 @@ def admin_score_answer(request, code):
     answer.scored_at = timezone.now()
     answer.save()
 
-    # Recalculate team total
+    # Recalculate team total score
     team = answer.team
     team.score = (
         team.answers.filter(points_awarded__isnull=False).aggregate(
@@ -593,11 +820,23 @@ def admin_score_answer(request, code):
     )
     team.save()
 
+    # Calculate question total for this team (sum of all parts)
+    question_total = (
+        TeamAnswer.objects.filter(
+            team=team, question=answer.question, points_awarded__isnull=False
+        ).aggregate(total=models.Sum("points_awarded"))["total"]
+        or 0
+    )
+
     return JsonResponse(
         {
             "status": "scored",
-            "answer_id": answer.id,
+            "team_answer_id": answer.id,
+            "answer_id": answer.id,  # Legacy compatibility
+            "answer_part_id": answer.answer_part_id,
             "points_awarded": points,
+            "max_points": max_points,
+            "question_total": question_total,
             "team_score": team.score,
         }
     )
@@ -650,11 +889,11 @@ def admin_complete_round(request, code):
 @require_http_methods(["POST"])
 @require_admin_token
 def admin_start_next_round(request, code):
-    """Exit review mode and start next round or end game."""
+    """Exit review/leaderboard mode and start next round or end game."""
     session = request.session_obj
 
-    if session.status != GameSession.Status.REVIEWING:
-        return JsonResponse({"error": "Not in review mode"}, status=400)
+    if session.status not in [GameSession.Status.REVIEWING, GameSession.Status.LEADERBOARD]:
+        return JsonResponse({"error": "Not in review or leaderboard mode"}, status=400)
 
     # Check for next round
     next_session_round = (
@@ -703,6 +942,115 @@ def admin_start_next_round(request, code):
         ]
 
         return JsonResponse({"status": "game_complete", "standings": final_standings})
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+@require_admin_token
+def admin_show_leaderboard(request, code):
+    """Transition from REVIEWING to LEADERBOARD state."""
+    session = request.session_obj
+
+    if session.status != GameSession.Status.REVIEWING:
+        return JsonResponse({"error": "Not in review mode"}, status=400)
+
+    session.status = GameSession.Status.LEADERBOARD
+    session.save()
+
+    return JsonResponse({"status": "leaderboard"})
+
+
+@require_http_methods(["GET"])
+def get_leaderboard_data(request, code):
+    """Get leaderboard data with team rankings, per-round scores, and upcoming rounds."""
+    session = get_object_or_404(GameSession, code=code)
+
+    # Get all teams ordered by score
+    teams = session.teams.order_by("-score", "joined_at")
+
+    # Get scored rounds
+    scored_rounds = session.session_rounds.filter(
+        status=SessionRound.Status.SCORED
+    ).select_related("round").order_by("round__round_number")
+
+    # Get upcoming rounds (pending status)
+    upcoming_rounds = session.session_rounds.filter(
+        status=SessionRound.Status.PENDING
+    ).select_related("round").order_by("round__round_number")
+
+    # Calculate total game points and points per round
+    total_game_points = 0
+    points_played = 0
+
+    # Build completed rounds info
+    completed_rounds = []
+    for sr in scored_rounds:
+        round_questions = session.game.questions.filter(game_round=sr.round)
+        round_max_points = sum(q.total_points for q in round_questions)
+        points_played += round_max_points
+        total_game_points += round_max_points
+        completed_rounds.append({
+            "round_number": sr.round.round_number,
+            "round_name": sr.round.name,
+            "max_points": round_max_points,
+        })
+
+    # Build upcoming rounds info
+    upcoming_rounds_data = []
+    for sr in upcoming_rounds:
+        round_questions = session.game.questions.filter(game_round=sr.round)
+        available_points = sum(q.total_points for q in round_questions)
+        total_game_points += available_points
+        upcoming_rounds_data.append({
+            "round_number": sr.round.round_number,
+            "round_name": sr.round.name,
+            "available_points": available_points,
+        })
+
+    points_remaining = total_game_points - points_played
+
+    # Build leaderboard with per-round scores
+    leaderboard = []
+    for rank, team in enumerate(teams, start=1):
+        round_scores = []
+        for sr in scored_rounds:
+            # Get all TeamAnswers for this team in this round
+            round_answers = TeamAnswer.objects.filter(
+                team=team,
+                session_round=sr,
+                points_awarded__isnull=False
+            )
+            points_scored = sum(a.points_awarded for a in round_answers)
+
+            # Get max points for this round
+            round_questions = session.game.questions.filter(game_round=sr.round)
+            max_points = sum(q.total_points for q in round_questions)
+
+            round_scores.append({
+                "round_number": sr.round.round_number,
+                "points_scored": points_scored,
+                "max_points": max_points,
+            })
+
+        leaderboard.append({
+            "rank": rank,
+            "team_name": team.name,
+            "total_score": team.score,
+            "round_scores": round_scores,
+        })
+
+    # Determine if this is the final round
+    is_final_round = len(upcoming_rounds_data) == 0
+
+    return JsonResponse({
+        "leaderboard": leaderboard,
+        "completed_rounds": completed_rounds,
+        "upcoming_rounds": upcoming_rounds_data,
+        "total_game_points": total_game_points,
+        "points_played": points_played,
+        "points_remaining": points_remaining,
+        "is_final_round": is_final_round,
+    })
 
 
 # ============================================================================
@@ -791,17 +1139,45 @@ def team_get_answers(request, code):
 
     answers_data = []
     for question in questions:
-        answer = team.answers.filter(question=question).first()
-        answers_data.append(
-            {
-                "question_id": question.id,
-                "question_number": question.question_number,
-                "question_text": question.text,
-                "answer_text": answer.answer_text if answer else "",
-                "is_locked": answer.is_locked if answer else False,
-                "points_awarded": answer.points_awarded if answer else None,
-            }
-        )
+        # Check for per-part answers first (new format)
+        part_answers = team.answers.filter(
+            question=question, answer_part__isnull=False
+        ).order_by("answer_part__display_order")
+
+        if part_answers.exists():
+            # Aggregate per-part answers into JSON array format for frontend
+            answer_texts = [pa.answer_text or "" for pa in part_answers]
+            combined_answer_text = json.dumps(answer_texts)
+            # Sum up points from all parts
+            total_points = sum(
+                pa.points_awarded for pa in part_answers if pa.points_awarded is not None
+            )
+            all_scored = all(pa.points_awarded is not None for pa in part_answers)
+            any_locked = any(pa.is_locked for pa in part_answers)
+
+            answers_data.append(
+                {
+                    "question_id": question.id,
+                    "question_number": question.question_number,
+                    "question_text": question.text,
+                    "answer_text": combined_answer_text,
+                    "is_locked": any_locked,
+                    "points_awarded": total_points if all_scored else None,
+                }
+            )
+        else:
+            # Fall back to single answer (old format or simple questions)
+            answer = team.answers.filter(question=question, answer_part__isnull=True).first()
+            answers_data.append(
+                {
+                    "question_id": question.id,
+                    "question_number": question.question_number,
+                    "question_text": question.text,
+                    "answer_text": answer.answer_text if answer else "",
+                    "is_locked": answer.is_locked if answer else False,
+                    "points_awarded": answer.points_awarded if answer else None,
+                }
+            )
 
     return JsonResponse(
         {

@@ -280,20 +280,36 @@ class TeamAnswerModelTest(TestCase):
         self.assertIsNone(answer.points_awarded)
         self.assertIsNotNone(answer.submitted_at)
 
-    def test_unique_team_question(self):
-        """Test that team can only submit one answer per question"""
+    def test_unique_team_question_per_part(self):
+        """Test unique constraint on team+question+answer_part combination.
+        Multiple answers per team per question are allowed if answer_part differs.
+        Note: When answer_part is NULL, SQL allows multiple rows (NULL != NULL)."""
+        from quiz.models import Answer
+
+        # Create an answer (part) for the question
+        answer_part = Answer.objects.create(
+            question=self.question,
+            text="Part A",
+            display_order=1,
+            points=1,
+        )
+
+        # Create first TeamAnswer with specific answer_part
         TeamAnswer.objects.create(
             team=self.team,
             question=self.question,
+            answer_part=answer_part,
             session_round=self.session_round,
             answer_text="4",
         )
 
+        # Creating duplicate with same team+question+answer_part should fail
         with self.assertRaises(IntegrityError):
             with transaction.atomic():
                 TeamAnswer.objects.create(
                     team=self.team,
                     question=self.question,
+                    answer_part=answer_part,
                     session_round=self.session_round,
                     answer_text="5",
                 )

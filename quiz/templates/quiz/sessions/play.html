@@ -517,6 +517,107 @@
             background: #ede9fe;
             border-color: #8b5cf6;
         }
+
+        /* Leaderboard Styles */
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        .leaderboard-table th,
+        .leaderboard-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .leaderboard-table th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .leaderboard-table tbody tr:hover {
+            background: #f9fafb;
+        }
+        .leaderboard-rank {
+            font-weight: 700;
+            font-size: 1.2rem;
+            width: 50px;
+        }
+        .leaderboard-rank.gold {
+            color: #f59e0b;
+        }
+        .leaderboard-rank.silver {
+            color: #6b7280;
+        }
+        .leaderboard-rank.bronze {
+            color: #92400e;
+        }
+        .leaderboard-team {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .leaderboard-total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #10b981;
+        }
+        .round-score-badge {
+            display: inline-block;
+            background: #e5e7eb;
+            color: #374151;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .upcoming-rounds-section {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .upcoming-rounds-section h3 {
+            color: #059669;
+            margin: 0 0 1rem 0;
+        }
+        .upcoming-round-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+        .upcoming-round-item:last-child {
+            margin-bottom: 0;
+        }
+        .upcoming-points {
+            font-weight: 600;
+            color: #10b981;
+        }
+        .leaderboard-summary {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        .summary-item {
+            text-align: center;
+        }
+        .summary-item .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        .summary-item .label {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
     </style>
 </head>
 <body>
@@ -616,7 +717,18 @@
                         </select>
                         <button class="btn btn-secondary" id="reviewNextQuestionBtn">Next Question ►</button>
                     </div>
-                    <button class="btn btn-primary" id="startNextRoundBtn" style="margin-top: 1rem; font-size: 1.1rem; width: 100%;">Start Next Round</button>
+                    <button class="btn btn-primary" id="showLeaderboardBtn" style="margin-top: 1rem; font-size: 1.1rem; width: 100%;">Show Leaderboard</button>
+                </div>
+            </div>
+
+            <!-- Leaderboard State -->
+            <div id="leaderboardState" class="hidden">
+                <div class="card">
+                    <h2>Leaderboard</h2>
+                    <div id="leaderboardTableContainer"></div>
+                    <div id="upcomingRoundsContainer"></div>
+                    <div id="leaderboardSummary" class="leaderboard-summary"></div>
+                    <button class="btn btn-primary" id="startNextRoundBtn" style="margin-top: 1.5rem; font-size: 1.1rem; width: 100%;">Start Next Round</button>
                 </div>
             </div>
 
@@ -687,6 +799,17 @@
                 <div class="card">
                     <h2>Scoring in Progress</h2>
                     <p class="info-msg">The host is currently scoring the round. Please wait...</p>
+                </div>
+            </div>
+
+            <!-- Leaderboard State -->
+            <div id="teamLeaderboard" class="hidden">
+                <div class="card">
+                    <h2>Leaderboard</h2>
+                    <div id="teamLeaderboardTableContainer"></div>
+                    <div id="teamUpcomingRoundsContainer"></div>
+                    <div id="teamLeaderboardSummary" class="leaderboard-summary"></div>
+                    <p class="info-msg" style="margin-top: 1.5rem;">Waiting for host to start next round...</p>
                 </div>
             </div>
 
@@ -911,9 +1034,14 @@
 
         function renderAdminUI(state) {
             // Hide all states
-            ['lobbyState', 'playingState', 'scoringState', 'reviewingState', 'completedState'].forEach(id => {
+            ['lobbyState', 'playingState', 'scoringState', 'reviewingState', 'leaderboardState', 'completedState'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
+
+            // Reset scoring data flag when not in scoring mode (so it reloads for next round)
+            if (state.status !== 'scoring') {
+                scoringDataLoaded = false;
+            }
 
             if (state.status === 'lobby') {
                 document.getElementById('lobbyState').classList.remove('hidden');
@@ -961,7 +1089,17 @@
                 }
                 renderReviewUI(state);
 
-                // Reset start next round button state (in case returning from previous action)
+                // Reset show leaderboard button state
+                const showLeaderboardBtn = document.getElementById('showLeaderboardBtn');
+                if (showLeaderboardBtn) {
+                    showLeaderboardBtn.disabled = false;
+                    showLeaderboardBtn.textContent = 'Show Leaderboard';
+                }
+            } else if (state.status === 'leaderboard') {
+                document.getElementById('leaderboardState').classList.remove('hidden');
+                loadLeaderboardData();
+
+                // Reset start next round button state
                 const startNextBtn = document.getElementById('startNextRoundBtn');
                 if (startNextBtn) {
                     startNextBtn.disabled = false;
@@ -974,7 +1112,7 @@
         }
 
         function renderTeamUI(state) {
-            ['teamLobby', 'teamPlaying', 'teamScoring', 'teamResults'].forEach(id => {
+            ['teamLobby', 'teamPlaying', 'teamScoring', 'teamLeaderboard', 'teamResults'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
 
@@ -1049,6 +1187,10 @@
                     renderTeamAnswerReview(state.current_question.id);
                     renderedQuestionId = state.current_question.id;
                 }
+            } else if (state.status === 'leaderboard') {
+                document.getElementById('teamLeaderboard').classList.remove('hidden');
+                loadTeamLeaderboardData();
+                renderedQuestionId = null; // Reset when not in playing state
             } else if (state.status === 'completed') {
                 document.getElementById('teamResults').classList.remove('hidden');
                 loadTeamResults();
@@ -2124,7 +2266,16 @@
             }
         }
 
+        let scoringDataLoaded = false;  // Only load scoring data once per scoring session
+        let leaderboardDataLoaded = false;  // Only load leaderboard data once per leaderboard view
+
         async function loadScoringData() {
+            // Only load scoring data once - don't re-render and overwrite user input
+            if (scoringDataLoaded) {
+                return;
+            }
+            scoringDataLoaded = true;
+
             try {
                 const response = await fetch(`/quiz/api/sessions/${CODE}/admin/scoring-data/`, {
                     headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
@@ -2236,7 +2387,109 @@
         }
 
         function renderMultiPartScoringTable(q) {
-            // Render enhanced table with sub-question breakdown
+            // Check if we have the new per-part structure
+            const hasPartsStructure = q.team_answers.length > 0 && q.team_answers[0].parts;
+
+            if (hasPartsStructure) {
+                return renderPerPartScoringTable(q);
+            }
+
+            // Legacy fallback (shouldn't happen after lock, but kept for safety)
+            return renderLegacyMultiPartTable(q);
+        }
+
+        function renderPerPartScoringTable(q) {
+            // New per-part scoring UI
+            const isAutoScored = q.question_type === 'Ranking' || q.question_type === 'Matching';
+            let html = '';
+
+            q.team_answers.forEach(teamAnswer => {
+                html += `<div class="team-scoring-card" style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 1rem; padding: 1rem;">`;
+                html += `<div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">`;
+                html += `<span>${escapeHtml(teamAnswer.team_name)}</span>`;
+                html += `<span class="team-total-${teamAnswer.team_id}" style="color: ${teamAnswer.is_scored ? '#10b981' : '#6b7280'};">${teamAnswer.total_points_awarded !== null ? teamAnswer.total_points_awarded : '?'}/${q.total_points} pts</span>`;
+                html += `</div>`;
+
+                // Per-part scoring grid
+                html += `<div style="display: flex; flex-direction: column; gap: 0.5rem;">`;
+
+                teamAnswer.parts.forEach((part, idx) => {
+                    const correctAnswer = q.correct_answers[idx] || {};
+                    const label = String.fromCharCode(97 + idx); // a, b, c...
+                    const subQuestionText = correctAnswer.sub_question || correctAnswer.text || '';
+                    const correctAnswerText = correctAnswer.answer_text || '';
+                    const isCorrect = part.points_awarded !== null && part.points_awarded === part.max_points;
+                    const isWrong = part.points_awarded !== null && part.points_awarded === 0;
+
+                    html += `<div class="part-row" style="display: grid; grid-template-columns: 1fr 1fr 80px 80px; gap: 0.5rem; align-items: center; padding: 0.5rem; background: white; border-radius: 4px; border: 1px solid #e5e7eb;">`;
+
+                    // Correct answer column
+                    html += `<div style="font-size: 0.85rem;">`;
+                    html += `<div style="font-weight: 600; color: #374151;">${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</div>`;
+                    html += `<div style="color: #10b981; font-size: 0.8rem;">Correct: ${escapeHtml(correctAnswerText || String(correctAnswer.correct_rank || ''))}</div>`;
+                    html += `</div>`;
+
+                    // Team's answer column
+                    html += `<div style="font-size: 0.85rem;">`;
+                    if (q.question_type === 'Ranking') {
+                        // For ranking, show which item they placed here
+                        const teamIdx = parseInt(part.answer_text);
+                        const teamItem = !isNaN(teamIdx) && q.correct_answers[teamIdx] ? q.correct_answers[teamIdx] : null;
+                        html += `<div style="color: ${isCorrect ? '#10b981' : isWrong ? '#ef4444' : '#6b7280'};">`;
+                        html += teamItem ? escapeHtml(stripLabelPrefix(teamItem.sub_question || '')) : '<em>No answer</em>';
+                        html += `</div>`;
+                    } else {
+                        html += `<div style="color: ${isCorrect ? '#10b981' : isWrong ? '#ef4444' : '#6b7280'};">`;
+                        html += part.answer_text ? escapeHtml(part.answer_text) : '<em>No answer</em>';
+                        html += `</div>`;
+                    }
+                    html += `</div>`;
+
+                    // Points input
+                    html += `<div>`;
+                    html += `<input type="number" class="points-input" style="width: 60px;"
+                               data-team-answer-id="${part.team_answer_id}"
+                               data-team-id="${teamAnswer.team_id}"
+                               data-question-id="${q.id}"
+                               data-answer-part-id="${part.answer_part_id}"
+                               min="0" max="${part.max_points}"
+                               value="${part.points_awarded !== null ? part.points_awarded : 0}"
+                               ${!part.team_answer_id ? 'disabled' : ''}>`;
+                    html += `<span style="font-size: 0.75rem; color: #6b7280;">/${part.max_points}</span>`;
+                    html += `</div>`;
+
+                    // Score button
+                    html += `<div>`;
+                    if (part.team_answer_id) {
+                        if (isAutoScored && part.is_scored) {
+                            html += `<span style="color: ${isCorrect ? '#10b981' : '#ef4444'}; font-size: 0.9rem;">${isCorrect ? '✓' : '✗'}</span>`;
+                            html += `<button class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; margin-left: 0.25rem;"
+                                    onclick="scorePartAnswer(this, '${part.team_answer_id}', '${teamAnswer.team_id}', '${q.id}', '${part.answer_part_id}', ${part.max_points})">Edit</button>`;
+                        } else {
+                            html += `<button class="btn btn-success" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; margin-right: 0.25rem;"
+                                    onclick="scorePartMax(this, '${part.team_answer_id}', '${teamAnswer.team_id}', '${q.id}', '${part.answer_part_id}', ${part.max_points})">Max</button>`;
+                            html += `<button class="btn btn-primary score-btn" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;"
+                                    onclick="scorePartAnswer(this, '${part.team_answer_id}', '${teamAnswer.team_id}', '${q.id}', '${part.answer_part_id}', ${part.max_points})">
+                                ${part.is_scored ? '✓' : 'Score'}
+                            </button>`;
+                        }
+                    } else {
+                        html += '<span style="color: #9ca3af; font-size: 0.8rem;">N/A</span>';
+                    }
+                    html += `</div>`;
+
+                    html += `</div>`;
+                });
+
+                html += `</div>`;
+                html += `</div>`;
+            });
+
+            return html;
+        }
+
+        function renderLegacyMultiPartTable(q) {
+            // Legacy rendering for answers that haven't been split into parts yet
             let html = '<table class="scoring-table">';
             html += '<thead><tr>';
             html += '<th style="width: 20%;">Team</th>';
@@ -2256,11 +2509,9 @@
                     try {
                         const parsedAnswers = JSON.parse(teamAnswer.answer_text);
                         if (Array.isArray(parsedAnswers)) {
-                            // Multi-part answer
                             html += '<div style="display: flex; flex-direction: column; gap: 0.75rem;">';
 
                             if (q.question_type === 'Ranking') {
-                                // Ranking question - show their ranking order
                                 html += '<div style="font-weight: 600; margin-bottom: 0.25rem; color: #374151;">Their Ranking:</div>';
                                 html += '<ol style="margin: 0; padding-left: 1.5rem;">';
                                 parsedAnswers.forEach(originalIdx => {
@@ -2271,9 +2522,8 @@
                                 });
                                 html += '</ol>';
                             } else {
-                                // Multiple Open Ended or Matching - show each sub-answer
                                 q.correct_answers.forEach((subQ, idx) => {
-                                    const label = String.fromCharCode(97 + idx); // a, b, c...
+                                    const label = String.fromCharCode(97 + idx);
                                     const subQuestionText = subQ.sub_question || subQ.text || '';
                                     const teamSubAnswer = parsedAnswers[idx] || '';
 
@@ -2286,11 +2536,9 @@
 
                             html += '</div>';
                         } else {
-                            // Not an array, show as plain text
                             html += escapeHtml(teamAnswer.answer_text);
                         }
                     } catch {
-                        // Not JSON, show as plain text
                         html += escapeHtml(teamAnswer.answer_text);
                     }
                 } else {
@@ -2298,7 +2546,6 @@
                 }
                 html += '</td>';
 
-                // Points and action
                 html += `<td style="vertical-align: top; padding-top: 1.5rem;">
                     <input type="number" class="points-input"
                            data-answer-id="${teamAnswer.answer_id}"
@@ -2359,6 +2606,36 @@
             }
         }
 
+        async function showLeaderboard() {
+            try {
+                const btn = document.getElementById('showLeaderboardBtn');
+                btn.disabled = true;
+                btn.textContent = 'Loading...';
+
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/show-leaderboard/`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to show leaderboard');
+                }
+
+                // Reset leaderboard data flag so it reloads
+                leaderboardDataLoaded = false;
+                pollState();
+            } catch (error) {
+                alert('Error: ' + error.message);
+                const btn = document.getElementById('showLeaderboardBtn');
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = 'Show Leaderboard';
+                }
+            }
+        }
+
         async function startNextRound() {
             try {
                 const btn = document.getElementById('startNextRoundBtn');
@@ -2376,11 +2653,118 @@
                     throw new Error(data.error || 'Failed to start next round');
                 }
 
+                // Reset leaderboard data flag for next round
+                leaderboardDataLoaded = false;
                 pollState();
             } catch (error) {
                 alert('Error: ' + error.message);
                 document.getElementById('startNextRoundBtn').disabled = false;
                 document.getElementById('startNextRoundBtn').textContent = 'Start Next Round';
+            }
+        }
+
+        async function loadLeaderboardData() {
+            if (leaderboardDataLoaded) return;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/leaderboard/`);
+                const data = await response.json();
+                renderLeaderboard(data, 'leaderboardTableContainer', 'upcomingRoundsContainer', 'leaderboardSummary');
+                leaderboardDataLoaded = true;
+            } catch (error) {
+                console.error('Leaderboard error:', error);
+            }
+        }
+
+        async function loadTeamLeaderboardData() {
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/leaderboard/`);
+                const data = await response.json();
+                renderLeaderboard(data, 'teamLeaderboardTableContainer', 'teamUpcomingRoundsContainer', 'teamLeaderboardSummary');
+            } catch (error) {
+                console.error('Team leaderboard error:', error);
+            }
+        }
+
+        function renderLeaderboard(data, tableContainerId, upcomingContainerId, summaryContainerId) {
+            const tableContainer = document.getElementById(tableContainerId);
+            const upcomingContainer = document.getElementById(upcomingContainerId);
+            const summaryContainer = document.getElementById(summaryContainerId);
+
+            // Render leaderboard table
+            let tableHtml = '<table class="leaderboard-table">';
+            tableHtml += '<thead><tr>';
+            tableHtml += '<th>Rank</th>';
+            tableHtml += '<th>Team</th>';
+
+            // Add columns for each completed round
+            data.completed_rounds.forEach(round => {
+                tableHtml += `<th>R${round.round_number}</th>`;
+            });
+
+            tableHtml += '<th>Total</th>';
+            tableHtml += '</tr></thead>';
+            tableHtml += '<tbody>';
+
+            data.leaderboard.forEach(team => {
+                const rankClass = team.rank === 1 ? 'gold' : team.rank === 2 ? 'silver' : team.rank === 3 ? 'bronze' : '';
+
+                tableHtml += '<tr>';
+                tableHtml += `<td class="leaderboard-rank ${rankClass}">${team.rank}</td>`;
+                tableHtml += `<td class="leaderboard-team">${escapeHtml(team.team_name)}</td>`;
+
+                // Per-round scores
+                team.round_scores.forEach(rs => {
+                    tableHtml += `<td><span class="round-score-badge">${rs.points_scored}/${rs.max_points}</span></td>`;
+                });
+
+                tableHtml += `<td class="leaderboard-total">${team.total_score}</td>`;
+                tableHtml += '</tr>';
+            });
+
+            tableHtml += '</tbody></table>';
+            tableContainer.innerHTML = tableHtml;
+
+            // Render upcoming rounds section
+            if (data.upcoming_rounds.length > 0) {
+                let upcomingHtml = '<div class="upcoming-rounds-section">';
+                upcomingHtml += '<h3>Upcoming Rounds</h3>';
+
+                data.upcoming_rounds.forEach(round => {
+                    upcomingHtml += `
+                        <div class="upcoming-round-item">
+                            <span>${escapeHtml(round.round_name)}</span>
+                            <span class="upcoming-points">${round.available_points} points available</span>
+                        </div>
+                    `;
+                });
+
+                upcomingHtml += '</div>';
+                upcomingContainer.innerHTML = upcomingHtml;
+            } else {
+                upcomingContainer.innerHTML = '';
+            }
+
+            // Render summary
+            summaryContainer.innerHTML = `
+                <div class="summary-item">
+                    <div class="value">${data.points_played}</div>
+                    <div class="label">Points Played</div>
+                </div>
+                <div class="summary-item">
+                    <div class="value">${data.points_remaining}</div>
+                    <div class="label">Points Remaining</div>
+                </div>
+                <div class="summary-item">
+                    <div class="value">${data.total_game_points}</div>
+                    <div class="label">Total Game Points</div>
+                </div>
+            `;
+
+            // Update the start next round button text based on whether this is the final round
+            const startNextBtn = document.getElementById('startNextRoundBtn');
+            if (startNextBtn) {
+                startNextBtn.textContent = data.is_final_round ? 'End Game' : 'Start Next Round';
             }
         }
 
@@ -2558,6 +2942,8 @@
             }
         });
 
+        document.getElementById('showLeaderboardBtn')?.addEventListener('click', showLeaderboard);
+
         document.getElementById('startNextRoundBtn')?.addEventListener('click', startNextRound);
 
         document.getElementById('teamQuestionSelector')?.addEventListener('change', async (e) => {
@@ -2640,6 +3026,75 @@
                     btn.disabled = false;
                     btn.textContent = '✓ Update';
                 }, 1000);
+            } catch (error) {
+                alert('Error: ' + error.message);
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        }
+
+        async function scorePartMax(btn, teamAnswerId, teamId, questionId, answerPartId, maxPoints) {
+            // Set input to max points and immediately score
+            const partRow = btn.closest('.part-row');
+            const input = partRow.querySelector('input.points-input');
+            input.value = maxPoints;
+            // Find the Score button (next sibling) and trigger its click
+            const scoreBtn = partRow.querySelector('.score-btn');
+            if (scoreBtn) {
+                scorePartAnswer(scoreBtn, teamAnswerId, teamId, questionId, answerPartId, maxPoints);
+            }
+        }
+
+        async function scorePartAnswer(btn, teamAnswerId, teamId, questionId, answerPartId, maxPoints) {
+            // Find the input - it's in the previous sibling div
+            const partRow = btn.closest('.part-row');
+            const input = partRow.querySelector('input.points-input');
+            const points = parseInt(input.value);
+
+            if (isNaN(points) || points < 0 || points > maxPoints) {
+                alert(`Points must be a number between 0 and ${maxPoints}`);
+                return;
+            }
+
+            btn.disabled = true;
+            const originalText = btn.textContent;
+            btn.textContent = '...';
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/score/`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        team_answer_id: teamAnswerId,
+                        team_id: teamId,
+                        question_id: questionId,
+                        answer_part_id: answerPartId,
+                        points: points
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to score answer');
+                }
+
+                // Update the team total display
+                const teamTotalEl = document.querySelector(`.team-total-${teamId}`);
+                if (teamTotalEl && data.question_total !== undefined) {
+                    teamTotalEl.textContent = `${data.question_total}/${input.closest('.team-scoring-card').querySelector('[style*="justify-content: space-between"]').textContent.split('/')[1]}`;
+                    teamTotalEl.style.color = '#10b981';
+                }
+
+                btn.textContent = '✓';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-secondary');
+                setTimeout(() => {
+                    btn.disabled = false;
+                }, 500);
             } catch (error) {
                 alert('Error: ' + error.message);
                 btn.disabled = false;
