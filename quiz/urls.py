@@ -12,6 +12,20 @@ router.register(r"questions", QuestionViewSet)
 urlpatterns = [
     # Gallery mode - browse games
     path("gallery/", views.game_list_view, name="gallery"),
+    # Placeholder pages (coming soon)
+    path("pricing/", views.coming_soon_view, {"page_name": "pricing"}, name="pricing"),
+    path("about/", views.coming_soon_view, {"page_name": "about"}, name="about"),
+    path("contact/", views.coming_soon_view, {"page_name": "contact"}, name="contact"),
+    path("help/", views.coming_soon_view, {"page_name": "help"}, name="help"),
+    path(
+        "host-guide/",
+        views.coming_soon_view,
+        {"page_name": "host-guide"},
+        name="host_guide",
+    ),
+    path("status/", views.coming_soon_view, {"page_name": "status"}, name="status"),
+    path("privacy/", views.coming_soon_view, {"page_name": "privacy"}, name="privacy"),
+    path("terms/", views.coming_soon_view, {"page_name": "terms"}, name="terms"),
     path(
         "game/<int:game_id>/questions/round/<int:round_id>/questions/category/<int:category_id>/question/<int:question_id>/",
         views.question_view,

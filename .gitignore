@@ -146,4 +146,4 @@ create_teams.py
 
 staticfiles/
 .claude/
-TODO.md
+DESIGN.md
