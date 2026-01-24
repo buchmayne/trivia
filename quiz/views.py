@@ -38,7 +38,9 @@ def landing_page_view(request: HttpRequest) -> HttpResponse:
     return render(request, "quiz/landing.html")
 
 
-def coming_soon_view(request: HttpRequest, page_name: str = "This page") -> HttpResponse:
+def coming_soon_view(
+    request: HttpRequest, page_name: str = "This page"
+) -> HttpResponse:
     """Placeholder view for pages under construction."""
     page_titles = {
         "pricing": "Pricing",

@@ -17,7 +17,12 @@ urlpatterns = [
     path("about/", views.coming_soon_view, {"page_name": "about"}, name="about"),
     path("contact/", views.coming_soon_view, {"page_name": "contact"}, name="contact"),
     path("help/", views.coming_soon_view, {"page_name": "help"}, name="help"),
-    path("host-guide/", views.coming_soon_view, {"page_name": "host-guide"}, name="host_guide"),
+    path(
+        "host-guide/",
+        views.coming_soon_view,
+        {"page_name": "host-guide"},
+        name="host_guide",
+    ),
     path("status/", views.coming_soon_view, {"page_name": "status"}, name="status"),
     path("privacy/", views.coming_soon_view, {"page_name": "privacy"}, name="privacy"),
     path("terms/", views.coming_soon_view, {"page_name": "terms"}, name="terms"),
