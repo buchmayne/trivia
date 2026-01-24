@@ -3,7 +3,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse, HttpRequest, HttpResponse
 from django.db import models
 from django.contrib.admin.views.decorators import staff_member_required
-from .models import Game, Category, Question, QuestionRound, GameResult, PlayerStats
+from .models import (
+    Game,
+    Category,
+    Question,
+    QuestionRound,
+    GameResult,
+    PlayerStats,
+    Answer,
+)
 
 
 def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
@@ -25,8 +33,31 @@ def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
         return JsonResponse({"error": str(e)}, status=400)
 
 
+def landing_page_view(request: HttpRequest) -> HttpResponse:
+    """Main landing page with links to gallery, play, and analytics modes."""
+    return render(request, "quiz/landing.html")
+
+
+def coming_soon_view(
+    request: HttpRequest, page_name: str = "This page"
+) -> HttpResponse:
+    """Placeholder view for pages under construction."""
+    page_titles = {
+        "pricing": "Pricing",
+        "about": "About Us",
+        "contact": "Contact",
+        "help": "Help Center",
+        "host-guide": "Host Guide",
+        "status": "Status",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+    }
+    title = page_titles.get(page_name, page_name.replace("-", " ").title())
+    return render(request, "quiz/coming_soon.html", {"page_title": title})
+
+
 def game_list_view(request: HttpRequest) -> HttpResponse:
-    """View to list available trivia games."""
+    """View to list available trivia games (Gallery Mode)."""
     games = Game.objects.all().order_by("-game_order")
     return render(request, "quiz/game_list.html", {"games": games})
 
@@ -153,6 +184,55 @@ def get_round_questions(
     )
 
     return JsonResponse({"questions": list(questions)})
+
+
+def get_game_questions(request: HttpRequest, game_id: int) -> JsonResponse:
+    """Get all questions for a game with their answers"""
+    game = get_object_or_404(Game, id=game_id)
+    questions = (
+        Question.objects.filter(game=game)
+        .order_by("question_number")
+        .prefetch_related("answers")
+    )
+
+    questions_data = []
+    for question in questions:
+        answers_data = [
+            {
+                "id": answer.id,
+                "text": answer.text,
+                "answer_text": answer.answer_text,
+                "points": answer.points,
+                "display_order": answer.display_order,
+                "correct_rank": answer.correct_rank,
+            }
+            for answer in question.answers.all().order_by("display_order")
+        ]
+
+        questions_data.append(
+            {
+                "id": question.id,
+                "text": question.text,
+                "question_number": question.question_number,
+                "total_points": question.total_points,
+                "question_image_url": question.question_image_url,
+                "answer_image_url": question.answer_image_url,
+                "question_video_url": question.question_video_url,
+                "answer_video_url": question.answer_video_url,
+                "answers": answers_data,
+            }
+        )
+
+    return JsonResponse(
+        {
+            "game": {
+                "id": game.id,
+                "name": game.name,
+                "description": game.description,
+            },
+            "questions": questions_data,
+        }
+    )
 
 
 def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:
@@ -307,5 +387,36 @@ def get_next_question_number(request, game_id):
             next_number += 1
 
         return JsonResponse({"next_number": next_number})
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+
+
+@staff_member_required
+def get_next_game_order(request):
+    """API view to get the next available game order"""
+    try:
+        # Get all existing game orders, excluding very high numbers (like 999)
+        # We only want consecutive numbers
+        all_orders = list(
+            Game.objects.exclude(game_order__isnull=True)
+            .values_list("game_order", flat=True)
+            .order_by("game_order")
+        )
+
+        if not all_orders:
+            return JsonResponse({"next_order": 1})
+
+        # Find the highest consecutive number
+        # Start from 1 and find where the sequence breaks
+        next_order = 1
+        for order in sorted(all_orders):
+            if order == next_order:
+                next_order += 1
+            elif (
+                order > next_order + 10
+            ):  # If there's a gap > 10, stop (handles 999 case)
+                break
+
+        return JsonResponse({"next_order": next_order})
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)

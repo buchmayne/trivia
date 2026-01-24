@@ -1,0 +1,521 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Third Wave Trivia - Where Curiosity Comes to Play</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="{% url 'home' %}" class="nav-logo">
+                <span class="logo-icon">~</span>
+                <span class="logo-text">Third Wave Trivia</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="{% url 'quiz:pricing' %}" class="nav-link">Pricing</a>
+                <a href="{% url 'quiz:about' %}" class="nav-link">About</a>
+                <a href="{% url 'quiz:session_landing' %}" class="nav-cta">Start Playing</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="#features" class="mobile-link">Features</a>
+        <a href="#how-it-works" class="mobile-link">How It Works</a>
+        <a href="{% url 'quiz:pricing' %}" class="mobile-link">Pricing</a>
+        <a href="{% url 'quiz:about' %}" class="mobile-link">About</a>
+        <a href="{% url 'quiz:session_landing' %}" class="mobile-cta">Start Playing</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg">
+            <div class="grid-overlay"></div>
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                A new kind of trivia
+            </div>
+            <h1 class="hero-title">
+                Where Curiosity<br>
+                <span class="title-accent">Comes to Play</span>
+            </h1>
+            <p class="hero-description">
+                Third Wave Trivia brings back the wonder of discovery. We create trivia experiences
+                that celebrate curiosity, spark connections, and remind us why learning
+                is the greatest game of all.
+            </p>
+            <div class="hero-actions">
+                <a href="{% url 'quiz:session_landing' %}" class="btn btn-primary">
+                    <span>Host a Game</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="{% url 'quiz:gallery' %}" class="btn btn-secondary">
+                    <span>Explore Games</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Curated Games</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">300+</span>
+                    <span class="stat-label">Questions</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">Live</span>
+                    <span class="stat-label">Multiplayer</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="visual-card card-1">
+                <div class="card-icon">?</div>
+                <div class="card-text">Were Mahatma Gandhi & Karl Marx alive at the same time?</div>
+            </div>
+            <div class="visual-card card-2">
+                <div class="card-category">HISTORY</div>
+                <div class="card-answer">Yes</div>
+            </div>
+            <div class="visual-card card-3">
+                <div class="card-emoji">~</div>
+                <div class="card-points">+10 pts</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy">
+        <div class="philosophy-inner">
+            <div class="philosophy-label">Our Philosophy</div>
+            <blockquote class="philosophy-quote">
+                "The early internet had spaces that celebrated curiosity, wonder, and exploration.
+                We're bringing that spirit back - one question at a time."
+            </blockquote>
+            <div class="philosophy-decoration">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="features-inner">
+            <div class="section-header">
+                <span class="section-label">What We Offer</span>
+                <h2 class="section-title">Three Ways to Experience Trivia</h2>
+                <p class="section-description">
+                    Whether you're hosting a game night, exploring solo, or tracking your journey -
+                    we've built tools for every curious mind.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Gallery Mode -->
+                <a href="{% url 'quiz:gallery' %}" class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                                <rect x="14" y="14" width="7" height="7" rx="1"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Gallery Mode</h3>
+                        <p class="feature-description">
+                            Browse our curated collection of trivia games. Explore questions by category,
+                            discover new topics, and find the perfect game for any occasion.
+                        </p>
+                        <div class="feature-tags">
+                            <span class="tag">Browse Games</span>
+                            <span class="tag">View Questions</span>
+                            <span class="tag">Self-Paced</span>
+                        </div>
+                    </div>
+                    <div class="feature-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Play Mode -->
+                <a href="{% url 'quiz:session_landing' %}" class="feature-card feature-card-highlight">
+                    <div class="feature-badge">Most Popular</div>
+                    <div class="feature-icon-wrap">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Live Play</h3>
+                        <p class="feature-description">
+                            Host real-time trivia sessions with friends, family, or colleagues.
+                            Teams compete head-to-head with live scoring and instant results.
+                        </p>
+                        <div class="feature-tags">
+                            <span class="tag">Real-Time</span>
+                            <span class="tag">Team Play</span>
+                            <span class="tag">Live Scoring</span>
+                        </div>
+                    </div>
+                    <div class="feature-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Analytics Mode -->
+                <a href="{% url 'quiz:analytics' %}" class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3 3v18h18"/>
+                                <path d="M7 16l4-4 4 4 5-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Analytics</h3>
+                        <p class="feature-description">
+                            Track your trivia journey with detailed statistics. View historical results,
+                            player performance, and discover your strongest categories.
+                        </p>
+                        <div class="feature-tags">
+                            <span class="tag">Statistics</span>
+                            <span class="tag">Leaderboards</span>
+                            <span class="tag">History</span>
+                        </div>
+                    </div>
+                    <div class="feature-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="how-inner">
+            <div class="section-header">
+                <span class="section-label">Getting Started</span>
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-description">
+                    From setup to celebration in three simple steps.
+                </p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Choose Your Game</h3>
+                        <p class="step-description">
+                            Browse our collection of hand-crafted trivia games spanning topics from
+                            internet history to pop culture, science to the arts.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="M21 21l-4.35-4.35"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-connector">
+                    <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                        <path d="M0 20 Q50 0, 100 20" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
+                    </svg>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Invite Your Team</h3>
+                        <p class="step-description">
+                            Share a simple code with your players. They join instantly from any device -
+                            no apps to download, no accounts required.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-connector">
+                    <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                        <path d="M0 20 Q50 40, 100 20" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
+                    </svg>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Play and Discover</h3>
+                        <p class="step-description">
+                            Experience trivia the way it should be - collaborative, curious, and full of
+                            those delightful "aha!" moments.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiator Section -->
+    <section class="differentiator">
+        <div class="diff-inner">
+            <div class="diff-content">
+                <span class="section-label">Why Third Wave?</span>
+                <h2 class="diff-title">Not Your Average Bar Trivia</h2>
+                <p class="diff-description">
+                    We believe trivia should be more than competitive recall. It should spark
+                    conversations, celebrate the obscure, and remind us that learning never stops.
+                </p>
+                <ul class="diff-list">
+                    <li>
+                        <span class="diff-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </span>
+                        <span>Questions designed to teach, not just test</span>
+                    </li>
+                    <li>
+                        <span class="diff-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </span>
+                        <span>Categories that go beyond the obvious</span>
+                    </li>
+                    <li>
+                        <span class="diff-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </span>
+                        <span>Flexible formats for any group size</span>
+                    </li>
+                    <li>
+                        <span class="diff-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </span>
+                        <span>Real-time play without the hassle</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="diff-visual">
+                <div class="diff-card">
+                    <div class="diff-card-header">
+                        <span class="diff-card-category">POP CULTURE</span>
+                        <span class="diff-card-round">Round 2</span>
+                    </div>
+                    <div class="diff-card-question">
+                        Is the quote from Optimus Prime or Che Guevara: "There's a thin line between being a hero, and being a memory."
+                    </div>
+                    <div class="diff-card-footer">
+                        <span class="diff-card-hint">Think: revolutionary words from an unexpected source</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-inner">
+            <div class="cta-bg">
+                <div class="cta-grid"></div>
+            </div>
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Rediscover Trivia?</h2>
+                <p class="cta-description">
+                    Join the community of curious minds. Host your first game today - it's free to start.
+                </p>
+                <div class="cta-actions">
+                    <a href="{% url 'quiz:session_landing' %}" class="btn btn-primary btn-large">
+                        <span>Get Started Free</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="{% url 'quiz:pricing' %}" class="btn btn-ghost">
+                        <span>View Pricing</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="{% url 'home' %}" class="footer-logo">
+                        <span class="logo-icon">~</span>
+                        <span class="logo-text">Third Wave Trivia</span>
+                    </a>
+                    <p class="footer-tagline">
+                        Celebrating curiosity, one question at a time.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Product</h4>
+                        <a href="{% url 'quiz:gallery' %}">Game Gallery</a>
+                        <a href="{% url 'quiz:session_landing' %}">Host a Game</a>
+                        <a href="{% url 'quiz:analytics' %}">Analytics</a>
+                        <a href="{% url 'quiz:pricing' %}">Pricing</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Company</h4>
+                        <a href="{% url 'quiz:about' %}">About Us</a>
+                        <a href="{% url 'quiz:contact' %}">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Resources</h4>
+                        <a href="{% url 'quiz:help' %}">Help Center</a>
+                        <a href="{% url 'quiz:host_guide' %}">Host Guide</a>
+                        <a href="{% url 'quiz:status' %}">Status</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">2025 Third Wave Trivia. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="{% url 'quiz:privacy' %}">Privacy Policy</a>
+                    <a href="{% url 'quiz:terms' %}">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-link, .mobile-cta').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Add scroll-based nav styling
+        const nav = document.querySelector('.nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .step, .diff-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

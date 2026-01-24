@@ -1,0 +1,3138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ session.code }} - Live Game</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <style>
+        body {
+            background: #f3f4f6;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .session-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .session-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .game-code {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+        .status-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .container-fluid {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+        .btn-primary { background: #10b981; color: white; }
+        .btn-primary:hover { background: #059669; }
+        .btn-secondary { background: #6b7280; color: white; }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn:disabled { background: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+
+        /* Question Selector */
+        .question-selector {
+            padding: 0.75rem 1rem;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            background: white;
+            color: #374151;
+            min-width: 200px;
+        }
+        .question-selector:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Ranking Question Styles */
+        .ranking-item {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            cursor: move;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .ranking-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+        .ranking-item.sortable-ghost {
+            opacity: 0.4;
+        }
+        .ranking-item.sortable-drag {
+            opacity: 1;
+            background: #f3f4f6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .ranking-handle {
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: grab;
+        }
+        .ranking-handle:active {
+            cursor: grabbing;
+        }
+        .ranking-number {
+            min-width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .ranking-content {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        /* Question Display Styles (matching original views) */
+        .question-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .question-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+        .question-number {
+            color: #667eea;
+            font-weight: 700;
+        }
+        .answer-bank {
+            background: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #667eea;
+        }
+        .answer-bank-title {
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .question-image img,
+        .question-video video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+        .answer-item {
+            background: #f9fafb;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+        }
+        .answer-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        .answer-image img,
+        .answer-video video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        /* Team Answer Input */
+        .answer-input-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f0fdf4;
+            border-radius: 8px;
+            border: 2px solid #10b981;
+        }
+        .answer-input-section h3 {
+            color: #059669;
+            margin-bottom: 1rem;
+        }
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #10b981;
+        }
+        .answer-status {
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .answer-status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .answer-status.locked {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Teams Grid */
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .team-card {
+            padding: 1.25rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .team-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+        }
+        .team-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+        .team-score {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+        .team-status {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #10b981;
+        }
+
+        /* Scoring Table */
+        .scoring-section {
+            margin-bottom: 2rem;
+        }
+        .scoring-question-header {
+            background: #667eea;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px 8px 0 0;
+            margin-top: 1.5rem;
+        }
+        .scoring-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .scoring-table th,
+        .scoring-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .scoring-table th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .scoring-table tbody tr:hover {
+            background: #f9fafb;
+        }
+        .points-input {
+            width: 90px;
+            padding: 0.5rem;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .points-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .score-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Answer Overview Badges */
+        .answer-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        .answer-badge.answered {
+            background: #d1fae5;
+            color: #065f46;
+            border-color: #10b981;
+        }
+        .answer-badge.unanswered {
+            background: #f3f4f6;
+            color: #9ca3af;
+            border-color: #e5e7eb;
+        }
+        .answer-badge.current {
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+        .answer-badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* Category Flash Overlay */
+        .category-flash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .category-flash-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .category-flash-content {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+        .category-flash-label {
+            font-size: 1.5rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+        .category-flash-name {
+            font-size: 4rem;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 1.5rem;
+        }
+        .category-flash-round {
+            font-size: 1.8rem;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .category-flash-label {
+                font-size: 1rem;
+            }
+            .category-flash-name {
+                font-size: 2.5rem;
+            }
+            .category-flash-round {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Round Progress Tracker */
+        .progress-tracker {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .progress-tracker h3 {
+            margin: 0 0 1rem 0;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+        .progress-questions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .progress-question {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .progress-question.current {
+            background: #ede9fe;
+            border-color: #667eea;
+        }
+        .progress-question.complete {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+        .progress-question-number {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        .progress-question.current .progress-question-number {
+            color: #667eea;
+        }
+        .progress-question.complete .progress-question-number {
+            color: #059669;
+        }
+        .progress-count {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        .progress-count-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        /* Back to Landing Link */
+        .back-to-landing {
+            display: block;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        .back-to-landing:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+
+        /* Utility */
+        .hidden { display: none !important; }
+        .error-msg {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .info-msg {
+            background: #dbeafe;
+            border: 1px solid #3b82f6;
+            color: #1e40af;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .standings-list {
+            margin-top: 1.5rem;
+        }
+        .standing-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+        }
+        .standing-item.highlight {
+            background: #ede9fe;
+            border-color: #8b5cf6;
+        }
+
+        /* Leaderboard Styles */
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        .leaderboard-table th,
+        .leaderboard-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .leaderboard-table th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .leaderboard-table tbody tr:hover {
+            background: #f9fafb;
+        }
+        .leaderboard-rank {
+            font-weight: 700;
+            font-size: 1.2rem;
+            width: 50px;
+        }
+        .leaderboard-rank.gold {
+            color: #f59e0b;
+        }
+        .leaderboard-rank.silver {
+            color: #6b7280;
+        }
+        .leaderboard-rank.bronze {
+            color: #92400e;
+        }
+        .leaderboard-team {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .leaderboard-total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #10b981;
+        }
+        .round-score-badge {
+            display: inline-block;
+            background: #e5e7eb;
+            color: #374151;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .upcoming-rounds-section {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .upcoming-rounds-section h3 {
+            color: #059669;
+            margin: 0 0 1rem 0;
+        }
+        .upcoming-round-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+        .upcoming-round-item:last-child {
+            margin-bottom: 0;
+        }
+        .upcoming-points {
+            font-weight: 600;
+            color: #10b981;
+        }
+        .leaderboard-summary {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        .summary-item {
+            text-align: center;
+        }
+        .summary-item .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        .summary-item .label {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="session-header">
+        <div class="session-header-content">
+            <div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Game Code</div>
+                <div class="game-code">{{ session.code }}</div>
+            </div>
+            <div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">{{ game.name }}</div>
+                <div class="status-badge" id="statusBadge">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Flash Overlay -->
+    <div id="categoryFlashOverlay" class="category-flash-overlay">
+        <div class="category-flash-content">
+            <div class="category-flash-label">Next Category</div>
+            <div class="category-flash-name" id="flashCategoryName"></div>
+            <div class="category-flash-round" id="flashRoundName"></div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div id="errorContainer"></div>
+
+        <!-- ADMIN VIEW -->
+        <div id="adminView" class="hidden">
+            <!-- Lobby State -->
+            <div id="lobbyState" class="hidden">
+                <div class="card">
+                    <h2>Waiting for Teams</h2>
+                    <p class="info-msg">Share this code with teams: <strong>{{ session.code }}</strong></p>
+                    <div class="teams-grid" id="lobbyTeams"></div>
+                    <button class="btn btn-primary" id="startGameBtn" style="margin-top: 1.5rem; font-size: 1.1rem;">Start Game</button>
+                </div>
+            </div>
+
+            <!-- Playing State -->
+            <div id="playingState" class="hidden">
+                <div id="questionDisplay"></div>
+
+                <!-- Round Progress Tracker -->
+                <div class="progress-tracker">
+                    <h3>Round Progress - Team Submissions</h3>
+                    <div id="progressQuestions" class="progress-questions">
+                        <!-- Progress items will be inserted here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-secondary" id="prevQuestionBtn">◄ Previous Question</button>
+                        <select id="questionSelector" class="question-selector">
+                            <option value="">Loading questions...</option>
+                        </select>
+                        <button class="btn btn-secondary" id="nextQuestionBtn">Next Question ►</button>
+                    </div>
+                    <h2>Team Status</h2>
+                    <div id="teamStatus" class="teams-grid"></div>
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                        <button class="btn btn-secondary" id="toggleTeamNavBtn" style="flex: 0 0 auto;">
+                            <span id="teamNavStatus">🔒 Enable Team Navigation</span>
+                        </button>
+                        <button class="btn btn-danger" id="lockRoundBtn" style="flex: 0 0 auto;">Lock Round & Start Scoring</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scoring State -->
+            <div id="scoringState" class="hidden">
+                <div class="card">
+                    <h2>Scoring Round <span id="scoringRound"></span></h2>
+                    <div id="scoringContent"></div>
+                    <button class="btn btn-primary" id="completeRoundBtn" style="margin-top: 1.5rem; font-size: 1.1rem;">Complete Round & Continue</button>
+                </div>
+            </div>
+
+            <!-- Reviewing State -->
+            <div id="reviewingState" class="hidden">
+                <div class="card">
+                    <h2>Review Round <span id="reviewingRound"></span></h2>
+                    <p class="info-msg">Review the questions and answers before starting the next round.</p>
+                </div>
+
+                <div id="reviewQuestionDisplay"></div>
+
+                <!-- Navigation Controls -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-secondary" id="reviewPrevQuestionBtn">◄ Previous Question</button>
+                        <select id="reviewQuestionSelector" class="question-selector">
+                            <option value="">Loading questions...</option>
+                        </select>
+                        <button class="btn btn-secondary" id="reviewNextQuestionBtn">Next Question ►</button>
+                    </div>
+                    <button class="btn btn-primary" id="showLeaderboardBtn" style="margin-top: 1rem; font-size: 1.1rem; width: 100%;">Show Leaderboard</button>
+                </div>
+            </div>
+
+            <!-- Leaderboard State -->
+            <div id="leaderboardState" class="hidden">
+                <div class="card">
+                    <h2>Leaderboard</h2>
+                    <div id="leaderboardTableContainer"></div>
+                    <div id="upcomingRoundsContainer"></div>
+                    <div id="leaderboardSummary" class="leaderboard-summary"></div>
+                    <button class="btn btn-primary" id="startNextRoundBtn" style="margin-top: 1.5rem; font-size: 1.1rem; width: 100%;">Start Next Round</button>
+                </div>
+            </div>
+
+            <!-- Completed State -->
+            <div id="completedState" class="hidden">
+                <div class="card">
+                    <h2>🎉 Game Complete!</h2>
+                    <div id="finalStandings" class="standings-list"></div>
+                </div>
+            </div>
+
+            <a href="{% url 'quiz:session_landing' %}" class="back-to-landing">← Back to Sessions</a>
+        </div>
+
+        <!-- TEAM VIEW -->
+        <div id="teamView" class="hidden">
+            <!-- Lobby State -->
+            <div id="teamLobby" class="hidden">
+                <div class="card">
+                    <h2>Waiting for game to start...</h2>
+                    <p><strong>Host:</strong> <span id="hostName"></span></p>
+                    <div id="teamLobbyList" class="teams-grid"></div>
+                </div>
+            </div>
+
+            <!-- Playing State -->
+            <div id="teamPlaying" class="hidden">
+                <div id="teamQuestionDisplay"></div>
+
+                <div class="card">
+                    <div id="teamAnswerInputSection">
+                        <!-- Answer inputs will be dynamically generated here -->
+                    </div>
+
+                    <!-- Team Question Navigation (shown when enabled) - Moved below answer inputs -->
+                    <div id="teamQuestionNav" class="hidden" style="margin-top: 2rem; padding: 1.5rem; background: #f0fdf4; border-radius: 8px; border: 2px solid #10b981;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <span style="font-size: 1.5rem;">✓</span>
+                            <div>
+                                <div style="font-weight: 700; font-size: 1.1rem; color: #059669; margin-bottom: 0.25rem;">
+                                    Question Navigation Enabled
+                                </div>
+                                <div style="font-size: 0.9rem; color: #047857;">
+                                    You can navigate between questions in this round at your own pace
+                                </div>
+                            </div>
+                        </div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #059669;">
+                            Select a Question:
+                        </label>
+                        <select id="teamQuestionSelector" class="question-selector" style="width: 100%; max-width: 400px;">
+                            <option value="">Loading questions...</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e5e7eb;">
+                        <h3 style="margin-bottom: 1rem;">Round Progress</h3>
+                        <div id="teamAnswerOverview" style="display: flex; flex-wrap: wrap; gap: 0.5rem;"></div>
+                        <p style="margin-top: 1rem; color: #6b7280; font-size: 0.9rem;">
+                            <strong>Current Score:</strong> <span id="teamCurrentScore">0</span> points
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scoring State -->
+            <div id="teamScoring" class="hidden">
+                <div class="card">
+                    <h2>Scoring in Progress</h2>
+                    <p class="info-msg">The host is currently scoring the round. Please wait...</p>
+                </div>
+            </div>
+
+            <!-- Leaderboard State -->
+            <div id="teamLeaderboard" class="hidden">
+                <div class="card">
+                    <h2>Leaderboard</h2>
+                    <div id="teamLeaderboardTableContainer"></div>
+                    <div id="teamUpcomingRoundsContainer"></div>
+                    <div id="teamLeaderboardSummary" class="leaderboard-summary"></div>
+                    <p class="info-msg" style="margin-top: 1.5rem;">Waiting for host to start next round...</p>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div id="teamResults" class="hidden">
+                <div class="card">
+                    <h2>Game Results</h2>
+                    <div id="standingsDisplay"></div>
+                </div>
+            </div>
+
+            <a href="{% url 'quiz:session_landing' %}" class="back-to-landing">← Back to Sessions</a>
+        </div>
+    </div>
+
+    <script>
+        const CODE = '{{ session.code }}';
+        const ADMIN_TOKEN = localStorage.getItem(`session_${CODE}_admin`);
+        const TEAM_TOKEN = localStorage.getItem(`session_${CODE}_team`);
+        const ROLE_PREFERENCE = localStorage.getItem(`session_${CODE}_role`);
+        const IS_ADMIN = !!ADMIN_TOKEN;
+        const IS_TEAM = !!TEAM_TOKEN;
+        const POLL_INTERVAL = 2000;
+
+        // DEBUG: Log token status
+        console.log('=== SESSION DEBUG ===');
+        console.log('Session Code:', CODE);
+        console.log('Admin Token:', ADMIN_TOKEN);
+        console.log('Team Token:', TEAM_TOKEN);
+        console.log('Role Preference:', ROLE_PREFERENCE);
+        console.log('IS_ADMIN:', IS_ADMIN);
+        console.log('IS_TEAM:', IS_TEAM);
+        console.log('All localStorage keys:', Object.keys(localStorage));
+        console.log('===================');
+
+        let currentState = {};
+        let pollTimer = null;
+        let currentAnswerText = '';
+        let roundQuestions = []; // Questions in current round for navigation
+        let currentQuestionIndex = 0; // Current question position in round
+        let ACTIVE_ROLE = null; // Track which role user is acting as
+        let renderedQuestionId = null; // Track which question's inputs are currently rendered
+        let autoSaveTimer = null; // Timer for debounced auto-save
+        let teamQuestions = []; // Questions available to team (for navigation)
+        let teamCurrentQuestionId = null; // Team's current question (may differ from host)
+        let teamQuestionCache = {}; // Cache full question data for team navigation
+
+        // Initialize with SERVER-SIDE TOKEN VALIDATION
+        // CRITICAL: This is the ROBUST solution that prevents host role loss on refresh
+        async function initializeSession() {
+            console.log('=== INITIALIZING SESSION ===');
+
+            // Step 1: Check if we have any tokens at all
+            if (!ADMIN_TOKEN && !TEAM_TOKEN) {
+                showError(
+                    'No session credentials found.',
+                    'Please <a href="/quiz/play/host/">host a game</a> or <a href="/quiz/play/join/">join a game</a>.'
+                );
+                return;
+            }
+
+            // Step 2: Validate tokens with server (SOURCE OF TRUTH)
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/validate/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        admin_token: ADMIN_TOKEN,
+                        team_token: TEAM_TOKEN
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Validation request failed');
+                }
+
+                const validation = await response.json();
+                console.log('Validation result:', validation);
+
+                // Step 3: Determine role based on VALIDATED tokens (not localStorage preference)
+                const hasValidAdmin = validation.is_valid_admin;
+                const hasValidTeam = validation.is_valid_team;
+
+                if (!hasValidAdmin && !hasValidTeam) {
+                    // No valid tokens - offer rejoin for teams
+                    showRejoinError();
+                    return;
+                }
+
+                // Step 4: ADMIN TOKEN ALWAYS TAKES PRIORITY
+                // This is the KEY FIX: Host never loses control on refresh
+                if (hasValidAdmin) {
+                    ACTIVE_ROLE = 'admin';
+                    localStorage.setItem(`session_${CODE}_role`, 'admin');
+                    // Clean up any invalid team token
+                    if (TEAM_TOKEN && !hasValidTeam) {
+                        console.log('Removing invalid team token');
+                        localStorage.removeItem(`session_${CODE}_team`);
+                    }
+                    console.log('✓ Showing ADMIN view');
+                    document.getElementById('adminView').classList.remove('hidden');
+                    startPolling();
+                } else if (hasValidTeam) {
+                    ACTIVE_ROLE = 'team';
+                    localStorage.setItem(`session_${CODE}_role`, 'team');
+                    // Clean up any invalid admin token
+                    if (ADMIN_TOKEN && !hasValidAdmin) {
+                        console.log('Removing invalid admin token');
+                        localStorage.removeItem(`session_${CODE}_admin`);
+                    }
+                    console.log('✓ Showing TEAM view');
+                    document.getElementById('teamView').classList.remove('hidden');
+                    startPolling();
+                }
+
+            } catch (error) {
+                console.error('Session initialization error:', error);
+                showError(
+                    'Failed to connect to session.',
+                    'Please refresh the page or <a href="/quiz/play/">return to session menu</a>.'
+                );
+            }
+        }
+
+        function showError(title, message) {
+            document.getElementById('errorContainer').innerHTML = `
+                <div class="error-msg">
+                    <h3>${title}</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        function showRejoinError() {
+            document.getElementById('errorContainer').innerHTML = `
+                <div class="error-msg">
+                    <h3>Session credentials are invalid or expired</h3>
+                    <p>If you're a team member, you can rejoin with your team name:</p>
+                    <form id="rejoinForm" style="margin-top: 1rem;">
+                        <input
+                            type="text"
+                            id="rejoinTeamName"
+                            placeholder="Enter your team name"
+                            style="width: 100%; padding: 0.75rem; margin-bottom: 0.5rem; border: 2px solid #d1d5db; border-radius: 8px;"
+                            required
+                        >
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            Rejoin Game
+                        </button>
+                    </form>
+                    <p style="margin-top: 1rem;">
+                        Or <a href="/quiz/play/host/">host a new game</a> / <a href="/quiz/play/join/">join as new team</a>
+                    </p>
+                </div>
+            `;
+
+            // Handle rejoin form submission
+            document.getElementById('rejoinForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const teamName = document.getElementById('rejoinTeamName').value.trim();
+                await handleRejoin(teamName);
+            });
+        }
+
+        async function handleRejoin(teamName) {
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/rejoin/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ team_name: teamName })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    alert(data.error || 'Failed to rejoin');
+                    return;
+                }
+
+                // Success! Store the token and reload
+                localStorage.setItem(`session_${CODE}_team`, data.team_token);
+                localStorage.setItem(`session_${CODE}_role`, 'team');
+                localStorage.removeItem(`session_${CODE}_admin`); // Clean up any stale admin token
+
+                console.log('✓ Rejoined successfully as', data.team_name);
+                window.location.reload();
+
+            } catch (error) {
+                console.error('Rejoin error:', error);
+                alert('Failed to rejoin. Please try again.');
+            }
+        }
+
+        // Start the initialization
+        initializeSession();
+
+        function startPolling() {
+            pollState();
+            pollTimer = setInterval(pollState, POLL_INTERVAL);
+        }
+
+        async function pollState() {
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/state/`);
+                const data = await response.json();
+                currentState = data;
+                renderUI(data);
+            } catch (error) {
+                console.error('Poll error:', error);
+            }
+        }
+
+        function renderUI(state) {
+            document.getElementById('statusBadge').textContent = state.status.toUpperCase();
+
+            if (ACTIVE_ROLE === 'admin') {
+                renderAdminUI(state);
+            } else if (ACTIVE_ROLE === 'team') {
+                renderTeamUI(state);
+            }
+        }
+
+        function renderAdminUI(state) {
+            // Hide all states
+            ['lobbyState', 'playingState', 'scoringState', 'reviewingState', 'leaderboardState', 'completedState'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+
+            // Reset scoring data flag when not in scoring mode (so it reloads for next round)
+            if (state.status !== 'scoring') {
+                scoringDataLoaded = false;
+            }
+
+            if (state.status === 'lobby') {
+                document.getElementById('lobbyState').classList.remove('hidden');
+                renderLobbyTeams(state.teams);
+                document.getElementById('startGameBtn').disabled = state.team_count < 1;
+            } else if (state.status === 'playing') {
+                document.getElementById('playingState').classList.remove('hidden');
+                if (state.current_question) {
+                    renderFullQuestion(state.current_question, 'questionDisplay');
+                }
+                renderTeamStatus(state.teams, state.current_question);
+
+                // Render round progress tracker
+                renderRoundProgress(state.round_progress, state.current_question);
+
+                // Load round questions for navigation
+                loadRoundQuestions();
+
+                // Update team navigation toggle button
+                updateTeamNavToggle(state.allow_team_navigation);
+
+                // Reset lock round button state (in case returning from previous round)
+                const lockBtn = document.getElementById('lockRoundBtn');
+                if (lockBtn) {
+                    lockBtn.disabled = false;
+                    lockBtn.textContent = 'Lock Round & Start Scoring';
+                }
+            } else if (state.status === 'scoring') {
+                document.getElementById('scoringState').classList.remove('hidden');
+                if (state.current_round) {
+                    document.getElementById('scoringRound').textContent = state.current_round.round_number;
+                }
+                loadScoringData();
+
+                // Reset complete round button state (in case returning from previous action)
+                const completeBtn = document.getElementById('completeRoundBtn');
+                if (completeBtn) {
+                    completeBtn.disabled = false;
+                    completeBtn.textContent = 'Complete Round & Continue';
+                }
+            } else if (state.status === 'reviewing') {
+                document.getElementById('reviewingState').classList.remove('hidden');
+                if (state.current_round) {
+                    document.getElementById('reviewingRound').textContent = state.current_round.round_number;
+                }
+                renderReviewUI(state);
+
+                // Reset show leaderboard button state
+                const showLeaderboardBtn = document.getElementById('showLeaderboardBtn');
+                if (showLeaderboardBtn) {
+                    showLeaderboardBtn.disabled = false;
+                    showLeaderboardBtn.textContent = 'Show Leaderboard';
+                }
+            } else if (state.status === 'leaderboard') {
+                document.getElementById('leaderboardState').classList.remove('hidden');
+                loadLeaderboardData();
+
+                // Reset start next round button state
+                const startNextBtn = document.getElementById('startNextRoundBtn');
+                if (startNextBtn) {
+                    startNextBtn.disabled = false;
+                    startNextBtn.textContent = 'Start Next Round';
+                }
+            } else if (state.status === 'completed') {
+                document.getElementById('completedState').classList.remove('hidden');
+                loadFinalStandings();
+            }
+        }
+
+        function renderTeamUI(state) {
+            ['teamLobby', 'teamPlaying', 'teamScoring', 'teamLeaderboard', 'teamResults'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+
+            if (state.status === 'lobby') {
+                document.getElementById('teamLobby').classList.remove('hidden');
+                document.getElementById('hostName').textContent = state.admin_name;
+                renderLobbyTeams(state.teams, 'teamLobbyList');
+                renderedQuestionId = null; // Reset when not in playing state
+            } else if (state.status === 'playing') {
+                document.getElementById('teamPlaying').classList.remove('hidden');
+
+                // Handle team navigation
+                const navEnabled = state.allow_team_navigation;
+                const teamNavDiv = document.getElementById('teamQuestionNav');
+
+                console.log('=== TEAM NAVIGATION DEBUG ===');
+                console.log('Full state object:', state);
+                console.log('Team navigation status:', navEnabled);
+                console.log('TeamNavDiv element:', teamNavDiv);
+                console.log('===========================');
+
+                if (navEnabled) {
+                    // Show navigation selector
+                    console.log('Showing team navigation');
+                    teamNavDiv.classList.remove('hidden');
+                    loadTeamQuestions(state);
+
+                    // Cache current question data
+                    if (state.current_question) {
+                        teamQuestionCache[state.current_question.id] = state.current_question;
+                    }
+
+                    // Use team's selected question or default to host's
+                    let questionToShow = state.current_question;
+                    if (teamCurrentQuestionId && teamQuestionCache[teamCurrentQuestionId]) {
+                        questionToShow = teamQuestionCache[teamCurrentQuestionId];
+                    }
+
+                    if (questionToShow && renderedQuestionId !== questionToShow.id) {
+                        renderFullQuestion(questionToShow, 'teamQuestionDisplay');
+                        renderTeamAnswerInputs(questionToShow);
+                        loadTeamAnswer(questionToShow.id);
+                        renderedQuestionId = questionToShow.id;
+                    }
+                } else {
+                    // Hide navigation, lock to host's question
+                    teamNavDiv.classList.add('hidden');
+                    teamCurrentQuestionId = null; // Reset team navigation
+
+                    if (state.current_question && renderedQuestionId !== state.current_question.id) {
+                        // Show category flash before rendering new question
+                        showCategoryFlash(state.current_question).then(() => {
+                            renderFullQuestion(state.current_question, 'teamQuestionDisplay');
+                            renderTeamAnswerInputs(state.current_question);
+                            loadTeamAnswer(state.current_question.id);
+                            renderedQuestionId = state.current_question.id;
+                        });
+                    }
+                }
+
+                // Render answer overview for all questions in round
+                renderTeamAnswerOverview();
+            } else if (state.status === 'scoring') {
+                document.getElementById('teamScoring').classList.remove('hidden');
+                renderedQuestionId = null; // Reset when not in playing state
+            } else if (state.status === 'reviewing') {
+                // Show review UI - teams can view questions and answers
+                document.getElementById('teamPlaying').classList.remove('hidden');
+
+                if (state.current_question && renderedQuestionId !== state.current_question.id) {
+                    renderFullQuestionWithAnswers(state.current_question, 'teamQuestionDisplay');
+                    renderTeamAnswerReview(state.current_question.id);
+                    renderedQuestionId = state.current_question.id;
+                }
+            } else if (state.status === 'leaderboard') {
+                document.getElementById('teamLeaderboard').classList.remove('hidden');
+                loadTeamLeaderboardData();
+                renderedQuestionId = null; // Reset when not in playing state
+            } else if (state.status === 'completed') {
+                document.getElementById('teamResults').classList.remove('hidden');
+                loadTeamResults();
+                renderedQuestionId = null; // Reset when not in playing state
+            }
+        }
+
+        function renderFullQuestion(question, containerId) {
+            const container = document.getElementById(containerId);
+
+            let html = '<div class="question-container">';
+            html += '<div class="question-header">';
+            html += `<h1><span class="question-number">${question.number}.</span> ${question.text}</h1>`;
+
+            // Answer bank (if present)
+            if (question.answer_bank) {
+                html += '<div class="answer-bank">';
+                html += '<h2 class="answer-bank-title">Answer Bank</h2>';
+                html += `<div class="answer-bank-content">${question.answer_bank}</div>`;
+                html += '</div>';
+            }
+            html += '</div>';
+
+            // Question media - video or image
+            if (question.video_url) {
+                html += '<div class="question-video">';
+                html += `<video controls class="responsive-video" style="max-width: 100%;">`;
+                html += `<source src="${question.video_url}" type="video/mp4">`;
+                html += 'Your browser does not support the video tag.';
+                html += '</video>';
+                html += '</div>';
+            } else if (question.image_url) {
+                html += `<div class="question-image"><img src="${question.image_url}" alt="Question Image"></div>`;
+            }
+
+            // Sub-questions (answers) - display based on question type
+            if (question.answers && question.answers.length > 0) {
+                html += '<div class="answers-section">';
+
+                if (question.question_type === 'Ranking') {
+                    html += '<ul class="answer-list ranking">';
+                    question.answers.forEach(answer => {
+                        html += '<li class="answer-item">';
+                        // Only show text field, never answer_text (correct answer)
+                        html += `<div class="answer-text">${answer.text || ''}</div>`;
+                        if (answer.video_url) {
+                            html += '<div class="answer-video">';
+                            html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
+                            html += '</div>';
+                        } else if (answer.image_url) {
+                            html += `<div class="answer-image"><img src="${answer.image_url}" alt="Answer Image"></div>`;
+                        }
+                        html += '</li>';
+                    });
+                    html += '</ul>';
+                } else if (question.question_type === 'Matching') {
+                    html += '<ul class="answer-list matching">';
+                    question.answers.forEach(answer => {
+                        html += '<li class="answer-item">';
+                        // Only show text field, never answer_text (correct answer)
+                        html += `<div class="answer-text">${answer.text || ''}</div>`;
+                        if (answer.video_url) {
+                            html += '<div class="answer-video">';
+                            html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
+                            html += '</div>';
+                        } else if (answer.image_url) {
+                            html += `<div class="answer-image"><img src="${answer.image_url}" alt="Answer Image"></div>`;
+                        }
+                        html += '</li>';
+                    });
+                    html += '</ul>';
+                } else if (question.question_type === 'Multiple Open Ended') {
+                    html += '<ul class="answer-list open-ended">';
+                    question.answers.forEach((answer, idx) => {
+                        html += '<li class="answer-item">';
+                        // Only show text field, never answer_text (correct answer)
+                        // Strip any existing label prefix (like "A. ") and always prepend our own label
+                        const letterLabel = String.fromCharCode(97 + idx); // a, b, c...
+                        const cleanText = answer.text ? stripLabelPrefix(answer.text) : '';
+
+                        // Always show the label, with text if available
+                        if (cleanText) {
+                            // Has text content after stripping label
+                            html += `<div class="answer-text"><strong>${letterLabel})</strong> ${cleanText}</div>`;
+                        } else if (answer.image_url || answer.video_url) {
+                            // No text but has media - show just the label
+                            html += `<div class="answer-text"><strong>${letterLabel})</strong></div>`;
+                        }
+
+                        if (answer.video_url) {
+                            html += '<div class="answer-video">';
+                            html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
+                            html += '</div>';
+                        } else if (answer.image_url) {
+                            html += `<div class="answer-image"><img src="${answer.image_url}" alt="Answer Image"></div>`;
+                        }
+                        html += '</li>';
+                    });
+                    html += '</ul>';
+                }
+
+                html += '</div>';
+            }
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function renderFullQuestionWithAnswers(question, containerId) {
+            // Render question with correct answers visible (for REVIEWING mode)
+            const container = document.getElementById(containerId);
+
+            let html = '<div class="question-container">';
+            html += '<div class="question-header">';
+            html += `<h1><span class="question-number">${question.number}.</span> ${question.text}</h1>`;
+
+            // Answer bank (if present)
+            if (question.answer_bank) {
+                html += '<div class="answer-bank">';
+                html += '<h2 class="answer-bank-title">Answer Bank</h2>';
+                html += `<div class="answer-bank-content">${question.answer_bank}</div>`;
+                html += '</div>';
+            }
+            html += '</div>';
+
+            // Question media - prioritize answer media for REVIEWING mode
+            const questionVideo = question.answer_video_url || question.video_url;
+            const questionImage = question.answer_image_url || question.image_url;
+
+            if (questionVideo) {
+                html += '<div class="question-video">';
+                html += `<video controls class="responsive-video" style="max-width: 100%;">`;
+                html += `<source src="${questionVideo}" type="video/mp4">`;
+                html += 'Your browser does not support the video tag.';
+                html += '</video>';
+                html += '</div>';
+            } else if (questionImage) {
+                html += `<div class="question-image"><img src="${questionImage}" alt="Question Image"></div>`;
+            }
+
+            // Show answers with correct answer information
+            if (question.answers && question.answers.length > 0) {
+                html += '<div class="answers-section">';
+                html += '<h2 style="color: #10b981; margin: 1.5rem 0 1rem;">Correct Answers:</h2>';
+
+                if (question.question_type === 'Ranking') {
+                    // Show correct ranking order
+                    html += '<ul class="answer-list ranking">';
+                    const sortedAnswers = [...question.answers].sort((a, b) => (a.correct_rank || 0) - (b.correct_rank || 0));
+                    sortedAnswers.forEach((answer, idx) => {
+                        html += '<li class="answer-item" style="border-color: #10b981; background: #f0fdf4;">';
+                        html += `<div class="answer-text"><strong>${idx + 1}.</strong> ${escapeHtml(answer.text || '')}</div>`;
+
+                        // Prioritize answer media for REVIEWING mode
+                        const answerVideo = answer.answer_video_url || answer.video_url;
+                        const answerImage = answer.answer_image_url || answer.image_url;
+
+                        if (answerVideo) {
+                            html += '<div class="answer-video">';
+                            html += `<video controls style="max-width: 100%;"><source src="${answerVideo}" type="video/mp4"></video>`;
+                            html += '</div>';
+                        } else if (answerImage) {
+                            html += `<div class="answer-image"><img src="${answerImage}" alt="Answer Image"></div>`;
+                        }
+
+                        // Show answer_text if present (provides context for ranking questions)
+                        if (answer.answer_text) {
+                            html += '<div style="margin-top: 0.75rem; padding: 0.75rem; background: white; border-radius: 4px; border-left: 4px solid #10b981;">';
+                            html += `<strong style="color: #059669;">Context:</strong> ${escapeHtml(answer.answer_text)}`;
+                            html += '</div>';
+                        }
+
+                        html += '</li>';
+                    });
+                    html += '</ul>';
+                } else if (question.question_type === 'Multiple Open Ended') {
+                    // Show each sub-question with its correct answer
+                    html += '<ul class="answer-list open-ended">';
+                    question.answers.forEach((answer, idx) => {
+                        const letterLabel = String.fromCharCode(97 + idx); // a, b, c...
+                        const cleanText = answer.text ? stripLabelPrefix(answer.text) : '';
+
+                        html += '<li class="answer-item" style="border-color: #10b981; background: #f0fdf4;">';
+                        html += `<div class="answer-text"><strong>${letterLabel})</strong> ${cleanText || ''}</div>`;
+
+                        // Prioritize answer media for REVIEWING mode
+                        const answerVideo = answer.answer_video_url || answer.video_url;
+                        const answerImage = answer.answer_image_url || answer.image_url;
+
+                        if (answerVideo) {
+                            html += '<div class="answer-video">';
+                            html += `<video controls style="max-width: 100%;"><source src="${answerVideo}" type="video/mp4"></video>`;
+                            html += '</div>';
+                        } else if (answerImage) {
+                            html += `<div class="answer-image"><img src="${answerImage}" alt="Answer Image"></div>`;
+                        }
+
+                        // Show the correct answer
+                        if (answer.answer_text) {
+                            html += '<div style="margin-top: 0.75rem; padding: 0.75rem; background: white; border-radius: 4px; border-left: 4px solid #10b981;">';
+                            html += `<strong style="color: #059669;">Answer:</strong> ${escapeHtml(answer.answer_text)}`;
+                            html += '</div>';
+                        }
+
+                        html += '</li>';
+                    });
+                    html += '</ul>';
+                } else if (question.question_type === 'Matching') {
+                    // Show each item with its correct match
+                    html += '<ul class="answer-list matching">';
+                    question.answers.forEach((answer, idx) => {
+                        const letterLabel = String.fromCharCode(97 + idx);
+                        html += '<li class="answer-item" style="border-color: #10b981; background: #f0fdf4;">';
+                        html += `<div class="answer-text"><strong>${letterLabel})</strong> ${escapeHtml(answer.text || '')}</div>`;
+
+                        // Prioritize answer media for REVIEWING mode
+                        const answerVideo = answer.answer_video_url || answer.video_url;
+                        const answerImage = answer.answer_image_url || answer.image_url;
+
+                        if (answerVideo) {
+                            html += '<div class="answer-video">';
+                            html += `<video controls style="max-width: 100%;"><source src="${answerVideo}" type="video/mp4"></video>`;
+                            html += '</div>';
+                        } else if (answerImage) {
+                            html += `<div class="answer-image"><img src="${answerImage}" alt="Answer Image"></div>`;
+                        }
+
+                        // Show the correct answer
+                        if (answer.answer_text) {
+                            html += '<div style="margin-top: 0.75rem; padding: 0.75rem; background: white; border-radius: 4px; border-left: 4px solid #10b981;">';
+                            html += `<strong style="color: #059669;">Answer:</strong> ${escapeHtml(answer.answer_text)}`;
+                            html += '</div>';
+                        }
+
+                        html += '</li>';
+                    });
+                    html += '</ul>';
+                } else {
+                    // Single answer question - show the correct answer
+                    html += '<div style="padding: 1.5rem; background: #f0fdf4; border-radius: 8px; border: 2px solid #10b981;">';
+                    if (question.answers[0] && question.answers[0].answer_text) {
+                        html += `<div style="font-size: 1.1rem; color: #1f2937;">${escapeHtml(question.answers[0].answer_text)}</div>`;
+                    }
+                    html += '</div>';
+                }
+
+                html += '</div>';
+            }
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function renderLobbyTeams(teams, containerId = 'lobbyTeams') {
+            const container = document.getElementById(containerId);
+            if (teams.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #6b7280; padding: 2rem;">No teams have joined yet.</p>';
+                return;
+            }
+            container.innerHTML = teams.map(t => `
+                <div class="team-card">
+                    <div class="team-name">${escapeHtml(t.name)}</div>
+                    <div class="team-score">Ready to play</div>
+                </div>
+            `).join('');
+        }
+
+        function renderTeamStatus(teams, question) {
+            const container = document.getElementById('teamStatus');
+            if (teams.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #6b7280;">No teams in game.</p>';
+                return;
+            }
+            container.innerHTML = teams.map(t => `
+                <div class="team-card">
+                    <div class="team-name">${escapeHtml(t.name)}</div>
+                    <div class="team-score">Score: ${t.score} points</div>
+                    <div class="team-status">${t.has_answered_current ? '✓ Answered' : '○ Not answered yet'}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderRoundProgress(roundProgress, currentQuestion) {
+            const container = document.getElementById('progressQuestions');
+            if (!roundProgress || roundProgress.length === 0) {
+                container.innerHTML = '<p style="color: #6b7280;">No questions in current round.</p>';
+                return;
+            }
+
+            const currentQuestionId = currentQuestion ? currentQuestion.id : null;
+
+            container.innerHTML = roundProgress.map(progress => {
+                const isCurrent = progress.question_id === currentQuestionId;
+                const isComplete = progress.submitted_count === progress.total_teams && progress.total_teams > 0;
+                const classes = ['progress-question'];
+                if (isCurrent) classes.push('current');
+                if (isComplete) classes.push('complete');
+
+                return `
+                    <div class="${classes.join(' ')}" title="Question ${progress.question_number}: ${progress.submitted_count}/${progress.total_teams} teams submitted">
+                        <div class="progress-question-number">Q${progress.question_number}</div>
+                        <div class="progress-count">${progress.submitted_count}/${progress.total_teams}</div>
+                        <div class="progress-count-label">teams</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderTeamAnswerInputs(question) {
+            const container = document.getElementById('teamAnswerInputSection');
+            if (!question) return;
+
+            let html = '<div class="answer-input-section">';
+
+            // Check if question has sub-questions
+            if (question.answers && question.answers.length > 0) {
+                // Check if this is a Ranking question
+                if (question.question_type === 'Ranking') {
+                    html += '<h3>' + escapeHtml(question.text) + '</h3>';
+                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Drag and drop to rank your answers:</p>';
+                    html += '<div id="rankingList" class="ranking-list">';
+
+                    question.answers.forEach((item, idx) => {
+                        const questionText = item.text || '';
+                        html += `
+                            <div class="ranking-item" data-answer-id="${item.id}" data-original-index="${idx}">
+                                <div class="ranking-handle">⋮⋮</div>
+                                <div class="ranking-number">${idx + 1}</div>
+                                <div class="ranking-content">${escapeHtml(questionText)}</div>
+                            </div>
+                        `;
+                    });
+
+                    html += '</div>';
+                    html += '<input type="hidden" id="rankingAnswerInput" value="">';
+                } else if (question.question_type === 'Matching' && question.answer_bank) {
+                    // Check if this is a Matching question with answer bank
+                    // Parse answer bank options (split by comma)
+                    const bankOptions = question.answer_bank.split(',').map(opt => opt.trim()).filter(opt => opt);
+
+                    html += '<h3>Your Answers</h3>';
+                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Select the correct answer for each part:</p>';
+
+                    question.answers.forEach((subQ, idx) => {
+                        const letterLabel = String.fromCharCode(97 + idx); // a, b, c, d...
+                        const questionText = subQ.text || '';
+                        const labelPrefix = shouldPrependLabel(questionText) ? `${letterLabel}) ` : '';
+
+                        html += `
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; font-weight: 600; margin-bottom: 0.75rem; color: #374151;">
+                                    ${labelPrefix}${questionText}
+                                </label>
+                                <div class="answer-bank-buttons" data-sub-index="${idx}" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        `;
+
+                        // Create button for each answer bank option
+                        bankOptions.forEach((option, optIdx) => {
+                            html += `
+                                <button type="button" class="bank-option-btn" data-sub-index="${idx}" data-option="${escapeHtml(option)}"
+                                    style="padding: 0.75rem 1rem; border: 2px solid #d1d5db; border-radius: 6px; background: white;
+                                           cursor: pointer; font-size: 0.95rem; transition: all 0.2s; font-weight: 500;">
+                                    ${escapeHtml(option)}
+                                </button>
+                            `;
+                        });
+
+                        html += `
+                                </div>
+                                <input type="hidden" class="matching-answer-input" data-sub-index="${idx}" value="">
+                            </div>
+                        `;
+                    });
+                } else {
+                    // Regular Multiple Open Ended questions
+                    html += '<h3>Your Answers</h3>';
+                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Please provide an answer for each part:</p>';
+
+                    question.answers.forEach((subQ, idx) => {
+                        const letterLabel = String.fromCharCode(97 + idx); // a, b, c, d...
+                        // Only show text field, never answer_text (correct answer) to teams
+                        // Strip any existing label prefix (like "A. ") and always prepend our own label
+                        const questionText = subQ.text || '';
+                        const cleanText = stripLabelPrefix(questionText);
+                        html += `
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151;">
+                                    ${letterLabel}) ${cleanText}
+                                </label>
+                                <textarea
+                                    class="sub-answer-input"
+                                    data-sub-index="${idx}"
+                                    placeholder="Enter your answer for part ${letterLabel}..."
+                                    style="width: 100%; min-height: 80px; padding: 0.75rem; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;"
+                                ></textarea>
+                            </div>
+                        `;
+                    });
+                }
+            } else {
+                // Single answer question
+                html += '<h3>Your Answer</h3>';
+                html += `
+                    <textarea
+                        id="answerInput"
+                        placeholder="Enter your team's answer here..."
+                        style="width: 100%; min-height: 120px; padding: 1rem; border: 2px solid #d1d5db; border-radius: 8px; font-size: 1rem;"
+                    ></textarea>
+                `;
+            }
+
+            html += '<div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem;">';
+            html += '<button class="btn btn-primary" id="submitAnswerBtn" style="flex: 1;">Submit Answer</button>';
+            html += '<div id="autoSaveStatus" style="font-size: 0.9rem; color: #6b7280; min-width: 100px;"></div>';
+            html += '</div>';
+            html += '<div id="answerStatus" class="answer-status hidden"></div>';
+            html += '</div>';
+
+            container.innerHTML = html;
+
+            // Attach event listener to submit button
+            document.getElementById('submitAnswerBtn').addEventListener('click', submitTeamAnswer);
+
+            // Attach auto-save listeners to all text inputs
+            const allInputs = container.querySelectorAll('textarea');
+            allInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    handleAutoSave();
+                });
+            });
+
+            // Attach click listeners to matching question buttons
+            const bankButtons = container.querySelectorAll('.bank-option-btn');
+            bankButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const subIndex = e.target.dataset.subIndex;
+                    const selectedOption = e.target.dataset.option;
+
+                    // Remove selection from other buttons in same group
+                    const buttonsInGroup = container.querySelectorAll(`.bank-option-btn[data-sub-index="${subIndex}"]`);
+                    buttonsInGroup.forEach(b => {
+                        b.style.background = 'white';
+                        b.style.borderColor = '#d1d5db';
+                        b.style.color = '#374151';
+                    });
+
+                    // Highlight selected button
+                    e.target.style.background = '#667eea';
+                    e.target.style.borderColor = '#667eea';
+                    e.target.style.color = 'white';
+
+                    // Store selection in hidden input
+                    const hiddenInput = container.querySelector(`.matching-answer-input[data-sub-index="${subIndex}"]`);
+                    if (hiddenInput) {
+                        hiddenInput.value = selectedOption;
+                    }
+
+                    // Trigger auto-save
+                    handleAutoSave();
+                });
+            });
+
+            // Initialize SortableJS for ranking questions
+            const rankingList = document.getElementById('rankingList');
+            if (rankingList) {
+                Sortable.create(rankingList, {
+                    animation: 150,
+                    handle: '.ranking-handle',
+                    ghostClass: 'sortable-ghost',
+                    dragClass: 'sortable-drag',
+                    onEnd: function() {
+                        // Update ranking numbers
+                        updateRankingNumbers();
+                        // Store ranking order
+                        saveRankingOrder();
+                        // Trigger auto-save
+                        handleAutoSave();
+                    }
+                });
+            }
+        }
+
+        function updateRankingNumbers() {
+            const rankingItems = document.querySelectorAll('.ranking-item');
+            rankingItems.forEach((item, idx) => {
+                const numberEl = item.querySelector('.ranking-number');
+                if (numberEl) {
+                    numberEl.textContent = idx + 1;
+                }
+            });
+        }
+
+        function saveRankingOrder() {
+            const rankingItems = document.querySelectorAll('.ranking-item');
+            const order = Array.from(rankingItems).map(item => item.dataset.originalIndex);
+            const hiddenInput = document.getElementById('rankingAnswerInput');
+            if (hiddenInput) {
+                hiddenInput.value = JSON.stringify(order);
+            }
+        }
+
+        function restoreRankingOrder(order) {
+            const rankingList = document.getElementById('rankingList');
+            if (!rankingList || !order || !Array.isArray(order)) return;
+
+            // Get all ranking items
+            const items = Array.from(document.querySelectorAll('.ranking-item'));
+
+            // Reorder items based on saved order
+            const orderedItems = order.map(originalIdx => {
+                return items.find(item => item.dataset.originalIndex === String(originalIdx));
+            }).filter(item => item); // Remove any nulls
+
+            // Clear the list and re-append in correct order
+            rankingList.innerHTML = '';
+            orderedItems.forEach(item => {
+                rankingList.appendChild(item);
+            });
+
+            // Update ranking numbers
+            updateRankingNumbers();
+        }
+
+        async function loadTeamAnswer(questionId) {
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/team/answers/`, {
+                    headers: { 'Authorization': `Bearer ${TEAM_TOKEN}` }
+                });
+                const data = await response.json();
+
+                const answer = data.answers.find(a => a.question_id === questionId);
+                const statusDiv = document.getElementById('answerStatus');
+
+                if (answer && answer.answer_text) {
+                    // Parse answer text - could be JSON array for multi-part or plain text
+                    try {
+                        const parsedAnswers = JSON.parse(answer.answer_text);
+                        if (Array.isArray(parsedAnswers)) {
+                            // Check if this is ranking question (array of indices)
+                            const rankingInput = document.getElementById('rankingAnswerInput');
+                            if (rankingInput) {
+                                // Ranking question - restore order
+                                rankingInput.value = answer.answer_text;
+                                restoreRankingOrder(parsedAnswers);
+                            } else {
+                                // Multi-part answer - could be text inputs or matching buttons
+                                parsedAnswers.forEach((ans, idx) => {
+                                    // Try textarea first
+                                    const textarea = document.querySelector(`textarea[data-sub-index="${idx}"]`);
+                                    if (textarea) {
+                                        textarea.value = ans || '';
+                                    } else {
+                                        // Try matching question buttons
+                                        const hiddenInput = document.querySelector(`.matching-answer-input[data-sub-index="${idx}"]`);
+                                        if (hiddenInput && ans) {
+                                            hiddenInput.value = ans;
+                                            // Highlight the corresponding button
+                                            const selectedBtn = document.querySelector(`.bank-option-btn[data-sub-index="${idx}"][data-option="${ans}"]`);
+                                            if (selectedBtn) {
+                                                selectedBtn.style.background = '#667eea';
+                                                selectedBtn.style.borderColor = '#667eea';
+                                                selectedBtn.style.color = 'white';
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    } catch {
+                        // Single answer
+                        const answerInput = document.getElementById('answerInput');
+                        if (answerInput) answerInput.value = answer.answer_text;
+                    }
+
+                    currentAnswerText = answer.answer_text;
+
+                    if (answer.is_locked) {
+                        // Disable all inputs
+                        document.querySelectorAll('textarea').forEach(t => t.disabled = true);
+                        document.querySelectorAll('.bank-option-btn').forEach(b => b.disabled = true);
+                        document.getElementById('submitAnswerBtn').disabled = true;
+                        statusDiv.textContent = '🔒 Answer locked for scoring';
+                        statusDiv.className = 'answer-status locked';
+                        statusDiv.classList.remove('hidden');
+                    }
+                }
+            } catch (error) {
+                console.error('Load answer error:', error);
+            }
+        }
+
+        async function renderTeamAnswerReview(questionId) {
+            // Render read-only view of team's submitted answer with points awarded
+            const container = document.getElementById('teamAnswerInputSection');
+            if (!container) return;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/team/answers/`, {
+                    headers: { 'Authorization': `Bearer ${TEAM_TOKEN}` }
+                });
+                const data = await response.json();
+
+                const answer = data.answers.find(a => a.question_id === questionId);
+
+                if (!answer) {
+                    container.innerHTML = '<div class="info-msg">No answer data found for this question.</div>';
+                    return;
+                }
+
+                // Get question details from cache or current state
+                const question = teamQuestionCache[questionId] || currentState.current_question;
+                if (!question) {
+                    container.innerHTML = '<div class="info-msg">Question data not available.</div>';
+                    return;
+                }
+
+                let html = '<div style="padding: 1.5rem; background: #ede9fe; border-radius: 8px; border: 2px solid #8b5cf6;">';
+                html += '<h3 style="color: #6b21a8; margin-bottom: 1.5rem;">Your Submission</h3>';
+
+                // Parse the answer
+                let parsedAnswers = null;
+                try {
+                    parsedAnswers = JSON.parse(answer.answer_text);
+                } catch {
+                    parsedAnswers = null;
+                }
+
+                // Determine question type and render accordingly
+                if (Array.isArray(parsedAnswers) && question.answers && question.answers.length > 1) {
+                    // Multi-part question
+                    if (question.question_type === 'Ranking') {
+                        // Show ranking order
+                        html += '<div style="margin-bottom: 1rem;"><strong>Your Ranking:</strong></div>';
+                        html += '<ol style="margin: 0 0 1rem 1.5rem; padding: 0;">';
+                        parsedAnswers.forEach(originalIdx => {
+                            const item = question.answers[originalIdx];
+                            if (item) {
+                                html += `<li style="margin-bottom: 0.5rem; color: #1f2937;">${escapeHtml(item.text || '')}</li>`;
+                            }
+                        });
+                        html += '</ol>';
+                    } else {
+                        // Multiple Open Ended or Matching - show each sub-answer
+                        question.answers.forEach((subQ, idx) => {
+                            const label = String.fromCharCode(97 + idx); // a, b, c...
+                            const subQuestionText = subQ.text || '';
+                            const teamSubAnswer = parsedAnswers[idx] || '';
+
+                            html += '<div style="margin-bottom: 1rem; padding: 1rem; background: white; border-radius: 6px; border: 1px solid #d1d5db;">';
+                            html += `<div style="font-weight: 600; color: #374151; margin-bottom: 0.5rem;">${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</div>`;
+                            html += `<div style="padding: 0.75rem; background: #f9fafb; border-radius: 4px; color: #1f2937;">`;
+                            html += teamSubAnswer ? escapeHtml(teamSubAnswer) : '<em style="color: #9ca3af;">No answer submitted</em>';
+                            html += '</div>';
+                            html += '</div>';
+                        });
+                    }
+                } else {
+                    // Single answer question
+                    html += '<div style="padding: 1rem; background: white; border-radius: 6px; margin-bottom: 1rem;">';
+                    html += '<div style="font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Your Answer:</div>';
+                    html += '<div style="padding: 0.75rem; background: #f9fafb; border-radius: 4px; color: #1f2937;">';
+                    html += answer.answer_text ? escapeHtml(answer.answer_text) : '<em style="color: #9ca3af;">No answer submitted</em>';
+                    html += '</div>';
+                    html += '</div>';
+                }
+
+                // Total points for the question
+                const pointsAwarded = answer.points_awarded !== null ? answer.points_awarded : '-';
+                const totalPoints = question.total_points || '?';
+                html += '<div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 6px; border: 2px solid #8b5cf6;">';
+                html += '<div style="display: flex; justify-content: space-between; align-items: center;">';
+                html += '<div style="font-weight: 700; font-size: 1.1rem; color: #6b21a8;">Total Points for This Question:</div>';
+                html += `<div style="font-weight: 700; font-size: 1.5rem; color: #8b5cf6;">${pointsAwarded} / ${totalPoints}</div>`;
+                html += '</div>';
+                html += '</div>';
+
+                html += '</div>';
+
+                container.innerHTML = html;
+            } catch (error) {
+                console.error('Error rendering team answer review:', error);
+                container.innerHTML = '<div class="error-msg">Failed to load your answer. Please try again.</div>';
+            }
+        }
+
+        function handleAutoSave() {
+            // Clear existing timer
+            if (autoSaveTimer) {
+                clearTimeout(autoSaveTimer);
+            }
+
+            const statusDiv = document.getElementById('autoSaveStatus');
+            if (statusDiv) {
+                statusDiv.textContent = 'Typing...';
+                statusDiv.style.color = '#6b7280';
+            }
+
+            // Set new timer for 1.5 seconds
+            autoSaveTimer = setTimeout(async () => {
+                await autoSaveAnswer();
+            }, 1500);
+        }
+
+        async function autoSaveAnswer() {
+            // Use team's current question if navigation is enabled, otherwise host's question
+            const questionId = (currentState.allow_team_navigation && teamCurrentQuestionId)
+                ? teamCurrentQuestionId
+                : (currentState.current_question ? currentState.current_question.id : null);
+
+            if (!questionId) return;
+
+            const statusDiv = document.getElementById('autoSaveStatus');
+
+            try {
+                if (statusDiv) {
+                    statusDiv.textContent = 'Saving...';
+                    statusDiv.style.color = '#6b7280';
+                }
+
+                // Collect answer(s)
+                let answerText;
+                const subInputs = document.querySelectorAll('.sub-answer-input');
+                const matchingInputs = document.querySelectorAll('.matching-answer-input');
+                const rankingInput = document.getElementById('rankingAnswerInput');
+
+                if (rankingInput && rankingInput.value) {
+                    // Ranking question - use stored ranking order
+                    answerText = rankingInput.value;
+                } else if (subInputs.length > 0) {
+                    // Multi-part text question - collect all sub-answers as JSON array
+                    const answers = Array.from(subInputs).map(input => input.value.trim());
+                    answerText = JSON.stringify(answers);
+                } else if (matchingInputs.length > 0) {
+                    // Matching question - collect selected options as JSON array
+                    const answers = Array.from(matchingInputs).map(input => input.value.trim());
+                    answerText = JSON.stringify(answers);
+                } else {
+                    // Single answer
+                    const answerInput = document.getElementById('answerInput');
+                    answerText = answerInput ? answerInput.value.trim() : '';
+                }
+
+                const response = await fetch(`/quiz/api/sessions/${CODE}/team/answer/`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${TEAM_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        question_id: questionId,
+                        answer_text: answerText
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Auto-save failed');
+                }
+
+                currentAnswerText = answerText;
+
+                if (statusDiv) {
+                    statusDiv.textContent = '✓ Saved';
+                    statusDiv.style.color = '#10b981';
+                }
+
+                // Refresh the answer overview to show updated status
+                if (ACTIVE_ROLE === 'team') {
+                    renderTeamAnswerOverview();
+                }
+
+                // Clear "Saved" message after 2 seconds
+                setTimeout(() => {
+                    if (statusDiv) {
+                        statusDiv.textContent = '';
+                    }
+                }, 2000);
+            } catch (error) {
+                console.error('Auto-save error:', error);
+                if (statusDiv) {
+                    statusDiv.textContent = '⚠ Save failed';
+                    statusDiv.style.color = '#ef4444';
+                }
+            }
+        }
+
+        async function submitTeamAnswer() {
+            // Use team's current question if navigation is enabled, otherwise host's question
+            const questionId = (currentState.allow_team_navigation && teamCurrentQuestionId)
+                ? teamCurrentQuestionId
+                : (currentState.current_question ? currentState.current_question.id : null);
+
+            if (!questionId) return;
+
+            const btn = document.getElementById('submitAnswerBtn');
+            const statusDiv = document.getElementById('answerStatus');
+
+            try {
+                btn.disabled = true;
+                btn.textContent = 'Saving...';
+
+                // Collect answer(s)
+                let answerText;
+                const subInputs = document.querySelectorAll('.sub-answer-input');
+                const matchingInputs = document.querySelectorAll('.matching-answer-input');
+                const rankingInput = document.getElementById('rankingAnswerInput');
+
+                if (rankingInput && rankingInput.value) {
+                    // Ranking question - use stored ranking order
+                    answerText = rankingInput.value;
+                } else if (subInputs.length > 0) {
+                    // Multi-part text question - collect all sub-answers as JSON array
+                    const answers = Array.from(subInputs).map(input => input.value.trim());
+                    answerText = JSON.stringify(answers);
+                } else if (matchingInputs.length > 0) {
+                    // Matching question - collect selected options as JSON array
+                    const answers = Array.from(matchingInputs).map(input => input.value.trim());
+                    answerText = JSON.stringify(answers);
+                } else {
+                    // Single answer
+                    const answerInput = document.getElementById('answerInput');
+                    answerText = answerInput ? answerInput.value.trim() : '';
+                }
+
+                const response = await fetch(`/quiz/api/sessions/${CODE}/team/answer/`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${TEAM_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        question_id: questionId,
+                        answer_text: answerText
+                    })
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Failed to submit answer');
+                }
+
+                statusDiv.textContent = '✓ Answer saved successfully!';
+                statusDiv.className = 'answer-status success';
+                statusDiv.classList.remove('hidden');
+
+                currentAnswerText = answerText;
+
+                // Refresh the answer overview to show updated status
+                if (ACTIVE_ROLE === 'team') {
+                    renderTeamAnswerOverview();
+                }
+
+                setTimeout(() => {
+                    statusDiv.classList.add('hidden');
+                }, 3000);
+
+                btn.disabled = false;
+                btn.textContent = 'Save Answer';
+            } catch (error) {
+                alert('Error: ' + error.message);
+                btn.disabled = false;
+                btn.textContent = 'Save Answer';
+            }
+        }
+
+        // Admin question navigation
+        async function loadRoundQuestions() {
+            if (!currentState.current_question || !currentState.current_round) return;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/scoring-data/`, {
+                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                });
+                const data = await response.json();
+
+                // Extract questions for current round
+                roundQuestions = data.questions || [];
+
+                // Find current question index
+                if (currentState.current_question) {
+                    currentQuestionIndex = roundQuestions.findIndex(q => q.id === currentState.current_question.id);
+                    if (currentQuestionIndex === -1) currentQuestionIndex = 0;
+                }
+
+                updateNavigationButtons();
+            } catch (error) {
+                console.error('Load round questions error:', error);
+            }
+        }
+
+        async function navigateToQuestion(questionId) {
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/question/`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ question_id: questionId })
+                });
+
+                if (!response.ok) throw new Error('Failed to navigate');
+
+                pollState(); // Refresh state
+            } catch (error) {
+                console.error('Navigation error:', error);
+                alert('Failed to navigate to question');
+            }
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevQuestionBtn');
+            const nextBtn = document.getElementById('nextQuestionBtn');
+            const selector = document.getElementById('questionSelector');
+
+            if (prevBtn && nextBtn && selector && roundQuestions.length > 0) {
+                prevBtn.disabled = currentQuestionIndex === 0;
+                nextBtn.disabled = currentQuestionIndex === roundQuestions.length - 1;
+
+                // Populate dropdown with all questions in round
+                selector.innerHTML = roundQuestions.map((q, idx) => {
+                    return `<option value="${q.id}" ${idx === currentQuestionIndex ? 'selected' : ''}>
+                        Question ${q.number} (${idx + 1} of ${roundQuestions.length})
+                    </option>`;
+                }).join('');
+            }
+        }
+
+        function updateTeamNavToggle(allowNavigation) {
+            const btn = document.getElementById('toggleTeamNavBtn');
+            const statusSpan = document.getElementById('teamNavStatus');
+
+            if (btn && statusSpan) {
+                if (allowNavigation) {
+                    statusSpan.textContent = '✓ Team Navigation Enabled';
+                    btn.classList.remove('btn-secondary');
+                    btn.classList.add('btn-primary');
+                } else {
+                    statusSpan.textContent = '🔒 Enable Team Navigation';
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-secondary');
+                }
+            }
+        }
+
+        async function toggleTeamNavigation() {
+            const currentlyAllowed = currentState.allow_team_navigation;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/toggle-team-navigation/`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        allow_team_navigation: !currentlyAllowed
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to toggle team navigation');
+                }
+
+                pollState(); // Refresh state
+            } catch (error) {
+                console.error('Toggle navigation error:', error);
+                alert('Failed to toggle team navigation');
+            }
+        }
+
+        async function showCategoryFlash(question) {
+            // Get question details to find category and round info
+            const overlay = document.getElementById('categoryFlashOverlay');
+            const categoryNameEl = document.getElementById('flashCategoryName');
+            const roundNameEl = document.getElementById('flashRoundName');
+
+            if (!overlay || !categoryNameEl || !roundNameEl) return;
+
+            // Set the category name and question number
+            const categoryName = question.category_name || 'Unknown Category';
+            const questionNumber = question.number || question.question_number || '?';
+
+            categoryNameEl.textContent = categoryName;
+            roundNameEl.textContent = `Question ${questionNumber}`;
+
+            // Show the overlay with fade in
+            overlay.classList.add('show');
+
+            // Wait for 2.5 seconds
+            await new Promise(resolve => setTimeout(resolve, 2500));
+
+            // Hide the overlay with fade out
+            overlay.classList.remove('show');
+
+            // Wait for fade out animation to complete
+            await new Promise(resolve => setTimeout(resolve, 300));
+        }
+
+        async function loadTeamQuestions(state) {
+            if (!state.current_round) return;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/team/answers/`, {
+                    headers: { 'Authorization': `Bearer ${TEAM_TOKEN}` }
+                });
+                const data = await response.json();
+
+                // Build teamQuestions from answers data
+                teamQuestions = data.answers.map(a => ({
+                    id: a.question_id,
+                    number: a.question_number,
+                    text: a.question_text
+                }));
+
+                // Update team question selector
+                const selector = document.getElementById('teamQuestionSelector');
+                if (selector && teamQuestions.length > 0) {
+                    const currentId = teamCurrentQuestionId || state.current_question.id;
+                    selector.innerHTML = teamQuestions.map((q) => {
+                        return `<option value="${q.id}" ${q.id === currentId ? 'selected' : ''}>
+                            Question ${q.number}
+                        </option>`;
+                    }).join('');
+                }
+            } catch (error) {
+                console.error('Load team questions error:', error);
+            }
+        }
+
+        // Team answer overview
+        async function renderTeamAnswerOverview() {
+            if (!currentState.current_question) return;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/team/answers/`, {
+                    headers: { 'Authorization': `Bearer ${TEAM_TOKEN}` }
+                });
+                const data = await response.json();
+
+                const container = document.getElementById('teamAnswerOverview');
+                if (!container) return;
+
+                // Group answers by question number for display
+                const answerMap = new Map();
+                data.answers.forEach(a => {
+                    answerMap.set(a.question_id, a);
+                });
+
+                // Create badges for all questions
+                container.innerHTML = data.answers.map(a => {
+                    const isAnswered = a.answer_text && a.answer_text.trim() !== '';
+                    const isCurrent = a.question_id === currentState.current_question.id;
+
+                    return `
+                        <div class="answer-badge ${isAnswered ? 'answered' : 'unanswered'} ${isCurrent ? 'current' : ''}"
+                             title="Question ${a.question_number}${isAnswered ? ' - Answered' : ' - Not answered'}">
+                            Q${a.question_number}
+                        </div>
+                    `;
+                }).join('');
+
+                // Update score display
+                const scoreSpan = document.getElementById('teamCurrentScore');
+                if (scoreSpan && currentState.teams) {
+                    // Find current team's score
+                    const myTeamData = currentState.teams.find(t => t.id);
+                    if (myTeamData) {
+                        scoreSpan.textContent = myTeamData.score || 0;
+                    }
+                }
+            } catch (error) {
+                console.error('Answer overview error:', error);
+            }
+        }
+
+        let scoringDataLoaded = false;  // Only load scoring data once per scoring session
+        let leaderboardDataLoaded = false;  // Only load leaderboard data once per leaderboard view
+
+        async function loadScoringData() {
+            // Only load scoring data once - don't re-render and overwrite user input
+            if (scoringDataLoaded) {
+                return;
+            }
+            scoringDataLoaded = true;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/scoring-data/`, {
+                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                });
+                const data = await response.json();
+                renderScoringUI(data);
+            } catch (error) {
+                console.error('Scoring data error:', error);
+            }
+        }
+
+        function renderScoringUI(data) {
+            const container = document.getElementById('scoringContent');
+            container.innerHTML = data.questions.map(q => {
+                // Format correct answers based on question type
+                let correctAnswersHtml = '';
+                if (q.correct_answers && q.correct_answers.length > 0) {
+                    if (q.question_type === 'Ranking') {
+                        // Show correct ranking order
+                        correctAnswersHtml = '<div style="padding: 1rem; background: #f0fdf4; border: 2px solid #10b981; border-top: none;">';
+                        correctAnswersHtml += '<strong>Correct Ranking:</strong><ol style="margin: 0.5rem 0 0 1.5rem;">';
+                        const sortedByRank = [...q.correct_answers].sort((a, b) => (a.correct_rank || 0) - (b.correct_rank || 0));
+                        sortedByRank.forEach(a => {
+                            if (a.correct_rank) {
+                                correctAnswersHtml += `<li>${escapeHtml(a.sub_question || a.answer_text || '')}</li>`;
+                            }
+                        });
+                        correctAnswersHtml += '</ol></div>';
+                    } else if (q.question_type === 'Multiple Open Ended') {
+                        // Show sub-questions with correct answers
+                        correctAnswersHtml = '<div style="padding: 1rem; background: #f0fdf4; border: 2px solid #10b981; border-top: none;">';
+                        correctAnswersHtml += '<strong>Correct Answers:</strong><ul style="margin: 0.5rem 0 0 1.5rem; list-style: none;">';
+                        q.correct_answers.forEach((a, idx) => {
+                            const label = String.fromCharCode(97 + idx); // a, b, c...
+                            const subQuestionText = a.sub_question || a.text || '';
+                            correctAnswersHtml += `<li style="margin-bottom: 0.5rem;"><strong>${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</strong><br><span style="color: #10b981; margin-left: 1rem;">${escapeHtml(a.answer_text || 'N/A')}</span></li>`;
+                        });
+                        correctAnswersHtml += '</ul></div>';
+                    } else {
+                        // Default: show answer_text
+                        const answers = q.correct_answers.map(a => escapeHtml(a.answer_text || a.sub_question || '')).filter(t => t).join(', ');
+                        if (answers) {
+                            correctAnswersHtml = `<div style="padding: 1rem; background: #f0fdf4; border: 2px solid #10b981; border-top: none;"><strong>Correct Answer(s):</strong> ${answers}</div>`;
+                        }
+                    }
+                }
+
+                // Build team answers table
+                let tableHtml = '';
+
+                // Check if this is a multi-part question (Multiple Open Ended, Ranking, Matching)
+                const isMultiPart = q.question_type === 'Multiple Open Ended' || q.question_type === 'Ranking' || q.question_type === 'Matching';
+                const hasSubQuestions = q.correct_answers && q.correct_answers.length > 1;
+
+                if (isMultiPart && hasSubQuestions) {
+                    // Render with sub-question breakdown
+                    tableHtml = renderMultiPartScoringTable(q);
+                } else {
+                    // Render simple single-answer table
+                    tableHtml = `
+                        <table class="scoring-table">
+                            <thead>
+                                <tr>
+                                    <th>Team</th>
+                                    <th>Their Answer</th>
+                                    <th>Points</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${q.team_answers.map(a => `
+                                    <tr>
+                                        <td><strong>${escapeHtml(a.team_name)}</strong></td>
+                                        <td>${formatTeamAnswer(a.answer_text)}</td>
+                                        <td>
+                                            <input type="number" class="points-input"
+                                                   data-answer-id="${a.answer_id}"
+                                                   data-team-id="${a.team_id}"
+                                                   data-question-id="${q.id}"
+                                                   min="0" max="${q.total_points}"
+                                                   value="${a.points_awarded !== null ? a.points_awarded : 0}"
+                                                   ${!a.answer_id ? 'disabled' : ''}>
+                                        </td>
+                                        <td>
+                                            ${a.answer_id ? `
+                                                <button class="btn btn-primary score-btn"
+                                                        onclick="scoreAnswer(this, '${a.answer_id}', '${a.team_id}', '${q.id}', ${q.total_points})">
+                                                    ${a.is_scored ? '✓ Update' : 'Score'}
+                                                </button>
+                                            ` : '<span style="color: #9ca3af;">N/A</span>'}
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                }
+
+                return `
+                    <div class="scoring-section">
+                        <div class="scoring-question-header">
+                            <strong>Q${q.number}:</strong> ${escapeHtml(q.text)} (${q.total_points} points available)
+                        </div>
+                        ${correctAnswersHtml}
+                        ${tableHtml}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderMultiPartScoringTable(q) {
+            // Check if we have the new per-part structure
+            const hasPartsStructure = q.team_answers.length > 0 && q.team_answers[0].parts;
+
+            if (hasPartsStructure) {
+                return renderPerPartScoringTable(q);
+            }
+
+            // Legacy fallback (shouldn't happen after lock, but kept for safety)
+            return renderLegacyMultiPartTable(q);
+        }
+
+        function renderPerPartScoringTable(q) {
+            // New per-part scoring UI
+            const isAutoScored = q.question_type === 'Ranking' || q.question_type === 'Matching';
+            let html = '';
+
+            q.team_answers.forEach(teamAnswer => {
+                html += `<div class="team-scoring-card" style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 1rem; padding: 1rem;">`;
+                html += `<div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">`;
+                html += `<span>${escapeHtml(teamAnswer.team_name)}</span>`;
+                html += `<span class="team-total-${teamAnswer.team_id}" style="color: ${teamAnswer.is_scored ? '#10b981' : '#6b7280'};">${teamAnswer.total_points_awarded !== null ? teamAnswer.total_points_awarded : '?'}/${q.total_points} pts</span>`;
+                html += `</div>`;
+
+                // Per-part scoring grid
+                html += `<div style="display: flex; flex-direction: column; gap: 0.5rem;">`;
+
+                teamAnswer.parts.forEach((part, idx) => {
+                    const correctAnswer = q.correct_answers[idx] || {};
+                    const label = String.fromCharCode(97 + idx); // a, b, c...
+                    const subQuestionText = correctAnswer.sub_question || correctAnswer.text || '';
+                    const correctAnswerText = correctAnswer.answer_text || '';
+                    const isCorrect = part.points_awarded !== null && part.points_awarded === part.max_points;
+                    const isWrong = part.points_awarded !== null && part.points_awarded === 0;
+
+                    html += `<div class="part-row" style="display: grid; grid-template-columns: 1fr 1fr 80px 80px; gap: 0.5rem; align-items: center; padding: 0.5rem; background: white; border-radius: 4px; border: 1px solid #e5e7eb;">`;
+
+                    // Correct answer column
+                    html += `<div style="font-size: 0.85rem;">`;
+                    html += `<div style="font-weight: 600; color: #374151;">${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</div>`;
+                    html += `<div style="color: #10b981; font-size: 0.8rem;">Correct: ${escapeHtml(correctAnswerText || String(correctAnswer.correct_rank || ''))}</div>`;
+                    html += `</div>`;
+
+                    // Team's answer column
+                    html += `<div style="font-size: 0.85rem;">`;
+                    if (q.question_type === 'Ranking') {
+                        // For ranking, show which item they placed here
+                        const teamIdx = parseInt(part.answer_text);
+                        const teamItem = !isNaN(teamIdx) && q.correct_answers[teamIdx] ? q.correct_answers[teamIdx] : null;
+                        html += `<div style="color: ${isCorrect ? '#10b981' : isWrong ? '#ef4444' : '#6b7280'};">`;
+                        html += teamItem ? escapeHtml(stripLabelPrefix(teamItem.sub_question || '')) : '<em>No answer</em>';
+                        html += `</div>`;
+                    } else {
+                        html += `<div style="color: ${isCorrect ? '#10b981' : isWrong ? '#ef4444' : '#6b7280'};">`;
+                        html += part.answer_text ? escapeHtml(part.answer_text) : '<em>No answer</em>';
+                        html += `</div>`;
+                    }
+                    html += `</div>`;
+
+                    // Points input
+                    html += `<div>`;
+                    html += `<input type="number" class="points-input" style="width: 60px;"
+                               data-team-answer-id="${part.team_answer_id}"
+                               data-team-id="${teamAnswer.team_id}"
+                               data-question-id="${q.id}"
+                               data-answer-part-id="${part.answer_part_id}"
+                               min="0" max="${part.max_points}"
+                               value="${part.points_awarded !== null ? part.points_awarded : 0}"
+                               ${!part.team_answer_id ? 'disabled' : ''}>`;
+                    html += `<span style="font-size: 0.75rem; color: #6b7280;">/${part.max_points}</span>`;
+                    html += `</div>`;
+
+                    // Score button
+                    html += `<div>`;
+                    if (part.team_answer_id) {
+                        if (isAutoScored && part.is_scored) {
+                            html += `<span style="color: ${isCorrect ? '#10b981' : '#ef4444'}; font-size: 0.9rem;">${isCorrect ? '✓' : '✗'}</span>`;
+                            html += `<button class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; margin-left: 0.25rem;"
+                                    onclick="scorePartAnswer(this, '${part.team_answer_id}', '${teamAnswer.team_id}', '${q.id}', '${part.answer_part_id}', ${part.max_points})">Edit</button>`;
+                        } else {
+                            html += `<button class="btn btn-success" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; margin-right: 0.25rem;"
+                                    onclick="scorePartMax(this, '${part.team_answer_id}', '${teamAnswer.team_id}', '${q.id}', '${part.answer_part_id}', ${part.max_points})">Max</button>`;
+                            html += `<button class="btn btn-primary score-btn" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;"
+                                    onclick="scorePartAnswer(this, '${part.team_answer_id}', '${teamAnswer.team_id}', '${q.id}', '${part.answer_part_id}', ${part.max_points})">
+                                ${part.is_scored ? '✓' : 'Score'}
+                            </button>`;
+                        }
+                    } else {
+                        html += '<span style="color: #9ca3af; font-size: 0.8rem;">N/A</span>';
+                    }
+                    html += `</div>`;
+
+                    html += `</div>`;
+                });
+
+                html += `</div>`;
+                html += `</div>`;
+            });
+
+            return html;
+        }
+
+        function renderLegacyMultiPartTable(q) {
+            // Legacy rendering for answers that haven't been split into parts yet
+            let html = '<table class="scoring-table">';
+            html += '<thead><tr>';
+            html += '<th style="width: 20%;">Team</th>';
+            html += '<th>Their Answers</th>';
+            html += '<th style="width: 100px;">Points</th>';
+            html += '<th style="width: 100px;">Action</th>';
+            html += '</tr></thead>';
+            html += '<tbody>';
+
+            q.team_answers.forEach(teamAnswer => {
+                html += '<tr>';
+                html += `<td style="vertical-align: top; padding-top: 1.5rem;"><strong>${escapeHtml(teamAnswer.team_name)}</strong></td>`;
+
+                // Parse and display their answers
+                html += '<td style="padding: 0.5rem 1rem;">';
+                if (teamAnswer.answer_text) {
+                    try {
+                        const parsedAnswers = JSON.parse(teamAnswer.answer_text);
+                        if (Array.isArray(parsedAnswers)) {
+                            html += '<div style="display: flex; flex-direction: column; gap: 0.75rem;">';
+
+                            if (q.question_type === 'Ranking') {
+                                html += '<div style="font-weight: 600; margin-bottom: 0.25rem; color: #374151;">Their Ranking:</div>';
+                                html += '<ol style="margin: 0; padding-left: 1.5rem;">';
+                                parsedAnswers.forEach(originalIdx => {
+                                    const item = q.correct_answers[originalIdx];
+                                    if (item) {
+                                        html += `<li>${escapeHtml(item.sub_question || item.text || '')}</li>`;
+                                    }
+                                });
+                                html += '</ol>';
+                            } else {
+                                q.correct_answers.forEach((subQ, idx) => {
+                                    const label = String.fromCharCode(97 + idx);
+                                    const subQuestionText = subQ.sub_question || subQ.text || '';
+                                    const teamSubAnswer = parsedAnswers[idx] || '';
+
+                                    html += '<div style="padding: 0.5rem; background: #f9fafb; border-radius: 4px; border: 1px solid #e5e7eb;">';
+                                    html += `<div style="font-size: 0.9rem; font-weight: 600; color: #6b7280; margin-bottom: 0.25rem;">${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</div>`;
+                                    html += `<div style="color: #1f2937;">${teamSubAnswer ? escapeHtml(teamSubAnswer) : '<em style="color: #9ca3af;">No answer</em>'}</div>`;
+                                    html += '</div>';
+                                });
+                            }
+
+                            html += '</div>';
+                        } else {
+                            html += escapeHtml(teamAnswer.answer_text);
+                        }
+                    } catch {
+                        html += escapeHtml(teamAnswer.answer_text);
+                    }
+                } else {
+                    html += '<em style="color: #9ca3af;">No answer submitted</em>';
+                }
+                html += '</td>';
+
+                html += `<td style="vertical-align: top; padding-top: 1.5rem;">
+                    <input type="number" class="points-input"
+                           data-answer-id="${teamAnswer.answer_id}"
+                           data-team-id="${teamAnswer.team_id}"
+                           data-question-id="${q.id}"
+                           min="0" max="${q.total_points}"
+                           value="${teamAnswer.points_awarded !== null ? teamAnswer.points_awarded : 0}"
+                           ${!teamAnswer.answer_id ? 'disabled' : ''}>
+                </td>`;
+                html += `<td style="vertical-align: top; padding-top: 1.5rem;">
+                    ${teamAnswer.answer_id ? `
+                        <button class="btn btn-primary score-btn"
+                                onclick="scoreAnswer(this, '${teamAnswer.answer_id}', '${teamAnswer.team_id}', '${q.id}', ${q.total_points})">
+                            ${teamAnswer.is_scored ? '✓ Update' : 'Score'}
+                        </button>
+                    ` : '<span style="color: #9ca3af;">N/A</span>'}
+                </td>`;
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            return html;
+        }
+
+        function formatTeamAnswer(answerText) {
+            if (!answerText) {
+                return '<em style="color: #9ca3af;">No answer submitted</em>';
+            }
+            return escapeHtml(answerText);
+        }
+
+        function renderReviewUI(state) {
+            // Display current question with full answer details
+            if (state.current_question) {
+                renderFullQuestionWithAnswers(state.current_question, 'reviewQuestionDisplay');
+            }
+
+            // Load round questions for navigation
+            loadRoundQuestions();
+            updateReviewNavigationButtons();
+        }
+
+        function updateReviewNavigationButtons() {
+            const prevBtn = document.getElementById('reviewPrevQuestionBtn');
+            const nextBtn = document.getElementById('reviewNextQuestionBtn');
+            const selector = document.getElementById('reviewQuestionSelector');
+
+            if (prevBtn && nextBtn && selector && roundQuestions.length > 0) {
+                prevBtn.disabled = currentQuestionIndex === 0;
+                nextBtn.disabled = currentQuestionIndex === roundQuestions.length - 1;
+
+                // Populate dropdown with all questions in round
+                selector.innerHTML = roundQuestions.map((q, idx) => {
+                    return `<option value="${q.id}" ${idx === currentQuestionIndex ? 'selected' : ''}>
+                        Question ${q.number} (${idx + 1} of ${roundQuestions.length})
+                    </option>`;
+                }).join('');
+            }
+        }
+
+        async function showLeaderboard() {
+            try {
+                const btn = document.getElementById('showLeaderboardBtn');
+                btn.disabled = true;
+                btn.textContent = 'Loading...';
+
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/show-leaderboard/`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to show leaderboard');
+                }
+
+                // Reset leaderboard data flag so it reloads
+                leaderboardDataLoaded = false;
+                pollState();
+            } catch (error) {
+                alert('Error: ' + error.message);
+                const btn = document.getElementById('showLeaderboardBtn');
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = 'Show Leaderboard';
+                }
+            }
+        }
+
+        async function startNextRound() {
+            try {
+                const btn = document.getElementById('startNextRoundBtn');
+                btn.disabled = true;
+                btn.textContent = 'Starting...';
+
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/start-next-round/`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to start next round');
+                }
+
+                // Reset leaderboard data flag for next round
+                leaderboardDataLoaded = false;
+                pollState();
+            } catch (error) {
+                alert('Error: ' + error.message);
+                document.getElementById('startNextRoundBtn').disabled = false;
+                document.getElementById('startNextRoundBtn').textContent = 'Start Next Round';
+            }
+        }
+
+        async function loadLeaderboardData() {
+            if (leaderboardDataLoaded) return;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/leaderboard/`);
+                const data = await response.json();
+                renderLeaderboard(data, 'leaderboardTableContainer', 'upcomingRoundsContainer', 'leaderboardSummary');
+                leaderboardDataLoaded = true;
+            } catch (error) {
+                console.error('Leaderboard error:', error);
+            }
+        }
+
+        async function loadTeamLeaderboardData() {
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/leaderboard/`);
+                const data = await response.json();
+                renderLeaderboard(data, 'teamLeaderboardTableContainer', 'teamUpcomingRoundsContainer', 'teamLeaderboardSummary');
+            } catch (error) {
+                console.error('Team leaderboard error:', error);
+            }
+        }
+
+        function renderLeaderboard(data, tableContainerId, upcomingContainerId, summaryContainerId) {
+            const tableContainer = document.getElementById(tableContainerId);
+            const upcomingContainer = document.getElementById(upcomingContainerId);
+            const summaryContainer = document.getElementById(summaryContainerId);
+
+            // Render leaderboard table
+            let tableHtml = '<table class="leaderboard-table">';
+            tableHtml += '<thead><tr>';
+            tableHtml += '<th>Rank</th>';
+            tableHtml += '<th>Team</th>';
+
+            // Add columns for each completed round
+            data.completed_rounds.forEach(round => {
+                tableHtml += `<th>R${round.round_number}</th>`;
+            });
+
+            tableHtml += '<th>Total</th>';
+            tableHtml += '</tr></thead>';
+            tableHtml += '<tbody>';
+
+            data.leaderboard.forEach(team => {
+                const rankClass = team.rank === 1 ? 'gold' : team.rank === 2 ? 'silver' : team.rank === 3 ? 'bronze' : '';
+
+                tableHtml += '<tr>';
+                tableHtml += `<td class="leaderboard-rank ${rankClass}">${team.rank}</td>`;
+                tableHtml += `<td class="leaderboard-team">${escapeHtml(team.team_name)}</td>`;
+
+                // Per-round scores
+                team.round_scores.forEach(rs => {
+                    tableHtml += `<td><span class="round-score-badge">${rs.points_scored}/${rs.max_points}</span></td>`;
+                });
+
+                tableHtml += `<td class="leaderboard-total">${team.total_score}</td>`;
+                tableHtml += '</tr>';
+            });
+
+            tableHtml += '</tbody></table>';
+            tableContainer.innerHTML = tableHtml;
+
+            // Render upcoming rounds section
+            if (data.upcoming_rounds.length > 0) {
+                let upcomingHtml = '<div class="upcoming-rounds-section">';
+                upcomingHtml += '<h3>Upcoming Rounds</h3>';
+
+                data.upcoming_rounds.forEach(round => {
+                    upcomingHtml += `
+                        <div class="upcoming-round-item">
+                            <span>${escapeHtml(round.round_name)}</span>
+                            <span class="upcoming-points">${round.available_points} points available</span>
+                        </div>
+                    `;
+                });
+
+                upcomingHtml += '</div>';
+                upcomingContainer.innerHTML = upcomingHtml;
+            } else {
+                upcomingContainer.innerHTML = '';
+            }
+
+            // Render summary
+            summaryContainer.innerHTML = `
+                <div class="summary-item">
+                    <div class="value">${data.points_played}</div>
+                    <div class="label">Points Played</div>
+                </div>
+                <div class="summary-item">
+                    <div class="value">${data.points_remaining}</div>
+                    <div class="label">Points Remaining</div>
+                </div>
+                <div class="summary-item">
+                    <div class="value">${data.total_game_points}</div>
+                    <div class="label">Total Game Points</div>
+                </div>
+            `;
+
+            // Update the start next round button text based on whether this is the final round
+            const startNextBtn = document.getElementById('startNextRoundBtn');
+            if (startNextBtn) {
+                startNextBtn.textContent = data.is_final_round ? 'End Game' : 'Start Next Round';
+            }
+        }
+
+        async function loadFinalStandings() {
+            const container = document.getElementById('finalStandings');
+            if (currentState.teams) {
+                const sorted = [...currentState.teams].sort((a, b) => b.score - a.score);
+                container.innerHTML = sorted.map((t, i) => `
+                    <div class="standing-item ${i === 0 ? 'highlight' : ''}">
+                        <div>
+                            <strong>${i === 0 ? '🏆' : `#${i + 1}`} ${escapeHtml(t.name)}</strong>
+                        </div>
+                        <div style="font-size: 1.2rem; font-weight: 600;">${t.score} points</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        async function loadTeamResults() {
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/team/results/`, {
+                    headers: { 'Authorization': `Bearer ${TEAM_TOKEN}` }
+                });
+                const data = await response.json();
+                const container = document.getElementById('standingsDisplay');
+
+                const yourTeam = data.standings.find(t => t.name === data.team_name);
+
+                container.innerHTML = `
+                    <div style="background: #ede9fe; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h3 style="margin-bottom: 0.5rem;">Your Team: ${escapeHtml(data.team_name)}</h3>
+                        <p style="font-size: 1.5rem; font-weight: 700; color: #8b5cf6; margin: 0.5rem 0;">
+                            ${data.total_score} points
+                        </p>
+                        <p style="color: #6b7280;">Rank: ${data.rank} of ${data.total_teams}</p>
+                    </div>
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Final Standings</h3>
+                    <div class="standings-list">
+                        ${data.standings.map((t, i) => `
+                            <div class="standing-item ${t.name === data.team_name ? 'highlight' : ''}">
+                                <div>
+                                    <strong>${i === 0 ? '🏆' : `#${i + 1}`} ${escapeHtml(t.name)}</strong>
+                                </div>
+                                <div style="font-size: 1.1rem; font-weight: 600;">${t.score} points</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Results error:', error);
+            }
+        }
+
+        // Event Handlers
+        document.getElementById('startGameBtn')?.addEventListener('click', async () => {
+            try {
+                const btn = document.getElementById('startGameBtn');
+                btn.disabled = true;
+                btn.textContent = 'Starting...';
+
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/start/`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Failed to start game');
+                }
+
+                pollState();
+            } catch (error) {
+                alert('Error: ' + error.message);
+                document.getElementById('startGameBtn').disabled = false;
+                document.getElementById('startGameBtn').textContent = 'Start Game';
+            }
+        });
+
+        document.getElementById('lockRoundBtn')?.addEventListener('click', async () => {
+            if (!confirm('Lock this round for scoring? Teams will no longer be able to edit their answers.')) return;
+
+            try {
+                const btn = document.getElementById('lockRoundBtn');
+                btn.disabled = true;
+                btn.textContent = 'Locking...';
+
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/lock-round/`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                });
+
+                if (!response.ok) throw new Error('Failed to lock round');
+
+                pollState();
+            } catch (error) {
+                alert('Error: ' + error.message);
+                document.getElementById('lockRoundBtn').disabled = false;
+                document.getElementById('lockRoundBtn').textContent = 'Lock Round & Start Scoring';
+            }
+        });
+
+        document.getElementById('completeRoundBtn')?.addEventListener('click', async () => {
+            try {
+                const btn = document.getElementById('completeRoundBtn');
+                btn.disabled = true;
+                btn.textContent = 'Processing...';
+
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/complete-round/`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to complete round');
+                }
+
+                pollState();
+            } catch (error) {
+                alert('Error: ' + error.message);
+                document.getElementById('completeRoundBtn').disabled = false;
+                document.getElementById('completeRoundBtn').textContent = 'Complete Round & Continue';
+            }
+        });
+
+        document.getElementById('prevQuestionBtn')?.addEventListener('click', () => {
+            if (currentQuestionIndex > 0 && roundQuestions.length > 0) {
+                currentQuestionIndex--;
+                navigateToQuestion(roundQuestions[currentQuestionIndex].id);
+            }
+        });
+
+        document.getElementById('nextQuestionBtn')?.addEventListener('click', async () => {
+            if (currentQuestionIndex < roundQuestions.length - 1 && roundQuestions.length > 0) {
+                currentQuestionIndex++;
+                const nextQuestion = roundQuestions[currentQuestionIndex];
+
+                // Show category flash before navigating
+                await showCategoryFlash(nextQuestion);
+
+                // Then navigate to the question
+                navigateToQuestion(nextQuestion.id);
+            }
+        });
+
+        document.getElementById('questionSelector')?.addEventListener('change', (e) => {
+            const questionId = parseInt(e.target.value);
+            if (questionId && roundQuestions.length > 0) {
+                navigateToQuestion(questionId);
+            }
+        });
+
+        document.getElementById('toggleTeamNavBtn')?.addEventListener('click', toggleTeamNavigation);
+
+        // Review navigation event listeners
+        document.getElementById('reviewPrevQuestionBtn')?.addEventListener('click', () => {
+            if (currentQuestionIndex > 0 && roundQuestions.length > 0) {
+                currentQuestionIndex--;
+                navigateToQuestion(roundQuestions[currentQuestionIndex].id);
+            }
+        });
+
+        document.getElementById('reviewNextQuestionBtn')?.addEventListener('click', () => {
+            if (currentQuestionIndex < roundQuestions.length - 1 && roundQuestions.length > 0) {
+                currentQuestionIndex++;
+                navigateToQuestion(roundQuestions[currentQuestionIndex].id);
+            }
+        });
+
+        document.getElementById('reviewQuestionSelector')?.addEventListener('change', (e) => {
+            const questionId = parseInt(e.target.value);
+            if (questionId && roundQuestions.length > 0) {
+                navigateToQuestion(questionId);
+            }
+        });
+
+        document.getElementById('showLeaderboardBtn')?.addEventListener('click', showLeaderboard);
+
+        document.getElementById('startNextRoundBtn')?.addEventListener('click', startNextRound);
+
+        document.getElementById('teamQuestionSelector')?.addEventListener('change', async (e) => {
+            const questionId = parseInt(e.target.value);
+            if (questionId) {
+                teamCurrentQuestionId = questionId;
+
+                // Check if we have cached data
+                if (teamQuestionCache[questionId]) {
+                    const question = teamQuestionCache[questionId];
+                    renderFullQuestion(question, 'teamQuestionDisplay');
+                    renderTeamAnswerInputs(question);
+                    loadTeamAnswer(questionId);
+                    renderedQuestionId = questionId;
+                } else {
+                    // Fetch full question details from backend
+                    try {
+                        const response = await fetch(`/quiz/api/sessions/${CODE}/team/question/?question_id=${questionId}`, {
+                            headers: { 'Authorization': `Bearer ${TEAM_TOKEN}` }
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch question details');
+                        }
+
+                        const data = await response.json();
+                        const question = data.question;
+
+                        // Cache the question data
+                        teamQuestionCache[questionId] = question;
+
+                        // Render the question
+                        renderFullQuestion(question, 'teamQuestionDisplay');
+                        renderTeamAnswerInputs(question);
+                        loadTeamAnswer(questionId);
+                        renderedQuestionId = questionId;
+                    } catch (error) {
+                        console.error('Failed to load question:', error);
+                        alert('Failed to load question details. Please try again.');
+                    }
+                }
+            }
+        });
+
+        async function scoreAnswer(btn, answerId, teamId, questionId, maxPoints) {
+            const input = btn.parentElement.previousElementSibling.querySelector('input');
+            const points = parseInt(input.value);
+
+            if (isNaN(points) || points < 0 || points > maxPoints) {
+                alert(`Points must be a number between 0 and ${maxPoints}`);
+                return;
+            }
+
+            btn.disabled = true;
+            const originalText = btn.textContent;
+            btn.textContent = 'Scoring...';
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/score/`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        answer_id: answerId || undefined,
+                        team_id: teamId,
+                        question_id: questionId,
+                        points: points
+                    })
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Failed to score answer');
+                }
+
+                btn.textContent = '✓ Scored';
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.textContent = '✓ Update';
+                }, 1000);
+            } catch (error) {
+                alert('Error: ' + error.message);
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        }
+
+        async function scorePartMax(btn, teamAnswerId, teamId, questionId, answerPartId, maxPoints) {
+            // Set input to max points and immediately score
+            const partRow = btn.closest('.part-row');
+            const input = partRow.querySelector('input.points-input');
+            input.value = maxPoints;
+            // Find the Score button (next sibling) and trigger its click
+            const scoreBtn = partRow.querySelector('.score-btn');
+            if (scoreBtn) {
+                scorePartAnswer(scoreBtn, teamAnswerId, teamId, questionId, answerPartId, maxPoints);
+            }
+        }
+
+        async function scorePartAnswer(btn, teamAnswerId, teamId, questionId, answerPartId, maxPoints) {
+            // Find the input - it's in the previous sibling div
+            const partRow = btn.closest('.part-row');
+            const input = partRow.querySelector('input.points-input');
+            const points = parseInt(input.value);
+
+            if (isNaN(points) || points < 0 || points > maxPoints) {
+                alert(`Points must be a number between 0 and ${maxPoints}`);
+                return;
+            }
+
+            btn.disabled = true;
+            const originalText = btn.textContent;
+            btn.textContent = '...';
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/score/`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        team_answer_id: teamAnswerId,
+                        team_id: teamId,
+                        question_id: questionId,
+                        answer_part_id: answerPartId,
+                        points: points
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to score answer');
+                }
+
+                // Update the team total display
+                const teamTotalEl = document.querySelector(`.team-total-${teamId}`);
+                if (teamTotalEl && data.question_total !== undefined) {
+                    teamTotalEl.textContent = `${data.question_total}/${input.closest('.team-scoring-card').querySelector('[style*="justify-content: space-between"]').textContent.split('/')[1]}`;
+                    teamTotalEl.style.color = '#10b981';
+                }
+
+                btn.textContent = '✓';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-secondary');
+                setTimeout(() => {
+                    btn.disabled = false;
+                }, 500);
+            } catch (error) {
+                alert('Error: ' + error.message);
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        /**
+         * Check if text already starts with a letter label (A., B., C., etc.)
+         * to avoid duplication like "a) A. answer text"
+         */
+        function shouldPrependLabel(text) {
+            if (!text) return true;
+            const trimmed = text.trim();
+            // Check if text starts with:
+            // - Uppercase letter followed by period and space: A. B. C. etc.
+            // - Lowercase letter followed by closing paren: a) b) c) etc.
+            // - Uppercase letter followed by closing paren: A) B) C) etc.
+            return !/^[A-Za-z][\.\)]\s/.test(trimmed);
+        }
+
+        /**
+         * Remove letter label prefix from text if it exists
+         * Removes patterns like "A. ", "B. ", "a) ", "A) " from the beginning
+         */
+        function stripLabelPrefix(text) {
+            if (!text) return '';
+            const trimmed = text.trim();
+            // Remove single letter followed by period or paren and optional space at the start
+            return trimmed.replace(/^[A-Za-z][\.\)]\s*/, '');
+        }
+    </script>
+</body>
+</html>

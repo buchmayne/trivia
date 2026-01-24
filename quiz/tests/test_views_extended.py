@@ -340,7 +340,7 @@ class AnalyticsViewExtendedTest(TestCase):
 
     def test_analytics_view_loads(self):
         """Test that analytics view loads successfully"""
-        url = reverse("analytics")
+        url = reverse("quiz:analytics")
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -349,7 +349,7 @@ class AnalyticsViewExtendedTest(TestCase):
 
     def test_analytics_filter_by_player(self):
         """Test filtering analytics by player name"""
-        url = reverse("analytics")
+        url = reverse("quiz:analytics")
         response = self.client.get(url, {"player_search": "Alice"})
 
         self.assertEqual(response.status_code, 200)
@@ -367,7 +367,7 @@ class AnalyticsViewExtendedTest(TestCase):
 
     def test_analytics_filter_multiple_games_only(self):
         """Test filtering to show only players with multiple games"""
-        url = reverse("analytics")
+        url = reverse("quiz:analytics")
         response = self.client.get(url, {"multiple_games": "on"})
 
         self.assertEqual(response.status_code, 200)
@@ -379,7 +379,7 @@ class AnalyticsViewExtendedTest(TestCase):
 
     def test_analytics_filter_by_game_date(self):
         """Test filtering analytics by specific game date"""
-        url = reverse("analytics")
+        url = reverse("quiz:analytics")
         response = self.client.get(url, {"game_date": "2024-01-01"})
 
         self.assertEqual(response.status_code, 200)
@@ -391,7 +391,7 @@ class AnalyticsViewExtendedTest(TestCase):
 
     def test_analytics_percentages_converted(self):
         """Test that percentages are converted to display format"""
-        url = reverse("analytics")
+        url = reverse("quiz:analytics")
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -408,7 +408,7 @@ class AnalyticsViewExtendedTest(TestCase):
 
     def test_analytics_game_dates_list(self):
         """Test that unique game dates are available in context"""
-        url = reverse("analytics")
+        url = reverse("quiz:analytics")
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)

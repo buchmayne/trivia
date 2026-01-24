@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host a Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: 2rem;
+        }
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .form-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+        .btn-primary:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: white;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .error {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .hint {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Host a Game</h1>
+
+        <div class="form-card">
+            <div id="error" class="error"></div>
+
+            <form id="hostForm">
+                <div class="form-group">
+                    <label for="adminName">Your Name</label>
+                    <input
+                        type="text"
+                        id="adminName"
+                        placeholder="Enter your name"
+                        required
+                        minlength="2"
+                        maxlength="100"
+                    >
+                    <div class="hint">This will be displayed to teams</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gameSelect">Select Game</label>
+                    <select id="gameSelect" required>
+                        <option value="">Choose a game...</option>
+                        {% for game in games %}
+                        <option value="{{ game.id }}"
+                                data-protected="{{ game.is_password_protected|lower }}"
+                                data-password="{{ game.password|default:'' }}">
+                            {{ game.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group" id="passwordGroup" style="display: none;">
+                    <label for="gamePassword">Game Password</label>
+                    <input
+                        type="password"
+                        id="gamePassword"
+                        placeholder="Enter game password"
+                    >
+                    <div class="hint">This game is password protected</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="maxTeams">Max Teams</label>
+                    <input
+                        type="number"
+                        id="maxTeams"
+                        value="16"
+                        min="1"
+                        max="50"
+                        required
+                    >
+                    <div class="hint">Maximum number of teams that can join</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    Create Session
+                </button>
+            </form>
+
+            <a href="{% url 'quiz:session_landing' %}" class="back-link">← Back</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('hostForm');
+        const errorDiv = document.getElementById('error');
+        const submitBtn = document.getElementById('submitBtn');
+        const gameSelect = document.getElementById('gameSelect');
+        const passwordGroup = document.getElementById('passwordGroup');
+        const passwordInput = document.getElementById('gamePassword');
+
+        // Show/hide password field based on game selection
+        gameSelect.addEventListener('change', (e) => {
+            const selectedOption = e.target.selectedOptions[0];
+            const isProtected = selectedOption?.dataset.protected === 'true';
+
+            if (isProtected) {
+                passwordGroup.style.display = 'block';
+                passwordInput.required = true;
+            } else {
+                passwordGroup.style.display = 'none';
+                passwordInput.required = false;
+                passwordInput.value = '';
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const adminName = document.getElementById('adminName').value.trim();
+            const gameId = document.getElementById('gameSelect').value;
+            const maxTeams = document.getElementById('maxTeams').value;
+            const selectedOption = gameSelect.selectedOptions[0];
+            const isProtected = selectedOption?.dataset.protected === 'true';
+            const correctPassword = selectedOption?.dataset.password;
+            const enteredPassword = passwordInput.value;
+
+            if (!adminName || !gameId) {
+                showError('Please fill in all required fields');
+                return;
+            }
+
+            // Validate password if game is protected
+            if (isProtected && enteredPassword !== correctPassword) {
+                showError('Incorrect game password');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Creating...';
+
+            try {
+                const response = await fetch('/quiz/api/sessions/create/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        admin_name: adminName,
+                        game_id: parseInt(gameId),
+                        max_teams: parseInt(maxTeams)
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to create session');
+                }
+
+                // Store admin token in localStorage
+                localStorage.setItem(`session_${data.code}_admin`, data.admin_token);
+                // Set role preference to indicate this user is a host
+                localStorage.setItem(`session_${data.code}_role`, 'admin');
+
+                // Redirect to live session (validation will clean up any conflicts)
+                window.location.href = `/quiz/play/${data.code}/`;
+
+            } catch (error) {
+                showError(error.message);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Session';
+            }
+        });
+
+        function showError(message) {
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
