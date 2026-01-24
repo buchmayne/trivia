@@ -38,6 +38,22 @@ def landing_page_view(request: HttpRequest) -> HttpResponse:
     return render(request, "quiz/landing.html")
 
 
+def coming_soon_view(request: HttpRequest, page_name: str = "This page") -> HttpResponse:
+    """Placeholder view for pages under construction."""
+    page_titles = {
+        "pricing": "Pricing",
+        "about": "About Us",
+        "contact": "Contact",
+        "help": "Help Center",
+        "host-guide": "Host Guide",
+        "status": "Status",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+    }
+    title = page_titles.get(page_name, page_name.replace("-", " ").title())
+    return render(request, "quiz/coming_soon.html", {"page_title": title})
+
+
 def game_list_view(request: HttpRequest) -> HttpResponse:
     """View to list available trivia games (Gallery Mode)."""
     games = Game.objects.all().order_by("-game_order")

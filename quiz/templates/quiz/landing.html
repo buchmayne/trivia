@@ -21,8 +21,8 @@
             <div class="nav-links">
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#how-it-works" class="nav-link">How It Works</a>
-                <a href="#" class="nav-link">Pricing</a>
-                <a href="#" class="nav-link">About</a>
+                <a href="{% url 'quiz:pricing' %}" class="nav-link">Pricing</a>
+                <a href="{% url 'quiz:about' %}" class="nav-link">About</a>
                 <a href="{% url 'quiz:session_landing' %}" class="nav-cta">Start Playing</a>
             </div>
             <button class="nav-toggle" aria-label="Toggle menu">
@@ -37,8 +37,8 @@
     <div class="mobile-menu">
         <a href="#features" class="mobile-link">Features</a>
         <a href="#how-it-works" class="mobile-link">How It Works</a>
-        <a href="#" class="mobile-link">Pricing</a>
-        <a href="#" class="mobile-link">About</a>
+        <a href="{% url 'quiz:pricing' %}" class="mobile-link">Pricing</a>
+        <a href="{% url 'quiz:about' %}" class="mobile-link">About</a>
         <a href="{% url 'quiz:session_landing' %}" class="mobile-cta">Start Playing</a>
     </div>
 
@@ -77,12 +77,12 @@
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-number">50+</span>
+                    <span class="stat-number">15+</span>
                     <span class="stat-label">Curated Games</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-number">1000+</span>
+                    <span class="stat-number">300+</span>
                     <span class="stat-label">Questions</span>
                 </div>
                 <div class="stat-divider"></div>
@@ -95,11 +95,11 @@
         <div class="hero-visual">
             <div class="visual-card card-1">
                 <div class="card-icon">?</div>
-                <div class="card-text">What year did the first message travel across ARPANET?</div>
+                <div class="card-text">Were Mahatma Gandhi & Karl Marx alive at the same time?</div>
             </div>
             <div class="visual-card card-2">
-                <div class="card-category">INTERNET HISTORY</div>
-                <div class="card-answer">1969</div>
+                <div class="card-category">HISTORY</div>
+                <div class="card-answer">Yes</div>
             </div>
             <div class="visual-card card-3">
                 <div class="card-emoji">~</div>
@@ -362,15 +362,14 @@
             <div class="diff-visual">
                 <div class="diff-card">
                     <div class="diff-card-header">
-                        <span class="diff-card-category">INTERNET CULTURE</span>
+                        <span class="diff-card-category">POP CULTURE</span>
                         <span class="diff-card-round">Round 2</span>
                     </div>
                     <div class="diff-card-question">
-                        What was the name of the first webcam, which monitored a coffee pot
-                        at the University of Cambridge?
+                        Is the quote from Optimus Prime or Che Guevara: "There's a thin line between being a hero, and being a memory."
                     </div>
                     <div class="diff-card-footer">
-                        <span class="diff-card-hint">Think: early internet innovation born from caffeine needs</span>
+                        <span class="diff-card-hint">Think: revolutionary words from an unexpected source</span>
                     </div>
                 </div>
             </div>
@@ -395,7 +394,7 @@
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </a>
-                    <a href="#" class="btn btn-ghost">
+                    <a href="{% url 'quiz:pricing' %}" class="btn btn-ghost">
                         <span>View Pricing</span>
                     </a>
                 </div>
@@ -422,29 +421,26 @@
                         <a href="{% url 'quiz:gallery' %}">Game Gallery</a>
                         <a href="{% url 'quiz:session_landing' %}">Host a Game</a>
                         <a href="{% url 'quiz:analytics' %}">Analytics</a>
-                        <a href="#">Pricing</a>
+                        <a href="{% url 'quiz:pricing' %}">Pricing</a>
                     </div>
                     <div class="footer-column">
                         <h4 class="footer-heading">Company</h4>
-                        <a href="#">About Us</a>
-                        <a href="#">Blog</a>
-                        <a href="#">Careers</a>
-                        <a href="#">Contact</a>
+                        <a href="{% url 'quiz:about' %}">About Us</a>
+                        <a href="{% url 'quiz:contact' %}">Contact</a>
                     </div>
                     <div class="footer-column">
                         <h4 class="footer-heading">Resources</h4>
-                        <a href="#">Help Center</a>
-                        <a href="#">Host Guide</a>
-                        <a href="#">API Docs</a>
-                        <a href="#">Status</a>
+                        <a href="{% url 'quiz:help' %}">Help Center</a>
+                        <a href="{% url 'quiz:host_guide' %}">Host Guide</a>
+                        <a href="{% url 'quiz:status' %}">Status</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p class="footer-copyright">2025 Third Wave Trivia. All rights reserved.</p>
                 <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+                    <a href="{% url 'quiz:privacy' %}">Privacy Policy</a>
+                    <a href="{% url 'quiz:terms' %}">Terms of Service</a>
                 </div>
             </div>
         </div>
