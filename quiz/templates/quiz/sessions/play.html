@@ -85,17 +85,27 @@
         }
 
         /* Ranking Question Styles */
+        .ranking-list {
+            touch-action: pan-y;  /* Allow vertical scroll, enable horizontal drag */
+        }
         .ranking-item {
             background: white;
             padding: 1rem;
             margin-bottom: 0.75rem;
             border: 2px solid #d1d5db;
             border-radius: 8px;
-            cursor: move;
-            transition: all 0.2s;
             display: flex;
             align-items: center;
             gap: 1rem;
+            /* Touch-specific styles to prevent text selection */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            cursor: grab;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
         }
         .ranking-item:hover {
             border-color: #667eea;
@@ -104,10 +114,26 @@
         .ranking-item.sortable-ghost {
             opacity: 0.4;
         }
+        /* "Chosen" state - when item is grabbed but not yet moving */
+        .ranking-item.sortable-chosen {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transform: scale(1.02);
+        }
+        /* Enhanced drag state with stronger lift effect */
         .ranking-item.sortable-drag {
-            opacity: 1;
-            background: #f3f4f6;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background: white;
+            border-color: #667eea;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+            cursor: grabbing;
+        }
+        /* Fallback mode drag element */
+        .ranking-item.sortable-fallback {
+            background: white;
+            border-color: #667eea;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
         }
         .ranking-handle {
             font-size: 1.5rem;
@@ -1658,9 +1684,25 @@
             if (rankingList) {
                 Sortable.create(rankingList, {
                     animation: 150,
-                    handle: '.ranking-handle',
+
+                    // Entire item is draggable (no handle restriction)
+
+                    // Touch-specific options
+                    delay: 100,                    // Brief delay to distinguish tap from drag
+                    delayOnTouchOnly: true,        // Delay only on touch, not mouse
+                    touchStartThreshold: 5,        // Cancel drag if moved 5px before delay ends
+
+                    // Use fallback for consistent iOS behavior
+                    forceFallback: true,           // Bypass native HTML5 DnD
+                    fallbackOnBody: true,          // Proper z-index for dragged element
+                    fallbackTolerance: 3,          // 3px threshold before drag recognized
+
+                    // CSS classes
                     ghostClass: 'sortable-ghost',
+                    chosenClass: 'sortable-chosen',
                     dragClass: 'sortable-drag',
+                    fallbackClass: 'sortable-fallback',
+
                     onEnd: function() {
                         // Update ranking numbers
                         updateRankingNumbers();
