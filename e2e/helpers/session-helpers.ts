@@ -1,0 +1,327 @@
+import { Page, expect } from '@playwright/test';
+
+/**
+ * Wait for session state to reach a specific status
+ */
+export async function waitForSessionStatus(
+  page: Page,
+  expectedStatus: string,
+  timeout: number = 10000
+): Promise<void> {
+  await expect(async () => {
+    const statusBadge = page.locator('#statusBadge, .status-badge');
+    const text = await statusBadge.textContent();
+    expect(text?.toLowerCase()).toContain(expectedStatus.toLowerCase());
+  }).toPass({ timeout });
+}
+
+/**
+ * Wait for admin view to be visible
+ */
+export async function waitForAdminView(page: Page): Promise<void> {
+  await expect(page.locator('#adminView')).toBeVisible({ timeout: 10000 });
+}
+
+/**
+ * Wait for team view to be visible
+ */
+export async function waitForTeamView(page: Page): Promise<void> {
+  await expect(page.locator('#teamView')).toBeVisible({ timeout: 10000 });
+}
+
+/**
+ * Admin: Start the game from lobby
+ */
+export async function adminStartGame(page: Page): Promise<void> {
+  await waitForAdminView(page);
+  const startBtn = page.locator('#startGameBtn');
+  await expect(startBtn).toBeVisible();
+  await startBtn.click();
+
+  // Wait for playing state
+  await expect(page.locator('#playingState')).toBeVisible({ timeout: 10000 });
+}
+
+/**
+ * Admin: Navigate to next question
+ */
+export async function adminNextQuestion(page: Page): Promise<void> {
+  const nextBtn = page.locator('#nextQuestionBtn');
+  if (await nextBtn.isEnabled()) {
+    await nextBtn.click();
+    // Wait for UI to update (polling interval is 2s)
+    await page.waitForTimeout(500);
+  }
+}
+
+/**
+ * Admin: Navigate to previous question
+ */
+export async function adminPrevQuestion(page: Page): Promise<void> {
+  const prevBtn = page.locator('#prevQuestionBtn');
+  if (await prevBtn.isEnabled()) {
+    await prevBtn.click();
+    await page.waitForTimeout(500);
+  }
+}
+
+/**
+ * Admin: Set specific question by ID
+ */
+export async function adminSetQuestion(page: Page, questionId: number): Promise<void> {
+  const selector = page.locator('#questionSelector');
+  await selector.selectOption(String(questionId));
+  await page.waitForTimeout(500);
+}
+
+/**
+ * Admin: Lock the current round
+ */
+export async function adminLockRound(page: Page): Promise<void> {
+  const lockBtn = page.locator('#lockRoundBtn');
+  await expect(lockBtn).toBeVisible();
+  await lockBtn.click();
+
+  // Wait for confirmation or state change
+  await page.waitForTimeout(1000);
+}
+
+/**
+ * Admin: Complete scoring and move to review
+ */
+export async function adminCompleteRound(page: Page): Promise<void> {
+  const completeBtn = page.locator('#completeRoundBtn');
+  await expect(completeBtn).toBeVisible();
+  await completeBtn.click();
+
+  // Wait for reviewing state
+  await expect(page.locator('#reviewingState')).toBeVisible({ timeout: 10000 });
+}
+
+/**
+ * Admin: Show leaderboard
+ */
+export async function adminShowLeaderboard(page: Page): Promise<void> {
+  const leaderboardBtn = page.locator('#showLeaderboardBtn, button:has-text("Show Leaderboard")');
+  await expect(leaderboardBtn).toBeVisible();
+  await leaderboardBtn.click();
+
+  // Wait for leaderboard state
+  await expect(page.locator('#leaderboardState')).toBeVisible({ timeout: 10000 });
+}
+
+/**
+ * Admin: Start next round
+ */
+export async function adminStartNextRound(page: Page): Promise<void> {
+  const nextRoundBtn = page.locator('#startNextRoundBtn');
+  await expect(nextRoundBtn).toBeVisible();
+  await nextRoundBtn.click();
+
+  // Wait for playing state
+  await expect(page.locator('#playingState')).toBeVisible({ timeout: 10000 });
+}
+
+/**
+ * Admin: Score an answer with specific points
+ */
+export async function adminScoreAnswer(
+  page: Page,
+  teamName: string,
+  points: number
+): Promise<void> {
+  // Find the scoring row for this team
+  const row = page.locator(`#scoringContent tr:has-text("${teamName}")`).first();
+
+  // Find the points input in this row
+  const pointsInput = row.locator('.points-input');
+  await pointsInput.fill(String(points));
+
+  // Find and click the score button
+  const scoreBtn = row.locator('.score-btn');
+  await scoreBtn.click();
+
+  // Wait for update
+  await page.waitForTimeout(500);
+}
+
+/**
+ * Admin: Score all answers for current question with full points
+ */
+export async function adminScoreAllAnswers(page: Page, points: number): Promise<void> {
+  const pointsInputs = await page.locator('#scoringContent .points-input').all();
+
+  for (const pointsInput of pointsInputs) {
+    if (await pointsInput.isVisible()) {
+      await pointsInput.fill(String(points));
+      const row = pointsInput.locator('xpath=ancestor::tr');
+      const scoreBtn = row.locator('.score-btn');
+      if (await scoreBtn.isVisible()) {
+        await scoreBtn.click();
+        await page.waitForTimeout(300);
+      }
+    }
+  }
+}
+
+/**
+ * Team: Submit a text answer
+ * Handles both single-input questions and multi-part questions
+ */
+export async function teamSubmitTextAnswer(page: Page, answerText: string): Promise<void> {
+  await waitForTeamView(page);
+
+  // Check if this is a multi-part question (has .sub-answer-input elements)
+  const subAnswerInputs = page.locator('.sub-answer-input');
+  const subAnswerCount = await subAnswerInputs.count();
+
+  if (subAnswerCount > 0) {
+    // Multi-part question - fill all sub-answer inputs
+    for (let i = 0; i < subAnswerCount; i++) {
+      const input = subAnswerInputs.nth(i);
+      await input.fill(`${answerText} - part ${i + 1}`);
+    }
+  } else {
+    // Single input question - use #answerInput
+    const answerInput = page.locator('#answerInput');
+    await expect(answerInput).toBeVisible({ timeout: 10000 });
+    await answerInput.fill(answerText);
+  }
+
+  // Click submit button
+  const submitBtn = page.locator('#submitAnswerBtn');
+  await expect(submitBtn).toBeVisible({ timeout: 5000 });
+  await submitBtn.click();
+
+  // Wait for submission confirmation
+  await page.waitForTimeout(1000);
+}
+
+/**
+ * Team: Submit a ranking answer by reordering items
+ * @param order - Array of indices representing the desired order (0-based)
+ */
+export async function teamSubmitRankingAnswer(page: Page, order: number[]): Promise<void> {
+  await waitForTeamView(page);
+
+  // For ranking questions, we need to drag and drop items
+  // This is complex with Sortable.js - for now just verify the ranking UI exists
+  const rankingItems = page.locator('.ranking-item, .sortable-item');
+  await expect(rankingItems.first()).toBeVisible();
+
+  // Submit the current order
+  const submitBtn = page.locator('#submitAnswerBtn, button:has-text("Submit")');
+  await submitBtn.click();
+
+  await page.waitForTimeout(1000);
+}
+
+/**
+ * Team: Wait for question to be displayed
+ */
+export async function teamWaitForQuestion(page: Page): Promise<void> {
+  await waitForTeamView(page);
+  await expect(page.locator('#teamPlaying')).toBeVisible({ timeout: 10000 });
+  await expect(page.locator('#teamQuestionDisplay')).toBeVisible();
+}
+
+/**
+ * Team: Navigate to specific question (when team navigation is enabled)
+ */
+export async function teamNavigateToQuestion(page: Page, questionIndex: number): Promise<void> {
+  const questionNav = page.locator('#teamQuestionNav, .team-question-nav');
+  await expect(questionNav).toBeVisible();
+
+  const navItems = await questionNav.locator('button, .nav-item').all();
+  if (questionIndex < navItems.length) {
+    await navItems[questionIndex].click();
+    await page.waitForTimeout(500);
+  }
+}
+
+/**
+ * Get the current question text displayed to a team
+ */
+export async function teamGetCurrentQuestion(page: Page): Promise<string | null> {
+  const questionDisplay = page.locator('#teamQuestionDisplay, .question-text');
+  if (await questionDisplay.isVisible()) {
+    return await questionDisplay.textContent();
+  }
+  return null;
+}
+
+/**
+ * Get the team's current score from the UI
+ */
+export async function teamGetScore(page: Page): Promise<number> {
+  const scoreDisplay = page.locator('#teamCurrentScore, .team-score');
+  if (await scoreDisplay.isVisible()) {
+    const text = await scoreDisplay.textContent();
+    const match = text?.match(/\d+/);
+    return match ? parseInt(match[0], 10) : 0;
+  }
+  return 0;
+}
+
+/**
+ * Get leaderboard data from the page
+ */
+export async function getLeaderboardData(
+  page: Page
+): Promise<Array<{ name: string; score: number; rank: number }>> {
+  const results: Array<{ name: string; score: number; rank: number }> = [];
+
+  // Wait for leaderboard table to be visible
+  const tableContainer = page.locator('#leaderboardTableContainer, #teamLeaderboardTableContainer');
+  await tableContainer.first().waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
+
+  const rows = await page.locator(
+    '#leaderboardTableContainer tbody tr, #teamLeaderboardTableContainer tbody tr'
+  ).all();
+
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    const cells = await row.locator('td').all();
+    if (cells.length >= 2) {
+      const name = await cells[0].textContent();
+      const scoreText = await cells[1].textContent();
+      const score = parseInt(scoreText?.replace(/\D/g, '') || '0', 10);
+      results.push({
+        name: name?.trim() || '',
+        score,
+        rank: i + 1
+      });
+    }
+  }
+
+  return results;
+}
+
+/**
+ * Count the number of teams in the lobby
+ */
+export async function getTeamCount(page: Page): Promise<number> {
+  // Teams are displayed in #lobbyTeams as .team-card elements
+  const teamCards = page.locator('#lobbyTeams .team-card');
+  return await teamCards.count();
+}
+
+/**
+ * Check if a specific state section is visible
+ */
+export async function isStateVisible(
+  page: Page,
+  state: 'lobby' | 'playing' | 'scoring' | 'reviewing' | 'leaderboard' | 'completed'
+): Promise<boolean> {
+  const stateIds: Record<string, string> = {
+    lobby: '#lobbyState',
+    playing: '#playingState',
+    scoring: '#scoringState',
+    reviewing: '#reviewingState',
+    leaderboard: '#leaderboardState',
+    completed: '#completedState'
+  };
+
+  const selector = stateIds[state];
+  return await page.locator(selector).isVisible();
+}
