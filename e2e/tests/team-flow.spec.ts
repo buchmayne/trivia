@@ -12,6 +12,8 @@ import {
   adminShowLeaderboard,
   adminWaitForScoring,
   adminWaitForLeaderboard,
+  adminScoreAllAnswers,
+  adminOpenScoring,
   getLeaderboardData
 } from '../helpers/session-helpers';
 
@@ -196,9 +198,11 @@ test.describe('Team Flow Tests', () => {
     await adminStartGame(adminPage);
     await teamWaitForQuestion(team.page);
 
+    // Team submits an answer before lock
+    await teamSubmitTextAnswer(team.page, 'Answer before lock');
+
     // Admin locks the round
     await adminLockRound(adminPage);
-    await adminWaitForScoring(adminPage);
     await team.page.waitForTimeout(2500); // Wait for polling to update
 
     // Try to submit - should be blocked
@@ -281,11 +285,7 @@ test.describe('Team Flow Tests', () => {
     // Score the answer (simplified - just complete the round)
     const scoringInputs = adminPage.locator('#scoringContent .points-input');
     if ((await scoringInputs.count()) > 0) {
-      await scoringInputs.first().fill('10');
-      const scoreBtn = adminPage.locator('.score-btn, button:has-text(\"Score\")').first();
-      if (await scoreBtn.isVisible()) {
-        await scoreBtn.click();
-      }
+      await adminScoreAllAnswers(adminPage, 10);
     }
 
     await adminCompleteRound(adminPage);
@@ -318,17 +318,13 @@ test.describe('Team Flow Tests', () => {
 
     // Admin scores and completes
     await adminLockRound(adminPage);
-    await adminWaitForScoring(adminPage);
+    await adminOpenScoring(adminPage);
 
     const scoringInputs = adminPage.locator(
       '#scoringContent .points-input'
     );
     if ((await scoringInputs.count()) > 0) {
-      await scoringInputs.first().fill('10');
-      const scoreBtn = adminPage.locator('button:has-text("Score")').first();
-      if (await scoreBtn.isVisible()) {
-        await scoreBtn.click();
-      }
+      await adminScoreAllAnswers(adminPage, 10);
     }
 
     await adminCompleteRound(adminPage);

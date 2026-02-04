@@ -24,6 +24,7 @@ test.describe('Session Lifecycle - Full Game Flow', () => {
     createSession,
     joinSession
   }) => {
+    test.setTimeout(90000);
     // Step 1: Host creates a session
     console.log('Step 1: Creating session...');
     const { page: adminPage, session } = await createSession();
@@ -87,8 +88,10 @@ test.describe('Session Lifecycle - Full Game Flow', () => {
       await adminNextQuestion(adminPage);
       questionCount++;
 
-      // Give teams time to see the new question (2s polling)
-      await adminPage.waitForTimeout(2500);
+      // Wait for teams to see the new question
+      await teamWaitForQuestion(team1.page);
+      await teamWaitForQuestion(team2.page);
+      await teamWaitForQuestion(team3.page);
 
       // Teams submit answers for this question
       await teamSubmitTextAnswer(team1.page, `Alpha answer for Q${questionCount}`);

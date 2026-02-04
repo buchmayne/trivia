@@ -87,6 +87,23 @@ export async function adminLockRound(page: Page): Promise<void> {
 }
 
 /**
+ * Admin: Open scoring view if required and wait for scoring UI
+ */
+export async function adminOpenScoring(page: Page): Promise<void> {
+  const scoringBtn = page.locator('button:has-text("Score Answers"), #goToScoringBtn');
+  if (await scoringBtn.isVisible().catch(() => false)) {
+    await scoringBtn.click();
+  }
+
+  await expect
+    .poll(async () => isStateVisible(page, 'scoring'), { timeout: 20000 })
+    .toBe(true);
+
+  const scoringContainer = page.locator('#scoringContent, #scoringState');
+  await scoringContainer.first().waitFor({ state: 'visible', timeout: 20000 });
+}
+
+/**
  * Admin: Complete scoring and move to review
  */
 export async function adminCompleteRound(page: Page): Promise<void> {
@@ -149,6 +166,7 @@ export async function adminScoreAnswer(
  * Admin: Score all answers for current question with full points
  */
 export async function adminScoreAllAnswers(page: Page, points: number): Promise<void> {
+  await adminOpenScoring(page);
   const pointsInputs = await page.locator('#scoringContent .points-input').all();
 
   for (const pointsInput of pointsInputs) {
@@ -174,14 +192,43 @@ export async function teamSubmitTextAnswer(page: Page, answerText: string): Prom
   // Wait for either multi-part or single-input answer UI to appear
   const subAnswerInputs = page.locator('.sub-answer-input');
   const singleAnswerInput = page.locator('#answerInput');
+  const matchingButtons = page.locator('.bank-option-btn');
   await Promise.race([
     subAnswerInputs.first().waitFor({ state: 'visible', timeout: 10000 }),
-    singleAnswerInput.waitFor({ state: 'visible', timeout: 10000 })
+    singleAnswerInput.waitFor({ state: 'visible', timeout: 10000 }),
+    matchingButtons.first().waitFor({ state: 'visible', timeout: 10000 })
   ]).catch(() => {});
 
   const subAnswerCount = await subAnswerInputs.count();
+  const matchingButtonCount = await matchingButtons.count();
 
-  if (subAnswerCount > 0) {
+  if (matchingButtonCount > 0) {
+    // Matching question - select the first option for each part
+    const groups = page.locator('.answer-bank-buttons');
+    const groupCount = await groups.count();
+    for (let i = 0; i < groupCount; i++) {
+      const group = groups.nth(i);
+      const option = group.locator('.bank-option-btn').first();
+      const selectedValue = (await option.getAttribute('data-option')) || '';
+
+      let clicked = false;
+      for (let attempt = 0; attempt < 3 && !clicked; attempt++) {
+        try {
+          await option.click();
+          clicked = true;
+        } catch {
+          await page.waitForTimeout(300);
+        }
+      }
+
+      const hiddenInput = page.locator(`.matching-answer-input[data-sub-index="${i}"]`);
+      if (selectedValue) {
+        await expect(hiddenInput).toHaveValue(selectedValue, { timeout: 5000 });
+      } else {
+        await expect(hiddenInput).not.toHaveValue('', { timeout: 5000 });
+      }
+    }
+  } else if (subAnswerCount > 0) {
     // Multi-part question - fill all sub-answer inputs
     for (let i = 0; i < subAnswerCount; i++) {
       const input = subAnswerInputs.nth(i);
