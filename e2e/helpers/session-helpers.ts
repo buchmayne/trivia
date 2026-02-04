@@ -171,8 +171,14 @@ export async function adminScoreAllAnswers(page: Page, points: number): Promise<
 export async function teamSubmitTextAnswer(page: Page, answerText: string): Promise<void> {
   await waitForTeamView(page);
 
-  // Check if this is a multi-part question (has .sub-answer-input elements)
+  // Wait for either multi-part or single-input answer UI to appear
   const subAnswerInputs = page.locator('.sub-answer-input');
+  const singleAnswerInput = page.locator('#answerInput');
+  await Promise.race([
+    subAnswerInputs.first().waitFor({ state: 'visible', timeout: 10000 }),
+    singleAnswerInput.waitFor({ state: 'visible', timeout: 10000 })
+  ]).catch(() => {});
+
   const subAnswerCount = await subAnswerInputs.count();
 
   if (subAnswerCount > 0) {
@@ -183,9 +189,8 @@ export async function teamSubmitTextAnswer(page: Page, answerText: string): Prom
     }
   } else {
     // Single input question - use #answerInput
-    const answerInput = page.locator('#answerInput');
-    await expect(answerInput).toBeVisible({ timeout: 10000 });
-    await answerInput.fill(answerText);
+    await expect(singleAnswerInput).toBeVisible({ timeout: 10000 });
+    await singleAnswerInput.fill(answerText);
   }
 
   // Click submit button
@@ -254,13 +259,51 @@ export async function teamGetCurrentQuestion(page: Page): Promise<string | null>
  * Get the team's current score from the UI
  */
 export async function teamGetScore(page: Page): Promise<number> {
-  const scoreDisplay = page.locator('#teamCurrentScore, .team-score');
-  if (await scoreDisplay.isVisible()) {
-    const text = await scoreDisplay.textContent();
+  const primaryScore = page.locator('#teamCurrentScore');
+  if (await primaryScore.isVisible().catch(() => false)) {
+    const text = await primaryScore.textContent();
     const match = text?.match(/\d+/);
     return match ? parseInt(match[0], 10) : 0;
   }
+
+  const fallbackScore = page.locator('.team-score:has-text(/\\d+/)');
+  if (await fallbackScore.first().isVisible().catch(() => false)) {
+    const text = await fallbackScore.first().textContent();
+    const match = text?.match(/\d+/);
+    return match ? parseInt(match[0], 10) : 0;
+  }
+
   return 0;
+}
+
+/**
+ * Team: Wait for any answer input UI to be ready
+ */
+export async function teamWaitForAnswerInputs(page: Page): Promise<void> {
+  await waitForTeamView(page);
+  const subAnswerInputs = page.locator('.sub-answer-input');
+  const singleAnswerInput = page.locator('#answerInput');
+
+  await Promise.race([
+    subAnswerInputs.first().waitFor({ state: 'visible', timeout: 10000 }),
+    singleAnswerInput.waitFor({ state: 'visible', timeout: 10000 })
+  ]).catch(() => {});
+}
+
+/**
+ * Admin: Wait for scoring UI to be ready
+ */
+export async function adminWaitForScoring(page: Page): Promise<void> {
+  const scoringContainer = page.locator('#scoringContent, #scoringState');
+  await scoringContainer.first().waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
+}
+
+/**
+ * Admin: Wait for leaderboard UI to be ready
+ */
+export async function adminWaitForLeaderboard(page: Page): Promise<void> {
+  const leaderboard = page.locator('#leaderboardState, #leaderboardTableContainer');
+  await leaderboard.first().waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
 }
 
 /**

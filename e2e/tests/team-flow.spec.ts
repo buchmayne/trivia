@@ -10,6 +10,8 @@ import {
   adminLockRound,
   adminCompleteRound,
   adminShowLeaderboard,
+  adminWaitForScoring,
+  adminWaitForLeaderboard,
   getLeaderboardData
 } from '../helpers/session-helpers';
 
@@ -132,14 +134,14 @@ test.describe('Team Flow Tests', () => {
 
     // The answer badge or confirmation should appear
     const answerBadge = team.page.locator(
-      '.answer-badge, .answered-indicator, .answer-status:has-text("Answered")'
+      '.answer-badge.answered.current, .answered-indicator, #answerStatus:has-text("Answered")'
     );
     const answerInput = team.page.locator(
       '#answerInput, #teamAnswerInputSection textarea'
     ).first();
 
     // Either badge shows answered, or input shows the saved value
-    if (await answerBadge.isVisible()) {
+    if (await answerBadge.first().isVisible()) {
       expect(await answerBadge.textContent()).toBeTruthy();
     } else if (await answerInput.isVisible()) {
       const value = await answerInput.inputValue();
@@ -196,6 +198,7 @@ test.describe('Team Flow Tests', () => {
 
     // Admin locks the round
     await adminLockRound(adminPage);
+    await adminWaitForScoring(adminPage);
     await team.page.waitForTimeout(2500); // Wait for polling to update
 
     // Try to submit - should be blocked
@@ -276,15 +279,18 @@ test.describe('Team Flow Tests', () => {
     await adminLockRound(adminPage);
 
     // Score the answer (simplified - just complete the round)
-    const scoringInputs = adminPage.locator(
-      '#scoringContent .points-input'
-    );
+    const scoringInputs = adminPage.locator('#scoringContent .points-input');
     if ((await scoringInputs.count()) > 0) {
       await scoringInputs.first().fill('10');
+      const scoreBtn = adminPage.locator('.score-btn, button:has-text(\"Score\")').first();
+      if (await scoreBtn.isVisible()) {
+        await scoreBtn.click();
+      }
     }
 
     await adminCompleteRound(adminPage);
     await adminShowLeaderboard(adminPage);
+    await adminWaitForLeaderboard(adminPage);
 
     // Team should see leaderboard
     await expect(
@@ -312,6 +318,7 @@ test.describe('Team Flow Tests', () => {
 
     // Admin scores and completes
     await adminLockRound(adminPage);
+    await adminWaitForScoring(adminPage);
 
     const scoringInputs = adminPage.locator(
       '#scoringContent .points-input'
