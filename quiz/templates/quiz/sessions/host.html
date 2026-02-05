@@ -4,110 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Host a Game</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding-top: 2rem;
-        }
-        h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .form-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #374151;
-        }
-        input, select {
-            width: 100%;
-            padding: 0.75rem;
-            font-size: 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            transition: border-color 0.2s;
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .btn {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-primary {
-            background: #10b981;
-            color: white;
-        }
-        .btn-primary:hover {
-            background: #059669;
-            transform: translateY(-1px);
-        }
-        .btn-primary:disabled {
-            background: #9ca3af;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 1.5rem;
-            color: white;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        .error {
-            background: #fee2e2;
-            border: 1px solid #ef4444;
-            color: #991b1b;
-            padding: 0.75rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-        .hint {
-            font-size: 0.875rem;
-            color: #6b7280;
-            margin-top: 0.25rem;
-        }
-    </style>
+    <title>Host a Game - Third Wave Trivia</title>
+    <link rel="stylesheet" href="{% static 'css/session.css' %}">
 </head>
-<body>
-    <div class="container">
-        <h1>Host a Game</h1>
+<body class="form-page-body">
+    <div class="form-page-container">
+        <h1 class="form-page-title">Host a Game</h1>
 
         <div class="form-card">
             <div id="error" class="error"></div>
@@ -163,12 +65,12 @@
                     <div class="hint">Maximum number of teams that can join</div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" id="submitBtn">
+                <button type="submit" class="btn btn-primary" id="submitBtn" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
                     Create Session
                 </button>
             </form>
 
-            <a href="{% url 'quiz:session_landing' %}" class="back-link">← Back</a>
+            <a href="{% url 'quiz:session_landing' %}" class="back-link-dark" style="color: var(--text-secondary);">Back</a>
         </div>
     </div>
 
