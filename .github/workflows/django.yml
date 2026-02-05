@@ -35,6 +35,18 @@ jobs:
     - name: Install Dependencies
       run: |
         uv sync --frozen
+
+    - name: Validate seed fixture
+      env:
+         DB_NAME: github_actions
+         DB_USER: postgres
+         DB_PASSWORD: postgres
+         DB_HOST: localhost
+         DB_PORT: 5432
+      run: |
+        uv run manage.py migrate
+        uv run manage.py seed_db
+        uv run manage.py seed_db
         
     - name: Run Tests
       env:
