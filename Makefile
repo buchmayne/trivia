@@ -111,7 +111,7 @@ docker-migrate:
 
 # Dump content from database to json file
 dump-data:
-	uv run manage.py dumpdata --indent 2 > db_initial_data.json
+	uv run manage.py dumpdata --exclude contenttypes --exclude auth.permission --exclude admin.logentry --exclude sessions --natural-foreign --natural-primary --indent 2 > db_initial_data.json
 
 # Run black
 black:
@@ -143,6 +143,6 @@ e2e-report:
 
 # Run all preflight steps before pushing to prod
 preprod:
-	uv run manage.py dumpdata --indent 2 > db_initial_data.json
+	uv run manage.py dumpdata --exclude contenttypes --exclude auth.permission --exclude admin.logentry --exclude sessions --natural-foreign --natural-primary --indent 2 > db_initial_data.json
 	uv run black .
 	uv run manage.py test quiz
