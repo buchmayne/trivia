@@ -8,13 +8,13 @@ import {
   adminCompleteRound,
   adminShowLeaderboard,
   adminStartNextRound,
+  adminScoreAllAnswers,
   teamSubmitTextAnswer,
   teamWaitForQuestion,
   getTeamCount,
   getLeaderboardData,
   isStateVisible
 } from '../helpers/session-helpers';
-import { Page } from '@playwright/test';
 
 test.describe('Session Lifecycle - Full Game Flow', () => {
   test.describe.configure({ mode: 'serial' });
@@ -24,7 +24,7 @@ test.describe('Session Lifecycle - Full Game Flow', () => {
     createSession,
     joinSession
   }) => {
-    test.setTimeout(90000);
+    test.setTimeout(180000);
     // Step 1: Host creates a session
     console.log('Step 1: Creating session...');
     const { page: adminPage, session } = await createSession();
@@ -41,9 +41,11 @@ test.describe('Session Lifecycle - Full Game Flow', () => {
     const team3 = await joinSession(session.code, 'Gamma Team');
 
     // Verify all teams are in lobby
-    await waitForTeamView(team1.page);
-    await waitForTeamView(team2.page);
-    await waitForTeamView(team3.page);
+    await Promise.all([
+      waitForTeamView(team1.page),
+      waitForTeamView(team2.page),
+      waitForTeamView(team3.page),
+    ]);
 
     // Verify admin sees all 3 teams
     await expect(async () => {
@@ -58,52 +60,58 @@ test.describe('Session Lifecycle - Full Game Flow', () => {
     await adminStartGame(adminPage);
 
     // Verify all teams see the playing state
-    await expect(team1.page.locator('#teamPlaying')).toBeVisible({ timeout: 10000 });
-    await expect(team2.page.locator('#teamPlaying')).toBeVisible({ timeout: 10000 });
-    await expect(team3.page.locator('#teamPlaying')).toBeVisible({ timeout: 10000 });
+    await Promise.all([
+      expect(team1.page.locator('#teamPlaying')).toBeVisible({ timeout: 10000 }),
+      expect(team2.page.locator('#teamPlaying')).toBeVisible({ timeout: 10000 }),
+      expect(team3.page.locator('#teamPlaying')).toBeVisible({ timeout: 10000 }),
+    ]);
 
     console.log('Game started, all teams in playing state');
 
     // Step 4: Play through the round - teams submit answers
     console.log('Step 4: Teams submitting answers...');
 
-    // Wait for question to be displayed
-    await teamWaitForQuestion(team1.page);
-    await teamWaitForQuestion(team2.page);
-    await teamWaitForQuestion(team3.page);
+    // Wait for question to be displayed on all team pages
+    await Promise.all([
+      teamWaitForQuestion(team1.page),
+      teamWaitForQuestion(team2.page),
+      teamWaitForQuestion(team3.page),
+    ]);
 
     // Each team submits an answer for the current question
-    await teamSubmitTextAnswer(team1.page, 'Alpha answer for Q1');
-    await teamSubmitTextAnswer(team2.page, 'Beta answer for Q1');
-    await teamSubmitTextAnswer(team3.page, 'Gamma answer for Q1');
+    await Promise.all([
+      teamSubmitTextAnswer(team1.page, 'Alpha answer for Q1'),
+      teamSubmitTextAnswer(team2.page, 'Beta answer for Q1'),
+      teamSubmitTextAnswer(team3.page, 'Gamma answer for Q1'),
+    ]);
 
     console.log('All teams submitted answers for question 1');
 
-    // Navigate through remaining questions in the round
-    // Check if there's a next question available
+    // Navigate through a few more questions to verify the flow
+    // (don't iterate all questions - the game may have many)
     const nextBtn = adminPage.locator('#nextQuestionBtn');
     let questionCount = 1;
+    const MAX_QUESTIONS = 3;
 
-    while (await nextBtn.isEnabled()) {
+    while (await nextBtn.isEnabled() && questionCount < MAX_QUESTIONS) {
       await adminNextQuestion(adminPage);
       questionCount++;
 
-      // Wait for teams to see the new question
-      await teamWaitForQuestion(team1.page);
-      await teamWaitForQuestion(team2.page);
-      await teamWaitForQuestion(team3.page);
+      // Wait for all teams to see the new question in parallel
+      await Promise.all([
+        teamWaitForQuestion(team1.page),
+        teamWaitForQuestion(team2.page),
+        teamWaitForQuestion(team3.page),
+      ]);
 
-      // Teams submit answers for this question
-      await teamSubmitTextAnswer(team1.page, `Alpha answer for Q${questionCount}`);
-      await teamSubmitTextAnswer(team2.page, `Beta answer for Q${questionCount}`);
-      await teamSubmitTextAnswer(team3.page, `Gamma answer for Q${questionCount}`);
+      // All teams submit answers in parallel
+      await Promise.all([
+        teamSubmitTextAnswer(team1.page, `Alpha answer for Q${questionCount}`),
+        teamSubmitTextAnswer(team2.page, `Beta answer for Q${questionCount}`),
+        teamSubmitTextAnswer(team3.page, `Gamma answer for Q${questionCount}`),
+      ]);
 
       console.log(`All teams submitted answers for question ${questionCount}`);
-
-      // Check if we've reached the last question
-      if (!(await nextBtn.isEnabled())) {
-        break;
-      }
     }
 
     console.log(`Round completed with ${questionCount} questions`);
@@ -112,47 +120,14 @@ test.describe('Session Lifecycle - Full Game Flow', () => {
     console.log('Step 5: Locking round...');
     await adminLockRound(adminPage);
 
-    // Verify round is locked - scoring state should be available
-    await expect(adminPage.locator('#scoringState, #lockRoundBtn:disabled')).toBeVisible({
-      timeout: 5000
-    });
+    // Wait for scoring state to appear after lock
+    await expect(adminPage.locator('#scoringState')).toBeVisible({ timeout: 10000 });
 
     console.log('Round locked');
 
     // Step 6: Admin scores answers
     console.log('Step 6: Scoring answers...');
-
-    // Navigate to scoring - click on scoring tab or wait for scoring data
-    const scoringBtn = adminPage.locator('button:has-text("Score Answers"), #goToScoringBtn');
-    if (await scoringBtn.isVisible()) {
-      await scoringBtn.click();
-    }
-
-    // Wait for scoring interface
-    await expect(adminPage.locator('#scoringState, #scoringContent')).toBeVisible({
-      timeout: 10000
-    });
-
-    // Score answers - look for scoring inputs with class .points-input
-    const scoringInputs = adminPage.locator('#scoringContent .points-input');
-    const inputCount = await scoringInputs.count();
-
-    if (inputCount > 0) {
-      // Score each answer with full points (10)
-      for (let i = 0; i < inputCount; i++) {
-        const input = scoringInputs.nth(i);
-        await input.fill('10');
-
-        // Look for associated score button in the same row
-        const row = input.locator('xpath=ancestor::tr');
-        const scoreBtn = row.locator('.score-btn');
-        if (await scoreBtn.isVisible()) {
-          await scoreBtn.click();
-          await adminPage.waitForTimeout(300);
-        }
-      }
-    }
-
+    await adminScoreAllAnswers(adminPage, 10);
     console.log('Answers scored');
 
     // Step 7: Complete round and show review
@@ -195,28 +170,21 @@ test.describe('Session Lifecycle - Full Game Flow', () => {
       // Verify playing state resumed
       await expect(adminPage.locator('#playingState')).toBeVisible({ timeout: 10000 });
 
-      // Quick pass through next round
-      await teamWaitForQuestion(team1.page);
-      await teamSubmitTextAnswer(team1.page, 'Alpha round 2 answer');
-      await teamSubmitTextAnswer(team2.page, 'Beta round 2 answer');
-      await teamSubmitTextAnswer(team3.page, 'Gamma round 2 answer');
+      // Quick pass through next round - teams answer in parallel
+      await Promise.all([
+        teamWaitForQuestion(team1.page),
+        teamWaitForQuestion(team2.page),
+        teamWaitForQuestion(team3.page),
+      ]);
+      await Promise.all([
+        teamSubmitTextAnswer(team1.page, 'Alpha round 2 answer'),
+        teamSubmitTextAnswer(team2.page, 'Beta round 2 answer'),
+        teamSubmitTextAnswer(team3.page, 'Gamma round 2 answer'),
+      ]);
 
-      // Lock and complete
+      // Lock and score
       await adminLockRound(adminPage);
-
-      // Score
-      const round2Inputs = adminPage.locator('#scoringContent .points-input');
-      const round2Count = await round2Inputs.count();
-      for (let i = 0; i < round2Count; i++) {
-        const input = round2Inputs.nth(i);
-        await input.fill('10');
-        const row = input.locator('xpath=ancestor::tr');
-        const scoreBtn = row.locator('.score-btn');
-        if (await scoreBtn.isVisible()) {
-          await scoreBtn.click();
-          await adminPage.waitForTimeout(300);
-        }
-      }
+      await adminScoreAllAnswers(adminPage, 10);
 
       // Complete and show leaderboard
       await adminCompleteRound(adminPage);

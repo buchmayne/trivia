@@ -13,7 +13,6 @@ import {
   adminWaitForScoring,
   adminWaitForLeaderboard,
   adminScoreAllAnswers,
-  adminOpenScoring,
   getLeaderboardData
 } from '../helpers/session-helpers';
 
@@ -282,11 +281,8 @@ test.describe('Team Flow Tests', () => {
     // Admin completes the round flow
     await adminLockRound(adminPage);
 
-    // Score the answer (simplified - just complete the round)
-    const scoringInputs = adminPage.locator('#scoringContent .points-input');
-    if ((await scoringInputs.count()) > 0) {
-      await adminScoreAllAnswers(adminPage, 10);
-    }
+    // Wait for scoring state and score all answers
+    await adminScoreAllAnswers(adminPage, 10);
 
     await adminCompleteRound(adminPage);
     await adminShowLeaderboard(adminPage);
@@ -318,14 +314,7 @@ test.describe('Team Flow Tests', () => {
 
     // Admin scores and completes
     await adminLockRound(adminPage);
-    await adminOpenScoring(adminPage);
-
-    const scoringInputs = adminPage.locator(
-      '#scoringContent .points-input'
-    );
-    if ((await scoringInputs.count()) > 0) {
-      await adminScoreAllAnswers(adminPage, 10);
-    }
+    await adminScoreAllAnswers(adminPage, 10);
 
     await adminCompleteRound(adminPage);
     await adminShowLeaderboard(adminPage);

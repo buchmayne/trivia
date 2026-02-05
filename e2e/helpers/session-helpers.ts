@@ -80,9 +80,13 @@ export async function adminSetQuestion(page: Page, questionId: number): Promise<
 export async function adminLockRound(page: Page): Promise<void> {
   const lockBtn = page.locator('#lockRoundBtn');
   await expect(lockBtn).toBeVisible();
+
+  // Accept the confirmation dialog triggered by the lock button
+  page.once('dialog', dialog => dialog.accept());
+
   await lockBtn.click();
 
-  // Wait for confirmation or state change
+  // Wait for state change via polling
   await page.waitForTimeout(1000);
 }
 
@@ -99,8 +103,8 @@ export async function adminOpenScoring(page: Page): Promise<void> {
     .poll(async () => isStateVisible(page, 'scoring'), { timeout: 20000 })
     .toBe(true);
 
-  const scoringContainer = page.locator('#scoringContent, #scoringState');
-  await scoringContainer.first().waitFor({ state: 'visible', timeout: 20000 });
+  // Wait for scoring content to actually be rendered (loaded asynchronously)
+  await expect(page.locator('#scoringContent .points-input').first()).toBeVisible({ timeout: 20000 });
 }
 
 /**
@@ -163,21 +167,24 @@ export async function adminScoreAnswer(
 }
 
 /**
- * Admin: Score all answers for current question with full points
+ * Admin: Score all answers for current question with full points.
+ * Handles both simple questions (table rows) and multi-part questions (div-based layout).
  */
 export async function adminScoreAllAnswers(page: Page, points: number): Promise<void> {
   await adminOpenScoring(page);
   const pointsInputs = await page.locator('#scoringContent .points-input').all();
 
   for (const pointsInput of pointsInputs) {
-    if (await pointsInput.isVisible()) {
-      await pointsInput.fill(String(points));
-      const row = pointsInput.locator('xpath=ancestor::tr');
-      const scoreBtn = row.locator('.score-btn');
-      if (await scoreBtn.isVisible()) {
-        await scoreBtn.click();
-        await page.waitForTimeout(300);
-      }
+    if (!(await pointsInput.isVisible()) || await pointsInput.isDisabled()) {
+      continue;
+    }
+    await pointsInput.fill(String(points));
+    // Find score button in the closest container - either a <tr> or a <div class="part-row">
+    const row = pointsInput.locator('xpath=ancestor::tr | ancestor::div[contains(@class, "part-row")]').first();
+    const scoreBtn = row.locator('.score-btn');
+    if (await scoreBtn.isVisible()) {
+      await scoreBtn.click();
+      await page.waitForTimeout(300);
     }
   }
 }
