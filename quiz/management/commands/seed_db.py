@@ -29,9 +29,7 @@ class Command(BaseCommand):
         fixture_path = Path(settings.BASE_DIR) / fixture_name
 
         if not fixture_path.exists():
-            self.stderr.write(
-                self.style.ERROR(f"Fixture not found: {fixture_path}")
-            )
+            self.stderr.write(self.style.ERROR(f"Fixture not found: {fixture_path}"))
             return
 
         game_model = apps.get_model("quiz", "Game")
