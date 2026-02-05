@@ -1,3 +1,5 @@
+import json
+import tempfile
 from pathlib import Path
 
 from django.apps import apps
@@ -48,6 +50,37 @@ class Command(BaseCommand):
             )
             return
 
-        self.stdout.write(f"Seeding database from {fixture_path}...")
-        call_command("loaddata", str(fixture_path))
+        fixture_to_load = fixture_path
+        if fixture_path.suffix.lower() == ".json":
+            blocklist = {
+                "contenttypes.contenttype",
+                "auth.permission",
+                "admin.logentry",
+                "sessions.session",
+            }
+            with fixture_path.open() as f:
+                data = json.load(f)
+
+            if isinstance(data, list):
+                filtered = [item for item in data if item.get("model") not in blocklist]
+                removed = len(data) - len(filtered)
+                if removed:
+                    self.stdout.write(
+                        self.style.WARNING(
+                            f"Filtered {removed} system records from fixture."
+                        )
+                    )
+                    tmp = tempfile.NamedTemporaryFile(
+                        mode="w", suffix=".json", delete=False
+                    )
+                    with tmp as handle:
+                        json.dump(filtered, handle, indent=2)
+                        handle.write("\n")
+                    fixture_to_load = Path(tmp.name)
+
+        self.stdout.write(f"Seeding database from {fixture_to_load}...")
+        call_command("loaddata", str(fixture_to_load))
+
+        if fixture_to_load != fixture_path and fixture_to_load.exists():
+            fixture_to_load.unlink(missing_ok=True)
         self.stdout.write(self.style.SUCCESS("Seed completed."))
