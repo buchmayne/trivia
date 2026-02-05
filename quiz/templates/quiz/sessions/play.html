@@ -4,647 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ session.code }} - Live Game</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>{{ session.code }} - Third Wave Trivia</title>
+    <link rel="stylesheet" href="{% static 'css/session.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-    <style>
-        body {
-            background: #f3f4f6;
-            min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        .session-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .session-header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .game-code {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-        }
-        .status-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        .container-fluid {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 1rem;
-        }
-        .btn-primary { background: #10b981; color: white; }
-        .btn-primary:hover { background: #059669; }
-        .btn-secondary { background: #6b7280; color: white; }
-        .btn-danger { background: #ef4444; color: white; }
-        .btn-danger:hover { background: #dc2626; }
-        .btn:disabled { background: #9ca3af; cursor: not-allowed; opacity: 0.6; }
-
-        /* Question Selector */
-        .question-selector {
-            padding: 0.75rem 1rem;
-            border: 2px solid #d1d5db;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            background: white;
-            color: #374151;
-            min-width: 200px;
-        }
-        .question-selector:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        /* Ranking Question Styles */
-        .ranking-list {
-            touch-action: pan-y;  /* Allow vertical scroll, enable horizontal drag */
-        }
-        .ranking-item {
-            background: white;
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            border: 2px solid #d1d5db;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            /* Touch-specific styles to prevent text selection */
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            cursor: grab;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-        }
-        .ranking-item:hover {
-            border-color: #667eea;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
-        }
-        .ranking-item.sortable-ghost {
-            opacity: 0.4;
-        }
-        /* "Chosen" state - when item is grabbed but not yet moving */
-        .ranking-item.sortable-chosen {
-            border-color: #667eea;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-            transform: scale(1.02);
-        }
-        /* Enhanced drag state with stronger lift effect */
-        .ranking-item.sortable-drag {
-            background: white;
-            border-color: #667eea;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            transform: scale(1.05);
-            cursor: grabbing;
-        }
-        /* Fallback mode drag element */
-        .ranking-item.sortable-fallback {
-            background: white;
-            border-color: #667eea;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            transform: scale(1.05);
-        }
-        .ranking-handle {
-            font-size: 1.5rem;
-            color: #6b7280;
-            cursor: grab;
-        }
-        .ranking-handle:active {
-            cursor: grabbing;
-        }
-        .ranking-number {
-            min-width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #667eea;
-            color: white;
-            border-radius: 50%;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .ranking-content {
-            flex: 1;
-            font-weight: 500;
-        }
-
-        /* Question Display Styles (matching original views) */
-        .question-container {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        .question-header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: #1f2937;
-        }
-        .question-number {
-            color: #667eea;
-            font-weight: 700;
-        }
-        .answer-bank {
-            background: #f9fafb;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            border-left: 4px solid #667eea;
-        }
-        .answer-bank-title {
-            font-size: 1.2rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        .question-image img,
-        .question-video video {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .answer-list {
-            list-style: none;
-            padding: 0;
-            margin: 1.5rem 0;
-        }
-        .answer-item {
-            background: #f9fafb;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            border: 2px solid #e5e7eb;
-        }
-        .answer-text {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: #1f2937;
-        }
-        .answer-image img,
-        .answer-video video {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            margin-top: 0.5rem;
-        }
-
-        /* Team Answer Input */
-        .answer-input-section {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: #f0fdf4;
-            border-radius: 8px;
-            border: 2px solid #10b981;
-        }
-        .answer-input-section h3 {
-            color: #059669;
-            margin-bottom: 1rem;
-        }
-        textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: inherit;
-            resize: vertical;
-            min-height: 120px;
-        }
-        textarea:focus {
-            outline: none;
-            border-color: #10b981;
-        }
-        .answer-status {
-            margin-top: 0.5rem;
-            padding: 0.75rem;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-        .answer-status.success {
-            background: #d1fae5;
-            color: #065f46;
-        }
-        .answer-status.locked {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        /* Teams Grid */
-        .teams-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        .team-card {
-            padding: 1.25rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        .team-card:hover {
-            border-color: #667eea;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
-        }
-        .team-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #1f2937;
-        }
-        .team-score {
-            color: #6b7280;
-            font-size: 0.95rem;
-        }
-        .team-status {
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            color: #10b981;
-        }
-
-        /* Scoring Table */
-        .scoring-section {
-            margin-bottom: 2rem;
-        }
-        .scoring-question-header {
-            background: #667eea;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px 8px 0 0;
-            margin-top: 1.5rem;
-        }
-        .scoring-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .scoring-table th,
-        .scoring-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        .scoring-table th {
-            background: #f9fafb;
-            font-weight: 600;
-            color: #374151;
-        }
-        .scoring-table tbody tr:hover {
-            background: #f9fafb;
-        }
-        .points-input {
-            width: 90px;
-            padding: 0.5rem;
-            border: 2px solid #d1d5db;
-            border-radius: 4px;
-            font-size: 1rem;
-            text-align: center;
-        }
-        .points-input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .score-btn {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-        }
-
-        /* Answer Overview Badges */
-        .answer-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid transparent;
-        }
-        .answer-badge.answered {
-            background: #d1fae5;
-            color: #065f46;
-            border-color: #10b981;
-        }
-        .answer-badge.unanswered {
-            background: #f3f4f6;
-            color: #9ca3af;
-            border-color: #e5e7eb;
-        }
-        .answer-badge.current {
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
-            border-color: #667eea;
-        }
-        .answer-badge:hover {
-            transform: scale(1.05);
-        }
-
-        /* Category Flash Overlay */
-        .category-flash-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .category-flash-overlay.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-        .category-flash-content {
-            text-align: center;
-            color: white;
-            padding: 2rem;
-        }
-        .category-flash-label {
-            font-size: 1.5rem;
-            font-weight: 600;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-        }
-        .category-flash-name {
-            font-size: 4rem;
-            font-weight: 700;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            margin-bottom: 1.5rem;
-        }
-        .category-flash-round {
-            font-size: 1.8rem;
-            opacity: 0.85;
-            font-weight: 500;
-        }
-        @media (max-width: 768px) {
-            .category-flash-label {
-                font-size: 1rem;
-            }
-            .category-flash-name {
-                font-size: 2.5rem;
-            }
-            .category-flash-round {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Round Progress Tracker */
-        .progress-tracker {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .progress-tracker h3 {
-            margin: 0 0 1rem 0;
-            color: #374151;
-            font-size: 1.1rem;
-        }
-        .progress-questions {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        .progress-question {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 80px;
-            padding: 0.75rem;
-            background: #f9fafb;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        .progress-question.current {
-            background: #ede9fe;
-            border-color: #667eea;
-        }
-        .progress-question.complete {
-            background: #d1fae5;
-            border-color: #10b981;
-        }
-        .progress-question-number {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: #6b7280;
-            margin-bottom: 0.5rem;
-        }
-        .progress-question.current .progress-question-number {
-            color: #667eea;
-        }
-        .progress-question.complete .progress-question-number {
-            color: #059669;
-        }
-        .progress-count {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #374151;
-        }
-        .progress-count-label {
-            font-size: 0.75rem;
-            color: #6b7280;
-            margin-top: 0.25rem;
-        }
-
-        /* Back to Landing Link */
-        .back-to-landing {
-            display: block;
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: 3rem;
-            color: #9ca3af;
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.2s;
-        }
-        .back-to-landing:hover {
-            color: #667eea;
-            text-decoration: underline;
-        }
-
-        /* Utility */
-        .hidden { display: none !important; }
-        .error-msg {
-            background: #fee2e2;
-            border: 1px solid #ef4444;
-            color: #991b1b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-        .info-msg {
-            background: #dbeafe;
-            border: 1px solid #3b82f6;
-            color: #1e40af;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-        .standings-list {
-            margin-top: 1.5rem;
-        }
-        .standing-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem;
-            margin-bottom: 0.5rem;
-            background: #f9fafb;
-            border-radius: 8px;
-            border: 2px solid #e5e7eb;
-        }
-        .standing-item.highlight {
-            background: #ede9fe;
-            border-color: #8b5cf6;
-        }
-
-        /* Leaderboard Styles */
-        .leaderboard-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1.5rem;
-        }
-        .leaderboard-table th,
-        .leaderboard-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        .leaderboard-table th {
-            background: #f9fafb;
-            font-weight: 600;
-            color: #374151;
-        }
-        .leaderboard-table tbody tr:hover {
-            background: #f9fafb;
-        }
-        .leaderboard-rank {
-            font-weight: 700;
-            font-size: 1.2rem;
-            width: 50px;
-        }
-        .leaderboard-rank.gold {
-            color: #f59e0b;
-        }
-        .leaderboard-rank.silver {
-            color: #6b7280;
-        }
-        .leaderboard-rank.bronze {
-            color: #92400e;
-        }
-        .leaderboard-team {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        .leaderboard-total {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #10b981;
-        }
-        .round-score-badge {
-            display: inline-block;
-            background: #e5e7eb;
-            color: #374151;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.25rem;
-        }
-        .upcoming-rounds-section {
-            background: #f0fdf4;
-            border: 2px solid #10b981;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        .upcoming-rounds-section h3 {
-            color: #059669;
-            margin: 0 0 1rem 0;
-        }
-        .upcoming-round-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem;
-            background: white;
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-        }
-        .upcoming-round-item:last-child {
-            margin-bottom: 0;
-        }
-        .upcoming-points {
-            font-weight: 600;
-            color: #10b981;
-        }
-        .leaderboard-summary {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: #f9fafb;
-            border-radius: 8px;
-        }
-        .summary-item {
-            text-align: center;
-        }
-        .summary-item .value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-        .summary-item .label {
-            font-size: 0.85rem;
-            color: #6b7280;
-        }
-    </style>
+    <style>/* play-page overrides - main styles in session.css */</style>
 </head>
 <body>
     <div class="session-header">
@@ -790,19 +153,19 @@
                     </div>
 
                     <!-- Team Question Navigation (shown when enabled) - Moved below answer inputs -->
-                    <div id="teamQuestionNav" class="hidden" style="margin-top: 2rem; padding: 1.5rem; background: #f0fdf4; border-radius: 8px; border: 2px solid #10b981;">
+                    <div id="teamQuestionNav" class="hidden" style="margin-top: 2rem; padding: 1.5rem; background: #E8F6F1; border-radius: 8px; border: 2px solid #2EB89D;">
                         <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
                             <span style="font-size: 1.5rem;">✓</span>
                             <div>
-                                <div style="font-weight: 700; font-size: 1.1rem; color: #059669; margin-bottom: 0.25rem;">
+                                <div style="font-weight: 700; font-size: 1.1rem; color: #1D8A7A; margin-bottom: 0.25rem;">
                                     Question Navigation Enabled
                                 </div>
-                                <div style="font-size: 0.9rem; color: #047857;">
+                                <div style="font-size: 0.9rem; color: #167A69;">
                                     You can navigate between questions in this round at your own pace
                                 </div>
                             </div>
                         </div>
-                        <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #059669;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #1D8A7A;">
                             Select a Question:
                         </label>
                         <select id="teamQuestionSelector" class="question-selector" style="width: 100%; max-width: 400px;">
@@ -810,10 +173,10 @@
                         </select>
                     </div>
 
-                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e5e7eb;">
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #DDD7CB;">
                         <h3 style="margin-bottom: 1rem;">Round Progress</h3>
                         <div id="teamAnswerOverview" style="display: flex; flex-wrap: wrap; gap: 0.5rem;"></div>
-                        <p style="margin-top: 1rem; color: #6b7280; font-size: 0.9rem;">
+                        <p style="margin-top: 1rem; color: #7A6F5D; font-size: 0.9rem;">
                             <strong>Current Score:</strong> <span id="teamCurrentScore">0</span> points
                         </p>
                     </div>
@@ -979,7 +342,7 @@
                             type="text"
                             id="rejoinTeamName"
                             placeholder="Enter your team name"
-                            style="width: 100%; padding: 0.75rem; margin-bottom: 0.5rem; border: 2px solid #d1d5db; border-radius: 8px;"
+                            style="width: 100%; padding: 0.75rem; margin-bottom: 0.5rem; border: 2px solid #C9C0B1; border-radius: 8px;"
                             required
                         >
                         <button type="submit" class="btn btn-primary" style="width: 100%;">
@@ -1243,7 +606,7 @@
             // Question media - video or image
             if (question.video_url) {
                 html += '<div class="question-video">';
-                html += `<video controls class="responsive-video" style="max-width: 100%;">`;
+                html += `<video controls class="responsive-video">`;
                 html += `<source src="${question.video_url}" type="video/mp4">`;
                 html += 'Your browser does not support the video tag.';
                 html += '</video>';
@@ -1264,7 +627,7 @@
                         html += `<div class="answer-text">${answer.text || ''}</div>`;
                         if (answer.video_url) {
                             html += '<div class="answer-video">';
-                            html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
+                            html += `<video controls><source src="${answer.video_url}" type="video/mp4"></video>`;
                             html += '</div>';
                         } else if (answer.image_url) {
                             html += `<div class="answer-image"><img src="${answer.image_url}" alt="Answer Image"></div>`;
@@ -1280,7 +643,7 @@
                         html += `<div class="answer-text">${answer.text || ''}</div>`;
                         if (answer.video_url) {
                             html += '<div class="answer-video">';
-                            html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
+                            html += `<video controls><source src="${answer.video_url}" type="video/mp4"></video>`;
                             html += '</div>';
                         } else if (answer.image_url) {
                             html += `<div class="answer-image"><img src="${answer.image_url}" alt="Answer Image"></div>`;
@@ -1308,7 +671,7 @@
 
                         if (answer.video_url) {
                             html += '<div class="answer-video">';
-                            html += `<video controls style="max-width: 100%;"><source src="${answer.video_url}" type="video/mp4"></video>`;
+                            html += `<video controls><source src="${answer.video_url}" type="video/mp4"></video>`;
                             html += '</div>';
                         } else if (answer.image_url) {
                             html += `<div class="answer-image"><img src="${answer.image_url}" alt="Answer Image"></div>`;
@@ -1348,7 +711,7 @@
 
             if (questionVideo) {
                 html += '<div class="question-video">';
-                html += `<video controls class="responsive-video" style="max-width: 100%;">`;
+                html += `<video controls class="responsive-video">`;
                 html += `<source src="${questionVideo}" type="video/mp4">`;
                 html += 'Your browser does not support the video tag.';
                 html += '</video>';
@@ -1360,14 +723,14 @@
             // Show answers with correct answer information
             if (question.answers && question.answers.length > 0) {
                 html += '<div class="answers-section">';
-                html += '<h2 style="color: #10b981; margin: 1.5rem 0 1rem;">Correct Answers:</h2>';
+                html += '<h2 style="color: #2EB89D; margin: 1.5rem 0 1rem;">Correct Answers:</h2>';
 
                 if (question.question_type === 'Ranking') {
                     // Show correct ranking order
                     html += '<ul class="answer-list ranking">';
                     const sortedAnswers = [...question.answers].sort((a, b) => (a.correct_rank || 0) - (b.correct_rank || 0));
                     sortedAnswers.forEach((answer, idx) => {
-                        html += '<li class="answer-item" style="border-color: #10b981; background: #f0fdf4;">';
+                        html += '<li class="answer-item" style="border-color: #2EB89D; background: #E8F6F1;">';
                         html += `<div class="answer-text"><strong>${idx + 1}.</strong> ${escapeHtml(answer.text || '')}</div>`;
 
                         // Prioritize answer media for REVIEWING mode
@@ -1376,7 +739,7 @@
 
                         if (answerVideo) {
                             html += '<div class="answer-video">';
-                            html += `<video controls style="max-width: 100%;"><source src="${answerVideo}" type="video/mp4"></video>`;
+                            html += `<video controls><source src="${answerVideo}" type="video/mp4"></video>`;
                             html += '</div>';
                         } else if (answerImage) {
                             html += `<div class="answer-image"><img src="${answerImage}" alt="Answer Image"></div>`;
@@ -1384,8 +747,8 @@
 
                         // Show answer_text if present (provides context for ranking questions)
                         if (answer.answer_text) {
-                            html += '<div style="margin-top: 0.75rem; padding: 0.75rem; background: white; border-radius: 4px; border-left: 4px solid #10b981;">';
-                            html += `<strong style="color: #059669;">Context:</strong> ${escapeHtml(answer.answer_text)}`;
+                            html += '<div style="margin-top: 0.75rem; padding: 0.75rem; background: white; border-radius: 4px; border-left: 4px solid #2EB89D;">';
+                            html += `<strong style="color: #1D8A7A;">Context:</strong> ${escapeHtml(answer.answer_text)}`;
                             html += '</div>';
                         }
 
@@ -1399,7 +762,7 @@
                         const letterLabel = String.fromCharCode(97 + idx); // a, b, c...
                         const cleanText = answer.text ? stripLabelPrefix(answer.text) : '';
 
-                        html += '<li class="answer-item" style="border-color: #10b981; background: #f0fdf4;">';
+                        html += '<li class="answer-item" style="border-color: #2EB89D; background: #E8F6F1;">';
                         html += `<div class="answer-text"><strong>${letterLabel})</strong> ${cleanText || ''}</div>`;
 
                         // Prioritize answer media for REVIEWING mode
@@ -1408,7 +771,7 @@
 
                         if (answerVideo) {
                             html += '<div class="answer-video">';
-                            html += `<video controls style="max-width: 100%;"><source src="${answerVideo}" type="video/mp4"></video>`;
+                            html += `<video controls><source src="${answerVideo}" type="video/mp4"></video>`;
                             html += '</div>';
                         } else if (answerImage) {
                             html += `<div class="answer-image"><img src="${answerImage}" alt="Answer Image"></div>`;
@@ -1416,8 +779,8 @@
 
                         // Show the correct answer
                         if (answer.answer_text) {
-                            html += '<div style="margin-top: 0.75rem; padding: 0.75rem; background: white; border-radius: 4px; border-left: 4px solid #10b981;">';
-                            html += `<strong style="color: #059669;">Answer:</strong> ${escapeHtml(answer.answer_text)}`;
+                            html += '<div style="margin-top: 0.75rem; padding: 0.75rem; background: white; border-radius: 4px; border-left: 4px solid #2EB89D;">';
+                            html += `<strong style="color: #1D8A7A;">Answer:</strong> ${escapeHtml(answer.answer_text)}`;
                             html += '</div>';
                         }
 
@@ -1429,7 +792,7 @@
                     html += '<ul class="answer-list matching">';
                     question.answers.forEach((answer, idx) => {
                         const letterLabel = String.fromCharCode(97 + idx);
-                        html += '<li class="answer-item" style="border-color: #10b981; background: #f0fdf4;">';
+                        html += '<li class="answer-item" style="border-color: #2EB89D; background: #E8F6F1;">';
                         html += `<div class="answer-text"><strong>${letterLabel})</strong> ${escapeHtml(answer.text || '')}</div>`;
 
                         // Prioritize answer media for REVIEWING mode
@@ -1438,7 +801,7 @@
 
                         if (answerVideo) {
                             html += '<div class="answer-video">';
-                            html += `<video controls style="max-width: 100%;"><source src="${answerVideo}" type="video/mp4"></video>`;
+                            html += `<video controls><source src="${answerVideo}" type="video/mp4"></video>`;
                             html += '</div>';
                         } else if (answerImage) {
                             html += `<div class="answer-image"><img src="${answerImage}" alt="Answer Image"></div>`;
@@ -1446,8 +809,8 @@
 
                         // Show the correct answer
                         if (answer.answer_text) {
-                            html += '<div style="margin-top: 0.75rem; padding: 0.75rem; background: white; border-radius: 4px; border-left: 4px solid #10b981;">';
-                            html += `<strong style="color: #059669;">Answer:</strong> ${escapeHtml(answer.answer_text)}`;
+                            html += '<div style="margin-top: 0.75rem; padding: 0.75rem; background: white; border-radius: 4px; border-left: 4px solid #2EB89D;">';
+                            html += `<strong style="color: #1D8A7A;">Answer:</strong> ${escapeHtml(answer.answer_text)}`;
                             html += '</div>';
                         }
 
@@ -1456,9 +819,9 @@
                     html += '</ul>';
                 } else {
                     // Single answer question - show the correct answer
-                    html += '<div style="padding: 1.5rem; background: #f0fdf4; border-radius: 8px; border: 2px solid #10b981;">';
+                    html += '<div style="padding: 1.5rem; background: #E8F6F1; border-radius: 8px; border: 2px solid #2EB89D;">';
                     if (question.answers[0] && question.answers[0].answer_text) {
-                        html += `<div style="font-size: 1.1rem; color: #1f2937;">${escapeHtml(question.answers[0].answer_text)}</div>`;
+                        html += `<div style="font-size: 1.1rem; color: #1A2F42;">${escapeHtml(question.answers[0].answer_text)}</div>`;
                     }
                     html += '</div>';
                 }
@@ -1473,7 +836,7 @@
         function renderLobbyTeams(teams, containerId = 'lobbyTeams') {
             const container = document.getElementById(containerId);
             if (teams.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #6b7280; padding: 2rem;">No teams have joined yet.</p>';
+                container.innerHTML = '<p style="text-align: center; color: #7A6F5D; padding: 2rem;">No teams have joined yet.</p>';
                 return;
             }
             container.innerHTML = teams.map(t => `
@@ -1487,7 +850,7 @@
         function renderTeamStatus(teams, question) {
             const container = document.getElementById('teamStatus');
             if (teams.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #6b7280;">No teams in game.</p>';
+                container.innerHTML = '<p style="text-align: center; color: #7A6F5D;">No teams in game.</p>';
                 return;
             }
             container.innerHTML = teams.map(t => `
@@ -1502,7 +865,7 @@
         function renderRoundProgress(roundProgress, currentQuestion) {
             const container = document.getElementById('progressQuestions');
             if (!roundProgress || roundProgress.length === 0) {
-                container.innerHTML = '<p style="color: #6b7280;">No questions in current round.</p>';
+                container.innerHTML = '<p style="color: #7A6F5D;">No questions in current round.</p>';
                 return;
             }
 
@@ -1536,7 +899,7 @@
                 // Check if this is a Ranking question
                 if (question.question_type === 'Ranking') {
                     html += '<h3>' + escapeHtml(question.text) + '</h3>';
-                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Drag and drop to rank your answers:</p>';
+                    html += '<p style="color: #7A6F5D; margin-bottom: 1rem;">Drag and drop to rank your answers:</p>';
                     html += '<div id="rankingList" class="ranking-list">';
 
                     question.answers.forEach((item, idx) => {
@@ -1558,7 +921,7 @@
                     const bankOptions = question.answer_bank.split(',').map(opt => opt.trim()).filter(opt => opt);
 
                     html += '<h3>Your Answers</h3>';
-                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Select the correct answer for each part:</p>';
+                    html += '<p style="color: #7A6F5D; margin-bottom: 1rem;">Select the correct answer for each part:</p>';
 
                     question.answers.forEach((subQ, idx) => {
                         const letterLabel = String.fromCharCode(97 + idx); // a, b, c, d...
@@ -1567,7 +930,7 @@
 
                         html += `
                             <div style="margin-bottom: 1.5rem;">
-                                <label style="display: block; font-weight: 600; margin-bottom: 0.75rem; color: #374151;">
+                                <label style="display: block; font-weight: 600; margin-bottom: 0.75rem; color: #2C3E50;">
                                     ${labelPrefix}${questionText}
                                 </label>
                                 <div class="answer-bank-buttons" data-sub-index="${idx}" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
@@ -1577,7 +940,7 @@
                         bankOptions.forEach((option, optIdx) => {
                             html += `
                                 <button type="button" class="bank-option-btn" data-sub-index="${idx}" data-option="${escapeHtml(option)}"
-                                    style="padding: 0.75rem 1rem; border: 2px solid #d1d5db; border-radius: 6px; background: white;
+                                    style="padding: 0.75rem 1rem; border: 2px solid #C9C0B1; border-radius: 6px; background: white;
                                            cursor: pointer; font-size: 0.95rem; transition: all 0.2s; font-weight: 500;">
                                     ${escapeHtml(option)}
                                 </button>
@@ -1593,7 +956,7 @@
                 } else {
                     // Regular Multiple Open Ended questions
                     html += '<h3>Your Answers</h3>';
-                    html += '<p style="color: #6b7280; margin-bottom: 1rem;">Please provide an answer for each part:</p>';
+                    html += '<p style="color: #7A6F5D; margin-bottom: 1rem;">Please provide an answer for each part:</p>';
 
                     question.answers.forEach((subQ, idx) => {
                         const letterLabel = String.fromCharCode(97 + idx); // a, b, c, d...
@@ -1603,14 +966,14 @@
                         const cleanText = stripLabelPrefix(questionText);
                         html += `
                             <div style="margin-bottom: 1.5rem;">
-                                <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151;">
+                                <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #2C3E50;">
                                     ${letterLabel}) ${cleanText}
                                 </label>
                                 <textarea
                                     class="sub-answer-input"
                                     data-sub-index="${idx}"
                                     placeholder="Enter your answer for part ${letterLabel}..."
-                                    style="width: 100%; min-height: 80px; padding: 0.75rem; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;"
+                                    style="width: 100%; min-height: 80px; padding: 0.75rem; border: 2px solid #C9C0B1; border-radius: 6px; font-size: 0.95rem;"
                                 ></textarea>
                             </div>
                         `;
@@ -1623,14 +986,14 @@
                     <textarea
                         id="answerInput"
                         placeholder="Enter your team's answer here..."
-                        style="width: 100%; min-height: 120px; padding: 1rem; border: 2px solid #d1d5db; border-radius: 8px; font-size: 1rem;"
+                        style="width: 100%; min-height: 120px; padding: 1rem; border: 2px solid #C9C0B1; border-radius: 8px; font-size: 1rem;"
                     ></textarea>
                 `;
             }
 
             html += '<div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem;">';
             html += '<button class="btn btn-primary" id="submitAnswerBtn" style="flex: 1;">Submit Answer</button>';
-            html += '<div id="autoSaveStatus" style="font-size: 0.9rem; color: #6b7280; min-width: 100px;"></div>';
+            html += '<div id="autoSaveStatus" style="font-size: 0.9rem; color: #7A6F5D; min-width: 100px;"></div>';
             html += '</div>';
             html += '<div id="answerStatus" class="answer-status hidden"></div>';
             html += '</div>';
@@ -1659,13 +1022,13 @@
                     const buttonsInGroup = container.querySelectorAll(`.bank-option-btn[data-sub-index="${subIndex}"]`);
                     buttonsInGroup.forEach(b => {
                         b.style.background = 'white';
-                        b.style.borderColor = '#d1d5db';
-                        b.style.color = '#374151';
+                        b.style.borderColor = '#C9C0B1';
+                        b.style.color = '#2C3E50';
                     });
 
                     // Highlight selected button
-                    e.target.style.background = '#667eea';
-                    e.target.style.borderColor = '#667eea';
+                    e.target.style.background = '#1A7F8E';
+                    e.target.style.borderColor = '#1A7F8E';
                     e.target.style.color = 'white';
 
                     // Store selection in hidden input
@@ -1792,8 +1155,8 @@
                                             // Highlight the corresponding button
                                             const selectedBtn = document.querySelector(`.bank-option-btn[data-sub-index="${idx}"][data-option="${ans}"]`);
                                             if (selectedBtn) {
-                                                selectedBtn.style.background = '#667eea';
-                                                selectedBtn.style.borderColor = '#667eea';
+                                                selectedBtn.style.background = '#1A7F8E';
+                                                selectedBtn.style.borderColor = '#1A7F8E';
                                                 selectedBtn.style.color = 'white';
                                             }
                                         }
@@ -1849,8 +1212,8 @@
                     return;
                 }
 
-                let html = '<div style="padding: 1.5rem; background: #ede9fe; border-radius: 8px; border: 2px solid #8b5cf6;">';
-                html += '<h3 style="color: #6b21a8; margin-bottom: 1.5rem;">Your Submission</h3>';
+                let html = '<div style="padding: 1.5rem; background: #E0F2F1; border-radius: 8px; border: 2px solid #1A7F8E;">';
+                html += '<h3 style="color: #0F5F6C; margin-bottom: 1.5rem;">Your Submission</h3>';
 
                 // Parse the answer
                 let parsedAnswers = null;
@@ -1870,7 +1233,7 @@
                         parsedAnswers.forEach(originalIdx => {
                             const item = question.answers[originalIdx];
                             if (item) {
-                                html += `<li style="margin-bottom: 0.5rem; color: #1f2937;">${escapeHtml(item.text || '')}</li>`;
+                                html += `<li style="margin-bottom: 0.5rem; color: #1A2F42;">${escapeHtml(item.text || '')}</li>`;
                             }
                         });
                         html += '</ol>';
@@ -1881,10 +1244,10 @@
                             const subQuestionText = subQ.text || '';
                             const teamSubAnswer = parsedAnswers[idx] || '';
 
-                            html += '<div style="margin-bottom: 1rem; padding: 1rem; background: white; border-radius: 6px; border: 1px solid #d1d5db;">';
-                            html += `<div style="font-weight: 600; color: #374151; margin-bottom: 0.5rem;">${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</div>`;
-                            html += `<div style="padding: 0.75rem; background: #f9fafb; border-radius: 4px; color: #1f2937;">`;
-                            html += teamSubAnswer ? escapeHtml(teamSubAnswer) : '<em style="color: #9ca3af;">No answer submitted</em>';
+                            html += '<div style="margin-bottom: 1rem; padding: 1rem; background: white; border-radius: 6px; border: 1px solid #C9C0B1;">';
+                            html += `<div style="font-weight: 600; color: #2C3E50; margin-bottom: 0.5rem;">${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</div>`;
+                            html += `<div style="padding: 0.75rem; background: #FAF8F4; border-radius: 4px; color: #1A2F42;">`;
+                            html += teamSubAnswer ? escapeHtml(teamSubAnswer) : '<em style="color: #8B7E6A;">No answer submitted</em>';
                             html += '</div>';
                             html += '</div>';
                         });
@@ -1892,9 +1255,9 @@
                 } else {
                     // Single answer question
                     html += '<div style="padding: 1rem; background: white; border-radius: 6px; margin-bottom: 1rem;">';
-                    html += '<div style="font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Your Answer:</div>';
-                    html += '<div style="padding: 0.75rem; background: #f9fafb; border-radius: 4px; color: #1f2937;">';
-                    html += answer.answer_text ? escapeHtml(answer.answer_text) : '<em style="color: #9ca3af;">No answer submitted</em>';
+                    html += '<div style="font-weight: 600; color: #2C3E50; margin-bottom: 0.5rem;">Your Answer:</div>';
+                    html += '<div style="padding: 0.75rem; background: #FAF8F4; border-radius: 4px; color: #1A2F42;">';
+                    html += answer.answer_text ? escapeHtml(answer.answer_text) : '<em style="color: #8B7E6A;">No answer submitted</em>';
                     html += '</div>';
                     html += '</div>';
                 }
@@ -1902,10 +1265,10 @@
                 // Total points for the question
                 const pointsAwarded = answer.points_awarded !== null ? answer.points_awarded : '-';
                 const totalPoints = question.total_points || '?';
-                html += '<div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 6px; border: 2px solid #8b5cf6;">';
+                html += '<div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 6px; border: 2px solid #1A7F8E;">';
                 html += '<div style="display: flex; justify-content: space-between; align-items: center;">';
-                html += '<div style="font-weight: 700; font-size: 1.1rem; color: #6b21a8;">Total Points for This Question:</div>';
-                html += `<div style="font-weight: 700; font-size: 1.5rem; color: #8b5cf6;">${pointsAwarded} / ${totalPoints}</div>`;
+                html += '<div style="font-weight: 700; font-size: 1.1rem; color: #0F5F6C;">Total Points for This Question:</div>';
+                html += `<div style="font-weight: 700; font-size: 1.5rem; color: #1A7F8E;">${pointsAwarded} / ${totalPoints}</div>`;
                 html += '</div>';
                 html += '</div>';
 
@@ -1927,7 +1290,7 @@
             const statusDiv = document.getElementById('autoSaveStatus');
             if (statusDiv) {
                 statusDiv.textContent = 'Typing...';
-                statusDiv.style.color = '#6b7280';
+                statusDiv.style.color = '#7A6F5D';
             }
 
             // Set new timer for 1.5 seconds
@@ -1949,7 +1312,7 @@
             try {
                 if (statusDiv) {
                     statusDiv.textContent = 'Saving...';
-                    statusDiv.style.color = '#6b7280';
+                    statusDiv.style.color = '#7A6F5D';
                 }
 
                 // Collect answer(s)
@@ -1995,7 +1358,7 @@
 
                 if (statusDiv) {
                     statusDiv.textContent = '✓ Saved';
-                    statusDiv.style.color = '#10b981';
+                    statusDiv.style.color = '#2EB89D';
                 }
 
                 // Refresh the answer overview to show updated status
@@ -2013,7 +1376,7 @@
                 console.error('Auto-save error:', error);
                 if (statusDiv) {
                     statusDiv.textContent = '⚠ Save failed';
-                    statusDiv.style.color = '#ef4444';
+                    statusDiv.style.color = '#D4604A';
                 }
             }
         }
@@ -2337,7 +1700,7 @@
                 if (q.correct_answers && q.correct_answers.length > 0) {
                     if (q.question_type === 'Ranking') {
                         // Show correct ranking order
-                        correctAnswersHtml = '<div style="padding: 1rem; background: #f0fdf4; border: 2px solid #10b981; border-top: none;">';
+                        correctAnswersHtml = '<div style="padding: 1rem; background: #E8F6F1; border: 2px solid #2EB89D; border-top: none;">';
                         correctAnswersHtml += '<strong>Correct Ranking:</strong><ol style="margin: 0.5rem 0 0 1.5rem;">';
                         const sortedByRank = [...q.correct_answers].sort((a, b) => (a.correct_rank || 0) - (b.correct_rank || 0));
                         sortedByRank.forEach(a => {
@@ -2348,19 +1711,19 @@
                         correctAnswersHtml += '</ol></div>';
                     } else if (q.question_type === 'Multiple Open Ended') {
                         // Show sub-questions with correct answers
-                        correctAnswersHtml = '<div style="padding: 1rem; background: #f0fdf4; border: 2px solid #10b981; border-top: none;">';
+                        correctAnswersHtml = '<div style="padding: 1rem; background: #E8F6F1; border: 2px solid #2EB89D; border-top: none;">';
                         correctAnswersHtml += '<strong>Correct Answers:</strong><ul style="margin: 0.5rem 0 0 1.5rem; list-style: none;">';
                         q.correct_answers.forEach((a, idx) => {
                             const label = String.fromCharCode(97 + idx); // a, b, c...
                             const subQuestionText = a.sub_question || a.text || '';
-                            correctAnswersHtml += `<li style="margin-bottom: 0.5rem;"><strong>${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</strong><br><span style="color: #10b981; margin-left: 1rem;">${escapeHtml(a.answer_text || 'N/A')}</span></li>`;
+                            correctAnswersHtml += `<li style="margin-bottom: 0.5rem;"><strong>${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</strong><br><span style="color: #2EB89D; margin-left: 1rem;">${escapeHtml(a.answer_text || 'N/A')}</span></li>`;
                         });
                         correctAnswersHtml += '</ul></div>';
                     } else {
                         // Default: show answer_text
                         const answers = q.correct_answers.map(a => escapeHtml(a.answer_text || a.sub_question || '')).filter(t => t).join(', ');
                         if (answers) {
-                            correctAnswersHtml = `<div style="padding: 1rem; background: #f0fdf4; border: 2px solid #10b981; border-top: none;"><strong>Correct Answer(s):</strong> ${answers}</div>`;
+                            correctAnswersHtml = `<div style="padding: 1rem; background: #E8F6F1; border: 2px solid #2EB89D; border-top: none;"><strong>Correct Answer(s):</strong> ${answers}</div>`;
                         }
                     }
                 }
@@ -2407,7 +1770,7 @@
                                                         onclick="scoreAnswer(this, '${a.answer_id}', '${a.team_id}', '${q.id}', ${q.total_points})">
                                                     ${a.is_scored ? '✓ Update' : 'Score'}
                                                 </button>
-                                            ` : '<span style="color: #9ca3af;">N/A</span>'}
+                                            ` : '<span style="color: #8B7E6A;">N/A</span>'}
                                         </td>
                                     </tr>
                                 `).join('')}
@@ -2446,10 +1809,10 @@
             let html = '';
 
             q.team_answers.forEach(teamAnswer => {
-                html += `<div class="team-scoring-card" style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 1rem; padding: 1rem;">`;
+                html += `<div class="team-scoring-card" style="background: #FAF8F4; border: 1px solid #DDD7CB; border-radius: 8px; margin-bottom: 1rem; padding: 1rem;">`;
                 html += `<div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">`;
                 html += `<span>${escapeHtml(teamAnswer.team_name)}</span>`;
-                html += `<span class="team-total-${teamAnswer.team_id}" style="color: ${teamAnswer.is_scored ? '#10b981' : '#6b7280'};">${teamAnswer.total_points_awarded !== null ? teamAnswer.total_points_awarded : '?'}/${q.total_points} pts</span>`;
+                html += `<span class="team-total-${teamAnswer.team_id}" style="color: ${teamAnswer.is_scored ? '#2EB89D' : '#7A6F5D'};">${teamAnswer.total_points_awarded !== null ? teamAnswer.total_points_awarded : '?'}/${q.total_points} pts</span>`;
                 html += `</div>`;
 
                 // Per-part scoring grid
@@ -2463,12 +1826,12 @@
                     const isCorrect = part.points_awarded !== null && part.points_awarded === part.max_points;
                     const isWrong = part.points_awarded !== null && part.points_awarded === 0;
 
-                    html += `<div class="part-row" style="display: grid; grid-template-columns: 1fr 1fr 80px 80px; gap: 0.5rem; align-items: center; padding: 0.5rem; background: white; border-radius: 4px; border: 1px solid #e5e7eb;">`;
+                    html += `<div class="part-row" style="display: grid; grid-template-columns: 1fr 1fr 80px 80px; gap: 0.5rem; align-items: center; padding: 0.5rem; background: white; border-radius: 4px; border: 1px solid #DDD7CB;">`;
 
                     // Correct answer column
                     html += `<div style="font-size: 0.85rem;">`;
-                    html += `<div style="font-weight: 600; color: #374151;">${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</div>`;
-                    html += `<div style="color: #10b981; font-size: 0.8rem;">Correct: ${escapeHtml(correctAnswerText || String(correctAnswer.correct_rank || ''))}</div>`;
+                    html += `<div style="font-weight: 600; color: #2C3E50;">${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</div>`;
+                    html += `<div style="color: #2EB89D; font-size: 0.8rem;">Correct: ${escapeHtml(correctAnswerText || String(correctAnswer.correct_rank || ''))}</div>`;
                     html += `</div>`;
 
                     // Team's answer column
@@ -2477,11 +1840,11 @@
                         // For ranking, show which item they placed here
                         const teamIdx = parseInt(part.answer_text);
                         const teamItem = !isNaN(teamIdx) && q.correct_answers[teamIdx] ? q.correct_answers[teamIdx] : null;
-                        html += `<div style="color: ${isCorrect ? '#10b981' : isWrong ? '#ef4444' : '#6b7280'};">`;
+                        html += `<div style="color: ${isCorrect ? '#2EB89D' : isWrong ? '#D4604A' : '#7A6F5D'};">`;
                         html += teamItem ? escapeHtml(stripLabelPrefix(teamItem.sub_question || '')) : '<em>No answer</em>';
                         html += `</div>`;
                     } else {
-                        html += `<div style="color: ${isCorrect ? '#10b981' : isWrong ? '#ef4444' : '#6b7280'};">`;
+                        html += `<div style="color: ${isCorrect ? '#2EB89D' : isWrong ? '#D4604A' : '#7A6F5D'};">`;
                         html += part.answer_text ? escapeHtml(part.answer_text) : '<em>No answer</em>';
                         html += `</div>`;
                     }
@@ -2497,14 +1860,14 @@
                                min="0" max="${part.max_points}"
                                value="${part.points_awarded !== null ? part.points_awarded : 0}"
                                ${!part.team_answer_id ? 'disabled' : ''}>`;
-                    html += `<span style="font-size: 0.75rem; color: #6b7280;">/${part.max_points}</span>`;
+                    html += `<span style="font-size: 0.75rem; color: #7A6F5D;">/${part.max_points}</span>`;
                     html += `</div>`;
 
                     // Score button
                     html += `<div>`;
                     if (part.team_answer_id) {
                         if (isAutoScored && part.is_scored) {
-                            html += `<span style="color: ${isCorrect ? '#10b981' : '#ef4444'}; font-size: 0.9rem;">${isCorrect ? '✓' : '✗'}</span>`;
+                            html += `<span style="color: ${isCorrect ? '#2EB89D' : '#D4604A'}; font-size: 0.9rem;">${isCorrect ? '✓' : '✗'}</span>`;
                             html += `<button class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; margin-left: 0.25rem;"
                                     onclick="scorePartAnswer(this, '${part.team_answer_id}', '${teamAnswer.team_id}', '${q.id}', '${part.answer_part_id}', ${part.max_points})">Edit</button>`;
                         } else {
@@ -2516,7 +1879,7 @@
                             </button>`;
                         }
                     } else {
-                        html += '<span style="color: #9ca3af; font-size: 0.8rem;">N/A</span>';
+                        html += '<span style="color: #8B7E6A; font-size: 0.8rem;">N/A</span>';
                     }
                     html += `</div>`;
 
@@ -2554,7 +1917,7 @@
                             html += '<div style="display: flex; flex-direction: column; gap: 0.75rem;">';
 
                             if (q.question_type === 'Ranking') {
-                                html += '<div style="font-weight: 600; margin-bottom: 0.25rem; color: #374151;">Their Ranking:</div>';
+                                html += '<div style="font-weight: 600; margin-bottom: 0.25rem; color: #2C3E50;">Their Ranking:</div>';
                                 html += '<ol style="margin: 0; padding-left: 1.5rem;">';
                                 parsedAnswers.forEach(originalIdx => {
                                     const item = q.correct_answers[originalIdx];
@@ -2569,9 +1932,9 @@
                                     const subQuestionText = subQ.sub_question || subQ.text || '';
                                     const teamSubAnswer = parsedAnswers[idx] || '';
 
-                                    html += '<div style="padding: 0.5rem; background: #f9fafb; border-radius: 4px; border: 1px solid #e5e7eb;">';
-                                    html += `<div style="font-size: 0.9rem; font-weight: 600; color: #6b7280; margin-bottom: 0.25rem;">${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</div>`;
-                                    html += `<div style="color: #1f2937;">${teamSubAnswer ? escapeHtml(teamSubAnswer) : '<em style="color: #9ca3af;">No answer</em>'}</div>`;
+                                    html += '<div style="padding: 0.5rem; background: #FAF8F4; border-radius: 4px; border: 1px solid #DDD7CB;">';
+                                    html += `<div style="font-size: 0.9rem; font-weight: 600; color: #7A6F5D; margin-bottom: 0.25rem;">${label}) ${escapeHtml(stripLabelPrefix(subQuestionText))}</div>`;
+                                    html += `<div style="color: #1A2F42;">${teamSubAnswer ? escapeHtml(teamSubAnswer) : '<em style="color: #8B7E6A;">No answer</em>'}</div>`;
                                     html += '</div>';
                                 });
                             }
@@ -2584,7 +1947,7 @@
                         html += escapeHtml(teamAnswer.answer_text);
                     }
                 } else {
-                    html += '<em style="color: #9ca3af;">No answer submitted</em>';
+                    html += '<em style="color: #8B7E6A;">No answer submitted</em>';
                 }
                 html += '</td>';
 
@@ -2603,7 +1966,7 @@
                                 onclick="scoreAnswer(this, '${teamAnswer.answer_id}', '${teamAnswer.team_id}', '${q.id}', ${q.total_points})">
                             ${teamAnswer.is_scored ? '✓ Update' : 'Score'}
                         </button>
-                    ` : '<span style="color: #9ca3af;">N/A</span>'}
+                    ` : '<span style="color: #8B7E6A;">N/A</span>'}
                 </td>`;
                 html += '</tr>';
             });
@@ -2614,7 +1977,7 @@
 
         function formatTeamAnswer(answerText) {
             if (!answerText) {
-                return '<em style="color: #9ca3af;">No answer submitted</em>';
+                return '<em style="color: #8B7E6A;">No answer submitted</em>';
             }
             return escapeHtml(answerText);
         }
@@ -2836,12 +2199,12 @@
                 const yourTeam = data.standings.find(t => t.name === data.team_name);
 
                 container.innerHTML = `
-                    <div style="background: #ede9fe; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <div style="background: #E0F2F1; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
                         <h3 style="margin-bottom: 0.5rem;">Your Team: ${escapeHtml(data.team_name)}</h3>
-                        <p style="font-size: 1.5rem; font-weight: 700; color: #8b5cf6; margin: 0.5rem 0;">
+                        <p style="font-size: 1.5rem; font-weight: 700; color: #1A7F8E; margin: 0.5rem 0;">
                             ${data.total_score} points
                         </p>
-                        <p style="color: #6b7280;">Rank: ${data.rank} of ${data.total_teams}</p>
+                        <p style="color: #7A6F5D;">Rank: ${data.rank} of ${data.total_teams}</p>
                     </div>
                     <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Final Standings</h3>
                     <div class="standings-list">
@@ -3128,7 +2491,7 @@
                 const teamTotalEl = document.querySelector(`.team-total-${teamId}`);
                 if (teamTotalEl && data.question_total !== undefined) {
                     teamTotalEl.textContent = `${data.question_total}/${input.closest('.team-scoring-card').querySelector('[style*="justify-content: space-between"]').textContent.split('/')[1]}`;
-                    teamTotalEl.style.color = '#10b981';
+                    teamTotalEl.style.color = '#2EB89D';
                 }
 
                 btn.textContent = '✓';
@@ -3175,6 +2538,47 @@
             // Remove single letter followed by period or paren and optional space at the start
             return trimmed.replace(/^[A-Za-z][\.\)]\s*/, '');
         }
+
+        // --- Image modal (click to enlarge) ---
+        (function() {
+            const overlay = document.createElement('div');
+            overlay.className = 'image-modal-overlay';
+            overlay.innerHTML = '<button class="image-modal-close">&times;</button><img src="" alt="">';
+            document.body.appendChild(overlay);
+
+            const modalImg = overlay.querySelector('img');
+            const closeBtn = overlay.querySelector('.image-modal-close');
+
+            function openModal(src, alt) {
+                modalImg.src = src;
+                modalImg.alt = alt || '';
+                overlay.style.display = 'block';
+            }
+
+            function closeModal() {
+                overlay.style.display = 'none';
+                modalImg.src = '';
+            }
+
+            // Event delegation: catch clicks on any image inside question-image or answer-image
+            document.addEventListener('click', function(e) {
+                const img = e.target.closest('.question-image img, .answer-image img');
+                if (img) {
+                    e.stopPropagation();
+                    openModal(img.src, img.alt);
+                }
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) closeModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.style.display === 'block') {
+                    closeModal();
+                }
+            });
+        })();
     </script>
 </body>
 </html>

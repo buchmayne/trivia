@@ -4,116 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join a Game</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding-top: 3rem;
-        }
-        h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .form-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #374151;
-        }
-        input {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            transition: border-color 0.2s;
-        }
-        input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        #sessionCode {
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-            text-align: center;
-        }
-        .btn {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-        .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-1px);
-        }
-        .btn-primary:disabled {
-            background: #9ca3af;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 1.5rem;
-            color: white;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        .error {
-            background: #fee2e2;
-            border: 1px solid #ef4444;
-            color: #991b1b;
-            padding: 0.75rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-        .hint {
-            font-size: 0.875rem;
-            color: #6b7280;
-            margin-top: 0.25rem;
-        }
-    </style>
+    <title>Join a Game - Third Wave Trivia</title>
+    <link rel="stylesheet" href="{% static 'css/session.css' %}">
 </head>
-<body>
-    <div class="container">
-        <h1>Join a Game</h1>
+<body class="form-page-body">
+    <div class="form-page-container" style="max-width: 500px; padding-top: 3rem;">
+        <h1 class="form-page-title">Join a Game</h1>
 
         <div class="form-card">
             <div id="error" class="error"></div>
@@ -128,6 +24,7 @@
                         required
                         maxlength="6"
                         pattern="[A-Z0-9]{6}"
+                        style="text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; text-align: center; padding: 1rem; font-size: 1.2rem;"
                     >
                     <div class="hint">Enter the 6-character code provided by the host</div>
                 </div>
@@ -141,16 +38,17 @@
                         required
                         minlength="2"
                         maxlength="100"
+                        style="padding: 1rem; font-size: 1.1rem;"
                     >
                     <div class="hint">Choose a unique name for your team</div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" id="submitBtn">
+                <button type="submit" class="btn btn-primary" id="submitBtn" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
                     Join Game
                 </button>
             </form>
 
-            <a href="{% url 'quiz:session_landing' %}" class="back-link">← Back</a>
+            <a href="{% url 'quiz:session_landing' %}" class="back-link-dark" style="color: var(--text-secondary);">Back</a>
         </div>
     </div>
 
