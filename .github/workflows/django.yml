@@ -83,7 +83,7 @@ jobs:
           sudo apt clean
 
           # Update codebase
-          cd /opt/trivia/
+          cd ./opt/trivia/
           git fetch origin main
           git reset --hard origin/main
 
