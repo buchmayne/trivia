@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:13
+        image: postgres:14
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -26,7 +26,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.9'
+        python-version: '3.10'
     
     - name: Install uv
       run: |
@@ -83,7 +83,7 @@ jobs:
           sudo apt clean
 
           # Update codebase
-          cd opt/trivia/
+          cd /opt/trivia/
           git fetch origin main
           git reset --hard origin/main
 
@@ -108,6 +108,6 @@ jobs:
 
           EOL
 
-          # Remove existing containers, volumes, and networks
-          docker-compose down -v --remove-orphans
+          # Remove existing containers and networks (preserve volumes for certs)
+          docker-compose down --remove-orphans
           docker-compose up -d --build
