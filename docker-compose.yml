@@ -61,9 +61,6 @@ services:
     env_file:
       - .env
     environment:
-      - VIRTUAL_HOST=marleybuchman.com,www.marleybuchman.com
-      - LETSENCRYPT_HOST=marleybuchman.com,www.marleybuchman.com
-      - VIRTUAL_PORT=8000
       - DB_HOST=db
       - DB_PORT=5432
     depends_on:
