@@ -894,9 +894,13 @@
 
             let html = '<div class="answer-input-section">';
 
-            // Check if question has sub-questions
-            if (question.answers && question.answers.length > 0) {
-                // Check if this is a Ranking question
+            // Check if this is a multi-part question type that needs individual answer inputs
+            const isMultiPartType = question.question_type === 'Ranking' ||
+                                    question.question_type === 'Matching' ||
+                                    question.question_type === 'Multiple Open Ended';
+
+            if (isMultiPartType && question.answers && question.answers.length > 0) {
+                // Multi-part question types render individual inputs per answer
                 if (question.question_type === 'Ranking') {
                     html += '<h3>' + escapeHtml(question.text) + '</h3>';
                     html += '<p style="color: #7A6F5D; margin-bottom: 1rem;">Drag and drop to rank your answers:</p>';
@@ -980,7 +984,7 @@
                     });
                 }
             } else {
-                // Single answer question
+                // Single answer question (including questions with answers but not a multi-part type)
                 html += '<h3>Your Answer</h3>';
                 html += `
                     <textarea
