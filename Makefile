@@ -1,4 +1,4 @@
-.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data black start preprod e2e e2e-ui e2e-headed e2e-debug e2e-report e2e-install
+.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data black start preprod e2e e2e-ui e2e-headed e2e-debug e2e-report e2e-install e2e-qa e2e-diagnose e2e-robust
 
 help:
 	@echo "Available commands:"
@@ -30,11 +30,16 @@ help:
 	@echo ""
 	@echo "E2E Testing (Playwright):"
 	@echo "  make e2e-install      - Install Playwright and browsers"
-	@echo "  make e2e              - Run all E2E tests"
+	@echo "  make e2e              - Run all E2E tests (desktop Chrome)"
 	@echo "  make e2e-ui           - Run E2E tests in interactive UI mode"
 	@echo "  make e2e-headed       - Run E2E tests with visible browser"
-	@echo "  make e2e-debug        - Run E2E tests in debug mode"
+	@echo "  make e2e-debug        - Run E2E tests in debug/step-through mode"
+	@echo "  make e2e-qa           - Visual QA: full game at human speed with video"
+	@echo "  make e2e-robust       - Robust QA: defensive testing with retries"
+	@echo "  make e2e-diagnose     - Diagnostic test with screenshots and logging"
 	@echo "  make e2e-report       - View the last test report"
+	@echo ""
+	@echo "  Run specific test: make e2e-headed TEST=host-flow"
 
 # Run development server
 run:
@@ -122,21 +127,52 @@ start:
 	uv run init_trivia.py
 
 # E2E Testing with Playwright
+# Use TEST= to run specific test file, e.g.: make e2e-headed TEST=host-flow
+TEST ?=
+
 e2e-install:
 	npm install
-	npx playwright install chromium
+	npx playwright install chromium webkit
 
 e2e:
-	cd e2e && npx playwright test
+ifdef TEST
+	cd e2e && npx playwright test $(TEST) --project=chromium
+else
+	cd e2e && npx playwright test --project=chromium
+endif
 
 e2e-ui:
+ifdef TEST
+	cd e2e && npx playwright test $(TEST) --ui
+else
 	cd e2e && npx playwright test --ui
+endif
 
 e2e-headed:
-	cd e2e && npx playwright test --headed
+ifdef TEST
+	cd e2e && npx playwright test $(TEST) --headed --project=chromium
+else
+	cd e2e && npx playwright test --headed --project=chromium
+endif
 
 e2e-debug:
-	cd e2e && npx playwright test --debug
+ifdef TEST
+	cd e2e && npx playwright test $(TEST) --debug --project=chromium
+else
+	cd e2e && npx playwright test --debug --project=chromium
+endif
+
+# Visual QA test - runs full game at human-observable speed with video recording
+e2e-qa:
+	cd e2e && npx playwright test qa-visual.spec.ts --headed --project=qa-visual
+
+# Diagnostic test - captures screenshots and logs element state to identify hang points
+e2e-diagnose:
+	cd e2e && npx playwright test qa-diagnostic.spec.ts --headed --project=chromium
+
+# Robust QA test - defensive testing with retries, stability checks, and comprehensive diagnostics
+e2e-robust:
+	cd e2e && npx playwright test qa-robust.spec.ts --headed --project=qa-robust
 
 e2e-report:
 	cd e2e && npx playwright show-report
