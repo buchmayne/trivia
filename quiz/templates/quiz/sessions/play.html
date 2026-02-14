@@ -895,9 +895,10 @@
             let html = '<div class="answer-input-section">';
 
             // Check if this is a multi-part question type that needs individual answer inputs
+            const hasSubQuestionText = question.answers && question.answers.some(a => (a.text || '').trim() !== '');
             const isMultiPartType = question.question_type === 'Ranking' ||
                                     question.question_type === 'Matching' ||
-                                    question.question_type === 'Multiple Open Ended';
+                                    (question.question_type === 'Multiple Open Ended' && hasSubQuestionText);
 
             if (isMultiPartType && question.answers && question.answers.length > 0) {
                 // Multi-part question types render individual inputs per answer
@@ -1701,6 +1702,10 @@
             container.innerHTML = data.questions.map(q => {
                 // Format correct answers based on question type
                 let correctAnswersHtml = '';
+                const isMultiPart = q.is_multi_part !== undefined
+                    ? q.is_multi_part
+                    : (q.question_type === 'Multiple Open Ended' || q.question_type === 'Ranking' || q.question_type === 'Matching');
+
                 if (q.correct_answers && q.correct_answers.length > 0) {
                     if (q.question_type === 'Ranking') {
                         // Show correct ranking order
@@ -1713,7 +1718,7 @@
                             }
                         });
                         correctAnswersHtml += '</ol></div>';
-                    } else if (q.question_type === 'Multiple Open Ended') {
+                    } else if (q.question_type === 'Multiple Open Ended' && isMultiPart) {
                         // Show sub-questions with correct answers
                         correctAnswersHtml = '<div style="padding: 1rem; background: #E8F6F1; border: 2px solid #2EB89D; border-top: none;">';
                         correctAnswersHtml += '<strong>Correct Answers:</strong><ul style="margin: 0.5rem 0 0 1.5rem; list-style: none;">';
@@ -1736,7 +1741,6 @@
                 let tableHtml = '';
 
                 // Check if this is a multi-part question (Multiple Open Ended, Ranking, Matching)
-                const isMultiPart = q.question_type === 'Multiple Open Ended' || q.question_type === 'Ranking' || q.question_type === 'Matching';
                 const hasSubQuestions = q.correct_answers && q.correct_answers.length > 1;
 
                 if (isMultiPart && hasSubQuestions) {

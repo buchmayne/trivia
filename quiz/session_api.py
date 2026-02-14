@@ -430,7 +430,16 @@ def _is_multi_part_question(question):
     """Check if a question has multiple parts that need individual scoring."""
     if not question.question_type:
         return False
-    return question.question_type.name in ["Ranking", "Matching", "Multiple Open Ended"]
+    question_type = question.question_type.name
+    if question_type in ["Ranking", "Matching"]:
+        return True
+    if question_type == "Multiple Open Ended":
+        # Only treat as multi-part when there are explicit sub-question prompts.
+        for answer in question.answers.all():
+            if answer.text and answer.text.strip():
+                return True
+        return False
+    return False
 
 
 def _split_answer_into_parts(team_answer):
