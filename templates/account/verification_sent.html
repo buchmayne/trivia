@@ -1,0 +1,20 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block title %}Verify Your Email{% endblock %}
+
+{% block header %}
+    <h1 class="auth-title">Check Your Email</h1>
+    <p class="auth-subtitle">We sent a verification link</p>
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-info">
+        We've sent an email to verify your account. Please click the link in the email to activate your account.
+    </div>
+
+    <p style="text-align: center; color: var(--text-secondary); margin-top: 1rem; font-size: 0.9rem;">
+        Didn't receive the email? Check your spam folder or
+        <a href="{% url 'account_email' %}" style="color: var(--seafoam-dark);">resend verification email</a>.
+    </p>
+{% endblock %}

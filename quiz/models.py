@@ -1,10 +1,28 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils import timezone
 from tinymce.models import HTMLField
 from .fields import CloudFrontURLField, S3ImageField, S3VideoField
 import secrets
 import random
 import string
+
+
+class UserProfile(models.Model):
+    """Extended user profile for app-specific data."""
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    is_game_admin = models.BooleanField(
+        default=False, help_text="Can create and edit games"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"Profile for {self.user.email}"
+
+    class Meta:
+        verbose_name = "User Profile"
+        verbose_name_plural = "User Profiles"
 
 
 class Game(models.Model):
@@ -17,6 +35,19 @@ class Game(models.Model):
     password = models.CharField(max_length=50, blank=True, null=True)
 
     game_order = models.IntegerField(default=1, null=True, blank=True)
+
+    # Ownership
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="owned_games",
+        help_text="User who created/owns this game",
+    )
+    is_public = models.BooleanField(
+        default=True, help_text="Public games can be hosted by any authenticated user"
+    )
 
     def __str__(self) -> str:
         return self.name
@@ -211,6 +242,14 @@ class GameSession(models.Model):
     admin_name = models.CharField(max_length=100)
     admin_token = models.CharField(
         max_length=64, unique=True, default=secrets.token_urlsafe
+    )
+    host_user = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="hosted_sessions",
+        help_text="User who created/hosts this session",
     )
 
     status = models.CharField(

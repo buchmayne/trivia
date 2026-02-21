@@ -18,6 +18,7 @@ from quiz.models import (
     SessionRound,
     TeamAnswer,
 )
+from quiz.tests.test_utils import create_verified_user
 
 
 class CreateSessionAPITest(TestCase):
@@ -25,7 +26,9 @@ class CreateSessionAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
+        self.game = Game.objects.create(name="Test Game", is_public=True)
         self.url = reverse("quiz:session_create")
 
     def test_create_session_success(self):

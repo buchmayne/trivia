@@ -23,7 +23,15 @@
                 <a href="#how-it-works" class="nav-link">How It Works</a>
                 <a href="{% url 'quiz:pricing' %}" class="nav-link">Pricing</a>
                 <a href="{% url 'quiz:about' %}" class="nav-link">About</a>
-                <a href="{% url 'quiz:session_landing' %}" class="nav-cta">Start Playing</a>
+                <div class="nav-auth">
+                    {% if user.is_authenticated %}
+                        <span class="nav-user">{{ user.email }}</span>
+                        <a href="{% url 'account_logout' %}" class="nav-signout">Sign Out</a>
+                    {% else %}
+                        <a href="{% url 'account_login' %}" class="nav-signin">Sign In</a>
+                        <a href="{% url 'account_signup' %}" class="nav-signup">Sign Up</a>
+                    {% endif %}
+                </div>
             </div>
             <button class="nav-toggle" aria-label="Toggle menu">
                 <span></span>
@@ -39,7 +47,17 @@
         <a href="#how-it-works" class="mobile-link">How It Works</a>
         <a href="{% url 'quiz:pricing' %}" class="mobile-link">Pricing</a>
         <a href="{% url 'quiz:about' %}" class="mobile-link">About</a>
-        <a href="{% url 'quiz:session_landing' %}" class="mobile-cta">Start Playing</a>
+        {% if user.is_authenticated %}
+            <div class="mobile-auth">
+                <span class="mobile-user">{{ user.email }}</span>
+                <a href="{% url 'account_logout' %}" class="mobile-signout">Sign Out</a>
+            </div>
+        {% else %}
+            <div class="mobile-auth">
+                <a href="{% url 'account_login' %}" class="mobile-signin">Sign In</a>
+                <a href="{% url 'account_signup' %}" class="mobile-cta">Sign Up</a>
+            </div>
+        {% endif %}
     </div>
 
     <!-- Hero Section -->
@@ -65,12 +83,21 @@
                 is the greatest game of all.
             </p>
             <div class="hero-actions">
-                <a href="{% url 'quiz:session_landing' %}" class="btn btn-primary">
-                    <span>Host a Game</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'quiz:session_landing' %}" class="btn btn-primary">
+                        <span>Host a Game</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                {% else %}
+                    <a href="{% url 'account_signup' %}" class="btn btn-primary">
+                        <span>Sign Up to Host</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                {% endif %}
                 <a href="{% url 'quiz:gallery' %}" class="btn btn-secondary">
                     <span>Explore Games</span>
                 </a>
@@ -388,12 +415,21 @@
                     Join the community of curious minds. Host your first game today - it's free to start.
                 </p>
                 <div class="cta-actions">
-                    <a href="{% url 'quiz:session_landing' %}" class="btn btn-primary btn-large">
-                        <span>Get Started Free</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'quiz:session_landing' %}" class="btn btn-primary btn-large">
+                            <span>Get Started Free</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'account_signup' %}" class="btn btn-primary btn-large">
+                            <span>Get Started Free</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    {% endif %}
                     <a href="{% url 'quiz:pricing' %}" class="btn btn-ghost">
                         <span>View Pricing</span>
                     </a>

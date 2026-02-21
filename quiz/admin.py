@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
 from django.utils.html import format_html
 from .models import (
     Game,
@@ -13,8 +15,57 @@ from .models import (
     SessionTeam,
     SessionRound,
     TeamAnswer,
+    UserProfile,
 )
 from .widgets import S3ImageUploadWidget, S3VideoUploadWidget
+
+
+# ============================================================================
+# USER PROFILE ADMIN
+# ============================================================================
+
+
+class UserProfileInline(admin.StackedInline):
+    """Inline UserProfile in User admin."""
+
+    model = UserProfile
+    can_delete = False
+    verbose_name_plural = "Profile"
+    fk_name = "user"
+
+
+class UserAdmin(BaseUserAdmin):
+    """Extended User admin with UserProfile inline."""
+
+    inlines = (UserProfileInline,)
+    list_display = (
+        "email",
+        "first_name",
+        "last_name",
+        "is_staff",
+        "is_game_admin",
+        "date_joined",
+    )
+    list_select_related = ("profile",)
+
+    def is_game_admin(self, obj):
+        """Display if user is a game admin."""
+        if hasattr(obj, "profile"):
+            return obj.profile.is_game_admin
+        return False
+
+    is_game_admin.boolean = True
+    is_game_admin.short_description = "Game Admin"
+
+    def get_inline_instances(self, request, obj=None):
+        if not obj:
+            return list()
+        return super().get_inline_instances(request, obj)
+
+
+# Re-register User with new UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 
 # Custom filter for alphabetically sorted categories
@@ -275,10 +326,26 @@ class GameAdminForm(forms.ModelForm):
 
 class GameAdmin(admin.ModelAdmin):
     form = GameAdminForm
-    list_display = ("name", "is_password_protected", "created_at", "game_order")
-    list_filter = ("is_password_protected",)
-    fields = ("name", "description", "game_order", "is_password_protected", "password")
+    list_display = (
+        "name",
+        "owner",
+        "is_public",
+        "is_password_protected",
+        "created_at",
+        "game_order",
+    )
+    list_filter = ("is_password_protected", "is_public", "owner")
+    fields = (
+        "name",
+        "description",
+        "game_order",
+        "owner",
+        "is_public",
+        "is_password_protected",
+        "password",
+    )
     ordering = ["-game_order"]
+    autocomplete_fields = ["owner"]
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -367,14 +434,15 @@ class GameSessionAdmin(admin.ModelAdmin):
     list_display = (
         "code",
         "game",
+        "host_user",
         "admin_name",
         "status",
         "team_count",
         "created_at",
         "started_at",
     )
-    list_filter = (SessionStatusFilter, "game", "created_at", "allow_late_joins")
-    search_fields = ("code", "admin_name", "game__name")
+    list_filter = (SessionStatusFilter, "game", "host_user", "created_at", "allow_late_joins")
+    search_fields = ("code", "admin_name", "game__name", "host_user__email")
     readonly_fields = (
         "code",
         "admin_token",
@@ -391,6 +459,7 @@ class GameSessionAdmin(admin.ModelAdmin):
                 "fields": (
                     "code",
                     "game",
+                    "host_user",
                     "admin_name",
                     "status",
                     "status_before_pause",
