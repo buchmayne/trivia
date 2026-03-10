@@ -3,9 +3,18 @@ Frontend views for live game sessions.
 Renders HTML pages for session interaction.
 """
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Game, GameSession
+
+
+def has_verified_email(user):
+    """Check if user has at least one verified email address."""
+    if not user.is_authenticated:
+        return False
+    return user.emailaddress_set.filter(verified=True).exists()
 
 
 def session_landing(request: HttpRequest) -> HttpResponse:
@@ -13,9 +22,25 @@ def session_landing(request: HttpRequest) -> HttpResponse:
     return render(request, "quiz/sessions/landing.html")
 
 
+@login_required
 def session_host(request: HttpRequest) -> HttpResponse:
-    """Admin creates sessions. Lists available games."""
+    """Admin creates sessions. Lists available games. Requires verified email."""
+    # Check for verified email
+    if not has_verified_email(request.user):
+        messages.warning(
+            request,
+            "Please verify your email address before hosting games. "
+            "Check your inbox for a verification link.",
+        )
+        return redirect("account_email")
+
+    # Show only public games for regular users, all games for admins
     games = Game.objects.exclude(name="Future-Game").order_by("-game_order")
+
+    # Filter to public games only for non-admin users
+    if hasattr(request.user, "profile") and not request.user.profile.is_game_admin:
+        games = games.filter(is_public=True)
+
     return render(request, "quiz/sessions/host.html", {"games": games})
 
 

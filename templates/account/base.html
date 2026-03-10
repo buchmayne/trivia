@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Account{% endblock %} - Third Wave Trivia</title>
+    <link rel="stylesheet" href="{% static 'css/session.css' %}">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            background: var(--sand);
+        }
+
+        .auth-card {
+            background: var(--shell);
+            border-radius: 16px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(221,215,203,0.6);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-ocean);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-logo-icon {
+            color: var(--seafoam);
+        }
+
+        .auth-title {
+            font-size: 1.75rem;
+            color: var(--text-heading);
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-heading);
+        }
+
+        .form-group input {
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--driftwood);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: all var(--transition-fast);
+            background: var(--pearl);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--seafoam);
+            box-shadow: 0 0 0 3px rgba(46,184,157,0.15);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .auth-btn {
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            background: var(--seafoam);
+            color: var(--pearl);
+            box-shadow: 0 2px 8px rgba(46,184,157,0.25);
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .auth-btn:hover {
+            background: var(--seafoam-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(46,184,157,0.35);
+        }
+
+        .auth-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--driftwood);
+        }
+
+        .auth-footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .auth-footer a {
+            color: var(--seafoam-dark);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .auth-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .auth-links a:hover {
+            color: var(--seafoam-dark);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .alert-error {
+            background: var(--coral-light);
+            color: var(--coral-text);
+            border: 1px solid var(--coral);
+        }
+
+        .alert-success {
+            background: var(--foam-light);
+            color: var(--current);
+            border: 1px solid var(--shallows);
+        }
+
+        .alert-info {
+            background: var(--foam-lighter);
+            color: var(--ocean);
+            border: 1px solid var(--shallows);
+        }
+
+        .alert-warning {
+            background: var(--warning-bg);
+            color: var(--warning-text);
+            border: 1px solid var(--gold);
+        }
+
+        .errorlist {
+            list-style: none;
+            color: var(--coral-text);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .back-home:hover {
+            color: var(--seafoam-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="{% url 'home' %}" class="auth-logo">
+                    <span class="auth-logo-icon">~</span>
+                    <span>Third Wave Trivia</span>
+                </a>
+                {% block header %}{% endblock %}
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            {% block content %}{% endblock %}
+
+            {% block footer %}{% endblock %}
+
+            <a href="{% url 'home' %}" class="back-home">Back to home</a>
+        </div>
+    </div>
+</body>
+</html>

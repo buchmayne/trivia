@@ -1,0 +1,45 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block title %}Email Addresses{% endblock %}
+
+{% block header %}
+    <h1 class="auth-title">Email Addresses</h1>
+    <p class="auth-subtitle">Manage your email addresses</p>
+{% endblock %}
+
+{% block content %}
+    {% if emailaddresses %}
+        <div style="margin-bottom: 1.5rem;">
+            {% for emailaddress in emailaddresses %}
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--foam-lighter); border-radius: 8px; margin-bottom: 0.5rem;">
+                    <div>
+                        <span style="font-weight: 600;">{{ emailaddress.email }}</span>
+                        {% if emailaddress.verified %}
+                            <span style="font-size: 0.75rem; color: var(--seafoam-dark); margin-left: 0.5rem;">Verified</span>
+                        {% else %}
+                            <span style="font-size: 0.75rem; color: var(--coral-text); margin-left: 0.5rem;">Unverified</span>
+                        {% endif %}
+                        {% if emailaddress.primary %}
+                            <span style="font-size: 0.75rem; color: var(--ocean); margin-left: 0.5rem;">Primary</span>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if not emailaddresses.0.verified %}
+            <form method="post" action="{% url 'account_email' %}" style="margin-bottom: 1.5rem;">
+                {% csrf_token %}
+                <input type="hidden" name="email" value="{{ emailaddresses.0.email }}">
+                <button type="submit" name="action_send" class="auth-btn">
+                    Resend Verification Email
+                </button>
+            </form>
+        {% endif %}
+    {% else %}
+        <div class="alert alert-warning">
+            You have no email addresses associated with your account.
+        </div>
+    {% endif %}
+{% endblock %}

@@ -7,6 +7,7 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 from quiz.models import Game, Question, QuestionType, QuestionRound, Category, Answer
+from quiz.tests.test_utils import create_verified_user
 
 
 class GameViewSetTest(TestCase):
@@ -14,11 +15,13 @@ class GameViewSetTest(TestCase):
 
     def setUp(self):
         self.client = APIClient()
+        self.user = create_verified_user()
+        self.client.force_authenticate(user=self.user)
         self.game1 = Game.objects.create(
-            name="Trivia Night 1", description="First trivia game"
+            name="Trivia Night 1", description="First trivia game", is_public=True
         )
         self.game2 = Game.objects.create(
-            name="Trivia Night 2", description="Second trivia game"
+            name="Trivia Night 2", description="Second trivia game", is_public=True
         )
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
@@ -136,7 +139,9 @@ class QuestionViewSetTest(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.game = Game.objects.create(name="Test Game")
+        self.user = create_verified_user()
+        self.client.force_authenticate(user=self.user)
+        self.game = Game.objects.create(name="Test Game", is_public=True)
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round1 = QuestionRound.objects.create(name="Round 1", round_number=1)
         self.round2 = QuestionRound.objects.create(name="Round 2", round_number=2)
@@ -180,7 +185,7 @@ class QuestionViewSetTest(TestCase):
     def test_filter_by_game_id(self):
         """Test filtering questions by game ID"""
         # Create another game with questions
-        game2 = Game.objects.create(name="Another Game")
+        game2 = Game.objects.create(name="Another Game", is_public=True)
         Question.objects.create(
             game=game2,
             question_type=self.question_type,
@@ -305,7 +310,9 @@ class ViewSetPaginationTest(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.game = Game.objects.create(name="Test Game")
+        self.user = create_verified_user()
+        self.client.force_authenticate(user=self.user)
+        self.game = Game.objects.create(name="Test Game", is_public=True)
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
 

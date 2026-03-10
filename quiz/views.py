@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse, HttpRequest, HttpResponse
 from django.db import models
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from .models import (
     Game,
     Category,
@@ -56,6 +57,7 @@ def coming_soon_view(
     return render(request, "quiz/coming_soon.html", {"page_title": title})
 
 
+@login_required
 def game_list_view(request: HttpRequest) -> HttpResponse:
     """View to list available trivia games (Gallery Mode)."""
     games = Game.objects.all().order_by("-game_order")
@@ -91,6 +93,7 @@ def get_next_question(question: Question) -> Optional[Question]:
     )
 
 
+@login_required
 def question_view(
     request: HttpRequest,
     game_id: int,
@@ -132,6 +135,7 @@ def question_view(
     )
 
 
+@login_required
 def answer_view(
     request: HttpRequest,
     game_id: int,
@@ -174,6 +178,7 @@ def answer_view(
     )
 
 
+@login_required
 def get_round_questions(
     request: HttpRequest, game_id: int, round_id: int
 ) -> JsonResponse:
@@ -186,6 +191,7 @@ def get_round_questions(
     return JsonResponse({"questions": list(questions)})
 
 
+@login_required
 def get_game_questions(request: HttpRequest, game_id: int) -> JsonResponse:
     """Get all questions for a game with their answers"""
     game = get_object_or_404(Game, id=game_id)
@@ -235,6 +241,7 @@ def get_game_questions(request: HttpRequest, game_id: int) -> JsonResponse:
     )
 
 
+@login_required
 def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:
     game = Game.objects.get(id=game_id)
     rounds = (
@@ -294,6 +301,7 @@ def game_overview(request: HttpRequest, game_id: int) -> HttpResponse:
     )
 
 
+@login_required
 def verify_game_password(request: HttpRequest, game_id: int) -> HttpResponse:
     if request.method == "POST":
         game = Game.objects.get(id=game_id)
@@ -309,6 +317,7 @@ def verify_game_password(request: HttpRequest, game_id: int) -> HttpResponse:
     return redirect("quiz:game_list")
 
 
+@login_required
 def analytics_view(request):
     # Get filter parameters from request
     player_search = request.GET.get("player_search", "").strip()
