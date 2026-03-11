@@ -1,4 +1,4 @@
-.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data black start preprod e2e e2e-ui e2e-headed e2e-debug e2e-report e2e-install
+.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data black start preprod e2e e2e-install e2e-qa
 
 help:
 	@echo "Available commands:"
@@ -30,11 +30,8 @@ help:
 	@echo ""
 	@echo "E2E Testing (Playwright):"
 	@echo "  make e2e-install      - Install Playwright and browsers"
-	@echo "  make e2e              - Run all E2E tests"
-	@echo "  make e2e-ui           - Run E2E tests in interactive UI mode"
-	@echo "  make e2e-headed       - Run E2E tests with visible browser"
-	@echo "  make e2e-debug        - Run E2E tests in debug mode"
-	@echo "  make e2e-report       - View the last test report"
+	@echo "  make e2e              - Run all E2E tests (desktop Chrome)"
+	@echo "  make e2e-qa       - Robust QA: defensive testing with retries"
 
 # Run development server
 run:
@@ -122,24 +119,23 @@ start:
 	uv run init_trivia.py
 
 # E2E Testing with Playwright
+# Use TEST= to run specific test file, e.g.: make e2e-headed TEST=host-flow
+TEST ?=
+
 e2e-install:
 	npm install
-	npx playwright install chromium
+	npx playwright install chromium webkit
 
 e2e:
-	cd e2e && npx playwright test
+ifdef TEST
+	cd e2e && npx playwright test $(TEST) --project=chromium
+else
+	cd e2e && npx playwright test --project=chromium
+endif
 
-e2e-ui:
-	cd e2e && npx playwright test --ui
-
-e2e-headed:
-	cd e2e && npx playwright test --headed
-
-e2e-debug:
-	cd e2e && npx playwright test --debug
-
-e2e-report:
-	cd e2e && npx playwright show-report
+# Robust QA test - defensive testing with retries, stability checks, and comprehensive diagnostics
+e2e-qa:
+	cd e2e && npx playwright test qa-robust.spec.ts --headed --project=qa-robust
 
 # Run all preflight steps before pushing to prod
 preprod:

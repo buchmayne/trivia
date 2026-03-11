@@ -15,6 +15,7 @@ from quiz.models import (
     GameResult,
     PlayerStats,
 )
+from quiz.tests.test_utils import create_verified_user
 
 
 class AnswerViewExtendedTest(TestCase):
@@ -22,7 +23,9 @@ class AnswerViewExtendedTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
+        self.game = Game.objects.create(name="Test Game", is_public=True)
         self.category = Category.objects.create(name="Test Category")
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
@@ -106,7 +109,9 @@ class GameOverviewExtendedTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
+        self.game = Game.objects.create(name="Test Game", is_public=True)
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
 
     def test_game_overview_multiple_rounds_stats(self):
@@ -184,7 +189,10 @@ class GameOverviewExtendedTest(TestCase):
     def test_game_overview_password_protection_session_persistence(self):
         """Test that password verification persists across requests"""
         protected_game = Game.objects.create(
-            name="Protected Game", is_password_protected=True, password="secret"
+            name="Protected Game",
+            is_password_protected=True,
+            password="secret",
+            is_public=True,
         )
 
         # First request without verification - should show password page
@@ -206,7 +214,9 @@ class GetRoundQuestionsExtendedTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
+        self.game = Game.objects.create(name="Test Game", is_public=True)
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.category = Category.objects.create(name="Test Category")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
@@ -275,6 +285,8 @@ class AnalyticsViewExtendedTest(TestCase):
 
     def setUp(self):
         self.client = Client()
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
 
         # Create sample game results
         GameResult.objects.create(

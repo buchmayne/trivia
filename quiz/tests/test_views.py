@@ -6,6 +6,7 @@ from django.test import TestCase, RequestFactory, Client
 from django.urls import reverse
 from quiz.models import Game, Category, QuestionType, QuestionRound, Question
 from quiz.views import get_next_question
+from quiz.tests.test_utils import create_verified_user
 
 
 class GameListViewTest(TestCase):
@@ -13,9 +14,12 @@ class GameListViewTest(TestCase):
 
     def setUp(self):
         self.client = Client()
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
         self.game = Game.objects.create(
             name="Test Game",
             description="Test Description",
+            is_public=True,
         )
 
     def test_game_list_view(self):
@@ -32,11 +36,14 @@ class GameOverviewViewTest(TestCase):
 
     def setUp(self):
         self.client = Client()
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
         self.game = Game.objects.create(
             name="Test Game",
             description="Test Description",
             is_password_protected=True,
-            password="testpass123",
+            password="gamepass123",
+            is_public=True,
         )
         self.category = Category.objects.create(name="Test Category")
         self.game_round = QuestionRound.objects.create(name="Round 1", round_number=1)
@@ -76,7 +83,7 @@ class GameOverviewViewTest(TestCase):
         # Test correct password
         response = self.client.post(
             reverse("quiz:verify_password", args=[self.game.id]),
-            {"password": "testpass123"},
+            {"password": "gamepass123"},
         )
         self.assertRedirects(
             response, reverse("quiz:game_overview", args=[self.game.id])
@@ -97,8 +104,10 @@ class QuestionViewTest(TestCase):
 
     def setUp(self):
         self.client = Client()
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
         self.factory = RequestFactory()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(name="Test Game", is_public=True)
         self.category = Category.objects.create(name="Test Category")
         self.game_round = QuestionRound.objects.create(name="Round 1", round_number=1)
         self.question_type = QuestionType.objects.create(name="Multiple Open Ended")
@@ -144,7 +153,7 @@ class QuestionViewTest(TestCase):
     def test_get_first_question_no_questions(self):
         """Test getting first question when round is empty"""
         # Create a new empty game and round
-        empty_game = Game.objects.create(name="Empty Game")
+        empty_game = Game.objects.create(name="Empty Game", is_public=True)
         empty_round = QuestionRound.objects.create(name="Empty Round", round_number=1)
 
         response = self.client.get(
@@ -172,8 +181,8 @@ class QuestionViewTest(TestCase):
     def test_first_question_correct_game(self):
         """Test that first question API filters by game correctly"""
         # Create two games with their own questions
-        game1 = Game.objects.create(name="Game 1")
-        game2 = Game.objects.create(name="Game 2")
+        game1 = Game.objects.create(name="Game 1", is_public=True)
+        game2 = Game.objects.create(name="Game 2", is_public=True)
 
         round1 = QuestionRound.objects.create(name="Round 1", round_number=1)
 

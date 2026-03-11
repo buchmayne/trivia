@@ -25,6 +25,14 @@ from .models import (
     TeamAnswer,
 )
 
+
+def has_verified_email(user):
+    """Check if user has at least one verified email address."""
+    if not user.is_authenticated:
+        return False
+    return user.emailaddress_set.filter(verified=True).exists()
+
+
 # Configuration
 ADMIN_TIMEOUT_SECONDS = 30  # Pause if admin not seen for this long
 
@@ -100,7 +108,21 @@ def check_admin_timeout(session):
 @csrf_exempt
 @require_http_methods(["POST"])
 def create_session(request):
-    """Create new session. Returns admin_token (client must save it!)."""
+    """Create new session. Requires authenticated user with verified email."""
+    # Check authentication
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {"error": "Authentication required. Please sign in to host games."},
+            status=401,
+        )
+
+    # Check email verification
+    if not has_verified_email(request.user):
+        return JsonResponse(
+            {"error": "Please verify your email address before hosting games."},
+            status=403,
+        )
+
     try:
         data = json.loads(request.body)
     except json.JSONDecodeError:
@@ -116,8 +138,20 @@ def create_session(request):
 
     game = get_object_or_404(Game, id=game_id)
 
+    # Check if user can host this game (public or owned by user)
+    is_game_admin = (
+        hasattr(request.user, "profile") and request.user.profile.is_game_admin
+    )
+    if not game.is_public and game.owner != request.user and not is_game_admin:
+        return JsonResponse(
+            {"error": "You do not have permission to host this game."}, status=403
+        )
+
     session = GameSession.objects.create(
-        game=game, admin_name=admin_name, max_teams=data.get("max_teams", 16)
+        game=game,
+        admin_name=admin_name,
+        max_teams=data.get("max_teams", 16),
+        host_user=request.user,
     )
 
     # Create SessionRound for each round in the game
@@ -430,7 +464,16 @@ def _is_multi_part_question(question):
     """Check if a question has multiple parts that need individual scoring."""
     if not question.question_type:
         return False
-    return question.question_type.name in ["Ranking", "Matching", "Multiple Open Ended"]
+    question_type = question.question_type.name
+    if question_type in ["Ranking", "Matching"]:
+        return True
+    if question_type == "Multiple Open Ended":
+        # Only treat as multi-part when there are explicit sub-question prompts.
+        for answer in question.answers.all():
+            if answer.text and answer.text.strip():
+                return True
+        return False
+    return False
 
 
 def _split_answer_into_parts(team_answer):

@@ -24,6 +24,7 @@ from quiz.models import (
     QuestionType,
     Answer,
 )
+from quiz.tests.test_utils import create_verified_user
 
 
 class CompleteSessionWorkflowTest(TestCase):
@@ -31,11 +32,14 @@ class CompleteSessionWorkflowTest(TestCase):
 
     def setUp(self):
         self.client = Client()
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
 
         # Create game with complete data
         self.game = Game.objects.create(
             name="Integration Test Game",
             description="Full game for integration testing",
+            is_public=True,
         )
 
         # Create rounds

@@ -65,6 +65,7 @@ class GameSessionAdminTest(TestCase):
             (
                 "code",
                 "game",
+                "host_user",
                 "admin_name",
                 "status",
                 "team_count",

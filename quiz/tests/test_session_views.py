@@ -19,6 +19,7 @@ from quiz.models import (
     Category,
     QuestionType,
 )
+from quiz.tests.test_utils import create_verified_user
 
 
 class SessionLandingViewTest(TestCase):
@@ -52,14 +53,16 @@ class SessionHostViewTest(TestCase):
 
     def setUp(self):
         self.client = Client()
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
         self.url = reverse("quiz:session_host")
 
-        # Create test games
+        # Create test games (public so regular user can see them)
         self.game1 = Game.objects.create(
-            name="Test Game 1", description="First test game"
+            name="Test Game 1", description="First test game", is_public=True
         )
         self.game2 = Game.objects.create(
-            name="Test Game 2", description="Second test game"
+            name="Test Game 2", description="Second test game", is_public=True
         )
 
     def test_host_page_loads(self):

@@ -6,8 +6,8 @@ from .api import GameViewSet, QuestionViewSet
 app_name = "quiz"
 
 router = DefaultRouter()
-router.register(r"games", GameViewSet)
-router.register(r"questions", QuestionViewSet)
+router.register(r"games", GameViewSet, basename="game")
+router.register(r"questions", QuestionViewSet, basename="question")
 
 urlpatterns = [
     # Gallery mode - browse games

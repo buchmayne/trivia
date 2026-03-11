@@ -5,6 +5,7 @@ from quiz.views import landing_page_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("accounts/", include("allauth.urls")),
     path("health/", views.health_check, name="health_check"),
     path("quiz/", include("quiz.urls")),
     path("", landing_page_view, name="home"),

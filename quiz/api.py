@@ -13,8 +13,17 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 class GameViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Game.objects.all()
     serializer_class = GameSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        """Return games visible to the current user."""
+        user = self.request.user
+        # Game admins can see all games
+        if hasattr(user, "profile") and user.profile.is_game_admin:
+            return Game.objects.all()
+        # Regular users see public games and their own games
+        return Game.objects.filter(is_public=True) | Game.objects.filter(owner=user)
 
     @action(detail=True)
     def questions(self, request, pk=None):
@@ -40,8 +49,8 @@ class GameViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class QuestionViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+    permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = {
         "game__name": ["exact"],
@@ -51,3 +60,14 @@ class QuestionViewSet(viewsets.ReadOnlyModelViewSet):
         "game_round__id": ["exact"],
         "category__name": ["exact"],
     }
+
+    def get_queryset(self):
+        """Return questions from games visible to the current user."""
+        user = self.request.user
+        # Game admins can see all questions
+        if hasattr(user, "profile") and user.profile.is_game_admin:
+            return Question.objects.all()
+        # Regular users see questions from public games or their own games
+        return Question.objects.filter(game__is_public=True) | Question.objects.filter(
+            game__owner=user
+        )

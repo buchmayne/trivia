@@ -13,12 +13,45 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'on-first-retry',
+    launchOptions: {
+      slowMo: process.env.SLOW_MO ? parseInt(process.env.SLOW_MO) : 0,
+    },
   },
 
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'mobile-chrome',
+      use: { ...devices['Pixel 5'] },
+    },
+    {
+      name: 'mobile-safari',
+      use: { ...devices['iPhone 13'] },
+    },
+    {
+      name: 'qa-visual',
+      testMatch: 'qa-visual.spec.ts',
+      use: {
+        ...devices['Desktop Chrome'],
+        video: 'on',
+        trace: 'on',
+        launchOptions: {
+          slowMo: 100,
+        },
+      },
+    },
+    {
+      name: 'qa-robust',
+      testMatch: 'qa-robust.spec.ts',
+      use: {
+        ...devices['Desktop Chrome'],
+        video: 'on',
+        trace: 'on',
+        screenshot: 'on',
+      },
     },
   ],
 
