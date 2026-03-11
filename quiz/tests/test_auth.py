@@ -242,14 +242,20 @@ class GameOwnershipTests(TestCase):
         self.admin_user.profile.is_game_admin = True
         self.admin_user.profile.save()
         EmailAddress.objects.create(
-            user=self.admin_user, email=self.admin_user.email, verified=True, primary=True
+            user=self.admin_user,
+            email=self.admin_user.email,
+            verified=True,
+            primary=True,
         )
 
         self.regular_user = User.objects.create_user(
             username="regular", email="regular@example.com", password="regularpass123"
         )
         EmailAddress.objects.create(
-            user=self.regular_user, email=self.regular_user.email, verified=True, primary=True
+            user=self.regular_user,
+            email=self.regular_user.email,
+            verified=True,
+            primary=True,
         )
 
         self.public_game = Game.objects.create(
@@ -316,14 +322,20 @@ class GameVisibilityTests(TestCase):
         self.admin_user.profile.is_game_admin = True
         self.admin_user.profile.save()
         EmailAddress.objects.create(
-            user=self.admin_user, email=self.admin_user.email, verified=True, primary=True
+            user=self.admin_user,
+            email=self.admin_user.email,
+            verified=True,
+            primary=True,
         )
 
         self.regular_user = User.objects.create_user(
             username="regular", email="regular@example.com", password="regularpass123"
         )
         EmailAddress.objects.create(
-            user=self.regular_user, email=self.regular_user.email, verified=True, primary=True
+            user=self.regular_user,
+            email=self.regular_user.email,
+            verified=True,
+            primary=True,
         )
 
         self.public_game = Game.objects.create(

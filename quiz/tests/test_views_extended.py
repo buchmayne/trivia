@@ -189,7 +189,10 @@ class GameOverviewExtendedTest(TestCase):
     def test_game_overview_password_protection_session_persistence(self):
         """Test that password verification persists across requests"""
         protected_game = Game.objects.create(
-            name="Protected Game", is_password_protected=True, password="secret", is_public=True
+            name="Protected Game",
+            is_password_protected=True,
+            password="secret",
+            is_public=True,
         )
 
         # First request without verification - should show password page

@@ -8,14 +8,12 @@ from allauth.account.models import EmailAddress
 from rest_framework.test import APIClient
 
 
-def create_verified_user(username="testuser", email="test@example.com", password="testpass123"):
+def create_verified_user(
+    username="testuser", email="test@example.com", password="testpass123"
+):
     """Create a user with a verified email address for testing."""
-    user = User.objects.create_user(
-        username=username, email=email, password=password
-    )
-    EmailAddress.objects.create(
-        user=user, email=email, verified=True, primary=True
-    )
+    user = User.objects.create_user(username=username, email=email, password=password)
+    EmailAddress.objects.create(user=user, email=email, verified=True, primary=True)
     return user
 
 

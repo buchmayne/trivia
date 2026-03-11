@@ -32,6 +32,7 @@ def has_verified_email(user):
         return False
     return user.emailaddress_set.filter(verified=True).exists()
 
+
 # Configuration
 ADMIN_TIMEOUT_SECONDS = 30  # Pause if admin not seen for this long
 

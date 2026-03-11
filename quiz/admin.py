@@ -441,7 +441,13 @@ class GameSessionAdmin(admin.ModelAdmin):
         "created_at",
         "started_at",
     )
-    list_filter = (SessionStatusFilter, "game", "host_user", "created_at", "allow_late_joins")
+    list_filter = (
+        SessionStatusFilter,
+        "game",
+        "host_user",
+        "created_at",
+        "allow_late_joins",
+    )
     search_fields = ("code", "admin_name", "game__name", "host_user__email")
     readonly_fields = (
         "code",
