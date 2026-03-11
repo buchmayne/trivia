@@ -30,8 +30,8 @@ SECRET_KEY = os.getenv("SECRET_KEY", "default-key")
 DEBUG = os.getenv("DEBUG", False) == "True"
 
 ALLOWED_HOSTS = [
-    "marleybuchman.com",
-    "www.marleybuchman.com",
+    "thirdwavetrivia.com",
+    "www.thirdwavetrivia.com",
     "localhost",
     "127.0.0.1",
 ]
@@ -222,4 +222,4 @@ EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True") == "True"
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
-DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "noreply@marleybuchman.com")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "noreply@thirdwavetrivia.com")
