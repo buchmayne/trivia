@@ -43,9 +43,9 @@ services:
     depends_on:
       - web
     environment:
-      - VIRTUAL_HOST=marleybuchman.com,www.marleybuchman.com
+      - VIRTUAL_HOST=thirdwavetrivia.com,www.thirdwavetrivia.com
       - VIRTUAL_PORT=80
-      - LETSENCRYPT_HOST=marleybuchman.com,www.marleybuchman.com
+      - LETSENCRYPT_HOST=thirdwavetrivia.com,www.thirdwavetrivia.com
 
   web:
     build:
