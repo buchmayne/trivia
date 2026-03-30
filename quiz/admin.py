@@ -330,17 +330,19 @@ class GameAdmin(admin.ModelAdmin):
         "name",
         "owner",
         "is_public",
+        "is_example_game",
         "is_password_protected",
         "created_at",
         "game_order",
     )
-    list_filter = ("is_password_protected", "is_public", "owner")
+    list_filter = ("is_password_protected", "is_public", "is_example_game", "owner")
     fields = (
         "name",
         "description",
         "game_order",
         "owner",
         "is_public",
+        "is_example_game",
         "is_password_protected",
         "password",
     )

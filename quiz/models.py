@@ -48,6 +48,10 @@ class Game(models.Model):
     is_public = models.BooleanField(
         default=True, help_text="Public games can be hosted by any authenticated user"
     )
+    is_example_game = models.BooleanField(
+        default=False,
+        help_text="Example games can be hosted without authentication",
+    )
 
     def __str__(self) -> str:
         return self.name

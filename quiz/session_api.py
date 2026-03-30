@@ -108,21 +108,7 @@ def check_admin_timeout(session):
 @csrf_exempt
 @require_http_methods(["POST"])
 def create_session(request):
-    """Create new session. Requires authenticated user with verified email."""
-    # Check authentication
-    if not request.user.is_authenticated:
-        return JsonResponse(
-            {"error": "Authentication required. Please sign in to host games."},
-            status=401,
-        )
-
-    # Check email verification
-    if not has_verified_email(request.user):
-        return JsonResponse(
-            {"error": "Please verify your email address before hosting games."},
-            status=403,
-        )
-
+    """Create new session. Unauthenticated users can only create sessions for example games."""
     try:
         data = json.loads(request.body)
     except json.JSONDecodeError:
@@ -138,20 +124,38 @@ def create_session(request):
 
     game = get_object_or_404(Game, id=game_id)
 
-    # Check if user can host this game (public or owned by user)
-    is_game_admin = (
-        hasattr(request.user, "profile") and request.user.profile.is_game_admin
-    )
-    if not game.is_public and game.owner != request.user and not is_game_admin:
-        return JsonResponse(
-            {"error": "You do not have permission to host this game."}, status=403
+    # Permission check
+    if not request.user.is_authenticated:
+        # Unauthenticated: only example games allowed
+        if not game.is_example_game:
+            return JsonResponse(
+                {"error": "Please sign up to host this game"},
+                status=401,
+            )
+        host_user = None
+    else:
+        # Authenticated: check email verification
+        if not has_verified_email(request.user):
+            return JsonResponse(
+                {"error": "Please verify your email address before hosting games."},
+                status=403,
+            )
+
+        # Check if user can host this game (public or owned by user)
+        is_game_admin = (
+            hasattr(request.user, "profile") and request.user.profile.is_game_admin
         )
+        if not game.is_public and game.owner != request.user and not is_game_admin:
+            return JsonResponse(
+                {"error": "You do not have permission to host this game."}, status=403
+            )
+        host_user = request.user
 
     session = GameSession.objects.create(
         game=game,
         admin_name=admin_name,
         max_teams=data.get("max_teams", 16),
-        host_user=request.user,
+        host_user=host_user,
     )
 
     # Create SessionRound for each round in the game

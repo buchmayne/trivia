@@ -300,6 +300,24 @@ textarea:focus {
     display: none;
 }
 
+.signup-prompt {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+.signup-prompt a {
+    color: var(--current);
+    font-weight: 600;
+    text-decoration: none;
+}
+.signup-prompt a:hover {
+    text-decoration: underline;
+}
+
 /* ----------------------------------------
    Question Selector
    ---------------------------------------- */

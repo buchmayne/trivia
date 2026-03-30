@@ -30,8 +30,8 @@ class UserProfileSignalTests(TestCase):
         self.assertFalse(user.profile.is_game_admin)
 
 
-class GalleryViewAuthTests(TestCase):
-    """Tests for gallery view authentication requirements."""
+class GalleryViewPublicAccessTests(TestCase):
+    """Tests for gallery view public access (no auth required)."""
 
     def setUp(self):
         self.client = Client()
@@ -40,11 +40,10 @@ class GalleryViewAuthTests(TestCase):
         )
         self.game = Game.objects.create(name="Test Game", is_public=True)
 
-    def test_gallery_requires_login(self):
-        """Gallery view redirects to login when not authenticated."""
+    def test_gallery_is_public(self):
+        """Gallery view is accessible without login."""
         response = self.client.get(reverse("quiz:gallery"))
-        self.assertEqual(response.status_code, 302)
-        self.assertIn("/accounts/login/", response.url)
+        self.assertEqual(response.status_code, 200)
 
     def test_gallery_accessible_when_logged_in(self):
         """Gallery view is accessible when authenticated."""
@@ -52,19 +51,17 @@ class GalleryViewAuthTests(TestCase):
         response = self.client.get(reverse("quiz:gallery"))
         self.assertEqual(response.status_code, 200)
 
-    def test_game_overview_requires_login(self):
-        """Game overview view redirects to login when not authenticated."""
+    def test_game_overview_is_public(self):
+        """Game overview view is accessible without login."""
         response = self.client.get(
             reverse("quiz:game_overview", kwargs={"game_id": self.game.id})
         )
-        self.assertEqual(response.status_code, 302)
-        self.assertIn("/accounts/login/", response.url)
+        self.assertEqual(response.status_code, 200)
 
-    def test_analytics_requires_login(self):
-        """Analytics view redirects to login when not authenticated."""
+    def test_analytics_is_public(self):
+        """Analytics view is accessible without login."""
         response = self.client.get(reverse("quiz:analytics"))
-        self.assertEqual(response.status_code, 302)
-        self.assertIn("/accounts/login/", response.url)
+        self.assertEqual(response.status_code, 200)
 
 
 class SessionHostAuthTests(TestCase):
@@ -76,12 +73,24 @@ class SessionHostAuthTests(TestCase):
             username="testuser", email="test@example.com", password="testpass123"
         )
         self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.example_game = Game.objects.create(
+            name="Example Game", is_public=True, is_example_game=True
+        )
 
-    def test_session_host_requires_login(self):
-        """Session host page redirects to login when not authenticated."""
+    def test_session_host_accessible_unauthenticated(self):
+        """Session host page is accessible without login (shows example games only)."""
         response = self.client.get(reverse("quiz:session_host"))
-        self.assertEqual(response.status_code, 302)
-        self.assertIn("/accounts/login/", response.url)
+        self.assertEqual(response.status_code, 200)
+        # Should see example game but not regular public game
+        self.assertContains(response, "Example Game")
+        self.assertNotContains(response, "Test Game")
+
+    def test_session_host_shows_signup_prompt_unauthenticated(self):
+        """Session host page shows signup prompt when not authenticated."""
+        response = self.client.get(reverse("quiz:session_host"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Sign up")
+        self.assertContains(response, "more game")
 
     def test_session_host_requires_verified_email(self):
         """Session host page redirects to email page when email not verified."""
@@ -100,6 +109,16 @@ class SessionHostAuthTests(TestCase):
         )
         response = self.client.get(reverse("quiz:session_host"))
         self.assertEqual(response.status_code, 200)
+
+    def test_session_host_shows_all_public_games_authenticated(self):
+        """Session host page shows all public games when authenticated."""
+        self.client.login(username="testuser", password="testpass123")
+        EmailAddress.objects.create(
+            user=self.user, email=self.user.email, verified=True, primary=True
+        )
+        response = self.client.get(reverse("quiz:session_host"))
+        self.assertContains(response, "Example Game")
+        self.assertContains(response, "Test Game")
 
 
 class SessionJoinPublicAccessTests(TestCase):
@@ -145,16 +164,40 @@ class CreateSessionAPIAuthTests(TestCase):
             username="testuser", email="test@example.com", password="testpass123"
         )
         self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.example_game = Game.objects.create(
+            name="Example Game", is_public=True, is_example_game=True
+        )
 
-    def test_create_session_requires_login(self):
-        """Create session API returns 401 when not authenticated."""
+    def test_create_session_unauthenticated_non_example_returns_401(self):
+        """Create session API returns 401 for non-example games when not authenticated."""
         response = self.client.post(
             reverse("quiz:session_create"),
             data={"game_id": self.game.id, "admin_name": "Test Admin"},
             content_type="application/json",
         )
         self.assertEqual(response.status_code, 401)
-        self.assertIn("Authentication required", response.json()["error"])
+        self.assertIn("sign up", response.json()["error"])
+
+    def test_create_session_unauthenticated_example_succeeds(self):
+        """Create session API succeeds for example games when not authenticated."""
+        response = self.client.post(
+            reverse("quiz:session_create"),
+            data={"game_id": self.example_game.id, "admin_name": "Test Admin"},
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("code", response.json())
+        self.assertIn("admin_token", response.json())
+
+    def test_create_session_unauthenticated_sets_null_host_user(self):
+        """Create session API sets host_user to null when not authenticated."""
+        response = self.client.post(
+            reverse("quiz:session_create"),
+            data={"game_id": self.example_game.id, "admin_name": "Test Admin"},
+            content_type="application/json",
+        )
+        session = GameSession.objects.get(code=response.json()["code"])
+        self.assertIsNone(session.host_user)
 
     def test_create_session_requires_verified_email(self):
         """Create session API returns 403 when email not verified."""
