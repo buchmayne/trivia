@@ -40,6 +40,11 @@
                         </option>
                         {% endfor %}
                     </select>
+                    {% if not is_authenticated and locked_game_count > 0 %}
+                    <div class="signup-prompt">
+                        <a href="{% url 'account_signup' %}">Sign up</a> to unlock {{ locked_game_count }} more game{{ locked_game_count|pluralize }}
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="form-group" id="passwordGroup" style="display: none;">

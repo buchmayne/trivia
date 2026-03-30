@@ -5,7 +5,6 @@ Renders HTML pages for session interaction.
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Game, GameSession
 
@@ -22,26 +21,47 @@ def session_landing(request: HttpRequest) -> HttpResponse:
     return render(request, "quiz/sessions/landing.html")
 
 
-@login_required
 def session_host(request: HttpRequest) -> HttpResponse:
-    """Admin creates sessions. Lists available games. Requires verified email."""
-    # Check for verified email
-    if not has_verified_email(request.user):
-        messages.warning(
-            request,
-            "Please verify your email address before hosting games. "
-            "Check your inbox for a verification link.",
+    """Host page. Unauthenticated users see only example games."""
+
+    # Count all public games for calculating locked count
+    all_public_games = Game.objects.filter(is_public=True).exclude(name="Future-Game")
+    total_game_count = all_public_games.count()
+
+    if not request.user.is_authenticated:
+        # Unauthenticated: only example games
+        games = (
+            Game.objects.filter(is_example_game=True)
+            .exclude(name="Future-Game")
+            .order_by("-game_order")
         )
-        return redirect("account_email")
+        example_count = games.count()
+        locked_count = total_game_count - example_count
+    else:
+        # Authenticated: check email verification
+        if not has_verified_email(request.user):
+            messages.warning(
+                request,
+                "Please verify your email address before hosting games. "
+                "Check your inbox for a verification link.",
+            )
+            return redirect("account_email")
 
-    # Show only public games for regular users, all games for admins
-    games = Game.objects.exclude(name="Future-Game").order_by("-game_order")
+        # Authenticated users see all public games (or all if admin)
+        games = Game.objects.exclude(name="Future-Game").order_by("-game_order")
+        if hasattr(request.user, "profile") and not request.user.profile.is_game_admin:
+            games = games.filter(is_public=True)
+        locked_count = 0
 
-    # Filter to public games only for non-admin users
-    if hasattr(request.user, "profile") and not request.user.profile.is_game_admin:
-        games = games.filter(is_public=True)
-
-    return render(request, "quiz/sessions/host.html", {"games": games})
+    return render(
+        request,
+        "quiz/sessions/host.html",
+        {
+            "games": games,
+            "is_authenticated": request.user.is_authenticated,
+            "locked_game_count": locked_count,
+        },
+    )
 
 
 def session_join(request: HttpRequest) -> HttpResponse:
