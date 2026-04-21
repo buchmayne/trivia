@@ -155,14 +155,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Security settings
 SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 
 # Add this for HTTPS
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# CSRF trusted origins (required for Django 4.x with HTTPS)
+CSRF_TRUSTED_ORIGINS = [
+    "https://thirdwavetrivia.com",
+    "https://www.thirdwavetrivia.com",
+]
 
 # AWS Settings
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
