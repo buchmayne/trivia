@@ -65,9 +65,7 @@ class Command(BaseCommand):
         deleted_count, deleted_details = sessions.delete()
 
         self.stdout.write(
-            self.style.SUCCESS(
-                f"Deleted {count} sessions older than {days} days"
-            )
+            self.style.SUCCESS(f"Deleted {count} sessions older than {days} days")
         )
         for model, c in deleted_details.items():
             self.stdout.write(f"  {model}: {c}")

@@ -43,7 +43,9 @@ class Command(BaseCommand):
         output_path = Path(settings.BASE_DIR) / options["output"]
 
         if not input_path.exists():
-            self.stderr.write(self.style.ERROR(f"Input fixture not found: {input_path}"))
+            self.stderr.write(
+                self.style.ERROR(f"Input fixture not found: {input_path}")
+            )
             return
 
         with input_path.open() as f:
@@ -83,7 +85,9 @@ class Command(BaseCommand):
             f.write("\n")
 
         self.stdout.write(
-            self.style.SUCCESS(f"Exported {len(filtered)} content records to {output_path}")
+            self.style.SUCCESS(
+                f"Exported {len(filtered)} content records to {output_path}"
+            )
         )
         for model, count in sorted(model_counts.items()):
             self.stdout.write(f"  {model}: {count}")
