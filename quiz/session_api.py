@@ -6,13 +6,16 @@ Token-based authentication for admin and team actions.
 import json
 from functools import wraps
 from datetime import timedelta
+from typing import Callable, Optional
 
 from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
+from django.http import HttpRequest, JsonResponse
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
-from django.db import models
+from django.db import models, transaction
+from django_ratelimit.decorators import ratelimit
+from django_ratelimit.exceptions import Ratelimited
 
 from .models import (
     Answer,
@@ -24,13 +27,14 @@ from .models import (
     SessionRound,
     TeamAnswer,
 )
+from .utils import has_verified_email
 
 
-def has_verified_email(user):
-    """Check if user has at least one verified email address."""
-    if not user.is_authenticated:
-        return False
-    return user.emailaddress_set.filter(verified=True).exists()
+def ratelimit_error(request: HttpRequest, exception: Exception) -> JsonResponse:
+    """Handler for rate limit exceeded errors."""
+    return JsonResponse(
+        {"error": "Rate limit exceeded. Please wait before trying again."}, status=429
+    )
 
 
 # Configuration
@@ -42,11 +46,11 @@ ADMIN_TIMEOUT_SECONDS = 30  # Pause if admin not seen for this long
 # ============================================================================
 
 
-def require_admin_token(view_func):
+def require_admin_token(view_func: Callable) -> Callable:
     """Validates admin token and updates last_seen timestamp."""
 
     @wraps(view_func)
-    def wrapper(request, code, *args, **kwargs):
+    def wrapper(request: HttpRequest, code: str, *args, **kwargs) -> JsonResponse:
         token = request.headers.get("Authorization", "").replace("Bearer ", "")
         try:
             session = GameSession.objects.get(code=code)
@@ -70,11 +74,11 @@ def require_admin_token(view_func):
     return wrapper
 
 
-def require_team_token(view_func):
+def require_team_token(view_func: Callable) -> Callable:
     """Validates team token and updates last_seen timestamp."""
 
     @wraps(view_func)
-    def wrapper(request, code, *args, **kwargs):
+    def wrapper(request: HttpRequest, code: str, *args, **kwargs) -> JsonResponse:
         token = request.headers.get("Authorization", "").replace("Bearer ", "")
         try:
             session = GameSession.objects.get(code=code)
@@ -90,7 +94,7 @@ def require_team_token(view_func):
     return wrapper
 
 
-def check_admin_timeout(session):
+def check_admin_timeout(session: GameSession) -> bool:
     """Check if admin has timed out and pause if needed."""
     if session.status in [GameSession.Status.PLAYING, GameSession.Status.SCORING]:
         timeout_threshold = timezone.now() - timedelta(seconds=ADMIN_TIMEOUT_SECONDS)
@@ -107,7 +111,9 @@ def check_admin_timeout(session):
 
 @csrf_exempt
 @require_http_methods(["POST"])
-def create_session(request):
+@ratelimit(key="ip", rate="10/m", method="POST", block=True)
+@transaction.atomic
+def create_session(request: HttpRequest) -> JsonResponse:
     """Create new session. Unauthenticated users can only create sessions for example games."""
     try:
         data = json.loads(request.body)
@@ -179,10 +185,10 @@ def create_session(request):
 
 @csrf_exempt
 @require_http_methods(["POST"])
-def join_session(request, code):
+@ratelimit(key="ip", rate="20/m", method="POST", block=True)
+@transaction.atomic
+def join_session(request: HttpRequest, code: str) -> JsonResponse:
     """Team joins session. Supports late joins during active rounds."""
-    session = get_object_or_404(GameSession, code=code)
-
     try:
         data = json.loads(request.body)
     except json.JSONDecodeError:
@@ -193,6 +199,12 @@ def join_session(request, code):
     # Validate team name
     if len(team_name) < 2 or len(team_name) > 100:
         return JsonResponse({"error": "Team name must be 2-100 characters"}, status=400)
+
+    # Lock session row to prevent race conditions when checking team count
+    try:
+        session = GameSession.objects.select_for_update().get(code=code)
+    except GameSession.DoesNotExist:
+        return JsonResponse({"error": "Session not found"}, status=404)
 
     # Check if session accepts joins
     if session.status == GameSession.Status.COMPLETED:
@@ -227,7 +239,7 @@ def join_session(request, code):
 
 
 @require_http_methods(["GET"])
-def get_session_state(request, code):
+def get_session_state(request: HttpRequest, code: str) -> JsonResponse:
     """Poll endpoint for current state. No auth required for basic info."""
     session = get_object_or_404(GameSession, code=code)
 
@@ -284,43 +296,58 @@ def get_session_state(request, code):
             ],
         }
 
+    # Bulk query: Get set of team IDs that have answered current question
+    answered_team_ids = set()
+    if session.current_question:
+        answered_team_ids = set(
+            TeamAnswer.objects.filter(
+                team__session=session,
+                question=session.current_question,
+                answer_text__gt="",
+            ).values_list("team_id", flat=True)
+        )
+
+    teams = list(session.teams.order_by("id"))
     teams_data = [
         {
             "id": t.id,
             "name": t.name,
             "score": t.score,
             "joined_late": t.joined_late,
-            "has_answered_current": (
-                TeamAnswer.objects.filter(
-                    team=t, question=session.current_question, answer_text__gt=""
-                ).exists()
-                if session.current_question
-                else False
-            ),
+            "has_answered_current": t.id in answered_team_ids,
         }
-        for t in session.teams.order_by("id")
+        for t in teams
     ]
 
     # Get round progress: submission counts for each question in current round
     round_progress = []
     if session.current_round:
-        questions_in_round = session.game.questions.filter(
-            game_round=session.current_round
-        ).order_by("question_number")
+        questions_in_round = list(
+            session.game.questions.filter(game_round=session.current_round).order_by(
+                "question_number"
+            )
+        )
 
-        total_teams = session.teams.count()
+        total_teams = len(teams)
+
+        # Bulk query: Get submission counts per question
+        submission_counts = dict(
+            TeamAnswer.objects.filter(
+                question__in=questions_in_round,
+                team__session=session,
+                answer_text__gt="",
+            )
+            .values("question_id")
+            .annotate(count=models.Count("id"))
+            .values_list("question_id", "count")
+        )
 
         for question in questions_in_round:
-            # Count teams that have submitted an answer (non-empty answer_text)
-            submitted_count = TeamAnswer.objects.filter(
-                question=question, team__session=session, answer_text__gt=""
-            ).count()
-
             round_progress.append(
                 {
                     "question_id": question.id,
                     "question_number": question.question_number,
-                    "submitted_count": submitted_count,
+                    "submitted_count": submission_counts.get(question.id, 0),
                     "total_teams": total_teams,
                 }
             )
@@ -350,7 +377,7 @@ def get_session_state(request, code):
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
-def admin_start_game(request, code):
+def admin_start_game(request: HttpRequest, code: str) -> JsonResponse:
     """Start the game from lobby."""
     session = request.session_obj
 
@@ -391,7 +418,7 @@ def admin_start_game(request, code):
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
-def admin_set_question(request, code):
+def admin_set_question(request: HttpRequest, code: str) -> JsonResponse:
     """Set current question. Admin can navigate within active round."""
     session = request.session_obj
 
@@ -435,7 +462,7 @@ def admin_set_question(request, code):
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
-def admin_toggle_team_navigation(request, code):
+def admin_toggle_team_navigation(request: HttpRequest, code: str) -> JsonResponse:
     """Toggle whether teams can navigate between questions in the round."""
     session = request.session_obj
 
@@ -464,7 +491,7 @@ def admin_toggle_team_navigation(request, code):
 # ============================================================================
 
 
-def _is_multi_part_question(question):
+def _is_multi_part_question(question: Question) -> bool:
     """Check if a question has multiple parts that need individual scoring."""
     if not question.question_type:
         return False
@@ -480,7 +507,7 @@ def _is_multi_part_question(question):
     return False
 
 
-def _split_answer_into_parts(team_answer):
+def _split_answer_into_parts(team_answer: TeamAnswer) -> list:
     """
     Split a team's JSON array answer into individual TeamAnswer records per part.
     Returns list of created/updated TeamAnswer objects.
@@ -525,7 +552,7 @@ def _split_answer_into_parts(team_answer):
     return created_parts
 
 
-def _auto_score_ranking_matching(part_answers, question):
+def _auto_score_ranking_matching(part_answers: list, question: Question) -> None:
     """
     Auto-score Ranking and Matching questions with per-item partial credit.
     Each correctly placed/matched item earns its Answer.points value.
@@ -588,7 +615,8 @@ def _auto_score_ranking_matching(part_answers, question):
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
-def admin_lock_round(request, code):
+@transaction.atomic
+def admin_lock_round(request: HttpRequest, code: str) -> JsonResponse:
     """Lock current round for scoring. All team answers become locked.
     For multi-part questions, splits answers into per-part records.
     Auto-scores Ranking and Matching questions.
@@ -670,7 +698,7 @@ def admin_lock_round(request, code):
 
 @require_http_methods(["GET"])
 @require_admin_token
-def admin_get_scoring_data(request, code):
+def admin_get_scoring_data(request: HttpRequest, code: str) -> JsonResponse:
     """Get all answers for current round for scoring UI.
     Returns per-part structure for multi-part questions."""
     session = request.session_obj
@@ -801,7 +829,8 @@ def admin_get_scoring_data(request, code):
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
-def admin_score_answer(request, code):
+@transaction.atomic
+def admin_score_answer(request: HttpRequest, code: str) -> JsonResponse:
     """Award points for an answer or answer part.
     For per-part scoring, use team_answer_id (the TeamAnswer record ID).
     For single-answer questions, use answer_id or team_id + question_id."""
@@ -918,7 +947,7 @@ def admin_score_answer(request, code):
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
-def admin_complete_round(request, code):
+def admin_complete_round(request: HttpRequest, code: str) -> JsonResponse:
     """Mark round as scored, transition to REVIEWING state."""
     session = request.session_obj
     session_round = session.session_rounds.get(round=session.current_round)
@@ -961,7 +990,7 @@ def admin_complete_round(request, code):
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
-def admin_start_next_round(request, code):
+def admin_start_next_round(request: HttpRequest, code: str) -> JsonResponse:
     """Exit review/leaderboard mode and start next round or end game."""
     session = request.session_obj
 
@@ -1023,7 +1052,7 @@ def admin_start_next_round(request, code):
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
-def admin_show_leaderboard(request, code):
+def admin_show_leaderboard(request: HttpRequest, code: str) -> JsonResponse:
     """Transition from REVIEWING to LEADERBOARD state."""
     session = request.session_obj
 
@@ -1037,51 +1066,66 @@ def admin_show_leaderboard(request, code):
 
 
 @require_http_methods(["GET"])
-def get_leaderboard_data(request, code):
+def get_leaderboard_data(request: HttpRequest, code: str) -> JsonResponse:
     """Get leaderboard data with team rankings, per-round scores, and upcoming rounds."""
     session = get_object_or_404(GameSession, code=code)
 
     # Get all teams ordered by score
-    teams = session.teams.order_by("-score", "joined_at")
+    teams = list(session.teams.order_by("-score", "joined_at"))
 
     # Get scored rounds
-    scored_rounds = (
+    scored_rounds = list(
         session.session_rounds.filter(status=SessionRound.Status.SCORED)
         .select_related("round")
         .order_by("round__round_number")
     )
 
     # Get upcoming rounds (pending status)
-    upcoming_rounds = (
+    upcoming_rounds = list(
         session.session_rounds.filter(status=SessionRound.Status.PENDING)
         .select_related("round")
         .order_by("round__round_number")
     )
 
-    # Calculate total game points and points per round
-    total_game_points = 0
-    points_played = 0
+    # Pre-calculate max points per round with a single aggregated query
+    round_max_points = dict(
+        Question.objects.filter(game=session.game)
+        .values("game_round_id")
+        .annotate(max_points=models.Sum("total_points"))
+        .values_list("game_round_id", "max_points")
+    )
+
+    # Pre-calculate team scores per round with a single aggregated query
+    team_round_scores = {}
+    score_data = (
+        TeamAnswer.objects.filter(team__session=session, points_awarded__isnull=False)
+        .values("team_id", "session_round_id")
+        .annotate(total=models.Sum("points_awarded"))
+    )
+    for row in score_data:
+        key = (row["team_id"], row["session_round_id"])
+        team_round_scores[key] = row["total"]
 
     # Build completed rounds info
+    total_game_points = 0
+    points_played = 0
     completed_rounds = []
     for sr in scored_rounds:
-        round_questions = session.game.questions.filter(game_round=sr.round)
-        round_max_points = sum(q.total_points for q in round_questions)
-        points_played += round_max_points
-        total_game_points += round_max_points
+        max_pts = round_max_points.get(sr.round_id, 0)
+        points_played += max_pts
+        total_game_points += max_pts
         completed_rounds.append(
             {
                 "round_number": sr.round.round_number,
                 "round_name": sr.round.name,
-                "max_points": round_max_points,
+                "max_points": max_pts,
             }
         )
 
     # Build upcoming rounds info
     upcoming_rounds_data = []
     for sr in upcoming_rounds:
-        round_questions = session.game.questions.filter(game_round=sr.round)
-        available_points = sum(q.total_points for q in round_questions)
+        available_points = round_max_points.get(sr.round_id, 0)
         total_game_points += available_points
         upcoming_rounds_data.append(
             {
@@ -1093,21 +1137,13 @@ def get_leaderboard_data(request, code):
 
     points_remaining = total_game_points - points_played
 
-    # Build leaderboard with per-round scores
+    # Build leaderboard with per-round scores (no additional queries needed)
     leaderboard = []
     for rank, team in enumerate(teams, start=1):
         round_scores = []
         for sr in scored_rounds:
-            # Get all TeamAnswers for this team in this round
-            round_answers = TeamAnswer.objects.filter(
-                team=team, session_round=sr, points_awarded__isnull=False
-            )
-            points_scored = sum(a.points_awarded for a in round_answers)
-
-            # Get max points for this round
-            round_questions = session.game.questions.filter(game_round=sr.round)
-            max_points = sum(q.total_points for q in round_questions)
-
+            points_scored = team_round_scores.get((team.id, sr.id), 0)
+            max_points = round_max_points.get(sr.round_id, 0)
             round_scores.append(
                 {
                     "round_number": sr.round.round_number,
@@ -1148,8 +1184,9 @@ def get_leaderboard_data(request, code):
 
 @csrf_exempt
 @require_http_methods(["POST"])
+@ratelimit(key="ip", rate="60/m", method="POST", block=True)
 @require_team_token
-def team_submit_answer(request, code):
+def team_submit_answer(request: HttpRequest, code: str) -> JsonResponse:
     """Submit or update answer. Only works for active rounds."""
     session = request.session_obj
     team = request.team
@@ -1204,7 +1241,7 @@ def team_submit_answer(request, code):
 
 @require_http_methods(["GET"])
 @require_team_token
-def team_get_answers(request, code):
+def team_get_answers(request: HttpRequest, code: str) -> JsonResponse:
     """Get team's answers for current round."""
     session = request.session_obj
     team = request.team
@@ -1282,7 +1319,7 @@ def team_get_answers(request, code):
 
 @require_http_methods(["GET"])
 @require_team_token
-def team_get_question_details(request, code):
+def team_get_question_details(request: HttpRequest, code: str) -> JsonResponse:
     """Get full details for a specific question (for team navigation)."""
     session = request.session_obj
     team = request.team
@@ -1334,7 +1371,7 @@ def team_get_question_details(request, code):
 
 @require_http_methods(["GET"])
 @require_team_token
-def team_get_results(request, code):
+def team_get_results(request: HttpRequest, code: str) -> JsonResponse:
     """Get team's results across all scored rounds."""
     session = request.session_obj
     team = request.team
@@ -1381,7 +1418,7 @@ def team_get_results(request, code):
 
 @csrf_exempt
 @require_http_methods(["POST"])
-def validate_session_access(request, code):
+def validate_session_access(request: HttpRequest, code: str) -> JsonResponse:
     """
     Validates admin and/or team tokens for a session.
     Returns which roles the user has valid access to.
@@ -1429,7 +1466,7 @@ def validate_session_access(request, code):
 
 @csrf_exempt
 @require_http_methods(["POST"])
-def rejoin_session(request, code):
+def rejoin_session(request: HttpRequest, code: str) -> JsonResponse:
     """
     Allows a team to rejoin a session by providing their team name.
     Returns existing team token if team name matches, allowing recovery from token loss.

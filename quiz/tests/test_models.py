@@ -31,11 +31,14 @@ class GameModelTest(TestCase):
 
     def test_password_protected_game(self):
         """Test password protected game creation and validation"""
-        protected_game = Game.objects.create(
-            name="Protected Game", is_password_protected=True, password="secret123"
-        )
+        protected_game = Game(name="Protected Game", is_password_protected=True)
+        protected_game.set_password("secret123")
+        protected_game.save()
         self.assertTrue(protected_game.is_password_protected)
-        self.assertEqual(protected_game.password, "secret123")
+        # Password should be stored as a hash, not plain text
+        self.assertNotEqual(protected_game.password, "secret123")
+        self.assertTrue(protected_game.check_password("secret123"))
+        self.assertFalse(protected_game.check_password("wrong"))
 
     def test_game_with_categories(self):
         """Test many-to-many relationship with categories"""

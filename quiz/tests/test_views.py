@@ -38,13 +38,14 @@ class GameOverviewViewTest(TestCase):
         self.client = Client()
         self.user = create_verified_user()
         self.client.login(username="testuser", password="testpass123")
-        self.game = Game.objects.create(
+        self.game = Game(
             name="Test Game",
             description="Test Description",
             is_password_protected=True,
-            password="gamepass123",
             is_public=True,
         )
+        self.game.set_password("gamepass123")
+        self.game.save()
         self.category = Category.objects.create(name="Test Category")
         self.game_round = QuestionRound.objects.create(name="Round 1", round_number=1)
         self.question_type = QuestionType.objects.create(
