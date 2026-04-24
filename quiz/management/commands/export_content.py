@@ -2,34 +2,30 @@ import json
 from pathlib import Path
 
 from django.conf import settings
+from django.core import serializers
 from django.core.management.base import BaseCommand
 
 
-# Models that contain developer-created trivia content
-CONTENT_MODELS = {
-    "quiz.questiontype",
-    "quiz.questionround",
-    "quiz.category",
-    "quiz.game",
-    "quiz.question",
-    "quiz.answer",
-    "quiz.subquestion",
-}
+# Ordered list of content models to export.
+# Order matters: dependencies must come before dependents so loaddata works correctly.
+CONTENT_MODELS = [
+    ("quiz", "QuestionType"),
+    ("quiz", "QuestionRound"),
+    ("quiz", "Category"),
+    ("quiz", "Game"),
+    ("quiz", "Question"),
+    ("quiz", "Answer"),
+]
 
 
 class Command(BaseCommand):
-    help = "Export content-only models from a fixture, stripping user and session data."
+    help = "Export content-only models from the live database to a fixture file."
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--input",
-            default="db_initial_data.json",
-            help="Source fixture filename at project root (default: db_initial_data.json)",
-        )
-        parser.add_argument(
             "--output",
             default="quiz/fixtures/content.json",
-            help="Output fixture path (default: quiz/fixtures/content.json)",
+            help="Output fixture path relative to project root (default: quiz/fixtures/content.json)",
         )
         parser.add_argument(
             "--nullify-owner",
@@ -39,60 +35,40 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        input_path = Path(settings.BASE_DIR) / options["input"]
+        from django.apps import apps
+
         output_path = Path(settings.BASE_DIR) / options["output"]
+        nullify_owner = options["nullify_owner"]
 
-        if not input_path.exists():
-            self.stderr.write(
-                self.style.ERROR(f"Input fixture not found: {input_path}")
-            )
-            return
-
-        with input_path.open() as f:
-            data = json.load(f)
-
-        if not isinstance(data, list):
-            self.stderr.write(self.style.ERROR("Fixture must be a JSON array"))
-            return
-
-        # Filter to content models only
-        filtered = []
-        for item in data:
-            model = item.get("model", "")
-            if model not in CONTENT_MODELS:
-                continue
-
-            # Nullify owner field on Game models to avoid user FK issues
-            if model == "quiz.game" and options["nullify_owner"]:
-                item = dict(item)
-                fields = dict(item.get("fields", {}))
-                fields["owner"] = None
-                item["fields"] = fields
-
-            filtered.append(item)
-
-        # Count by model type
+        all_records = []
         model_counts = {}
-        for item in filtered:
-            model = item.get("model", "unknown")
-            model_counts[model] = model_counts.get(model, 0) + 1
+
+        for app_label, model_name in CONTENT_MODELS:
+            model = apps.get_model(app_label, model_name)
+            queryset = model.objects.all()
+
+            # Serialize to Python objects so we can mutate before writing
+            serialized = json.loads(serializers.serialize("json", queryset))
+
+            # Nullify owner FK on Game records to avoid user FK violations
+            # when loading into a fresh environment
+            if app_label == "quiz" and model_name == "Game" and nullify_owner:
+                for record in serialized:
+                    record["fields"]["owner"] = None
+
+            all_records.extend(serialized)
+            model_counts[f"{app_label}.{model_name.lower()}"] = len(serialized)
 
         # Ensure output directory exists
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
         with output_path.open("w") as f:
-            json.dump(filtered, f, indent=2)
+            json.dump(all_records, f, indent=2)
             f.write("\n")
 
+        total = len(all_records)
         self.stdout.write(
-            self.style.SUCCESS(
-                f"Exported {len(filtered)} content records to {output_path}"
-            )
+            self.style.SUCCESS(f"Exported {total} content records to {output_path}")
         )
-        for model, count in sorted(model_counts.items()):
-            self.stdout.write(f"  {model}: {count}")
-
-        excluded_count = len(data) - len(filtered)
-        self.stdout.write(
-            self.style.WARNING(f"Excluded {excluded_count} non-content records")
-        )
+        for model_label, count in model_counts.items():
+            self.stdout.write(f"  {model_label}: {count}")

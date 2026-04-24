@@ -85,6 +85,8 @@ jobs:
           # Update codebase
           cd ./opt/trivia/
           git fetch origin main
+          # Capture current HEAD before reset so we can diff what actually changed
+          PREVIOUS_HEAD=$(git rev-parse HEAD 2>/dev/null || echo "")
           git reset --hard origin/main
 
           # Create .env file using GitHub secrets
@@ -120,3 +122,31 @@ jobs:
           # Remove existing containers and networks (preserve volumes for certs)
           docker-compose down --remove-orphans
           docker-compose up -d --build
+
+          # Apply content fixture to production if content.json changed in this push.
+          # PREVIOUS_HEAD was captured before the git reset above so the diff is accurate.
+          # On the very first deploy PREVIOUS_HEAD will be empty; fall back to always seeding.
+          CONTENT_CHANGED=false
+          if [ -z "$PREVIOUS_HEAD" ]; then
+            echo "No previous HEAD - treating as first deploy, will seed content."
+            CONTENT_CHANGED=true
+          elif git diff --name-only "$PREVIOUS_HEAD" HEAD -- quiz/fixtures/content.json | grep -q 'content.json'; then
+            echo "content.json changed in this push."
+            CONTENT_CHANGED=true
+          else
+            echo "content.json unchanged - skipping content seed."
+          fi
+
+          if [ "$CONTENT_CHANGED" = "true" ]; then
+            echo "Waiting for web container to be ready..."
+            # Poll until the container can run a management command (up to 90s)
+            for i in $(seq 1 18); do
+              if docker-compose exec -T web uv run manage.py check 2>/dev/null; then
+                break
+              fi
+              echo "  attempt $i/18, retrying in 5s..."
+              sleep 5
+            done
+            docker-compose exec -T web uv run manage.py seed_db --force
+            echo "Content fixture applied."
+          fi
