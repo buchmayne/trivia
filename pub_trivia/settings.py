@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -216,8 +217,9 @@ else:
     }
 
 # Rate limiting configuration
-# Disable rate limiting in DEBUG mode (development/tests) to avoid interfering with tests
-RATELIMIT_ENABLE = not DEBUG
+# Disable rate limiting in DEBUG mode or when running tests
+TESTING = "test" in sys.argv
+RATELIMIT_ENABLE = not DEBUG and not TESTING
 RATELIMIT_USE_CACHE = "default"
 RATELIMIT_VIEW = "quiz.session_api.ratelimit_error"
 
