@@ -5,7 +5,6 @@ from django.conf import settings
 from django.core import serializers
 from django.core.management.base import BaseCommand
 
-
 # Ordered list of content models to export.
 # Order matters: dependencies must come before dependents so loaddata works correctly.
 CONTENT_MODELS = [

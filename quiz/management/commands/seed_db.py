@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
-
 # Models to exclude from fixture loading
 # These are either system models, user data (preserved in production),
 # session data (ephemeral), or analytics data (imported separately)

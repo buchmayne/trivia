@@ -19,7 +19,6 @@ from .models import (
 )
 from .widgets import S3ImageUploadWidget, S3VideoUploadWidget
 
-
 # ============================================================================
 # USER PROFILE ADMIN
 # ============================================================================
