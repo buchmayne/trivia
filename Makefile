@@ -1,4 +1,4 @@
-.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data black start preprod e2e e2e-install e2e-qa
+.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data export-content black start preprod e2e e2e-install e2e-qa
 
 help:
 	@echo "Available commands:"
@@ -23,10 +23,11 @@ help:
 	@echo "  make docker-down      - Stop all Docker services"
 	@echo "  make docker-logs      - View Docker logs"
 	@echo "  make docker-migrate   - Run migrations in Docker container"
-	@echo "  make dump-data        - Dump content from local database to json file"
+	@echo "  make dump-data        - Dump full local database to db_initial_data.json (backup)"
+	@echo "  make export-content   - Export content fixture from live local DB to quiz/fixtures/content.json"
 	@echo "  make black            - Run black across repo"
 	@echo "  make start            - Run game initializer"
-	@echo "  make preprod          - Run all preflight steps before pushing to production (linting, tests, and database dump)"
+	@echo "  make preprod          - Run all preflight steps before pushing to production (export content, linting, tests)"
 	@echo ""
 	@echo "E2E Testing (Playwright):"
 	@echo "  make e2e-install      - Install Playwright and browsers"
@@ -106,9 +107,13 @@ docker-logs:
 docker-migrate:
 	docker-compose exec web uv run manage.py migrate
 
-# Dump content from database to json file
+# Dump full local database to json file (for local backup purposes)
 dump-data:
 	uv run manage.py dumpdata --exclude contenttypes --exclude auth.permission --exclude admin.logentry --exclude sessions --natural-foreign --natural-primary --indent 2 > db_initial_data.json
+
+# Export content-only fixture from live local DB (required before pushing content changes)
+export-content:
+	uv run manage.py export_content
 
 # Run black
 black:
@@ -137,8 +142,11 @@ endif
 e2e-qa:
 	cd e2e && npx playwright test qa-robust.spec.ts --headed --project=qa-robust
 
-# Run all preflight steps before pushing to prod
+# Run all preflight steps before pushing to prod:
+# 1. Export content fixture from live local DB -> quiz/fixtures/content.json
+# 2. Run black formatting
+# 3. Run full test suite
 preprod:
-	uv run manage.py dumpdata --exclude contenttypes --exclude auth.permission --exclude admin.logentry --exclude sessions --natural-foreign --natural-primary --indent 2 > db_initial_data.json
+	uv run manage.py export_content
 	uv run black .
 	uv run manage.py test quiz

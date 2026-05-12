@@ -299,7 +299,7 @@ def verify_game_password(request: HttpRequest, game_id: int) -> HttpResponse:
         game = Game.objects.get(id=game_id)
         password = request.POST.get("password")
 
-        if password == game.password:
+        if game.check_password(password):
             # Store password verification in session
             request.session[f"game_password_verified_{game_id}"] = True
             return redirect("quiz:game_overview", game_id=game_id)

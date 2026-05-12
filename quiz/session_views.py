@@ -7,13 +7,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
 from .models import Game, GameSession
-
-
-def has_verified_email(user):
-    """Check if user has at least one verified email address."""
-    if not user.is_authenticated:
-        return False
-    return user.emailaddress_set.filter(verified=True).exists()
+from .utils import has_verified_email
 
 
 def session_landing(request: HttpRequest) -> HttpResponse:

@@ -3,13 +3,14 @@ name = "trivia"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "black==25.1.0",
     "boto3>=1.38.9",
-    "django==4.2.18",
+    "django>=5.2,<6.0",
     "django-allauth>=0.61.0",
     "django-filter==25.1",
+    "django-ratelimit>=4.1.0",
     "django-storages>=1.14.6",
     "django-tinymce==4.1.0",
     "djangorestframework==3.16.0",
@@ -21,4 +22,5 @@ dependencies = [
     "pillow>=11.2.1",
     "psycopg2-binary>=2.9.10",
     "python-dotenv>=1.1.0",
+    "urllib3>=2.6.0",
 ]

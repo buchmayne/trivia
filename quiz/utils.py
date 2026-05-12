@@ -1,8 +1,17 @@
 import os
+import mimetypes
+
 from django.db import transaction
 import pandas as pd
+
 from quiz.models import GameResult, PlayerStats
-import mimetypes
+
+
+def has_verified_email(user):
+    """Check if user has at least one verified email address."""
+    if not user.is_authenticated:
+        return False
+    return user.emailaddress_set.filter(verified=True).exists()
 
 
 class AnalyticsLoader:

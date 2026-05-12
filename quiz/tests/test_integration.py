@@ -307,13 +307,14 @@ class PasswordProtectedGameWorkflowTest(TestCase):
         self.client = Client()
         self.user = create_verified_user()
         self.client.login(username="testuser", password="testpass123")
-        self.protected_game = Game.objects.create(
+        self.protected_game = Game(
             name="Protected Game",
             description="Secret trivia",
             is_password_protected=True,
-            password="secret123",
             is_public=True,
         )
+        self.protected_game.set_password("secret123")
+        self.protected_game.save()
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
         self.category = Category.objects.create(name="Test")

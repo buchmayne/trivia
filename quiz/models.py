@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password, check_password
 from django.utils import timezone
 from tinymce.models import HTMLField
 from .fields import CloudFrontURLField, S3ImageField, S3VideoField
@@ -32,7 +33,7 @@ class Game(models.Model):
 
     # Adding password protection
     is_password_protected = models.BooleanField(default=False)
-    password = models.CharField(max_length=50, blank=True, null=True)
+    password = models.CharField(max_length=128, blank=True, null=True)
 
     game_order = models.IntegerField(default=1, null=True, blank=True)
 
@@ -55,6 +56,22 @@ class Game(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def set_password(self, raw_password: str) -> None:
+        """Hash and store the password."""
+        if raw_password:
+            self.password = make_password(raw_password)
+        else:
+            self.password = None
+
+    def check_password(self, raw_password: str) -> bool:
+        """Check if the provided password matches the stored hash."""
+        if not self.password:
+            return False
+        return check_password(raw_password, self.password)
+
+    class Meta:
+        ordering = ["-created_at"]
 
 
 class Category(models.Model):
@@ -137,6 +154,7 @@ class Question(models.Model):
 
     class Meta:
         unique_together = ["game", "question_number"]
+        ordering = ["game", "question_number"]
 
     def __str__(self) -> str:
         return f"Q{self.question_number}: {self.text}"
@@ -323,7 +341,7 @@ class SessionTeam(models.Model):
     """A team participating in a game session"""
 
     session = models.ForeignKey(
-        GameSession, on_delete=models.CASCADE, related_name="teams"
+        GameSession, on_delete=models.CASCADE, related_name="teams", db_index=True
     )
     name = models.CharField(max_length=100)
     token = models.CharField(max_length=64, unique=True, default=secrets.token_urlsafe)
@@ -376,11 +394,11 @@ class TeamAnswer(models.Model):
     """A team's answer to a question (or a specific part of a multi-part question)"""
 
     team = models.ForeignKey(
-        SessionTeam, on_delete=models.CASCADE, related_name="answers"
+        SessionTeam, on_delete=models.CASCADE, related_name="answers", db_index=True
     )
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, db_index=True)
     session_round = models.ForeignKey(
-        SessionRound, on_delete=models.CASCADE, related_name="answers"
+        SessionRound, on_delete=models.CASCADE, related_name="answers", db_index=True
     )
 
     # Link to specific answer/part (null for single-answer questions or initial submission)

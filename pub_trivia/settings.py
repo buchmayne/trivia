@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -155,14 +156,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Security settings
 SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 
 # Add this for HTTPS
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# CSRF trusted origins (required for Django 4.x with HTTPS)
+CSRF_TRUSTED_ORIGINS = [
+    "https://thirdwavetrivia.com",
+    "https://www.thirdwavetrivia.com",
+]
 
 # AWS Settings
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
@@ -188,6 +195,33 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 20,
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
+
+# Cache configuration
+# Uses Redis in production (set REDIS_URL), falls back to in-memory cache for development
+REDIS_URL = os.getenv("REDIS_URL")
+if REDIS_URL:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.redis.RedisCache",
+            "LOCATION": REDIS_URL,
+            "KEY_PREFIX": "trivia",
+            "TIMEOUT": 300,
+        }
+    }
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "unique-snowflake",
+        }
+    }
+
+# Rate limiting configuration
+# Disable rate limiting in DEBUG mode or when running tests
+TESTING = "test" in sys.argv
+RATELIMIT_ENABLE = not DEBUG and not TESTING
+RATELIMIT_USE_CACHE = "default"
+RATELIMIT_VIEW = "quiz.session_api.ratelimit_error"
 
 
 # Authentication backends
@@ -223,3 +257,46 @@ EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True") == "True"
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "noreply@thirdwavetrivia.com")
+
+# Logging configuration
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": False,
+        },
+        "django.request": {
+            "handlers": ["console"],
+            "level": "ERROR" if TESTING else "WARNING",
+            "propagate": False,
+        },
+        "quiz.session_api": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}

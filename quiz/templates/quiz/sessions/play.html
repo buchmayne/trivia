@@ -7,6 +7,7 @@
     <title>{{ session.code }} - Third Wave Trivia</title>
     <link rel="stylesheet" href="{% static 'css/session.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
     <style>/* play-page overrides - main styles in session.css */</style>
 </head>
 <body>
@@ -223,16 +224,22 @@
         const IS_TEAM = !!TEAM_TOKEN;
         const POLL_INTERVAL = 2000;
 
-        // DEBUG: Log token status
-        console.log('=== SESSION DEBUG ===');
-        console.log('Session Code:', CODE);
-        console.log('Admin Token:', ADMIN_TOKEN);
-        console.log('Team Token:', TEAM_TOKEN);
-        console.log('Role Preference:', ROLE_PREFERENCE);
-        console.log('IS_ADMIN:', IS_ADMIN);
-        console.log('IS_TEAM:', IS_TEAM);
-        console.log('All localStorage keys:', Object.keys(localStorage));
-        console.log('===================');
+        // Security helper functions
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            const div = document.createElement('div');
+            div.textContent = String(text);
+            return div.innerHTML;
+        }
+
+        function safeSetInnerHTML(element, html) {
+            if (typeof element === 'string') {
+                element = document.getElementById(element);
+            }
+            if (element) {
+                element.innerHTML = DOMPurify.sanitize(html);
+            }
+        }
 
         let currentState = {};
         let pollTimer = null;
@@ -249,8 +256,6 @@
         // Initialize with SERVER-SIDE TOKEN VALIDATION
         // CRITICAL: This is the ROBUST solution that prevents host role loss on refresh
         async function initializeSession() {
-            console.log('=== INITIALIZING SESSION ===');
-
             // Step 1: Check if we have any tokens at all
             if (!ADMIN_TOKEN && !TEAM_TOKEN) {
                 showError(
@@ -276,7 +281,6 @@
                 }
 
                 const validation = await response.json();
-                console.log('Validation result:', validation);
 
                 // Step 3: Determine role based on VALIDATED tokens (not localStorage preference)
                 const hasValidAdmin = validation.is_valid_admin;
@@ -295,10 +299,8 @@
                     localStorage.setItem(`session_${CODE}_role`, 'admin');
                     // Clean up any invalid team token
                     if (TEAM_TOKEN && !hasValidTeam) {
-                        console.log('Removing invalid team token');
                         localStorage.removeItem(`session_${CODE}_team`);
                     }
-                    console.log('✓ Showing ADMIN view');
                     document.getElementById('adminView').classList.remove('hidden');
                     startPolling();
                 } else if (hasValidTeam) {
@@ -306,10 +308,8 @@
                     localStorage.setItem(`session_${CODE}_role`, 'team');
                     // Clean up any invalid admin token
                     if (ADMIN_TOKEN && !hasValidAdmin) {
-                        console.log('Removing invalid admin token');
                         localStorage.removeItem(`session_${CODE}_admin`);
                     }
-                    console.log('✓ Showing TEAM view');
                     document.getElementById('teamView').classList.remove('hidden');
                     startPolling();
                 }
@@ -382,8 +382,6 @@
                 localStorage.setItem(`session_${CODE}_team`, data.team_token);
                 localStorage.setItem(`session_${CODE}_role`, 'team');
                 localStorage.removeItem(`session_${CODE}_admin`); // Clean up any stale admin token
-
-                console.log('✓ Rejoined successfully as', data.team_name);
                 window.location.reload();
 
             } catch (error) {
@@ -517,15 +515,8 @@
                 const navEnabled = state.allow_team_navigation;
                 const teamNavDiv = document.getElementById('teamQuestionNav');
 
-                console.log('=== TEAM NAVIGATION DEBUG ===');
-                console.log('Full state object:', state);
-                console.log('Team navigation status:', navEnabled);
-                console.log('TeamNavDiv element:', teamNavDiv);
-                console.log('===========================');
-
                 if (navEnabled) {
                     // Show navigation selector
-                    console.log('Showing team navigation');
                     teamNavDiv.classList.remove('hidden');
                     loadTeamQuestions(state);
 
