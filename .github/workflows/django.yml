@@ -90,24 +90,22 @@ jobs:
           git reset --hard origin/main
 
           # Create .env file using GitHub secrets
-          cat > .env << 'EOL'
-DEBUG=False
-DB_NAME=${{ secrets.DB_NAME }}
-DB_USER=${{ secrets.DB_USER }}
-DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-DB_HOST=${{ secrets.DB_HOST }}
-DB_PORT=${{ secrets.DB_PORT }}
-AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-SECRET_KEY=${{ secrets.SECRET_KEY }}
-EMAIL_BACKEND=${{ secrets.EMAIL_BACKEND }}
-EMAIL_HOST=${{ secrets.EMAIL_HOST }}
-EMAIL_PORT=${{ secrets.EMAIL_PORT }}
-EMAIL_USE_TLS=${{ secrets.EMAIL_USE_TLS }}
-EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}
-EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}
-DEFAULT_FROM_EMAIL=${{ secrets.DEFAULT_FROM_EMAIL }}
-EOL
+          echo "DEBUG=False" > .env
+          echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
+          echo "DB_USER=${{ secrets.DB_USER }}" >> .env
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+          echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
+          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
+          echo "EMAIL_BACKEND=${{ secrets.EMAIL_BACKEND }}" >> .env
+          echo "EMAIL_HOST=${{ secrets.EMAIL_HOST }}" >> .env
+          echo "EMAIL_PORT=${{ secrets.EMAIL_PORT }}" >> .env
+          echo "EMAIL_USE_TLS=${{ secrets.EMAIL_USE_TLS }}" >> .env
+          echo "EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}" >> .env
+          echo "EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}" >> .env
+          echo "DEFAULT_FROM_EMAIL=${{ secrets.DEFAULT_FROM_EMAIL }}" >> .env
 
           # Remove existing containers and networks (preserve volumes for certs)
           docker-compose down --remove-orphans
