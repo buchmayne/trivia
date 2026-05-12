@@ -70,6 +70,9 @@ class Game(models.Model):
             return False
         return check_password(raw_password, self.password)
 
+    class Meta:
+        ordering = ["-created_at"]
+
 
 class Category(models.Model):
     games = models.ManyToManyField(Game, related_name="categories", blank=True)
@@ -151,6 +154,7 @@ class Question(models.Model):
 
     class Meta:
         unique_together = ["game", "question_number"]
+        ordering = ["game", "question_number"]
 
     def __str__(self) -> str:
         return f"Q{self.question_number}: {self.text}"

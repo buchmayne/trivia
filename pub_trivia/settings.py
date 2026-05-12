@@ -288,6 +288,11 @@ LOGGING = {
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
             "propagate": False,
         },
+        "django.request": {
+            "handlers": ["console"],
+            "level": "ERROR" if TESTING else "WARNING",
+            "propagate": False,
+        },
         "quiz.session_api": {
             "handlers": ["console"],
             "level": "INFO",
