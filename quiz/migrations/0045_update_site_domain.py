@@ -4,21 +4,40 @@ from django.db import migrations
 
 
 def update_site_domain(apps, schema_editor):
-    """Update the Site domain from localhost:8000 to thirdwavetrivia.com"""
+    """
+    Ensure Site with pk=1 exists with the production domain.
+
+    Handles multiple scenarios:
+    - Site pk=1 exists with old domain: update it
+    - Site pk=1 doesn't exist but domain exists elsewhere: delete and recreate
+    - No Site exists: create one
+    """
     Site = apps.get_model("sites", "Site")
+
+    # First, check if Site pk=1 exists
     try:
         site = Site.objects.get(pk=1)
-        if site.domain in ("localhost:8000", "example.com", "localhost"):
+        # Update if needed
+        if site.domain != "thirdwavetrivia.com":
             site.domain = "thirdwavetrivia.com"
             site.name = "Third Wave Trivia"
             site.save()
+        return
     except Site.DoesNotExist:
-        # Create the site if it doesn't exist
-        Site.objects.create(
-            pk=1,
-            domain="thirdwavetrivia.com",
-            name="Third Wave Trivia",
-        )
+        pass
+
+    # Site pk=1 doesn't exist - check if domain exists with different pk
+    existing = Site.objects.filter(domain="thirdwavetrivia.com").first()
+    if existing:
+        # Delete it so we can create with pk=1
+        existing.delete()
+
+    # Create Site with pk=1
+    Site.objects.create(
+        pk=1,
+        domain="thirdwavetrivia.com",
+        name="Third Wave Trivia",
+    )
 
 
 def reverse_site_domain(apps, schema_editor):
