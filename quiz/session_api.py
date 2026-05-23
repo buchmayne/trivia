@@ -27,6 +27,7 @@ from .models import (
     SessionRound,
     TeamAnswer,
 )
+from .scoring import scorer_for
 from .utils import has_verified_email
 
 
@@ -486,132 +487,6 @@ def admin_toggle_team_navigation(request: HttpRequest, code: str) -> JsonRespons
     )
 
 
-# ============================================================================
-# PER-PART SCORING HELPERS
-# ============================================================================
-
-
-def _is_multi_part_question(question: Question) -> bool:
-    """Check if a question has multiple parts that need individual scoring."""
-    if not question.question_type:
-        return False
-    question_type = question.question_type.name
-    if question_type in ["Ranking", "Matching"]:
-        return True
-    if question_type == "Multiple Open Ended":
-        # Only treat as multi-part when there are explicit sub-question prompts.
-        for answer in question.answers.all():
-            if answer.text and answer.text.strip():
-                return True
-        return False
-    return False
-
-
-def _split_answer_into_parts(team_answer: TeamAnswer) -> list:
-    """
-    Split a team's JSON array answer into individual TeamAnswer records per part.
-    Returns list of created/updated TeamAnswer objects.
-    """
-    question = team_answer.question
-    answers = question.answers.order_by("display_order")
-
-    if not answers.exists():
-        return [team_answer]  # No parts defined, keep original
-
-    # Parse the JSON array answer
-    try:
-        parsed_answers = (
-            json.loads(team_answer.answer_text) if team_answer.answer_text else []
-        )
-        if not isinstance(parsed_answers, list):
-            parsed_answers = [parsed_answers] if parsed_answers else []
-    except json.JSONDecodeError:
-        parsed_answers = []
-
-    created_parts = []
-    for idx, answer_part in enumerate(answers):
-        team_answer_text = ""
-        if idx < len(parsed_answers):
-            team_answer_text = (
-                str(parsed_answers[idx]) if parsed_answers[idx] is not None else ""
-            )
-
-        # Create or update per-part TeamAnswer
-        part_answer, _ = TeamAnswer.objects.update_or_create(
-            team=team_answer.team,
-            question=question,
-            answer_part=answer_part,
-            defaults={
-                "session_round": team_answer.session_round,
-                "answer_text": team_answer_text,
-                "is_locked": True,
-            },
-        )
-        created_parts.append(part_answer)
-
-    return created_parts
-
-
-def _auto_score_ranking_matching(part_answers: list, question: Question) -> None:
-    """
-    Auto-score Ranking and Matching questions with per-item partial credit.
-    Each correctly placed/matched item earns its Answer.points value.
-    """
-    question_type = question.question_type.name if question.question_type else None
-
-    # For ranking, build lookup of answers by their display_order (original index)
-    answers_by_display_order = {}
-    if question_type == "Ranking":
-        for a in question.answers.all():
-            answers_by_display_order[a.display_order] = a
-
-    for idx, part_answer in enumerate(part_answers):
-        answer_part = part_answer.answer_part
-        if not answer_part:
-            continue
-
-        is_correct = False
-        if question_type == "Ranking":
-            # For Ranking: team answer is the original index (display_order) of the item
-            # they placed at this position.
-            # part_answer corresponds to position idx (0-indexed).
-            # answer_text contains the display_order of the item they placed here.
-            try:
-                team_selection = (
-                    int(part_answer.answer_text) if part_answer.answer_text else None
-                )
-            except (ValueError, TypeError):
-                team_selection = None
-
-            if team_selection is not None:
-                # Find the item the team placed at this position
-                selected_item = answers_by_display_order.get(team_selection)
-                if selected_item:
-                    # Check if the selected item's correct_rank matches this position
-                    # Position is 0-indexed (idx), rank is 1-indexed
-                    expected_rank = idx + 1
-                    is_correct = selected_item.correct_rank == expected_rank
-
-        elif question_type == "Matching":
-            # For Matching: team answer should match the correct answer_text
-            team_answer = (
-                part_answer.answer_text.strip().lower()
-                if part_answer.answer_text
-                else ""
-            )
-            correct_answer = (
-                answer_part.answer_text.strip().lower()
-                if answer_part.answer_text
-                else ""
-            )
-            is_correct = team_answer == correct_answer
-
-        # Score: full points if correct, 0 if incorrect
-        part_answer.points_awarded = answer_part.points if is_correct else 0
-        part_answer.scored_at = timezone.now()
-        part_answer.save()
-
-
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
@@ -635,8 +510,8 @@ def admin_lock_round(request: HttpRequest, code: str) -> JsonResponse:
     teams = list(session.teams.order_by("id"))
 
     for question in questions_in_round:
-        is_multi_part = _is_multi_part_question(question)
-        question_type = question.question_type.name if question.question_type else None
+        scorer = scorer_for(question)
+        is_multi_part = scorer.is_multi_part(question)
 
         for team in teams:
             # Get existing answer for this team/question (without answer_part)
@@ -646,13 +521,11 @@ def admin_lock_round(request: HttpRequest, code: str) -> JsonResponse:
 
             if is_multi_part:
                 if existing_answer:
-                    # Split into per-part records
-                    part_answers = _split_answer_into_parts(existing_answer)
-
-                    # Auto-score Ranking and Matching questions
-                    if question_type in ["Ranking", "Matching"]:
-                        _auto_score_ranking_matching(part_answers, question)
-                    # Multiple Open Ended: leave points_awarded null for manual scoring
+                    # Split into per-part records, then let the scorer apply
+                    # auto-scoring where the rule is mechanical (Ranking,
+                    # Matching). Manual-only types are a no-op here.
+                    part_answers = scorer.split_submission(existing_answer)
+                    scorer.auto_score(part_answers, question)
 
                     # Delete the original combined answer (parts are now separate)
                     existing_answer.delete()
@@ -714,7 +587,7 @@ def admin_get_scoring_data(request: HttpRequest, code: str) -> JsonResponse:
     data = []
 
     for question in questions:
-        is_multi_part = _is_multi_part_question(question)
+        is_multi_part = scorer_for(question).is_multi_part(question)
         answer_parts = list(question.answers.order_by("display_order"))
 
         q_data = {
