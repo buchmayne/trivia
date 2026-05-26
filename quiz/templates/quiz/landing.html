@@ -15,14 +15,12 @@
     <nav class="nav">
         <div class="nav-inner">
             <a href="{% url 'home' %}" class="nav-logo">
-                <span class="logo-icon">~</span>
+                <span class="logo-icon">≋</span>
                 <span class="logo-text">Third Wave Trivia</span>
             </a>
             <div class="nav-links">
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#how-it-works" class="nav-link">How It Works</a>
-                <a href="{% url 'quiz:pricing' %}" class="nav-link">Pricing</a>
-                <a href="{% url 'quiz:about' %}" class="nav-link">About</a>
                 <div class="nav-auth">
                     {% if user.is_authenticated %}
                         <span class="nav-user">{{ user.email }}</span>
@@ -45,8 +43,6 @@
     <div class="mobile-menu">
         <a href="#features" class="mobile-link">Features</a>
         <a href="#how-it-works" class="mobile-link">How It Works</a>
-        <a href="{% url 'quiz:pricing' %}" class="mobile-link">Pricing</a>
-        <a href="{% url 'quiz:about' %}" class="mobile-link">About</a>
         {% if user.is_authenticated %}
             <div class="mobile-auth">
                 <span class="mobile-user">{{ user.email }}</span>
@@ -147,112 +143,6 @@
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="features-inner">
-            <div class="section-header">
-                <span class="section-label">What We Offer</span>
-                <h2 class="section-title">Three Ways to Experience Trivia</h2>
-                <p class="section-description">
-                    Whether you're hosting a game night, exploring solo, or tracking your journey -
-                    we've built tools for every curious mind.
-                </p>
-            </div>
-
-            <div class="features-grid">
-                <!-- Gallery Mode -->
-                <a href="{% url 'quiz:gallery' %}" class="feature-card">
-                    <div class="feature-icon-wrap">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="3" y="3" width="7" height="7" rx="1"/>
-                                <rect x="14" y="3" width="7" height="7" rx="1"/>
-                                <rect x="3" y="14" width="7" height="7" rx="1"/>
-                                <rect x="14" y="14" width="7" height="7" rx="1"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">Gallery Mode</h3>
-                        <p class="feature-description">
-                            Browse our curated collection of trivia games. Explore questions by category,
-                            discover new topics, and find the perfect game for any occasion.
-                        </p>
-                        <div class="feature-tags">
-                            <span class="tag">Browse Games</span>
-                            <span class="tag">View Questions</span>
-                            <span class="tag">Self-Paced</span>
-                        </div>
-                    </div>
-                    <div class="feature-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </a>
-
-                <!-- Play Mode -->
-                <a href="{% url 'quiz:session_landing' %}" class="feature-card feature-card-highlight">
-                    <div class="feature-badge">Most Popular</div>
-                    <div class="feature-icon-wrap">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="9"/>
-                                <path d="M12 7v5l3 3"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">Live Play</h3>
-                        <p class="feature-description">
-                            Host real-time trivia sessions with friends, family, or colleagues.
-                            Teams compete head-to-head with live scoring and instant results.
-                        </p>
-                        <div class="feature-tags">
-                            <span class="tag">Real-Time</span>
-                            <span class="tag">Team Play</span>
-                            <span class="tag">Live Scoring</span>
-                        </div>
-                    </div>
-                    <div class="feature-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </a>
-
-                <!-- Analytics Mode -->
-                <a href="{% url 'quiz:analytics' %}" class="feature-card">
-                    <div class="feature-icon-wrap">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M3 3v18h18"/>
-                                <path d="M7 16l4-4 4 4 5-6"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">Analytics</h3>
-                        <p class="feature-description">
-                            Track your trivia journey with detailed statistics. View historical results,
-                            player performance, and discover your strongest categories.
-                        </p>
-                        <div class="feature-tags">
-                            <span class="tag">Statistics</span>
-                            <span class="tag">Leaderboards</span>
-                            <span class="tag">History</span>
-                        </div>
-                    </div>
-                    <div class="feature-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </a>
             </div>
         </div>
     </section>
@@ -430,9 +320,6 @@
                             </svg>
                         </a>
                     {% endif %}
-                    <a href="{% url 'quiz:pricing' %}" class="btn btn-ghost">
-                        <span>View Pricing</span>
-                    </a>
                 </div>
             </div>
         </div>
@@ -457,27 +344,11 @@
                         <a href="{% url 'quiz:gallery' %}">Game Gallery</a>
                         <a href="{% url 'quiz:session_landing' %}">Host a Game</a>
                         <a href="{% url 'quiz:analytics' %}">Analytics</a>
-                        <a href="{% url 'quiz:pricing' %}">Pricing</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4 class="footer-heading">Company</h4>
-                        <a href="{% url 'quiz:about' %}">About Us</a>
-                        <a href="{% url 'quiz:contact' %}">Contact</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4 class="footer-heading">Resources</h4>
-                        <a href="{% url 'quiz:help' %}">Help Center</a>
-                        <a href="{% url 'quiz:host_guide' %}">Host Guide</a>
-                        <a href="{% url 'quiz:status' %}">Status</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p class="footer-copyright">2025 Third Wave Trivia. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="{% url 'quiz:privacy' %}">Privacy Policy</a>
-                    <a href="{% url 'quiz:terms' %}">Terms of Service</a>
-                </div>
             </div>
         </div>
     </footer>

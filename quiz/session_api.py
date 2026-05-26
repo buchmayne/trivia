@@ -27,6 +27,8 @@ from .models import (
     SessionRound,
     TeamAnswer,
 )
+from .scoring import scorer_for
+from .session_director import InvalidTransition, SessionDirector
 from .utils import has_verified_email
 
 
@@ -206,15 +208,10 @@ def join_session(request: HttpRequest, code: str) -> JsonResponse:
     except GameSession.DoesNotExist:
         return JsonResponse({"error": "Session not found"}, status=404)
 
-    # Check if session accepts joins
-    if session.status == GameSession.Status.COMPLETED:
-        return JsonResponse({"error": "Game has ended"}, status=400)
-    if session.status == GameSession.Status.SCORING:
-        return JsonResponse({"error": "Cannot join during scoring"}, status=400)
-    if not session.allow_late_joins and session.status != GameSession.Status.LOBBY:
-        return JsonResponse({"error": "Late joins not allowed"}, status=400)
-    if session.teams.count() >= session.max_teams:
-        return JsonResponse({"error": "Session full"}, status=400)
+    # Ask the lifecycle whether joins are allowed right now.
+    accepts, reason = SessionDirector(session).accepts_team_joins()
+    if not accepts:
+        return JsonResponse({"error": reason}, status=400)
     if session.teams.filter(name__iexact=team_name).exists():
         return JsonResponse({"error": "Team name taken"}, status=400)
 
@@ -379,40 +376,11 @@ def get_session_state(request: HttpRequest, code: str) -> JsonResponse:
 @require_admin_token
 def admin_start_game(request: HttpRequest, code: str) -> JsonResponse:
     """Start the game from lobby."""
-    session = request.session_obj
-
-    if session.status != GameSession.Status.LOBBY:
-        return JsonResponse({"error": "Game already started"}, status=400)
-    if session.teams.count() < 1:
-        return JsonResponse({"error": "Need at least 1 team"}, status=400)
-
-    # Set to first question of first round
-    first_session_round = session.session_rounds.first()
-    if not first_session_round:
-        return JsonResponse({"error": "No rounds found in game"}, status=400)
-
-    first_question = (
-        session.game.questions.filter(game_round=first_session_round.round)
-        .order_by("question_number")
-        .first()
-    )
-
-    session.status = GameSession.Status.PLAYING
-    session.current_round = first_session_round.round
-    session.current_question = first_question
-    session.started_at = timezone.now()
-    session.save()
-
-    first_session_round.status = SessionRound.Status.ACTIVE
-    first_session_round.started_at = timezone.now()
-    first_session_round.save()
-
-    return JsonResponse(
-        {
-            "status": "started",
-            "current_question_id": first_question.id if first_question else None,
-        }
-    )
+    try:
+        result = SessionDirector(request.session_obj).start()
+    except InvalidTransition as e:
+        return JsonResponse({"error": str(e)}, status=400)
+    return JsonResponse(result)
 
 
 @csrf_exempt
@@ -433,30 +401,11 @@ def admin_set_question(request: HttpRequest, code: str) -> JsonResponse:
 
     question = get_object_or_404(Question, id=question_id, game=session.game)
 
-    # Verify question is in an accessible round
-    session_round = session.session_rounds.filter(round=question.game_round).first()
-    if not session_round or session_round.status == SessionRound.Status.PENDING:
-        return JsonResponse({"error": "Question not in active round"}, status=400)
-
-    # In REVIEWING mode, only allow navigation within current round
-    if session.status == GameSession.Status.REVIEWING:
-        if question.game_round != session.current_round:
-            return JsonResponse(
-                {"error": "Can only navigate within current round in review mode"},
-                status=400,
-            )
-
-    session.current_question = question
-    session.current_round = question.game_round
-    session.save()
-
-    return JsonResponse(
-        {
-            "status": "ok",
-            "question_id": question.id,
-            "question_number": question.question_number,
-        }
-    )
+    try:
+        result = SessionDirector(session).set_current_question(question)
+    except InvalidTransition as e:
+        return JsonResponse({"error": str(e)}, status=400)
+    return JsonResponse(result)
 
 
 @csrf_exempt
@@ -486,214 +435,16 @@ def admin_toggle_team_navigation(request: HttpRequest, code: str) -> JsonRespons
     )
 
 
-# ============================================================================
-# PER-PART SCORING HELPERS
-# ============================================================================
-
-
-def _is_multi_part_question(question: Question) -> bool:
-    """Check if a question has multiple parts that need individual scoring."""
-    if not question.question_type:
-        return False
-    question_type = question.question_type.name
-    if question_type in ["Ranking", "Matching"]:
-        return True
-    if question_type == "Multiple Open Ended":
-        # Only treat as multi-part when there are explicit sub-question prompts.
-        for answer in question.answers.all():
-            if answer.text and answer.text.strip():
-                return True
-        return False
-    return False
-
-
-def _split_answer_into_parts(team_answer: TeamAnswer) -> list:
-    """
-    Split a team's JSON array answer into individual TeamAnswer records per part.
-    Returns list of created/updated TeamAnswer objects.
-    """
-    question = team_answer.question
-    answers = question.answers.order_by("display_order")
-
-    if not answers.exists():
-        return [team_answer]  # No parts defined, keep original
-
-    # Parse the JSON array answer
-    try:
-        parsed_answers = (
-            json.loads(team_answer.answer_text) if team_answer.answer_text else []
-        )
-        if not isinstance(parsed_answers, list):
-            parsed_answers = [parsed_answers] if parsed_answers else []
-    except json.JSONDecodeError:
-        parsed_answers = []
-
-    created_parts = []
-    for idx, answer_part in enumerate(answers):
-        team_answer_text = ""
-        if idx < len(parsed_answers):
-            team_answer_text = (
-                str(parsed_answers[idx]) if parsed_answers[idx] is not None else ""
-            )
-
-        # Create or update per-part TeamAnswer
-        part_answer, _ = TeamAnswer.objects.update_or_create(
-            team=team_answer.team,
-            question=question,
-            answer_part=answer_part,
-            defaults={
-                "session_round": team_answer.session_round,
-                "answer_text": team_answer_text,
-                "is_locked": True,
-            },
-        )
-        created_parts.append(part_answer)
-
-    return created_parts
-
-
-def _auto_score_ranking_matching(part_answers: list, question: Question) -> None:
-    """
-    Auto-score Ranking and Matching questions with per-item partial credit.
-    Each correctly placed/matched item earns its Answer.points value.
-    """
-    question_type = question.question_type.name if question.question_type else None
-
-    # For ranking, build lookup of answers by their display_order (original index)
-    answers_by_display_order = {}
-    if question_type == "Ranking":
-        for a in question.answers.all():
-            answers_by_display_order[a.display_order] = a
-
-    for idx, part_answer in enumerate(part_answers):
-        answer_part = part_answer.answer_part
-        if not answer_part:
-            continue
-
-        is_correct = False
-        if question_type == "Ranking":
-            # For Ranking: team answer is the original index (display_order) of the item
-            # they placed at this position.
-            # part_answer corresponds to position idx (0-indexed).
-            # answer_text contains the display_order of the item they placed here.
-            try:
-                team_selection = (
-                    int(part_answer.answer_text) if part_answer.answer_text else None
-                )
-            except (ValueError, TypeError):
-                team_selection = None
-
-            if team_selection is not None:
-                # Find the item the team placed at this position
-                selected_item = answers_by_display_order.get(team_selection)
-                if selected_item:
-                    # Check if the selected item's correct_rank matches this position
-                    # Position is 0-indexed (idx), rank is 1-indexed
-                    expected_rank = idx + 1
-                    is_correct = selected_item.correct_rank == expected_rank
-
-        elif question_type == "Matching":
-            # For Matching: team answer should match the correct answer_text
-            team_answer = (
-                part_answer.answer_text.strip().lower()
-                if part_answer.answer_text
-                else ""
-            )
-            correct_answer = (
-                answer_part.answer_text.strip().lower()
-                if answer_part.answer_text
-                else ""
-            )
-            is_correct = team_answer == correct_answer
-
-        # Score: full points if correct, 0 if incorrect
-        part_answer.points_awarded = answer_part.points if is_correct else 0
-        part_answer.scored_at = timezone.now()
-        part_answer.save()
-
-
 @csrf_exempt
 @require_http_methods(["POST"])
 @require_admin_token
-@transaction.atomic
 def admin_lock_round(request: HttpRequest, code: str) -> JsonResponse:
-    """Lock current round for scoring. All team answers become locked.
-    For multi-part questions, splits answers into per-part records.
-    Auto-scores Ranking and Matching questions.
-    Auto-creates TeamAnswer objects with 0 points for unanswered questions."""
-    session = request.session_obj
-    session_round = session.session_rounds.get(round=session.current_round)
-
-    if session_round.status != SessionRound.Status.ACTIVE:
-        return JsonResponse({"error": "Round not active"}, status=400)
-
-    # Get all questions in the current round
-    questions_in_round = session.game.questions.filter(
-        game_round=session.current_round
-    ).prefetch_related("answers", "question_type")
-
-    teams = list(session.teams.order_by("id"))
-
-    for question in questions_in_round:
-        is_multi_part = _is_multi_part_question(question)
-        question_type = question.question_type.name if question.question_type else None
-
-        for team in teams:
-            # Get existing answer for this team/question (without answer_part)
-            existing_answer = TeamAnswer.objects.filter(
-                team=team, question=question, answer_part__isnull=True
-            ).first()
-
-            if is_multi_part:
-                if existing_answer:
-                    # Split into per-part records
-                    part_answers = _split_answer_into_parts(existing_answer)
-
-                    # Auto-score Ranking and Matching questions
-                    if question_type in ["Ranking", "Matching"]:
-                        _auto_score_ranking_matching(part_answers, question)
-                    # Multiple Open Ended: leave points_awarded null for manual scoring
-
-                    # Delete the original combined answer (parts are now separate)
-                    existing_answer.delete()
-                else:
-                    # No answer submitted - create per-part records with 0 points
-                    for answer_part in question.answers.order_by("display_order"):
-                        TeamAnswer.objects.create(
-                            team=team,
-                            question=question,
-                            answer_part=answer_part,
-                            session_round=session_round,
-                            answer_text="",
-                            is_locked=True,
-                            points_awarded=0,
-                            scored_at=timezone.now(),
-                        )
-            else:
-                # Single-answer question
-                if existing_answer:
-                    existing_answer.is_locked = True
-                    existing_answer.save(update_fields=["is_locked"])
-                else:
-                    # Create TeamAnswer with 0 points for unanswered questions
-                    TeamAnswer.objects.create(
-                        team=team,
-                        question=question,
-                        session_round=session_round,
-                        answer_text="",
-                        is_locked=True,
-                        points_awarded=0,
-                        scored_at=timezone.now(),
-                    )
-
-    session_round.status = SessionRound.Status.LOCKED
-    session_round.locked_at = timezone.now()
-    session_round.save()
-
-    session.status = GameSession.Status.SCORING
-    session.save()
-
-    return JsonResponse({"status": "locked"})
+    """Lock current round for scoring."""
+    try:
+        result = SessionDirector(request.session_obj).lock_round()
+    except InvalidTransition as e:
+        return JsonResponse({"error": str(e)}, status=400)
+    return JsonResponse(result)
 
 
 @require_http_methods(["GET"])
@@ -714,7 +465,7 @@ def admin_get_scoring_data(request: HttpRequest, code: str) -> JsonResponse:
     data = []
 
     for question in questions:
-        is_multi_part = _is_multi_part_question(question)
+        is_multi_part = scorer_for(question).is_multi_part(question)
         answer_parts = list(question.answers.order_by("display_order"))
 
         q_data = {
@@ -908,38 +659,17 @@ def admin_score_answer(request: HttpRequest, code: str) -> JsonResponse:
     if points > max_points:
         return JsonResponse({"error": f"Points cannot exceed {max_points}"}, status=400)
 
-    answer.points_awarded = points
-    answer.scored_at = timezone.now()
-    answer.save()
-
-    # Recalculate team total score
-    team = answer.team
-    team.score = (
-        team.answers.filter(points_awarded__isnull=False).aggregate(
-            total=models.Sum("points_awarded")
-        )["total"]
-        or 0
-    )
-    team.save()
-
-    # Calculate question total for this team (sum of all parts)
-    question_total = (
-        TeamAnswer.objects.filter(
-            team=team, question=answer.question, points_awarded__isnull=False
-        ).aggregate(total=models.Sum("points_awarded"))["total"]
-        or 0
-    )
-
+    result = SessionDirector(session).score_answer(answer, points)
     return JsonResponse(
         {
             "status": "scored",
-            "team_answer_id": answer.id,
-            "answer_id": answer.id,  # Legacy compatibility
-            "answer_part_id": answer.answer_part_id,
-            "points_awarded": points,
+            "team_answer_id": result["team_answer_id"],
+            "answer_id": result["team_answer_id"],  # Legacy compatibility
+            "answer_part_id": result["answer_part_id"],
+            "points_awarded": result["points_awarded"],
             "max_points": max_points,
-            "question_total": question_total,
-            "team_score": team.score,
+            "question_total": result["question_total"],
+            "team_score": result["team_score"],
         }
     )
 
@@ -949,42 +679,11 @@ def admin_score_answer(request: HttpRequest, code: str) -> JsonResponse:
 @require_admin_token
 def admin_complete_round(request: HttpRequest, code: str) -> JsonResponse:
     """Mark round as scored, transition to REVIEWING state."""
-    session = request.session_obj
-    session_round = session.session_rounds.get(round=session.current_round)
-
-    # Verify all answers are scored (including auto-scored unanswered questions)
-    unscored = TeamAnswer.objects.filter(
-        session_round=session_round,
-        points_awarded__isnull=True,
-    ).count()
-
-    if unscored > 0:
-        return JsonResponse(
-            {"error": f"{unscored} answers still need scoring"}, status=400
-        )
-
-    session_round.status = SessionRound.Status.SCORED
-    session_round.scored_at = timezone.now()
-    session_round.save()
-
-    # Transition to REVIEWING state
-    session.status = GameSession.Status.REVIEWING
-    # Reset to first question of the round for review
-    first_question = (
-        session.game.questions.filter(game_round=session.current_round)
-        .order_by("question_number")
-        .first()
-    )
-    session.current_question = first_question
-    session.save()
-
-    return JsonResponse(
-        {
-            "status": "reviewing",
-            "round_number": session.current_round.round_number,
-            "round_name": session.current_round.name,
-        }
-    )
+    try:
+        result = SessionDirector(request.session_obj).complete_round()
+    except InvalidTransition as e:
+        return JsonResponse({"error": str(e)}, status=400)
+    return JsonResponse(result)
 
 
 @csrf_exempt
@@ -992,61 +691,11 @@ def admin_complete_round(request: HttpRequest, code: str) -> JsonResponse:
 @require_admin_token
 def admin_start_next_round(request: HttpRequest, code: str) -> JsonResponse:
     """Exit review/leaderboard mode and start next round or end game."""
-    session = request.session_obj
-
-    if session.status not in [
-        GameSession.Status.REVIEWING,
-        GameSession.Status.LEADERBOARD,
-    ]:
-        return JsonResponse({"error": "Not in review or leaderboard mode"}, status=400)
-
-    # Check for next round
-    next_session_round = (
-        session.session_rounds.filter(
-            round__round_number__gt=session.current_round.round_number,
-            status=SessionRound.Status.PENDING,
-        )
-        .order_by("round__round_number")
-        .first()
-    )
-
-    if next_session_round:
-        # Advance to next round
-        next_session_round.status = SessionRound.Status.ACTIVE
-        next_session_round.started_at = timezone.now()
-        next_session_round.save()
-
-        first_question = (
-            session.game.questions.filter(game_round=next_session_round.round)
-            .order_by("question_number")
-            .first()
-        )
-
-        session.status = GameSession.Status.PLAYING
-        session.current_round = next_session_round.round
-        session.current_question = first_question
-        session.save()
-
-        return JsonResponse(
-            {
-                "status": "next_round",
-                "round_number": next_session_round.round.round_number,
-                "round_name": next_session_round.round.name,
-            }
-        )
-    else:
-        # Game complete
-        session.status = GameSession.Status.COMPLETED
-        session.completed_at = timezone.now()
-        session.save()
-
-        # Return final standings
-        final_standings = [
-            {"rank": i + 1, "name": t.name, "score": t.score}
-            for i, t in enumerate(session.teams.order_by("-score"))
-        ]
-
-        return JsonResponse({"status": "game_complete", "standings": final_standings})
+    try:
+        result = SessionDirector(request.session_obj).advance()
+    except InvalidTransition as e:
+        return JsonResponse({"error": str(e)}, status=400)
+    return JsonResponse(result)
 
 
 @csrf_exempt
@@ -1054,15 +703,11 @@ def admin_start_next_round(request: HttpRequest, code: str) -> JsonResponse:
 @require_admin_token
 def admin_show_leaderboard(request: HttpRequest, code: str) -> JsonResponse:
     """Transition from REVIEWING to LEADERBOARD state."""
-    session = request.session_obj
-
-    if session.status != GameSession.Status.REVIEWING:
-        return JsonResponse({"error": "Not in review mode"}, status=400)
-
-    session.status = GameSession.Status.LEADERBOARD
-    session.save()
-
-    return JsonResponse({"status": "leaderboard"})
+    try:
+        result = SessionDirector(request.session_obj).show_leaderboard()
+    except InvalidTransition as e:
+        return JsonResponse({"error": str(e)}, status=400)
+    return JsonResponse(result)
 
 
 @require_http_methods(["GET"])
@@ -1203,9 +848,9 @@ def team_submit_answer(request: HttpRequest, code: str) -> JsonResponse:
     question = get_object_or_404(Question, id=question_id, game=session.game)
     session_round = session.session_rounds.get(round=question.game_round)
 
-    # Validate round is active
-    if session_round.status != SessionRound.Status.ACTIVE:
-        return JsonResponse({"error": "Round not active for answers"}, status=400)
+    accepts, reason = SessionDirector(session).accepts_answers_for_round(session_round)
+    if not accepts:
+        return JsonResponse({"error": reason}, status=400)
 
     # Late joiners can only answer current round
     if team.joined_late:

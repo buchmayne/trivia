@@ -1015,6 +1015,25 @@ body::after {
     font-weight: 300;
 }
 
+.game-selection-header .back-to-home {
+    display: block;
+    margin-top: 24px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.game-selection-header .back-to-home::before {
+    content: "\2190 ";
+}
+
+.game-selection-header .back-to-home:hover {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
 /* Navigation Bar Styles */
 .navigation-bar {
     background: rgba(255, 255, 255, 0.95);

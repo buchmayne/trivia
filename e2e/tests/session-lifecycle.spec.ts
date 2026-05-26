@@ -206,8 +206,9 @@ test.describe('Session Lifecycle - Full Game Flow', () => {
       await expect(adminPage.locator('#completedState')).toBeVisible({ timeout: 10000 });
     }
 
-    // Final verification - teams should see final results
-    const teamFinalResults = team1.page.locator('#teamResults, .final-results, #teamLeaderboard');
+    // Final verification - teams should see final results or leaderboard
+    // Use first() to handle multiple matching elements
+    const teamFinalResults = team1.page.locator('#teamResults, #teamLeaderboard').first();
     await expect(teamFinalResults).toBeVisible({ timeout: 10000 });
 
     console.log('Game completed successfully!');
@@ -246,11 +247,25 @@ test.describe('Session Lifecycle - Full Game Flow', () => {
     await teamWaitForQuestion(lateTeam.page);
     await teamSubmitTextAnswer(lateTeam.page, 'Late team answer');
 
-    // Verify admin sees 3 teams
+    // Force admin page to poll by waiting for next poll cycle
+    // The poll interval is 2 seconds, so wait at least that long
+    await adminPage.waitForTimeout(3000);
+
+    // Debug: Check session state via API directly
+    const sessionState = await adminPage.evaluate(async () => {
+      const code = window.location.pathname.split('/').filter(Boolean).pop();
+      if (!code) return null;
+      const response = await fetch(`/quiz/api/sessions/${code}/state/`);
+      return await response.json();
+    });
+    console.log('Session state teams:', sessionState?.teams?.length, sessionState?.teams?.map((t: any) => t.name));
+
+    // Verify admin sees 3 teams (use longer timeout for poll to update)
     await expect(async () => {
       const count = await getTeamCount(adminPage);
+      console.log('Current team count in UI:', count);
       expect(count).toBe(3);
-    }).toPass({ timeout: 10000 });
+    }).toPass({ timeout: 15000 });
 
     console.log('Late join test passed');
   });
