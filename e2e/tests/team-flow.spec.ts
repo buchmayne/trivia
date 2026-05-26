@@ -288,10 +288,8 @@ test.describe('Team Flow Tests', () => {
     await adminShowLeaderboard(adminPage);
     await adminWaitForLeaderboard(adminPage);
 
-    // Team should see leaderboard
-    await expect(
-      team.page.locator('#teamLeaderboard, .leaderboard, #teamLeaderboardTableContainer')
-    ).toBeVisible({ timeout: 10000 });
+    // Team should see leaderboard - check the main teamLeaderboard container specifically
+    await expect(team.page.locator('#teamLeaderboard')).toBeVisible({ timeout: 10000 });
   });
 
   test('team score updates correctly after scoring', async ({

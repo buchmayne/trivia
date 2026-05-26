@@ -1,8 +1,9 @@
-.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data export-content black start preprod e2e e2e-install e2e-qa
+.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run stop migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data export-content black start preprod e2e e2e-install e2e-qa
 
 help:
 	@echo "Available commands:"
 	@echo "  make run              - Run Django development server"
+	@echo "  make stop             - Stop Django development server"
 	@echo "  make test             - Run all tests"
 	@echo "  make test-verbose     - Run tests with verbose output"
 	@echo "  make test-parallel    - Run tests in parallel"
@@ -37,6 +38,10 @@ help:
 # Run development server
 run:
 	uv run manage.py runserver
+
+# Stop development server
+stop:
+	@lsof -i :8000 -t | xargs kill 2>/dev/null || echo "No server running on port 8000"
 
 # Test commands
 test:
