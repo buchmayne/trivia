@@ -93,7 +93,8 @@ class S3ImageFieldTest(TestCase):
     """Test the S3ImageField custom field"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game")
+        # Create a game - it will auto-assign game_number=1
+        self.game = Game.objects.create(subtitle="Test Game")
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
 
@@ -113,7 +114,7 @@ class S3ImageFieldTest(TestCase):
             question_number=1,
         )
 
-        # get_upload_path returns "Future-Games/Unknown/image.jpg" for Test Game without category
+        # get_upload_path returns "game-N/Unknown/image.jpg" for published games
         filename = field.generate_filename(question, "image.jpg")
 
         # Should not start with slash
@@ -121,13 +122,13 @@ class S3ImageFieldTest(TestCase):
         # Should contain the filename
         self.assertIn("image.jpg", filename)
 
-    def test_generate_filename_without_leading_slash(self):
-        """Test generate_filename with path structure"""
+    def test_generate_filename_uses_game_number(self):
+        """Test generate_filename uses game-N path structure for published games"""
         field = S3ImageField()
-        # Create game with month-year format to test date-based path
-        date_game = Game.objects.create(name="January-2024")
+        # Create another published game - it will auto-assign game_number
+        published_game = Game.objects.create(subtitle="Published Game")
         question = Question(
-            game=date_game,
+            game=published_game,
             question_type=self.question_type,
             game_round=self.round,
             text="Test",
@@ -136,8 +137,27 @@ class S3ImageFieldTest(TestCase):
 
         filename = field.generate_filename(question, "image.jpg")
 
-        # For "January-2024" game, should get "2024/January/Unknown/image.jpg"
-        self.assertEqual(filename, "2024/January/Unknown/image.jpg")
+        # For published games, should get "game-N/Unknown/image.jpg"
+        self.assertTrue(filename.startswith("game-"))
+        self.assertIn("/Unknown/image.jpg", filename)
+
+    def test_generate_filename_draft_game(self):
+        """Test generate_filename uses drafts path for draft games"""
+        field = S3ImageField()
+        # Create a draft game
+        draft_game = Game.objects.create(subtitle="Draft Game", is_draft=True)
+        question = Question(
+            game=draft_game,
+            question_type=self.question_type,
+            game_round=self.round,
+            text="Test",
+            question_number=1,
+        )
+
+        filename = field.generate_filename(question, "image.jpg")
+
+        # For draft games, should get "drafts/Unknown/image.jpg"
+        self.assertEqual(filename, "drafts/Unknown/image.jpg")
 
     @patch("quiz.fields.S3ImageField.pre_save")
     def test_pre_save_updates_url_field(self, mock_pre_save):
@@ -151,7 +171,8 @@ class S3VideoFieldTest(TestCase):
     """Test the S3VideoField custom field"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game")
+        # Create a game - it will auto-assign game_number
+        self.game = Game.objects.create(subtitle="Test Game")
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
 
@@ -171,7 +192,7 @@ class S3VideoFieldTest(TestCase):
             question_number=1,
         )
 
-        # get_upload_path returns "Future-Games/Unknown/video.mp4" for Test Game without category
+        # get_upload_path returns "game-N/Unknown/video.mp4" for published games
         filename = field.generate_filename(question, "video.mp4")
 
         # Should not start with slash
@@ -179,13 +200,13 @@ class S3VideoFieldTest(TestCase):
         # Should contain the filename
         self.assertIn("video.mp4", filename)
 
-    def test_generate_filename_without_leading_slash(self):
-        """Test generate_filename with path structure"""
+    def test_generate_filename_uses_game_number(self):
+        """Test generate_filename uses game-N path structure for published games"""
         field = S3VideoField()
-        # Create game with month-year format to test date-based path
-        date_game = Game.objects.create(name="January-2024")
+        # Create another published game - it will auto-assign game_number
+        published_game = Game.objects.create(subtitle="Published Game")
         question = Question(
-            game=date_game,
+            game=published_game,
             question_type=self.question_type,
             game_round=self.round,
             text="Test",
@@ -194,15 +215,34 @@ class S3VideoFieldTest(TestCase):
 
         filename = field.generate_filename(question, "video.mp4")
 
-        # For "January-2024" game, should get "2024/January/Unknown/video.mp4"
-        self.assertEqual(filename, "2024/January/Unknown/video.mp4")
+        # For published games, should get "game-N/Unknown/video.mp4"
+        self.assertTrue(filename.startswith("game-"))
+        self.assertIn("/Unknown/video.mp4", filename)
+
+    def test_generate_filename_draft_game(self):
+        """Test generate_filename uses drafts path for draft games"""
+        field = S3VideoField()
+        # Create a draft game
+        draft_game = Game.objects.create(subtitle="Draft Game", is_draft=True)
+        question = Question(
+            game=draft_game,
+            question_type=self.question_type,
+            game_round=self.round,
+            text="Test",
+            question_number=1,
+        )
+
+        filename = field.generate_filename(question, "video.mp4")
+
+        # For draft games, should get "drafts/Unknown/video.mp4"
+        self.assertEqual(filename, "drafts/Unknown/video.mp4")
 
 
 class FieldIntegrationTest(TestCase):
     """Integration tests for custom fields with actual models"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
 

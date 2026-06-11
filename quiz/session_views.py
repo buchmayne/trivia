@@ -19,15 +19,13 @@ def session_host(request: HttpRequest) -> HttpResponse:
     """Host page. Unauthenticated users see only example games."""
 
     # Count all public games for calculating locked count
-    all_public_games = Game.objects.filter(is_public=True).exclude(name="Future-Game")
+    all_public_games = Game.objects.filter(is_public=True, is_draft=False)
     total_game_count = all_public_games.count()
 
     if not request.user.is_authenticated:
         # Unauthenticated: only example games
-        games = (
-            Game.objects.filter(is_example_game=True)
-            .exclude(name="Future-Game")
-            .order_by("-game_order")
+        games = Game.objects.filter(is_example_game=True, is_draft=False).order_by(
+            "-game_order"
         )
         example_count = games.count()
         locked_count = total_game_count - example_count
@@ -42,7 +40,7 @@ def session_host(request: HttpRequest) -> HttpResponse:
             return redirect("account_email")
 
         # Authenticated users see all public games (or all if admin)
-        games = Game.objects.exclude(name="Future-Game").order_by("-game_order")
+        games = Game.objects.filter(is_draft=False).order_by("-game_order")
         if hasattr(request.user, "profile") and not request.user.profile.is_game_admin:
             games = games.filter(is_public=True)
         locked_count = 0

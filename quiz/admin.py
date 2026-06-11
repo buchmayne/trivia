@@ -327,23 +327,70 @@ class GameAdmin(admin.ModelAdmin):
     form = GameAdminForm
     list_display = (
         "name",
+        "game_number",
+        "legacy_name",
         "owner",
+        "is_draft",
+        "has_been_played",
         "is_public",
         "is_example_game",
         "is_password_protected",
         "created_at",
         "game_order",
     )
-    list_filter = ("is_password_protected", "is_public", "is_example_game", "owner")
-    fields = (
-        "name",
-        "description",
-        "game_order",
-        "owner",
+    list_filter = (
+        "is_draft",
+        "has_been_played",
+        "is_password_protected",
         "is_public",
         "is_example_game",
-        "is_password_protected",
-        "password",
+        "owner",
+    )
+    readonly_fields = ("name", "game_number")
+    fieldsets = (
+        (
+            "Game Identity",
+            {
+                "fields": (
+                    "name",
+                    "game_number",
+                    "subtitle",
+                    "legacy_name",
+                    "description",
+                )
+            },
+        ),
+        (
+            "Status",
+            {
+                "fields": (
+                    "is_draft",
+                    "has_been_played",
+                    "original_date",
+                    "game_order",
+                )
+            },
+        ),
+        (
+            "Ownership & Access",
+            {
+                "fields": (
+                    "owner",
+                    "is_public",
+                    "is_example_game",
+                )
+            },
+        ),
+        (
+            "Password Protection",
+            {
+                "fields": (
+                    "is_password_protected",
+                    "password",
+                ),
+                "classes": ("collapse",),
+            },
+        ),
     )
     ordering = ["-game_order"]
     autocomplete_fields = ["owner"]

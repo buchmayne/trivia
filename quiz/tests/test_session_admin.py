@@ -46,7 +46,7 @@ class GameSessionAdminTest(TestCase):
         self.admin = GameSessionAdmin(GameSession, self.site)
 
         # Create test data
-        self.game = Game.objects.create(name="Test Game", description="Test")
+        self.game = Game.objects.create(subtitle="Test Game", description="Test")
         self.session = GameSession.objects.create(
             game=self.game, admin_name="Test Admin", max_teams=16
         )
@@ -159,7 +159,7 @@ class SessionTeamAdminTest(TestCase):
         self.site = AdminSite()
         self.admin = SessionTeamAdmin(SessionTeam, self.site)
 
-        self.game = Game.objects.create(name="Test Game", description="Test")
+        self.game = Game.objects.create(subtitle="Test Game", description="Test")
         self.session = GameSession.objects.create(game=self.game, admin_name="Admin")
         self.team = SessionTeam.objects.create(
             session=self.session, name="Test Team", score=50
@@ -195,7 +195,7 @@ class SessionRoundAdminTest(TestCase):
         self.site = AdminSite()
         self.admin = SessionRoundAdmin(SessionRound, self.site)
 
-        self.game = Game.objects.create(name="Test Game", description="Test")
+        self.game = Game.objects.create(subtitle="Test Game", description="Test")
         self.session = GameSession.objects.create(game=self.game, admin_name="Admin")
         self.round = QuestionRound.objects.create(round_number=1, name="Round 1")
         self.session_round = SessionRound.objects.create(
@@ -232,7 +232,7 @@ class TeamAnswerAdminTest(TestCase):
         self.admin = TeamAnswerAdmin(TeamAnswer, self.site)
 
         # Create test data
-        self.game = Game.objects.create(name="Test Game", description="Test")
+        self.game = Game.objects.create(subtitle="Test Game", description="Test")
         self.session = GameSession.objects.create(game=self.game, admin_name="Admin")
         self.team = SessionTeam.objects.create(session=self.session, name="Test Team")
 
@@ -311,7 +311,7 @@ class AdminInlinesTest(TestCase):
     """Test inline admin configurations"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game", description="Test")
+        self.game = Game.objects.create(subtitle="Test Game", description="Test")
         self.session = GameSession.objects.create(game=self.game, admin_name="Admin")
 
     def test_session_has_team_inline(self):
@@ -349,7 +349,7 @@ class AdminFiltersTest(TestCase):
     """Test custom admin filters"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game", description="Test")
+        self.game = Game.objects.create(subtitle="Test Game", description="Test")
         self.session1 = GameSession.objects.create(
             game=self.game,
             admin_name="Admin 1",

@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password, check_password
@@ -37,6 +39,39 @@ class Game(models.Model):
 
     game_order = models.IntegerField(default=1, null=True, blank=True)
 
+    # Sequential game numbering
+    game_number = models.PositiveIntegerField(
+        unique=True,
+        null=True,
+        blank=True,
+        help_text="Auto-assigned sequential number (null for drafts)",
+    )
+    subtitle = models.CharField(
+        max_length=255,
+        blank=True,
+        default="",
+        help_text="Optional subtitle displayed after game number",
+    )
+    original_date = models.DateField(
+        null=True,
+        blank=True,
+        help_text="Original date when this game was first played",
+    )
+    is_draft = models.BooleanField(
+        default=False,
+        help_text="Draft games are not published and do not appear in game lists",
+    )
+    legacy_name = models.CharField(
+        max_length=255,
+        blank=True,
+        default="",
+        help_text="Original Month-Year name for gallery display",
+    )
+    has_been_played = models.BooleanField(
+        default=False,
+        help_text="Whether this game has ever been hosted/played",
+    )
+
     # Ownership
     owner = models.ForeignKey(
         User,
@@ -69,6 +104,28 @@ class Game(models.Model):
         if not self.password:
             return False
         return check_password(raw_password, self.password)
+
+    def save(self, *args, **kwargs):
+        # Auto-assign game_number when publishing a draft or creating a new published game
+        if not self.is_draft and not self.game_number:
+            max_num = (
+                Game.objects.filter(game_number__isnull=False).aggregate(
+                    max=models.Max("game_number")
+                )["max"]
+                or 0
+            )
+            self.game_number = max_num + 1
+
+        # Auto-compute name from game_number and subtitle
+        if self.is_draft:
+            self.name = f"Draft: {self.subtitle or 'Untitled'}"
+        elif self.game_number:
+            if self.subtitle:
+                self.name = f"Game {self.game_number}: {self.subtitle}"
+            else:
+                self.name = f"Game {self.game_number}"
+
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ["-created_at"]

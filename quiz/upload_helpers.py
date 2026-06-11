@@ -1,7 +1,8 @@
 def get_upload_path(instance, filename):
     """
-    Generate a dynamic upload path to s3 based on game name and category.
-    Format: /2025/January/Birds_Eye_View/my_image.png
+    Generate a dynamic upload path to S3 based on game number and category.
+    Format: game-N/Category_Name/filename.png (for published games)
+            drafts/Category_Name/filename.png (for draft games)
     """
     # For Answer model, we need to get the game through the question
     if hasattr(instance, "question"):
@@ -12,20 +13,15 @@ def get_upload_path(instance, filename):
         game = instance.game if hasattr(instance, "game") else None
         category = instance.category if hasattr(instance, "category") else None
 
-    # game name is either Month-Year or Future-Game
-    game_name = game.name if game else "Unknown"
-
-    if game_name != "Future-Game" and "-" in game_name:
-        parts = game_name.split("-")
-        if len(parts) == 2:
-            month = parts[0]
-            year = parts[1]
-
-            prefix = f"{year}/{month}"
+    # Determine the prefix based on game state
+    if game and game.game_number:
+        prefix = f"game-{game.game_number}"
+    elif game and game.is_draft:
+        prefix = "drafts"
     else:
-        prefix = "Future-Games"
+        prefix = "unknown"
 
-    # extract the category name
+    # Extract the category name (sanitize for filesystem)
     if category:
         category_name = category.name.replace(" ", "_").replace("'", "")
     else:

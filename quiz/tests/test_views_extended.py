@@ -25,7 +25,7 @@ class AnswerViewExtendedTest(TestCase):
         self.client = Client()
         self.user = create_verified_user()
         self.client.login(username="testuser", password="testpass123")
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
         self.category = Category.objects.create(name="Test Category")
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
@@ -111,7 +111,7 @@ class GameOverviewExtendedTest(TestCase):
         self.client = Client()
         self.user = create_verified_user()
         self.client.login(username="testuser", password="testpass123")
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
 
     def test_game_overview_multiple_rounds_stats(self):
@@ -189,7 +189,7 @@ class GameOverviewExtendedTest(TestCase):
     def test_game_overview_password_protection_session_persistence(self):
         """Test that password verification persists across requests"""
         protected_game = Game(
-            name="Protected Game",
+            subtitle="Protected Game",
             is_password_protected=True,
             is_public=True,
         )
@@ -217,7 +217,7 @@ class GetRoundQuestionsExtendedTest(TestCase):
         self.client = Client()
         self.user = create_verified_user()
         self.client.login(username="testuser", password="testpass123")
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.category = Category.objects.create(name="Test Category")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
@@ -436,7 +436,7 @@ class GetNextQuestionNumberAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
 

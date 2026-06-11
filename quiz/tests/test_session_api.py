@@ -28,7 +28,7 @@ class CreateSessionAPITest(TestCase):
         self.client = Client()
         self.user = create_verified_user()
         self.client.login(username="testuser", password="testpass123")
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
         self.url = reverse("quiz:session_create")
 
     def test_create_session_success(self):
@@ -44,7 +44,7 @@ class CreateSessionAPITest(TestCase):
 
         self.assertIn("code", response_data)
         self.assertIn("admin_token", response_data)
-        self.assertEqual(response_data["game_name"], "Test Game")
+        self.assertEqual(response_data["game_name"], self.game.name)
         self.assertEqual(response_data["game_id"], self.game.id)
 
         # Verify session was created
@@ -99,7 +99,7 @@ class JoinSessionAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(game=self.game, admin_name="Host")
 
     def test_join_session_success(self):
@@ -189,7 +189,7 @@ class GetSessionStateAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(game=self.game, admin_name="Host")
 
     def test_get_session_state(self):
@@ -208,7 +208,7 @@ class GetSessionStateAPITest(TestCase):
         data = response.json()
 
         self.assertEqual(data["status"], "lobby")
-        self.assertEqual(data["game_name"], "Test Game")
+        self.assertEqual(data["game_name"], self.game.name)
         self.assertEqual(data["admin_name"], "Host")
         self.assertEqual(data["team_count"], 2)
         self.assertEqual(len(data["teams"]), 2)
@@ -313,7 +313,7 @@ class AdminStartGameAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(game=self.game, admin_name="Host")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
         self.q_type = QuestionType.objects.create(name="Multiple Choice")
@@ -384,7 +384,7 @@ class AdminLockRoundAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(
             game=self.game, admin_name="Host", status=GameSession.Status.PLAYING
         )
@@ -479,7 +479,7 @@ class AdminCompleteRoundAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(
             game=self.game, admin_name="Host", status=GameSession.Status.SCORING
         )
@@ -579,7 +579,7 @@ class AdminScoreAnswerAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(
             game=self.game, admin_name="Host", status=GameSession.Status.SCORING
         )
@@ -666,7 +666,7 @@ class TeamSubmitAnswerAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(
             game=self.game, admin_name="Host", status=GameSession.Status.PLAYING
         )
@@ -764,7 +764,7 @@ class TeamGetResultsAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(game=self.game, admin_name="Host")
         self.team1 = SessionTeam.objects.create(
             session=self.session, name="Team A", score=100
@@ -794,7 +794,7 @@ class PerPartScoringTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(
             game=self.game, admin_name="Host", status=GameSession.Status.PLAYING
         )
@@ -1285,7 +1285,7 @@ class LeaderboardAPITest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
 
         # Create rounds
         self.round1 = QuestionRound.objects.create(name="Round 1", round_number=1)

@@ -38,7 +38,7 @@ class GalleryViewPublicAccessTests(TestCase):
         self.user = User.objects.create_user(
             username="testuser", email="test@example.com", password="testpass123"
         )
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
 
     def test_gallery_is_public(self):
         """Gallery view is accessible without login."""
@@ -72,9 +72,9 @@ class SessionHostAuthTests(TestCase):
         self.user = User.objects.create_user(
             username="testuser", email="test@example.com", password="testpass123"
         )
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
         self.example_game = Game.objects.create(
-            name="Example Game", is_public=True, is_example_game=True
+            subtitle="Example Game", is_public=True, is_example_game=True
         )
 
     def test_session_host_accessible_unauthenticated(self):
@@ -132,7 +132,7 @@ class SessionJoinPublicAccessTests(TestCase):
         EmailAddress.objects.create(
             user=self.user, email=self.user.email, verified=True, primary=True
         )
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
 
     def test_session_join_page_public(self):
         """Session join page is accessible without login."""
@@ -163,9 +163,9 @@ class CreateSessionAPIAuthTests(TestCase):
         self.user = User.objects.create_user(
             username="testuser", email="test@example.com", password="testpass123"
         )
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
         self.example_game = Game.objects.create(
-            name="Example Game", is_public=True, is_example_game=True
+            subtitle="Example Game", is_public=True, is_example_game=True
         )
 
     def test_create_session_unauthenticated_non_example_returns_401(self):
@@ -251,7 +251,7 @@ class JoinSessionAPIPublicAccessTests(TestCase):
         EmailAddress.objects.create(
             user=self.user, email=self.user.email, verified=True, primary=True
         )
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
         self.session = GameSession.objects.create(
             game=self.game, admin_name="Test Admin", host_user=self.user
         )
@@ -302,10 +302,10 @@ class GameOwnershipTests(TestCase):
         )
 
         self.public_game = Game.objects.create(
-            name="Public Game", is_public=True, owner=self.admin_user
+            subtitle="Public Game", is_public=True, owner=self.admin_user
         )
         self.private_game = Game.objects.create(
-            name="Private Game", is_public=False, owner=self.admin_user
+            subtitle="Private Game", is_public=False, owner=self.admin_user
         )
 
     def test_regular_user_can_host_public_game(self):
@@ -382,10 +382,10 @@ class GameVisibilityTests(TestCase):
         )
 
         self.public_game = Game.objects.create(
-            name="Public Game", is_public=True, owner=self.admin_user
+            subtitle="Public Game", is_public=True, owner=self.admin_user
         )
         self.private_game = Game.objects.create(
-            name="Private Game", is_public=False, owner=self.admin_user
+            subtitle="Private Game", is_public=False, owner=self.admin_user
         )
 
     def test_regular_user_sees_only_public_games(self):

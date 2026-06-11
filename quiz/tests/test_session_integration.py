@@ -37,7 +37,7 @@ class CompleteSessionWorkflowTest(TestCase):
 
         # Create game with complete data
         self.game = Game.objects.create(
-            name="Integration Test Game",
+            subtitle="Integration Test Game",
             description="Full game for integration testing",
             is_public=True,
         )
@@ -314,7 +314,7 @@ class LateJoinWorkflowTest(TestCase):
     """Test late join functionality"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test", description="Test")
+        self.game = Game.objects.create(subtitle="Test", description="Test")
 
         self.round1 = QuestionRound.objects.create(round_number=1, name="R1")
         self.category = Category.objects.create(name="General")
@@ -377,7 +377,7 @@ class AdminDisconnectWorkflowTest(TestCase):
     """Test admin disconnect and reconnect handling"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test", description="Test")
+        self.game = Game.objects.create(subtitle="Test", description="Test")
         self.session = GameSession.objects.create(
             game=self.game, admin_name="Admin", max_teams=8
         )
@@ -418,7 +418,7 @@ class ScoringWorkflowTest(TestCase):
     """Test various scoring scenarios"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test", description="Test")
+        self.game = Game.objects.create(subtitle="Test", description="Test")
 
         self.round1 = QuestionRound.objects.create(round_number=1, name="R1")
         self.category = Category.objects.create(name="General")
@@ -530,7 +530,7 @@ class StateConsistencyTest(TestCase):
     """Test state consistency across operations"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test", description="Test")
+        self.game = Game.objects.create(subtitle="Test", description="Test")
         self.session = GameSession.objects.create(game=self.game, admin_name="Admin")
 
     def test_state_endpoint_returns_current_state(self):

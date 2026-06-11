@@ -32,7 +32,7 @@ class CompleteTriviaGameWorkflowTest(TestCase):
 
         # Create a complete game setup
         self.game = Game.objects.create(
-            name="Integration Test Trivia",
+            subtitle="Integration Test Trivia",
             description="Full workflow test game",
             is_public=True,
         )
@@ -228,7 +228,7 @@ class MultipleRoundsWorkflowTest(TestCase):
         self.client = Client()
         self.user = create_verified_user()
         self.client.login(username="testuser", password="testpass123")
-        self.game = Game.objects.create(name="Multi-Round Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Multi-Round Game", is_public=True)
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.category = Category.objects.create(name="General Knowledge")
 
@@ -308,7 +308,7 @@ class PasswordProtectedGameWorkflowTest(TestCase):
         self.user = create_verified_user()
         self.client.login(username="testuser", password="testpass123")
         self.protected_game = Game(
-            name="Protected Game",
+            subtitle="Protected Game",
             description="Secret trivia",
             is_password_protected=True,
             is_public=True,
@@ -377,8 +377,8 @@ class DRFViewSetIntegrationTest(TestCase):
         self.api_client.force_authenticate(user=self.user)
 
         # Create multiple games with questions
-        self.game1 = Game.objects.create(name="Game A", is_public=True)
-        self.game2 = Game.objects.create(name="Game B", is_public=True)
+        self.game1 = Game.objects.create(subtitle="Game A", is_public=True)
+        self.game2 = Game.objects.create(subtitle="Game B", is_public=True)
 
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round1 = QuestionRound.objects.create(name="Round 1", round_number=1)
