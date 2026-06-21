@@ -53,7 +53,7 @@ def migrate_game_data(apps, schema_editor):
                         try:
                             year = int(year_str)
                             game.original_date = date(year, MONTHS[month_name], 1)
-                        except (ValueError, TypeError):
+                        except ValueError, TypeError:
                             pass  # Skip if year parsing fails
 
             # Mark existing games as played (they were all hosted previously)

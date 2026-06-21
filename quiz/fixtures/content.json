@@ -1345,7 +1345,7 @@
       "original_date": "2026-02-01",
       "is_draft": false,
       "legacy_name": "February-2026",
-      "has_been_played": true,
+      "has_been_played": false,
       "owner": null,
       "is_public": true,
       "is_example_game": false
