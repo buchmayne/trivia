@@ -2,7 +2,6 @@ from datetime import date
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password, check_password
 from django.utils import timezone
 from tinymce.models import HTMLField
 from .fields import CloudFrontURLField, S3ImageField, S3VideoField
@@ -93,17 +92,14 @@ class Game(models.Model):
         return self.name
 
     def set_password(self, raw_password: str) -> None:
-        """Hash and store the password."""
-        if raw_password:
-            self.password = make_password(raw_password)
-        else:
-            self.password = None
+        """Store the password (plain text for simple game access control)."""
+        self.password = raw_password if raw_password else None
 
     def check_password(self, raw_password: str) -> bool:
-        """Check if the provided password matches the stored hash."""
+        """Check if the provided password matches (plain text comparison)."""
         if not self.password:
             return False
-        return check_password(raw_password, self.password)
+        return self.password == raw_password
 
     def save(self, *args, **kwargs):
         # Auto-assign game_number when publishing a draft or creating a new published game

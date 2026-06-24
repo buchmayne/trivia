@@ -396,12 +396,7 @@ class GameAdmin(admin.ModelAdmin):
     autocomplete_fields = ["owner"]
 
     def save_model(self, request, obj, form, change):
-        """Hash password if it was changed and doesn't look already hashed."""
-        if "password" in form.changed_data and obj.password:
-            # Only hash if it doesn't look like an already-hashed password
-            # Django password hashes start with algorithm identifier like 'pbkdf2_sha256$'
-            if not obj.password.startswith(("pbkdf2_sha256$", "argon2", "bcrypt")):
-                obj.set_password(obj.password)
+        # Password is stored as plain text for simple game access control
         super().save_model(request, obj, form, change)
 
 
