@@ -296,6 +296,7 @@
       "name": "Visual Pun",
       "description": "",
       "games": [
+        19,
         18,
         17,
         16,
@@ -322,6 +323,7 @@
       "name": "Soundtracks",
       "description": "",
       "games": [
+        19,
         3,
         2,
         1
@@ -335,6 +337,7 @@
       "name": "Days",
       "description": "",
       "games": [
+        19,
         3,
         2
       ]
@@ -381,6 +384,7 @@
       "name": "Numbers",
       "description": "",
       "games": [
+        19,
         3,
         2
       ]
@@ -591,6 +595,7 @@
       "name": "Sports",
       "description": null,
       "games": [
+        19,
         18,
         16,
         15,
@@ -625,6 +630,7 @@
       "name": "Geography",
       "description": null,
       "games": [
+        19,
         18,
         17,
         16,
@@ -1762,6 +1768,144 @@
       "created_at": "2026-06-24T03:37:35.125Z",
       "total_points": 4,
       "game_round": 1
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 316,
+    "fields": {
+      "game": 19,
+      "category": 38,
+      "text": "Order the following nations from most to least number of Men's World Cup Soccer wins",
+      "answer_bank": "",
+      "question_type": 1,
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": "",
+      "question_number": 5,
+      "created_at": "2026-07-03T00:19:19.791Z",
+      "total_points": 4,
+      "game_round": 1
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 317,
+    "fields": {
+      "game": 19,
+      "category": 40,
+      "text": "For each of the following rivers, name the largest city it runs through",
+      "answer_bank": "",
+      "question_type": 3,
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": "",
+      "question_number": 6,
+      "created_at": "2026-07-03T00:24:39.836Z",
+      "total_points": 8,
+      "game_round": 1
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 21,
+    "fields": {
+      "game": 19,
+      "category": 21,
+      "text": "Match each of the following nations to their national holiday (1 Point Each).",
+      "answer_bank": "France, Mexico, Ireland, China, Canada",
+      "question_type": 2,
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": "",
+      "question_number": 7,
+      "created_at": "2024-12-04T01:36:29.261Z",
+      "total_points": 5,
+      "game_round": 1
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 25,
+    "fields": {
+      "game": 19,
+      "category": 25,
+      "text": "Identify the City/Metro area from that area's area code (2 Points Each)",
+      "answer_bank": "",
+      "question_type": 3,
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": "",
+      "question_number": 8,
+      "created_at": "2024-12-05T04:14:54.112Z",
+      "total_points": 8,
+      "game_round": 1
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 310,
+    "fields": {
+      "game": 19,
+      "category": 19,
+      "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).",
+      "answer_bank": "",
+      "question_type": 3,
+      "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/Future-Games/Visual_Pun/Potential_VP_Jan_26.png",
+      "answer_image_url": null,
+      "question_image": "Future-Games/Visual_Pun/Potential_VP_Jan_26.png",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": "",
+      "question_number": 19,
+      "created_at": "2025-12-17T03:09:37.003Z",
+      "total_points": 15,
+      "game_round": 2
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 40,
+    "fields": {
+      "game": 19,
+      "category": 20,
+      "text": "The following popular songs have been heavily featured in movies. For each of the songs name the title and the artist (2 Points Each). Then, name as many films as you can that feature the song (1 Point Each).",
+      "answer_bank": "",
+      "question_type": 3,
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": "",
+      "question_number": 20,
+      "created_at": "2025-01-19T02:15:18.255Z",
+      "total_points": 69,
+      "game_round": 3
     }
   },
   {
@@ -7608,29 +7752,6 @@
   },
   {
     "model": "quiz.question",
-    "pk": 21,
-    "fields": {
-      "game": 3,
-      "category": 21,
-      "text": "Match each of the following nations to their national holiday (1 Point Each).",
-      "answer_bank": "France, Mexico, Ireland, China, Canada",
-      "question_type": 2,
-      "question_image_url": null,
-      "answer_image_url": null,
-      "question_image": "",
-      "answer_image": "",
-      "question_video_url": null,
-      "answer_video_url": null,
-      "question_video": "",
-      "answer_video": "",
-      "question_number": 1,
-      "created_at": "2024-12-04T01:36:29.261Z",
-      "total_points": 5,
-      "game_round": 1
-    }
-  },
-  {
-    "model": "quiz.question",
     "pk": 22,
     "fields": {
       "game": 3,
@@ -7648,52 +7769,6 @@
       "answer_video": "",
       "question_number": 2,
       "created_at": "2024-12-04T01:55:49.291Z",
-      "total_points": 8,
-      "game_round": 1
-    }
-  },
-  {
-    "model": "quiz.question",
-    "pk": 310,
-    "fields": {
-      "game": 3,
-      "category": 19,
-      "text": "The following four image collage is a visual pun.\r\n<br><br> Guess what each image represents for 3 Points, and then what the category is that connects them for an additional 3 Points (15 Points Total).",
-      "answer_bank": "",
-      "question_type": 3,
-      "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/Future-Games/Visual_Pun/Potential_VP_Jan_26.png",
-      "answer_image_url": null,
-      "question_image": "Future-Games/Visual_Pun/Potential_VP_Jan_26.png",
-      "answer_image": "",
-      "question_video_url": null,
-      "answer_video_url": null,
-      "question_video": "",
-      "answer_video": "",
-      "question_number": 3,
-      "created_at": "2025-12-17T03:09:37.003Z",
-      "total_points": 15,
-      "game_round": 2
-    }
-  },
-  {
-    "model": "quiz.question",
-    "pk": 25,
-    "fields": {
-      "game": 3,
-      "category": 25,
-      "text": "Identify the City/Metro area from that area's area code (2 Points Each)",
-      "answer_bank": "",
-      "question_type": 3,
-      "question_image_url": null,
-      "answer_image_url": null,
-      "question_image": "",
-      "answer_image": "",
-      "question_video_url": null,
-      "answer_video_url": null,
-      "question_video": "",
-      "answer_video": "",
-      "question_number": 5,
-      "created_at": "2024-12-05T04:14:54.112Z",
       "total_points": 8,
       "game_round": 1
     }
@@ -7742,29 +7817,6 @@
       "created_at": "2025-04-26T20:54:13.692Z",
       "total_points": 5,
       "game_round": 2
-    }
-  },
-  {
-    "model": "quiz.question",
-    "pk": 40,
-    "fields": {
-      "game": 3,
-      "category": 20,
-      "text": "The following popular songs have been heavily featured in movies. For each of the songs name the title and the artist (2 Points Each). Then, name as many films as you can that feature the song (1 Point Each).",
-      "answer_bank": "",
-      "question_type": 3,
-      "question_image_url": null,
-      "answer_image_url": null,
-      "question_image": "",
-      "answer_image": "",
-      "question_video_url": null,
-      "answer_video_url": null,
-      "question_video": "",
-      "answer_video": "",
-      "question_number": 20,
-      "created_at": "2025-01-19T02:15:18.255Z",
-      "total_points": 1,
-      "game_round": 3
     }
   },
   {
@@ -13672,6 +13724,46 @@
   },
   {
     "model": "quiz.answer",
+    "pk": 1137,
+    "fields": {
+      "question": 316,
+      "text": "Cuba",
+      "display_order": 1,
+      "correct_rank": 3,
+      "points": 1,
+      "answer_text": "1",
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 1141,
+    "fields": {
+      "question": 317,
+      "text": "Hudson",
+      "display_order": 1,
+      "correct_rank": null,
+      "points": 2,
+      "answer_text": "New York City",
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
     "pk": 2,
     "fields": {
       "question": 1,
@@ -18152,6 +18244,46 @@
   },
   {
     "model": "quiz.answer",
+    "pk": 1138,
+    "fields": {
+      "question": 316,
+      "text": "China",
+      "display_order": 2,
+      "correct_rank": 4,
+      "points": 1,
+      "answer_text": "0",
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 1142,
+    "fields": {
+      "question": 317,
+      "text": "Thames",
+      "display_order": 2,
+      "correct_rank": null,
+      "points": 2,
+      "answer_text": "London",
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
     "pk": 3,
     "fields": {
       "question": 1,
@@ -22532,6 +22664,46 @@
   },
   {
     "model": "quiz.answer",
+    "pk": 1139,
+    "fields": {
+      "question": 316,
+      "text": "Ireland",
+      "display_order": 3,
+      "correct_rank": 2,
+      "points": 1,
+      "answer_text": "2",
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 1143,
+    "fields": {
+      "question": 317,
+      "text": "Seine",
+      "display_order": 3,
+      "correct_rank": null,
+      "points": 2,
+      "answer_text": "Paris",
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
     "pk": 4,
     "fields": {
       "question": 1,
@@ -26580,6 +26752,46 @@
       "correct_rank": null,
       "points": 1,
       "answer_text": "Wegovy",
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 1140,
+    "fields": {
+      "question": 316,
+      "text": "Peru",
+      "display_order": 4,
+      "correct_rank": 1,
+      "points": 1,
+      "answer_text": "5",
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 1144,
+    "fields": {
+      "question": 317,
+      "text": "Nile",
+      "display_order": 4,
+      "correct_rank": null,
+      "points": 2,
+      "answer_text": "Cairo",
       "question_image_url": null,
       "answer_image_url": null,
       "question_image": "",
