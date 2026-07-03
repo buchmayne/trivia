@@ -886,10 +886,16 @@
             let html = '<div class="answer-input-section">';
 
             // Check if this is a multi-part question type that needs individual answer inputs
-            const hasSubQuestionText = question.answers && question.answers.some(a => (a.text || '').trim() !== '');
+            // Multi-part if any answer has: prompt text, question media, or answer_text (implies evaluation needed)
+            const hasMultiPartContent = question.answers && question.answers.some(a =>
+                (a.text || '').trim() !== '' ||
+                a.image_url ||
+                a.video_url ||
+                (a.answer_text || '').trim() !== ''
+            );
             const isMultiPartType = question.question_type === 'Ranking' ||
                                     question.question_type === 'Matching' ||
-                                    (question.question_type === 'Multiple Open Ended' && hasSubQuestionText);
+                                    (question.question_type === 'Multiple Open Ended' && hasMultiPartContent);
 
             if (isMultiPartType && question.answers && question.answers.length > 0) {
                 // Multi-part question types render individual inputs per answer

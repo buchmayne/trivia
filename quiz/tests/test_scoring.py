@@ -118,6 +118,38 @@ class IsMultiPartTest(TestCase):
         self.assertTrue(MultipleOpenEndedScorer().is_multi_part(q_with))
         self.assertFalse(MultipleOpenEndedScorer().is_multi_part(q_without))
 
+    def test_multiple_open_ended_multi_part_with_answer_text(self):
+        """Multi-part if answers have answer_text even without prompts."""
+        q, _, _ = _fixture(
+            "Multiple Open Ended", with_prompts=False, with_answer_text=True
+        )
+        self.assertTrue(MultipleOpenEndedScorer().is_multi_part(q))
+
+    def test_multiple_open_ended_multi_part_with_media(self):
+        """Multi-part if answers have question media even without prompts."""
+        qt = QuestionType.objects.create(name="Multiple Open Ended")
+        game = Game.objects.create(subtitle="G-Media")
+        round_ = QuestionRound.objects.create(name="R1", round_number=1)
+        question = Question.objects.create(
+            game=game,
+            question_type=qt,
+            question_number=1,
+            text="Identify these images",
+            total_points=4,
+            game_round=round_,
+        )
+        # Answers with images but no text prompts
+        for i in range(1, 5):
+            Answer.objects.create(
+                question=question,
+                text="",  # No prompt text
+                answer_text=f"answer-{i}",
+                question_image_url=f"https://example.com/image{i}.jpg",
+                display_order=i,
+                points=1,
+            )
+        self.assertTrue(MultipleOpenEndedScorer().is_multi_part(question))
+
     def test_single_answer_never_multi_part(self):
         q, _, _ = _fixture("Free Text")
         self.assertFalse(SingleAnswerScorer().is_multi_part(q))
