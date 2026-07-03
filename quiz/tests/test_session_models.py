@@ -23,7 +23,7 @@ class GameSessionModelTest(TestCase):
     """Test the GameSession model"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
 
     def test_create_session(self):
         """Test creating a game session"""
@@ -109,7 +109,7 @@ class SessionTeamModelTest(TestCase):
     """Test the SessionTeam model"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(game=self.game, admin_name="Host")
 
     def test_create_team(self):
@@ -178,7 +178,7 @@ class SessionRoundModelTest(TestCase):
     """Test the SessionRound model"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.session = GameSession.objects.create(game=self.game, admin_name="Host")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
 
@@ -247,7 +247,7 @@ class TeamAnswerModelTest(TestCase):
     """Test the TeamAnswer model"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
         self.question = Question.objects.create(
@@ -396,7 +396,7 @@ class SessionWorkflowTest(TestCase):
     """Test complete session workflows"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round1 = QuestionRound.objects.create(name="Round 1", round_number=1)
         self.round2 = QuestionRound.objects.create(name="Round 2", round_number=2)

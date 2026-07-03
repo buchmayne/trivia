@@ -327,34 +327,76 @@ class GameAdmin(admin.ModelAdmin):
     form = GameAdminForm
     list_display = (
         "name",
+        "game_number",
+        "legacy_name",
         "owner",
+        "is_draft",
+        "has_been_played",
         "is_public",
         "is_example_game",
         "is_password_protected",
         "created_at",
         "game_order",
     )
-    list_filter = ("is_password_protected", "is_public", "is_example_game", "owner")
-    fields = (
-        "name",
-        "description",
-        "game_order",
-        "owner",
+    list_filter = (
+        "is_draft",
+        "has_been_played",
+        "is_password_protected",
         "is_public",
         "is_example_game",
-        "is_password_protected",
-        "password",
+        "owner",
+    )
+    readonly_fields = ("name", "game_number")
+    fieldsets = (
+        (
+            "Game Identity",
+            {
+                "fields": (
+                    "name",
+                    "game_number",
+                    "subtitle",
+                    "legacy_name",
+                    "description",
+                )
+            },
+        ),
+        (
+            "Status",
+            {
+                "fields": (
+                    "is_draft",
+                    "has_been_played",
+                    "original_date",
+                    "game_order",
+                )
+            },
+        ),
+        (
+            "Ownership & Access",
+            {
+                "fields": (
+                    "owner",
+                    "is_public",
+                    "is_example_game",
+                )
+            },
+        ),
+        (
+            "Password Protection",
+            {
+                "fields": (
+                    "is_password_protected",
+                    "password",
+                ),
+                "classes": ("collapse",),
+            },
+        ),
     )
     ordering = ["-game_order"]
     autocomplete_fields = ["owner"]
 
     def save_model(self, request, obj, form, change):
-        """Hash password if it was changed and doesn't look already hashed."""
-        if "password" in form.changed_data and obj.password:
-            # Only hash if it doesn't look like an already-hashed password
-            # Django password hashes start with algorithm identifier like 'pbkdf2_sha256$'
-            if not obj.password.startswith(("pbkdf2_sha256$", "argon2", "bcrypt")):
-                obj.set_password(obj.password)
+        # Password is stored as plain text for simple game access control
         super().save_model(request, obj, form, change)
 
 

@@ -26,7 +26,7 @@ from quiz.session_director import InvalidTransition, SessionDirector
 
 def _build_game(num_rounds=2, questions_per_round=2):
     """A minimal game with N rounds, M questions per round, one team."""
-    game = Game.objects.create(name="G")
+    game = Game.objects.create(subtitle="G")
     qt = QuestionType.objects.create(name="Free Text")
     qnum = 1
     rounds = []
@@ -311,7 +311,7 @@ class LockRoundWithRankingTest(TestCase):
     """Verify the Director's lock_round drives the Scorer correctly."""
 
     def test_ranking_auto_scored_at_lock(self):
-        game = Game.objects.create(name="G")
+        game = Game.objects.create(subtitle="G")
         qt = QuestionType.objects.create(name="Ranking")
         rnd = QuestionRound.objects.create(name="R1", round_number=1)
         q = Question.objects.create(

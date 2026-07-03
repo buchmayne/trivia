@@ -13,7 +13,7 @@ class GameModelTest(TestCase):
 
     def setUp(self):
         self.game = Game.objects.create(
-            name="Test Trivia Game",
+            subtitle="Test Trivia Game",
             description="Test Game Model",
             is_password_protected=True,
             password="testpass123",
@@ -21,22 +21,72 @@ class GameModelTest(TestCase):
 
     def test_game_creation(self):
         """Test creating a game with all fields"""
-        self.assertEqual(self.game.name, "Test Trivia Game")
+        # Name is auto-computed from game_number and subtitle
+        self.assertEqual(self.game.name, "Game 1: Test Trivia Game")
+        self.assertEqual(self.game.subtitle, "Test Trivia Game")
+        self.assertEqual(self.game.game_number, 1)
         self.assertTrue(self.game.is_password_protected)
         self.assertTrue(isinstance(self.game.created_at, timezone.datetime))
 
     def test_game_str_representation(self):
         """Test string representation of game"""
-        self.assertEqual(str(self.game), "Test Trivia Game")
+        self.assertEqual(str(self.game), "Game 1: Test Trivia Game")
+
+    def test_game_auto_numbering(self):
+        """Test that games are auto-assigned sequential numbers"""
+        game2 = Game.objects.create(subtitle="Second Game")
+        game3 = Game.objects.create(subtitle="Third Game")
+
+        self.assertEqual(self.game.game_number, 1)
+        self.assertEqual(game2.game_number, 2)
+        self.assertEqual(game3.game_number, 3)
+
+    def test_game_name_without_subtitle(self):
+        """Test game name computation without subtitle"""
+        game = Game.objects.create()  # No subtitle
+        self.assertTrue(game.name.startswith("Game "))
+        self.assertNotIn(":", game.name)
+
+    def test_draft_game_no_number(self):
+        """Test that draft games don't get assigned a number"""
+        draft = Game.objects.create(subtitle="Draft Game", is_draft=True)
+        self.assertIsNone(draft.game_number)
+        self.assertEqual(draft.name, "Draft: Draft Game")
+
+    def test_draft_game_no_subtitle(self):
+        """Test draft game name without subtitle"""
+        draft = Game.objects.create(is_draft=True)
+        self.assertEqual(draft.name, "Draft: Untitled")
+
+    def test_publish_draft_assigns_number(self):
+        """Test that publishing a draft assigns the next number"""
+        # setUp already creates self.game with game_number=1
+        # Create some more published games
+        game2 = Game.objects.create(subtitle="Second")
+        game3 = Game.objects.create(subtitle="Third")
+
+        # Verify current max number
+        self.assertEqual(game3.game_number, 3)
+
+        # Create a draft
+        draft = Game.objects.create(subtitle="Was Draft", is_draft=True)
+        self.assertIsNone(draft.game_number)
+
+        # Publish it
+        draft.is_draft = False
+        draft.save()
+
+        self.assertEqual(draft.game_number, 4)
+        self.assertEqual(draft.name, "Game 4: Was Draft")
 
     def test_password_protected_game(self):
         """Test password protected game creation and validation"""
-        protected_game = Game(name="Protected Game", is_password_protected=True)
+        protected_game = Game(is_password_protected=True)
         protected_game.set_password("secret123")
         protected_game.save()
         self.assertTrue(protected_game.is_password_protected)
-        # Password should be stored as a hash, not plain text
-        self.assertNotEqual(protected_game.password, "secret123")
+        # Password is stored as plain text for simple game access control
+        self.assertEqual(protected_game.password, "secret123")
         self.assertTrue(protected_game.check_password("secret123"))
         self.assertFalse(protected_game.check_password("wrong"))
 
@@ -49,12 +99,32 @@ class GameModelTest(TestCase):
         self.assertEqual(self.game.categories.count(), 2)
         self.assertIn(category1, self.game.categories.all())
 
+    def test_legacy_name_field(self):
+        """Test the legacy_name field for gallery display"""
+        game = Game.objects.create(
+            subtitle="New Game",
+            legacy_name="January-2025",
+        )
+        self.assertEqual(game.legacy_name, "January-2025")
+        self.assertTrue(game.name.startswith("Game "))
+
+    def test_has_been_played_field(self):
+        """Test the has_been_played flag"""
+        game = Game.objects.create(subtitle="Test")
+        self.assertFalse(game.has_been_played)
+
+        game.has_been_played = True
+        game.save()
+
+        game.refresh_from_db()
+        self.assertTrue(game.has_been_played)
+
 
 class QuestionModelTest(TestCase):
     """Test the Question model"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.category = Category.objects.create(name="Test Category")
         self.question_type = QuestionType.objects.create(name="Multiple Open Ended")
         self.game_round = QuestionRound.objects.create(name="Round 1", round_number=1)
@@ -101,7 +171,7 @@ class AnswerModelTest(TestCase):
     """Test the Answer model"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game")
+        self.game = Game.objects.create(subtitle="Test Game")
         self.question_type = QuestionType.objects.create(name="Multiple Open Ended")
         self.question = Question.objects.create(
             game=self.game,

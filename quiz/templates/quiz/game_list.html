@@ -19,10 +19,10 @@
 <div class="games-container">
     <div class="games-grid">
         {% for game in games %}
-            {% if game.name != 'Future-Game' %}
+            {% if not game.is_draft %}
                 <a href="{% url 'quiz:game_overview' game.id %}" class="game-card">
                     <div class="game-card-content">
-                        <h2 class="game-name">{{ game.name }}</h2>
+                        <h2 class="game-name">{{ game.legacy_name|default:game.name }}</h2>
                         <div class="game-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="game-svg">
                                 <circle cx="12" cy="12" r="10"/>

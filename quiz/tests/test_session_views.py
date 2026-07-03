@@ -59,10 +59,10 @@ class SessionHostViewTest(TestCase):
 
         # Create test games (public so regular user can see them)
         self.game1 = Game.objects.create(
-            name="Test Game 1", description="First test game", is_public=True
+            subtitle="Test Game 1", description="First test game", is_public=True
         )
         self.game2 = Game.objects.create(
-            name="Test Game 2", description="Second test game", is_public=True
+            subtitle="Test Game 2", description="Second test game", is_public=True
         )
 
     def test_host_page_loads(self):
@@ -136,7 +136,7 @@ class SessionPlayViewTest(TestCase):
 
         # Create test game with questions
         self.game = Game.objects.create(
-            name="Test Game", description="Test game for session"
+            subtitle="Test Game", description="Test game for session"
         )
 
         # Create question round
@@ -285,7 +285,7 @@ class SessionViewURLRoutingTest(TestCase):
     """Tests for URL routing of session views"""
 
     def setUp(self):
-        self.game = Game.objects.create(name="Test Game", description="Test")
+        self.game = Game.objects.create(subtitle="Test Game", description="Test")
         self.session = GameSession.objects.create(game=self.game, admin_name="Admin")
 
     def test_landing_url_resolves(self):

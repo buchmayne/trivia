@@ -18,10 +18,10 @@ class GameViewSetTest(TestCase):
         self.user = create_verified_user()
         self.client.force_authenticate(user=self.user)
         self.game1 = Game.objects.create(
-            name="Trivia Night 1", description="First trivia game", is_public=True
+            subtitle="Trivia Night 1", description="First trivia game", is_public=True
         )
         self.game2 = Game.objects.create(
-            name="Trivia Night 2", description="Second trivia game", is_public=True
+            subtitle="Trivia Night 2", description="Second trivia game", is_public=True
         )
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
@@ -41,7 +41,8 @@ class GameViewSetTest(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["name"], "Trivia Night 1")
+        # Name is auto-computed from game_number and subtitle
+        self.assertEqual(response.data["name"], "Game 1: Trivia Night 1")
         self.assertEqual(response.data["description"], "First trivia game")
 
     def test_game_questions_action(self):
@@ -141,7 +142,7 @@ class QuestionViewSetTest(TestCase):
         self.client = APIClient()
         self.user = create_verified_user()
         self.client.force_authenticate(user=self.user)
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round1 = QuestionRound.objects.create(name="Round 1", round_number=1)
         self.round2 = QuestionRound.objects.create(name="Round 2", round_number=2)
@@ -185,7 +186,7 @@ class QuestionViewSetTest(TestCase):
     def test_filter_by_game_id(self):
         """Test filtering questions by game ID"""
         # Create another game with questions
-        game2 = Game.objects.create(name="Another Game", is_public=True)
+        game2 = Game.objects.create(subtitle="Another Game", is_public=True)
         Question.objects.create(
             game=game2,
             question_type=self.question_type,
@@ -207,7 +208,8 @@ class QuestionViewSetTest(TestCase):
     def test_filter_by_game_name(self):
         """Test filtering questions by game name"""
         url = reverse("quiz:question-list")
-        response = self.client.get(url, {"game__name": "Test Game"})
+        # Game name is auto-computed, so filter by the computed name
+        response = self.client.get(url, {"game__name": self.game.name})
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertGreater(len(response.data["results"]), 0)
@@ -312,7 +314,7 @@ class ViewSetPaginationTest(TestCase):
         self.client = APIClient()
         self.user = create_verified_user()
         self.client.force_authenticate(user=self.user)
-        self.game = Game.objects.create(name="Test Game", is_public=True)
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
         self.question_type = QuestionType.objects.create(name="Multiple Choice")
         self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
 

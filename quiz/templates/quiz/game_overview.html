@@ -6,7 +6,7 @@
 {% block content %}
 <div class="game-overview-container">
     <div class="game-header">
-        <h1 class="game-title">{{ game.name }}</h1>
+        <h1 class="game-title">{{ game.legacy_name|default:game.name }}</h1>
         {% if game.description %}
             <div class="description-container">
                 <div class="game-description">{{ game.description|safe }}</div>

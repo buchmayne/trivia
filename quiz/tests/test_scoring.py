@@ -33,7 +33,7 @@ from quiz.scoring import (
 def _fixture(question_type_name, *, with_answer_text=False, with_prompts=False):
     """Build a minimal Game/Question/Round/Session/Team and return the lot."""
     qt = QuestionType.objects.create(name=question_type_name)
-    game = Game.objects.create(name=f"G-{question_type_name}")
+    game = Game.objects.create(subtitle=f"G-{question_type_name}")
     round_ = QuestionRound.objects.create(name="R1", round_number=1)
     question = Question.objects.create(
         game=game,
@@ -67,7 +67,7 @@ def _fixture(question_type_name, *, with_answer_text=False, with_prompts=False):
 class ScorerForTest(TestCase):
     def test_resolves_ranking(self):
         qt = QuestionType.objects.create(name="Ranking")
-        game = Game.objects.create(name="G")
+        game = Game.objects.create(subtitle="G")
         q = Question.objects.create(
             game=game, question_type=qt, question_number=1, text="?"
         )
@@ -75,7 +75,7 @@ class ScorerForTest(TestCase):
 
     def test_resolves_matching(self):
         qt = QuestionType.objects.create(name="Matching")
-        game = Game.objects.create(name="G")
+        game = Game.objects.create(subtitle="G")
         q = Question.objects.create(
             game=game, question_type=qt, question_number=1, text="?"
         )
@@ -83,7 +83,7 @@ class ScorerForTest(TestCase):
 
     def test_resolves_multiple_open_ended(self):
         qt = QuestionType.objects.create(name="Multiple Open Ended")
-        game = Game.objects.create(name="G")
+        game = Game.objects.create(subtitle="G")
         q = Question.objects.create(
             game=game, question_type=qt, question_number=1, text="?"
         )
@@ -91,7 +91,7 @@ class ScorerForTest(TestCase):
 
     def test_unknown_type_falls_back_to_single(self):
         qt = QuestionType.objects.create(name="Fictional Type")
-        game = Game.objects.create(name="G")
+        game = Game.objects.create(subtitle="G")
         q = Question.objects.create(
             game=game, question_type=qt, question_number=1, text="?"
         )
