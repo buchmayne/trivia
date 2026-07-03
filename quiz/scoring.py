@@ -167,7 +167,7 @@ class RankingScorer:
                 team_selection = (
                     int(part_answer.answer_text) if part_answer.answer_text else None
                 )
-            except ValueError, TypeError:
+            except (ValueError, TypeError):
                 team_selection = None
 
             if team_selection is not None:

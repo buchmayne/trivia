@@ -89,7 +89,7 @@ def require_team_token(view_func: Callable) -> Callable:
             team.save(update_fields=["last_seen"])
             request.session_obj = session
             request.team = team
-        except GameSession.DoesNotExist, SessionTeam.DoesNotExist:
+        except (GameSession.DoesNotExist, SessionTeam.DoesNotExist):
             return JsonResponse({"error": "Invalid session or team"}, status=403)
         return view_func(request, code, *args, **kwargs)
 
@@ -605,7 +605,7 @@ def admin_score_answer(request: HttpRequest, code: str) -> JsonResponse:
 
     try:
         points = int(points)
-    except ValueError, TypeError:
+    except (ValueError, TypeError):
         return JsonResponse({"error": "points must be an integer"}, status=400)
 
     if points < 0:
