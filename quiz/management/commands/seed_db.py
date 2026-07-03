@@ -80,6 +80,20 @@ class Command(BaseCommand):
             )
             return
 
+        # When forcing, clear existing content to avoid unique constraint conflicts
+        if has_quiz_data and force:
+            self.stdout.write("Clearing existing content before loading fixture...")
+            question_round_model = apps.get_model("quiz", "QuestionRound")
+            question_type_model = apps.get_model("quiz", "QuestionType")
+
+            # Delete Games first - cascades to Questions and Answers
+            game_model.objects.all().delete()
+            # Then delete lookup tables
+            category_model.objects.all().delete()
+            question_round_model.objects.all().delete()
+            question_type_model.objects.all().delete()
+            self.stdout.write(self.style.SUCCESS("Existing content cleared."))
+
         fixture_to_load = fixture_path
         if fixture_path.suffix.lower() == ".json":
             with fixture_path.open() as f:
