@@ -125,14 +125,20 @@ class SingleAnswerScorer:
 class MultipleOpenEndedScorer:
     """Multiple sub-questions, each manually scored.
 
-    Multi-part iff at least one Answer row carries a sub-question prompt
-    (Answer.text). If no prompts are defined the question behaves as a single
-    open-ended answer.
+    Multi-part iff at least one Answer row has content that requires user input:
+    - A sub-question prompt (Answer.text), OR
+    - Question media (image/video), OR
+    - A correct answer (Answer.answer_text) - implies evaluation needed
+
+    If none of these are present, the question behaves as a single open-ended answer.
     """
 
     def is_multi_part(self, question: Question) -> bool:
         for answer in question.answers.all():
-            if answer.text and answer.text.strip():
+            has_prompt = answer.text and answer.text.strip()
+            has_media = answer.question_image_url or answer.question_video_url
+            has_answer = answer.answer_text and answer.answer_text.strip()
+            if has_prompt or has_media or has_answer:
                 return True
         return False
 
