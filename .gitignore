@@ -157,3 +157,7 @@ e2e/blob-report/
 e2e/.playwright/
 e2e/dist/
 
+RESOURCES.md
+MISSION.md
+lessons/
+reference/
