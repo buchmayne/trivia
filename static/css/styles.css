@@ -1400,3 +1400,47 @@ body::after {
         font-size: 0.9em;
     }
 }
+
+/* Gallery Footer - return to landing page */
+.gallery-footer {
+    margin-top: 40px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery-home-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a202c;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1em;
+    border-radius: 8px;
+    border: 1px solid #e1e5e9;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.gallery-home-button::before {
+    content: "\2190 ";
+}
+
+.gallery-home-button:hover {
+    transform: translateY(-2px);
+    background: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .gallery-footer {
+        margin-top: 30px;
+        padding: 15px;
+    }
+
+    .gallery-home-button {
+        padding: 10px 24px;
+        font-size: 0.9em;
+    }
+}
