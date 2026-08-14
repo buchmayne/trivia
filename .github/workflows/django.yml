@@ -99,11 +99,16 @@ jobs:
 
           # Fail fast with a clear message instead of a cryptic mid-build
           # "No space left on device" error if cleanup wasn't enough.
+          # Threshold is 1GB: the droplet's disk is only 8.6GB total and this
+          # app's build (plain python:3.13-slim + uv sync, no heavy
+          # compilation) doesn't need much headroom. This is a stopgap - the
+          # real fix is resizing the droplet's disk and/or adding scheduled
+          # cleanup outside of deploy time so usage doesn't creep back up.
           AVAILABLE_KB=$(df --output=avail / | tail -1)
           AVAILABLE_GB=$((AVAILABLE_KB / 1024 / 1024))
           echo "Disk space available on / after cleanup: ${AVAILABLE_GB}GB"
-          if [ "$AVAILABLE_GB" -lt 2 ]; then
-            echo "ERROR: Less than 2GB free on / after cleanup. Aborting deploy before build to avoid a broken half-deployed state."
+          if [ "$AVAILABLE_GB" -lt 1 ]; then
+            echo "ERROR: Less than 1GB free on / after cleanup. Aborting deploy before build to avoid a broken half-deployed state."
             df -h
             docker system df
             exit 1
