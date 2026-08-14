@@ -121,8 +121,10 @@ docker-compose exec web uv run manage.py cleanup_sessions --days=7
 
 ### Production database backups
 
-A `db-backup` container runs daily and keeps 7 daily + 4 weekly snapshots
-under `./backups/` on the droplet. Restore with `pg_restore`.
+A `db-backup` container runs weekly and keeps the last 3 weekly snapshots
+under `./backups/` on the droplet (daily and monthly tiers are disabled -
+there's no production data of real value, so a light weekly safety net is
+enough). Restore with `pg_restore`.
 
 ## Troubleshooting
 

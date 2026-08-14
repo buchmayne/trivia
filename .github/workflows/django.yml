@@ -82,9 +82,15 @@ jobs:
           # e.g. db backups / certs) are still in use and won't be touched.
           # Build cache is pruned explicitly since `system prune -a` does not
           # reliably clear BuildKit's cache, which was the main disk hog.
+          # No age filters here (previously `until=72h`/`until=24h`): those
+          # left recently-created but already-unused images/cache sitting
+          # around, which was the main reason cleanup wasn't reclaiming
+          # enough space. Anything still in use by a running container is
+          # untouched regardless of age.
           docker container prune -f
-          docker image prune -af --filter "until=72h"
-          docker builder prune -af --filter "until=24h"
+          docker image prune -af
+          docker builder prune -af
+          docker volume prune -f
           docker network prune -f
 
           # Cleanup system logs
