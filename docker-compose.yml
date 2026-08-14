@@ -97,9 +97,13 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - SCHEDULE=@daily
-      - BACKUP_KEEP_DAYS=7
-      - BACKUP_KEEP_WEEKS=4
+      # Side project, no real production data - a light weekly snapshot
+      # is plenty of a safety net. Content lives in git/fixtures; this is
+      # just in case of accidental loss of ephemeral live-session data.
+      - SCHEDULE=@weekly
+      - BACKUP_KEEP_DAYS=0
+      - BACKUP_KEEP_WEEKS=3
+      - BACKUP_KEEP_MONTHS=0
     volumes:
       - ./backups:/backups
     depends_on:
