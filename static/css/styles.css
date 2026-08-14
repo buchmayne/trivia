@@ -927,4 +927,21 @@ body.hero-slim::before {
     .gallery-hero-content {
         padding: 1.25rem 1.25rem 1.75rem;
     }
+
+    .navigation-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav-left,
+    .nav-center,
+    .nav-right {
+        flex: none;
+        width: 100%;
+    }
+
+    .view-toggle-button {
+        float: none;
+        width: 100%;
+    }
 }

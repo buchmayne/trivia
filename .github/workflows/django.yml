@@ -75,12 +75,33 @@ jobs:
         username: ${{ secrets.DROPLET_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          # Cleanup Docker resources
-          docker system prune -a -f
+          set -e
+
+          # Cleanup Docker resources. Safe to run before `docker-compose down`
+          # below since the currently-running containers (and their volumes,
+          # e.g. db backups / certs) are still in use and won't be touched.
+          # Build cache is pruned explicitly since `system prune -a` does not
+          # reliably clear BuildKit's cache, which was the main disk hog.
+          docker container prune -f
+          docker image prune -af --filter "until=72h"
+          docker builder prune -af --filter "until=24h"
+          docker network prune -f
 
           # Cleanup system logs
           sudo journalctl --vacuum-time=3d
           sudo apt clean
+
+          # Fail fast with a clear message instead of a cryptic mid-build
+          # "No space left on device" error if cleanup wasn't enough.
+          AVAILABLE_KB=$(df --output=avail / | tail -1)
+          AVAILABLE_GB=$((AVAILABLE_KB / 1024 / 1024))
+          echo "Disk space available on / after cleanup: ${AVAILABLE_GB}GB"
+          if [ "$AVAILABLE_GB" -lt 2 ]; then
+            echo "ERROR: Less than 2GB free on / after cleanup. Aborting deploy before build to avoid a broken half-deployed state."
+            df -h
+            docker system df
+            exit 1
+          fi
 
           # Update codebase
           cd ./opt/trivia/
@@ -107,9 +128,16 @@ jobs:
           echo "EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}" >> .env
           echo "DEFAULT_FROM_EMAIL=${{ secrets.DEFAULT_FROM_EMAIL }}" >> .env
 
-          # Remove existing containers and networks (preserve volumes for certs)
+          # Build the new images while the old containers are still serving
+          # traffic. If the build fails (e.g. out of disk space, bad
+          # Dockerfile), `set -e` stops the script here and the currently
+          # running app is left untouched instead of being torn down first.
+          docker-compose build
+
+          # Only now swap over to the newly built images.
+          # (existing containers/networks removed, volumes for db/certs preserved)
           docker-compose down --remove-orphans
-          docker-compose up -d --build
+          docker-compose up -d
 
           # Apply content fixture to production if content.json changed in this push.
           # PREVIOUS_HEAD was captured before the git reset above so the diff is accurate.
