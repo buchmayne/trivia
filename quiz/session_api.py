@@ -27,7 +27,7 @@ from .models import (
     SessionRound,
     TeamAnswer,
 )
-from .scoring import scorer_for
+from .scoring import multi_part_answer_summary, scorer_for
 from .session_director import InvalidTransition, SessionDirector
 from .utils import has_verified_email
 
@@ -37,6 +37,46 @@ def ratelimit_error(request: HttpRequest, exception: Exception) -> JsonResponse:
     return JsonResponse(
         {"error": "Rate limit exceeded. Please wait before trying again."}, status=429
     )
+
+
+def serialize_question_for_play(question: Question) -> dict:
+    """Question + its answers, shaped for team/admin play views.
+
+    One interface, used by both get_session_state (current_question) and
+    team_get_question_details (question navigation). Field names here are
+    a wire contract pinned by test_session_api.py - do not rename fields
+    without updating those tests.
+    """
+    return {
+        "id": question.id,
+        "number": question.question_number,
+        "text": question.text,
+        "total_points": question.total_points,
+        "image_url": question.question_image_url,
+        "video_url": question.question_video_url,
+        "answer_image_url": question.answer_image_url,
+        "answer_video_url": question.answer_video_url,
+        "answer_bank": question.answer_bank,
+        "category_name": question.category.name if question.category else None,
+        "question_type": (
+            question.question_type.name if question.question_type else None
+        ),
+        "answers": [
+            {
+                "id": a.id,
+                "text": a.text,
+                "answer_text": a.answer_text,
+                "display_order": a.display_order,
+                "image_url": a.question_image_url,
+                "answer_image_url": a.answer_image_url,
+                "video_url": a.question_video_url,
+                "answer_video_url": a.answer_video_url,
+                "points": a.points,
+                "correct_rank": a.correct_rank,
+            }
+            for a in question.answers.all().order_by("display_order")
+        ],
+    }
 
 
 # Configuration
@@ -261,37 +301,7 @@ def get_session_state(request: HttpRequest, code: str) -> JsonResponse:
     # Get question info
     current_question_info = None
     if session.current_question:
-        question = session.current_question
-        current_question_info = {
-            "id": question.id,
-            "number": question.question_number,
-            "text": question.text,
-            "total_points": question.total_points,
-            "image_url": question.question_image_url,
-            "video_url": question.question_video_url,
-            "answer_image_url": question.answer_image_url,
-            "answer_video_url": question.answer_video_url,
-            "answer_bank": question.answer_bank,
-            "category_name": question.category.name if question.category else None,
-            "question_type": (
-                question.question_type.name if question.question_type else None
-            ),
-            "answers": [
-                {
-                    "id": a.id,
-                    "text": a.text,
-                    "answer_text": a.answer_text,
-                    "display_order": a.display_order,
-                    "image_url": a.question_image_url,
-                    "answer_image_url": a.answer_image_url,
-                    "video_url": a.question_video_url,
-                    "answer_video_url": a.answer_video_url,
-                    "points": a.points,
-                    "correct_rank": a.correct_rank,
-                }
-                for a in question.answers.all().order_by("display_order")
-            ],
-        }
+        current_question_info = serialize_question_for_play(session.current_question)
 
     # Bulk query: Get set of team IDs that have answered current question
     answered_team_ids = set()
@@ -494,57 +504,20 @@ def admin_get_scoring_data(request: HttpRequest, code: str) -> JsonResponse:
 
         for team in teams:
             if is_multi_part:
-                # Get per-part TeamAnswer records
+                # Post-lock, SessionDirector guarantees a per-part row exists
+                # for every team on every part of a multi-part question.
                 part_answers = TeamAnswer.objects.filter(
                     team=team, question=question, answer_part__isnull=False
                 ).select_related("answer_part")
-
-                # Build lookup by answer_part_id
-                part_lookup = {pa.answer_part_id: pa for pa in part_answers}
-
-                parts = []
-                total_points_awarded = 0
-                all_scored = True
-
-                for answer_part in answer_parts:
-                    part_answer = part_lookup.get(answer_part.id)
-                    if part_answer:
-                        parts.append(
-                            {
-                                "answer_part_id": answer_part.id,
-                                "team_answer_id": part_answer.id,
-                                "answer_text": part_answer.answer_text,
-                                "points_awarded": part_answer.points_awarded,
-                                "max_points": answer_part.points,
-                                "is_scored": part_answer.points_awarded is not None,
-                            }
-                        )
-                        if part_answer.points_awarded is not None:
-                            total_points_awarded += part_answer.points_awarded
-                        else:
-                            all_scored = False
-                    else:
-                        parts.append(
-                            {
-                                "answer_part_id": answer_part.id,
-                                "team_answer_id": None,
-                                "answer_text": "",
-                                "points_awarded": None,
-                                "max_points": answer_part.points,
-                                "is_scored": False,
-                            }
-                        )
-                        all_scored = False
+                summary = multi_part_answer_summary(question, part_answers)
 
                 q_data["team_answers"].append(
                     {
                         "team_id": team.id,
                         "team_name": team.name,
-                        "parts": parts,
-                        "total_points_awarded": (
-                            total_points_awarded if all_scored else None
-                        ),
-                        "is_scored": all_scored,
+                        "parts": summary["parts"],
+                        "total_points_awarded": summary["total_points_awarded"],
+                        "is_scored": summary["is_scored"],
                     }
                 )
             else:
@@ -910,22 +883,18 @@ def team_get_answers(request: HttpRequest, code: str) -> JsonResponse:
     answers_data = []
     for question in questions:
         # Check for per-part answers first (new format)
+        # A question is multi-part *in storage* once its round has been
+        # locked and split by SessionDirector - before that, even a
+        # multi-part question is one combined-JSON TeamAnswer row. So the
+        # presence of split rows (not the question type) decides the branch.
         part_answers = team.answers.filter(
             question=question, answer_part__isnull=False
-        ).order_by("answer_part__display_order")
+        ).select_related("answer_part")
 
         if part_answers.exists():
-            # Aggregate per-part answers into JSON array format for frontend
-            answer_texts = [pa.answer_text or "" for pa in part_answers]
+            summary = multi_part_answer_summary(question, part_answers)
+            answer_texts = [p["answer_text"] or "" for p in summary["parts"]]
             combined_answer_text = json.dumps(answer_texts)
-            # Sum up points from all parts
-            total_points = sum(
-                pa.points_awarded
-                for pa in part_answers
-                if pa.points_awarded is not None
-            )
-            all_scored = all(pa.points_awarded is not None for pa in part_answers)
-            any_locked = any(pa.is_locked for pa in part_answers)
 
             answers_data.append(
                 {
@@ -933,8 +902,8 @@ def team_get_answers(request: HttpRequest, code: str) -> JsonResponse:
                     "question_number": question.question_number,
                     "question_text": question.text,
                     "answer_text": combined_answer_text,
-                    "is_locked": any_locked,
-                    "points_awarded": total_points if all_scored else None,
+                    "is_locked": summary["is_locked"],
+                    "points_awarded": summary["total_points_awarded"],
                 }
             )
         else:
@@ -980,36 +949,7 @@ def team_get_question_details(request: HttpRequest, code: str) -> JsonResponse:
     if not session_round or session_round.status == SessionRound.Status.PENDING:
         return JsonResponse({"error": "Question not accessible yet"}, status=400)
 
-    question_data = {
-        "id": question.id,
-        "number": question.question_number,
-        "text": question.text,
-        "total_points": question.total_points,
-        "image_url": question.question_image_url,
-        "video_url": question.question_video_url,
-        "answer_image_url": question.answer_image_url,
-        "answer_video_url": question.answer_video_url,
-        "answer_bank": question.answer_bank,
-        "category_name": question.category.name if question.category else None,
-        "question_type": (
-            question.question_type.name if question.question_type else None
-        ),
-        "answers": [
-            {
-                "id": a.id,
-                "text": a.text,
-                "answer_text": a.answer_text,
-                "display_order": a.display_order,
-                "image_url": a.question_image_url,
-                "answer_image_url": a.answer_image_url,
-                "video_url": a.question_video_url,
-                "answer_video_url": a.answer_video_url,
-                "points": a.points,
-                "correct_rank": a.correct_rank,
-            }
-            for a in question.answers.all().order_by("display_order")
-        ],
-    }
+    question_data = serialize_question_for_play(question)
 
     return JsonResponse({"question": question_data})
 

@@ -1,7 +1,37 @@
 /* ============================================
    THIRD WAVE TRIVIA - Session Design System
-   An ocean-inspired aesthetic: deep blues,
-   warm sands, seafoam accents, coastal calm.
+
+   Re-skinned to match the landing page's "The
+   Overlook" aesthetic: deep navy/ink chrome,
+   warm amber accent, Fraunces/Lora/JetBrains Mono
+   type. See static/css/landing.css for the source
+   design system this bridges to.
+
+   DESIGN DECISION (session-visual-refresh, Task 1):
+   Chrome surfaces (page backgrounds, header/nav,
+   landing/host/join backgrounds, buttons, badges,
+   accents) use the Overlook dark navy + amber
+   palette. Gameplay CONTENT surfaces (question
+   cards, answer lists, scoring tables, forms) stay
+   on light cream/shell backgrounds for maximum
+   readability of dense text/data, per the
+   requirement that content and controls remain the
+   top visual priority during live play. Legacy
+   session.css variable names (--seafoam, --current,
+   --sand, etc.) are preserved as aliases pointing at
+   the new Overlook values so every existing selector
+   in this file keeps resolving correctly.
+
+   FONT DECISION: body copy keeps a humanist sans
+   (matching the prior General Sans) rather than
+   switching to Lora, because Lora's serif forms
+   reduced legibility in dense scoring tables and
+   small answer-status text at a quick visual check.
+   Fraunces is used for display/heading type to match
+   the landing page's headline treatment, and
+   JetBrains Mono is used for codes/labels (game code,
+   status badge, section labels) exactly as on the
+   landing page.
    ============================================ */
 
 @import url('https://fonts.cdnfonts.com/css/general-sans');
@@ -10,19 +40,26 @@
    Design Tokens
    ---------------------------------------- */
 :root {
-    /* Ocean Palette */
-    --abyss: #091B2F;
-    --deep-ocean: #0F2B4C;
-    --ocean: #164B72;
-    --current: #1A7F8E;
-    --seafoam: #2EB89D;
-    --seafoam-dark: #1D8A7A;
-    --shallows: #6DD5C3;
-    --foam: #C5EDE6;
-    --foam-light: #E0F2F1;
-    --foam-lighter: #E8F6F1;
+    /* Overlook Palette: --ov-navy-deep, --ov-navy-mid, --ov-ink,
+       --ov-blue-mid, --ov-blue-glow, --ov-mist, --ov-cream, --ov-amber,
+       --ov-amber-dark are defined in tokens.css (shared source of truth,
+       loaded before this file). */
 
-    /* Warm Neutrals */
+    /* Legacy ocean-palette names, now aliased to Overlook tokens.
+       Kept so every existing rule below continues to work unchanged. */
+    --abyss: var(--ov-ink);
+    --deep-ocean: var(--ov-navy-deep);
+    --ocean: var(--ov-navy-mid);
+    --current: var(--ov-blue-glow);
+    --seafoam: var(--ov-amber);
+    --seafoam-dark: var(--ov-amber-dark);
+    --shallows: var(--ov-mist);
+    --foam: #ECE6D6;
+    --foam-light: #F6F1E4;
+    --foam-lighter: #FAF6EC;
+
+    /* Warm Neutrals - light content-surface palette (unchanged intent,
+       tuned slightly warmer to sit well with the amber accent) */
     --sand: #F2EDE3;
     --sand-dark: #E6DFD1;
     --wet-sand: #DDD7CB;
@@ -35,27 +72,34 @@
     --coral-dark: #B84835;
     --coral-light: #FBEAE7;
     --coral-text: #8B2E1F;
-    --gold: #E8A931;
+    --gold: #E3B23C;
     --gold-text: #8B6914;
     --bronze: #92400e;
     --warning-bg: #FEF3C7;
     --warning-text: #92400e;
+    /* Success state, distinct from the amber primary accent */
+    --success: #2E9B6F;
+    --success-dark: #1F7A56;
+    --success-light: #E1F3EA;
+    --success-text: #146144;
 
     /* Text */
     --text-heading: #1A2F42;
     --text-body: #2C3E50;
     --text-secondary: #7A6F5D;
     --text-muted: #8B7E6A;
-    --text-on-dark: rgba(255,255,255,0.92);
-    --text-on-dark-muted: rgba(255,255,255,0.65);
+    --text-on-dark: var(--ov-cream);
+    --text-on-dark-muted: rgba(244,239,228,0.65);
 
-    /* Shadows */
+    /* Shadows (Overlook shadow scale) */
+    /* --shadow-soft, --shadow-medium, --shadow-strong, --radius-sm,
+       --radius-md, --radius-lg, --font-display, --font-mono are defined
+       in tokens.css (loaded before this file). */
     --shadow-sm: 0 1px 3px rgba(9,27,47,0.06), 0 1px 2px rgba(9,27,47,0.04);
     --shadow-md: 0 4px 12px rgba(9,27,47,0.07), 0 2px 4px rgba(9,27,47,0.04);
-    --shadow-lg: 0 10px 30px rgba(9,27,47,0.10), 0 4px 8px rgba(9,27,47,0.05);
+    --shadow-lg: var(--shadow-medium);
 
     /* Typography */
-    --font-display: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
     /* Motion */
@@ -103,11 +147,11 @@ a { color: var(--current); }
    Session Header (play page)
    ---------------------------------------- */
 .session-header {
-    background: linear-gradient(135deg, var(--deep-ocean) 0%, var(--ocean) 50%, var(--current) 100%);
+    background: linear-gradient(135deg, var(--ov-ink) 0%, var(--ov-navy-deep) 45%, var(--ov-navy-mid) 100%);
     color: var(--text-on-dark);
     padding: 1.5rem 1.5rem 2.5rem;
     position: relative;
-    box-shadow: 0 4px 20px rgba(9,27,47,0.15);
+    box-shadow: var(--shadow-soft);
 }
 
 .session-header::after {
@@ -132,19 +176,21 @@ a { color: var(--current); }
 }
 
 .game-code {
-    font-family: var(--font-body);
-    font-size: 2rem;
-    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: 1.9rem;
+    font-weight: 500;
     letter-spacing: 0.15em;
+    color: var(--ov-amber);
 }
 
 .status-badge {
-    background: rgba(255,255,255,0.12);
+    background: rgba(244,239,228,0.12);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     padding: 0.5rem 1.25rem;
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     border: 1px solid rgba(255,255,255,0.18);
@@ -195,13 +241,13 @@ a { color: var(--current); }
 
 .btn-primary {
     background: var(--seafoam);
-    color: var(--pearl);
-    box-shadow: 0 2px 8px rgba(46,184,157,0.25);
+    color: var(--ov-ink);
+    box-shadow: 0 2px 8px rgba(217,164,99,0.25);
 }
 .btn-primary:hover {
     background: var(--seafoam-dark);
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(46,184,157,0.35);
+    box-shadow: 0 4px 14px rgba(217,164,99,0.35);
 }
 .btn-primary:disabled {
     background: var(--driftwood);
@@ -262,7 +308,7 @@ input, select {
 input:focus, select:focus {
     outline: none;
     border-color: var(--current);
-    box-shadow: 0 0 0 3px rgba(26,127,142,0.12);
+    box-shadow: 0 0 0 3px rgba(83,112,196,0.12);
 }
 
 textarea {
@@ -281,7 +327,7 @@ textarea {
 textarea:focus {
     outline: none;
     border-color: var(--current);
-    box-shadow: 0 0 0 3px rgba(26,127,142,0.12);
+    box-shadow: 0 0 0 3px rgba(83,112,196,0.12);
 }
 
 .hint {
@@ -448,8 +494,8 @@ textarea:focus {
     font-weight: 500;
 }
 .answer-status.success {
-    background: #D0F0E8;
-    color: #126B5D;
+    background: var(--success-light);
+    color: var(--success-text);
 }
 .answer-status.locked {
     background: var(--warning-bg);
@@ -483,14 +529,14 @@ textarea:focus {
 }
 .ranking-item:hover {
     border-color: var(--current);
-    box-shadow: 0 2px 8px rgba(26,127,142,0.15);
+    box-shadow: 0 2px 8px rgba(83,112,196,0.15);
 }
 .ranking-item.sortable-ghost {
     opacity: 0.4;
 }
 .ranking-item.sortable-chosen {
     border-color: var(--current);
-    box-shadow: 0 4px 12px rgba(26,127,142,0.2);
+    box-shadow: 0 4px 12px rgba(83,112,196,0.2);
     transform: scale(1.02);
 }
 .ranking-item.sortable-drag {
@@ -553,7 +599,7 @@ textarea:focus {
 }
 .team-card:hover {
     border-color: var(--current);
-    box-shadow: 0 2px 8px rgba(26,127,142,0.1);
+    box-shadow: 0 2px 8px rgba(83,112,196,0.1);
 }
 
 .team-name {
@@ -571,7 +617,7 @@ textarea:focus {
 .team-status {
     margin-top: 0.5rem;
     font-size: 0.9rem;
-    color: var(--seafoam);
+    color: var(--success);
 }
 
 /* ----------------------------------------
@@ -647,9 +693,9 @@ textarea:focus {
     border: 2px solid transparent;
 }
 .answer-badge.answered {
-    background: #D0F0E8;
-    color: #126B5D;
-    border-color: var(--seafoam);
+    background: var(--success-light);
+    color: var(--success-text);
+    border-color: var(--success);
 }
 .answer-badge.unanswered {
     background: var(--sand);
@@ -657,7 +703,7 @@ textarea:focus {
     border-color: var(--wet-sand);
 }
 .answer-badge.current {
-    box-shadow: 0 0 0 3px rgba(26,127,142,0.25);
+    box-shadow: 0 0 0 3px rgba(83,112,196,0.25);
     border-color: var(--current);
 }
 .answer-badge:hover {
@@ -673,7 +719,7 @@ textarea:focus {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, var(--deep-ocean) 0%, var(--ocean) 40%, var(--current) 100%);
+    background: linear-gradient(135deg, var(--ov-ink) 0%, var(--ov-navy-deep) 45%, var(--ov-navy-mid) 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -695,10 +741,11 @@ textarea:focus {
 }
 
 .category-flash-label {
-    font-family: var(--font-body);
-    font-size: 1.2rem;
-    font-weight: 600;
-    opacity: 0.75;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ov-amber);
+    opacity: 0.9;
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.25em;
@@ -759,8 +806,8 @@ textarea:focus {
     border-color: var(--current);
 }
 .progress-question.complete {
-    background: #D0F0E8;
-    border-color: var(--seafoam);
+    background: var(--success-light);
+    border-color: var(--success);
 }
 
 .progress-question-number {
@@ -773,7 +820,7 @@ textarea:focus {
     color: var(--current);
 }
 .progress-question.complete .progress-question-number {
-    color: var(--seafoam-dark);
+    color: var(--success-dark);
 }
 
 .progress-count {
@@ -973,10 +1020,10 @@ textarea:focus {
 .landing-body {
     background: linear-gradient(
         170deg,
-        var(--abyss) 0%,
-        var(--deep-ocean) 30%,
-        var(--ocean) 60%,
-        var(--current) 100%
+        var(--ov-ink) 0%,
+        var(--ov-navy-deep) 35%,
+        var(--ov-navy-mid) 70%,
+        var(--ov-blue-mid) 100%
     );
     display: flex;
     flex-direction: column;
@@ -1010,7 +1057,7 @@ textarea:focus {
 
 .landing-title {
     font-family: var(--font-display);
-    color: var(--pearl);
+    color: var(--ov-cream);
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -1037,20 +1084,20 @@ textarea:focus {
     font-weight: 700;
     font-family: var(--font-body);
     border: none;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     cursor: pointer;
     transition: all var(--transition-normal);
     text-decoration: none;
     display: block;
     text-align: center;
-    background: var(--seafoam);
-    color: var(--pearl);
-    box-shadow: 0 4px 20px rgba(46,184,157,0.3);
+    background: var(--ov-amber);
+    color: var(--ov-ink);
+    box-shadow: 0 4px 20px rgba(217,164,99,0.3);
 }
 .btn-landing-host:hover {
-    background: var(--seafoam-dark);
+    background: var(--ov-amber-dark);
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(46,184,157,0.4);
+    box-shadow: 0 8px 28px rgba(217,164,99,0.4);
 }
 
 .btn-landing-join {
@@ -1058,21 +1105,21 @@ textarea:focus {
     font-size: 1.35rem;
     font-weight: 700;
     font-family: var(--font-body);
-    border: 2px solid rgba(255,255,255,0.25);
-    border-radius: 12px;
+    border: 1px solid rgba(244,239,228,0.3);
+    border-radius: var(--radius-md);
     cursor: pointer;
     transition: all var(--transition-normal);
     text-decoration: none;
     display: block;
     text-align: center;
-    background: rgba(255,255,255,0.06);
+    background: rgba(244,239,228,0.08);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    color: var(--pearl);
+    color: var(--ov-cream);
 }
 .btn-landing-join:hover {
-    background: rgba(255,255,255,0.14);
-    border-color: rgba(255,255,255,0.45);
+    background: rgba(244,239,228,0.15);
+    border-color: rgba(244,239,228,0.5);
     transform: translateY(-2px);
 }
 
@@ -1085,7 +1132,7 @@ textarea:focus {
     transition: color var(--transition-fast);
 }
 .landing-back:hover {
-    color: var(--pearl);
+    color: var(--ov-cream);
     text-decoration: underline;
 }
 
@@ -1095,9 +1142,9 @@ textarea:focus {
 .form-page-body {
     background: linear-gradient(
         170deg,
-        var(--deep-ocean) 0%,
-        var(--ocean) 50%,
-        var(--current) 100%
+        var(--ov-navy-deep) 0%,
+        var(--ov-navy-mid) 55%,
+        var(--ov-blue-mid) 100%
     );
     padding: 2rem;
     position: relative;
@@ -1127,7 +1174,7 @@ textarea:focus {
 
 .form-page-title {
     font-family: var(--font-display);
-    color: var(--pearl);
+    color: var(--ov-cream);
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
@@ -1144,7 +1191,7 @@ textarea:focus {
     transition: color var(--transition-fast);
 }
 .back-link-dark:hover {
-    color: var(--pearl);
+    color: var(--ov-cream);
     text-decoration: underline;
 }
 

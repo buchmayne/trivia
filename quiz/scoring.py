@@ -103,6 +103,77 @@ def _split_into_parts(team_answer: TeamAnswer) -> list[TeamAnswer]:
     return created
 
 
+def multi_part_answer_summary(
+    question: Question, part_answers: Iterable[TeamAnswer]
+) -> dict:
+    """Fold a team's per-part TeamAnswer rows into a scoring/display summary.
+
+    Used by both the admin scoring view (which needs per-part detail: text,
+    points_awarded, max_points per Answer part) and the team's own answers
+    view (which folds these into one combined answer_text + one lock/score
+    status). Callers decide *whether* a question's answers are currently
+    split into parts (that differs: admin checks the question type via
+    scorer_for; the team view checks whether split rows exist yet, since a
+    round isn't split until it's locked) - this only does the aggregation
+    once that's known.
+
+    Returns:
+        parts: one dict per Answer part, in display_order, with
+            answer_part_id, team_answer_id (None if not yet submitted),
+            answer_text, points_awarded, max_points, is_scored.
+        is_scored: True iff every part has points_awarded set.
+        total_points_awarded: sum of points_awarded, or None if not all
+            parts are scored yet.
+        is_locked: True if any part's TeamAnswer row is locked.
+    """
+    answer_parts = list(question.answers.order_by("display_order"))
+    part_lookup = {pa.answer_part_id: pa for pa in part_answers}
+
+    parts = []
+    total_points_awarded = 0
+    all_scored = True
+    any_locked = False
+
+    for answer_part in answer_parts:
+        part_answer = part_lookup.get(answer_part.id)
+        if part_answer:
+            parts.append(
+                {
+                    "answer_part_id": answer_part.id,
+                    "team_answer_id": part_answer.id,
+                    "answer_text": part_answer.answer_text,
+                    "points_awarded": part_answer.points_awarded,
+                    "max_points": answer_part.points,
+                    "is_scored": part_answer.points_awarded is not None,
+                }
+            )
+            if part_answer.points_awarded is not None:
+                total_points_awarded += part_answer.points_awarded
+            else:
+                all_scored = False
+            if part_answer.is_locked:
+                any_locked = True
+        else:
+            parts.append(
+                {
+                    "answer_part_id": answer_part.id,
+                    "team_answer_id": None,
+                    "answer_text": "",
+                    "points_awarded": None,
+                    "max_points": answer_part.points,
+                    "is_scored": False,
+                }
+            )
+            all_scored = False
+
+    return {
+        "parts": parts,
+        "is_scored": all_scored,
+        "total_points_awarded": total_points_awarded if all_scored else None,
+        "is_locked": any_locked,
+    }
+
+
 # ============================================================================
 # Adapters
 # ============================================================================

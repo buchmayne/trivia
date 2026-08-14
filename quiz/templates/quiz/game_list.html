@@ -5,14 +5,12 @@
 
 {% block title %}Available Trivia Games{% endblock %}
 
-{% block header %}
-<header class="game-selection-header">
-    <div class="header-content">
-        <h1 class="header-title">Trivia Quest</h1>
-        <div class="header-subtitle">Choose Your Adventure</div>
-    </div>
-    <a href="{% url 'home' %}" class="back-to-home">Back to Home</a>
-</header>
+{% block hero_eyebrow %}
+<div class="hero-eyebrow">Gallery Mode</div>
+{% endblock %}
+
+{% block hero_title %}
+<h1 class="hero-title">Select Game</h1>
 {% endblock %}
 
 {% block content %}
@@ -21,18 +19,12 @@
         {% for game in games %}
             {% if not game.is_draft %}
                 <a href="{% url 'quiz:game_overview' game.id %}" class="game-card">
-                    <div class="game-card-content">
-                        <h2 class="game-name">{{ game.legacy_name|default:game.name }}</h2>
-                        <div class="game-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="game-svg">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                        </div>
-                        <div class="game-card-hover">
-                            <span>Start Game</span>
-                        </div>
+                    <h2 class="game-name">{{ game.legacy_name|default:game.name }}</h2>
+                    <div class="game-card-meta">
+                        {{ game.questions.count }} Question{{ game.questions.count|pluralize }}
+                        {% if game.original_date %}&middot; {{ game.original_date|date:"M Y" }}{% endif %}
                     </div>
+                    <span class="game-card-arrow">&rarr;</span>
                 </a>
             {% endif %}
         {% endfor %}
@@ -43,10 +35,17 @@
         <div class="analytics-container">
             <h3 class="analytics-title">Analytics</h3>
             <p class="analytics-description">View past game results and player performance</p>
-            <a href="{% url 'quiz:analytics' %}" class="analytics-button">
+            <a href="{% url 'quiz:analytics' %}" class="button button-primary analytics-button">
                 Game History and Player Analytics
             </a>
         </div>
+    </div>
+
+    <!-- Return to Landing Page -->
+    <div class="gallery-footer">
+        <a href="{% url 'home' %}" class="button button-secondary gallery-home-button">
+            Back to Home
+        </a>
     </div>
 </div>
 {% endblock %}
