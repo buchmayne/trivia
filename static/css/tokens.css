@@ -1,0 +1,42 @@
+/* ============================================
+   THIRD WAVE TRIVIA - Shared Design Tokens
+   "The Overlook" design system
+
+   Single source of truth for the Overlook CSS
+   custom properties shared by landing, session,
+   and gallery mode. Extracted from session.css /
+   landing.css (session-visual-refresh /
+   gallery-visual-redesign) so every stylesheet
+   reads from one set of values instead of
+   hand-maintained duplicates.
+
+   Load this file before session.css, landing.css,
+   or styles.css.
+   ============================================ */
+
+:root {
+    /* Overlook Palette */
+    --ov-navy-deep: #141b33;
+    --ov-navy-mid: #1a2140;
+    --ov-ink: #0a0e1f;
+    --ov-blue-mid: #344276;
+    --ov-blue-glow: #5370c4;
+    --ov-mist: #8a9fd4;
+    --ov-cream: #f4efe4;
+    --ov-amber: #d9a463;
+    --ov-amber-dark: #b87d3f;
+
+    /* Typography */
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px rgba(10, 14, 31, 0.25);
+    --shadow-medium: 0 8px 30px rgba(10, 14, 31, 0.35);
+    --shadow-strong: 0 12px 40px rgba(10, 14, 31, 0.45);
+
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+}

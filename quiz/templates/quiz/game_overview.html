@@ -3,10 +3,17 @@
 
 {% block body_class %}game-overview-page{% endblock %}
 
+{% block hero_eyebrow %}
+<div class="hero-eyebrow">Game Overview</div>
+{% endblock %}
+
+{% block hero_title %}
+<h1 class="hero-title">{{ game.legacy_name|default:game.name }}</h1>
+{% endblock %}
+
 {% block content %}
 <div class="game-overview-container">
     <div class="game-header">
-        <h1 class="game-title">{{ game.legacy_name|default:game.name }}</h1>
         {% if game.description %}
             <div class="description-container">
                 <div class="game-description">{{ game.description|safe }}</div>
