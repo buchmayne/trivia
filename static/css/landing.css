@@ -7,26 +7,14 @@
    CSS Variables - Design Tokens
    -------------------------------------------------------------------------- */
 :root {
+    /* --font-display, --font-mono, --ov-navy-deep, --ov-navy-mid,
+       --ov-ink, --ov-blue-mid, --ov-blue-glow, --ov-mist, --ov-cream,
+       --ov-amber, --ov-amber-dark, --shadow-soft, --shadow-medium,
+       --shadow-strong, --radius-sm, --radius-md, --radius-lg are defined
+       in tokens.css (loaded before this file). */
+
     /* Typography */
-    --font-display: 'Fraunces', Georgia, serif;
     --font-body: 'Lora', Georgia, serif;
-    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
-
-    /* Colors - Deep Sea + Warm Amber Pop */
-    --ov-navy-deep: #141b33;
-    --ov-navy-mid: #1a2140;
-    --ov-ink: #0a0e1f;
-    --ov-blue-mid: #344276;
-    --ov-blue-glow: #5370c4;
-    --ov-mist: #8a9fd4;
-    --ov-cream: #f4efe4;
-    --ov-amber: #d9a463;
-    --ov-amber-dark: #b87d3f;
-
-    /* Shadows */
-    --shadow-soft: 0 4px 20px rgba(10, 14, 31, 0.25);
-    --shadow-medium: 0 8px 30px rgba(10, 14, 31, 0.35);
-    --shadow-strong: 0 12px 40px rgba(10, 14, 31, 0.45);
 
     /* Spacing */
     --space-xs: 0.5rem;
@@ -36,11 +24,6 @@
     --space-xl: 3rem;
     --space-2xl: 4rem;
     --space-3xl: 6rem;
-
-    /* Border Radius */
-    --radius-sm: 6px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
 
     /* Transitions */
     --transition-fast: 150ms ease;
