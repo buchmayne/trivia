@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from . import views
@@ -10,3 +12,8 @@ urlpatterns = [
     path("quiz/", include("quiz.urls")),
     path("", landing_page_view, name="home"),
 ]
+
+# Offline mode (pub_trivia.settings_offline) serves game media locally from
+# MEDIA_ROOT instead of CloudFront/S3. No-op for normal dev/prod settings.
+if getattr(settings, "OFFLINE_MODE", False):
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
