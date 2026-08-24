@@ -852,9 +852,28 @@
                 <div class="team-card">
                     <div class="team-name">${escapeHtml(t.name)}</div>
                     <div class="team-score">Score: ${t.score} points</div>
-                    <div class="team-status">${t.has_answered_current ? '✓ Answered' : '○ Not answered yet'}</div>
+                    <div class="team-status ${progressStatusClass(t.progress_status)}">${progressStatusLabel(t)}</div>
                 </div>
             `).join('');
+        }
+
+        function progressStatusClass(status) {
+            switch (status) {
+                case 'complete': return 'progress-complete';
+                case 'in_progress': return 'progress-in-progress';
+                default: return 'progress-not-started';
+            }
+        }
+
+        function progressStatusLabel(t) {
+            switch (t.progress_status) {
+                case 'complete':
+                    return '🟢 Complete';
+                case 'in_progress':
+                    return `🟡 In progress (${t.progress_filled}/${t.progress_total})`;
+                default:
+                    return '⚪ Not started';
+            }
         }
 
         function renderRoundProgress(roundProgress, currentQuestion) {

@@ -75,6 +75,7 @@
     --gold: #E3B23C;
     --gold-text: #8B6914;
     --bronze: #92400e;
+    --warning: #D9A463;
     --warning-bg: #FEF3C7;
     --warning-text: #92400e;
     /* Success state, distinct from the amber primary accent */
@@ -617,7 +618,16 @@ textarea:focus {
 .team-status {
     margin-top: 0.5rem;
     font-size: 0.9rem;
-    color: var(--success);
+    font-weight: 600;
+}
+.team-status.progress-not-started {
+    color: var(--text-muted);
+}
+.team-status.progress-in-progress {
+    color: var(--warning-text);
+}
+.team-status.progress-complete {
+    color: var(--success-text);
 }
 
 /* ----------------------------------------
