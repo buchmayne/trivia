@@ -39,6 +39,47 @@ def ratelimit_error(request: HttpRequest, exception: Exception) -> JsonResponse:
     )
 
 
+def compute_answer_progress(answer_text: Optional[str]) -> dict:
+    """Derive a team's progress on a question from its saved answer_text.
+
+    Works for both single-answer questions (plain text) and multi-part
+    questions (Multiple Open Ended, Matching, Ranking), which are saved
+    client-side as a JSON array - one entry per part/blank. No schema
+    changes or new writes are involved; this is purely a read-time
+    derivation of the existing TeamAnswer.answer_text field.
+
+    Returns a dict with:
+        - status: "not_started" | "in_progress" | "complete"
+        - filled: int or None (only set for multi-part questions)
+        - total: int or None (only set for multi-part questions)
+    """
+    if not answer_text:
+        return {"status": "not_started", "filled": None, "total": None}
+
+    try:
+        parsed = json.loads(answer_text)
+    except (json.JSONDecodeError, TypeError):
+        parsed = None
+
+    if isinstance(parsed, list):
+        total = len(parsed)
+        if total == 0:
+            return {"status": "not_started", "filled": None, "total": None}
+
+        filled = sum(1 for item in parsed if str(item or "").strip() != "")
+
+        if filled == 0:
+            return {"status": "not_started", "filled": None, "total": None}
+        elif filled == total:
+            return {"status": "complete", "filled": filled, "total": total}
+        else:
+            return {"status": "in_progress", "filled": filled, "total": total}
+
+    # Plain text (single-answer questions): binary status only.
+    status = "complete" if answer_text.strip() != "" else "not_started"
+    return {"status": status, "filled": None, "total": None}
+
+
 def serialize_question_for_play(question: Question) -> dict:
     """Question + its answers, shaped for team/admin play views.
 
@@ -303,28 +344,35 @@ def get_session_state(request: HttpRequest, code: str) -> JsonResponse:
     if session.current_question:
         current_question_info = serialize_question_for_play(session.current_question)
 
-    # Bulk query: Get set of team IDs that have answered current question
-    answered_team_ids = set()
+    # Bulk query: Get each team's saved answer_text for the current question,
+    # so we can derive fine-grained progress (not_started/in_progress/complete)
+    # without N+1 queries.
+    answer_text_by_team_id: dict = {}
     if session.current_question:
-        answered_team_ids = set(
+        answer_text_by_team_id = dict(
             TeamAnswer.objects.filter(
                 team__session=session,
                 question=session.current_question,
-                answer_text__gt="",
-            ).values_list("team_id", flat=True)
+                answer_part__isnull=True,
+            ).values_list("team_id", "answer_text")
         )
 
     teams = list(session.teams.order_by("id"))
-    teams_data = [
-        {
-            "id": t.id,
-            "name": t.name,
-            "score": t.score,
-            "joined_late": t.joined_late,
-            "has_answered_current": t.id in answered_team_ids,
-        }
-        for t in teams
-    ]
+    teams_data = []
+    for t in teams:
+        progress = compute_answer_progress(answer_text_by_team_id.get(t.id))
+        teams_data.append(
+            {
+                "id": t.id,
+                "name": t.name,
+                "score": t.score,
+                "joined_late": t.joined_late,
+                "has_answered_current": progress["status"] == "complete",
+                "progress_status": progress["status"],
+                "progress_filled": progress["filled"],
+                "progress_total": progress["total"],
+            }
+        )
 
     # Get round progress: submission counts for each question in current round
     round_progress = []
