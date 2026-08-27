@@ -130,6 +130,13 @@ jobs:
           echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
           echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
           echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
+          # Dedicated credentials/bucket for db-backup, scoped to only the
+          # backup bucket - intentionally separate from the media
+          # AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY above.
+          echo "BACKUP_AWS_ACCESS_KEY_ID=${{ secrets.BACKUP_AWS_ACCESS_KEY_ID }}" >> .env
+          echo "BACKUP_AWS_SECRET_ACCESS_KEY=${{ secrets.BACKUP_AWS_SECRET_ACCESS_KEY }}" >> .env
+          echo "BACKUP_S3_BUCKET=${{ secrets.BACKUP_S3_BUCKET }}" >> .env
+          echo "BACKUP_S3_REGION=${{ secrets.BACKUP_S3_REGION }}" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
           echo "EMAIL_BACKEND=${{ secrets.EMAIL_BACKEND }}" >> .env
           echo "EMAIL_HOST=${{ secrets.EMAIL_HOST }}" >> .env

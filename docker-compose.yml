@@ -90,22 +90,29 @@ services:
     restart: unless-stopped
 
   db-backup:
-    image: prodrigestivill/postgres-backup-local
+    image: eeshugerman/postgres-backup-s3:14
     container_name: trivia_app_db_backup
     environment:
       - POSTGRES_HOST=db
-      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_DATABASE=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       # Side project, no real production data - a light weekly snapshot
       # is plenty of a safety net. Content lives in git/fixtures; this is
       # just in case of accidental loss of ephemeral live-session data.
+      #
+      # Backups are streamed straight to S3 (never written to the
+      # droplet's disk, not even transiently) using credentials scoped to
+      # only this bucket - separate from the media-upload AWS credentials.
+      # Retention ("keep last 3 weekly backups") is enforced by an S3
+      # lifecycle rule on the bucket that expires objects after ~21 days,
+      # not by this container.
       - SCHEDULE=@weekly
-      - BACKUP_KEEP_DAYS=0
-      - BACKUP_KEEP_WEEKS=3
-      - BACKUP_KEEP_MONTHS=0
-    volumes:
-      - ./backups:/backups
+      - S3_BUCKET=${BACKUP_S3_BUCKET}
+      - S3_PREFIX=backups
+      - S3_REGION=${BACKUP_S3_REGION}
+      - S3_ACCESS_KEY_ID=${BACKUP_AWS_ACCESS_KEY_ID}
+      - S3_SECRET_ACCESS_KEY=${BACKUP_AWS_SECRET_ACCESS_KEY}
     depends_on:
       - db
     restart: unless-stopped

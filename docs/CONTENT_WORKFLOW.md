@@ -121,10 +121,12 @@ docker-compose exec web uv run manage.py cleanup_sessions --days=7
 
 ### Production database backups
 
-A `db-backup` container runs weekly and keeps the last 3 weekly snapshots
-under `./backups/` on the droplet (daily and monthly tiers are disabled -
-there's no production data of real value, so a light weekly safety net is
-enough). Restore with `pg_restore`.
+A `db-backup` container runs weekly and streams a gzipped `pg_dump`
+directly to a dedicated, private S3 bucket (never written to the
+droplet's disk). There's no production data of real value, so a light
+weekly safety net is enough; retention (~last 3 backups) is enforced by an
+S3 lifecycle rule, not by the container. See `docs/BACKUP_RESTORE.md` for
+the restore procedure.
 
 ## Troubleshooting
 
@@ -143,7 +145,8 @@ with `make export-content`.
 This should be impossible: `seed_db --force` filters by `EXCLUDED_MODELS`
 in `quiz/management/commands/seed_db.py` and never touches `auth.user`,
 `quiz.userprofile`, or `account.emailaddress`. If it happens, restore
-from `./backups/` and open an issue - the filter list has regressed.
+from the S3 backup bucket (see `docs/BACKUP_RESTORE.md`) and open an
+issue - the filter list has regressed.
 
 ## File reference
 
