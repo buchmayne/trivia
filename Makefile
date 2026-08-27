@@ -1,4 +1,4 @@
-.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run stop migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data export-content black start preprod e2e e2e-install e2e-qa
+.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run stop migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data export-content black start preprod e2e e2e-install e2e-qa run-offline download-offline start-offline
 
 help:
 	@echo "Available commands:"
@@ -29,6 +29,11 @@ help:
 	@echo "  make black            - Run black across repo"
 	@echo "  make start            - Run game initializer"
 	@echo "  make preprod          - Run all preflight steps before pushing to production (export content, linting, tests)"
+	@echo ""
+	@echo "Offline Gallery Mode (personal dev-only tool, no internet needed):"
+	@echo "  make download-offline GAME=\"<title>\" - Download a game's content and media into offline_bundle/ (title as shown in gallery mode; run while online)"
+	@echo "  make run-offline                   - Run Django server against offline_bundle/ (no internet needed)"
+	@echo "  make start-offline                 - Run game initializer using a local players CSV instead of Google Sheets"
 	@echo ""
 	@echo "E2E Testing (Playwright):"
 	@echo "  make e2e-install      - Install Playwright and browsers"
@@ -124,9 +129,7 @@ export-content:
 black:
 	uv run black .
 
-# Start a new game
-start:
-	uv run init_trivia.py
+
 
 # E2E Testing with Playwright
 # Use TEST= to run specific test file, e.g.: make e2e-headed TEST=host-flow
@@ -155,3 +158,18 @@ preprod:
 	uv run manage.py export_content
 	uv run black .
 	uv run manage.py test quiz
+
+# Start a new game
+start:
+	uv run init_trivia.py
+
+# Offline gallery mode (personal dev-only tool, no internet needed)
+# Usage: make download-offline GAME="February-2026"  (title exactly as shown in gallery mode)
+run-offline:
+	DJANGO_SETTINGS_MODULE=pub_trivia.settings_offline uv run manage.py runserver
+
+download-offline:
+	uv run manage.py download_game_offline "$(GAME)"
+
+start-offline:
+	uv run python init_trivia_offline.py
