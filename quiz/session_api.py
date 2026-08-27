@@ -4,6 +4,7 @@ Token-based authentication for admin and team actions.
 """
 
 import json
+import secrets
 from functools import wraps
 from datetime import timedelta
 from typing import Callable, Optional
@@ -1140,3 +1141,36 @@ def rejoin_session(request: HttpRequest, code: str) -> JsonResponse:
         return JsonResponse(
             {"error": f"No team named '{team_name}' found in this session"}, status=404
         )
+
+
+@require_http_methods(["POST"])
+@ratelimit(key="ip", rate="10/m", method="POST", block=True)
+def reclaim_session(request: HttpRequest, code: str) -> JsonResponse:
+    """
+    Allows the authenticated owner of a session (GameSession.host_user) to
+    regain host control by issuing a fresh admin_token. This recovers a host
+    who lost access to their original admin_token (e.g. browser crash, lost
+    localStorage, new device) without relying on anything stored client-side.
+
+    Unlike the public session endpoints, this is NOT csrf_exempt: it requires
+    a real logged-in Django session, so normal CSRF protection applies.
+
+    Rotates admin_token, which invalidates any previously issued token for
+    this session.
+    """
+    session = get_object_or_404(GameSession, code=code)
+
+    # Generic 403 whether the user isn't authenticated, or is authenticated
+    # but doesn't own this session - avoids leaking which codes are valid.
+    if not request.user.is_authenticated or session.host_user != request.user:
+        return JsonResponse({"error": "Not authorized"}, status=403)
+
+    session.admin_token = secrets.token_urlsafe()
+    session.save(update_fields=["admin_token"])
+
+    return JsonResponse(
+        {
+            "code": session.code,
+            "admin_token": session.admin_token,
+        }
+    )

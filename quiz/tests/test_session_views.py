@@ -8,8 +8,11 @@ Covers:
 - session_play view
 """
 
+from datetime import timedelta
+
 from django.test import TestCase, Client
 from django.urls import reverse
+from django.utils import timezone
 from quiz.models import (
     Game,
     GameSession,
@@ -40,6 +43,20 @@ class SessionLandingViewTest(TestCase):
         response = self.client.get(self.url)
         self.assertContains(response, "Host a Game")
         self.assertContains(response, "Join a Game")
+
+    def test_landing_page_hides_my_games_button_when_anonymous(self):
+        """Anonymous visitors shouldn't see a My Games button they can't use"""
+        response = self.client.get(self.url)
+        self.assertNotContains(response, reverse("quiz:session_my_games"))
+
+    def test_landing_page_shows_my_games_button_when_authenticated(self):
+        """Logged-in visitors see a button into their My Games portal"""
+        create_verified_user(username="landinguser", email="landing@example.com")
+        self.client.login(username="landinguser", password="testpass123")
+
+        response = self.client.get(self.url)
+
+        self.assertContains(response, reverse("quiz:session_my_games"))
 
     def test_landing_page_has_correct_links(self):
         """Test that landing page links to host and join pages"""
@@ -318,3 +335,90 @@ class SessionViewURLRoutingTest(TestCase):
         self.assertNotEqual(url1, url2)
         self.assertIn(self.session.code, url1)
         self.assertIn(session2.code, url2)
+
+
+class MyGamesViewTest(TestCase):
+    """Tests for the my_games (portal) view"""
+
+    def setUp(self):
+        self.client = Client()
+        self.owner = create_verified_user(username="owner", email="owner@example.com")
+        self.other_user = create_verified_user(
+            username="otheruser", email="other@example.com"
+        )
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
+        self.url = reverse("quiz:session_my_games")
+
+    def test_requires_login(self):
+        """Anonymous requests are redirected to login"""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("login", response.url)
+
+    def test_only_lists_own_sessions(self):
+        """Only sessions hosted by request.user appear"""
+        own_session = GameSession.objects.create(
+            game=self.game, admin_name="Owner", host_user=self.owner
+        )
+        GameSession.objects.create(
+            game=self.game, admin_name="Other", host_user=self.other_user
+        )
+
+        self.client.login(username="owner", password="testpass123")
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        codes_shown = [s.code for s in response.context["active_sessions"]]
+        self.assertIn(own_session.code, codes_shown)
+        self.assertEqual(len(codes_shown), 1)
+
+    def test_active_sessions_never_paginated_out(self):
+        """All non-completed sessions appear regardless of count"""
+        for i in range(25):
+            GameSession.objects.create(
+                game=self.game, admin_name=f"Host {i}", host_user=self.owner
+            )
+
+        self.client.login(username="owner", password="testpass123")
+        response = self.client.get(self.url)
+
+        self.assertEqual(len(response.context["active_sessions"]), 25)
+
+    def test_completed_sessions_paginate_at_twenty(self):
+        """Completed sessions paginate 20 per page"""
+        for i in range(25):
+            GameSession.objects.create(
+                game=self.game,
+                admin_name=f"Host {i}",
+                host_user=self.owner,
+                status=GameSession.Status.COMPLETED,
+                completed_at=timezone.now(),
+            )
+
+        self.client.login(username="owner", password="testpass123")
+        response = self.client.get(self.url)
+
+        history_page = response.context["history_page"]
+        self.assertEqual(len(history_page.object_list), 20)
+        self.assertEqual(history_page.paginator.num_pages, 2)
+
+        response_page2 = self.client.get(self.url, {"page": 2})
+        self.assertEqual(len(response_page2.context["history_page"].object_list), 5)
+
+    def test_presence_badge_reflects_recent_team_activity(self):
+        """Teams seen recently count as active; stale teams don't"""
+        session = GameSession.objects.create(
+            game=self.game, admin_name="Owner", host_user=self.owner
+        )
+        recent_team = SessionTeam.objects.create(session=session, name="Recent")
+        stale_team = SessionTeam.objects.create(session=session, name="Stale")
+        SessionTeam.objects.filter(pk=stale_team.pk).update(
+            last_seen=timezone.now() - timedelta(hours=2)
+        )
+
+        self.client.login(username="owner", password="testpass123")
+        response = self.client.get(self.url)
+
+        presence = response.context["active_sessions"][0].presence
+        self.assertEqual(presence["team_count"], 2)
+        self.assertEqual(presence["active_team_count"], 1)

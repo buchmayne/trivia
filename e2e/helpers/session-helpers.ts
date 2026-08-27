@@ -1,6 +1,72 @@
 import { Page, expect } from '@playwright/test';
 
 /**
+ * Log in as an existing (already-provisioned) Django user via the standard
+ * email/password login form. Used for scenarios that require a session's
+ * host_user to be set (e.g. My Games portal / host-recovery tests), since
+ * the anonymous createSession fixture never sets host_user.
+ */
+export async function loginViaForm(page: Page, email: string, password: string): Promise<void> {
+  await page.goto('/accounts/login/');
+  await page.fill('#id_login', email);
+  await page.fill('#id_password', password);
+  await page.click('button[type="submit"]');
+  await page.waitForURL((url) => !url.pathname.includes('/accounts/login/'), { timeout: 10000 });
+}
+
+/**
+ * Host a new session as the currently logged-in user on this page (so the
+ * resulting GameSession.host_user is set). Mirrors the anonymous createSession
+ * fixture's game-selection logic, but reuses the caller's already-authenticated
+ * page/context instead of creating a new one.
+ */
+export async function hostSessionAsLoggedInUser(
+  page: Page,
+  adminName: string = 'Test Admin'
+): Promise<{ code: string; adminToken: string }> {
+  await page.goto('/quiz/play/host/');
+  await page.fill('#adminName', adminName);
+
+  const options = await page.locator('#gameSelect option').all();
+  for (const option of options) {
+    const value = await option.getAttribute('value');
+    if (value) {
+      await page.selectOption('#gameSelect', value);
+      break;
+    }
+  }
+
+  const passwordGroup = page.locator('#passwordGroup');
+  await page.waitForTimeout(100);
+  if (await passwordGroup.isVisible()) {
+    const password = await page.evaluate(() => {
+      const select = document.getElementById('gameSelect') as HTMLSelectElement;
+      const selectedOption = select.selectedOptions[0];
+      return selectedOption?.dataset.password || '';
+    });
+    await page.fill('#gamePassword', password);
+  }
+
+  await page.click('button[type="submit"]');
+  await page.waitForURL(/\/quiz\/play\/[A-Z0-9]{6}\//);
+
+  const url = page.url();
+  const code = url.match(/\/quiz\/play\/([A-Z0-9]{6})\//)?.[1];
+  if (!code) {
+    throw new Error('Failed to extract session code from URL');
+  }
+
+  const adminToken = await page.evaluate((sessionCode) => {
+    return localStorage.getItem(`session_${sessionCode}_admin`);
+  }, code);
+  if (!adminToken) {
+    throw new Error('Failed to get admin token from localStorage');
+  }
+
+  return { code, adminToken };
+}
+
+/**
  * Wait for session state to reach a specific status
  */
 export async function waitForSessionStatus(
