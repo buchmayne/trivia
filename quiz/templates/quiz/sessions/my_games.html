@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Games - Third Wave Trivia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
+    <link rel="stylesheet" href="{% static 'css/session.css' %}">
+    <style>
+        .my-games-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .my-games-title {
+            font-family: var(--font-display, var(--font-body));
+            margin-bottom: 0.25rem;
+        }
+        .my-games-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+        }
+        .session-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            border: 1px solid rgba(221,215,203,0.6);
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .session-row-main {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+        .session-row-title {
+            font-weight: 600;
+        }
+        .session-row-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+        .presence-badge {
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        .presence-badge.active {
+            background: rgba(76, 175, 80, 0.15);
+            color: #2e7d32;
+        }
+        .presence-badge.idle {
+            background: rgba(0,0,0,0.06);
+            color: var(--text-secondary);
+        }
+        .empty-state {
+            color: var(--text-secondary);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px dashed rgba(221,215,203,0.8);
+            border-radius: 10px;
+        }
+        .pagination {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    {% csrf_token %}
+    <div class="my-games-container">
+        <h1 class="my-games-title">My Games</h1>
+        <p class="my-games-subtitle">Games you've hosted - resume an active session or review a completed one.</p>
+
+        <div id="reclaimError" class="error" style="display:none;"></div>
+
+        <h2 class="section-title">Active Games</h2>
+        {% if active_sessions %}
+            {% for session in active_sessions %}
+            <div class="session-row">
+                <div class="session-row-main">
+                    <span class="session-row-title">{{ session.game.name }}</span>
+                    <span class="session-row-meta">
+                        {{ session.code }} &middot; {{ session.get_status_display }}
+                        {% if session.presence.team_count %}
+                            &middot; {{ session.presence.team_count }} team{{ session.presence.team_count|pluralize }}
+                        {% endif %}
+                    </span>
+                    {% if session.presence.active_team_count > 0 %}
+                        <span class="presence-badge active">{{ session.presence.active_team_count }} team{{ session.presence.active_team_count|pluralize }} active now</span>
+                    {% elif session.presence.team_count > 0 %}
+                        <span class="presence-badge idle">no one currently connected</span>
+                    {% else %}
+                        <span class="presence-badge idle">no teams have joined yet</span>
+                    {% endif %}
+                </div>
+                <button
+                    type="button"
+                    class="btn btn-primary rejoin-btn"
+                    data-code="{{ session.code }}"
+                >
+                    Rejoin as Host
+                </button>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-state">No active games right now.</div>
+        {% endif %}
+
+        <h2 class="section-title">Game History</h2>
+        {% if history_page.object_list %}
+            {% for session in history_page %}
+            <div class="session-row">
+                <div class="session-row-main">
+                    <span class="session-row-title">{{ session.game.name }}</span>
+                    <span class="session-row-meta">
+                        {{ session.code }} &middot; Completed
+                        {% if session.completed_at %}{{ session.completed_at|date:"M j, Y" }}{% endif %}
+                        &middot; {{ session.presence.team_count }} team{{ session.presence.team_count|pluralize }}
+                    </span>
+                </div>
+                <a href="{% url 'quiz:session_play' session.code %}" class="btn btn-secondary">
+                    View Results
+                </a>
+            </div>
+            {% endfor %}
+
+            {% if history_page.paginator.num_pages > 1 %}
+            <div class="pagination">
+                {% if history_page.has_previous %}
+                    <a class="btn btn-secondary" href="?page={{ history_page.previous_page_number }}">Previous</a>
+                {% endif %}
+                <span class="session-row-meta">Page {{ history_page.number }} of {{ history_page.paginator.num_pages }}</span>
+                {% if history_page.has_next %}
+                    <a class="btn btn-secondary" href="?page={{ history_page.next_page_number }}">Next</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        {% else %}
+            <div class="empty-state">No completed games yet.</div>
+        {% endif %}
+
+        <a href="{% url 'quiz:session_landing' %}" class="back-link-dark" style="color: var(--text-secondary); display:inline-block; margin-top:2rem;">Back</a>
+    </div>
+
+    <script>
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+
+        document.querySelectorAll('.rejoin-btn').forEach((btn) => {
+            btn.addEventListener('click', async () => {
+                const code = btn.dataset.code;
+                const errorDiv = document.getElementById('reclaimError');
+                errorDiv.style.display = 'none';
+                btn.disabled = true;
+
+                try {
+                    const response = await fetch(`/quiz/api/sessions/${code}/reclaim/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': getCookie('csrftoken'),
+                        },
+                    });
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Unable to rejoin this session.');
+                    }
+
+                    localStorage.setItem(`session_${code}_admin`, data.admin_token);
+                    localStorage.setItem(`session_${code}_role`, 'admin');
+                    localStorage.removeItem(`session_${code}_team`);
+
+                    window.location.href = `/quiz/play/${code}/`;
+                } catch (err) {
+                    errorDiv.textContent = err.message;
+                    errorDiv.style.display = 'block';
+                    btn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
