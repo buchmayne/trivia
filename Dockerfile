@@ -4,6 +4,12 @@ FROM python:3.13-slim
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+# `uv run` syncs the environment before executing and includes the dev group
+# by default, which would undo the `--no-dev` build below and re-install
+# numpy/pandas on every container start. The venv baked into the image is
+# already the environment we want, so never sync at runtime.
+ENV UV_NO_SYNC=1
+ENV UV_FROZEN=1
 
 # Install uv
 RUN pip install --no-cache-dir --upgrade uv

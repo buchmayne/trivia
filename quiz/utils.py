@@ -1,10 +1,18 @@
 import os
 import mimetypes
+from typing import TYPE_CHECKING
 
 from django.db import transaction
-import pandas as pd
 
 from quiz.models import GameResult, PlayerStats
+
+# pandas lives in the `dev` dependency group and is not installed in the
+# production image. This module is imported by the URLconf (via
+# session_views/session_api needing has_verified_email), so importing pandas
+# at module scope would break app startup in production. Only AnalyticsLoader
+# needs it, and analytics is only ever run locally.
+if TYPE_CHECKING:
+    import pandas as pd
 
 
 def has_verified_email(user):
@@ -17,7 +25,7 @@ def has_verified_email(user):
 class AnalyticsLoader:
     @staticmethod
     @transaction.atomic
-    def load_game_results(game_results_df: pd.DataFrame) -> None:
+    def load_game_results(game_results_df: "pd.DataFrame") -> None:
         """
         Load game results from DataFrame to database
         """
@@ -30,7 +38,7 @@ class AnalyticsLoader:
 
     @staticmethod
     @transaction.atomic
-    def load_player_stats(career_stats_df: pd.DataFrame) -> None:
+    def load_player_stats(career_stats_df: "pd.DataFrame") -> None:
         """
         Load player statistics from DataFrame to database
         """
