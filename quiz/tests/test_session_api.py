@@ -428,9 +428,7 @@ class GetSessionStateAPITest(TestCase):
             session=self.session, round=round1, status=SessionRound.Status.ACTIVE
         )
 
-        team_not_started = SessionTeam.objects.create(
-            session=self.session, name="Not Started"
-        )
+        SessionTeam.objects.create(session=self.session, name="Not Started")
         team_in_progress = SessionTeam.objects.create(
             session=self.session, name="In Progress"
         )
