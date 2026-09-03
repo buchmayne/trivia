@@ -410,7 +410,7 @@ class MyGamesViewTest(TestCase):
         session = GameSession.objects.create(
             game=self.game, admin_name="Owner", host_user=self.owner
         )
-        recent_team = SessionTeam.objects.create(session=session, name="Recent")
+        SessionTeam.objects.create(session=session, name="Recent")
         stale_team = SessionTeam.objects.create(session=session, name="Stale")
         SessionTeam.objects.filter(pk=stale_team.pk).update(
             last_seen=timezone.now() - timedelta(hours=2)
