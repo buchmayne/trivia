@@ -23,6 +23,11 @@
             <a href="{% url 'quiz:session_join' %}" class="btn-landing-join">
                 Join a Game
             </a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'quiz:session_my_games' %}" class="btn-landing-join">
+                My Games
+            </a>
+            {% endif %}
         </div>
 
         <a href="{% url 'home' %}" class="landing-back">Back to Home</a>

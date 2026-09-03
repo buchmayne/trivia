@@ -9,6 +9,31 @@ from quiz.views import get_next_question
 from quiz.tests.test_utils import create_verified_user
 
 
+class LandingPageViewTest(TestCase):
+    """Test the main landing_page_view"""
+
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse("home")
+
+    def test_landing_page_loads(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "quiz/landing.html")
+
+    def test_hides_my_games_link_when_anonymous(self):
+        response = self.client.get(self.url)
+        self.assertNotContains(response, reverse("quiz:session_my_games"))
+
+    def test_shows_my_games_link_when_authenticated(self):
+        create_verified_user(username="homeuser", email="home@example.com")
+        self.client.login(username="homeuser", password="testpass123")
+
+        response = self.client.get(self.url)
+
+        self.assertContains(response, reverse("quiz:session_my_games"))
+
+
 class GameListViewTest(TestCase):
     """Test the game_list view"""
 

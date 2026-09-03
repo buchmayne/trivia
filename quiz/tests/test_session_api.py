@@ -94,6 +94,92 @@ class CreateSessionAPITest(TestCase):
         self.assertEqual(session.session_rounds.count(), 2)
 
 
+class ReclaimSessionAPITest(TestCase):
+    """Test the reclaim_session endpoint"""
+
+    def setUp(self):
+        self.client = Client()
+        self.owner = create_verified_user(username="owner", email="owner@example.com")
+        self.other_user = create_verified_user(
+            username="otheruser", email="other@example.com"
+        )
+        self.game = Game.objects.create(subtitle="Test Game", is_public=True)
+        self.session = GameSession.objects.create(
+            game=self.game, admin_name="Host", host_user=self.owner
+        )
+        self.original_token = self.session.admin_token
+        self.url = reverse("quiz:session_reclaim", kwargs={"code": self.session.code})
+
+    def test_owner_can_reclaim_and_rotates_token(self):
+        """Owner reclaiming gets a new token and the old one stops working"""
+        self.client.login(username="owner", password="testpass123")
+
+        response = self.client.post(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["code"], self.session.code)
+        self.assertIn("admin_token", data)
+        self.assertNotEqual(data["admin_token"], self.original_token)
+
+        self.session.refresh_from_db()
+        self.assertEqual(self.session.admin_token, data["admin_token"])
+
+        # Old token no longer authorizes admin requests
+        state_url = reverse(
+            "quiz:session_admin_start", kwargs={"code": self.session.code}
+        )
+        old_token_response = self.client.post(
+            state_url, HTTP_AUTHORIZATION=f"Bearer {self.original_token}"
+        )
+        self.assertEqual(old_token_response.status_code, 403)
+
+    def test_non_owner_gets_403(self):
+        """Authenticated user who doesn't own the session is rejected"""
+        self.client.login(username="otheruser", password="testpass123")
+
+        response = self.client.post(self.url)
+
+        self.assertEqual(response.status_code, 403)
+        self.session.refresh_from_db()
+        self.assertEqual(self.session.admin_token, self.original_token)
+
+    def test_anonymous_gets_403(self):
+        """Unauthenticated request is rejected, not redirected"""
+        response = self.client.post(self.url)
+
+        self.assertEqual(response.status_code, 403)
+        self.session.refresh_from_db()
+        self.assertEqual(self.session.admin_token, self.original_token)
+
+    def test_nonexistent_code_gets_404(self):
+        self.client.login(username="owner", password="testpass123")
+        url = reverse("quiz:session_reclaim", kwargs={"code": "ZZZZZZ"})
+
+        response = self.client.post(url)
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_reclaim_succeeds_on_completed_session(self):
+        self.session.status = GameSession.Status.COMPLETED
+        self.session.save(update_fields=["status"])
+        self.client.login(username="owner", password="testpass123")
+
+        response = self.client.post(self.url)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_anonymously_hosted_session_cannot_be_reclaimed(self):
+        """A session with no host_user (e.g. anonymous example-game host) can't be reclaimed"""
+        self.session.host_user = None
+        self.session.save(update_fields=["host_user"])
+        self.client.login(username="owner", password="testpass123")
+
+        response = self.client.post(self.url)
+
+        self.assertEqual(response.status_code, 403)
+
+
 class JoinSessionAPITest(TestCase):
     """Test the join_session endpoint"""
 
@@ -306,6 +392,152 @@ class GetSessionStateAPITest(TestCase):
         # CloudFrontURLField prepends CloudFront domain to URLs
         self.assertIn("https://example.com/sub2.mp4", ans2["video_url"])
         self.assertIsNone(ans2["image_url"])
+
+    def test_team_progress_fields_in_session_state(self):
+        """Test that get_session_state exposes per-team progress on the current question"""
+        round1 = QuestionRound.objects.create(name="Round 1", round_number=1)
+        q_type = QuestionType.objects.create(name="Multiple Open Ended")
+
+        question = Question.objects.create(
+            game=self.game,
+            question_type=q_type,
+            game_round=round1,
+            text="Multi-part question",
+            question_number=1,
+            total_points=8,
+        )
+        Answer.objects.create(
+            question=question, text="Part A", display_order=1, points=2
+        )
+        Answer.objects.create(
+            question=question, text="Part B", display_order=2, points=2
+        )
+        Answer.objects.create(
+            question=question, text="Part C", display_order=3, points=2
+        )
+        Answer.objects.create(
+            question=question, text="Part D", display_order=4, points=2
+        )
+
+        self.session.status = GameSession.Status.PLAYING
+        self.session.current_question = question
+        self.session.current_round = round1
+        self.session.save()
+
+        session_round = SessionRound.objects.create(
+            session=self.session, round=round1, status=SessionRound.Status.ACTIVE
+        )
+
+        team_not_started = SessionTeam.objects.create(
+            session=self.session, name="Not Started"
+        )
+        team_in_progress = SessionTeam.objects.create(
+            session=self.session, name="In Progress"
+        )
+        team_complete = SessionTeam.objects.create(
+            session=self.session, name="Complete"
+        )
+
+        TeamAnswer.objects.create(
+            team=team_in_progress,
+            question=question,
+            session_round=session_round,
+            answer_text=json.dumps(["answer 1", "", "", ""]),
+        )
+        TeamAnswer.objects.create(
+            team=team_complete,
+            question=question,
+            session_round=session_round,
+            answer_text=json.dumps(["a", "b", "c", "d"]),
+        )
+
+        url = reverse("quiz:session_state", args=[self.session.code])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+        teams_by_name = {t["name"]: t for t in response.json()["teams"]}
+
+        not_started = teams_by_name["Not Started"]
+        self.assertEqual(not_started["progress_status"], "not_started")
+        self.assertFalse(not_started["has_answered_current"])
+
+        in_progress = teams_by_name["In Progress"]
+        self.assertEqual(in_progress["progress_status"], "in_progress")
+        self.assertEqual(in_progress["progress_filled"], 1)
+        self.assertEqual(in_progress["progress_total"], 4)
+        self.assertFalse(in_progress["has_answered_current"])
+
+        complete = teams_by_name["Complete"]
+        self.assertEqual(complete["progress_status"], "complete")
+        self.assertEqual(complete["progress_filled"], 4)
+        self.assertEqual(complete["progress_total"], 4)
+        self.assertTrue(complete["has_answered_current"])
+
+
+class ComputeAnswerProgressTest(TestCase):
+    """Unit tests for the compute_answer_progress helper"""
+
+    def test_no_answer_text(self):
+        from quiz.session_api import compute_answer_progress
+
+        result = compute_answer_progress(None)
+        self.assertEqual(
+            result, {"status": "not_started", "filled": None, "total": None}
+        )
+
+        result = compute_answer_progress("")
+        self.assertEqual(
+            result, {"status": "not_started", "filled": None, "total": None}
+        )
+
+    def test_single_answer_text(self):
+        from quiz.session_api import compute_answer_progress
+
+        result = compute_answer_progress("Paris")
+        self.assertEqual(result["status"], "complete")
+        self.assertIsNone(result["filled"])
+        self.assertIsNone(result["total"])
+
+        # Whitespace-only text is treated as not started
+        result = compute_answer_progress("   ")
+        self.assertEqual(result["status"], "not_started")
+
+    def test_multi_part_partial(self):
+        from quiz.session_api import compute_answer_progress
+
+        result = compute_answer_progress(json.dumps(["Paris", "", "", ""]))
+        self.assertEqual(result, {"status": "in_progress", "filled": 1, "total": 4})
+
+    def test_multi_part_complete(self):
+        from quiz.session_api import compute_answer_progress
+
+        result = compute_answer_progress(
+            json.dumps(["Paris", "Berlin", "Rome", "Madrid"])
+        )
+        self.assertEqual(result, {"status": "complete", "filled": 4, "total": 4})
+
+    def test_multi_part_not_started(self):
+        from quiz.session_api import compute_answer_progress
+
+        result = compute_answer_progress(json.dumps(["", "", ""]))
+        self.assertEqual(
+            result, {"status": "not_started", "filled": None, "total": None}
+        )
+
+    def test_empty_list(self):
+        from quiz.session_api import compute_answer_progress
+
+        result = compute_answer_progress(json.dumps([]))
+        self.assertEqual(
+            result, {"status": "not_started", "filled": None, "total": None}
+        )
+
+    def test_malformed_json_falls_back_to_binary(self):
+        from quiz.session_api import compute_answer_progress
+
+        result = compute_answer_progress("not valid json {")
+        self.assertEqual(result["status"], "complete")
+        self.assertIsNone(result["filled"])
 
 
 class AdminStartGameAPITest(TestCase):

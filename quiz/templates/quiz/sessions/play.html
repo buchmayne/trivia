@@ -402,6 +402,47 @@
             pollTimer = setInterval(pollState, POLL_INTERVAL);
         }
 
+        // Tracks whether this tab's admin access has already been reported as
+        // revoked, so we don't spam the user with repeated messages if they
+        // keep clicking admin controls after losing access.
+        let adminAccessRevoked = false;
+
+        function handleAdminTokenInvalidated() {
+            if (adminAccessRevoked) return;
+            adminAccessRevoked = true;
+
+            // Stop the state poll - this tab has no further role to play.
+            if (pollTimer) {
+                clearInterval(pollTimer);
+                pollTimer = null;
+            }
+
+            showError(
+                'This session is now being controlled from another device.',
+                'If that was you (e.g. you reconnected via <a href="/quiz/play/mine/">My Games</a>), no action is needed here. Otherwise, someone else has taken over hosting this session.'
+            );
+        }
+
+        // Wrapper around fetch() for admin-only endpoints. Centralizes
+        // detection of a revoked/rotated admin_token (e.g. after the host
+        // reclaimed this session from another tab or device via My Games),
+        // so every admin action gets a clear, specific message instead of a
+        // generic failure.
+        async function adminFetch(url, options = {}) {
+            const headers = {
+                ...(options.headers || {}),
+                'Authorization': `Bearer ${ADMIN_TOKEN}`,
+            };
+            const response = await fetch(url, { ...options, headers });
+
+            if (response.status === 403) {
+                handleAdminTokenInvalidated();
+                throw new Error('This session is now being controlled from another device.');
+            }
+
+            return response;
+        }
+
         async function pollState() {
             try {
                 const response = await fetch(`/quiz/api/sessions/${CODE}/state/`);
@@ -852,9 +893,28 @@
                 <div class="team-card">
                     <div class="team-name">${escapeHtml(t.name)}</div>
                     <div class="team-score">Score: ${t.score} points</div>
-                    <div class="team-status">${t.has_answered_current ? '✓ Answered' : '○ Not answered yet'}</div>
+                    <div class="team-status ${progressStatusClass(t.progress_status)}">${progressStatusLabel(t)}</div>
                 </div>
             `).join('');
+        }
+
+        function progressStatusClass(status) {
+            switch (status) {
+                case 'complete': return 'progress-complete';
+                case 'in_progress': return 'progress-in-progress';
+                default: return 'progress-not-started';
+            }
+        }
+
+        function progressStatusLabel(t) {
+            switch (t.progress_status) {
+                case 'complete':
+                    return '🟢 Complete';
+                case 'in_progress':
+                    return `🟡 In progress (${t.progress_filled}/${t.progress_total})`;
+                default:
+                    return '⚪ Not started';
+            }
         }
 
         function renderRoundProgress(roundProgress, currentQuestion) {
@@ -1471,9 +1531,7 @@
             if (!currentState.current_question || !currentState.current_round) return;
 
             try {
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/scoring-data/`, {
-                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
-                });
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/scoring-data/`);
                 const data = await response.json();
 
                 // Extract questions for current round
@@ -1493,10 +1551,9 @@
 
         async function navigateToQuestion(questionId) {
             try {
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/question/`, {
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/question/`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ question_id: questionId })
@@ -1550,10 +1607,9 @@
             const currentlyAllowed = currentState.allow_team_navigation;
 
             try {
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/toggle-team-navigation/`, {
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/toggle-team-navigation/`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
@@ -1688,9 +1744,7 @@
             scoringDataLoaded = true;
 
             try {
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/scoring-data/`, {
-                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
-                });
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/scoring-data/`);
                 const data = await response.json();
                 renderScoringUI(data);
             } catch (error) {
@@ -2026,9 +2080,8 @@
                 btn.disabled = true;
                 btn.textContent = 'Loading...';
 
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/show-leaderboard/`, {
-                    method: 'POST',
-                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/show-leaderboard/`, {
+                    method: 'POST'
                 });
 
                 const data = await response.json();
@@ -2056,9 +2109,8 @@
                 btn.disabled = true;
                 btn.textContent = 'Starting...';
 
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/start-next-round/`, {
-                    method: 'POST',
-                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/start-next-round/`, {
+                    method: 'POST'
                 });
 
                 const data = await response.json();
@@ -2239,9 +2291,8 @@
                 btn.disabled = true;
                 btn.textContent = 'Starting...';
 
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/start/`, {
-                    method: 'POST',
-                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/start/`, {
+                    method: 'POST'
                 });
 
                 if (!response.ok) {
@@ -2265,9 +2316,8 @@
                 btn.disabled = true;
                 btn.textContent = 'Locking...';
 
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/lock-round/`, {
-                    method: 'POST',
-                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/lock-round/`, {
+                    method: 'POST'
                 });
 
                 if (!response.ok) throw new Error('Failed to lock round');
@@ -2286,9 +2336,8 @@
                 btn.disabled = true;
                 btn.textContent = 'Processing...';
 
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/complete-round/`, {
-                    method: 'POST',
-                    headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/complete-round/`, {
+                    method: 'POST'
                 });
 
                 const data = await response.json();
@@ -2416,10 +2465,9 @@
             btn.textContent = 'Scoring...';
 
             try {
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/score/`, {
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/score/`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
@@ -2475,10 +2523,9 @@
             btn.textContent = '...';
 
             try {
-                const response = await fetch(`/quiz/api/sessions/${CODE}/admin/score/`, {
+                const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/score/`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
