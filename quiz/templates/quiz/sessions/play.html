@@ -222,7 +222,25 @@
     <script>
         const CODE = '{{ session.code }}';
         const ADMIN_TOKEN = localStorage.getItem(`session_${CODE}_admin`);
-        const TEAM_TOKEN = localStorage.getItem(`session_${CODE}_team`);
+
+        // A team token the server recovered from the HttpOnly cookie. Empty
+        // unless this browser is remembered as a team in this session.
+        const COOKIE_TEAM_TOKEN = '{{ cookie_team_token|escapejs }}';
+
+        // Cookie-recovered identity seeds localStorage when localStorage has
+        // nothing, so a player whose storage was cleared never sees a rejoin
+        // form - they just land back on their team.
+        function resolveTeamToken() {
+            const stored = localStorage.getItem(`session_${CODE}_team`);
+            if (stored) return stored;
+            if (!COOKIE_TEAM_TOKEN) return null;
+
+            localStorage.setItem(`session_${CODE}_team`, COOKIE_TEAM_TOKEN);
+            localStorage.setItem(`session_${CODE}_role`, 'team');
+            return COOKIE_TEAM_TOKEN;
+        }
+
+        const TEAM_TOKEN = resolveTeamToken();
         const ROLE_PREFERENCE = localStorage.getItem(`session_${CODE}_role`);
         const IS_ADMIN = !!ADMIN_TOKEN;
         const IS_TEAM = !!TEAM_TOKEN;
@@ -260,12 +278,13 @@
         // Initialize with SERVER-SIDE TOKEN VALIDATION
         // CRITICAL: This is the ROBUST solution that prevents host role loss on refresh
         async function initializeSession() {
-            // Step 1: Check if we have any tokens at all
+            // Step 1: Check if we have any tokens at all. No tokens is the
+            // most common way a player loses their seat (storage cleared, new
+            // browser, private tab), so this offers rejoin rather than only
+            // pointing at host/join - joining again would just collide with
+            // their own team name.
             if (!ADMIN_TOKEN && !TEAM_TOKEN) {
-                showError(
-                    'No session credentials found.',
-                    'Please <a href="/quiz/play/host/">host a game</a> or <a href="/quiz/play/join/">join a game</a>.'
-                );
+                showRejoinError('No session credentials found on this device');
                 return;
             }
 
@@ -336,10 +355,10 @@
             `;
         }
 
-        function showRejoinError() {
+        function showRejoinError(title) {
             document.getElementById('errorContainer').innerHTML = `
                 <div class="error-msg">
-                    <h3>Session credentials are invalid or expired</h3>
+                    <h3>${escapeHtml(title || 'Session credentials are invalid or expired')}</h3>
                     <p>If you're a team member, you can rejoin with your team name:</p>
                     <form id="rejoinForm" style="margin-top: 1rem;">
                         <input

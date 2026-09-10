@@ -29,6 +29,7 @@ from .models import (
     TeamAnswer,
 )
 from .scoring import multi_part_answer_summary, scorer_for
+from .session_cookies import remember_team_token
 from .session_director import InvalidTransition, SessionDirector
 from .utils import has_verified_email
 
@@ -290,12 +291,28 @@ def join_session(request: HttpRequest, code: str) -> JsonResponse:
     except GameSession.DoesNotExist:
         return JsonResponse({"error": "Session not found"}, status=404)
 
+    # A name already in this session is far more often a returning player who
+    # lost their token than a genuine collision, so this is checked *before*
+    # the lifecycle gate: the rejoin offer has to stay reachable even when new
+    # joins are closed (scoring, late joins off, or session full - a returning
+    # team is already holding one of those slots). rejoin_session refuses only
+    # once the game is over, so that is the one case left to fall through to
+    # the gate below, which reports it as "Game has ended".
+    existing_team = session.teams.filter(name__iexact=team_name).first()
+    if existing_team and session.status != GameSession.Status.COMPLETED:
+        return JsonResponse(
+            {
+                "error": "Team name taken",
+                "can_rejoin": True,
+                "team_name": existing_team.name,
+            },
+            status=409,
+        )
+
     # Ask the lifecycle whether joins are allowed right now.
     accepts, reason = SessionDirector(session).accepts_team_joins()
     if not accepts:
         return JsonResponse({"error": reason}, status=400)
-    if session.teams.filter(name__iexact=team_name).exists():
-        return JsonResponse({"error": "Team name taken"}, status=400)
 
     # Determine if this is a late join
     is_late_join = session.status != GameSession.Status.LOBBY
@@ -304,7 +321,7 @@ def join_session(request: HttpRequest, code: str) -> JsonResponse:
         session=session, name=team_name, joined_late=is_late_join
     )
 
-    return JsonResponse(
+    response = JsonResponse(
         {
             "team_id": team.id,
             "team_token": team.token,
@@ -315,6 +332,10 @@ def join_session(request: HttpRequest, code: str) -> JsonResponse:
             ),
         }
     )
+    # Second home for the token, so clearing localStorage doesn't strand the
+    # player outside their own team. See quiz/session_cookies.py.
+    remember_team_token(response, request, session.code, team.token)
+    return response
 
 
 @require_http_methods(["GET"])
@@ -1100,11 +1121,17 @@ def validate_session_access(request: HttpRequest, code: str) -> JsonResponse:
 
 @csrf_exempt
 @require_http_methods(["POST"])
+@ratelimit(key="ip", rate="20/m", method="POST", block=True)
 def rejoin_session(request: HttpRequest, code: str) -> JsonResponse:
     """
     Allows a team to rejoin a session by providing their team name.
     Returns existing team token if team name matches, allowing recovery from token loss.
     This preserves all team progress, answers, and state.
+
+    Deliberately more permissive than join_session: a team that dropped out
+    can come back during scoring, and while late joins are closed, since they
+    are not taking a new slot. Handing back a team's token on name alone is
+    rate limited to blunt guessing by anyone who has the session code.
     """
     session = get_object_or_404(GameSession, code=code)
 
@@ -1123,24 +1150,28 @@ def rejoin_session(request: HttpRequest, code: str) -> JsonResponse:
     if session.status == GameSession.Status.COMPLETED:
         return JsonResponse({"error": "Game has ended"}, status=400)
 
-    # Try to find existing team with this name
-    try:
-        team = session.teams.get(name__iexact=team_name)
-        # Team found - return their existing token
-        return JsonResponse(
-            {
-                "team_id": team.id,
-                "team_token": team.token,
-                "team_name": team.name,
-                "score": team.score,
-                "rejoined": True,
-            }
-        )
-    except SessionTeam.DoesNotExist:
-        # Team name not found in this session
+    # Try to find existing team with this name. The DB's unique_together on
+    # (session, name) is case-sensitive, so a case-insensitive lookup can match
+    # more than one team - .first() keeps that from raising.
+    team = session.teams.filter(name__iexact=team_name).first()
+    if team is None:
         return JsonResponse(
             {"error": f"No team named '{team_name}' found in this session"}, status=404
         )
+
+    response = JsonResponse(
+        {
+            "team_id": team.id,
+            "team_token": team.token,
+            "team_name": team.name,
+            "score": team.score,
+            "rejoined": True,
+        }
+    )
+    # Remember the recovered token on this device too, so a second loss of
+    # localStorage doesn't send them through the same recovery again.
+    remember_team_token(response, request, session.code, team.token)
+    return response
 
 
 @require_http_methods(["POST"])
