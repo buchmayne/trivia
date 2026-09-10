@@ -365,7 +365,7 @@ test.describe('Team Flow Tests', () => {
     await expect(team.page.locator('#teamPlaying')).toBeVisible({ timeout: 10000 });
   });
 
-  test('duplicate team names are handled', async ({
+  test('duplicate team names are offered rejoin', async ({
     createSession,
     joinSession,
     page
@@ -382,18 +382,11 @@ test.describe('Team Flow Tests', () => {
     await page.fill('#teamName', 'Duplicate Name');
     await page.click('button[type="submit"]');
 
-    // Either should get an error or be renamed
-    await page.waitForTimeout(2000);
-
-    // Check if error shown or redirected with modified name
-    const onJoinPage = page.url().includes('/join');
-    if (onJoinPage) {
-      // Error case - duplicate name rejected
-      const error = page.locator('.error, #errorContainer, .alert');
-      await expect(error).toBeVisible();
-    } else {
-      // Allowed case - redirected to play
-      await expect(page).toHaveURL(/\/quiz\/play\/[A-Z0-9]{6}\//);
-    }
+    // A taken name is treated as a returning player rather than a hard
+    // rejection: we stay on the join page and get offered the existing team.
+    // See team-rejoin.spec.ts for the full recovery flow.
+    await expect(page.locator('#rejoinOffer')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('#rejoinOfferText')).toContainText('Duplicate Name');
+    expect(page.url()).toContain('/join');
   });
 });

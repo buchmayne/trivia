@@ -18,6 +18,18 @@
         <div class="form-card">
             <div id="error" class="error"></div>
 
+            <!-- Shown when the name is already in the session: almost always a
+                 returning player rather than a real collision. -->
+            <div id="rejoinOffer" class="hidden" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--shell-alt, rgba(0,0,0,0.03)); border-radius: 8px;">
+                <p id="rejoinOfferText" style="margin-bottom: 0.75rem;"></p>
+                <button type="button" class="btn btn-primary" id="rejoinOfferBtn" style="width: 100%; padding: 0.9rem;">
+                    Yes, rejoin as this team
+                </button>
+                <div class="hint" style="margin-top: 0.5rem;">
+                    Your score and answers are still there. If this is a different team, pick another name.
+                </div>
+            </div>
+
             <form id="joinForm">
                 <div class="form-group">
                     <label for="sessionCode">Game Code</label>
@@ -106,17 +118,20 @@
 
                 const data = await response.json();
 
+                // 409: the name is already in this session. Offer to rejoin
+                // that team instead of dead-ending on "Team name taken".
+                if (response.status === 409 && data.can_rejoin) {
+                    offerRejoin(code, data.team_name || teamName);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Join Game';
+                    return;
+                }
+
                 if (!response.ok) {
                     throw new Error(data.error || 'Failed to join session');
                 }
 
-                // Store team token in localStorage
-                localStorage.setItem(`session_${code}_team`, data.team_token);
-                // Set role preference to indicate this user is a team
-                localStorage.setItem(`session_${code}_role`, 'team');
-
-                // Redirect to live session (validation will clean up any conflicts)
-                window.location.href = `/quiz/play/${code}/`;
+                enterSession(code, data.team_token);
 
             } catch (error) {
                 showError(error.message);
@@ -124,6 +139,49 @@
                 submitBtn.textContent = 'Join Game';
             }
         });
+
+        function enterSession(code, teamToken) {
+            // Store team token in localStorage
+            localStorage.setItem(`session_${code}_team`, teamToken);
+            // Set role preference to indicate this user is a team
+            localStorage.setItem(`session_${code}_role`, 'team');
+
+            // Redirect to live session (validation will clean up any conflicts)
+            window.location.href = `/quiz/play/${code}/`;
+        }
+
+        function offerRejoin(code, teamName) {
+            const offer = document.getElementById('rejoinOffer');
+            // textContent, not innerHTML - the name comes from another player.
+            document.getElementById('rejoinOfferText').textContent =
+                `A team called "${teamName}" is already in this game. Is that you?`;
+            offer.classList.remove('hidden');
+
+            const btn = document.getElementById('rejoinOfferBtn');
+            btn.onclick = async () => {
+                btn.disabled = true;
+                btn.textContent = 'Rejoining...';
+                try {
+                    const response = await fetch(`/quiz/api/sessions/${code}/rejoin/`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ team_name: teamName })
+                    });
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Failed to rejoin session');
+                    }
+
+                    enterSession(code, data.team_token);
+                } catch (error) {
+                    showError(error.message);
+                    offer.classList.add('hidden');
+                    btn.disabled = false;
+                    btn.textContent = 'Yes, rejoin as this team';
+                }
+            };
+        }
 
         function showError(message) {
             errorDiv.textContent = message;
