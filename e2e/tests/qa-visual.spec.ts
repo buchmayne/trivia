@@ -405,7 +405,7 @@ test.describe('Visual QA - Full Game Playthrough', () => {
       // Check for more rounds or game complete
       // ========================================
       const nextRoundBtn = adminPage.locator('#startNextRoundBtn');
-      const completeGameBtn = adminPage.locator('#completeGameBtn, button:has-text("End Game"), button:has-text("Complete Game")');
+      const completeGameBtn = adminPage.locator('#completeGameBtn, button:has-text("View Game Results"), button:has-text("End Game"), button:has-text("Complete Game")');
 
       const hasNextRound = await nextRoundBtn.isVisible().catch(() => false);
       const canCompleteGame = await completeGameBtn.isVisible().catch(() => false);

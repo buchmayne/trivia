@@ -12,6 +12,7 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
 from django.utils import timezone
 from .models import Game, GameSession
+from .session_cookies import find_team_by_cookie, resumable_sessions
 from .utils import has_verified_email
 
 # A team is considered "currently active" if they've been seen within this
@@ -69,6 +70,22 @@ def session_host(request: HttpRequest) -> HttpResponse:
 def session_join(request: HttpRequest) -> HttpResponse:
     """Teams enter code to join sessions."""
     return render(request, "quiz/sessions/join.html")
+
+
+def session_rejoin(request: HttpRequest) -> HttpResponse:
+    """Recovery page for a team that lost its way back into a session.
+
+    Sessions this browser is still remembered in (via the HttpOnly cookie) are
+    rendered server-side as one-tap resume links. The page also scans
+    localStorage client-side, which covers players whose cookie expired or who
+    joined before the cookie existed. Failing both, the form takes a code and
+    team name.
+    """
+    return render(
+        request,
+        "quiz/sessions/rejoin.html",
+        {"resumable_sessions": resumable_sessions(request)},
+    )
 
 
 def _session_presence(session: GameSession, now) -> dict:
@@ -143,8 +160,14 @@ def session_play(request: HttpRequest, code: str) -> HttpResponse:
     """
     Live session view. Single page that renders differently based on role.
     JS determines admin vs team based on stored token in localStorage.
+
+    A team token remembered in the HttpOnly cookie is passed to the template so
+    a player whose localStorage was cleared is put straight back on their team,
+    with no rejoin form and nothing to type.
     """
     session = get_object_or_404(GameSession, code=code)
+
+    cookie_team = find_team_by_cookie(request, code)
 
     # Prefetch data for initial render - get all rounds and their questions
     from .models import QuestionRound
@@ -176,5 +199,6 @@ def session_play(request: HttpRequest, code: str) -> HttpResponse:
             "session": session,
             "game": session.game,
             "rounds_data": rounds_data,
+            "cookie_team_token": cookie_team.token if cookie_team else "",
         },
     )

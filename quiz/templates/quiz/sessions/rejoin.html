@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejoin a Game - Third Wave Trivia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
+    <link rel="stylesheet" href="{% static 'css/session.css' %}">
+</head>
+<body class="form-page-body">
+    <div class="form-page-container" style="max-width: 500px; padding-top: 3rem;">
+        <h1 class="form-page-title">Rejoin a Game</h1>
+
+        <div class="form-card">
+            <div id="error" class="error"></div>
+
+            <!-- One-tap resume. Entries come from the HttpOnly cookie
+                 (server-rendered below) and from localStorage (added by JS for
+                 players whose cookie expired or predates it). -->
+            <div id="resumeSection" class="{% if not resumable_sessions %}hidden{% endif %}" style="margin-bottom: 1.75rem;">
+                <h2 style="font-size: 1.05rem; margin-bottom: 0.75rem;">Pick up where you left off</h2>
+                <div id="resumeList">
+                    {% for resumable in resumable_sessions %}
+                    <a
+                        href="{% url 'quiz:session_play' resumable.code %}"
+                        class="btn btn-primary"
+                        data-code="{{ resumable.code }}"
+                        data-team-name="{{ resumable.team_name }}"
+                        style="display: block; width: 100%; padding: 0.9rem; text-align: center; text-decoration: none; margin-bottom: 0.5rem;"
+                    >Resume as {{ resumable.team_name }} ({{ resumable.code }})</a>
+                    {% endfor %}
+                </div>
+                <div class="hint" style="margin-top: 0.75rem;">
+                    Not one of these? Use the form below.
+                </div>
+            </div>
+
+            <form id="rejoinForm">
+                <div class="form-group">
+                    <label for="sessionCode">Game Code</label>
+                    <input
+                        type="text"
+                        id="sessionCode"
+                        placeholder="ABC123"
+                        required
+                        maxlength="6"
+                        pattern="[A-Z0-9]{6}"
+                        style="text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; text-align: center; padding: 1rem; font-size: 1.2rem;"
+                    >
+                    <div class="hint">The same 6-character code you joined with</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="teamName">Team Name</label>
+                    <input
+                        type="text"
+                        id="teamName"
+                        placeholder="Enter your team name"
+                        required
+                        minlength="2"
+                        maxlength="100"
+                        style="padding: 1rem; font-size: 1.1rem;"
+                    >
+                    <div class="hint">Exactly the name your team is playing under</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="submitBtn" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
+                    Rejoin Game
+                </button>
+            </form>
+
+            <p class="hint" style="margin-top: 1rem;">
+                Your score and answers are kept - rejoining puts you back on the same team.
+                Joining a brand new team instead? <a href="{% url 'quiz:session_join' %}">Join a game</a>.
+            </p>
+
+            <a href="{% url 'quiz:session_landing' %}" class="back-link-dark" style="color: var(--text-secondary);">Back</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('rejoinForm');
+        const errorDiv = document.getElementById('error');
+        const submitBtn = document.getElementById('submitBtn');
+        const codeInput = document.getElementById('sessionCode');
+        const teamNameInput = document.getElementById('teamName');
+
+        // Cap on how many stored sessions we validate on page load, so a
+        // long-lived browser with lots of old session keys can't fan out into
+        // dozens of requests.
+        const MAX_RESUME_CHECKS = 5;
+
+        codeInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.toUpperCase();
+        });
+
+        // Pre-fill the code when we were sent here from a specific game.
+        const codeFromQuery = new URLSearchParams(window.location.search).get('code');
+        if (codeFromQuery) {
+            codeInput.value = codeFromQuery.toUpperCase().slice(0, 6);
+        }
+
+        // Codes the server already rendered from the HttpOnly cookie.
+        function alreadyListedCodes() {
+            return new Set(
+                Array.from(document.querySelectorAll('#resumeList a[data-code]'))
+                    .map((link) => link.dataset.code)
+            );
+        }
+
+        // Team tokens are stored as `session_<CODE>_team`.
+        function storedTeamSessionCodes() {
+            const listed = alreadyListedCodes();
+            const codes = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const match = key && key.match(/^session_([A-Z0-9]{6})_team$/);
+                if (match && !listed.has(match[1])) {
+                    codes.push(match[1]);
+                }
+            }
+            return codes;
+        }
+
+        // Ask the server whether a stored token is still good. The validate
+        // endpoint is the source of truth, same as on the play page.
+        async function validateStoredToken(code) {
+            const token = localStorage.getItem(`session_${code}_team`);
+            if (!token) return null;
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${code}/validate/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ team_token: token })
+                });
+                if (!response.ok) return null;
+
+                const validation = await response.json();
+                if (!validation.is_valid_team) return null;
+
+                return { code: code, teamName: validation.team_name };
+            } catch (error) {
+                // Offline or the session is gone - fall back to the form.
+                return null;
+            }
+        }
+
+        function renderResumeOptions(sessions) {
+            if (!sessions.length) return;
+
+            const list = document.getElementById('resumeList');
+            sessions.forEach((session) => {
+                const link = document.createElement('a');
+                link.href = `/quiz/play/${session.code}/`;
+                link.className = 'btn btn-primary';
+                link.dataset.code = session.code;
+                link.dataset.teamName = session.teamName;
+                link.style.cssText = 'display: block; width: 100%; padding: 0.9rem; text-align: center; text-decoration: none; margin-bottom: 0.5rem;';
+                // textContent, not innerHTML - team names are player-supplied.
+                link.textContent = `Resume as ${session.teamName} (${session.code})`;
+                list.appendChild(link);
+            });
+
+            document.getElementById('resumeSection').classList.remove('hidden');
+        }
+
+        // A single resumable session is almost certainly the one they want, so
+        // seed the manual form with it as well.
+        function prefillFromSingleOption() {
+            const links = document.querySelectorAll('#resumeList a[data-code]');
+            if (links.length !== 1 || codeInput.value) return;
+
+            codeInput.value = links[0].dataset.code;
+            teamNameInput.value = links[0].dataset.teamName || '';
+        }
+
+        async function detectResumableSessions() {
+            const codes = storedTeamSessionCodes().slice(0, MAX_RESUME_CHECKS);
+            if (codes.length) {
+                const results = await Promise.all(codes.map(validateStoredToken));
+                renderResumeOptions(results.filter((result) => result !== null));
+            }
+            prefillFromSingleOption();
+        }
+
+        detectResumableSessions();
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const code = codeInput.value.trim();
+            const teamName = teamNameInput.value.trim();
+
+            if (code.length !== 6) {
+                showError('Game code must be 6 characters');
+                return;
+            }
+
+            if (teamName.length < 2) {
+                showError('Team name must be at least 2 characters');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Rejoining...';
+
+            try {
+                const response = await fetch(`/quiz/api/sessions/${code}/rejoin/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ team_name: teamName })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to rejoin session');
+                }
+
+                localStorage.setItem(`session_${code}_team`, data.team_token);
+                localStorage.setItem(`session_${code}_role`, 'team');
+                // Drop any stale admin token so validation doesn't hand this
+                // tab the host view.
+                localStorage.removeItem(`session_${code}_admin`);
+
+                window.location.href = `/quiz/play/${code}/`;
+
+            } catch (error) {
+                showError(error.message);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Rejoin Game';
+            }
+        });
+
+        function showError(message) {
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

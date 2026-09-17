@@ -8,11 +8,14 @@ Covers:
 - session_play view
 """
 
+import json
 from datetime import timedelta
 
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.html import escapejs
+from quiz.session_cookies import COOKIE_NAME
 from quiz.models import (
     Game,
     GameSession,
@@ -63,6 +66,12 @@ class SessionLandingViewTest(TestCase):
         response = self.client.get(self.url)
         self.assertContains(response, reverse("quiz:session_host"))
         self.assertContains(response, reverse("quiz:session_join"))
+
+    def test_landing_page_offers_rejoin(self):
+        """A player who lost their seat needs a route back from this page"""
+        response = self.client.get(self.url)
+        self.assertContains(response, "Rejoin a Game")
+        self.assertContains(response, reverse("quiz:session_rejoin_page"))
 
 
 class SessionHostViewTest(TestCase):
@@ -143,6 +152,78 @@ class SessionJoinViewTest(TestCase):
         """Test that join page has back link to landing"""
         response = self.client.get(self.url)
         self.assertContains(response, reverse("quiz:session_landing"))
+
+
+class SessionRejoinViewTest(TestCase):
+    """Tests for the rejoin (session recovery) view"""
+
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse("quiz:session_rejoin_page")
+
+    def test_rejoin_page_loads(self):
+        """Test that the rejoin page loads successfully"""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "quiz/sessions/rejoin.html")
+
+    def test_rejoin_page_has_form_fields(self):
+        """Rejoin needs both the code and the team name to identify a team"""
+        response = self.client.get(self.url)
+        self.assertContains(response, 'id="sessionCode"')
+        self.assertContains(response, 'id="teamName"')
+        self.assertContains(response, "Rejoin Game")
+
+    def test_rejoin_page_has_resume_section(self):
+        """The one-tap resume list is present for tokens still in localStorage"""
+        response = self.client.get(self.url)
+        self.assertContains(response, 'id="resumeSection"')
+
+    def test_rejoin_page_links_to_join_and_landing(self):
+        """A player on the wrong page needs a way over to a fresh join"""
+        response = self.client.get(self.url)
+        self.assertContains(response, reverse("quiz:session_join"))
+        self.assertContains(response, reverse("quiz:session_landing"))
+
+    def test_rejoin_page_is_not_shadowed_by_play_route(self):
+        """`play/rejoin/` must resolve to the page, not play/<code>/"""
+        self.assertEqual(self.url, "/quiz/play/rejoin/")
+        response = self.client.get(self.url)
+        self.assertTemplateUsed(response, "quiz/sessions/rejoin.html")
+
+    def test_rejoin_page_lists_remembered_sessions(self):
+        """Sessions from the HttpOnly cookie are rendered as one-tap resumes"""
+        game = Game.objects.create(subtitle="Cookie Game")
+        session = GameSession.objects.create(game=game, admin_name="Host")
+        team = SessionTeam.objects.create(session=session, name="Cookie Team")
+        self.client.cookies[COOKIE_NAME] = json.dumps({session.code: team.token})
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(len(response.context["resumable_sessions"]), 1)
+        self.assertContains(response, "Resume as Cookie Team")
+        self.assertContains(response, reverse("quiz:session_play", args=[session.code]))
+        # Section is visible rather than hidden when there is something to show
+        self.assertContains(response, 'id="resumeSection" class=""')
+
+    def test_rejoin_page_hides_resume_section_without_cookie(self):
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.context["resumable_sessions"], [])
+        self.assertContains(response, 'id="resumeSection" class="hidden"')
+
+    def test_rejoin_page_omits_completed_sessions(self):
+        """A finished game is not something to resume"""
+        game = Game.objects.create(subtitle="Cookie Game")
+        session = GameSession.objects.create(
+            game=game, admin_name="Host", status=GameSession.Status.COMPLETED
+        )
+        team = SessionTeam.objects.create(session=session, name="Cookie Team")
+        self.client.cookies[COOKIE_NAME] = json.dumps({session.code: team.token})
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.context["resumable_sessions"], [])
 
 
 class SessionPlayViewTest(TestCase):
@@ -244,6 +325,54 @@ class SessionPlayViewTest(TestCase):
         response = self.client.get(self.url)
         self.assertContains(response, "pollState")
         self.assertContains(response, "POLL_INTERVAL")
+
+    def test_play_page_recovers_team_token_from_cookie(self):
+        """A remembered team is handed its token back with nothing to type"""
+        team = SessionTeam.objects.create(session=self.session, name="Cookie Team")
+        self.client.cookies[COOKIE_NAME] = json.dumps({self.session.code: team.token})
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.context["cookie_team_token"], team.token)
+        # Tokens are base64url and escapejs escapes hyphens, so the rendered
+        # literal is not byte-identical to the token - JS decodes it back.
+        self.assertContains(
+            response, f"const COOKIE_TEAM_TOKEN = '{escapejs(team.token)}'"
+        )
+
+    def test_play_page_without_cookie_has_no_recovered_token(self):
+        """No cookie means the page falls back to localStorage and rejoin"""
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.context["cookie_team_token"], "")
+        self.assertContains(response, "const COOKIE_TEAM_TOKEN = ''")
+
+    def test_play_page_ignores_cookie_token_from_another_session(self):
+        """A token remembered elsewhere can't recover a seat here"""
+        other_session = GameSession.objects.create(
+            game=self.game, admin_name="Other Host"
+        )
+        other_team = SessionTeam.objects.create(
+            session=other_session, name="Other Team"
+        )
+        self.client.cookies[COOKIE_NAME] = json.dumps(
+            {self.session.code: other_team.token}
+        )
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.context["cookie_team_token"], "")
+
+    def test_play_page_ignores_stale_cookie_token(self):
+        """A token whose team is gone recovers nothing"""
+        team = SessionTeam.objects.create(session=self.session, name="Cookie Team")
+        token = team.token
+        team.delete()
+        self.client.cookies[COOKIE_NAME] = json.dumps({self.session.code: token})
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.context["cookie_team_token"], "")
 
     def test_play_page_with_multiple_rounds(self):
         """Test play page when game has multiple rounds"""

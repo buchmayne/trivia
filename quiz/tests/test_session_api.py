@@ -3,9 +3,13 @@ Tests for session API endpoints
 """
 
 import json
+from datetime import timedelta
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.utils import timezone
+
+from quiz.session_api import ADMIN_TIMEOUT_SECONDS, check_admin_timeout
 
 from quiz.models import (
     Answer,
@@ -18,6 +22,7 @@ from quiz.models import (
     SessionRound,
     TeamAnswer,
 )
+from quiz.session_cookies import COOKIE_NAME
 from quiz.tests.test_utils import create_verified_user
 
 
@@ -208,8 +213,95 @@ class JoinSessionAPITest(TestCase):
         team = SessionTeam.objects.get(session=self.session, name="Team Alpha")
         self.assertIsNotNone(team)
 
-    def test_join_session_duplicate_name(self):
-        """Test joining with duplicate team name"""
+    def test_join_session_duplicate_name_offers_rejoin(self):
+        """A taken name is usually a returning player, so offer them rejoin"""
+        SessionTeam.objects.create(session=self.session, name="Team Alpha")
+
+        url = reverse("quiz:session_join", args=[self.session.code])
+        data = {"team_name": "Team Alpha"}
+
+        response = self.client.post(
+            url, data=json.dumps(data), content_type="application/json"
+        )
+
+        self.assertEqual(response.status_code, 409)
+        response_data = response.json()
+        self.assertIn("Team name taken", response_data["error"])
+        self.assertTrue(response_data["can_rejoin"])
+        # The stored spelling, so the client can name the team back to them
+        self.assertEqual(response_data["team_name"], "Team Alpha")
+
+        # No second team was created
+        self.assertEqual(self.session.teams.count(), 1)
+
+    def test_join_session_duplicate_name_returns_stored_casing(self):
+        """Matching is case-insensitive; the offer shows the team's real name"""
+        SessionTeam.objects.create(session=self.session, name="Team Alpha")
+
+        url = reverse("quiz:session_join", args=[self.session.code])
+        data = {"team_name": "team alpha"}
+
+        response = self.client.post(
+            url, data=json.dumps(data), content_type="application/json"
+        )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.json()["team_name"], "Team Alpha")
+
+    def test_join_session_duplicate_name_offers_rejoin_when_full(self):
+        """A returning team already holds a slot, so "full" is the wrong answer"""
+        self.session.max_teams = 2
+        self.session.save()
+        SessionTeam.objects.create(session=self.session, name="Team 1")
+        SessionTeam.objects.create(session=self.session, name="Team 2")
+
+        url = reverse("quiz:session_join", args=[self.session.code])
+        data = {"team_name": "Team 2"}
+
+        response = self.client.post(
+            url, data=json.dumps(data), content_type="application/json"
+        )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertTrue(response.json()["can_rejoin"])
+
+    def test_join_session_duplicate_name_offers_rejoin_during_scoring(self):
+        """Dropping out mid-scoring shouldn't dead-end the player"""
+        self.session.status = GameSession.Status.SCORING
+        self.session.save()
+        SessionTeam.objects.create(session=self.session, name="Team Alpha")
+
+        url = reverse("quiz:session_join", args=[self.session.code])
+        data = {"team_name": "Team Alpha"}
+
+        response = self.client.post(
+            url, data=json.dumps(data), content_type="application/json"
+        )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertTrue(response.json()["can_rejoin"])
+
+    def test_join_session_duplicate_name_offers_rejoin_when_late_joins_off(self):
+        """Rejoining isn't a late join - it's the same team coming back"""
+        self.session.status = GameSession.Status.PLAYING
+        self.session.allow_late_joins = False
+        self.session.save()
+        SessionTeam.objects.create(session=self.session, name="Team Alpha")
+
+        url = reverse("quiz:session_join", args=[self.session.code])
+        data = {"team_name": "Team Alpha"}
+
+        response = self.client.post(
+            url, data=json.dumps(data), content_type="application/json"
+        )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertTrue(response.json()["can_rejoin"])
+
+    def test_join_session_duplicate_name_on_completed_game(self):
+        """Once the game is over there's nothing to rejoin"""
+        self.session.status = GameSession.Status.COMPLETED
+        self.session.save()
         SessionTeam.objects.create(session=self.session, name="Team Alpha")
 
         url = reverse("quiz:session_join", args=[self.session.code])
@@ -220,7 +312,7 @@ class JoinSessionAPITest(TestCase):
         )
 
         self.assertEqual(response.status_code, 400)
-        self.assertIn("Team name taken", response.json()["error"])
+        self.assertIn("Game has ended", response.json()["error"])
 
     def test_join_session_full(self):
         """Test joining when session is full"""
@@ -268,6 +360,238 @@ class JoinSessionAPITest(TestCase):
         )
 
         self.assertEqual(response.status_code, 400)
+
+    def test_join_remembers_token_in_httponly_cookie(self):
+        """The token gets a second home that survives localStorage loss"""
+        url = reverse("quiz:session_join", args=[self.session.code])
+
+        response = self.client.post(
+            url,
+            data=json.dumps({"team_name": "Team Alpha"}),
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(COOKIE_NAME, response.cookies)
+
+        cookie = response.cookies[COOKIE_NAME]
+        self.assertTrue(cookie["httponly"])
+        self.assertEqual(
+            json.loads(cookie.value),
+            {self.session.code: response.json()["team_token"]},
+        )
+
+    def test_failed_join_does_not_set_cookie(self):
+        """Nothing to remember when no team was created"""
+        SessionTeam.objects.create(session=self.session, name="Team Alpha")
+        url = reverse("quiz:session_join", args=[self.session.code])
+
+        response = self.client.post(
+            url,
+            data=json.dumps({"team_name": "Team Alpha"}),
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertNotIn(COOKIE_NAME, response.cookies)
+
+
+class RejoinSessionAPITest(TestCase):
+    """Test the rejoin_session endpoint - recovery from a lost team token"""
+
+    def setUp(self):
+        self.client = Client()
+        self.game = Game.objects.create(subtitle="Test Game")
+        self.session = GameSession.objects.create(game=self.game, admin_name="Host")
+        self.team = SessionTeam.objects.create(
+            session=self.session, name="Team Alpha", score=42
+        )
+        self.url = reverse("quiz:session_rejoin", args=[self.session.code])
+
+    def _rejoin(self, team_name):
+        return self.client.post(
+            self.url,
+            data=json.dumps({"team_name": team_name}),
+            content_type="application/json",
+        )
+
+    def test_rejoin_returns_existing_token_and_score(self):
+        """Rejoining hands back the same identity, not a fresh team"""
+        response = self._rejoin("Team Alpha")
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+
+        self.assertEqual(data["team_token"], self.team.token)
+        self.assertEqual(data["team_id"], self.team.id)
+        self.assertEqual(data["team_name"], "Team Alpha")
+        self.assertEqual(data["score"], 42)
+        self.assertTrue(data["rejoined"])
+
+        # No duplicate team was created
+        self.assertEqual(self.session.teams.count(), 1)
+
+    def test_rejoin_is_case_insensitive(self):
+        """Players don't remember their own capitalisation"""
+        response = self._rejoin("team ALPHA")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["team_token"], self.team.token)
+
+    def test_rejoin_trims_whitespace(self):
+        """Mobile keyboards love a trailing space"""
+        response = self._rejoin("  Team Alpha  ")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["team_token"], self.team.token)
+
+    def test_rejoin_unknown_team_name(self):
+        """A name that was never in this session can't be recovered"""
+        response = self._rejoin("Team Omega")
+
+        self.assertEqual(response.status_code, 404)
+        self.assertIn("Team Omega", response.json()["error"])
+
+    def test_rejoin_wrong_session(self):
+        """Team names are scoped to their own session"""
+        other_session = GameSession.objects.create(game=self.game, admin_name="Host 2")
+        url = reverse("quiz:session_rejoin", args=[other_session.code])
+
+        response = self.client.post(
+            url,
+            data=json.dumps({"team_name": "Team Alpha"}),
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_rejoin_completed_game(self):
+        """Once the game is over there's nothing to rejoin"""
+        self.session.status = GameSession.Status.COMPLETED
+        self.session.save()
+
+        response = self._rejoin("Team Alpha")
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("Game has ended", response.json()["error"])
+
+    def test_rejoin_allowed_during_scoring(self):
+        """Rejoin is deliberately more permissive than join"""
+        self.session.status = GameSession.Status.SCORING
+        self.session.save()
+
+        response = self._rejoin("Team Alpha")
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_rejoin_allowed_when_late_joins_off(self):
+        """Coming back isn't a late join - the team was already here"""
+        self.session.status = GameSession.Status.PLAYING
+        self.session.allow_late_joins = False
+        self.session.save()
+
+        response = self._rejoin("Team Alpha")
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_rejoin_allowed_when_session_full(self):
+        """The returning team is already occupying one of the slots"""
+        self.session.max_teams = 1
+        self.session.save()
+
+        response = self._rejoin("Team Alpha")
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_rejoin_with_case_variant_teams_does_not_error(self):
+        """The DB constraint is case-sensitive, so iexact can match two rows.
+
+        join_session blocks this, but teams created via the admin can still
+        collide - the lookup must not blow up with MultipleObjectsReturned.
+        """
+        SessionTeam.objects.create(session=self.session, name="team alpha")
+
+        response = self._rejoin("Team Alpha")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            response.json()["team_name"].lower(),
+            ["team alpha"],
+        )
+
+    def test_rejoin_name_too_short(self):
+        """Same name validation as joining"""
+        response = self._rejoin("A")
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("2-100 characters", response.json()["error"])
+
+    def test_rejoin_invalid_json(self):
+        """Malformed body is rejected cleanly"""
+        response = self.client.post(
+            self.url, data="not json", content_type="application/json"
+        )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("Invalid JSON", response.json()["error"])
+
+    def test_rejoin_unknown_session_code(self):
+        """A bad code is a 404, not a 500"""
+        url = reverse("quiz:session_rejoin", args=["ZZZZZZ"])
+
+        response = self.client.post(
+            url,
+            data=json.dumps({"team_name": "Team Alpha"}),
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_rejoin_remembers_token_in_httponly_cookie(self):
+        """Recovering on a device also plants the cookie, so it's the last time"""
+        response = self._rejoin("Team Alpha")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(COOKIE_NAME, response.cookies)
+
+        cookie = response.cookies[COOKIE_NAME]
+        self.assertTrue(cookie["httponly"])
+        self.assertEqual(json.loads(cookie.value), {self.session.code: self.team.token})
+
+    def test_failed_rejoin_does_not_set_cookie(self):
+        response = self._rejoin("Never Existed")
+
+        self.assertEqual(response.status_code, 404)
+        self.assertNotIn(COOKIE_NAME, response.cookies)
+
+    def test_rejoin_preserves_submitted_answers(self):
+        """The whole point: a rejoining team keeps its work"""
+        round_obj = QuestionRound.objects.create(name="Round 1", round_number=1)
+        question = Question.objects.create(
+            game=self.game,
+            question_type=QuestionType.objects.create(name="Open Ended"),
+            game_round=round_obj,
+            question_number=1,
+            text="Test question",
+            total_points=10,
+        )
+        session_round = SessionRound.objects.create(
+            session=self.session, round=round_obj
+        )
+        TeamAnswer.objects.create(
+            team=self.team,
+            question=question,
+            session_round=session_round,
+            answer_text="my answer",
+        )
+
+        response = self._rejoin("Team Alpha")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(TeamAnswer.objects.filter(team=self.team).count(), 1)
+        self.assertEqual(
+            TeamAnswer.objects.get(team=self.team).answer_text, "my answer"
+        )
 
 
 class GetSessionStateAPITest(TestCase):
@@ -607,6 +931,92 @@ class AdminStartGameAPITest(TestCase):
         )
 
         self.assertEqual(response.status_code, 400)
+
+
+class AdminHeartbeatAPITest(TestCase):
+    """Test the admin_heartbeat endpoint and the auto-pause it guards against"""
+
+    def setUp(self):
+        self.client = Client()
+        self.game = Game.objects.create(subtitle="Test Game")
+        self.session = GameSession.objects.create(
+            game=self.game,
+            admin_name="Host",
+            status=GameSession.Status.PLAYING,
+        )
+        self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
+        SessionRound.objects.create(
+            session=self.session,
+            round=self.round,
+            status=SessionRound.Status.ACTIVE,
+        )
+        self.url = reverse("quiz:session_admin_heartbeat", args=[self.session.code])
+
+    def _post(self, token=None):
+        return self.client.post(
+            self.url,
+            content_type="application/json",
+            **({"HTTP_AUTHORIZATION": f"Bearer {token}"} if token else {}),
+        )
+
+    def test_heartbeat_refreshes_admin_last_seen(self):
+        """A heartbeat marks the host as present"""
+        stale = timezone.now() - timedelta(seconds=ADMIN_TIMEOUT_SECONDS * 2)
+        GameSession.objects.filter(pk=self.session.pk).update(admin_last_seen=stale)
+
+        response = self._post(self.session.admin_token)
+
+        self.assertEqual(response.status_code, 200)
+        self.session.refresh_from_db()
+        self.assertGreater(self.session.admin_last_seen, stale)
+
+    def test_heartbeat_resumes_paused_session(self):
+        """A host whose tab was asleep resumes the game by checking back in"""
+        self.session.pause()
+        self.assertEqual(self.session.status, GameSession.Status.PAUSED)
+
+        response = self._post(self.session.admin_token)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], GameSession.Status.PLAYING)
+        self.session.refresh_from_db()
+        self.assertEqual(self.session.status, GameSession.Status.PLAYING)
+        self.assertIsNone(self.session.status_before_pause)
+
+    def test_heartbeat_keeps_session_from_pausing(self):
+        """State polls do not pause a session whose host is heartbeating"""
+        stale = timezone.now() - timedelta(seconds=ADMIN_TIMEOUT_SECONDS * 2)
+        GameSession.objects.filter(pk=self.session.pk).update(admin_last_seen=stale)
+
+        self._post(self.session.admin_token)
+        self.session.refresh_from_db()
+
+        self.assertFalse(check_admin_timeout(self.session))
+        self.assertEqual(self.session.status, GameSession.Status.PLAYING)
+
+    def test_session_pauses_without_a_heartbeat(self):
+        """Without any host contact the session still pauses, as intended"""
+        stale = timezone.now() - timedelta(seconds=ADMIN_TIMEOUT_SECONDS + 5)
+        GameSession.objects.filter(pk=self.session.pk).update(admin_last_seen=stale)
+        self.session.refresh_from_db()
+
+        self.assertTrue(check_admin_timeout(self.session))
+        self.session.refresh_from_db()
+        self.assertEqual(self.session.status, GameSession.Status.PAUSED)
+
+    def test_heartbeat_requires_valid_token(self):
+        """Heartbeat is admin-only"""
+        self.assertEqual(self._post().status_code, 403)
+        self.assertEqual(self._post("not-the-token").status_code, 403)
+
+    def test_heartbeat_rejects_get(self):
+        """Heartbeat is POST-only"""
+        response = self.client.get(
+            self.url,
+            HTTP_AUTHORIZATION=f"Bearer {self.session.admin_token}",
+        )
+
+        self.assertEqual(response.status_code, 405)
 
 
 class AdminLockRoundAPITest(TestCase):

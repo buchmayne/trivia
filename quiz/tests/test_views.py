@@ -2,9 +2,12 @@
 Tests for core views (game_list, game_overview, question_view, answer_view, etc.)
 """
 
+import re
+
 from django.test import TestCase, RequestFactory, Client
 from django.urls import reverse
-from quiz.models import Game, Category, QuestionType, QuestionRound, Question
+from quiz.fields import CloudFrontURLField
+from quiz.models import Answer, Game, Category, QuestionType, QuestionRound, Question
 from quiz.views import get_next_question
 from quiz.tests.test_utils import create_verified_user
 
@@ -243,3 +246,95 @@ class QuestionViewTest(TestCase):
             reverse("quiz:first_question", args=[round1.id]), {"game_id": game2.id}
         )
         self.assertEqual(response2.status_code, 200)
+
+
+class MediaRenderingTest(TestCase):
+    """Test that the question and answer views render their own side's media"""
+
+    def setUp(self):
+        self.client = Client()
+        self.user = create_verified_user()
+        self.client.login(username="testuser", password="testpass123")
+        self.game = Game.objects.create(subtitle="Media Game", is_public=True)
+        self.category = Category.objects.create(name="Media Category")
+        self.game_round = QuestionRound.objects.create(name="Round 1", round_number=1)
+        self.question_type = QuestionType.objects.create(name="Multiple Open Ended")
+        self.question = Question.objects.create(
+            game=self.game,
+            category=self.category,
+            text="Media question?",
+            question_number=1,
+            game_round=self.game_round,
+            question_type=self.question_type,
+            question_video_url="game-1/Media/question.mp4",
+            answer_video_url="game-1/Media/answer.mp4",
+        )
+        self.answer = Answer.objects.create(
+            question=self.question,
+            text="An answer",
+            points=1,
+            question_video_url="game-1/Media/answer-part-question.mp4",
+            answer_video_url="game-1/Media/answer-part-answer.mp4",
+        )
+        self.question_url = reverse(
+            "quiz:question_view",
+            args=[
+                self.game.id,
+                self.game_round.id,
+                self.category.id,
+                self.question.id,
+            ],
+        )
+        self.answer_url = reverse(
+            "quiz:answer_view",
+            args=[
+                self.game.id,
+                self.game_round.id,
+                self.category.id,
+                self.question.id,
+            ],
+        )
+
+    def _video_sources(self, response):
+        return set(
+            re.findall(r'<source src="([^"]+)"', response.content.decode("utf-8"))
+        )
+
+    def test_question_view_shows_question_videos(self):
+        sources = self._video_sources(self.client.get(self.question_url))
+        self.assertIn(
+            CloudFrontURLField.get_full_url("game-1/Media/question.mp4"), sources
+        )
+        self.assertNotIn(
+            CloudFrontURLField.get_full_url("game-1/Media/answer.mp4"), sources
+        )
+
+    def test_answer_view_shows_answer_video_not_question_video(self):
+        sources = self._video_sources(self.client.get(self.answer_url))
+        self.assertIn(
+            CloudFrontURLField.get_full_url("game-1/Media/answer.mp4"), sources
+        )
+        self.assertNotIn(
+            CloudFrontURLField.get_full_url("game-1/Media/question.mp4"), sources
+        )
+
+    def test_answer_view_shows_answer_part_answer_video(self):
+        sources = self._video_sources(self.client.get(self.answer_url))
+        self.assertIn(
+            CloudFrontURLField.get_full_url("game-1/Media/answer-part-answer.mp4"),
+            sources,
+        )
+        self.assertNotIn(
+            CloudFrontURLField.get_full_url("game-1/Media/answer-part-question.mp4"),
+            sources,
+        )
+
+    def test_answer_view_falls_back_to_question_video(self):
+        """A question with no answer video still shows its question video"""
+        self.question.answer_video_url = ""
+        self.question.save(update_fields=["answer_video_url"])
+
+        sources = self._video_sources(self.client.get(self.answer_url))
+        self.assertIn(
+            CloudFrontURLField.get_full_url("game-1/Media/question.mp4"), sources
+        )

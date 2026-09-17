@@ -1015,7 +1015,7 @@ export async function adminStartNextRound(page: Page): Promise<ActionResult> {
 }
 
 export async function adminCompleteGame(page: Page): Promise<ActionResult> {
-  const completeBtn = page.locator('#completeGameBtn, button:has-text("End Game"), button:has-text("Complete Game")');
+  const completeBtn = page.locator('#completeGameBtn, button:has-text("View Game Results"), button:has-text("End Game"), button:has-text("Complete Game")');
   const state = await getElementState(completeBtn);
 
   if (!state.visible) {
