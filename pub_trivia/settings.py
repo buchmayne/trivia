@@ -181,7 +181,9 @@ AWS_S3_OBJECT_PARAMETERS = {
     "CacheControl": "max-age=86400",
 }
 AWS_CLOUDFRONT_DOMAIN = "https://d1eomq1h9ixjmb.cloudfront.net"
-AWS_S3_CUSTOM_DOMAIN = AWS_CLOUDFRONT_DOMAIN
+# django-storages builds URLs as "{protocol}//{custom_domain}/{path}", so the
+# custom domain must be host-only or storage.url() yields "https://https://...".
+AWS_S3_CUSTOM_DOMAIN = AWS_CLOUDFRONT_DOMAIN.split("//", 1)[-1]
 AWS_LOCATION = ""
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 

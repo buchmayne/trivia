@@ -398,7 +398,7 @@ test.describe('Robust QA - Full Game Playthrough', () => {
       // Check for Next Round or Game Complete
       // ========================================
       const nextRoundBtn = adminPage.locator('#startNextRoundBtn');
-      const completeGameBtn = adminPage.locator('#completeGameBtn, button:has-text("End Game"), button:has-text("Complete Game")');
+      const completeGameBtn = adminPage.locator('#completeGameBtn, button:has-text("View Game Results"), button:has-text("End Game"), button:has-text("Complete Game")');
 
       const hasNextRound = await getElementState(nextRoundBtn);
       const hasCompleteGame = await getElementState(completeGameBtn);

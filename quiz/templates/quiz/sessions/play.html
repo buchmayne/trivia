@@ -42,6 +42,19 @@
 
         <!-- ADMIN VIEW -->
         <div id="adminView" class="hidden">
+            <!-- Paused State: a safety net. The host page heartbeats on every
+                 poll, so a paused session normally resumes before this renders. -->
+            <div id="pausedState" class="hidden">
+                <div class="card">
+                    <h2>Game Paused</h2>
+                    <p class="info-msg">
+                        This session paused because the host connection dropped. Teams have been
+                        told the game is paused. Their answers are safe.
+                    </p>
+                    <button class="btn btn-primary" id="resumeSessionBtn" style="margin-top: 1.5rem; font-size: 1.1rem; width: 100%;">Resume Game</button>
+                </div>
+            </div>
+
             <!-- Lobby State -->
             <div id="lobbyState" class="hidden">
                 <div class="card">
@@ -139,6 +152,19 @@
 
         <!-- TEAM VIEW -->
         <div id="teamView" class="hidden">
+            <!-- Shown over whatever the team was doing when the host drops off.
+                 The server keeps accepting answers while paused, so the team's
+                 question and inputs deliberately stay on screen underneath. -->
+            <div id="teamPausedBanner" class="hidden">
+                <div class="card" style="border: 2px solid #E0A458; background: #FDF6EC;">
+                    <h2 style="margin-bottom: 0.5rem;">Game Paused</h2>
+                    <p class="info-msg" style="margin: 0;">
+                        The host has lost connection. Keep working if you like - your answers are
+                        still being saved. The game will pick up where it left off.
+                    </p>
+                </div>
+            </div>
+
             <!-- Lobby State -->
             <div id="teamLobby" class="hidden">
                 <div class="card">
@@ -273,7 +299,37 @@
         let autoSaveTimer = null; // Timer for debounced auto-save
         let teamQuestions = []; // Questions available to team (for navigation)
         let teamCurrentQuestionId = null; // Team's current question (may differ from host)
+        let teamRenderedRoundNumber = null; // Round the team's navigation state belongs to
         let teamQuestionCache = {}; // Cache full question data for team navigation
+        // What is currently drawn in each question container, so the state poll
+        // does not re-render unchanged markup. Re-rendering replaces the <video>
+        // element, which restarts any video the host is part-way through.
+        const renderedQuestionKeys = {};
+
+        function renderQuestionOnce(containerId, key, render) {
+            if (renderedQuestionKeys[containerId] === key) {
+                return;
+            }
+            renderedQuestionKeys[containerId] = key;
+            render();
+        }
+
+        // Whether the leaderboard on screen belongs to the last round, so the
+        // advance button can say where it actually leads. Set from leaderboard
+        // data; the state poll reuses it instead of resetting the label.
+        let isFinalRound = false;
+
+        function startNextRoundLabel() {
+            return isFinalRound ? 'View Game Results' : 'Start Next Round';
+        }
+
+        function resetStartNextRoundButton() {
+            const btn = document.getElementById('startNextRoundBtn');
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = startNextRoundLabel();
+            }
+        }
 
         // Initialize with SERVER-SIDE TOKEN VALIDATION
         // CRITICAL: This is the ROBUST solution that prevents host role loss on refresh
@@ -421,6 +477,22 @@
             pollTimer = setInterval(pollState, POLL_INTERVAL);
         }
 
+        // A hidden tab's timers are throttled (Chrome drops them towards once a
+        // minute) or suspended outright (mobile Safari), so a team tab that has
+        // been in the background while the host drives the game can be far
+        // behind by the time anyone looks at it - it sits on whatever question
+        // was last rendered. Catch up the moment the page is looked at again
+        // instead of waiting for the next throttled tick.
+        function pollOnReturnToPage() {
+            if (pollTimer && document.visibilityState === 'visible') {
+                pollState();
+            }
+        }
+
+        document.addEventListener('visibilitychange', pollOnReturnToPage);
+        window.addEventListener('pageshow', pollOnReturnToPage);
+        window.addEventListener('focus', pollOnReturnToPage);
+
         // Tracks whether this tab's admin access has already been reported as
         // revoked, so we don't spam the user with repeated messages if they
         // keep clicking admin controls after losing access.
@@ -462,8 +534,28 @@
             return response;
         }
 
+        // Tells the server the host is still here. The session auto-pauses when
+        // the host has not been seen for a while, and this is the only thing that
+        // reports presence without the host clicking something - so it runs on
+        // every poll tick, in every state. It also resumes a session that already
+        // paused (require_admin_token resumes), which is how a host tab that was
+        // asleep gets the game going again on its own.
+        async function sendAdminHeartbeat() {
+            try {
+                await adminFetch(`/quiz/api/sessions/${CODE}/admin/heartbeat/`, { method: 'POST' });
+            } catch (error) {
+                console.error('Heartbeat error:', error);
+            }
+        }
+
         async function pollState() {
             try {
+                // Heartbeat first, so a paused session is already resumed by the
+                // time we read the state and render it.
+                if (ACTIVE_ROLE === 'admin') {
+                    await sendAdminHeartbeat();
+                }
+
                 const response = await fetch(`/quiz/api/sessions/${CODE}/state/`);
                 const data = await response.json();
                 currentState = data;
@@ -485,7 +577,7 @@
 
         function renderAdminUI(state) {
             // Hide all states
-            ['lobbyState', 'playingState', 'scoringState', 'reviewingState', 'leaderboardState', 'completedState'].forEach(id => {
+            ['pausedState', 'lobbyState', 'playingState', 'scoringState', 'reviewingState', 'leaderboardState', 'completedState'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
 
@@ -494,14 +586,27 @@
                 scoringDataLoaded = false;
             }
 
-            if (state.status === 'lobby') {
+            if (state.status === 'paused') {
+                // The heartbeat normally resumes before we get here; this is the
+                // fallback so a paused session always has a way back.
+                document.getElementById('pausedState').classList.remove('hidden');
+                const resumeBtn = document.getElementById('resumeSessionBtn');
+                if (resumeBtn) {
+                    resumeBtn.disabled = false;
+                    resumeBtn.textContent = 'Resume Game';
+                }
+            } else if (state.status === 'lobby') {
                 document.getElementById('lobbyState').classList.remove('hidden');
                 renderLobbyTeams(state.teams);
                 document.getElementById('startGameBtn').disabled = state.team_count < 1;
             } else if (state.status === 'playing') {
                 document.getElementById('playingState').classList.remove('hidden');
                 if (state.current_question) {
-                    renderFullQuestion(state.current_question, 'questionDisplay');
+                    renderQuestionOnce(
+                        'questionDisplay',
+                        `question:${state.current_question.id}`,
+                        () => renderFullQuestion(state.current_question, 'questionDisplay')
+                    );
                 }
                 renderTeamStatus(state.teams, state.current_question);
 
@@ -551,11 +656,7 @@
                 loadLeaderboardData();
 
                 // Reset start next round button state
-                const startNextBtn = document.getElementById('startNextRoundBtn');
-                if (startNextBtn) {
-                    startNextBtn.disabled = false;
-                    startNextBtn.textContent = 'Start Next Round';
-                }
+                resetStartNextRoundButton();
             } else if (state.status === 'completed') {
                 document.getElementById('completedState').classList.remove('hidden');
                 loadFinalStandings();
@@ -563,9 +664,33 @@
         }
 
         function renderTeamUI(state) {
+            const pausedBanner = document.getElementById('teamPausedBanner');
+
+            if (state.status === 'paused') {
+                // Leave the team's current view alone. The server still accepts
+                // answers while paused, so taking the question away would cost
+                // them work for what is usually a brief host disconnect.
+                pausedBanner.classList.remove('hidden');
+                return;
+            }
+
+            pausedBanner.classList.add('hidden');
+
             ['teamLobby', 'teamPlaying', 'teamScoring', 'teamLeaderboard', 'teamResults'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
+
+            // A team's own question choice only means something within the round
+            // it was made in. Carrying it into the next round leaves the team
+            // looking at the previous round's question while the host has moved
+            // on, so drop it (and the cached question data) when the round changes.
+            const roundNumber = state.current_round ? state.current_round.round_number : null;
+            if (roundNumber !== teamRenderedRoundNumber) {
+                teamRenderedRoundNumber = roundNumber;
+                teamCurrentQuestionId = null;
+                teamQuestionCache = {};
+                renderedQuestionId = null;
+            }
 
             if (state.status === 'lobby') {
                 document.getElementById('teamLobby').classList.remove('hidden');
@@ -2067,7 +2192,11 @@
         function renderReviewUI(state) {
             // Display current question with full answer details
             if (state.current_question) {
-                renderFullQuestionWithAnswers(state.current_question, 'reviewQuestionDisplay');
+                renderQuestionOnce(
+                    'reviewQuestionDisplay',
+                    `answers:${state.current_question.id}`,
+                    () => renderFullQuestionWithAnswers(state.current_question, 'reviewQuestionDisplay')
+                );
             }
 
             // Load round questions for navigation
@@ -2122,11 +2251,26 @@
             }
         }
 
+        async function resumeSession() {
+            const btn = document.getElementById('resumeSessionBtn');
+            try {
+                btn.disabled = true;
+                btn.textContent = 'Resuming...';
+                await sendAdminHeartbeat();
+                await pollState();
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = 'Resume Game';
+                }
+            }
+        }
+
         async function startNextRound() {
             try {
                 const btn = document.getElementById('startNextRoundBtn');
                 btn.disabled = true;
-                btn.textContent = 'Starting...';
+                btn.textContent = isFinalRound ? 'Loading...' : 'Starting...';
 
                 const response = await adminFetch(`/quiz/api/sessions/${CODE}/admin/start-next-round/`, {
                     method: 'POST'
@@ -2143,8 +2287,7 @@
                 pollState();
             } catch (error) {
                 alert('Error: ' + error.message);
-                document.getElementById('startNextRoundBtn').disabled = false;
-                document.getElementById('startNextRoundBtn').textContent = 'Start Next Round';
+                resetStartNextRoundButton();
             }
         }
 
@@ -2247,9 +2390,10 @@
             `;
 
             // Update the start next round button text based on whether this is the final round
+            isFinalRound = !!data.is_final_round;
             const startNextBtn = document.getElementById('startNextRoundBtn');
             if (startNextBtn) {
-                startNextBtn.textContent = data.is_final_round ? 'End Game' : 'Start Next Round';
+                startNextBtn.textContent = startNextRoundLabel();
             }
         }
 
@@ -2423,6 +2567,8 @@
                 navigateToQuestion(questionId);
             }
         });
+
+        document.getElementById('resumeSessionBtn')?.addEventListener('click', resumeSession);
 
         document.getElementById('showLeaderboardBtn')?.addEventListener('click', showLeaderboard);
 

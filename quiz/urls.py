@@ -94,6 +94,11 @@ urlpatterns = [
     ),
     # Session API - Admin
     path(
+        "api/sessions/<str:code>/admin/heartbeat/",
+        session_api.admin_heartbeat,
+        name="session_admin_heartbeat",
+    ),
+    path(
         "api/sessions/<str:code>/admin/start/",
         session_api.admin_start_game,
         name="session_admin_start",

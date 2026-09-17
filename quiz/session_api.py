@@ -123,7 +123,11 @@ def serialize_question_for_play(question: Question) -> dict:
 
 
 # Configuration
-ADMIN_TIMEOUT_SECONDS = 30  # Pause if admin not seen for this long
+# Pause if admin not seen for this long. The host page sends a heartbeat every
+# poll, so this is a real disconnection signal (roughly 30 missed beats) rather
+# than a measure of how long the host has gone without clicking something. It is
+# long enough to survive a host's phone screen locking briefly.
+ADMIN_TIMEOUT_SECONDS = 60
 
 
 # ============================================================================
@@ -449,6 +453,22 @@ def get_session_state(request: HttpRequest, code: str) -> JsonResponse:
 # ============================================================================
 # ADMIN ENDPOINTS
 # ============================================================================
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+@require_admin_token
+def admin_heartbeat(request: HttpRequest, code: str) -> JsonResponse:
+    """Report that the host is still here, and resume the session if it paused.
+
+    The host page calls this on every poll tick. All the work happens in
+    require_admin_token, which refreshes admin_last_seen and resumes a PAUSED
+    session, so a host whose tab was asleep recovers the game without clicking
+    anything. Without it, only deliberate admin actions kept a session alive,
+    which meant a host reading answers for a minute during scoring got paused.
+    """
+    session = request.session_obj
+    return JsonResponse({"status": session.status})
 
 
 @csrf_exempt

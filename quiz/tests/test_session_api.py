@@ -3,9 +3,13 @@ Tests for session API endpoints
 """
 
 import json
+from datetime import timedelta
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.utils import timezone
+
+from quiz.session_api import ADMIN_TIMEOUT_SECONDS, check_admin_timeout
 
 from quiz.models import (
     Answer,
@@ -927,6 +931,92 @@ class AdminStartGameAPITest(TestCase):
         )
 
         self.assertEqual(response.status_code, 400)
+
+
+class AdminHeartbeatAPITest(TestCase):
+    """Test the admin_heartbeat endpoint and the auto-pause it guards against"""
+
+    def setUp(self):
+        self.client = Client()
+        self.game = Game.objects.create(subtitle="Test Game")
+        self.session = GameSession.objects.create(
+            game=self.game,
+            admin_name="Host",
+            status=GameSession.Status.PLAYING,
+        )
+        self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
+        SessionRound.objects.create(
+            session=self.session,
+            round=self.round,
+            status=SessionRound.Status.ACTIVE,
+        )
+        self.url = reverse("quiz:session_admin_heartbeat", args=[self.session.code])
+
+    def _post(self, token=None):
+        return self.client.post(
+            self.url,
+            content_type="application/json",
+            **({"HTTP_AUTHORIZATION": f"Bearer {token}"} if token else {}),
+        )
+
+    def test_heartbeat_refreshes_admin_last_seen(self):
+        """A heartbeat marks the host as present"""
+        stale = timezone.now() - timedelta(seconds=ADMIN_TIMEOUT_SECONDS * 2)
+        GameSession.objects.filter(pk=self.session.pk).update(admin_last_seen=stale)
+
+        response = self._post(self.session.admin_token)
+
+        self.assertEqual(response.status_code, 200)
+        self.session.refresh_from_db()
+        self.assertGreater(self.session.admin_last_seen, stale)
+
+    def test_heartbeat_resumes_paused_session(self):
+        """A host whose tab was asleep resumes the game by checking back in"""
+        self.session.pause()
+        self.assertEqual(self.session.status, GameSession.Status.PAUSED)
+
+        response = self._post(self.session.admin_token)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], GameSession.Status.PLAYING)
+        self.session.refresh_from_db()
+        self.assertEqual(self.session.status, GameSession.Status.PLAYING)
+        self.assertIsNone(self.session.status_before_pause)
+
+    def test_heartbeat_keeps_session_from_pausing(self):
+        """State polls do not pause a session whose host is heartbeating"""
+        stale = timezone.now() - timedelta(seconds=ADMIN_TIMEOUT_SECONDS * 2)
+        GameSession.objects.filter(pk=self.session.pk).update(admin_last_seen=stale)
+
+        self._post(self.session.admin_token)
+        self.session.refresh_from_db()
+
+        self.assertFalse(check_admin_timeout(self.session))
+        self.assertEqual(self.session.status, GameSession.Status.PLAYING)
+
+    def test_session_pauses_without_a_heartbeat(self):
+        """Without any host contact the session still pauses, as intended"""
+        stale = timezone.now() - timedelta(seconds=ADMIN_TIMEOUT_SECONDS + 5)
+        GameSession.objects.filter(pk=self.session.pk).update(admin_last_seen=stale)
+        self.session.refresh_from_db()
+
+        self.assertTrue(check_admin_timeout(self.session))
+        self.session.refresh_from_db()
+        self.assertEqual(self.session.status, GameSession.Status.PAUSED)
+
+    def test_heartbeat_requires_valid_token(self):
+        """Heartbeat is admin-only"""
+        self.assertEqual(self._post().status_code, 403)
+        self.assertEqual(self._post("not-the-token").status_code, 403)
+
+    def test_heartbeat_rejects_get(self):
+        """Heartbeat is POST-only"""
+        response = self.client.get(
+            self.url,
+            HTTP_AUTHORIZATION=f"Bearer {self.session.admin_token}",
+        )
+
+        self.assertEqual(response.status_code, 405)
 
 
 class AdminLockRoundAPITest(TestCase):

@@ -195,7 +195,7 @@ test.describe('Session Lifecycle - Full Game Flow', () => {
 
     // Step 10: Complete the game (if there's a complete game button)
     const completeGameBtn = adminPage.locator(
-      '#completeGameBtn, button:has-text("End Game"), button:has-text("Complete Game")'
+      '#completeGameBtn, button:has-text("View Game Results"), button:has-text("End Game"), button:has-text("Complete Game")'
     );
 
     if (await completeGameBtn.isVisible()) {
