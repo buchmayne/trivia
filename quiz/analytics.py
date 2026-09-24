@@ -241,6 +241,15 @@ if __name__ == "__main__":
                 "Total": 133,
             },
         },
+        "trivia-2026-09-17": {
+            "player_list_sheet_name": "Players-09-17-26",
+            "game_data": {
+                "Round_1": 16,
+                "Round_2": 13,
+                "Final_Round": 10,
+                "Total": 39,
+            },
+        },
     }
 
     # Get players list and all game results
