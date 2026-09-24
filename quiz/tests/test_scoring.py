@@ -161,49 +161,96 @@ class IsMultiPartTest(TestCase):
 
 
 class RankingScorerAutoScoreTest(TestCase):
-    def _submit_ranking(self, question, session_round, team, placements):
+    def _items(self, question):
+        return list(question.answers.order_by("display_order"))
+
+    def _submit_ranking(self, question, session_round, team, ranked_ids):
         """Create the unsplit TeamAnswer that the player would submit.
 
-        placements is the player's array: index = position, value = the
-        display_order of the item placed at that position.
+        ranked_ids is the player's array: index = position (0-based),
+        value = the Answer ID of the item placed at that position.
         """
         ta = TeamAnswer.objects.create(
             team=team,
             question=question,
             session_round=session_round,
-            answer_text=json.dumps(placements),
+            answer_text=json.dumps(ranked_ids),
         )
         return RankingScorer().split_submission(ta)
 
     def test_all_correct(self):
         q, sr, t = _fixture("Ranking")
-        # Item with display_order=1 has correct_rank=1, place it at position 1, etc.
-        parts = self._submit_ranking(q, sr, t, [1, 2, 3])
+        # Items have correct_rank 1..3 in display order, so the display
+        # order IS the correct ranking.
+        parts = self._submit_ranking(q, sr, t, [a.id for a in self._items(q)])
         RankingScorer().auto_score(parts, q)
         for pa in parts:
             self.assertEqual(pa.points_awarded, 1)
 
     def test_all_wrong(self):
         q, sr, t = _fixture("Ranking")
-        parts = self._submit_ranking(q, sr, t, [3, 1, 2])
+        items = self._items(q)
+        # [item2, item3, item1]: no item lands on its correct_rank position.
+        parts = self._submit_ranking(q, sr, t, [items[1].id, items[2].id, items[0].id])
         RankingScorer().auto_score(parts, q)
         for pa in parts:
             self.assertEqual(pa.points_awarded, 0)
 
     def test_partial_credit(self):
         q, sr, t = _fixture("Ranking")
-        # Position 1 correct (item 1, rank 1); position 2 wrong; position 3 wrong.
-        parts = self._submit_ranking(q, sr, t, [1, 3, 2])
+        items = self._items(q)
+        # Position 1 correct (item 1, rank 1); positions 2 and 3 wrong.
+        parts = self._submit_ranking(q, sr, t, [items[0].id, items[2].id, items[1].id])
         RankingScorer().auto_score(parts, q)
         scored = sorted(parts, key=lambda p: p.answer_part.display_order)
         self.assertEqual([p.points_awarded for p in scored], [1, 0, 0])
 
     def test_missing_position_scores_zero(self):
         q, sr, t = _fixture("Ranking")
-        parts = self._submit_ranking(q, sr, t, [1])  # only one placement
+        items = self._items(q)
+        parts = self._submit_ranking(q, sr, t, [items[0].id])  # only one placement
         RankingScorer().auto_score(parts, q)
         scored = sorted(parts, key=lambda p: p.answer_part.display_order)
         self.assertEqual([p.points_awarded for p in scored], [1, 0, 0])
+
+    def test_legacy_zero_based_index_submission(self):
+        """Submissions from before the Answer-ID contract (0-based display
+        indices) are recognized by the presence of a 0 and still graded."""
+        q, sr, t = _fixture("Ranking")
+        # [0, 1, 2] = every item in display order = the correct ranking here.
+        parts = self._submit_ranking(q, sr, t, [0, 1, 2])
+        RankingScorer().auto_score(parts, q)
+        for pa in parts:
+            self.assertEqual(pa.points_awarded, 1)
+
+    def test_legacy_partial_credit(self):
+        q, sr, t = _fixture("Ranking")
+        # Legacy [2, 0, 1]: pos1 = item at index 2 (rank 3, wrong),
+        # pos2 = item at index 0 (rank 1, wrong), pos3 = item at index 1
+        # (rank 2, wrong). Nothing lands correctly.
+        parts = self._submit_ranking(q, sr, t, [2, 0, 1])
+        RankingScorer().auto_score(parts, q)
+        for pa in parts:
+            self.assertEqual(pa.points_awarded, 0)
+
+    def test_unknown_id_scores_zero(self):
+        q, sr, t = _fixture("Ranking")
+        items = self._items(q)
+        # Position 1 has a valid ID; the rest reference a nonexistent Answer.
+        parts = self._submit_ranking(q, sr, t, [items[0].id, 999999, 888888])
+        RankingScorer().auto_score(parts, q)
+        scored = sorted(parts, key=lambda p: p.answer_part.display_order)
+        self.assertEqual([p.points_awarded for p in scored], [1, 0, 0])
+
+    def test_part_stores_per_item_position(self):
+        q, sr, t = _fixture("Ranking")
+        items = self._items(q)
+        # Place item 3 first, item 1 second, item 2 third.
+        parts = self._submit_ranking(q, sr, t, [items[2].id, items[0].id, items[1].id])
+        by_part = {p.answer_part.id: p for p in parts}
+        self.assertEqual(by_part[items[0].id].answer_text, "2")
+        self.assertEqual(by_part[items[1].id].answer_text, "3")
+        self.assertEqual(by_part[items[2].id].answer_text, "1")
 
 
 # ----------------------------------------------------------------------------
