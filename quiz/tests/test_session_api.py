@@ -1554,12 +1554,13 @@ class PerPartScoringTest(TestCase):
 
     def test_lock_round_splits_ranking_answers_into_parts(self):
         """Test that locking splits ranking question answers into per-part records"""
-        # Team submits ranking answer as JSON array [0, 1, 2] (correct order)
+        # Team submits ranking answer as JSON array of Answer IDs in ranked
+        # order (display order is the correct order here)
         TeamAnswer.objects.create(
             team=self.team,
             question=self.ranking_question,
             session_round=self.session_round,
-            answer_text="[0, 1, 2]",
+            answer_text=json.dumps([a.id for a in self.ranking_answers]),
         )
 
         url = reverse("quiz:session_admin_lock", args=[self.session.code])
@@ -1589,12 +1590,12 @@ class PerPartScoringTest(TestCase):
 
     def test_lock_round_auto_scores_ranking_question(self):
         """Test that ranking questions are auto-scored on lock"""
-        # Team submits correct ranking [0, 1, 2]
+        # Team submits correct ranking (Answer IDs in ranked order)
         TeamAnswer.objects.create(
             team=self.team,
             question=self.ranking_question,
             session_round=self.session_round,
-            answer_text="[0, 1, 2]",
+            answer_text=json.dumps([a.id for a in self.ranking_answers]),
         )
 
         url = reverse("quiz:session_admin_lock", args=[self.session.code])
@@ -1620,12 +1621,18 @@ class PerPartScoringTest(TestCase):
 
     def test_lock_round_auto_scores_ranking_partial_credit(self):
         """Test ranking question with some wrong answers gets partial credit"""
-        # Team submits [1, 0, 2] - first two swapped, only position 2 correct
+        # Team submits [B, A, C] - first two swapped, only position 3 correct
         TeamAnswer.objects.create(
             team=self.team,
             question=self.ranking_question,
             session_round=self.session_round,
-            answer_text="[1, 0, 2]",
+            answer_text=json.dumps(
+                [
+                    self.ranking_answers[1].id,
+                    self.ranking_answers[0].id,
+                    self.ranking_answers[2].id,
+                ]
+            ),
         )
 
         url = reverse("quiz:session_admin_lock", args=[self.session.code])
@@ -1641,10 +1648,10 @@ class PerPartScoringTest(TestCase):
             answer_part__isnull=False,
         ).order_by("answer_part__display_order")
 
-        # Only position 2 is correct (item 2 at position 2)
+        # Only position 3 is correct (item C, correct_rank 3, placed at position 3)
         scores = [a.points_awarded for a in part_answers]
-        self.assertEqual(scores[2], 2)  # Position 2 correct
-        # Positions 0 and 1 are wrong
+        self.assertEqual(scores[2], 2)  # Position 3 correct
+        # Positions 1 and 2 are wrong
         self.assertEqual(scores[0], 0)
         self.assertEqual(scores[1], 0)
 

@@ -221,41 +221,107 @@ class MultipleOpenEndedScorer:
 
 
 class RankingScorer:
-    """Players place items in order. Each position correct iff the placed
-    item's correct_rank equals the position (1-indexed)."""
+    """Players place items in order.
+
+    Submission contract: a JSON array of Answer IDs in the player's ranked
+    order (element p = the item the player placed at position p+1). This is
+    self-describing and immune to display_order changes or per-team item
+    shuffling.
+
+    After the split, each item's TeamAnswer part stores the 1-based position
+    the player assigned to that item, so a part is correct iff its stored
+    position equals the item's correct_rank.
+
+    Legacy format (before this contract): a JSON array of 0-based indices
+    into the display-ordered item list. Recognized by the presence of a 0
+    (Answer PKs start at 1; every full legacy permutation contains 0) and
+    converted so pre-deploy submissions still grade correctly.
+    """
 
     def is_multi_part(self, question: Question) -> bool:
         return True
 
     def split_submission(self, team_answer: TeamAnswer) -> list[TeamAnswer]:
-        return _split_into_parts(team_answer)
+        question = team_answer.question
+        answer_parts = list(question.answers.order_by("display_order"))
+
+        if not answer_parts:
+            # No parts defined - nothing to split into. Caller will see the
+            # original answer untouched.
+            return [team_answer]
+
+        positions_by_item = self._positions_by_item(
+            team_answer.answer_text, answer_parts
+        )
+
+        created = []
+        for answer_part in answer_parts:
+            position = positions_by_item.get(answer_part.id)
+            part_answer, _ = TeamAnswer.objects.update_or_create(
+                team=team_answer.team,
+                question=question,
+                answer_part=answer_part,
+                defaults={
+                    "session_round": team_answer.session_round,
+                    "answer_text": "" if position is None else str(position),
+                    "is_locked": True,
+                },
+            )
+            created.append(part_answer)
+        return created
 
     def auto_score(self, part_answers: list[TeamAnswer], question: Question) -> None:
-        # Look up the player's selected item per position by display_order.
-        answers_by_display_order = {a.display_order: a for a in question.answers.all()}
-
-        for idx, part_answer in enumerate(part_answers):
+        for part_answer in part_answers:
             answer_part = part_answer.answer_part
             if not answer_part:
                 continue
 
-            is_correct = False
             try:
-                team_selection = (
+                placed_at = (
                     int(part_answer.answer_text) if part_answer.answer_text else None
                 )
             except (ValueError, TypeError):
-                team_selection = None
+                placed_at = None
 
-            if team_selection is not None:
-                selected_item = answers_by_display_order.get(team_selection)
-                if selected_item is not None:
-                    expected_rank = idx + 1
-                    is_correct = selected_item.correct_rank == expected_rank
+            is_correct = (
+                placed_at is not None
+                and answer_part.correct_rank is not None
+                and placed_at == answer_part.correct_rank
+            )
 
             part_answer.points_awarded = answer_part.points if is_correct else 0
             part_answer.scored_at = timezone.now()
             part_answer.save()
+
+    @staticmethod
+    def _positions_by_item(answer_text: str, answer_parts: list) -> dict[int, int]:
+        """Map each Answer ID to the 1-based position the player placed it at.
+
+        Accepts both the current format (ranked Answer IDs) and the legacy
+        0-based-index format. Unresolvable entries (unknown IDs, non-ints)
+        are ignored: the affected item is treated as unanswered.
+        """
+        parsed = _parse_json_array(answer_text)
+
+        values = []
+        for value in parsed:
+            try:
+                values.append(int(value))
+            except (ValueError, TypeError):
+                continue
+
+        if 0 in values:
+            # Legacy: element p = 0-based index of the item placed at
+            # position p+1.
+            id_by_index = [part.id for part in answer_parts]
+            return {
+                id_by_index[idx]: pos + 1
+                for pos, idx in enumerate(values)
+                if 0 <= idx < len(id_by_index)
+            }
+
+        # Current: element p = Answer ID placed at position p+1.
+        return {item_id: pos + 1 for pos, item_id in enumerate(values) if item_id > 0}
 
 
 class MatchingScorer:

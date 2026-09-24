@@ -1213,6 +1213,12 @@
             // Attach event listener to submit button
             document.getElementById('submitAnswerBtn').addEventListener('click', submitTeamAnswer);
 
+            // Capture the default ranking order so a team that never drags
+            // still submits the displayed order
+            if (container.querySelector('#rankingAnswerInput')) {
+                saveRankingOrder();
+            }
+
             // Attach auto-save listeners to all text inputs
             const allInputs = container.querySelectorAll('textarea');
             allInputs.forEach(input => {
@@ -1300,24 +1306,40 @@
 
         function saveRankingOrder() {
             const rankingItems = document.querySelectorAll('.ranking-item');
-            const order = Array.from(rankingItems).map(item => item.dataset.originalIndex);
+            // Ranked order of Answer IDs: element p = the item placed at position p+1.
+            const order = Array.from(rankingItems).map(item => Number(item.dataset.answerId));
             const hiddenInput = document.getElementById('rankingAnswerInput');
             if (hiddenInput) {
                 hiddenInput.value = JSON.stringify(order);
             }
         }
 
-        function restoreRankingOrder(order) {
+        function restoreRankingOrder(order, isLockedFold) {
             const rankingList = document.getElementById('rankingList');
             if (!rankingList || !order || !Array.isArray(order)) return;
 
             // Get all ranking items
             const items = Array.from(document.querySelectorAll('.ranking-item'));
 
-            // Reorder items based on saved order
-            const orderedItems = order.map(originalIdx => {
-                return items.find(item => item.dataset.originalIndex === String(originalIdx));
-            }).filter(item => item); // Remove any nulls
+            let orderedItems;
+            if (order.some(v => Number(v) === 0)) {
+                // Legacy format: 0-based indices of the items in ranked order.
+                orderedItems = order.map(originalIdx => {
+                    return items.find(item => item.dataset.originalIndex === String(originalIdx));
+                }).filter(item => item);
+            } else if (isLockedFold) {
+                // Post-lock fold: element i = the 1-based position assigned to
+                // the item at display index i. Sort items by their position.
+                orderedItems = items
+                    .map((item, i) => ({ item, pos: Number(order[i]) || 0 }))
+                    .sort((a, b) => a.pos - b.pos)
+                    .map(entry => entry.item);
+            } else {
+                // Current format: ranked Answer IDs.
+                orderedItems = order.map(id => {
+                    return items.find(item => Number(item.dataset.answerId) === Number(id));
+                }).filter(item => item);
+            }
 
             // Clear the list and re-append in correct order
             rankingList.innerHTML = '';
@@ -1349,7 +1371,7 @@
                             if (rankingInput) {
                                 // Ranking question - restore order
                                 rankingInput.value = answer.answer_text;
-                                restoreRankingOrder(parsedAnswers);
+                                restoreRankingOrder(parsedAnswers, answer.is_locked);
                             } else {
                                 // Multi-part answer - could be text inputs or matching buttons
                                 parsedAnswers.forEach((ans, idx) => {
@@ -1437,11 +1459,29 @@
                 if (Array.isArray(parsedAnswers) && question.answers && question.answers.length > 1) {
                     // Multi-part question
                     if (question.question_type === 'Ranking') {
-                        // Show ranking order
+                        // Show ranking order. Post-lock the folded answer is
+                        // per-item positions (display order); pre-lock it is
+                        // ranked Answer IDs; legacy is 0-based indices.
+                        let rankedIds;
+                        if (parsedAnswers.some(v => Number(v) === 0)) {
+                            // Legacy 0-based indices
+                            rankedIds = parsedAnswers
+                                .map(originalIdx => question.answers[originalIdx])
+                                .filter(item => item)
+                                .map(item => item.id);
+                        } else if (answer.is_locked) {
+                            rankedIds = question.answers
+                                .map((item, i) => ({ id: item.id, pos: Number(parsedAnswers[i]) || 0 }))
+                                .sort((a, b) => a.pos - b.pos)
+                                .filter(entry => entry.pos > 0)
+                                .map(entry => entry.id);
+                        } else {
+                            rankedIds = parsedAnswers.map(Number);
+                        }
                         html += '<div style="margin-bottom: 1rem;"><strong>Your Ranking:</strong></div>';
                         html += '<ol style="margin: 0 0 1rem 1.5rem; padding: 0;">';
-                        parsedAnswers.forEach(originalIdx => {
-                            const item = question.answers[originalIdx];
+                        rankedIds.forEach(id => {
+                            const item = question.answers.find(a => a.id === id);
                             if (item) {
                                 html += `<li style="margin-bottom: 0.5rem; color: #1A2F42;">${escapeHtml(item.text || '')}</li>`;
                             }
@@ -2044,11 +2084,11 @@
                     // Team's answer column
                     html += `<div style="font-size: 0.85rem;">`;
                     if (q.question_type === 'Ranking') {
-                        // For ranking, show which item they placed here
-                        const teamIdx = parseInt(part.answer_text);
-                        const teamItem = !isNaN(teamIdx) && q.correct_answers[teamIdx] ? q.correct_answers[teamIdx] : null;
+                        // Part answer_text is the 1-based position the team
+                        // assigned to this item (legacy rows may hold an index).
+                        const placedAt = parseInt(part.answer_text, 10);
                         html += `<div style="color: ${isCorrect ? '#2EB89D' : isWrong ? '#D4604A' : '#7A6F5D'};">`;
-                        html += teamItem ? escapeHtml(stripLabelPrefix(teamItem.sub_question || '')) : '<em>No answer</em>';
+                        html += !isNaN(placedAt) && placedAt > 0 ? `Placed at position ${placedAt}` : '<em>No answer</em>';
                         html += `</div>`;
                     } else {
                         html += `<div style="color: ${isCorrect ? '#2EB89D' : isWrong ? '#D4604A' : '#7A6F5D'};">`;

@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results: {{ session.game.name }} - Third Wave Trivia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300,400,500,600,700&family=JetBrains+Mono:wght@400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
+    <link rel="stylesheet" href="{% static 'css/session.css' %}">
+    <style>
+        .results-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .results-title {
+            font-family: var(--font-display);
+            margin-bottom: 0.25rem;
+        }
+        .results-meta {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+        }
+        .results-team {
+            border: 1px solid rgba(221, 215, 203, 0.6);
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            background: var(--shell, #FAF8F4);
+        }
+        .results-team-summary {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .results-team-summary::-webkit-details-marker { display: none; }
+        .results-team-summary::before {
+            content: '▸';
+            color: var(--text-secondary);
+            transition: transform 0.15s ease;
+        }
+        .results-team[open] > .results-team-summary::before {
+            transform: rotate(90deg);
+        }
+        .results-team-rank {
+            font-family: var(--font-mono);
+            font-weight: 500;
+            color: var(--ocean);
+        }
+        .results-team-name {
+            font-weight: 600;
+            flex: 1;
+        }
+        .results-team-total {
+            font-family: var(--font-mono);
+            font-weight: 500;
+        }
+        .results-team-detail {
+            padding: 0 1.25rem 1.25rem;
+        }
+        .results-round {
+            border: 1px solid var(--wet-sand);
+            border-radius: 8px;
+            margin-top: 0.75rem;
+            overflow: hidden;
+        }
+        .results-round-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.6rem 1rem;
+            background: var(--foam-light, #F6F1E4);
+            flex-wrap: wrap;
+        }
+        .results-round-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .results-round-score {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .results-questions {
+            list-style: none;
+            margin: 0;
+            padding: 0.25rem 0;
+        }
+        .results-question-detail {
+            border-top: 1px solid var(--wet-sand);
+        }
+        .results-questions li:first-child .results-question-detail {
+            border-top: none;
+        }
+        .results-question-summary {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            list-style: none;
+        }
+        .results-question-summary::-webkit-details-marker { display: none; }
+        .results-question-summary::before {
+            content: '▸';
+            color: var(--text-secondary);
+            transition: transform 0.15s ease;
+        }
+        .results-question-detail[open] > .results-question-summary::before {
+            transform: rotate(90deg);
+        }
+        .results-question-label {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .results-question-text {
+            flex: 1;
+        }
+        .results-question-points {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .results-question-points.perfect {
+            color: var(--success, #2E9B6F);
+            font-weight: 500;
+        }
+        .results-answer-detail {
+            padding: 0 1rem 0.75rem 2.25rem;
+        }
+        .results-answer-group {
+            margin-top: 0.5rem;
+        }
+        .results-answer-heading {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+        .results-answer-heading.results-answer-correct {
+            color: var(--success, #2E9B6F);
+        }
+        .results-answer-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .results-answer-item {
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            background: var(--foam-lighter, #FAF6EC);
+            margin-bottom: 0.25rem;
+        }
+        .results-answer-item.correct {
+            background: var(--shell, #FAF8F4);
+        }
+        .results-answer-part {
+            font-weight: 600;
+            margin-right: 0.25rem;
+        }
+        .results-answer-points {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+            white-space: nowrap;
+        }
+        .results-answer-blank {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin: 0.25rem 0;
+        }
+        .empty-state {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 3rem 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="results-container">
+        <header>
+            <h1 class="results-title">{{ session.game.name }}</h1>
+            <p class="results-meta">
+                {{ session.code }}
+                {% if session.completed_at %} &middot; Completed {{ session.completed_at|date:"M j, Y" }}{% endif %}
+            </p>
+        </header>
+
+        {% if standings %}
+            <h2 class="section-title">Final Standings</h2>
+            {% for standing in standings %}
+                <details class="results-team" {% if forloop.first %}open{% endif %}>
+                    <summary class="results-team-summary">
+                        <span class="results-team-rank">#{{ standing.rank }}</span>
+                        <span class="results-team-name">{{ standing.team.name }}</span>
+                        <span class="results-team-total">{{ standing.total_score }} pts</span>
+                    </summary>
+
+                    <div class="results-team-detail">
+                        {% for round in standing.rounds %}
+                            <div class="results-round">
+                                <div class="results-round-summary">
+                                    <span class="results-round-name">{{ round.name }}</span>
+                                    <span class="results-round-score">{{ round.score }} / {{ round.max_points }}</span>
+                                </div>
+                                {% if round.questions %}
+                                    <ul class="results-questions">
+                                        {% for question in round.questions %}
+                                            <li>
+                                                <details class="results-question-detail">
+                                                    <summary class="results-question-summary">
+                                                        <span class="results-question-label">Q{{ question.number }}</span>
+                                                        <span class="results-question-text">{{ question.text|truncatechars:100 }}</span>
+                                                        <span class="results-question-points{% if question.points == question.max_points %} perfect{% endif %}">{{ question.points }}/{{ question.max_points }}</span>
+                                                    </summary>
+                                                    <div class="results-answer-detail">
+                                                        {% if question.answers %}
+                                                            <div class="results-answer-group">
+                                                                <span class="results-answer-heading">Submitted</span>
+                                                                <ul class="results-answer-list">
+                                                                    {% for answer in question.answers %}
+                                                                        <li class="results-answer-item">
+                                                                            {% if answer.part %}<span class="results-answer-part">Part {{ answer.part }}:</span>{% endif %}
+                                                                            {% if answer.text %}{{ answer.text }}{% else %}<em class="results-answer-blank">No answer</em>{% endif %}
+                                                                            <span class="results-answer-points">({{ answer.points|default:0 }} pt{{ answer.points|default:0|pluralize }})</span>
+                                                                        </li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            </div>
+                                                        {% else %}
+                                                            <p class="results-answer-blank">No answer submitted</p>
+                                                        {% endif %}
+                                                        {% if question.correct_answers %}
+                                                            <div class="results-answer-group">
+                                                                <span class="results-answer-heading results-answer-correct">Correct</span>
+                                                                <ul class="results-answer-list">
+                                                                    {% for correct in question.correct_answers %}
+                                                                        <li class="results-answer-item correct">{{ correct }}</li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </details>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p class="results-answer-blank">No questions scored in this round.</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </details>
+            {% endfor %}
+        {% else %}
+            <div class="empty-state">No teams played in this session.</div>
+        {% endif %}
+
+        <a href="{% url 'quiz:session_my_games' %}" class="back-link-dark" style="color: var(--text-secondary); display:inline-block; margin-top:2rem;">Back to My Games</a>
+    </div>
+</body>
+</html>

@@ -322,8 +322,10 @@ class LockRoundWithRankingTest(TestCase):
             total_points=3,
             game_round=rnd,
         )
-        for i in range(1, 4):
+        answers = [
             Answer.objects.create(question=q, display_order=i, correct_rank=i, points=1)
+            for i in range(1, 4)
+        ]
 
         session = GameSession.objects.create(game=game, admin_name="A")
         SessionRound.objects.create(session=session, round=rnd)
@@ -333,12 +335,12 @@ class LockRoundWithRankingTest(TestCase):
         session.refresh_from_db()
         sr = session.session_rounds.get(round=rnd)
 
-        # Submit a perfect ranking.
+        # Submit a perfect ranking (Answer IDs in ranked order).
         TeamAnswer.objects.create(
             team=team,
             question=q,
             session_round=sr,
-            answer_text=json.dumps([1, 2, 3]),
+            answer_text=json.dumps([a.id for a in answers]),
         )
 
         SessionDirector(session).lock_round()
