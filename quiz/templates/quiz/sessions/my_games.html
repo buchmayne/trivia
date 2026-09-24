@@ -136,7 +136,7 @@
                         &middot; {{ session.presence.team_count }} team{{ session.presence.team_count|pluralize }}
                     </span>
                 </div>
-                <a href="{% url 'quiz:session_play' session.code %}" class="btn btn-secondary">
+                <a href="{% url 'quiz:session_results' session.code %}" class="btn btn-secondary">
                     View Results
                 </a>
             </div>

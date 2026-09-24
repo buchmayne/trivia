@@ -11,7 +11,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
 from django.utils import timezone
-from .models import Game, GameSession
+from .models import Game, GameSession, Question, SessionRound, TeamAnswer
 from .session_cookies import find_team_by_cookie, resumable_sessions
 from .utils import has_verified_email
 
@@ -109,6 +109,142 @@ def _session_presence(session: GameSession, now) -> dict:
         "active_team_count": active_team_count,
         "last_activity": last_activity,
     }
+
+
+@login_required
+def session_results(request: HttpRequest, code: str) -> HttpResponse:
+    """Post-game results page for a completed session the user hosted.
+
+    Layers drill-down detail onto the final standings: expand a team to see
+    their score on every question with a per-round summary inline, then
+    expand a question to see the answer text the team actually submitted.
+    """
+    session = get_object_or_404(GameSession, code=code)
+
+    if session.host_user != request.user:
+        messages.warning(request, "Only the host can view these results.")
+        return redirect("quiz:session_my_games")
+
+    if session.status != GameSession.Status.COMPLETED:
+        # A live game belongs in the live-game client, not the results page.
+        return redirect("quiz:session_play", code=code)
+
+    scored_rounds = list(
+        session.session_rounds.filter(status=SessionRound.Status.SCORED)
+        .select_related("round")
+        .order_by("round__round_number")
+    )
+
+    # Questions grouped by round, plus the correct answers for reference.
+    questions_by_round: dict[int, list[Question]] = {}
+    correct_by_question: dict[int, list[str]] = {}
+    if scored_rounds:
+        questions = (
+            Question.objects.filter(
+                game=session.game,
+                game_round__in=[sr.round_id for sr in scored_rounds],
+            )
+            .order_by("question_number")
+            .prefetch_related("answers")
+        )
+        for question in questions:
+            questions_by_round.setdefault(question.game_round_id, []).append(question)
+            correct = [
+                answer_text
+                for answer in question.answers.all()
+                if (answer_text := (answer.text or answer.answer_text or "")).strip()
+            ]
+            if correct:
+                correct_by_question[question.id] = correct
+
+    # All submitted answers for this session, keyed by (team, question).
+    # Multi-part questions yield multiple rows per key, one per part.
+    answers: dict[tuple[int, int], list[TeamAnswer]] = {}
+    team_answers = TeamAnswer.objects.filter(team__session=session).select_related(
+        "question", "answer_part"
+    )
+    for team_answer in team_answers:
+        answers.setdefault((team_answer.team_id, team_answer.question_id), []).append(
+            team_answer
+        )
+
+    # Round shape is shared across teams; per-team scores are built fresh.
+    rounds_data = [
+        {
+            "name": sr.round.name,
+            "max_points": sum(
+                q.total_points for q in questions_by_round.get(sr.round_id, [])
+            ),
+            "questions": [
+                {
+                    "id": q.id,
+                    "number": q.question_number,
+                    "text": q.text,
+                    "max_points": q.total_points,
+                    "correct_answers": correct_by_question.get(q.id, []),
+                }
+                for q in questions_by_round.get(sr.round_id, [])
+            ],
+        }
+        for sr in scored_rounds
+    ]
+
+    standings = []
+    for rank, team in enumerate(session.teams.order_by("-score", "joined_at"), start=1):
+        team_rounds = []
+        for round_data in rounds_data:
+            question_rows = []
+            round_score = 0
+            for question_data in round_data["questions"]:
+                submitted = answers.get((team.id, question_data["id"]), [])
+                points = sum(ta.points_awarded or 0 for ta in submitted)
+                round_score += points
+                question_rows.append(
+                    {
+                        "number": question_data["number"],
+                        "text": question_data["text"],
+                        "max_points": question_data["max_points"],
+                        "correct_answers": question_data["correct_answers"],
+                        "points": points,
+                        "answers": [
+                            {
+                                "part": (
+                                    ta.answer_part.display_order
+                                    if ta.answer_part
+                                    else None
+                                ),
+                                "text": ta.answer_text or "",
+                                "points": ta.points_awarded,
+                            }
+                            for ta in submitted
+                        ],
+                    }
+                )
+            team_rounds.append(
+                {
+                    "name": round_data["name"],
+                    "max_points": round_data["max_points"],
+                    "score": round_score,
+                    "questions": question_rows,
+                }
+            )
+        standings.append(
+            {
+                "rank": rank,
+                "team": team,
+                "total_score": team.score,
+                "rounds": team_rounds,
+            }
+        )
+
+    return render(
+        request,
+        "quiz/sessions/results.html",
+        {
+            "session": session,
+            "standings": standings,
+        },
+    )
 
 
 @login_required

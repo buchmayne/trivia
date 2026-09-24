@@ -17,9 +17,12 @@ from django.utils import timezone
 from django.utils.html import escapejs
 from quiz.session_cookies import COOKIE_NAME
 from quiz.models import (
+    Answer,
     Game,
     GameSession,
     SessionTeam,
+    SessionRound,
+    TeamAnswer,
     Question,
     QuestionRound,
     Category,
@@ -551,3 +554,223 @@ class MyGamesViewTest(TestCase):
         presence = response.context["active_sessions"][0].presence
         self.assertEqual(presence["team_count"], 2)
         self.assertEqual(presence["active_team_count"], 1)
+
+
+class SessionResultsViewTest(TestCase):
+    """Tests for the post-game results page (per-question drill-down)"""
+
+    def setUp(self):
+        self.client = Client()
+        self.host = create_verified_user(username="host", email="host@example.com")
+        self.game = Game.objects.create(name="Test Game")
+        self.question_type = QuestionType.objects.create(name="Multiple Choice")
+        self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
+
+        self.session = GameSession.objects.create(
+            game=self.game,
+            admin_name="Host",
+            host_user=self.host,
+            status=GameSession.Status.COMPLETED,
+            completed_at=timezone.now(),
+        )
+        self.session_round = SessionRound.objects.create(
+            session=self.session,
+            round=self.round,
+            status=SessionRound.Status.SCORED,
+        )
+
+        self.question = Question.objects.create(
+            game=self.game,
+            question_type=self.question_type,
+            text="What is the capital of France?",
+            question_number=1,
+            total_points=2,
+            game_round=self.round,
+        )
+        Answer.objects.create(question=self.question, text="Paris", answer_text="Paris")
+
+        self.team = SessionTeam.objects.create(
+            session=self.session, name="Quizlings", score=2
+        )
+        TeamAnswer.objects.create(
+            team=self.team,
+            question=self.question,
+            session_round=self.session_round,
+            answer_text="Paris",
+            points_awarded=2,
+        )
+
+        self.url = reverse("quiz:session_results", kwargs={"code": self.session.code})
+
+    def test_requires_login(self):
+        """Anonymous visitors are bounced to login"""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("login", response.url)
+
+    def test_non_host_redirected_to_my_games(self):
+        """Only the host can view a session's results"""
+        create_verified_user(username="other", email="other@example.com")
+        self.client.login(username="other", password="testpass123")
+
+        response = self.client.get(self.url, follow=True)
+
+        self.assertRedirects(response, reverse("quiz:session_my_games"))
+        messages_list = [str(m) for m in response.context["messages"]]
+        self.assertIn("Only the host can view these results.", messages_list)
+
+    def test_non_completed_session_redirects_to_play(self):
+        """A live game belongs in the live-game client"""
+        self.session.status = GameSession.Status.PLAYING
+        self.session.save()
+
+        self.client.login(username="host", password="testpass123")
+        response = self.client.get(self.url)
+
+        self.assertRedirects(
+            response,
+            reverse("quiz:session_play", kwargs={"code": self.session.code}),
+        )
+
+    def test_results_page_loads_for_host(self):
+        """Host gets a 200 rendering the results template"""
+        self.client.login(username="host", password="testpass123")
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "quiz/sessions/results.html")
+
+    def test_standings_show_rank_and_total(self):
+        """Final standings rank teams and show total scores"""
+        loser = SessionTeam.objects.create(
+            session=self.session, name="Stragglers", score=0
+        )
+
+        self.client.login(username="host", password="testpass123")
+        response = self.client.get(self.url)
+
+        standings = response.context["standings"]
+        self.assertEqual(standings[0]["rank"], 1)
+        self.assertEqual(standings[0]["team"].name, "Quizlings")
+        self.assertEqual(standings[0]["total_score"], 2)
+        self.assertEqual(standings[1]["team"].name, loser.name)
+        self.assertEqual(standings[1]["rank"], 2)
+
+    def test_round_summary_and_per_question_scores(self):
+        """Layer 1: round score inline, per-question points per team"""
+        self.client.login(username="host", password="testpass123")
+        response = self.client.get(self.url)
+
+        team_round = response.context["standings"][0]["rounds"][0]
+        self.assertEqual(team_round["name"], "Round 1")
+        self.assertEqual(team_round["max_points"], 2)
+        self.assertEqual(team_round["score"], 2)
+        self.assertEqual(team_round["questions"][0]["points"], 2)
+
+        self.assertContains(response, "Round 1")
+        self.assertContains(response, "2 / 2")
+        self.assertContains(response, "What is the capital of France?")
+
+    def test_submitted_answer_visible(self):
+        """Layer 2: the team's actual answer text renders"""
+        self.client.login(username="host", password="testpass123")
+        response = self.client.get(self.url)
+
+        self.assertContains(response, "Paris")
+
+    def test_correct_answer_shown_for_reference(self):
+        """The question's correct answers render alongside submissions"""
+        self.client.login(username="host", password="testpass123")
+        response = self.client.get(self.url)
+
+        self.assertContains(response, "Correct")
+        self.assertContains(response, "Paris")
+
+    def test_unanswered_question_shows_zero_and_blank(self):
+        """A team that never answered gets 0 points and a blank answer"""
+        empty_team = SessionTeam.objects.create(session=self.session, name="No Shows")
+
+        self.client.login(username="host", password="testpass123")
+        response = self.client.get(self.url)
+
+        team_round = next(
+            s for s in response.context["standings"] if s["team"].name == "No Shows"
+        )["rounds"][0]
+        self.assertEqual(team_round["score"], 0)
+        self.assertEqual(team_round["questions"][0]["points"], 0)
+        self.assertEqual(team_round["questions"][0]["answers"], [])
+        self.assertContains(response, "No answer submitted")
+
+    def test_multi_part_answers_listed_separately(self):
+        """Multi-part questions show each part's answer and points"""
+        part1 = Answer.objects.create(
+            question=self.question, text="Paris", display_order=1, points=1
+        )
+        part2 = Answer.objects.create(
+            question=self.question, text="Seine", display_order=2, points=1
+        )
+        TeamAnswer.objects.all().delete()
+        TeamAnswer.objects.create(
+            team=self.team,
+            question=self.question,
+            session_round=self.session_round,
+            answer_part=part1,
+            answer_text="Paris",
+            points_awarded=1,
+        )
+        TeamAnswer.objects.create(
+            team=self.team,
+            question=self.question,
+            session_round=self.session_round,
+            answer_part=part2,
+            answer_text="The Seine",
+            points_awarded=0,
+        )
+
+        self.client.login(username="host", password="testpass123")
+        response = self.client.get(self.url)
+
+        question_row = response.context["standings"][0]["rounds"][0]["questions"][0]
+        self.assertEqual(question_row["points"], 1)
+        self.assertEqual(len(question_row["answers"]), 2)
+        self.assertContains(response, "Part 1:")
+        self.assertContains(response, "The Seine")
+
+    def test_round_with_no_questions_handled(self):
+        """A scored round with no questions shows a friendly empty state"""
+        round2 = QuestionRound.objects.create(name="Round 2", round_number=2)
+        SessionRound.objects.create(
+            session=self.session, round=round2, status=SessionRound.Status.SCORED
+        )
+
+        self.client.login(username="host", password="testpass123")
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No questions scored in this round")
+
+
+class MyGamesResultsLinkTest(TestCase):
+    """Completed sessions in My Games should link to the results page"""
+
+    def setUp(self):
+        self.client = Client()
+        self.owner = create_verified_user(username="owner", email="owner@example.com")
+        self.game = Game.objects.create(name="Link Game")
+        self.session = GameSession.objects.create(
+            game=self.game,
+            admin_name="Owner",
+            host_user=self.owner,
+            status=GameSession.Status.COMPLETED,
+            completed_at=timezone.now(),
+        )
+        self.url = reverse("quiz:session_my_games")
+
+    def test_completed_session_links_to_results_page(self):
+        self.client.login(username="owner", password="testpass123")
+        response = self.client.get(self.url)
+
+        self.assertContains(
+            response,
+            reverse("quiz:session_results", kwargs={"code": self.session.code}),
+        )

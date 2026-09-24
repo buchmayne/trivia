@@ -66,6 +66,11 @@ urlpatterns = [
     path("play/join/", session_views.session_join, name="session_join"),
     path("play/rejoin/", session_views.session_rejoin, name="session_rejoin_page"),
     path("play/mine/", session_views.my_games, name="session_my_games"),
+    path(
+        "play/<str:code>/results/",
+        session_views.session_results,
+        name="session_results",
+    ),
     path("play/<str:code>/", session_views.session_play, name="session_play"),
     # Session API - Public
     path("api/sessions/create/", session_api.create_session, name="session_create"),
