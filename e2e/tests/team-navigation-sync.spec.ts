@@ -99,17 +99,23 @@ test.describe('Team question navigation stays in sync with the session', () => {
     await adminShowLeaderboard(adminPage);
     await adminStartNextRound(adminPage);
 
-    await expect
-      .poll(async () => (await teamView(team.page)).playing, { timeout: 15000 })
-      .toBe(true);
-
-    // The team must be on the new round's question, not the one it chose before.
-    await expect
-      .poll(async () => (await teamView(team.page)).question, { timeout: 15000 })
-      .not.toBe(round1Question);
-
     const adminQuestion = (await adminPage.locator('#questionDisplay').innerText()).slice(0, 40);
-    expect((await teamView(team.page)).question).toBe(adminQuestion);
+
+    // The review state between rounds also shows #teamPlaying and points the
+    // team at the round-1 first question (complete_round resets the display
+    // for review), so bare "playing" and "different question" polls can pass
+    // one round early. Wait until the team is genuinely in round 2: badge
+    // PLAYING and on the admin's current question. The admin is settled by
+    // this point - adminStartNextRound waits for #playingState to return.
+    await expect
+      .poll(
+        async () => {
+          const view = await teamView(team.page);
+          return view.badge === 'PLAYING' ? view.question : '';
+        },
+        { timeout: 15000 }
+      )
+      .toBe(adminQuestion);
   });
 
   test('a stalled team tab catches up as soon as it is looked at again', async ({
