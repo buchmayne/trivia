@@ -162,12 +162,16 @@ GameSession.objects.filter(code='${code}').update(status='completed', completed_
     await expect(resultsLink).toBeVisible();
     await resultsLink.click();
 
-    await page.waitForURL(new RegExp(`/quiz/play/${code}/`));
-    // Completed sessions render without admin/team credentials in localStorage
-    // for this tab - the page should not crash, and should reflect completion.
-    await expect(page.locator('#statusBadge')).toContainText(/completed/i, {
-      timeout: 10000,
-    });
+    // "View Results" leads to the dedicated results page (since bb164a9),
+    // which is a standalone standings view and has no live-game #statusBadge.
+    // Assert on that page's own completion markers instead.
+    await page.waitForURL(new RegExp(`/quiz/play/${code}/results/`));
+
+    // The results page must reflect this session: its code, its completed
+    // status, and its (empty) standings - no team ever joined this one.
+    await expect(page.locator('.results-meta')).toContainText(code, { timeout: 10000 });
+    await expect(page.locator('.results-meta')).toContainText(/completed/i);
+    await expect(page.locator('.empty-state')).toContainText('No teams played');
 
     await context.close();
   });

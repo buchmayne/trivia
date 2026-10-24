@@ -148,6 +148,77 @@ in `quiz/management/commands/seed_db.py` and never touches `auth.user`,
 from the S3 backup bucket (see `docs/BACKUP_RESTORE.md`) and open an
 issue - the filter list has regressed.
 
+## Media optimization (S3 uploads)
+
+Media files (screenshots, video clips) upload from the Django admin straight
+to S3 behind CloudFront. The upload path optimizes them automatically so you
+don't have to think about formats:
+
+- **Images** (`S3ImageField`) are converted to **WebP** (quality 80) and
+  downscaled to a max of **1920px on the long edge** at save time. A 3 MB
+  macOS screenshot PNG typically becomes a 200-300 KB WebP with no visible
+  difference at projector/phone resolution. Animated GIFs and undecodable
+  files pass through unchanged. Extensions are rewritten, so uploads land in
+  S3 as `.../screenshot.webp`.
+- **Videos** (`S3VideoField`) are **validated, not transcoded**: uploads over
+  `MAX_VIDEO_UPLOAD_MB` (default **100 MB**) or with a non-video content type
+  are rejected with an inline admin error. Optimize clips locally before
+  uploading:
+
+  ```bash
+  ffmpeg -i in.mp4 -c:v libx264 -crf 21 -preset slow \
+    -vf "scale='min(1920,iw)':-2" -c:a aac -b:a 128k \
+    -movflags +faststart out.mp4
+  ```
+
+  Settings (`pub_trivia/settings.py`): `MAX_VIDEO_UPLOAD_MB`,
+  `IMAGE_MAX_DIMENSION_PX`, `IMAGE_WEBP_QUALITY`.
+
+### Backfilling legacy images
+
+`optimize_existing_images` uses the same pipeline, but is deliberately
+**additive**: it never deletes or overwrites originals. Production, old
+fixtures, and DB backups can still reference those original keys. The verified
+full-bucket snapshot in gitignored `media_backup/` is kept untouched.
+
+Each new object uses `optimized/<sha256-of-output>.webp` (not the source's
+basename, which can collide). A conditional S3 write prevents overwrites; a
+full read-back verifies size, content type, and SHA-256 **before** any DB
+reference is changed. Shared references are updated together in a transaction;
+concurrent edits cause that group to fail rather than being overwritten.
+External URLs are reported and left alone. No bucket settings are changed,
+and bucket versioning is not required for this non-destructive operation.
+
+```bash
+# Optional: mirror referenced originals (not a full-bucket snapshot)
+uv run manage.py optimize_existing_images --download-originals
+
+# Preview (default; no S3 or DB writes)
+uv run manage.py optimize_existing_images
+
+# Small controlled batch first; check the new URLs through CloudFront
+uv run manage.py optimize_existing_images --apply --limit 5 \
+  --report media_backup/optimization-first-batch.json
+uv run manage.py optimize_existing_images --apply \
+  --report media_backup/optimization-backfill.json
+
+# Export the updated local references for the normal human-reviewed deployment
+uv run manage.py export_content
+```
+
+Reports record old/new keys, affected rows, sizes, and hashes. The command is
+idempotent: already-`.webp` references are skipped, and deterministic copies
+are verified and reused on retry. A per-source failure does not stop other
+sources, but the command exits nonzero if anything failed. `--limit N` counts
+attempted distinct sources, including failures.
+
+Running locally updates **only the local database**. Exporting the fixture does
+not deploy it: production keeps using originals until the human commits and
+deploys the new content through the normal workflow. Originals are retained
+indefinitely; deleting them is a separate, explicitly reviewed future task.
+This reduces bytes served to players, not current storage usage: keeping both
+versions temporarily increases S3 storage.
+
 ## File reference
 
 | File | Role |

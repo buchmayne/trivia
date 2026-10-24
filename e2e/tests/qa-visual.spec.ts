@@ -49,6 +49,52 @@ const test = base.extend<{
 });
 
 /**
+ * The server's current question number, fetched fresh (cache-busted).
+ */
+async function getServerQuestionNumber(adminPage: Page): Promise<number | null> {
+  return adminPage.evaluate(async () => {
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const code = parts[parts.indexOf('play') + 1];
+    // Cache-buster: without it the browser may serve a heuristic-cached
+    // state response, hiding the host's advance from this check.
+    const response = await fetch(`/quiz/api/sessions/${code}/state/?t=${Date.now()}`);
+    if (!response.ok) return null;
+    const state = await response.json();
+    return state.current_question ? Number(state.current_question.number) : null;
+  });
+}
+
+/**
+ * Wait until a team's displayed question matches the host's actual current
+ * question, read from the server state API. Reading the admin page's DOM
+ * would race its own 2s state poll; the server reflects a host advance
+ * immediately, and the team then re-renders on its next poll (plus a
+ * category flash). Without syncing, input counts get taken from the stale
+ * DOM of the *previous* question, fills fail or type into the wrong
+ * question. Both pages render `<span class="question-number">N.</span>`.
+ */
+async function waitUntilTeamOnQuestion(adminPage: Page, team: TeamData) {
+  const expectedNumber = await getServerQuestionNumber(adminPage);
+  if (!expectedNumber) return; // live game not on a question right now
+
+  await team.page
+    .waitForFunction(
+      (expected) => {
+        const label = document.querySelector('#teamQuestionDisplay .question-number');
+        if (!label) return false;
+        return Number((label.textContent || '').split('.')[0]) === expected;
+      },
+      expectedNumber,
+      { timeout: 15000 }
+    )
+    .catch(() => {
+      // Observation test: don't hard-fail on sync. If the team really is on
+      // the wrong question the input handling below will surface it loudly.
+      console.log(`    Warning: ${team.name} did not reach question ${expectedNumber} in time`);
+    });
+}
+
+/**
  * Log a step with visual separator
  */
 function logStep(step: string, detail?: string) {
@@ -71,8 +117,10 @@ test.describe('Visual QA - Full Game Playthrough', () => {
   test.describe.configure({ mode: 'serial' });
 
   test('complete trivia game - watch the full experience', async ({ browser }) => {
-    // Very long timeout for manual observation
-    test.setTimeout(600000); // 10 minutes
+    // Very long timeout: the full playthrough with its observation pauses
+    // runs ~10 minutes, then the non-CI inspection dwell below adds 5 more.
+    // Must exceed both or the game succeeds and the dwell still "fails".
+    test.setTimeout(960000); // 16 minutes
 
     const teams: TeamData[] = [];
 
@@ -238,6 +286,13 @@ test.describe('Visual QA - Full Game Playthrough', () => {
           break;
         }
 
+        // Sync every team to the host's current question before collecting
+        // inputs - their pages can still show the previous question for a
+        // poll cycle or two after the host advanced.
+        for (const team of teams) {
+          await waitUntilTeamOnQuestion(adminPage, team);
+        }
+
         await observePause(teams[0].page, 3, 'Teams are viewing the question');
 
         // Each team submits an answer (sequentially for observation)
@@ -310,8 +365,18 @@ test.describe('Visual QA - Full Game Playthrough', () => {
         const nextBtnEnabled = nextBtnVisible && await nextBtn.isEnabled().catch(() => false);
 
         if (nextBtnEnabled) {
+          // The click's navigation POST lands asynchronously, one to three
+          // seconds after the DOM click resolves; a fixed wait races it and
+          // the next round of answering starts on the previous question.
+          // Wait for the server state to actually move instead.
+          const previousQuestion = await getServerQuestionNumber(adminPage);
           console.log('    Admin advancing to next question...');
           await nextBtn.click();
+          if (previousQuestion !== null) {
+            await expect
+              .poll(() => getServerQuestionNumber(adminPage), { timeout: 15000 })
+              .not.toBe(previousQuestion);
+          }
           await adminPage.waitForTimeout(STEP_DELAY);
           questionNum++;
         } else {

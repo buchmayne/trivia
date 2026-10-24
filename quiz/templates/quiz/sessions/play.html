@@ -1287,8 +1287,22 @@
                         updateRankingNumbers();
                         // Store ranking order
                         saveRankingOrder();
-                        // Trigger auto-save
-                        handleAutoSave();
+
+                        // A drag is a single event, not a stream of keystrokes,
+                        // so save immediately with the question and the captured
+                        // order fixed at this moment. Debouncing here loses answers:
+                        // a pending timer never fires if the player navigates to
+                        // another question or leaves the page within 1.5 seconds
+                        // (and background tabs throttle timers), and one that does
+                        // fire can be repointed at the question the team moved to.
+                        if (autoSaveTimer) {
+                            clearTimeout(autoSaveTimer);
+                            autoSaveTimer = null;
+                        }
+                        autoSaveAnswer({
+                            questionId: currentTargetQuestionId(),
+                            answerText: collectCurrentAnswerText(),
+                        });
                     }
                 });
             }
@@ -1531,6 +1545,37 @@
             }
         }
 
+        // The question a save should target: the team's chosen question when
+        // team navigation is enabled, otherwise the host's current question.
+        function currentTargetQuestionId() {
+            return (currentState.allow_team_navigation && teamCurrentQuestionId)
+                ? teamCurrentQuestionId
+                : (currentState.current_question ? currentState.current_question.id : null);
+        }
+
+        // Read the answer(s) currently shown in the team's input section.
+        function collectCurrentAnswerText() {
+            const subInputs = document.querySelectorAll('.sub-answer-input');
+            const matchingInputs = document.querySelectorAll('.matching-answer-input');
+            const rankingInput = document.getElementById('rankingAnswerInput');
+
+            if (rankingInput && rankingInput.value) {
+                // Ranking question - use stored ranking order
+                return rankingInput.value;
+            }
+            if (subInputs.length > 0) {
+                // Multi-part text question - collect all sub-answers as JSON array
+                return JSON.stringify(Array.from(subInputs).map(input => input.value.trim()));
+            }
+            if (matchingInputs.length > 0) {
+                // Matching question - collect selected options as JSON array
+                return JSON.stringify(Array.from(matchingInputs).map(input => input.value.trim()));
+            }
+            // Single answer
+            const answerInput = document.getElementById('answerInput');
+            return answerInput ? answerInput.value.trim() : '';
+        }
+
         function handleAutoSave() {
             // Clear existing timer
             if (autoSaveTimer) {
@@ -1543,17 +1588,24 @@
                 statusDiv.style.color = '#7A6F5D';
             }
 
+            // Snapshot the target question and the current answer at schedule
+            // time. Resolving them when the timer fires would let a navigation
+            // or a host question change in between repoint the save at another
+            // question. Every input event re-runs handleAutoSave, so the last
+            // snapshot before the timer fires always contains the latest input.
+            const pending = {
+                questionId: currentTargetQuestionId(),
+                answerText: collectCurrentAnswerText(),
+            };
+
             // Set new timer for 1.5 seconds
             autoSaveTimer = setTimeout(async () => {
-                await autoSaveAnswer();
+                await autoSaveAnswer(pending);
             }, 1500);
         }
 
-        async function autoSaveAnswer() {
-            // Use team's current question if navigation is enabled, otherwise host's question
-            const questionId = (currentState.allow_team_navigation && teamCurrentQuestionId)
-                ? teamCurrentQuestionId
-                : (currentState.current_question ? currentState.current_question.id : null);
+        async function autoSaveAnswer(pending = null) {
+            const questionId = pending ? pending.questionId : currentTargetQuestionId();
 
             if (!questionId) return;
 
@@ -1565,28 +1617,7 @@
                     statusDiv.style.color = '#7A6F5D';
                 }
 
-                // Collect answer(s)
-                let answerText;
-                const subInputs = document.querySelectorAll('.sub-answer-input');
-                const matchingInputs = document.querySelectorAll('.matching-answer-input');
-                const rankingInput = document.getElementById('rankingAnswerInput');
-
-                if (rankingInput && rankingInput.value) {
-                    // Ranking question - use stored ranking order
-                    answerText = rankingInput.value;
-                } else if (subInputs.length > 0) {
-                    // Multi-part text question - collect all sub-answers as JSON array
-                    const answers = Array.from(subInputs).map(input => input.value.trim());
-                    answerText = JSON.stringify(answers);
-                } else if (matchingInputs.length > 0) {
-                    // Matching question - collect selected options as JSON array
-                    const answers = Array.from(matchingInputs).map(input => input.value.trim());
-                    answerText = JSON.stringify(answers);
-                } else {
-                    // Single answer
-                    const answerInput = document.getElementById('answerInput');
-                    answerText = answerInput ? answerInput.value.trim() : '';
-                }
+                const answerText = pending ? pending.answerText : collectCurrentAnswerText();
 
                 const response = await fetch(`/quiz/api/sessions/${CODE}/team/answer/`, {
                     method: 'POST',
