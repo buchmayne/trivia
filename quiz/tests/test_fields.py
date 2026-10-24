@@ -2,11 +2,28 @@
 Tests for quiz/fields.py - Custom model fields for S3/CloudFront integration
 """
 
+from django.core.exceptions import ValidationError
+from django.core.files.base import ContentFile
 from django.test import TestCase
 from django.conf import settings
+from io import BytesIO
 from unittest.mock import Mock, patch, MagicMock
-from quiz.fields import CloudFrontURLField, S3ImageField, S3VideoField
+from PIL import Image
+from django.core.files.uploadedfile import SimpleUploadedFile
+from quiz.fields import (
+    CloudFrontURLField,
+    S3ImageField,
+    S3VideoField,
+    validate_video_upload,
+)
 from quiz.models import Question, Game, QuestionType, QuestionRound
+
+
+def _png_bytes(size=(100, 80), mode="RGB"):
+    """Build a real in-memory PNG for upload tests."""
+    buf = BytesIO()
+    Image.new(mode, size).save(buf, format="PNG")
+    return buf.getvalue()
 
 
 class CloudFrontURLFieldTest(TestCase):
@@ -236,6 +253,166 @@ class S3VideoFieldTest(TestCase):
 
         # For draft games, should get "drafts/Unknown/video.mp4"
         self.assertEqual(filename, "drafts/Unknown/video.mp4")
+
+
+class S3ImageFieldOptimizationTest(TestCase):
+    """S3ImageField.pre_save converts uploads to WebP before storage"""
+
+    def setUp(self):
+        self.game = Game.objects.create(subtitle="Test Game")
+        self.question_type = QuestionType.objects.create(name="Multiple Choice")
+        self.round = QuestionRound.objects.create(name="Round 1", round_number=1)
+        self.question = Question(
+            game=self.game,
+            question_type=self.question_type,
+            game_round=self.round,
+            text="Test",
+            question_number=1,
+        )
+        self.field = Question._meta.get_field("question_image")
+
+    def _mock_storage_save(self):
+        # Mock the whole save operation, including name-availability checks,
+        # so tests cannot make real S3 HEAD requests.
+        p = patch.object(
+            self.field.storage, "save", side_effect=lambda name, content, **kwargs: name
+        )
+        mock = p.start()
+        self.addCleanup(p.stop)
+        return mock
+
+    def test_pre_save_converts_png_upload_to_webp(self):
+        storage_save = self._mock_storage_save()
+        upload = SimpleUploadedFile(
+            "screenshot.png", _png_bytes(), content_type="image/png"
+        )
+
+        self.question.question_image = upload
+        self.field.pre_save(self.question, True)
+
+        name, content = storage_save.call_args[0]
+        self.assertTrue(name.endswith("screenshot.webp"))
+        self.assertEqual(Image.open(BytesIO(content.read())).format, "WEBP")
+        # URL field follows the new path
+        self.assertTrue(self.question.question_image_url.endswith("screenshot.webp"))
+
+    def test_pre_save_passthrough_keeps_original_name(self):
+        self._mock_storage_save()
+        # Corrupt bytes force pass-through at the original name
+        upload = SimpleUploadedFile(
+            "broken.png", b"not an image", content_type="image/png"
+        )
+
+        self.question.question_image = upload
+        self.field.pre_save(self.question, True)
+
+        self.assertTrue(self.question.question_image_url.endswith("broken.png"))
+
+    def test_model_save_persists_the_new_url_in_the_same_save(self):
+        # Use a real local storage backend: no mock can hide an extra upload or
+        # a URL that is updated in memory but not actually written to the DB.
+        from tempfile import TemporaryDirectory
+        from django.core.files.storage import FileSystemStorage
+
+        with TemporaryDirectory() as directory:
+            storage = FileSystemStorage(location=directory)
+            with patch.object(self.field, "storage", storage):
+                self.question.question_image = SimpleUploadedFile(
+                    "screenshot.png", _png_bytes(), content_type="image/png"
+                )
+                self.question.save()
+                key = self.question.question_image.name
+                self.question.refresh_from_db()
+                self.assertTrue(key.endswith(".webp"))
+                self.assertTrue(self.question.question_image_url.endswith(key))
+                self.assertEqual(self.question.question_image.name, key)
+                self.assertEqual(
+                    len(list(storage.listdir(key.rsplit("/", 1)[0])[1])), 1
+                )
+
+    def test_pre_save_skips_committed_file(self):
+        storage_save = self._mock_storage_save()
+        committed = Mock()
+        committed.name = "existing.webp"
+        committed._committed = True
+
+        self.question.question_image = committed
+        self.field.pre_save(self.question, True)
+
+        storage_save.assert_not_called()
+
+
+class VideoUploadValidationTest(TestCase):
+    """Oversize / non-video uploads are rejected"""
+
+    def test_oversize_video_rejected(self):
+        fake = Mock(content_type=None)
+        fake.size = 101 * 1024 * 1024  # 101 MB, over the 100 MB default
+        fake.file = Mock(content_type="video/mp4")
+
+        with self.assertRaises(ValidationError):
+            validate_video_upload(fake)
+
+    def test_small_video_passes(self):
+        fake = Mock(content_type=None)
+        fake.size = 5 * 1024 * 1024
+        fake.file = Mock(content_type="video/mp4")
+
+        validate_video_upload(fake)  # must not raise
+
+    def test_octet_stream_accepted(self):
+        fake = Mock(content_type=None)
+        fake.size = 1024
+        fake.file = Mock(content_type="application/octet-stream")
+
+        validate_video_upload(fake)  # must not raise
+
+    def test_non_video_content_type_rejected(self):
+        fake = Mock(content_type=None)
+        fake.size = 1024
+        fake.file = Mock(content_type="image/png")
+
+        with self.assertRaises(ValidationError):
+            validate_video_upload(fake)
+
+    def test_form_field_rejects_oversize_upload(self):
+        from quiz.fields import ValidatedVideoFileField
+
+        form_field = ValidatedVideoFileField(required=False)
+        upload = Mock()
+        upload.size = 150 * 1024 * 1024
+        upload.file = Mock(content_type="video/mp4")
+
+        with self.assertRaises(ValidationError):
+            form_field.clean(upload, None)
+
+    def test_real_admin_upload_rejects_non_video(self):
+        from quiz.fields import ValidatedVideoFileField
+
+        upload = SimpleUploadedFile(
+            "not-video.png", _png_bytes(), content_type="image/png"
+        )
+        with self.assertRaises(ValidationError):
+            ValidatedVideoFileField().clean(upload)
+
+    def test_real_admin_upload_accepts_video(self):
+        from quiz.fields import ValidatedVideoFileField
+
+        upload = SimpleUploadedFile("clip.mp4", b"video", content_type="video/mp4")
+        self.assertIs(ValidatedVideoFileField().clean(upload), upload)
+
+    def test_form_field_skips_existing_committed_file(self):
+        """Editing a question without a new upload must not validate/side-effect"""
+        from quiz.fields import ValidatedVideoFileField
+
+        form_field = ValidatedVideoFileField(required=False)
+        existing = Mock()  # would raise if validated (no sensible size/ct)
+        existing.size = 10**9
+        existing.file = Mock(content_type="image/png")
+
+        # Passing it as `initial` (same object is returned by clean) skips checks
+        result = form_field.clean(existing, existing)
+        self.assertEqual(result, existing)
 
 
 class FieldIntegrationTest(TestCase):

@@ -185,6 +185,11 @@ AWS_CLOUDFRONT_DOMAIN = "https://d1eomq1h9ixjmb.cloudfront.net"
 # custom domain must be host-only or storage.url() yields "https://https://...".
 AWS_S3_CUSTOM_DOMAIN = AWS_CLOUDFRONT_DOMAIN.split("//", 1)[-1]
 AWS_LOCATION = ""
+
+# Media optimization (images converted to WebP at upload; videos size-capped)
+MAX_VIDEO_UPLOAD_MB = int(os.getenv("MAX_VIDEO_UPLOAD_MB", "100"))
+IMAGE_MAX_DIMENSION_PX = int(os.getenv("IMAGE_MAX_DIMENSION_PX", "1920"))
+IMAGE_WEBP_QUALITY = int(os.getenv("IMAGE_WEBP_QUALITY", "80"))
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 
