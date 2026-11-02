@@ -1,0 +1,46 @@
+{% extends 'studio/base.html' %}
+{% block title %}Challenge library{% endblock %}
+{% block content %}
+<h1>Challenge library</h1>
+<p class="muted">Capture an idea now; develop it when you're ready. Nothing here changes the existing games.</p>
+<div class="columns">
+  <section class="panel">
+    <h2>Quick capture</h2>
+    <form action="{% url 'studio:capture' %}" method="post">
+      {% csrf_token %}
+      {{ draft_form.as_p }}
+      <button type="submit">Save draft</button>
+    </form>
+  </section>
+  <section class="panel">
+    <h2>Add a category</h2>
+    <form action="{% url 'studio:add_category' %}" method="post">
+      {% csrf_token %}
+      {{ category_form.as_p }}
+      <button type="submit">Add category</button>
+    </form>
+  </section>
+</div>
+<section class="panel">
+  <h2>Find challenges</h2>
+  <form method="get" class="toolbar">
+    <div><label for="search">Search</label><input id="search" type="search" name="q" value="{{ query }}"></div>
+    <div><label for="status">Status</label><select id="status" name="status">
+      <option value="">All</option>
+      <option value="draft" {% if selected_status == 'draft' %}selected{% endif %}>Draft</option>
+      <option value="ready" {% if selected_status == 'ready' %}selected{% endif %}>Ready</option>
+    </select></div>
+    <div><label for="category">Category</label><select id="category" name="category">
+      <option value="">All</option>
+      {% for category in categories %}<option value="{{ category.pk }}" {% if selected_category == category.pk|stringformat:'s' %}selected{% endif %}>{{ category.name }}</option>{% endfor %}
+    </select></div>
+    <button type="submit">Filter</button>
+  </form>
+  <ul class="list">
+    {% for challenge in challenges %}
+    <li><a href="{% url 'studio:edit' challenge.pk %}">{{ challenge.working_title|default:challenge.rough_notes|truncatechars:80 }}</a>
+      <span class="muted">· {{ challenge.get_status_display }}{% if challenge.category %} · {{ challenge.category.name }}{% endif %}</span></li>
+    {% empty %}<li class="muted">No challenges yet. Capture an idea above.</li>{% endfor %}
+  </ul>
+</section>
+{% endblock %}

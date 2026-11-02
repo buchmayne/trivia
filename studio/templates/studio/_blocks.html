@@ -1,0 +1,8 @@
+<ol>
+{% for block in blocks %}
+  <li><p>{{ block.text|linebreaksbr }}</p>
+    <p><a href="{% url 'studio:edit_block' challenge.pk block.pk %}">Edit text</a></p>
+    <div class="toolbar">{% include 'studio/_actions.html' with item=block kind='blocks' %}</div>
+  </li>
+{% empty %}<li class="muted">Nothing here yet.</li>{% endfor %}
+</ol>

@@ -1,0 +1,60 @@
+{% extends 'studio/base.html' %}
+{% block title %}{% if challenge %}Edit challenge{% else %}Capture idea{% endif %}{% endblock %}
+{% block content %}
+<p><a href="{% url 'studio:library' %}">← Back to library</a></p>
+<section class="panel">
+  <h1>{% if challenge %}{{ challenge|truncatechars:100 }}{% else %}Capture idea{% endif %}</h1>
+  <p class="muted">{% if challenge %}{{ challenge.get_status_display }} · {{ challenge.total_points }} point{{ challenge.total_points|pluralize }}. Drafts can be incomplete.{% else %}A title or rough notes is enough for now.{% endif %}</p>
+  <form method="post" action="{% if challenge %}{% url 'studio:edit' challenge.pk %}{% else %}{% url 'studio:capture' %}{% endif %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save details</button>
+  </form>
+</section>
+{% if challenge %}
+{% if ready_errors %}<div class="panel errorlist" role="alert"><h2>Cannot save as Ready</h2><ul>{% for error in ready_errors %}<li>{{ error }}</li>{% endfor %}</ul></div>{% endif %}
+<div class="panel">
+  <form method="post" action="{% url 'studio:change_status' challenge.pk %}">
+    {% csrf_token %}
+    {% if challenge.status == 'draft' %}<button type="submit" name="status" value="ready">Mark Ready</button>
+    {% else %}<button type="submit" name="status" value="draft">Return to draft</button>{% endif %}
+  </form>
+  <p><a href="{% url 'studio:preview' challenge.pk 'question' %}">Question preview</a> · <a href="{% url 'studio:preview' challenge.pk 'reveal' %}">Reveal preview</a></p>
+</div>
+<div class="columns">
+  <section class="panel">
+    <h2>Shared question context</h2>
+    {% include 'studio/_blocks.html' with blocks=challenge_prompt %}
+    <p><a href="{% url 'studio:new_block' challenge.pk %}?phase=prompt">Add shared prompt text</a></p>
+  </section>
+  <section class="panel">
+    <h2>Shared reveal</h2>
+    {% include 'studio/_blocks.html' with blocks=challenge_reveal %}
+    <p><a href="{% url 'studio:new_block' challenge.pk %}?phase=reveal">Add shared reveal text</a></p>
+  </section>
+</div>
+<section class="panel">
+  <h2>Tasks</h2>
+  <p><a href="{% url 'studio:new_task' challenge.pk %}">Add a task</a></p>
+  {% for entry in tasks %}
+    <section class="panel">
+      <h3>Task {{ forloop.counter }} · {{ entry.task.max_points }} point{{ entry.task.max_points|pluralize }}</h3>
+      <p><a href="{% url 'studio:edit_task' challenge.pk entry.task.pk %}">Edit points and reference answer</a></p>
+      <div class="toolbar">
+        {% include 'studio/_actions.html' with item=entry.task kind='tasks' %}
+      </div>
+      <div class="columns">
+        <div><h4>Task prompt</h4>
+          {% include 'studio/_blocks.html' with blocks=entry.prompt %}
+          <p><a href="{% url 'studio:new_block' challenge.pk %}?phase=prompt&amp;task={{ entry.task.pk }}">Add prompt text</a></p>
+        </div>
+        <div><h4>Task reveal</h4>
+          {% include 'studio/_blocks.html' with blocks=entry.reveal %}
+          <p><a href="{% url 'studio:new_block' challenge.pk %}?phase=reveal&amp;task={{ entry.task.pk }}">Add reveal text</a></p>
+        </div>
+      </div>
+    </section>
+  {% empty %}<p class="muted">No tasks yet. Most challenges need just one.</p>{% endfor %}
+</section>
+{% endif %}
+{% endblock %}

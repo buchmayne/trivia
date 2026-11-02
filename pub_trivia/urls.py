@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from . import views
@@ -10,3 +11,6 @@ urlpatterns = [
     path("quiz/", include("quiz.urls")),
     path("", landing_page_view, name="home"),
 ]
+
+if settings.DEBUG and settings.ENABLE_V2_STUDIO:
+    urlpatterns.append(path("studio/", include("studio.urls")))

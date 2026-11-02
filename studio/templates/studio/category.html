@@ -1,0 +1,13 @@
+{% extends 'studio/base.html' %}
+{% block title %}Add category{% endblock %}
+{% block content %}
+<p><a href="{% url 'studio:library' %}">← Back to library</a></p>
+<section class="panel">
+  <h1>Add category</h1>
+  <form method="post" action="{% url 'studio:add_category' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add category</button>
+  </form>
+</section>
+{% endblock %}

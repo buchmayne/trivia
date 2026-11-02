@@ -1,0 +1,14 @@
+{% extends 'studio/base.html' %}
+{% block title %}{% if task %}Edit task{% else %}Add task{% endif %}{% endblock %}
+{% block content %}
+<p><a href="{% url 'studio:edit' challenge.pk %}">← Back to challenge</a></p>
+<section class="panel">
+  <h1>{% if task %}Edit task {{ task.order }}{% else %}Add a free-text task{% endif %}</h1>
+  <p class="muted">A task is one answerable part of the challenge. Add its question and reveal text from the challenge editor after saving.</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save task</button>
+  </form>
+</section>
+{% endblock %}

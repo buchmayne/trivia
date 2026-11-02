@@ -29,6 +29,8 @@ SECRET_KEY = os.getenv("SECRET_KEY", "default-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False) == "True"
+# The new content studio is a local experiment, never enabled by DEBUG alone.
+ENABLE_V2_STUDIO = os.getenv("ENABLE_V2_STUDIO", "False") == "True"
 
 ALLOWED_HOSTS = [
     "thirdwavetrivia.com",
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "quiz",
+    "studio",
     "tinymce",
     "storages",
     "rest_framework",

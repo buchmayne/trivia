@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Studio{% endblock %} · Trivia</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; background: #f4f6f8; color: #17222d; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { padding: 1rem max(1rem, calc((100vw - 68rem)/2)); background: #182b3b; color: white; }
+    header a { color: inherit; font-weight: 700; text-decoration: none; }
+    main { max-width: 68rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+    h1, h2 { line-height: 1.2; }
+    .muted { color: #536377; }
+    .panel { background: white; border: 1px solid #d8e0e6; border-radius: .6rem; padding: 1.25rem; margin-bottom: 1.25rem; }
+    .columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1.25rem; }
+    label { display: block; font-weight: 600; margin: .75rem 0 .25rem; }
+    input, textarea, select { width: 100%; padding: .6rem; border: 1px solid #a6b6c2; border-radius: .3rem; font: inherit; }
+    button { cursor: pointer; padding: .65rem 1rem; margin-top: .8rem; background: #005f73; color: white; border: 0; border-radius: .3rem; font: inherit; font-weight: 700; }
+    button:hover { background: #00465b; }
+    a { color: #005f73; }
+    .errorlist { color: #a01919; }
+    .message { background: #d9f1e9; padding: .75rem; border-radius: .3rem; }
+    .list { list-style: none; padding: 0; }
+    .list li { padding: .8rem 0; border-bottom: 1px solid #e0e6ea; }
+    .toolbar { display: flex; gap: .75rem; align-items: flex-end; flex-wrap: wrap; }
+    .toolbar > * { flex: 1 1 10rem; }
+  </style>
+</head>
+<body>
+  <header><a href="{% url 'studio:library' %}">Trivia / Studio</a> <small>— local experiment</small></header>
+  <main>
+    {% if messages %}{% for message in messages %}<p class="message">{{ message }}</p>{% endfor %}{% endif %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
