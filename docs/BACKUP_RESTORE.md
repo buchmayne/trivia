@@ -53,6 +53,10 @@ droplet's disk, not even transiently.
 
 ## Notes
 
+- PostgreSQL's host port is bound to `127.0.0.1:5433`; web and backup containers
+  still connect internally to `db:5432`. For remote administration, use the
+  [SSH tunnel procedure](deployment-security/README.md#database-access-after-deployment)
+  rather than exposing the database publicly.
 - This procedure is manual by design - restores are rare, and the goal is a
   reliable, well-understood process rather than automation for something
   that happens once every few years.

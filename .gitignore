@@ -149,9 +149,8 @@ staticfiles/
 .claude/
 CLAUDE.md
 
-# Node.js / Playwright
+# Node.js / Playwright (package-lock.json is reviewed and version-controlled)
 node_modules/
-package-lock.json
 test-results/
 playwright-report/
 e2e/blob-report/
@@ -167,3 +166,5 @@ reference/
 
 offline_bundle/
 init_mandayn_trivia.py
+
+.studio-sandbox/

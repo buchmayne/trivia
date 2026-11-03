@@ -39,7 +39,11 @@ from .scoring import scorer_for
 
 
 class InvalidTransition(Exception):
-    """Raised when a lifecycle method is called from an illegal state."""
+    """A deliberate, public lifecycle rejection, translated to HTTP 400.
+
+    Messages reach clients: use only user-safe domain text, never wrapped
+    runtime exception details, credentials, or arbitrary request contents.
+    """
 
 
 class SessionDirector:

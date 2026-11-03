@@ -1,0 +1,31 @@
+# Allow only production application inputs into the build context.
+# Compose supplies .env at runtime; secrets must never be baked into an image.
+**
+!Dockerfile
+!README.md
+!pyproject.toml
+!uv.lock
+!manage.py
+!pub_trivia/
+!pub_trivia/**
+!quiz/
+!quiz/**
+!templates/
+!templates/**
+!static/
+!static/**
+
+# Also exclude generated files and secrets nested within allowed directories.
+**/__pycache__
+**/*.py[cod]
+**/.env
+**/.env.*
+**/gsheets_key.json
+**/*.pem
+**/*.key
+**/.git
+**/.venv
+**/venv
+**/node_modules
+**/test-results
+**/playwright-report
