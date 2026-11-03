@@ -1,0 +1,3 @@
+<form method="post" action="{% url 'studio:game_item_action' game.pk kind item_id 'up' %}">{% csrf_token %}<button type="submit" aria-label="Move up">↑</button></form>
+<form method="post" action="{% url 'studio:game_item_action' game.pk kind item_id 'down' %}">{% csrf_token %}<button type="submit" aria-label="Move down">↓</button></form>
+<form method="post" action="{% url 'studio:game_item_action' game.pk kind item_id 'delete' %}">{% csrf_token %}<button type="submit">{% if kind == 'rounds' %}Remove round and its placements{% else %}Remove from game{% endif %}</button></form>

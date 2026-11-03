@@ -29,7 +29,7 @@
   </style>
 </head>
 <body>
-  <header><a href="{% url 'studio:library' %}">Trivia / Studio</a> <small>— local experiment</small></header>
+  <header><a href="{% url 'studio:library' %}">Trivia / Studio</a> <small>— local experiment</small> · <a href="{% url 'studio:games' %}">Games</a></header>
   <main>
     {% if messages %}{% for message in messages %}<p class="message">{{ message }}</p>{% endfor %}{% endif %}
     {% block content %}{% endblock %}

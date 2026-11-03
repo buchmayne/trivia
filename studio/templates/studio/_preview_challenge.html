@@ -1,0 +1,28 @@
+<article class="panel">
+  <h3>{{ challenge.title }}</h3>
+  <p class="muted">{{ challenge.total_points }} point{{ challenge.total_points|pluralize }} · {{ mode|title }} preview</p>
+  {% for block in challenge.prompt %}<p>{{ block.text|linebreaksbr }}</p>{% endfor %}
+  {% for task in challenge.tasks %}
+  <section class="panel">
+    <h4>Part {{ forloop.counter }} · {{ task.max_points }} point{{ task.max_points|pluralize }}</h4>
+    {% for block in task.prompt %}<p>{{ block.text|linebreaksbr }}</p>{% endfor %}
+    {% if task.format == 'single_choice' %}
+      <ol type="A">
+      {% for option in task.options %}
+        <li>{% for block in option.prompt %}<p>{{ block.text|linebreaksbr }}</p>{% endfor %}
+          {% if mode == 'reveal' %}
+            {% if option.correct %}<strong>Correct option</strong>{% endif %}
+            {% for block in option.reveal %}<p>{{ block.text|linebreaksbr }}</p>{% endfor %}
+          {% endif %}
+        </li>
+      {% empty %}<li class="muted">This draft has no options yet.</li>{% endfor %}
+      </ol>
+    {% endif %}
+    {% if mode == 'reveal' %}
+      {% if task.correct_result %}<p><strong>Answer:</strong> {{ task.correct_result }}</p>{% endif %}
+      {% for block in task.reveal %}<p>{{ block.text|linebreaksbr }}</p>{% endfor %}
+    {% endif %}
+  </section>
+  {% empty %}<p class="muted">This draft has no tasks yet.</p>{% endfor %}
+  {% if mode == 'reveal' %}{% for block in challenge.reveal %}<p>{{ block.text|linebreaksbr }}</p>{% endfor %}{% endif %}
+</article>

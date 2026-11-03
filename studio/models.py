@@ -60,6 +60,7 @@ class Challenge(models.Model):
 class Task(models.Model):
     class Format(models.TextChoices):
         FREE_TEXT = "free_text", "Free text"
+        SINGLE_CHOICE = "single_choice", "Choose one"
 
     challenge = models.ForeignKey(
         Challenge, on_delete=models.CASCADE, related_name="tasks"
@@ -70,6 +71,13 @@ class Task(models.Model):
     )
     max_points = models.PositiveIntegerField(default=1)
     evaluation_key = models.JSONField(default=dict, blank=True)
+    response_pool = models.ForeignKey(
+        "ResponsePool",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="used_by_tasks",
+    )
 
     class Meta:
         ordering = ["order", "id"]
@@ -81,6 +89,34 @@ class Task(models.Model):
 
     def __str__(self):
         return f"{self.challenge} · Task {self.order}"
+
+
+class ResponsePool(models.Model):
+    task = models.OneToOneField(
+        Task, on_delete=models.CASCADE, related_name="owned_pool"
+    )
+
+    def __str__(self):
+        return f"Options for {self.task}"
+
+
+class ResponseItem(models.Model):
+    pool = models.ForeignKey(
+        ResponsePool, on_delete=models.CASCADE, related_name="items"
+    )
+    order = models.PositiveIntegerField()
+
+    class Meta:
+        ordering = ["order", "id"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["pool", "order"], name="studio_item_position"
+            )
+        ]
+
+    def __str__(self):
+        prompt = self.content_blocks.filter(phase="prompt").first()
+        return prompt.text[:80] if prompt else f"Option {self.order}"
 
 
 class ContentBlock(models.Model):
@@ -102,6 +138,13 @@ class ContentBlock(models.Model):
         on_delete=models.CASCADE,
         related_name="content_blocks",
     )
+    item = models.ForeignKey(
+        ResponseItem,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="content_blocks",
+    )
     phase = models.CharField(max_length=10, choices=Phase.choices)
     order = models.PositiveIntegerField()
     text = models.TextField()
@@ -111,8 +154,21 @@ class ContentBlock(models.Model):
         constraints = [
             models.CheckConstraint(
                 condition=(
-                    (Q(challenge__isnull=False) & Q(task__isnull=True))
-                    | (Q(challenge__isnull=True) & Q(task__isnull=False))
+                    (
+                        Q(challenge__isnull=False)
+                        & Q(task__isnull=True)
+                        & Q(item__isnull=True)
+                    )
+                    | (
+                        Q(challenge__isnull=True)
+                        & Q(task__isnull=False)
+                        & Q(item__isnull=True)
+                    )
+                    | (
+                        Q(challenge__isnull=True)
+                        & Q(task__isnull=True)
+                        & Q(item__isnull=False)
+                    )
                 ),
                 name="studio_block_one_owner",
             ),
@@ -123,11 +179,74 @@ class ContentBlock(models.Model):
             models.UniqueConstraint(
                 fields=["task", "phase", "order"], name="studio_task_block_position"
             ),
+            models.UniqueConstraint(
+                fields=["item", "phase", "order"], name="studio_item_block_position"
+            ),
         ]
 
     def clean(self):
         super().clean()
-        if (self.challenge_id is None) == (self.task_id is None):
-            raise ValidationError("Content must belong to a challenge or a task.")
+        if (
+            sum(
+                owner is not None
+                for owner in (self.challenge_id, self.task_id, self.item_id)
+            )
+            != 1
+        ):
+            raise ValidationError(
+                "Content must belong to exactly one challenge, task or item."
+            )
         if not self.text.strip():
             raise ValidationError({"text": "Enter text for this block."})
+
+
+class Game(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at", "-id"]
+
+    def __str__(self):
+        return self.name
+
+
+class GameRound(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="rounds")
+    name = models.CharField(max_length=255)
+    order = models.PositiveIntegerField()
+
+    class Meta:
+        ordering = ["order", "id"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["game", "order"], name="studio_round_position"
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.game} · {self.name}"
+
+
+class Placement(models.Model):
+    round = models.ForeignKey(
+        GameRound, on_delete=models.CASCADE, related_name="placements"
+    )
+    challenge = models.ForeignKey(
+        Challenge, on_delete=models.CASCADE, related_name="placements"
+    )
+    order = models.PositiveIntegerField()
+    created_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ["order", "id"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["round", "order"], name="studio_placement_position"
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.round} · {self.challenge}"

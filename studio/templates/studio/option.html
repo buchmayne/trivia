@@ -1,0 +1,10 @@
+{% extends 'studio/base.html' %}
+{% block title %}{% if item %}Edit option{% else %}Add option{% endif %}{% endblock %}
+{% block content %}
+<p><a href="{% url 'studio:edit_task' challenge.pk task.pk %}">← Back to task</a></p>
+<section class="panel">
+  <h1>{% if item %}Edit option {{ item.order }}{% else %}Add an option{% endif %}</h1>
+  <p class="muted">This option belongs to task {{ task.order }} of {{ challenge }}.</p>
+  <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Save option</button></form>
+</section>
+{% endblock %}

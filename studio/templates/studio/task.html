@@ -3,12 +3,35 @@
 {% block content %}
 <p><a href="{% url 'studio:edit' challenge.pk %}">← Back to challenge</a></p>
 <section class="panel">
-  <h1>{% if task %}Edit task {{ task.order }}{% else %}Add a free-text task{% endif %}</h1>
-  <p class="muted">A task is one answerable part of the challenge. Add its question and reveal text from the challenge editor after saving.</p>
+  <h1>{% if task %}Edit task {{ task.order }}{% else %}Add a task{% endif %}</h1>
+  <p class="muted">A task is one answerable part of the challenge. Add its prompt and reveal text from the challenge editor.</p>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.non_field_errors }}
+    <p>{{ form.format.label_tag }} {{ form.format }} {{ form.format.errors }}</p>
+    <p>{{ form.max_points.label_tag }} {{ form.max_points }} {{ form.max_points.errors }}</p>
+    {% if selected_format == 'single_choice' %}
+      <p>{{ form.correct_item.label_tag }} {{ form.correct_item }} {{ form.correct_item.errors }}<small class="muted">{{ form.correct_item.help_text }}</small></p>
+    {% else %}
+      <p>{{ form.reference_answer.label_tag }} {{ form.reference_answer }} {{ form.reference_answer.errors }}<small class="muted">{{ form.reference_answer.help_text }}</small></p>
+    {% endif %}
     <button type="submit">Save task</button>
   </form>
 </section>
+{% if task and task.format == 'single_choice' %}
+<section class="panel">
+  <h2>Options for this task</h2>
+  <p class="muted">Each option belongs only to this task. Save at least two, then choose the correct option above. The correct choice follows the option even when its displayed position changes.</p>
+  <ol type="A" class="list">
+  {% for option in items %}
+    <li><strong>{{ option }}</strong> <a href="{% url 'studio:edit_option' challenge.pk task.pk option.pk %}">Edit option and reveal</a>
+      <div class="toolbar">{% include 'studio/_actions.html' with item=option kind='options' %}</div>
+      <p><a href="{% url 'studio:new_block' challenge.pk %}?phase=prompt&amp;item={{ option.pk }}">Add prompt text</a> · <a href="{% url 'studio:new_block' challenge.pk %}?phase=reveal&amp;item={{ option.pk }}">Add reveal text</a></p>
+    </li>
+  {% empty %}<li class="muted">No options yet.</li>{% endfor %}
+  </ol>
+  <h3>Add an option</h3>
+  <form method="post" action="{% url 'studio:new_option' challenge.pk task.pk %}">{% csrf_token %}{{ item_form.as_p }}<button type="submit">Add option</button></form>
+</section>
+{% endif %}
 {% endblock %}

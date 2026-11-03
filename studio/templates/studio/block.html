@@ -1,13 +1,13 @@
 {% extends 'studio/base.html' %}
 {% block title %}Edit {{ phase }} text{% endblock %}
 {% block content %}
-<p><a href="{% url 'studio:edit' challenge.pk %}">← Back to challenge</a></p>
+<p><a href="{% if item %}{% url 'studio:edit_task' challenge.pk item.pool.task_id %}{% else %}{% url 'studio:edit' challenge.pk %}{% endif %}">← Back to editor</a></p>
 <section class="panel">
   <h1>{% if block %}Edit{% else %}Add{% endif %} {{ phase }} text</h1>
-  <p class="muted">{% if task %}Task {{ task.order }}{% else %}Shared challenge context{% endif %}</p>
+  <p class="muted">{% if item %}Option {{ item.order }} of task {{ item.pool.task.order }}{% elif task %}Task {{ task.order }}{% else %}Shared challenge context{% endif %}</p>
   <form method="post">
     {% csrf_token %}
-    {% if not block %}<input type="hidden" name="phase" value="{{ phase }}"><input type="hidden" name="task" value="{% if task %}{{ task.pk }}{% endif %}">{% endif %}
+    {% if not block %}<input type="hidden" name="phase" value="{{ phase }}"><input type="hidden" name="task" value="{% if task %}{{ task.pk }}{% endif %}"><input type="hidden" name="item" value="{% if item %}{{ item.pk }}{% endif %}">{% endif %}
     {{ form.as_p }}
     <button type="submit">Save text</button>
   </form>

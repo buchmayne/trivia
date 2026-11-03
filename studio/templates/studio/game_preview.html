@@ -1,0 +1,18 @@
+{% extends 'studio/base.html' %}
+{% block title %}{{ outline.name }} · {{ mode|title }}{% endblock %}
+{% block content %}
+<p><a href="{% url 'studio:game_editor' outline.id %}">← Back to game builder</a></p>
+<h1>{{ outline.name }} · {{ mode|title }} preview</h1>
+{% if outline.description %}<p>{{ outline.description|linebreaksbr }}</p>{% endif %}
+<nav class="panel" aria-label="Preview modes"><a href="{% url 'studio:game_preview' outline.id 'question' %}">Question</a> · <a href="{% url 'studio:game_preview' outline.id 'reveal' %}">Reveal</a></nav>
+{% for round in outline.rounds %}
+<section>
+  <h2>{{ round.name }}</h2>
+  {% for entry in round.entries %}
+    <h3>Question {{ entry.number }}{% if entry.category %} · {{ entry.category }}{% endif %}</h3>
+    {% if entry.incomplete %}<p class="errorlist" role="alert">Incomplete draft: this challenge has changed since it was added to the game.</p>{% endif %}
+    {% include 'studio/_preview_challenge.html' with challenge=entry.challenge %}
+  {% empty %}<p class="muted">This round is empty.</p>{% endfor %}
+</section>
+{% empty %}<p class="muted">Add a round in the game builder to start.</p>{% endfor %}
+{% endblock %}

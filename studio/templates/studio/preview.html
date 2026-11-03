@@ -3,20 +3,6 @@
 {% block content %}
 <p><a href="{% url 'studio:edit' challenge.id %}">← Back to editor</a></p>
 <nav class="panel" aria-label="Preview modes"><a href="{% url 'studio:preview' challenge.id 'question' %}">Question</a> · <a href="{% url 'studio:preview' challenge.id 'reveal' %}">Reveal</a></nav>
-<article class="panel">
-  <h1>{{ challenge.title }}</h1>
-  <p class="muted">{{ challenge.total_points }} point{{ challenge.total_points|pluralize }} · {{ mode|title }} preview</p>
-  {% for block in challenge.prompt %}<p>{{ block.text|linebreaksbr }}</p>{% endfor %}
-  {% for task in challenge.tasks %}
-  <section class="panel">
-    <h2>Part {{ forloop.counter }} · {{ task.max_points }} point{{ task.max_points|pluralize }}</h2>
-    {% for block in task.prompt %}<p>{{ block.text|linebreaksbr }}</p>{% endfor %}
-    {% if mode == 'reveal' %}
-      {% if task.correct_result %}<p><strong>Answer:</strong> {{ task.correct_result }}</p>{% endif %}
-      {% for block in task.reveal %}<p>{{ block.text|linebreaksbr }}</p>{% endfor %}
-    {% endif %}
-  </section>
-  {% empty %}<p class="muted">This draft has no tasks yet.</p>{% endfor %}
-  {% if mode == 'reveal' %}{% for block in challenge.reveal %}<p>{{ block.text|linebreaksbr }}</p>{% endfor %}{% endif %}
-</article>
+<h1>{{ challenge.title }}</h1>
+{% include 'studio/_preview_challenge.html' %}
 {% endblock %}

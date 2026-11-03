@@ -1,0 +1,51 @@
+{% extends 'studio/base.html' %}
+{% block title %}{{ game.name }} · Game builder{% endblock %}
+{% block content %}
+<p><a href="{% url 'studio:games' %}">← Back to games</a></p>
+<h1>{{ game.name }}</h1>
+<p><a href="{% url 'studio:game_preview' game.pk 'question' %}">Question preview</a> · <a href="{% url 'studio:game_preview' game.pk 'reveal' %}">Reveal preview</a></p>
+<div class="columns">
+  <section class="panel"><h2>Game details</h2><form method="post" action="{% url 'studio:game_editor' game.pk %}">{% csrf_token %}{{ game_form.as_p }}<button type="submit">Save details</button></form></section>
+  <section class="panel"><h2>Add a round</h2><form method="post" action="{% url 'studio:game_add_round' game.pk %}">{% csrf_token %}{{ round_form.as_p }}<button type="submit">Add round</button></form></section>
+</div>
+<section class="panel">
+  <h2>Find Ready challenges</h2>
+  <p class="muted">Challenges live in the <a href="{% url 'studio:library' %}">library</a>. Filter the choices below; you can use a challenge in more than one game.</p>
+  <form method="get" class="toolbar">
+    <div><label for="game-search">Search</label><input id="game-search" type="search" name="q" value="{{ query }}"></div>
+    <div><label for="game-category">Category</label><select id="game-category" name="category">
+      <option value="">All categories</option>
+      {% for category in categories %}<option value="{{ category.pk }}" {% if selected_category == category.pk|stringformat:'s' %}selected{% endif %}>{{ category.name }}</option>{% endfor %}
+    </select></div>
+    <button type="submit">Filter</button>
+  </form>
+  {% if placement_form.errors %}<div class="errorlist" role="alert">{{ placement_form.errors }}</div>{% endif %}
+  <h3>Category coverage (informational)</h3>
+  <ul>{% for name, count in outline.category_coverage %}<li>{{ name }}: {{ count }}</li>{% empty %}<li class="muted">No categories used yet; none are required.</li>{% endfor %}</ul>
+</section>
+{% for round in outline.rounds %}
+<section class="panel">
+  <h2>Round {{ forloop.counter }}: {{ round.name }}</h2>
+  <div class="toolbar">{% include 'studio/_game_actions.html' with kind='rounds' item_id=round.id %}</div>
+  <ol class="list">
+  {% for entry in round.entries %}
+    <li><strong>#{{ entry.number }}</strong> <a href="{% url 'studio:edit' entry.challenge.id %}">{{ entry.challenge.title }}</a>
+      {% if entry.category %}<span class="muted">· {{ entry.category }}</span>{% endif %}
+      {% if entry.incomplete %}<strong class="errorlist">· Incomplete draft</strong>{% endif %}
+      <div class="toolbar">{% include 'studio/_game_actions.html' with kind='placements' item_id=entry.placement_id %}</div>
+    </li>
+  {% empty %}<li class="muted">This round has no challenges yet.</li>{% endfor %}
+  </ol>
+  <form method="post" action="{% url 'studio:game_add_placement' game.pk round.id %}">
+    {% csrf_token %}
+    <label for="challenge-{{ round.id }}">Add a Ready challenge</label>
+    <select name="challenge" id="challenge-{{ round.id }}" required>
+      <option value="">Choose a challenge</option>
+      {% for challenge in ready_challenges %}<option value="{{ challenge.pk }}">{{ challenge }}{% if challenge.category %} · {{ challenge.category }}{% endif %}</option>{% endfor %}
+    </select>
+    <button type="submit">Add to round</button>
+    {% if not ready_challenges %}<p class="muted">No Ready challenges match this filter. <a href="{% url 'studio:library' %}">Develop one in the library</a> or clear the filter.</p>{% endif %}
+  </form>
+</section>
+{% empty %}<section class="panel"><p class="muted">Add a round to start building this game.</p></section>{% endfor %}
+{% endblock %}

@@ -39,7 +39,7 @@
   <ul class="list">
     {% for challenge in challenges %}
     <li><a href="{% url 'studio:edit' challenge.pk %}">{{ challenge.working_title|default:challenge.rough_notes|truncatechars:80 }}</a>
-      <span class="muted">· {{ challenge.get_status_display }}{% if challenge.category %} · {{ challenge.category.name }}{% endif %}</span></li>
+      <span class="muted">· {{ challenge.get_status_display }}{% if challenge.category %} · {{ challenge.category.name }}{% endif %} · {% if challenge.last_used %}Last added to a game {{ challenge.last_used|date:'M j, Y' }}{% else %}Not yet used in a game{% endif %}</span></li>
     {% empty %}<li class="muted">No challenges yet. Capture an idea above.</li>{% endfor %}
   </ul>
 </section>

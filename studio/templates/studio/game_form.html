@@ -1,0 +1,9 @@
+{% extends 'studio/base.html' %}
+{% block title %}Create a game{% endblock %}
+{% block content %}
+<p><a href="{% url 'studio:games' %}">← Back to games</a></p>
+<section class="panel">
+  <h1>Create a v2 game</h1>
+  <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Create game</button></form>
+</section>
+{% endblock %}

@@ -38,8 +38,8 @@
   <p><a href="{% url 'studio:new_task' challenge.pk %}">Add a task</a></p>
   {% for entry in tasks %}
     <section class="panel">
-      <h3>Task {{ forloop.counter }} · {{ entry.task.max_points }} point{{ entry.task.max_points|pluralize }}</h3>
-      <p><a href="{% url 'studio:edit_task' challenge.pk entry.task.pk %}">Edit points and reference answer</a></p>
+      <h3>Task {{ forloop.counter }} · {{ entry.task.get_format_display }} · {{ entry.task.max_points }} point{{ entry.task.max_points|pluralize }}</h3>
+      <p><a href="{% url 'studio:edit_task' challenge.pk entry.task.pk %}">Edit response, points and options</a></p>
       <div class="toolbar">
         {% include 'studio/_actions.html' with item=entry.task kind='tasks' %}
       </div>

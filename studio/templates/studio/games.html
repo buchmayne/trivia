@@ -1,0 +1,11 @@
+{% extends 'studio/base.html' %}
+{% block title %}V2 games{% endblock %}
+{% block content %}
+<h1>V2 games</h1>
+<p class="muted">Build games from challenges in the library. This does not change existing games.</p>
+<p><a href="{% url 'studio:new_game' %}">Create a game</a></p>
+<ul class="list">
+{% for game in games %}<li><a href="{% url 'studio:game_editor' game.pk %}">{{ game.name }}</a></li>
+{% empty %}<li class="muted">No v2 games yet.</li>{% endfor %}
+</ul>
+{% endblock %}

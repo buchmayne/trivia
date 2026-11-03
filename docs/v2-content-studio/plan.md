@@ -7,7 +7,7 @@ Source of truth: [spec.md](spec.md). This plan builds **only a local, parallel e
 - New Django app `studio`, separate v2 tables and `/studio/` routes. Route access requires `DEBUG` **and** a separate opt-in setting, plus authenticated staff or existing game-admin permission. `studio` must not appear in `quiz/management/commands/export_content.py`, `quiz/management/commands/seed_db.py`, or `quiz/fixtures/content.json`. Use a separate local-file storage namespace for v2 media; do not instantiate legacy S3 fields.
 - Domain services own writes/validation; forms/views are adapters. Use stable task format codes; evaluation keys are validated small JSON objects referencing relational response items. Preview projections for question and reveal are separate. `Challenge` is library content, `Task` is the answerable unit, and `Placement` connects challenges to games. Challenges may be reused without copying them.
 - Consult `quiz/models.py`, `quiz/admin.py`, `quiz/session_api.py`, `quiz/scoring.py`, `quiz/fields.py`, `pub_trivia/settings.py`, `pub_trivia/urls.py`, `quiz/tests/`, and `docs/CONTENT_WORKFLOW.md` for existing patterns and regression risks. Keep new code within the bounded `studio` app where possible.
-- Unless otherwise noted, verify after each task with `uv run manage.py test studio` and `uv run manage.py makemigrations --check --dry-run`; after tasks affecting project wiring also run `uv run manage.py check`. The final task runs `uv run manage.py test quiz studio`. These commands require the repo's configured local PostgreSQL/test environment; do not point them at production.
+- Unless otherwise noted, verify after each task with `uv run manage.py test studio` and `uv run manage.py makemigrations --check --dry-run`; after tasks affecting project wiring also run `uv run manage.py check`. The final task runs `uv run manage.py test quiz studio`. These automated checks use the repo's configured local PostgreSQL/test environment; do not point them at production. For **human workflow testing**, use the separate SQLite-only site in [sandbox.md](sandbox.md) instead of migrating the normal dev database.
 
 ## 1. Isolated studio and quick-capture inbox
 
@@ -19,7 +19,7 @@ Source of truth: [spec.md](spec.md). This plan builds **only a local, parallel e
 
 **Acceptance criteria:** An authorized developer captures an idea with only a title or only notes and can find/edit it later; empty input is rejected without losing entered values. Unauthenticated/unauthorized users cannot read or write studio content. Routes are unavailable with opt-in off or `DEBUG=False`. No legacy content or fixture changes.
 
-**Verify:** Baseline commands above; `uv run manage.py test studio` includes route-gate/auth and draft CRUD tests. With opt-in enabled in the local development environment, run `uv run manage.py runserver` and capture/re-find an idea at `/studio/`. Test route denial with settings overrides.
+**Verify:** Baseline commands above; `uv run manage.py test studio` includes route-gate/auth and draft CRUD tests. Use the separate SQLite site in [sandbox.md](sandbox.md) to capture/re-find an idea at `/studio/` without touching the normal dev database. Test route denial with settings overrides.
 
 ## 2. First complete challenge: free-text task and text-only previews
 
@@ -103,4 +103,4 @@ Source of truth: [spec.md](spec.md). This plan builds **only a local, parallel e
 
 **Acceptance criteria:** A new game containing free-text, idiom-style choose-one, ranking, matching, and media challenges can be authored and previewed entirely in studio. Legacy gallery/live/admin behavior and fixture contents are unchanged. The local-only gate works when disabled; regression tests pass.
 
-**Verify:** `uv run manage.py check`; `uv run manage.py makemigrations --check --dry-run`; `uv run manage.py test quiz studio`; compare `git diff -- quiz quiz/fixtures/content.json` (must be empty). With the local development opt-in, `uv run manage.py runserver` and manually create/preview the representative game on both narrow and wide browser viewports. Do not run `seed_db --force` against any shared/production database to verify this experiment.
+**Verify:** `uv run manage.py check`; `uv run manage.py makemigrations --check --dry-run`; `uv run manage.py test quiz studio`; compare `git diff -- quiz quiz/fixtures/content.json` (must be empty). In the standalone SQLite sandbox, manually create/preview the representative game on both narrow and wide browser viewports. Do not run `seed_db --force` against any shared/production database to verify this experiment.
