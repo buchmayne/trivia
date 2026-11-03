@@ -3,29 +3,40 @@ name = "trivia"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "boto3>=1.38.9",
-    "django>=5.2,<6.0",
+    "django>=5.2.17,<6.0",
     "django-allauth>=0.61.0",
     "django-filter==25.1",
     "django-ratelimit>=4.1.0",
     "django-storages>=1.14.6",
     "django-tinymce==4.1.0",
-    "djangorestframework==3.16.0",
+    "djangorestframework==3.18.2",
     "gunicorn>=23.0.0",
-    "pillow>=12.3.0",
+    "pillow>=13.0.0",
     "psycopg2-binary>=2.9.10",
     "python-dotenv>=1.2.2",
-    "urllib3>=2.6.0",
+    "urllib3>=2.8.0",
 ]
+
+[tool.uv]
+required-version = ">=0.13.5"
+# Delay new registry artifacts; ordinary installs retain the reviewed lockfile.
+exclude-newer = "7 days"
+# Temporary security exception: pyasn1 0.6.5 fixes four decoder DoS advisories.
+# Only artifacts before this fixed cutoff are allowed (not future releases).
+# Remove on/after 2026-11-03 06:33 UTC, once both fixed artifacts are seven days old.
+exclude-newer-package = { pyasn1 = "2026-10-28T00:00:00Z" }
 
 [tool.black]
 target-version = ["py313"]
 
 [dependency-groups]
+# Optional tooling: excluded by the production image's --no-dev sync.
+security = ["pip-audit==2.10.1"]
 dev = [
-    "black==26.3.1",
+    "black==26.10.1",
     "gspread==6.1.4",
     "numpy>=2.2",
     "oauth2client==4.1.3",

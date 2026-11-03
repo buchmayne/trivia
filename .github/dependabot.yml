@@ -1,16 +1,35 @@
 version: 2
 updates:
-  # Python dependencies (uv / pip ecosystem via pyproject.toml + uv.lock)
-  - package-ecosystem: "pip"
+  # Native uv support maintains both pyproject.toml and uv.lock.
+  - package-ecosystem: "uv"
     directory: "/"
     target-branch: "dev"
     schedule:
       interval: "weekly"
+    # Cooldowns apply to routine version updates, not security update PRs.
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 10
     groups:
       python-dependencies:
         patterns:
           - "*"
+
+  # Browser-test dependencies, including Playwright and its matching core.
+  - package-ecosystem: "npm"
+    directory: "/"
+    target-branch: "dev"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 10
+    groups:
+      playwright:
+        patterns:
+          - "@playwright/*"
+          - "playwright"
+          - "playwright-core"
 
   # GitHub Actions used in workflows
   - package-ecosystem: "github-actions"

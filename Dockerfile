@@ -11,8 +11,9 @@ ENV PYTHONUNBUFFERED=1
 ENV UV_NO_SYNC=1
 ENV UV_FROZEN=1
 
-# Install uv
-RUN pip install --no-cache-dir --upgrade uv
+# Reviewed bootstrap tool version; keep in sync with CI and the dependency docs.
+# Pinning avoids downloading a newly published uv release on every build.
+RUN pip install --no-cache-dir uv==0.13.5
 
 # Set working directory
 WORKDIR /app

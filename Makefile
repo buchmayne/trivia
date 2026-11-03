@@ -1,4 +1,4 @@
-.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run stop migrate makemigrations shell superuser collectstatic install sync clean docker-up docker-down docker-logs docker-migrate dump-data export-content black start preprod e2e e2e-install e2e-qa
+.PHONY: help test test-verbose test-parallel test-keepdb test-models test-views test-api test-integration run stop migrate makemigrations shell superuser collectstatic install sync audit-python clean docker-up docker-down docker-logs docker-migrate dump-data export-content black start preprod e2e e2e-install e2e-qa
 
 help:
 	@echo "Available commands:"
@@ -19,6 +19,7 @@ help:
 	@echo "  make collectstatic    - Collect static files"
 	@echo "  make install          - Install dependencies with uv"
 	@echo "  make sync             - Sync dependencies with uv"
+	@echo "  make audit-python     - Audit locked Python dependencies (all groups)"
 	@echo "  make clean            - Remove Python cache files"
 	@echo "  make docker-up        - Start all Docker services"
 	@echo "  make docker-down      - Stop all Docker services"
@@ -87,10 +88,19 @@ collectstatic:
 
 # Dependency management
 install:
-	uv sync
+	uv sync --locked
 
 sync:
-	uv sync
+	uv sync --locked
+
+# Audit pinned requirements, not incidental packages in the active environment.
+# The optional security group is not installed in the production image.
+audit-python:
+	@set -eu; requirements=$$(mktemp); \
+	trap 'rm -f "$$requirements"' EXIT HUP INT TERM; \
+	uv export --locked --all-groups --no-emit-project --output-file "$$requirements" >/dev/null; \
+	uv run --locked --group security python -m pip_audit \
+		--requirement "$$requirements" --require-hashes --disable-pip --strict
 
 # Cleanup
 clean:
@@ -129,23 +139,19 @@ start:
 	uv run init_trivia.py
 
 # E2E Testing with Playwright
-# Use TEST= to run specific test file, e.g.: make e2e-headed TEST=host-flow
+# Use TEST= to run a specific test file, e.g.: make e2e TEST=host-flow
 TEST ?=
 
 e2e-install:
-	npm install
-	npx playwright install chromium webkit
+	npm ci
+	./node_modules/.bin/playwright install chromium webkit
 
 e2e:
-ifdef TEST
-	cd e2e && npx playwright test $(TEST) --project=chromium
-else
-	cd e2e && npx playwright test --project=chromium
-endif
+	npm test -- $(TEST) --project=chromium
 
 # Robust QA test - defensive testing with retries, stability checks, and comprehensive diagnostics
 e2e-qa:
-	cd e2e && npx playwright test qa-robust.spec.ts --headed --project=qa-robust
+	npm run test:headed -- qa-robust.spec.ts --project=qa-robust
 
 # Run all preflight steps before pushing to prod:
 # 1. Export content fixture from live local DB -> quiz/fixtures/content.json

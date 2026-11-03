@@ -1,3 +1,4 @@
+import logging
 from typing import Optional, Dict, Any, List, Union
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse, HttpRequest, HttpResponse
@@ -12,6 +13,8 @@ from .models import (
     PlayerStats,
     Answer,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
@@ -29,8 +32,9 @@ def get_first_question(request: HttpRequest, round_id: int) -> JsonResponse:
             )
         else:
             return JsonResponse({"error": "No questions found"}, status=404)
-    except Exception as e:
-        return JsonResponse({"error": str(e)}, status=400)
+    except Exception:
+        logger.exception("Failed to load first question")
+        return JsonResponse({"error": "Unable to load question."}, status=400)
 
 
 def landing_page_view(request: HttpRequest) -> HttpResponse:
@@ -54,11 +58,15 @@ def get_first_question_info(
             .first()
         )
 
+        if first_question is None:
+            return JsonResponse({"error": "No questions found"}, status=404)
+
         return JsonResponse(
             {"id": first_question.id, "category_id": first_question.category.id}
         )
-    except Exception as e:
-        return JsonResponse({"error": str(e)}, status=400)
+    except Exception:
+        logger.exception("Failed to load first question info")
+        return JsonResponse({"error": "Unable to load question."}, status=400)
 
 
 def get_next_question(question: Question) -> Optional[Question]:
@@ -369,8 +377,11 @@ def get_next_question_number(request, game_id):
             next_number += 1
 
         return JsonResponse({"next_number": next_number})
-    except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)
+    except Exception:
+        logger.exception("Failed to determine next question number")
+        return JsonResponse(
+            {"error": "Unable to determine the next question number."}, status=500
+        )
 
 
 @staff_member_required
@@ -400,5 +411,8 @@ def get_next_game_order(request):
                 break
 
         return JsonResponse({"next_order": next_order})
-    except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)
+    except Exception:
+        logger.exception("Failed to determine next game order")
+        return JsonResponse(
+            {"error": "Unable to determine the next game order."}, status=500
+        )
