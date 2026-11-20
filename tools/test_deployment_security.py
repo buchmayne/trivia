@@ -30,11 +30,24 @@ class DeploymentWorkflowTests(unittest.TestCase):
         self.assertIn("github.ref == 'refs/heads/main'", deploy)
         self.assertIn("github.event_name == 'push'", deploy)
 
+    def test_deploy_refreshes_nginx_before_building_and_stopping_services(self):
+        workflow = (ROOT / ".github/workflows/django.yml").read_text()
+        self.assertLess(
+            workflow.index("docker-compose pull nginx\n"),
+            workflow.index("docker-compose build\n"),
+        )
+        self.assertLess(
+            workflow.index("docker-compose build\n"),
+            workflow.index("docker-compose down --remove-orphans\n"),
+        )
+
     @unittest.skipUnless(shutil.which("bash"), "bash is required")
     def test_actual_secret_file_commands_restrict_new_and_existing_files(self):
         workflow = (ROOT / ".github/workflows/django.yml").read_text()
         start = workflow.index("          umask 077\n")
-        end = workflow.index("          # Build the new images", start)
+        end = workflow.index(
+            "          # Fetch the reviewed internal NGINX image", start
+        )
         # Run only the actual .env-writing portion, never the deploy/prune script.
         script = textwrap.dedent(workflow[start:end])
         script = re.sub(r"\$\{\{ secrets\.[A-Z0-9_]+ \}\}", "test-value", script)
@@ -96,6 +109,17 @@ class ComposeBoundaryTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, result.stderr)
             services = json.loads(result.stdout)["services"]
+            proxy = services["nginx-proxy"]
+            self.assertEqual(proxy["image"], "trivia-nginx-proxy:nginx-1.31.9")
+            self.assertEqual(
+                (directory / proxy["build"]["context"]).resolve(),
+                (directory / "deploy/nginx-proxy").resolve(),
+            )
+            self.assertEqual(
+                services["nginx"]["image"],
+                "nginx:1.31.9-alpine@sha256:"
+                "fb4658584bd9a916ffb6f6e365f97c25cfdb2923801f551ea08356e695f14ff7",
+            )
             ports = services["db"]["ports"]
             self.assertEqual(len(ports), 1)
             self.assertEqual(ports[0]["host_ip"], "127.0.0.1")

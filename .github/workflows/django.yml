@@ -180,6 +180,10 @@ jobs:
           echo "EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}" >> .env
           echo "DEFAULT_FROM_EMAIL=${{ secrets.DEFAULT_FROM_EMAIL }}" >> .env
 
+          # Fetch the reviewed internal NGINX image before stopping anything.
+          # The public proxy is built below from digest-pinned upstream stages.
+          docker-compose pull nginx
+
           # Build the new images while the old containers are still serving
           # traffic. If the build fails (e.g. out of disk space, bad
           # Dockerfile), `set -e` stops the script here and the currently

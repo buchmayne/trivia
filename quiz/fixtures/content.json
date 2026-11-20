@@ -545,6 +545,7 @@
       "name": "Neighborhoods",
       "description": null,
       "games": [
+        18,
         2
       ]
     }
@@ -560,6 +561,7 @@
         10,
         9,
         8,
+        3,
         2
       ]
     }
@@ -1152,7 +1154,8 @@
       "description": null,
       "games": [
         18,
-        10
+        10,
+        3
       ]
     }
   },
@@ -1904,24 +1907,24 @@
   },
   {
     "model": "quiz.question",
-    "pk": 296,
+    "pk": 322,
     "fields": {
       "game": 18,
-      "category": 34,
-      "text": "Select the right answer from the options for each question (1 Point Each)",
-      "answer_bank": "",
-      "question_type": 3,
-      "question_image_url": null,
-      "answer_image_url": null,
-      "question_image": "",
-      "answer_image": "",
+      "category": 33,
+      "text": "Match each of the following Los Angeles neighborhoods to the image of their approximate boundaries (1 Point Each).",
+      "answer_bank": "Hollywood, Pacific Palisades, Downtown, Venice, Bel Air, Silver Lake",
+      "question_type": 2,
+      "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/game-16/Neighborhoods/question.png",
+      "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/game-16/Neighborhoods/answer.png",
+      "question_image": "game-16/Neighborhoods/question.png",
+      "answer_image": "game-16/Neighborhoods/answer.png",
       "question_video_url": null,
       "answer_video_url": null,
       "question_video": "",
       "answer_video": "",
       "question_number": 3,
-      "created_at": "2025-12-07T02:30:52.246Z",
-      "total_points": 4,
+      "created_at": "2026-11-18T06:00:55.604Z",
+      "total_points": 6,
       "game_round": 1
     }
   },
@@ -2128,7 +2131,7 @@
       "answer_video": "",
       "question_number": 12,
       "created_at": "2026-06-24T03:11:14.950Z",
-      "total_points": 10,
+      "total_points": 12,
       "game_round": 2
     }
   },
@@ -2157,24 +2160,24 @@
   },
   {
     "model": "quiz.question",
-    "pk": 308,
+    "pk": 321,
     "fields": {
       "game": 18,
-      "category": 80,
-      "text": "Fill in the rest of the 2025 Spotify U.S. top Podcasts chart. For each correct podcast listed in the top 10 (2 Points), and an additional (1 Point) for each correct ranking.",
+      "category": 32,
+      "text": "Identify the Portland restaurant from the photo and description of its iconic dish (2 Points Each)",
       "answer_bank": "",
       "question_type": 3,
-      "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/optimized/fa6576033cdb49914f6c1ebecbc698838ed74200e75f3b70b6490faf2d02513e.webp",
-      "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/optimized/27351c302553100524b1600bb14355a483a35d3c1c8f22329e92afd3ab3cb7a6.webp",
-      "question_image": "optimized/fa6576033cdb49914f6c1ebecbc698838ed74200e75f3b70b6490faf2d02513e.webp",
-      "answer_image": "optimized/27351c302553100524b1600bb14355a483a35d3c1c8f22329e92afd3ab3cb7a6.webp",
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
       "question_video_url": null,
       "answer_video_url": null,
       "question_video": "",
       "answer_video": "",
       "question_number": 14,
-      "created_at": "2025-12-17T01:20:23.992Z",
-      "total_points": 21,
+      "created_at": "2026-11-18T05:10:08.433Z",
+      "total_points": 8,
       "game_round": 2
     }
   },
@@ -2230,7 +2233,7 @@
     "fields": {
       "game": 18,
       "category": 15,
-      "text": "Identify the data shown on the map (5 Points).",
+      "text": "Identify the data shown on the map (5 Points). <br>Hint: 2003</br>",
       "answer_bank": "",
       "question_type": 3,
       "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/optimized/d0f6ae44a8ddf31614140373cf61ce120ac3d756ce57824833cec37602b7a929.webp",
@@ -7723,6 +7726,29 @@
   },
   {
     "model": "quiz.question",
+    "pk": 296,
+    "fields": {
+      "game": 3,
+      "category": 34,
+      "text": "Select the right answer from the options for each question (1 Point Each)",
+      "answer_bank": "",
+      "question_type": 3,
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": "",
+      "question_number": 3,
+      "created_at": "2025-12-07T02:30:52.246Z",
+      "total_points": 4,
+      "game_round": 1
+    }
+  },
+  {
+    "model": "quiz.question",
     "pk": 316,
     "fields": {
       "game": 3,
@@ -7811,6 +7837,29 @@
       "created_at": "2024-12-05T04:14:54.112Z",
       "total_points": 8,
       "game_round": 1
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 308,
+    "fields": {
+      "game": 3,
+      "category": 80,
+      "text": "Fill in the rest of the 2025 Spotify U.S. top Podcasts chart. For each correct podcast listed in the top 10 (2 Points), and an additional (1 Point) for each correct ranking.",
+      "answer_bank": "",
+      "question_type": 3,
+      "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/optimized/fa6576033cdb49914f6c1ebecbc698838ed74200e75f3b70b6490faf2d02513e.webp",
+      "answer_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/optimized/27351c302553100524b1600bb14355a483a35d3c1c8f22329e92afd3ab3cb7a6.webp",
+      "question_image": "optimized/fa6576033cdb49914f6c1ebecbc698838ed74200e75f3b70b6490faf2d02513e.webp",
+      "answer_image": "optimized/27351c302553100524b1600bb14355a483a35d3c1c8f22329e92afd3ab3cb7a6.webp",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": "",
+      "question_number": 14,
+      "created_at": "2025-12-17T01:20:23.992Z",
+      "total_points": 21,
+      "game_round": 2
     }
   },
   {
@@ -13824,6 +13873,26 @@
   },
   {
     "model": "quiz.answer",
+    "pk": 1157,
+    "fields": {
+      "question": 321,
+      "text": "Inspired by White Castle sliders, star chef Gabriel Rucker revealed that the steam burger is the reason for BLANK\u2019s very existence.",
+      "display_order": 1,
+      "correct_rank": null,
+      "points": 2,
+      "answer_text": "Canard",
+      "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/game-16/Food/Screenshot 2026-11-17 at 8.57.25PM.webp",
+      "answer_image_url": null,
+      "question_image": "game-16/Food/Screenshot 2026-11-17 at 8.57.25PM.webp",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
     "pk": 2,
     "fields": {
       "question": 1,
@@ -17967,7 +18036,7 @@
     "pk": 1062,
     "fields": {
       "question": 300,
-      "text": "B. 6 sides polygon",
+      "text": "B. 6 sided polygon",
       "display_order": 2,
       "correct_rank": null,
       "points": 2,
@@ -18067,7 +18136,7 @@
     "pk": 1083,
     "fields": {
       "question": 305,
-      "text": "B. Thom Yorke (Radiohead), Flea (The Red Hot Chili Peppers), Nigel Godrich (long time producer for Radiohead), Joey Waronker (who has played drums for acts such as R.E.M, Beck and Smashing Pumpkins), Mauro Refosco (David Byrne and Forro in the Dark)",
+      "text": "B. Thom Yorke, Flea, Nigel Godrich, Joey Waronker, Mauro Refosco",
       "display_order": 2,
       "correct_rank": null,
       "points": 2,
@@ -18375,6 +18444,26 @@
       "question_image_url": null,
       "answer_image_url": null,
       "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 1158,
+    "fields": {
+      "question": 321,
+      "text": "Renowned local gourmand James Beard (yes, that James Beard) called the onion rings the finest he had ever eaten in the United States: wide, lightly battered rings served with a gravy boat of Thousand Island.",
+      "display_order": 2,
+      "correct_rank": null,
+      "points": 2,
+      "answer_text": "Ringside Steakhouse",
+      "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/game-16/Food/Screenshot 2026-11-17 at 9.01.04PM.webp",
+      "answer_image_url": null,
+      "question_image": "game-16/Food/Screenshot 2026-11-17 at 9.01.04PM.webp",
       "answer_image": "",
       "question_video_url": null,
       "answer_video_url": null,
@@ -22824,6 +22913,26 @@
   },
   {
     "model": "quiz.answer",
+    "pk": 1159,
+    "fields": {
+      "question": 321,
+      "text": "\u201cthe classic\u201d is a model of decadent restraint: The malty rye is fried to a delicate crisp, the corned beef makes itself known without overwhelming, and the ratio of sauce-to-kraut-to-Swiss is scientifically precise.",
+      "display_order": 3,
+      "correct_rank": null,
+      "points": 2,
+      "answer_text": "Goose Hollow Inn",
+      "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/game-16/Food/Screenshot 2026-11-17 at 9.04.13PM.webp",
+      "answer_image_url": null,
+      "question_image": "game-16/Food/Screenshot 2026-11-17 at 9.04.13PM.webp",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
     "pk": 4,
     "fields": {
       "question": 1,
@@ -26944,6 +27053,26 @@
   },
   {
     "model": "quiz.answer",
+    "pk": 1160,
+    "fields": {
+      "question": 321,
+      "text": "A melange of marionberry and hazelnut cream \u2014 two Oregon icons in their own right \u2014 the croissant uses a flavorful Pacific Northwestern flour for an added nuttiness.",
+      "display_order": 4,
+      "correct_rank": null,
+      "points": 2,
+      "answer_text": "Ken's Artisan Bakery",
+      "question_image_url": "https://d1eomq1h9ixjmb.cloudfront.net/game-16/Food/Screenshot 2026-11-17 at 9.08.43PM.webp",
+      "answer_image_url": null,
+      "question_image": "game-16/Food/Screenshot 2026-11-17 at 9.08.43PM.webp",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
     "pk": 5,
     "fields": {
       "question": 1,
@@ -28712,6 +28841,26 @@
       "correct_rank": null,
       "points": 3,
       "answer_text": "Matt and Shane's Secret Podcast",
+      "question_image_url": null,
+      "answer_image_url": null,
+      "question_image": "",
+      "answer_image": "",
+      "question_video_url": null,
+      "answer_video_url": null,
+      "question_video": "",
+      "answer_video": ""
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 1156,
+    "fields": {
+      "question": 313,
+      "text": "Knuckle Duster",
+      "display_order": 6,
+      "correct_rank": null,
+      "points": 2,
+      "answer_text": "Brass Knuckles",
       "question_image_url": null,
       "answer_image_url": null,
       "question_image": "",

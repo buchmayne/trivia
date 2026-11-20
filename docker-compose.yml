@@ -2,7 +2,10 @@ version: '3.9'
 
 services:
   nginx-proxy:
-    image: nginxproxy/nginx-proxy
+    # Upstream still bundles vulnerable NGINX; see deploy/nginx-proxy/README.md.
+    image: trivia-nginx-proxy:nginx-1.31.9
+    build:
+      context: ./deploy/nginx-proxy
     container_name: nginx-proxy
     ports:
       - "80:80"
@@ -33,7 +36,7 @@ services:
     restart: always
 
   nginx:
-    image: nginx:alpine
+    image: nginx:1.31.9-alpine@sha256:fb4658584bd9a916ffb6f6e365f97c25cfdb2923801f551ea08356e695f14ff7
     container_name: trivia_app_nginx
     expose:
       - "80"
