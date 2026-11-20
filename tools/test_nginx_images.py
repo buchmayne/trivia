@@ -155,6 +155,7 @@ class NginxImagesTests(unittest.TestCase):
                     "--resolve",
                     f"nginx-security.test:{port}:127.0.0.1",
                 ]
+                response = None
                 for attempt in range(20):
                     try:
                         response = run(
@@ -168,6 +169,7 @@ class NginxImagesTests(unittest.TestCase):
                         if attempt == 19:
                             raise
                         time.sleep(1)
+                self.assertIsNotNone(response)
                 self.assertEqual(response, "patched-proxy-ok\n2")
                 response = run(
                     *curl,
